@@ -16,10 +16,17 @@
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 
 <style type="text/css">
+	
 	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); %>
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 	
 	body {
+		width:100%;
+		overflow:auto;
+	}
+	
+	.ohw-menu-body {
+		width:100%;
 		font-family: 'Open Sans', 'sans-serif';
 		background: #f0f0f0;
 		background: url(https://pcbx.us/bfjb.jpg);
@@ -115,11 +122,61 @@
 	.mega-dropdown-menu .form-group {
 		margin-bottom: 3px;
 	}
+	
+	.ohw-div-search {
+		margin-top:100px;
+		margin-bottom:100px;
+		width:400px;
+	}
+	
+	.ohw-div-login {
+		margin-top:20px;
+		margin-right:50px;
+	}	
+	
 </style>
 
 </head>
 <body>
-<div class="container">
+<div align = "right">
+	<c:if test="${ empty sessionScope.loginUser }">
+		<div class = "ohw-div-login">
+			<button type = "button" class = "btn btn-default">
+				<i class = "fa fa-sign-in"></i> LogIn
+			</button>
+		</div>
+	</c:if>
+	<c:if test="${ !empty sessionScope.loginUser }">
+		<table>
+			<tr>
+				<td>${ sessionScope.loginUser.username } 님</td>
+				<td>
+					<button type = "button" class = "btn btn-default">
+						<i class = "fa fa-address-card"></i> MyPage
+					</button>
+				</td>
+				<td>
+					<button type = "button" class = "btn btn-default">
+						<i class = "fa fa-sign-out"></i> LogOut
+					</button>
+				</td>
+			</tr>			
+		</table>		
+	</c:if>
+</div>
+<div align = "center">
+	<form class="" action="">
+		<div class="ohw-div-search input-group">
+			<input type="text" class="form-control" placeholder="Search" name="search">
+			<div class="input-group-btn">
+				<button class="btn btn-default" type="submit">
+					<i class="glyphicon glyphicon-search"></i> Search
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<div class = "ohw-menu-body">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -143,26 +200,38 @@
 								<div id="myCarousel" class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">										
 										<div class="item active">
-											<a href="#"><img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1"></a>
+											<a href="#">
+												<img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1">
+											</a>
 											<h4><small>Summer dress floral prints</small></h4>
 											<button class="btn btn-primary" type="button">49,99 €</button>
-											<button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+											<button href="#" class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-heart"></span> Add to Wishlist
+											</button>
 										</div>
 										<!-- End Item -->
 										
 										<div class="item">
-											<a href="#"><img src="http://placehold.it/254x150/ef5e55/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2"></a>
+											<a href="#">
+												<img src="http://placehold.it/254x150/ef5e55/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2">
+											</a>
 											<h4><small>Gold sandals with shiny touch</small></h4>
 											<button class="btn btn-primary" type="button">9,99 €</button>
-											<button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+											<button href="#" class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-heart"></span> Add to Wishlist
+											</button>
 										</div>
 										<!-- End Item -->
 										
 										<div class="item">
-											<a href="#"><img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3"></a>
+											<a href="#">
+												<img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3">
+											</a>
 											<h4><small>Denin jacket stamped</small></h4>
 											<button class="btn btn-primary" type="button">49,99 €</button>
-											<button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+											<button href="#" class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-heart"></span> Add to Wishlist
+											</button>
 										</div>
 										<!-- End Item -->
 									</div>
@@ -225,7 +294,5 @@
 	<!-- /.nav-collapse -->
 	</nav>
 </div>
-
-<h1 class="c-text"> Bootstrap Mega Menu </h1>
 </body>
 </html>
