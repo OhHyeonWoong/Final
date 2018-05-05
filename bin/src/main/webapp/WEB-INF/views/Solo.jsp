@@ -7,6 +7,6 @@
 <title>Solo!</title>
 </head>
 <body>
-	solo11
+
 </body>
 </html>

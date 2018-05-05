@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Solo!</title>
+<title>기모띠</title>
 </head>
 <body>
-	solo11
+	기모띠
 </body>
 </html>
