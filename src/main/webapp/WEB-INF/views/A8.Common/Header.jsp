@@ -11,6 +11,10 @@
 <meta charset="UTF-8">
 <title>Menu</title>
 
+<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); %>
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
@@ -112,10 +116,6 @@
 		margin-bottom: 3px;
 	}
 </style>
-
-<link href="/resources/common/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="/resources/common/js/bootstrap.min.js"></script>
-<script src="/resources/common/js/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>
