@@ -10,10 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu</title>
-
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
+<!-- 병준이 2개 추가 -->
+<link href="/goodluck/resources/A6.LBJ/css/lbj_login.css" rel="stylesheet">
+<script type="text/javascript" src="/goodluck/resources/A6.LBJ/js/lbj_login.js"></script>
 
 <style type="text/css">
 	
@@ -141,7 +143,7 @@
 <div align = "right">
 	<c:if test="${ empty sessionScope.loginUser }">
 		<div class = "ohw-div-login">
-			<button type = "button" class = "btn btn-default">
+			<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
 				<i class = "fa fa-sign-in"></i> LogIn
 			</button>
 		</div>
@@ -294,5 +296,6 @@
 	<!-- /.nav-collapse -->
 	</nav>
 </div>
+<%@ include file="/WEB-INF/views/A6.LBJ/login.jsp" %>
 </body>
 </html>
