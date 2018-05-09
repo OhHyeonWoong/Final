@@ -133,8 +133,7 @@
 	}
 	
 	.ohw-div-login {
-		margin-top:20px;
-		margin-right:50px;
+		margin-top:20px;		
 	}
 	
 	.ohw-menu-col-div {
