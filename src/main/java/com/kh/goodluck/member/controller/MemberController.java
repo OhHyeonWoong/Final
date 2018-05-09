@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MemberController {
 	//병준 마이페이지 테스트용 메소드
-	@RequestMapping("mypage.go")
+	@RequestMapping("lbjmypage.go")
 	public String mypageGo() {
 		return "A6.LBJ/myPage";
 	}
-	@RequestMapping("qnadetail.go")
+	@RequestMapping("lbjqnadetail.go")
 	public String qnaDetailGo() {
 		return "A6.LBJ/qnaDetail";
 	}
-	@RequestMapping("qnawrite.go")
+	@RequestMapping("lbjqnawrite.go")
 	public String qnaWriteGo() {
 		return "A6.LBJ/qnaWrite";
 	}

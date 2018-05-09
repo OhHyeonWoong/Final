@@ -7,8 +7,7 @@
 <title>마이페이지</title>
 <style type="text/css">
  	.lbjdiv{
- 		width:100%;
- 		margin-bottom:200px;
+ 		margin-bottom:50px;
  	}
 	.lbjh3{
 		/* text-align:center;
@@ -27,7 +26,7 @@
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<h2 style="text-align:center;">마이페이지</h2>
 	<hr>
-	<div align="center" class="lbjdiv">
+	<div class="container lbjdiv" style="">
 	<h3 class="lbjh3">내 정보보기</h3>
 	<div class="lbjdiv">
 	<!-- 내 정보보기 -->
@@ -71,22 +70,14 @@
 		<table class="table table-striped lbjtable">
 			<tr>
 				<td class="lbjth">
-					<div class="dropdown" style="text-align:left;">
-					    <button class="dropdown-toggle" type="button" data-toggle="dropdown">전체
-					    <span class="caret"></span></button><!-- button class="btn btn-primary " -->
-					    <ul class="dropdown-menu">
-					      <li><a href="#">분야1</a></li>
-					      <li><a href="#">분야2</a></li>
-					      <li><a href="#">분야3</a></li>
-					    </ul>
-					</div>
+					<input type="checkbox" value="">전체선택
 				</td>
 				<td class="lbjth" colspan="3" style="text-align:left;">
 					<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
 				</td>
 				<td class="lbjth" style="text-align:right;">
 					<!-- <button onclick="location.href='qnawrite.go'">1:1 상담하기 > </button> -->
-					<a class='btn btn-info btn-xs' href="qnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a>
+					<a class='btn btn-info btn-xs' href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a>
 				</td>
 			</tr>
 			<tr>
@@ -98,28 +89,28 @@
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="qnadetail.go">단순변심</a></td>
+				<td><a href="lbjqnadetail.go">단순변심</a></td>
 				<td>답변완료</td>
 				<td>2018/02/11</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="qnadetail.go">사기당함</a></td>
+				<td><a href="lbjqnadetail.go">사기당함</a></td>
 				<td>답변완료</td>
 				<td>2018/03/01</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="qnadetail.go">비쌈</a></td>
+				<td><a href="lbjqnadetail.go">비쌈</a></td>
 				<td>처리중</td>
 				<td>2017/11/19</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>환불요청</td>
-				<td><a href="qnadetail.go">아이디탈퇴</a></td>
+				<td><a href="lbjqnadetail.go">아이디탈퇴</a></td>
 				<td>처리완료</td>
 				<td>2018/04/29</td>
 			</tr>

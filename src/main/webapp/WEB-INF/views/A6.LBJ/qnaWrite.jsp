@@ -8,7 +8,15 @@
 </head>
 <body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-	QnA 작성하기
+	<h2 style="text-align:center;">QnA 작성하기</h2>
+	<div class="container">
+		<table class="table table-striped">
+			<tr><td>카테고리</td><td></td></tr>
+			<tr><td>제목</td><td></td></tr>
+			<tr><td>질문자</td><td></td></tr>
+			<tr><td>내용</td><td></td></tr>
+		</table>
+	</div>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
