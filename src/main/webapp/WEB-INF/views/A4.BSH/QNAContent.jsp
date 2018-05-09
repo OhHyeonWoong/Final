@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>QNAContent</title>
 </head>
 <body>
+<div style="background: red;width: 100%;height: 800px;">
+메인 영역 임시 확인용 -bsh
+</div>
 
 </body>
 </html>

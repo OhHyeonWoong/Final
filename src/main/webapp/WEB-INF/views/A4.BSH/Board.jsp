@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Notice</title>
+	<title>Board</title>
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 
-<%@ include file = "/WEB-INF/views/A4.BSH/NoticeContent.jsp" %>
+<%@ include file = "/WEB-INF/views/A4.BSH/BoardContent.jsp" %>
 
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
