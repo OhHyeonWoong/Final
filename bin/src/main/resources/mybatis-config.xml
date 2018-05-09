@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC
+"-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>		
+		<typeAlias type="member.model.vo.Member" alias="Member"/>
+		<typeAlias type="notice.model.vo.Notice" alias="Notice"/>
+		<!-- <typeAlias type="board.model.vo.Board" alias="Board"/> -->
+	</typeAliases>
+	<environments default="Oracle">
+		<environment id="Oracle"><!-- Oracle -->
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<property name="username" value="student"/>
+				<property name="password" value="student"/>
+			</dataSource>
+		</environment>	
+		<environment id="MySQL"><!-- MySQL -->
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://localhost:1521/world"/>
+				<property name="username" value="root"/>
+				<property name="password" value="root"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="member/model/mapper/member-mapper.xml"/>
+		<mapper resource="notice/model/mapper/notice-mapper.xml"/>
+		<!-- <mapper resource="board/model/mapper/board-mapper.xml"/> -->
+	</mappers>
+</configuration>
