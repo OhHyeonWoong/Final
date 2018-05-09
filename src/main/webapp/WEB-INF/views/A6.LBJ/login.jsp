@@ -8,7 +8,7 @@
 			<div class="modal-content">
 				<div class="modal-header" align="center">
 					<img class="img-circle" id="img_logo"
-						src="http://bootsnipp.com/img/logo.jpg">
+						src="/goodluck/resources/A6.LBJ/images/Logo.jpg"><!-- http://bootsnipp.com/img/logo.jpg -->
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -42,6 +42,7 @@
 							<div>
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button>
+								<button id="login_register_btn" type="button" class="btn btn-link">회원가입</button>
 							</div>
 						</div>
 					</form>
@@ -56,8 +57,8 @@
 								<span id="text-lost-msg">아이디와 이메일을 입력하세요</span>
 							</div>
 							<input id="lost_id" class="form-control" type="text"
-								placeholder="아이디" required>
-							<input id="lost_email" class="form-control" type="text"
+								placeholder="아이디" style="margin-bottom:10px;" required>
+							<input id="lost_email" class="form-control" type="email"
 								placeholder="이메일" required>
 						</div>
 						<div class="modal-footer">
@@ -78,8 +79,8 @@
                                 <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-register-msg">이름과 이메일,비번을 입력하세요</span>
                             </div>
-		    				<input id="lostid_username" class="form-control" type="text" placeholder="이름" required>
-                            <input id="lostid_email" class="form-control" type="text" placeholder="이메일" required>
+		    				<input id="lostid_username" class="form-control" type="text" placeholder="이름" style="margin-bottom:10px;" required>
+                            <input id="lostid_email" class="form-control" type="email" placeholder="이메일" required>
                             <input id="lostid_userpwd" class="form-control" type="password" placeholder="비밀번호" required>
             			</div>
 		    		    <div class="modal-footer">
