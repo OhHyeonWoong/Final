@@ -29,8 +29,8 @@
 				</td>
 			</tr>
 			<tr><td colspan="2" style="text-align:center;">
-					<input type="submit" class="btn btn-success" value="작성" style="width:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="button" class="btn btn-danger" value="취소" onclick="" style="width:70px;">
+					<Button type="submit" class="btn btn-success"><i class="fa fa-check" style="font-size:20px"></i> 작성하기</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<Button class="btn btn-danger" onclick=""><i class="fa fa-trash" style="font-size:19px"></i> 취소하기</Button>
 				</td>
 			</tr>
 		</table>
