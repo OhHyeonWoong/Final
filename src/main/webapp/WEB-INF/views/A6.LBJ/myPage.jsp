@@ -38,6 +38,7 @@
 			<tr><td>이름</td><td><input type="text" placeholder="이름"></td></tr>
 			<tr><td>주민등록번호</td><td><input type="text" placeholder="주민등록번호"></td></tr>
 			<tr><td>나이</td><td><input type="number" placeholder="20"></td></tr>
+			<tr><td colspan="2"><a href="#">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">탈퇴하기</a></td></tr>
 		</table>
 	</div>
 	<hr>
@@ -81,10 +82,11 @@
 					</div>
 				</td>
 				<td class="lbjth" colspan="3" style="text-align:left;">
-					<button onclick="">삭제</button>
+					<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
 				</td>
 				<td class="lbjth" style="text-align:right;">
-					<button onclick="">1:1 상담하기 > </button>
+					<!-- <button onclick="location.href='qnawrite.go'">1:1 상담하기 > </button> -->
+					<a class='btn btn-info btn-xs' href="qnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a>
 				</td>
 			</tr>
 			<tr>
@@ -96,28 +98,28 @@
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="#">단순변심</a></td>
+				<td><a href="qnadetail.go">단순변심</a></td>
 				<td>답변완료</td>
 				<td>2018/02/11</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="#">사기당함</a></td>
+				<td><a href="qnadetail.go">사기당함</a></td>
 				<td>답변완료</td>
 				<td>2018/03/01</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>취소요청</td>
-				<td><a href="#">비쌈</a></td>
+				<td><a href="qnadetail.go">비쌈</a></td>
 				<td>처리중</td>
 				<td>2017/11/19</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" value=""></td>
 				<td>환불요청</td>
-				<td><a href="#">아이디탈퇴</a></td>
+				<td><a href="qnadetail.go">아이디탈퇴</a></td>
 				<td>처리완료</td>
 				<td>2018/04/29</td>
 			</tr>

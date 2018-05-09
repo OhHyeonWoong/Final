@@ -19,7 +19,7 @@
 				<div id="div-forms">
 
 					<!-- Begin # Login Form -->
-					<form id="login-form">
+					<form id="login-form" class="loginForm1">
 						<div class="modal-body">
 							<div id="div-login-msg">
 								<div id="icon-login-msg"
@@ -49,7 +49,7 @@
 					<!-- End # Login Form -->
 
 					<!-- Begin | Lost Password Form -->
-					<form id="lost-form" style="display: none;">
+					<form id="lost-form" class="loginForm1" style="display: none;">
 						<div class="modal-body">
 							<div id="div-lost-msg">
 								<div id="icon-lost-msg"
@@ -73,7 +73,7 @@
 					</form>
 					<!-- End | Lost Password Form -->
 					 <!-- Begin | Lost Id Form -->
-                    <form id="lost-id-form" style="display:none;">
+                    <form id="lost-id-form" class="loginForm1" style="display:none;">
             		    <div class="modal-body">
 		    				<div id="div-register-msg">
                                 <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>

@@ -10,4 +10,12 @@ public class MemberController {
 	public String mypageGo() {
 		return "A6.LBJ/myPage";
 	}
+	@RequestMapping("qnadetail.go")
+	public String qnaDetailGo() {
+		return "A6.LBJ/qnaDetail";
+	}
+	@RequestMapping("qnawrite.go")
+	public String qnaWriteGo() {
+		return "A6.LBJ/qnaWrite";
+	}
 }
