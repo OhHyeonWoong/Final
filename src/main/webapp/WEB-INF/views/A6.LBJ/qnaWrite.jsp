@@ -10,12 +10,31 @@
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<h2 style="text-align:center;">QnA 작성하기</h2>
 	<div class="container">
+		<form action="" method="post">
 		<table class="table table-striped">
-			<tr><td>카테고리</td><td></td></tr>
-			<tr><td>제목</td><td></td></tr>
-			<tr><td>질문자</td><td></td></tr>
-			<tr><td>내용</td><td></td></tr>
+			<tr><td style="text-align:center;">카테고리</td>
+				<td>
+					<select id="sel1">
+						<option>카테고리선택</option>
+						<option>취소요청</option>
+						<option>환불요청</option>
+					</select>
+				</td>
+			</tr>
+			<tr><td style="text-align:center;">제목</td><td><input type="text" placeholder="제목" style="width:90%;"></td></tr>
+			<tr><td style="text-align:center;">질문자</td><td><input type="text" placeholder="질문자는 세션에서 가져올 예정" style="width:90%;"></td></tr>
+			<tr><td style="text-align:center; vertical-align:middle;">내용</td>
+				<td>
+					<textarea rows="7" style="width:90%;" placeholder="여기에 내용을 입력해주세요"></textarea>
+				</td>
+			</tr>
+			<tr><td colspan="2" style="text-align:center;">
+					<input type="submit" class="btn btn-success" value="작성" style="width:70px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" class="btn btn-danger" value="취소" onclick="" style="width:70px;">
+				</td>
+			</tr>
 		</table>
+		</form>
 	</div>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
