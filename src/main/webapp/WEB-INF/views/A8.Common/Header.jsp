@@ -135,6 +135,11 @@
 		margin-right:50px;
 	}
 	
+	.ohw-menu-col {
+		margin:15px;
+		
+	}
+	
 </style>
 
 </head>
@@ -144,6 +149,9 @@
 		<div class = "ohw-div-login">
 			<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
 				<i class = "fa fa-sign-in"></i> LogIn
+			</button>
+			<button type = "button" class = "btn btn-default" onClick = "location.href = 'mypage.go'">
+						<i class = "fa fa-address-card"></i> MyPage
 			</button>
 		</div>
 	</c:if>
@@ -178,16 +186,7 @@
 	</form>
 </div>
 <div class = "ohw-menu-body">
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">독신사</a>
-		</div>
+	<nav class="navbar navbar-default">		
 		<div class="collapse navbar-collapse js-navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="dropdown mega-dropdown">
@@ -291,6 +290,18 @@
 					</ul>
 				</li>
 			</ul>
+			<div>
+				<table class = "ohw-menu-col">
+					<tr>
+						<td><a>생활</a></td>
+						<td><a>반려동물</a></td>
+						<td><a>게임</a></td>
+						<td><a>음악</a></td>
+						<td><a>렌탈</a></td>
+						<td><a>여행</a></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	<!-- /.nav-collapse -->
 	</nav>
