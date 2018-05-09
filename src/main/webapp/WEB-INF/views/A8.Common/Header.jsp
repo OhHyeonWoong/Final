@@ -28,8 +28,7 @@
 	.ohw-menu-body {
 		width:100%;
 		font-family: 'Open Sans', 'sans-serif';
-		background: #f0f0f0;
-		background: url(https://pcbx.us/bfjb.jpg);
+		background: #f0f0f0;		
 	}
 
 	h1, .h1 {
@@ -132,7 +131,7 @@
 	.ohw-div-login {
 		margin-top:20px;
 		margin-right:50px;
-	}	
+	}
 	
 </style>
 
