@@ -38,9 +38,16 @@
 	<h2>Carousel Example</h2>  
 	<div id="homeCarousel" class="carousel slide" data-ride="carousel">		
 		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#homeCarousel" data-slide-to="1"></li>
+			<li data-target="#homeCarousel" data-slide-to="2"></li>
+			<li data-target="#homeCarousel" data-slide-to="3"></li>
+			<li data-target="#homeCarousel" data-slide-to="4"></li>
+			<li data-target="#homeCarousel" data-slide-to="5"></li>
+			<li data-target="#homeCarousel" data-slide-to="6"></li>
+			<li data-target="#homeCarousel" data-slide-to="7"></li>
+			<li data-target="#homeCarousel" data-slide-to="8"></li>
+			<li data-target="#homeCarousel" data-slide-to="9"></li>			
 		</ol>		
 		<div class="carousel-inner">
 			<div class="item active">
@@ -52,6 +59,27 @@
 			<div class="item">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행3.jpg" alt="여행3" style="width:100%;">
 			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행4.jpg" alt="여행4" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행5.jpg" alt="여행5" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행6.jpg" alt="여행6" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="무한극장" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행2.jpg" alt="여행2" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행4.jpg" alt="여행4" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행6.jpg" alt="여행6" style="width:100%;">
+			</div>			
 		</div>		
 		<a class="left carousel-control" href="#homeCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span>
