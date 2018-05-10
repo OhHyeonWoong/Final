@@ -36,15 +36,12 @@
 
 <div class="container">
 	<h2>Carousel Example</h2>  
-	<div id="homeCarousel" class="carousel slide" data-ride="carousel">
-		Indicators
+	<div id="homeCarousel" class="carousel slide" data-ride="carousel">		
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
-		</ol>
-
-		Wrapper for slides
+		</ol>		
 		<div class="carousel-inner">
 			<div class="item active">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행1.jpg" alt="여행1" style="width:100%;">
@@ -55,8 +52,7 @@
 			<div class="item">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행3.jpg" alt="여행3" style="width:100%;">
 			</div>
-		</div>
-		Left and right controls
+		</div>		
 		<a class="left carousel-control" href="#homeCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
