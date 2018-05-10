@@ -126,9 +126,7 @@
 		margin-bottom: 3px;
 	}
 	
-	.ohw-div-search {
-		margin-top:100px;
-		margin-bottom:100px;
+	.ohw-div-search {		
 		width:400px;
 	}
 	
@@ -171,6 +169,28 @@
 		padding-left:50px;
 	}
 	
+	.ohw-menu-table {
+		width:100%;
+		height:135px;
+		margin:0;
+		padding:0;
+	}	
+	
+	.ohw-menu-table-td {
+		height:135px;
+		padding:0;
+	}
+	
+	.ohw-menu-logo {
+		width:135px;
+		height:135px;
+	}
+	
+	.ohw-menu-label {
+		width:135px;
+		height:135px;
+	}
+	
 </style>
 
 </head>
@@ -205,18 +225,33 @@
 			</table>		
 		</c:if>
 	</div>
-	<div align = "center">
-		<form class="" action="">
-			<div class="ohw-div-search input-group">
-				<input type="text" class="form-control" placeholder="Search" name="search">
-				<div class="input-group-btn">
-					<button class="btn btn-default" type="submit">
-						<i class="glyphicon glyphicon-search"></i> Search
-					</button>
+	<table class = "ohw-menu-table">
+		<tr>
+			<td class = "ohw-menu-table-td">
+				<a href = "home.go">
+					<img class = "ohw-menu-logo" alt="DokSinSa" src="/goodluck/resources/common/img/Logo1.png">
+				</a>			
+			</td>
+			<td class = "ohw-menu-table-td">
+				<div align = "center">
+					<form class="" action="">
+						<div class="ohw-div-search input-group">
+							<input type="text" class="form-control" placeholder="Search" name="search">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<i class="glyphicon glyphicon-search"></i> Search
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
-			</div>
-		</form>
-	</div>
+			</td>
+			<td class = "ohw-menu-table-td">
+				<label class = "ohw-menu-label"></label>
+			</td>
+		</tr>
+	</table>
+	
 	<div class = "ohw-menu-body">
 		<nav class="navbar navbar-default">		
 			<div class="collapse navbar-collapse js-navbar-collapse">
