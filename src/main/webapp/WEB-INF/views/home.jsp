@@ -6,12 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-
 <title>Home</title>
-
 <style type="text/css">
 	
 	.ohw-home-table {
@@ -38,6 +33,7 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+
 <div class="container">
 	<h2>Carousel Example</h2>  
 	<div id="homeCarousel" class="carousel slide" data-ride="carousel">
