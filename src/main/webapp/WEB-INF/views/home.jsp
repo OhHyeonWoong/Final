@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
 <title>Home</title>
 
 <style type="text/css">
@@ -34,18 +38,17 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 <div class="container">
 	<h2>Carousel Example</h2>  
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
+	<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+		Indicators
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
 		</ol>
 
-		<!-- Wrapper for slides -->
+		Wrapper for slides
 		<div class="carousel-inner">
 			<div class="item active">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행1.jpg" alt="여행1" style="width:100%;">
@@ -57,12 +60,12 @@
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행3.jpg" alt="여행3" style="width:100%;">
 			</div>
 		</div>
-		<!-- Left and right controls -->
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		Left and right controls
+		<a class="left carousel-control" href="#homeCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
 		</a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+		<a class="right carousel-control" href="#homeCarousel" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right"></span>
 			<span class="sr-only">Next</span>
 		</a>

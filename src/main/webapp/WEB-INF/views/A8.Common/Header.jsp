@@ -229,7 +229,7 @@
 				            <li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">New in Stores</li>
-									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+									<div id="menuCarousel" class="carousel slide" data-ride="carousel">
 										<div class="carousel-inner">										
 											<div class="item active">
 												<a href="#">
