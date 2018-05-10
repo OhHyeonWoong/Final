@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home2</title>
+<title>Home</title>
 
 <style type="text/css">
 	
@@ -73,7 +73,7 @@
 	<div>
 		<table class = "ohw-home-table" border = "1">
 			<tr>
-				<td class = "ohw-home-table-td"> 이벤트
+				<td class = "ohw-home-table-td" align = "center"> 이벤트
 					<table border="1">
 						<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 						<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -88,7 +88,7 @@
 						<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
 					</table>
 				</td>
-				<td class = "ohw-home-table-td"> 독신 뉴즈
+				<td class = "ohw-home-table-td" align = "center"> 독신 뉴즈
 					<table border="1">
 						<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 						<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -105,7 +105,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class = "ohw-home-table-td"> 공지사항
+				<td class = "ohw-home-table-td" align = "center"> 공지사항
 					<table border="1">
 						<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 						<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -120,7 +120,7 @@
 						<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
 					</table>
 				</td>
-				<td class = "ohw-home-table-td"> FAQ
+				<td class = "ohw-home-table-td" align = "center"> FAQ
 					<table border="1">
 						<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 						<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
