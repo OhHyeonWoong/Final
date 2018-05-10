@@ -60,15 +60,12 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 <div class="container">
 	<h2>Carousel Example</h2>  
 	<div id="samplediv">
 		<!-- carousel의 컨트롤을 확인하기 위한 임시영역 -->
 	</div>
 	<div id="homeCarousel" class="carousel slide" data-ride="carousel">
-		Indicators
-
 		<ol class="carousel-indicators">
 			<li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#homeCarousel" data-slide-to="1"></li>
@@ -264,8 +261,6 @@
 			</tr>
 		</table>
 	</div>	
-	
-	
 </div>
 
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
