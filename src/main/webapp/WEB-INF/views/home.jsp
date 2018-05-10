@@ -120,7 +120,7 @@
 	</div> <!-- homeCarousel -->	
 	
 	<!-- -------------------------------------------------------------------------------------------------------------------  -->
- 
+  
  <hr>
  
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
