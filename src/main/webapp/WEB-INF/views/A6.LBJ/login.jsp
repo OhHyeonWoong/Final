@@ -8,7 +8,7 @@
 			<div class="modal-content">
 				<div class="modal-header" align="center">
 					<img class="img-circle" id="img_logo"
-						src="/goodluck/resources/A6.LBJ/images/Logo.jpg"><!-- http://bootsnipp.com/img/logo.jpg -->
+						src="/goodluck/resources/A6.LBJ/images/Logo.png"><!-- http://bootsnipp.com/img/logo.jpg -->
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

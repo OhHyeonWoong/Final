@@ -14,9 +14,7 @@
 <script type="text/javascript">
 	
 	$(function(){	
-	
-		var pageView = [ "공지", "생활","게임","음악","렌탈","여행","문의" ];
-		
+
 			$("--").on("click", function(){
 				$.ajax({
 					
@@ -68,12 +66,10 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 <div class="container">  
 
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<!-- Indicators -->
-
 		<ol class="carousel-indicators">
 			<li data-target=".ohw-homeCarousel" data-slide-to="0" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="1" class="active"></li>
