@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu</title>
+<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 
 <!-- 병준이 2개 추가 -->
