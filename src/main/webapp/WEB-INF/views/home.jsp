@@ -12,15 +12,12 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
-	
 	$(function(){	
-
 			$("--").on("click", function(){
 				$.ajax({
 					
 				});		
-			});
-		
+			});		
 		$("#jwj-main1").show(); /* 기본적으로 첫번째화면을 제외한 나머지 화면은 hide로가려지게 설정함. */
 		$("#jwj-main2").hide(); 
 	
@@ -35,11 +32,11 @@
 		$(".carousel slide .right carousel-control .glyphicon glyphicon-chevron-right").mousedown(function(){ 				
 			$('#jwj-main2').hide();
 			$('#jwj-main1').show();						
-		});
-		
+		});		
 	}); //JQuery Ready
-	
 </script>
+
+
 <style type="text/css">
 	
 	.ohw-home-table {
@@ -79,9 +76,10 @@
 			<li data-target=".ohw-homeCarousel" data-slide-to="5" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="6" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="7" class="active"></li>
+			<li data-target=".ohw-homeCarousel" data-slide-to="8" class="active"></li>
 		</ol>		
 		
-		<!-- BigContents : 공지사항 / 생활 / 반려동물 / 게임 / 음악 / 렌탈 / 여행 문의 -->
+		<!-- BigContents : 공지사항 / 생활 / 반려동물 / 게임 / 음악 / 렌탈 / 여행 / 프리랜서 / 구인 -->
 		<div class="carousel-inner">
 			<div class="item active">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;">
@@ -96,7 +94,7 @@
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/게임.jpg" alt="게임" style="width:100%;">
 			</div>
 			<div class="item">
-				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/음악2.jpg" alt="음악" style="width:100%;">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/음악.jpg" alt="음악" style="width:100%;">
 			</div>
 			<div class="item">
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/렌탈.jpg" alt="렌탈" style="width:100%;">
@@ -105,7 +103,10 @@
 				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행.jpg" alt="여행" style="width:100%;">
 			</div>	
 			<div class="item">
-				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="문의" style="width:100%;">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/프리랜서.jpg" alt="프리랜서" style="width:100%;">
+			</div>
+			<div class="item">
+				<img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/구인.jpg" alt="구인" style="width:100%;">
 			</div>
 		</div>		
 		
@@ -634,9 +635,9 @@
 			<div class="item">
 				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="문의" style="width:100%;"> -->
 
-				<table class = "ohw-home-table" border = "1"> <!-- 기타  -->
+				<table class = "ohw-home-table" border = "1"> <!-- 프리랜서  -->
 					<tr>
-						<td class = "ohw-home-table-td" align = "center"> 기타 이벤트
+						<td class = "ohw-home-table-td" align = "center"> 프리랜서 이벤트
 							<table border="1">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -651,7 +652,7 @@
 								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
 							</table>
 						</td>
-						<td class = "ohw-home-table-td" align = "center"> 기타 뉴즈
+						<td class = "ohw-home-table-td" align = "center"> 프리랜서 뉴즈
 							<table border="1">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -668,7 +669,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class = "ohw-home-table-td" align = "center"> 기타 공지사항
+						<td class = "ohw-home-table-td" align = "center"> 프리랜서 공지사항
 							<table border="1">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -683,7 +684,7 @@
 								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
 							</table>
 						</td>
-						<td class = "ohw-home-table-td" align = "center"> 기타 FAQ
+						<td class = "ohw-home-table-td" align = "center"> 프리랜서 FAQ
 							<table border="1">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -701,17 +702,80 @@
 					</tr>
 				</table>
 			</div>
+			<div class="item">
+				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="문의" style="width:100%;"> -->
+
+				<table class = "ohw-home-table" border = "1"> <!-- 구인  -->
+					<tr>
+						<td class = "ohw-home-table-td" align = "center"> 구인 이벤트
+							<table border="1">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
+								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
+								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
+								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
+								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+							</table>
+						</td>
+						<td class = "ohw-home-table-td" align = "center"> 구인 뉴즈
+							<table border="1">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
+								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
+								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
+								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
+								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td class = "ohw-home-table-td" align = "center"> 구인 공지사항
+							<table border="1">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
+								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
+								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
+								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
+								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+							</table>
+						</td>
+						<td class = "ohw-home-table-td" align = "center"> 구인 FAQ
+							<table border="1">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
+								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
+								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
+								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
+								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>			
+			
+			
 		</div>		
-		
-		<!-- <a class="left carousel-control" href=".ohw-homeCarousel2" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span> 화면상에 < 로 보여지는 버튼
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href=".ohw-homeCarousel2" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span> 화면상에 > 로 보여지는 버튼
-			<span class="sr-only">Next</span>
-		</a> -->
-		
+
 		
 	</div> <!-- homeCarousel -->	
 </div> <!-- container div  -->
