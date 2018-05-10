@@ -23,6 +23,8 @@ public class Member implements Serializable{
 	private Date member_lastpassword;
 	private int member_yellowcard;
 	private int member_status;
+	private String member_renamephoto;
+	private int member_cash;
 	
 	public Member() {
 		
@@ -30,7 +32,8 @@ public class Member implements Serializable{
 
 	public Member(String member_id, String member_pw, String member_name, String member_email, String member_address,
 			String member_phone, int member_regident_number, int member_write_count, Date member_enroll_date,
-			Date member_lastlogin, Date member_lastpassword, int member_yellowcard, int member_status) {
+			Date member_lastlogin, Date member_lastpassword, int member_yellowcard, int member_status,
+			String member_renamephoto,int member_cash) {
 		super();
 		this.member_id = member_id;
 		this.member_pw = member_pw;
@@ -45,6 +48,8 @@ public class Member implements Serializable{
 		this.member_lastpassword = member_lastpassword;
 		this.member_yellowcard = member_yellowcard;
 		this.member_status = member_status;
+		this.member_renamephoto = member_renamephoto;
+		this.member_cash = member_cash;
 	}
 
 	public String getMember_id() {
@@ -151,6 +156,22 @@ public class Member implements Serializable{
 		this.member_status = member_status;
 	}
 
+	public String getMember_renamephoto() {
+		return member_renamephoto;
+	}
+
+	public void setMember_renamephoto(String member_renamephoto) {
+		this.member_renamephoto = member_renamephoto;
+	}
+
+	public int getMember_cash() {
+		return member_cash;
+	}
+
+	public void setMember_cash(int member_cash) {
+		this.member_cash = member_cash;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
@@ -158,7 +179,8 @@ public class Member implements Serializable{
 				+ member_phone + ", member_regident_number=" + member_regident_number + ", member_write_count="
 				+ member_write_count + ", member_enroll_date=" + member_enroll_date + ", member_lastlogin="
 				+ member_lastlogin + ", member_lastpassword=" + member_lastpassword + ", member_yellowcard="
-				+ member_yellowcard + ", member_status=" + member_status + "]";
+				+ member_yellowcard + ", member_status=" + member_status + ", member_renamephoto=" + member_renamephoto
+				+ ", member_cash=" + member_cash + "]";
 	}
 	
 }

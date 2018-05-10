@@ -17,10 +17,11 @@ $(function() {
                 var $lg_password=$('#login_password').val();
                 if ($lg_username == "ERROR") {
                     msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                    return false;
                 } else {
-                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                	msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
                 }
-                return false;
+                return true;
                 break;
             case "lost-form":
                 var $ls_email=$('#lost_email').val();
