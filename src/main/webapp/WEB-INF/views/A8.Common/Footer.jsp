@@ -43,7 +43,7 @@
 </style>
 </head>
 
-<body style="width: 100%;">
+<body style="width: 100%; border-top: 20px;">
 <!-- Footer -->
 	<div class = "ohw-div-icon" align = "center">
 		<table>
