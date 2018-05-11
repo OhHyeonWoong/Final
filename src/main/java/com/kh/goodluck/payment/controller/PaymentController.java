@@ -11,7 +11,7 @@ public class PaymentController {
 		
 	}
 	
-	@RequestMapping(value = "ohw-movePaymentPage", method = RequestMethod.GET)
+	@RequestMapping(value = "ohw-movePaymentPage.go", method = RequestMethod.GET)
 	public String movePaymentPage() {
 		return "A1.OHW/payment";		
 	}	
