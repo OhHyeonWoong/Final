@@ -5,18 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<!---------------------------------- Jeon Dong Gi ------------------------------->
-<!-- 부트스트랩: common 폴더 내 부트스르랩 공용 파일 사용 -->
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-<!-- font awesome -->
-<link rel="stylesheet" href="/goodluck/A3.JDK/resources/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
-<!-- Custom style -->
-<link rel="stylesheet" href="/goodluck/resources/A3.JDK/css/style.css" media="screen" title="no title" charset="utf-8">
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins)common 폴더 내 공용파일 사용 -->
-<script	src="/rs/resources/common/js/jquery-3.3.1.min.js"></script>
-<!-- 부트스트랩용 자바스크립트 파일 공용 폴더 내부  js 파일 사용-->
-<script src="/rs/resources/common/bootstrap.min.js"></script>
-<!---------------------------------- Jeon Dong Gi-------------------------------->
 <style type="text/css">
  	.lbjdiv{
  		margin-bottom:50px;
@@ -36,77 +24,41 @@
 </head>
 <body style="display:absolute; overflow:auto;">
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+
+
+
+
+
+
+
+
 	<h2 style="text-align:center;">마이페이지</h2>
 	<hr>
 	<div class="container lbjdiv" style="">
 	<h3 class="lbjh3">내 정보보기</h3>
 	<div class="lbjdiv">
-	<!------------------ 전동기 수정 부분 : 나의 정보 ---------------------------------------->
-<div class="container" >
-		<div class="login_form" >
-		<div class="col-md-6 col-md-offset-3">
-			<form role="form">
-				<div class="form-group">
-					<label for="userid">프로필 사진</label>
-					<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-					<img src="#" name ="profile_img"/>
-					</div><br>
-					<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
-				</div>
-				<div class="form-group">
-					<label for="userid">아이디</label>
-					<div class="form-group">
-					<input type="text" name="member_id" class="form-control" id="InputId" placeholder="아이디" readonly="readonly">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="username">이름</label> <input type="text"
-						class="form-control" id="member_name" placeholder="이름을 입력해 주세요" required="required" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="InputPassword1">비밀번호</label> <input type="password"
-						class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호" required="required">
-				</div>
-				<div class="form-group">
-					<label for="InputPassword2">비밀번호 확인</label> <input type="password"
-						class="form-control" id="InputPassword2" placeholder="비밀번호 확인" required="required">
-					<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
-				</div>
-				<div class="form-group">
-					<label for="username">주민등록번호</label><br> 
-					<table>
-					<tr>
-					<td><input type="text" class="form-control" readonly="readonly"></td>
-					<td>-</td>
-					<td><input type="text" class="form-control" readonly="readonly"></td>
-					</tr>	
-					</table>
-				</div>
-				<div class="form-group">
-					<label for="username">주소</label><br> 
-					<input type="text" class="form-control" id="member_address" name="member_address" placeholder="주소를 입력해 주세요." required="required">
-				</div>
-				<div class="form-group">
-					<label for="username">전화번호</label><br> 
-					<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="전화번호를 입력해주세요." required="required">
-				</div>
-				
-				<div class="form-group">
-					<label for="useremail">이메일</label>
-					<div class="form-group">
-						<input type="text" class="form-control" id="member_email" name="member_email" placeholder="" readonly="readonly">
-						<!--email 인증 요청--> 
-					</div>
-				</div>
-				<div class="form-group text-center">
-					<button type="submit" class="btn btn-info">확인</button>
-				</div>
-			</form>
-				</div>
-			</div>
-		</div>		
-	<!-------------------------------------전동기 수정 부분 --------------------------------------------------->
+	<!-- 내 정보보기 -->
+	<!-- 회원가입 양식 따오기 -->
+		<table class="table table-striped lbjtable">
+			<tr><td>아이디</td><td><input type="text" placeholder="아이디"></td></tr>
+			<tr><td>비밀번호</td><td><input type="password" placeholder="비밀번호"></td></tr>
+			<tr><td>이름</td><td><input type="text" placeholder="이름"></td></tr>
+			<tr><td>주민등록번호</td><td><input type="text" placeholder="주민등록번호"></td></tr>
+			<tr><td>나이</td><td><input type="number" placeholder="20"></td></tr>
+			<tr><td colspan="2"><a href="#">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">탈퇴하기</a></td></tr>
+		</table>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<hr>
 	<h3 class="lbjh3">현재 예약 정보보기</h3>
 	<div class="lbjdiv">
