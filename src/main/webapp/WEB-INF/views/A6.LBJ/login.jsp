@@ -19,16 +19,16 @@
 				<div id="div-forms">
 
 					<!-- Begin # Login Form -->
-					<form id="login-form" class="loginForm1">
+					<form id="login-form" class="loginForm1" action="lbjlogin.go" method="post">
 						<div class="modal-body">
 							<div id="div-login-msg">
 								<div id="icon-login-msg"
 									class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-login-msg">아이디와 비밀번호를 입력하세요</span>
 							</div>
-							<input id="login_id" class="form-control" type="text"
+							<input id="login_id" name="member_id" class="form-control" type="text"
 								placeholder="아이디" required><!-- login_username -->
-							<input id="login_password" class="form-control" type="password"
+							<input id="login_password" name="member_pw" class="form-control" type="password"
 								placeholder="패스워드" required>
 							<div class="checkbox">
 								<label> <input type="checkbox"> 아이디 기억
@@ -37,7 +37,29 @@
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+								<!-- <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button> -->
+								<input type="button" class="btn btn-primary btn-lg btn-block" 
+									value="로그인" onclick="fnLogin();">
+								<script type="text/javascript">
+									function fnLogin(){
+										var id = $('#login_id').val();
+										var pwd = $('#login_password').val();
+										$.ajax({
+											url:"lbjlogin.go",
+											type:"post",
+											data:{
+												member_id : id,
+												member_pw : pwd
+											},
+											/* success:function(data){
+												
+											}, */
+											error:function(a,b,c){
+												alert(a + ", " + b + ", " + c);
+											}
+										});
+									}
+								</script>
 							</div>
 							<div>
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>

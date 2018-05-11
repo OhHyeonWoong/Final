@@ -202,17 +202,17 @@
 				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
 					<i class = "fa fa-sign-in"></i> LogIn
 				</button>
-				<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
+				<!-- <button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
-				</button>
+				</button> -->
 			</div>
 		</c:if>
 		<c:if test="${ !empty sessionScope.loginUser }">
 			<table>
 				<tr>
-					<td>${ sessionScope.loginUser.username } 님</td>
+					<td>${ sessionScope.loginUser.member_name } 님</td>
 					<td>
-						<button type = "button" class = "btn btn-default" onClick = "location.href = 'mypage.go'">
+						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
 						</button>
 					</td>
