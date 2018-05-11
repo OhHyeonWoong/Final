@@ -383,7 +383,7 @@
 							<td class = "ohw-menu-col-td"><a href = "">음악</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">렌탈</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">여행</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">문의</a></td>
+							<td class = "ohw-menu-col-td"><a href = "ohw-movePaymentPage.go">문의</a></td>
 							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
 						</tr>
 					</table>
