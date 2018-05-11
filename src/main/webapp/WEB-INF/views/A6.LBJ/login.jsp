@@ -51,9 +51,13 @@
 												member_id : id,
 												member_pw : pwd
 											},
-											/* success:function(data){
-												
-											}, */
+											success:function(data){
+												alert(data);
+												if(data == '로그인 성공'){
+													//$("#login-modal").modal("hide");
+													window.history.go(0);
+												}
+											},
 											error:function(a,b,c){
 												alert(a + ", " + b + ", " + c);
 											}
@@ -65,6 +69,28 @@
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button>
 								<button id="login_register_btn" type="button" class="btn btn-link">회원가입</button>
+								<hr style="border-color: red;">
+								<H4 style="text-align:center;">또는</H4>
+								<a id="custom-login-btn" href="javascript:loginWithKakao()">
+								<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+								</a>
+								<script type='text/javascript'>
+								  //<![CDATA[
+								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+								    Kakao.init('bd5a6122e0874d4c2859d1b0192adfb0');
+								    function loginWithKakao() {
+								      // 로그인 창을 띄웁니다.
+								      Kakao.Auth.login({
+								        success: function(authObj) {
+								          alert(JSON.stringify(authObj));
+								        },
+								        fail: function(err) {
+								          alert(JSON.stringify(err));
+								        }
+								      });
+								    };
+								  //]]>
+								</script>
 							</div>
 						</div>
 					</form>
