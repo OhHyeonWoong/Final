@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+	.jwj-innertable {
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	    width: 100%;
+	    height : 80%;
+	    border: 1px solid #ddd;	
+	}	
+	
+	.jwj-innertable tr th {
+    text-align: left;
+    padding: 10px;
+   
+	}
+	
+	.jwj-innertable tr td {
+    text-align: center;
+    padding: 10px;
+    
+	}
+	
+	
+	.jwj-innertable tr:nth-child(even) {
+	    background-color: #ffcccc;
+	}

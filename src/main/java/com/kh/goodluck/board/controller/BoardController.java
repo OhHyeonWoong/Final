@@ -18,7 +18,10 @@ public class BoardController {
 		
 		return "A4.BSH/Board";	
 	}
-	
 
+
+	
+	
+	
 	
 }
