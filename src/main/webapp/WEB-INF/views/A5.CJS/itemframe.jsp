@@ -288,7 +288,6 @@
                             <li class="active"><a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
                             <li><a href="#tab2primary" data-toggle="tab">사용중인 아이템</a></li>
                             <li><a href="#tab3primary" data-toggle="tab">Primary 3</a></li>
-                           
                         </ul>
                 </div>
                 <div class="panel-body">
