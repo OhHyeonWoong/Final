@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -25,7 +26,8 @@ public KakaoMessageAPI() {
 }
 
 @RequestMapping("kakaoMessage.go")
-public void reree( ) {
+public void reree(@RequestParam("token") String access) {
+	//엑세스토큰을 값으로 가져와야한다.
 	
 	String result =null;
 	try{
@@ -52,7 +54,7 @@ public void reree( ) {
 	    
 	    final String URL ="/v2/api/talk/memo/default/send";
 	    
-	RestTemplate restTemplate = new RestTemplate(); //tlqkf...
+	    RestTemplate restTemplate = new RestTemplate(); //tlqkf...
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	    headers.add("Authorization", "Bearer yOOoxZXp7kFxRCtDowd62slqRqtrtEAUDZljigo8BdgAAAFjTzBQhg");
