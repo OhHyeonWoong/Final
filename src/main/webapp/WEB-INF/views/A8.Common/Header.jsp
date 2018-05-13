@@ -15,9 +15,11 @@
 <script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 
 
-<!-- 병준이 2개 추가 -->
+<!-- 병준이 3개 추가 -->
 <link href="/goodluck/resources/A6.LBJ/css/lbj_login.css" rel="stylesheet">
 <script type="text/javascript" src="/goodluck/resources/A6.LBJ/js/lbj_login.js"></script>
+<!-- 카카오 로그인용 js -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- 병주니 CSS 끝 -->
 
 <style type="text/css">
@@ -198,7 +200,8 @@
 <body>
 <div class = "container">
 	<div align = "right">
-		<c:if test="${ empty sessionScope.loginUser }">
+		<c:if test="${empty loginUser}">
+		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
 			<div class = "ohw-div-login">
 				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
 					<i class = "fa fa-sign-in"></i> LogIn
@@ -208,19 +211,33 @@
 				</button> -->
 			</div>
 		</c:if>
-		<c:if test="${ !empty sessionScope.loginUser }">
+		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>
-					<td>${ sessionScope.loginUser.member_name } 님</td>
+					<td>${ loginUser.member_name } 님</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
 						</button>
 					</td>
 					<td>
-						<button type = "button" class = "btn btn-default">
+						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
 							<i class = "fa fa-sign-out"></i> LogOut
 						</button>
+						<script type="text/javascript">
+							function fnLogout(){
+								$.ajax({
+									url:"lbjlogout1.go",
+									success:function(data){
+										alert(data);
+										window.history.go(0);
+									},
+									error:function(a,b,c){
+										alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+									}
+								});
+							}
+						</script>
 					</td>
 				</tr>			
 			</table>		
@@ -367,7 +384,7 @@
 							<td class = "ohw-menu-col-td"><a href = "">음악</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">렌탈</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">여행</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">문의</a></td>
+							<td class = "ohw-menu-col-td"><a href = "ohw-movePaymentPage.go">문의</a></td>
 							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
 						</tr>
 					</table>
