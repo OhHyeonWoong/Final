@@ -24,6 +24,7 @@
 </head>
 <body style="display:absolute; overflow:auto;">
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+	<a href="moveemail.go">이메일 테스트 페이지로 이동</a>
 	<h2 style="text-align:center;">마이페이지</h2>
 	<hr>
 	<div class="container lbjdiv" style="">
@@ -140,6 +141,7 @@
 	</div>
 	<hr>
 	</div>
+	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/login.jsp" %> --%>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

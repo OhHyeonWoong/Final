@@ -36,6 +36,22 @@
     	<constructor-arg ref="sqlSession" />
     </bean>
     
+    <!-- 메일 전용 bean -->
+    <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="pjlee9212@gmail.com" />
+      <property name="password" value="Asdf1020?" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+   </bean>
+    
     <!-- dataSource(JDBCTemplate에서 Connection)와 transaction을 연결 -->
     <bean id="transactionManager"
     	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
