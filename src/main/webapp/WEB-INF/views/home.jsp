@@ -31,9 +31,14 @@
 				
 		    	});		
 		 }); */	
-	     $(".ohw-homeCarousel > .left.carousel-control").on("click",function(){ //왼쪽가기 버튼이 눌렸을경우 배경Change 
+	     $(".ohw-homeCarousel > .left.carousel-control").on("click",function(){ //1.왼쪽 버튼을 눌렀을때(이벤트 발생근원지)
 	    	 	     
-	    	 <%-- <% if($("".ohw-homeCarousel ol li > data-slide-to')==0){%>
+	    	//2.현재 페이지의 Carousel적용된 이미지파일이 무엇인지 확인한다.
+	    	
+	    	
+	    	//3.조건을 주어 이미지에 따른 배경에 효과를 부여한다.
+	     
+	    	 <%-- <% if($("".ohw-homeCarousel  > data-slide-to')==0){%>
 	    	 
 	    	 
 	    	 
@@ -53,7 +58,7 @@
 	    	 
 	    	 <% }else if(){ %> --%>
 	    	 
-	    	 $("#main").css("background-color","#cc66cc");	
+	    	 $("#main").css("background-color","rgb(20,60,89)");	
 	     
 	     
 		 });  
@@ -75,8 +80,7 @@
 	
 	.jwj-innertable tr th {
     text-align: left;
-    padding: 10px;
-   
+    padding: 10px;   
 	}
 	
 	.jwj-innertable tr td {
@@ -84,6 +88,7 @@
     padding: 10px;
     
 	}
+	
 	
 	.jwj-innertable tr:nth-child(even) {
 	    background-color: #5c5c5c;
@@ -116,6 +121,25 @@
 		width:50%;
 		height:400px;
 	}
+	
+    .ohw-home-table-td font {
+	position: relative;
+    -webkit-animation: mymove2 5s infinite; /* Safari 4.0 - 8.0 */
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation: mymove2 5s infinite;
+    animation-delay: 2s;
+	}
+	
+	/* Safari 4.0 - 8.0 */
+	@-webkit-keyframes mymove2 {
+	    from {left: 0px;}
+	    to {left: 210px;}
+	}
+	
+	@keyframes mymove2 {
+	    from {left: 0px;}
+	    to {left: 210px;}
+	}	
 	
 	.ohw-carousel-img {
 		height:400px !important;
@@ -254,19 +278,19 @@
 								<div class="item active">
 									<table style="padding: 0; margin: 0; background: #ffffff;">
 										<tr> <td><a href="http://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=102&oid=001&aid=0008319484"><img class="ohw-carousel-img" src="/goodluck/resources/common/img/main/독신뉴스1.jpg" alt="이미지준비중.." width="550" height="150"></a></td></tr>
-										<tr align="center"> <td><font size="4" face="굴림" style="font-weight: bold;">"연령대별 독신가구 소득·소비 실태"</font></td> </tr>
+										<tr align="center"> <td><h4>"연령대별 독신가구 소득·소비 실태"</h4></td> </tr>
 									</table>
 								</div>		
 								<div class="item">
 									<table style="padding: 0; margin: 0; background: #ffffff;">
 										<tr> <td><a href="http://news.donga.com/3/all/20180401/89399594/1"><img class="ohw-carousel-img" src="/goodluck/resources/common/img/main/독신뉴스4.jpg" alt="이미지준비중.."  width="400" height="150"></a></td></tr>
-										<tr align="center"> <td><font size="4" face="굴림" style="font-weight: bold;">“결혼 해봐야 돈만 들지… 독신이 낫다”</font></td> </tr>
+										<tr align="center"> <td><h4>“결혼 해봐야 돈만 들지… 독신이 낫다</h4></td> </tr>
 									</table>						
 								</div>																
 								<div class="item">
 									<table style="padding: 0; margin: 0; background: #ffffff;">
 										<tr align="center"><td style="padding: 0;"><iframe width="567" height="395" style="border: 1px solid black;" src="https://www.youtube.com/embed/QI7cYnBlkFQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td></tr>
-										<tr align="center"><td><font size="4" face="굴림" style="font-weight: bold;">"[혼밥의정석]색다른 도시락 메뉴 없을까 싶을 때, 키쉬"</font></td></tr>
+										<tr align="center"><td><h4>"[혼밥의정석]색다른 도시락 메뉴 없을까 싶을 때, 키쉬"</h4></td></tr>
 									</table>																		
 								</div>    
 								<div class="item">
@@ -278,7 +302,7 @@
 								<div class="item">
 									<table style="padding: 0; margin: 0; background: #ffffff;">
 										<tr> <td><a href="http://www.jejunews.com/news/articleView.html?idxno=2112473"><img class="ohw-carousel-img" src="/goodluck/resources/common/img/main/독신뉴스2.jpg" alt="이미지준비중.."  width="400" height="150"></a></td></tr>
-										<tr align="center"> <td><font size="4" face="굴림" style="font-weight: bold;">"나 홀로 시대"</font></td> </tr>
+										<tr align="center"> <td><h4>"나 홀로 시대"</h4></td> </tr>
 									</table>	
 								</div>
 							</div>		
@@ -335,13 +359,11 @@
 				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"> -->
 
 				<table class = "ohw-home-table" border = "1"> <!-- 생활  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;"> <font size="6" face="굴림" style="font-weight: bold;">생활 이벤트</font>
-
-
-
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;"><font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>뉴스ROOM</font>
+						<tr>
+						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;"> <font size="6" face="굴림" style="font-weight: bold;">생활 이벤트</font></td>
+						
+						
+						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
 							<table class="jwj-innertable" border="1">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
