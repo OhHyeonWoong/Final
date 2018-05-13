@@ -29,7 +29,9 @@ public class ItemController {
 	
 	@RequestMapping("myitem.go")
 	public String myitem() {
-		System.out.println("마이아이템");
+		System.out.println("마이아이템/스프링이아닌 mv로 아이템목록 가져갸아함 수정후 삭제/");
+		
+		
 		return "A5.CJS/itemframe";
 	}
 	
