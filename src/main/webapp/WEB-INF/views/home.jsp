@@ -21,50 +21,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>Home</title>
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){	
-		 /* $("--").on("click", function(){
-		    	$.ajax({
-				
-		    	});		
-		 }); */	
-	     $(".ohw-homeCarousel > .left.carousel-control").on("click",function(){ //1.왼쪽 버튼을 눌렀을때(이벤트 발생근원지)
-	    	 	     
-	    	//2.현재 페이지의 Carousel적용된 이미지파일이 무엇인지 확인한다.
-	    	
-	    	
-	    	//3.조건을 주어 이미지에 따른 배경에 효과를 부여한다.
+
+		
+		
+$("#topcaro,#topcaro1").click(function(){
+		var color="red"; 
+		
+			//리스트별 컬러추가.
+			colors=["red","blue","black","white","yellow"];
+			
+			for(var i=0; i<9 ; i++){
+				console.log($("div#"+i+".item.active").attr("id"));
+				if($("div#"+i+".item.active").attr("id") >= 0 )
+				color=colors[$("div#"+i+".item.active").attr("id")];
+			}
+			
+					
+	
+			$("#main").css("background-color",color);	  
+
+			});
 	     
-	    	 <%-- <% if($("".ohw-homeCarousel  > data-slide-to')==0){%>
-	    	 
-	    	 
-	    	 
-	    	 <% }else if(){ %>
-    	 
-	    	 
-	    	 <% }else if(){ %>
-	    	 
-	    	 
-	    	 
-	    	 <% }else if(){ %>
-	    	 
-	    	 
-	    	 <% }else if(){ %>
-	    	 
-	    	 
-	    	 
-	    	 <% }else if(){ %> --%>
-	    	 
-	    	 $("#main").css("background-color","rgb(20,60,89)");	
-	     
-	     
-		 });  
-	     $(".ohw-homeCarousel > .right.carousel-control").on("click",function(){ //오른쪽가기 버튼을 눌렀을경우 배경Change
-	    	 $("#main").css("background-color","#cc99ff");	    	 
-		 }); 
 	}); //JQuery Ready
 </script>
 
@@ -170,52 +151,52 @@
 
 		
 		<div class="carousel-inner">
-			<div class="item active">
-				<a href="Notice.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"></a>
+			<div class="item active" id="0">
+				<a href="Notice.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"></a>
 				
 
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"></a>	
+			<div class="item" id="1">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"></a>	
 
 				
 			</div>    
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="반려동물" style="width:100%;"></a>
+			<div class="item" id="2">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="반려동물" style="width:100%;"></a>
 
 
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/게임.jpg" alt="게임" style="width:100%;"></a>
+			<div class="item" id="3">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/게임.jpg" alt="게임" style="width:100%;"></a>
 
 
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/음악.jpg" alt="음악" style="width:100%;"></a>
+			<div class="item" id="4">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/음악.jpg" alt="음악" style="width:100%;"></a>
 
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/렌탈.jpg" alt="렌탈" style="width:100%;"></a>
+			<div class="item" id="5">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/렌탈.jpg" alt="렌탈" style="width:100%;"></a>
 			
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행.jpg" alt="여행" style="width:100%;"></a>
+			<div class="item" id="6">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행.jpg" alt="여행" style="width:100%;"></a>
 	
 			</div>	
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/프리랜서.jpg" alt="프리랜서" style="width:100%;"></a>
+			<div class="item" id="7">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/프리랜서.jpg" alt="프리랜서" style="width:100%;"></a>
 
 			</div>
-			<div class="item">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/구인.jpg" alt="구인" style="width:100%;"></a>
+			<div class="item" id="8">
+				<a href="Board.go"><img  class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/구인.jpg" alt="구인" style="width:100%;"></a>
 			</div>
 		</div>		
-		
-		<a class="left carousel-control" href=".ohw-homeCarousel" data-slide="prev">
+		<!-- 최상단 카로셀 -->
+		<a class="left carousel-control" href=".ohw-homeCarousel" data-slide="prev" id="topcaro">
 			<span class="glyphicon glyphicon-chevron-left"></span> <!-- 화면상에 < 로 보여지는 버튼 -->
 			<span class="sr-only">Previous</span>
 		</a>
-		<a class="right carousel-control" href=".ohw-homeCarousel" data-slide="next">
+		<a class="right carousel-control" href=".ohw-homeCarousel" data-slide="next" id="topcaro1">
 			<span class="glyphicon glyphicon-chevron-right"></span> <!-- 화면상에 > 로 보여지는 버튼 -->
 			<span class="sr-only">Next</span>
 		</a>
