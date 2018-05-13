@@ -239,6 +239,11 @@
 							}
 						</script>
 					</td>
+					<td>
+					<button type = "button" class = "btn btn-default" onclick="window.open('	myitem.go', '아이템창','width=#, height=#')">
+					<i class = "fa fa-address-card"></i> MyItem
+					</button>
+					</td>
 				</tr>			
 			</table>		
 		</c:if>
