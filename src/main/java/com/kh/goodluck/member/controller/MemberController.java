@@ -3,6 +3,7 @@ package com.kh.goodluck.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
@@ -39,6 +41,16 @@ public class MemberController {
 	@RequestMapping("lbjqnawrite.go")
 	public String qnaWriteGo() {
 		return "A6.LBJ/qnaWrite";
+	}
+	@RequestMapping("lbjmoveLostFwdView.go")
+	public String lostFwdViewGo() {
+		return "A6.LBJ/member/lostFwdView";
+	}
+	@RequestMapping("lbjmoveResetFwdView.go")
+	public ModelAndView resetFwdViewGo(HttpServletRequest request,ModelAndView mv) {
+		mv.addObject("member_id", request.getParameter("member_id"));
+		mv.setViewName("A6.LBJ/member/resetFwdView");
+		return mv;
 	}
 	
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
