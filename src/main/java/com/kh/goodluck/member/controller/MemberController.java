@@ -73,4 +73,17 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
+	
+	
+	//회원 가입 버튼 누를 시 회원 가입 창으로 보내는 메소드
+	@RequestMapping(value="jdkregistration.go", method=RequestMethod.GET)
+	public String signIn() {
+		return "A3.JDK/registration";
+	}
+	
+	//약관 링크 버튼 누를 시 링크모달 띄우는 메소드
+	@RequestMapping(value="jdktermsofservice.go", method=RequestMethod.GET)
+	public String serviceTerms() {
+		return "A3.JDK/termsOfService";
+	}
 }

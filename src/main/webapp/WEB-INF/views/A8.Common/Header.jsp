@@ -10,10 +10,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu</title>
+<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-
+<script type="text/javascript">
+window.resizeTo(560,580);
+</script>
 
 <!-- 병준이 3개 추가 -->
 <link href="/goodluck/resources/A6.LBJ/css/lbj_login.css" rel="stylesheet">
@@ -240,7 +242,7 @@
 						</script>
 					</td>
 					<td>
-					<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=400, height=556, location=no, menubar=no, resizable =no, status=yes, toolbar=no , scrollbars = no' )">
+					<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=560, height=580,toolbar=no, scrollbars=no, status=no, resizable=no')">
 					<i class = "fa fa-address-card"></i> MyItem
 					</button>
 					</td>
