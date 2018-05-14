@@ -2,19 +2,20 @@
 
 	@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 	#team {
-	    background: gray !important;
-	    width: 200;
-	    height: 200;
+	    background: none !important;
+	    width: 100%;
+	    height: 100%;
 	    margin: 0;
 	    padding: 0;
+	    align : center;
 	}
 	
 	#team_inner_div {
+		align : center;
+	    width: 100%;
+	    height: 100%;	
 		margin: 0;
 		padding: 0;
-		width: auto;
-		height: auto;
-		overflow: auto;
 	}
 	
 	.btn-primary:hover,
