@@ -271,7 +271,6 @@ background: red;
     background-color: #a94442; /* active bg color */
 }
 </style>
-
 <title>님의 인벤토리</title>
 </head>
 <body>
