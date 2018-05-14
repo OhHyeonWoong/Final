@@ -10,6 +10,9 @@
 	.ohw-payment-maintable {
 		width:100%;
 	}
+	.ohw-payment-subtable-event {
+		width:100%;
+	}
 </style>
 
 </head>
@@ -20,7 +23,7 @@
 	<table class = "ohw-payment-maintable">
 		<tr>
 			<td>
-				<table>
+				<table border = "1">
 					<tr>
 						<td colspan = "3"><h2>결제 정보</h2></td>
 					</tr>
@@ -37,7 +40,7 @@
 		</tr>
 		<tr>
 			<td>
-				<table>
+				<table border = "1">
 					<tr>
 						<td colspan = "3"></td>
 					</tr>
@@ -47,14 +50,20 @@
 						<td><input type = "radio" name = "choosePay"> 카카오페이</td>
 					</tr>
 					<tr>
-						<td colspan = "3"></td>
+						<td class = "ohw-payment-subtable-event" colspan = "3">
+							<pre>								
+								각종 이벤트 진행중!
+								카카오 페이 사용시 5% 할인!
+								롯데 카드 사용시 10% 할인!														
+							</pre>
+						</td>
 					</tr>
 				</table>
 			</td>
 			<td>
-				<table>
+				<table border = "1">
 					<tr>
-					
+						
 					</tr>
 				</table>
 			</td>

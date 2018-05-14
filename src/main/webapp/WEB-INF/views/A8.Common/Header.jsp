@@ -10,9 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Menu</title>
+<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 window.resizeTo(560,580);
 </script>
