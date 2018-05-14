@@ -34,6 +34,7 @@ $("#topcaro,#topcaro1").click(function(){
 			//리스트별 컬러추가.
 			colors=["red","blue","black","white","yellow"];
 			
+			
 			for(var i=0; i<9 ; i++){
 				console.log($("div#"+i+".item.active").attr("id"));
 				if($("div#"+i+".item.active").attr("id") >= 0 )

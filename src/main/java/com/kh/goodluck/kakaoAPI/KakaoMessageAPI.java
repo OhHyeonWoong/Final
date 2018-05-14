@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -26,12 +25,14 @@ public KakaoMessageAPI() {
 }
 
 @RequestMapping("kakaoMessage.go")
-public void reree(@RequestParam("token") String access) {
-	//엑세스토큰을 값으로 가져와야한다.
-	
+public void reree() {
+	//엑세스토큰을 값으로 가져와야한다.@RequestParam("token") String access
+   System.out.println("메세지보내기");
 	String result =null;
+	String BASE_URL="https://kapi.kakao.com";
 	try{
 	    JSONObject linkObject =new JSONObject();
+	    
 	    linkObject.put("web_url","http://www.daum.net");
 	    linkObject.put("mobile_web_url","http://m.daum.net");
 	    linkObject.put("android_execution_params","contentId=100");
@@ -57,7 +58,7 @@ public void reree(@RequestParam("token") String access) {
 	    RestTemplate restTemplate = new RestTemplate(); //tlqkf...
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    headers.add("Authorization", "Bearer yOOoxZXp7kFxRCtDowd62slqRqtrtEAUDZljigo8BdgAAAFjTzBQhg");
+	    headers.add("Authorization", "Bearer L37KvPlk-u0fM9ZFx6cAeEhHKJgit0b9la5M9Qo8BJ4AAAFjXB9kXw");
 
 	    List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
 	    converters.add(new FormHttpMessageConverter());
@@ -66,7 +67,7 @@ public void reree(@RequestParam("token") String access) {
 	    restTemplate.setMessageConverters(converters);
 
 		HttpEntity<MultiValueMap<String, String>> requestEntity=  new HttpEntity<MultiValueMap<String, String>>(map, headers);
-//	    result =  restTemplate.exchange(BASE_URL + URL , HttpMethod.POST, requestEntity, String.class).toString();
+		result =  restTemplate.exchange(BASE_URL + URL , HttpMethod.POST, requestEntity, String.class).toString();
 	    
 	    System.out.println(result);
 	    
