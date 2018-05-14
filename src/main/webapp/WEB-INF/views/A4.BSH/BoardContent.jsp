@@ -8,6 +8,8 @@
 <!-- js따로 떼야댐 -->
 <script type="text/javascript"
 	src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+	
+	
 <script type="text/javascript">
 	$(document).ready(function() {
 		//alert("aaa");
@@ -85,76 +87,30 @@
 		/* 여기까지를 알고리즘으로 짜야댐 */
 		
 	});
+	
 </script>
+
+<link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
+
 <style type="text/css">
-.board_div_search {
-	background: #f5f5f5;
-	width: 100%;
-	height: 120px;
-	padding: 10px;
-	border: 1px solid #e7e7e7;
-}
 
-.board_div_search>form>table>tbody>tr>td {
-	width: 12.5%;
-}
-
-.board_div_search>form>table>tbody>tr>td>select {
-	border: 1px solid #e7e7e7;
-	width: 100%;
-	color: gray;
-}
-
-.board_div_search>form>table>tbody>tr>td>label {
-	color: gray;
-}
-
-.board_div_search>form>table>tbody>tr>td>button {
-	background: white;
-	border: 1px solid #e7e7e7;
-	width: 100%;
-	color: gray;
-}
-
-.board_div_search>form>table>tbody>tr>td>input {
-	border: 1px solid #e7e7e7;
-	width: 100%;
-	color: gray;
-}
-
-.checkbox_comm {
-	cursor: pointer;
-}
-
-.td_start {
-	padding-top: 5px;
-	padding-left: 5px;
-	border-top: 1px dashed #B8B8B8;
-	border-bottom: 1px dashed #B8B8B8;
-	border-left: 1px dashed #B8B8B8;
-}
-
-.td_mid {
-	padding-top: 5px;
-	border-top: 1px dashed #B8B8B8;
-	border-bottom: 1px dashed #B8B8B8;
-}
-
-.td_end {
-	padding-top: 5px;
-	border-top: 1px dashed #B8B8B8;
-	border-bottom: 1px dashed #B8B8B8;
-	border-right: 1px dashed #B8B8B8;
-}
 </style>
 
 </head>
 <body>
 	<div class="container">
-		<div class="sidebar"
-			style="background: blue; width: 20%; height: 100%; float: left;">
+		<div class="bsh_sidebar">
 			<!-- 카테고리 -->
 			sidebar
+			
+			<script type="text/javascript">
+			function getBoard(){
+				var board = ${"#"}
+				
+			}
+			
+			</script>
+			
 			<h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
 			<h5 class="small" id="한식" style="display: none;">한식</h5>
@@ -236,11 +192,9 @@
 
 		</div>
 
-		<div class="center"
-			style="width: 78%; height: 100%; float: left; margin-left: 2%">
+		<div class="bsh_center">
 			<!-- 컨테이너 -->
-			<div class="board_div_prime"
-				style="background: #f5f5f5; width: 100%; height: 340px; padding: 10px; border: 1px solid #e7e7e7;">
+			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2>
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -275,8 +229,7 @@
 					</tbody>
 				</table>
 
-				<span
-					style="display: table; margin: 10px; margin-left: auto; margin-right: auto;">
+				<span class="bsh_span_button">
 					<button>&lt;&lt;</button>
 					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
 					<button>&gt;</button>
@@ -347,8 +300,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="maincontent"
-				style="background: pink; width: 100%; height: 480px;">
+			<div class="board_div_maincontent">
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
 						<tr>
@@ -381,8 +333,7 @@
 						%>
 					</tbody>
 				</table>
-				<span
-					style="display: table; margin: 10px; margin-left: auto; margin-right: auto;">
+				<span class="bsh_span_button">
 					<button>&lt;&lt;</button>
 					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
 					<button>&gt;</button>

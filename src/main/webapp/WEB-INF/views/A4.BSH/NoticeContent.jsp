@@ -10,9 +10,61 @@
 	<div class="container">
 		<div class="sidebar"style="background: blue; width: 20%; height: 100%; float: left;">
 			sidebar
+			<br>
+			공지사항
+			<br>
+			옆에는
+			<br>
+			무슨
+			<br>
+			사이드바를
+			<br>넣으면
+			<br>좋을까
+			
 		</div>
 		<div class="center"style="background: green; width: 78%; height: 100%; float: left; margin-left: 2%">
-			center
+			<div class="Notice_div" style="background: #f5f5f5; width: 100%; height: 520px; padding: 10px; border: 1px solid #e7e7e7;">
+				
+			
+			공지사항 center
+			<table style="border: 1px solid black; width: 100%;">
+					<thead style="border: 1px solid black;">
+						<tr>
+							<th style="border: 1px solid black; ">번호</th>
+							<th style="border: 1px solid black;">제목</th>
+							<th style="border: 1px solid black;">작성자</th>
+							<th style="border: 1px solid black;">작성일자</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<%
+							for (int i = 0; i < 20; i++) {
+						%>
+						<tr>
+							<%
+								for (int j = 0; j < 4; j++) {
+							%>
+							<td><%=i%>,<%=j%></td>
+							<%
+								}
+							%>
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+				
+				<span
+					style="display: table; margin: 10px; margin-left: auto; margin-right: auto;">
+					<button>&lt;&lt;</button>
+					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
+					<button>&gt;</button>
+					<button>&gt;&gt;</button>
+				</span>
+				
+				</div>
 		</div>
 	</div>
 </body>
