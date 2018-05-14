@@ -22,7 +22,7 @@
 		<result property="member_cash" column="member_cash"/>			
 	</resultMap>
 	
-	
+<!-- 	
 	<resultMap type="Board" id="BoardResult">
 		<id property="agency_no" column="agency_no"/>
 		<result property="agency_writer" column="agency_writer"/>
@@ -37,7 +37,7 @@
 		<result property="agency_status" column="agency_status"/>
 		<result property="agency_content" column="agency_content"/>
 		<result property="agency_views" column="agency_views"/>
-	</resultMap>
+	</resultMap> -->
 
 
 	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
@@ -46,11 +46,11 @@
 		]]>
 	</select>
 	
-	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
+<!-- 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
 			select * from agency where link2_no = #{link2_no}
 		]]>
-	</select>
+	</select> -->
 	
 	
 	
