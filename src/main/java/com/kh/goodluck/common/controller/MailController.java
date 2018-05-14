@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //병준이가 만든 컨트롤러
 @Controller
 public class MailController {
-	@Autowired
-	private JavaMailSender mailSender;
+	/*@Autowired
+	private JavaMailSender mailSender;*/
 
 	// mailForm /mail/mailForm
 	/*
