@@ -105,18 +105,41 @@
 								<span id="text-lost-msg">아이디와 이메일을 입력하세요</span>
 							</div>
 							<input id="lost_id" class="form-control" type="text"
-								placeholder="아이디" style="margin-bottom:10px;" required>
-							<input id="lost_email" class="form-control" type="email"
+								placeholder="아이디" name="member_id" style="margin-bottom:10px;" required>
+							<input id="lost_email" name="toemail" class="form-control" type="email"
 								placeholder="이메일" required>
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">비밀번호 재설정</button>
+								<!-- <button type="submit" class="btn btn-primary btn-lg btn-block">비밀번호 재설정</button> -->
+								<input type="button" class="btn btn-primary btn-lg btn-block" value="비밀번호 재설정"
+									onclick="fnFindPwd();">
 							</div>
 							<div>
 								<button id="lost_login_btn" type="button" class="btn btn-link">로그인</button>
 								<button id="lost_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
 							</div>
+							<script type="text/javascript">
+								function fnFindPwd(){
+									var id = $('#lost_id').val();
+									var email = $('#lost_email').val();
+									
+									$.ajax({
+										url:"lbjmailSending.go",
+										type:"post",
+										data:{
+											member_id: id,
+											toemail: email
+										},
+										success:function(data){
+											alert(data);
+										},
+										error:function(a,b,c){
+											alert("a : " + a + ", b : " + b + ", c : " + c);
+										}
+									});
+								}
+							</script>
 						</div>
 					</form>
 					<!-- End | Lost Password Form -->
