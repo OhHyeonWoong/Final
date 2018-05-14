@@ -2,26 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member-mapper">
-
-	<resultMap id="MemberResult" type="Member">
-		<id property="member_id" column="member_id"/>
-		<result property="member_pw" column="member_pw"/>
-		<result property="member_name" column="member_name"/>
-		<result property="member_email" column="member_email"/>
-		<result property="member_address" column="member_address"/>
-		<result property="member_phone" column="member_phone"/>
-		<result property="member_regident_number" column="member_regident_number"/>
-		<result property="member_write_count" column="member_write_count"/>
-		<result property="member_enroll_date" column="member_enroll_date"/>
-		<result property="member_lastlogin" column="member_lastlogin"/>
-		<result property="member_lastpassword" column="member_lastpassword"/>		
-		<result property="member_yellowcard" column="member_yellowcard"/>		
-		<result property="member_status" column="member_status"/>		
-		<result property="member_renamephoto" column="member_renamephoto"/>		
-		<result property="member_cash" column="member_cash"/>			
-	</resultMap>
-	
+<mapper namespace="board-mapper">
 	
 	<resultMap type="Board" id="BoardResult">
 		<id property="agency_no" column="agency_no"/>
@@ -38,25 +19,12 @@
 		<result property="agency_content" column="agency_content"/>
 		<result property="agency_views" column="agency_views"/>
 	</resultMap>
-
-
-	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
-		<![CDATA[
-			select * from member where member_id = #{member_id}
-		]]>
-	</select>
 	
 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
 			select * from agency where link2_no = #{link2_no}
 		]]>
-	</select>
-	
-	
-	
-	
-	
-	
+	</select>	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
