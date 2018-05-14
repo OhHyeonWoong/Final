@@ -90,7 +90,7 @@
 					<div class="input-group">
 						<input type="text" class="form-control" id="register" placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
 						<!--email 인증 요청--> 
-						<span class="input-group-btn"><button class="btn btn-default">인증요청</button>	</span>
+						<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</button>	</span>
 					</div>
 				</div>
 
@@ -99,7 +99,7 @@
 					<div class="input-group">
 					<input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 					<!-- 인증번호 요청시 번호 입력확인 -->
-					<span class="input-group-btn"><button class="btn btn-default">인증번호 입력</button></span>
+					<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</button></span>
 					</div>
 				</div>
 				
@@ -115,8 +115,8 @@
 					<br><br>	
 				<div class="form-group text-center">
 				
-					<button type="submit" class="btn btn-info">회원가입</button>
-					<button type="button" class="btn btn-warning">가입취소</button>
+					<button type="submit" class="btn btn-default">회원가입</button>
+					<button type="button" class="btn btn-default">가입취소</button>
 					
 				</div>
 			</form>
@@ -126,6 +126,7 @@
 
 <!-- 회원약관 모달창 인클루드 -->
 <%@ include file="/WEB-INF/views/A3.JDK/termsOfService.jsp" %>
+<!-- 회원약관 모달창 인클루드 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
