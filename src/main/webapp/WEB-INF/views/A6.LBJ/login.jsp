@@ -5,7 +5,7 @@
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="display: none;">
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="width:100%;">
 				<div class="modal-header" align="center">
 					<img class="img-circle" id="img_logo"
 						src="/goodluck/resources/A6.LBJ/images/Logo.png"><!-- http://bootsnipp.com/img/logo.jpg -->
@@ -68,7 +68,7 @@
 							<div>
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button>
-								<button id="login_register_btn" type="button" class="btn btn-link">회원가입</button>
+								<button id="login_register_btn" type="button" class="btn btn-link" onclick="location.href='jdkregistration.go'">회원가입</button>
 								<hr style="border-color: red;">
 								<H4 style="text-align:center;">또는</H4>
 								<a id="custom-login-btn" href="javascript:loginWithKakao()">
