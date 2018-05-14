@@ -294,11 +294,11 @@ background: red;
     </table>
     <div class="row">
      <div class="col-md-6">
-            <div class="panel with-nav-tabs panel-primary">
-                <div class="panel-heading">
+            <div class="panel with-nav-tabs panel-primary" style="border-radius: 10px 10px 10px 10px">
+                <div class="panel-heading" style="border-radius: 8px 8px 10px 10px">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
-                            <li><a href="#tab2primary" data-toggle="tab">사용중인 아이템</a></li>
+                            <li><a href="#tab2primary" data-toggle="tab">적용중인 아이템</a></li>
                         </ul>
                 </div>
                   <style>
@@ -310,11 +310,11 @@ background: red;
                   border-color: black;
                   }
                   </style> 
-                  
-                <div class="panel-body" style="padding:0px; margin-top:-200px; background:#e9e9e9">
+                   
+                <div class="panel-body" style="padding:0px; margin-top:-193px; background:#e9e9e9; border-radius: 0 0 10px 10px">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary" >
-						<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px;">
+						<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
 				
 						<%for(int i=0 ; i<4; i++){%>
 							<tr>
@@ -329,10 +329,10 @@ background: red;
 						
 						</table>
 						<center>
-						< > 
+						<<페이징>> 
 						</center>
 						</div>
-                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
+                        <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px">Primary 2</div>
                     </div>
                 </div>
             </div>
@@ -356,7 +356,7 @@ background: red;
 						<%} %> 
 						</table>
 						<center>
-						< > 
+						<<페이징>> 
 						</center>
 		</div>
 
