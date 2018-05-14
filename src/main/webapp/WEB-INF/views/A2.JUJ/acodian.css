@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+	.uk_accordionMenu { 
+		font : 12px/20px 돋움; 
+		color:#424242; 
+		background:black; 
+		padding:10px; 
+		width:500px;   
+		margin:0; 
+	} 
+	
+	.uk_accordionMenu h1 { 
+		margin:0; 
+		font-size:20px; 
+		text-shadow:2px 2px 2px #aeaeae; 
+	} 
+	
+	.uk_accordionMenu h2 { 
+		margin:5px 0; 
+		paddion:0; 
+	}
+	
+	.uk_accordionMenu h2 a { 
+	       font-size:15px; 
+	       display:block; 
+	       font-weight:normal; 
+		color:#424242; 
+		text-shadow:2px 2px 2px #aeaeae; 
+		text-decoration:none; 
+		margion:0; 
+		padding:10px; 
+		background:#8f8f8f;  
+	} 	
+	
+	.uk_accordionMenu h2 a{ /* 메뉴 탭 스타일에 그라데이션, 테두리 */
+		font-size:15px; 
+		display:block; 
+		font-weight:normal; 
+		color:#424242; 
+		text-shadow:2px 2px 2px #aeaeae; 
+		text-decoration:none; 
+		margion:0; 
+		padding:10px; 
+		background:-moz-linear-gradient(top,#cecece,#8f8f8f); 
+		background:-webkit-gradient(linear,left top, left bottom, from(#cecece), to(#8f8f8f)); 
+		filter: progid:DXImageTransform.Microsoft.gradient (startColorstr=#ffcecece, endColorstr=#ff8f8f8f); 
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient (startColorstr=#ffcecece, endColorstr=#f8f8f8f)"; 
+		-webkit-border-radius:5px;   
+		-moz-border-radius:5px; 
+		border-radius:5px; 
+	}
+	
+	.uk_accordionMenu :target h2 a, 
+	.uk_accordionMenu h2 a:focus, 
+	.uk_accordionMenu h2 a:hover, 
+	.uk_accordionMenu h2 :active { /* 마우스 오버 스타일  */
+		background:#2288dd; 
+		background:-moz-linear-gradient(top,#6bb2ff,#2288dd); 
+		background:-webkit-gradient(linear,left top, left bottom, from(#6bb2ff), to(#2288dd)); 
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff6bb2ff, endColorstr=#ff2288dd)"; color:#fff; 
+	} 
+	
+	.uk_accordionMenu p { /* 트랜지션 효과  */
+		padding:0 10px; 
+		margin:0; 
+		height:0; 
+		overflow:hidden; 
+		-moz-transition:height 0.5s ease-in;   
+		-webkit-transition:height 0.5s ease-in; 
+		-o-transition:hegith 0.5s ease-in; 
+		tansition:height 0.5s ease-in; 
+	}
+	.uk_accordionMenu :target p{ 
+		overflow: auto; 
+		height:100px; 
+	}
