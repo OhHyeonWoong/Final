@@ -48,14 +48,14 @@ $(function() {
         }
         return false;
     });
-    
+   
     //$('#login_register_btn').click( function () { modalAnimate($formLogin, $formLostId) });
     $('#login_lostid_btn').click(function(){ modalAnimate($formLogin, $formLostId) });
     $('#lostid_login_btn').click( function () { modalAnimate($formLostId, $formLogin); });
-    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
-    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
-    $('#lost_lostid_btn').click( function () { modalAnimate($formLost, $formLostId); });
-    $('#lostid_lost_btn').click( function () { modalAnimate($formLostId, $formLost); });
+    //$('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });/*modalAnimate($formLogin, $formLost);*/
+    //$('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+    //$('#lost_lostid_btn').click( function () { modalAnimate($formLost, $formLostId); });
+    //$('#lostid_lost_btn').click( function () { modalAnimate($formLostId, $formLost); });
     //$('#lost-id-form')
     
     function modalAnimate ($oldForm, $newForm) {

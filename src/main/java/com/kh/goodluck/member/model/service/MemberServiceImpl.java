@@ -18,4 +18,16 @@ public class MemberServiceImpl implements MemberService{
 		//로그인용 메소드
 		return memberDao.loginCheck(member);
 	}
+	
+	@Override
+	public int findPwdMethod(Member member) {
+		//비밀번호 재설정 메소드
+		return memberDao.findPwdMethod(member);
+	}
+	
+	@Override
+	public Member emailCheckMethod(String tomail) {
+		//비밀번호 재설정 메일 보내기 전에 이메일 있는지 없는지 체크
+		return memberDao.emailCheckMethod(tomail);
+	}
 }

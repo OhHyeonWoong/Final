@@ -3,6 +3,7 @@ package com.kh.goodluck.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
@@ -39,6 +41,16 @@ public class MemberController {
 	@RequestMapping("lbjqnawrite.go")
 	public String qnaWriteGo() {
 		return "A6.LBJ/qnaWrite";
+	}
+	@RequestMapping("lbjmoveLostFwdView.go")
+	public String lostFwdViewGo() {
+		return "A6.LBJ/member/lostFwdView";
+	}
+	@RequestMapping("lbjmoveResetFwdView.go")
+	public ModelAndView resetFwdViewGo(HttpServletRequest request,ModelAndView mv) {
+		mv.addObject("member_id", request.getParameter("member_id"));
+		mv.setViewName("A6.LBJ/member/resetFwdView");
+		return mv;
 	}
 	
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
@@ -74,6 +86,23 @@ public class MemberController {
 		out.close();
 	}
 	
+	@RequestMapping(value="lbjfindpwd.go",method=RequestMethod.POST)
+	public String findPwdMethod(Member member) {
+		System.out.println("findPwdMethod member 정보");
+		System.out.println(member.getMember_id());
+		System.out.println(member.getMember_pw());
+		
+		//member service를 부르고, 아이디를 이용해 저 비밀번호로 비밀번호 체인지
+		int result = memberService.findPwdMethod(member);
+		if(result > 0) {
+			System.out.println("비밀번호 변경 성공");
+		}else {
+			System.out.println("비밀번호 변경 실패");
+		}
+		////////////////////////
+		return "home";
+	}
+	
 	
 	//회원 가입 버튼 누를 시 회원 가입 창으로 보내는 메소드
 	@RequestMapping(value="jdkregistration.go", method=RequestMethod.GET)
@@ -86,4 +115,15 @@ public class MemberController {
 	public String serviceTerms() {
 		return "A3.JDK/termsOfService";
 	}
+	
+	//어드민 페이지 이동용 메소드
+	@RequestMapping(value="jdkadminpage.go", method=RequestMethod.GET)
+	public String adminpage() {
+		return "A3.JDK/admin_main";
+	}
+		
+	
+	
+	
+	
 }

@@ -17,7 +17,7 @@ public class Board implements Serializable{
 	private String agency_loc;
 	private Date agency_startdate;
 	private Date agency_enddate;
-	private Date agency_eneolldate;
+	private Date agency_enrolldate;
 	private int agency_paytype;
 	private int agency_pay;
 	private int agency_status;
@@ -29,7 +29,7 @@ public class Board implements Serializable{
 	}
 
 	public Board(int agency_no, String agency_writer, int link2_no, int agency_type, String agency_loc,
-			Date agency_startdate, Date agency_enddate, Date agency_eneolldate, int agency_paytype, int agency_pay,
+			Date agency_startdate, Date agency_enddate, Date agency_enrolldate, int agency_paytype, int agency_pay,
 			int agency_status, String agency_content, int agency_views) {
 		super();
 		this.agency_no = agency_no;
@@ -39,7 +39,7 @@ public class Board implements Serializable{
 		this.agency_loc = agency_loc;
 		this.agency_startdate = agency_startdate;
 		this.agency_enddate = agency_enddate;
-		this.agency_eneolldate = agency_eneolldate;
+		this.agency_enrolldate = agency_enrolldate;
 		this.agency_paytype = agency_paytype;
 		this.agency_pay = agency_pay;
 		this.agency_status = agency_status;
@@ -103,12 +103,12 @@ public class Board implements Serializable{
 		this.agency_enddate = agency_enddate;
 	}
 
-	public Date getAgency_eneolldate() {
-		return agency_eneolldate;
+	public Date getAgency_enrolldate() {
+		return agency_enrolldate;
 	}
 
-	public void setAgency_eneolldate(Date agency_eneolldate) {
-		this.agency_eneolldate = agency_eneolldate;
+	public void setAgency_enrolldate(Date agency_enrolldate) {
+		this.agency_enrolldate = agency_enrolldate;
 	}
 
 	public int getAgency_paytype() {
@@ -155,7 +155,7 @@ public class Board implements Serializable{
 	public String toString() {
 		return "Board [agency_no=" + agency_no + ", agency_writer=" + agency_writer + ", link2_no=" + link2_no
 				+ ", agency_type=" + agency_type + ", agency_loc=" + agency_loc + ", agency_startdate="
-				+ agency_startdate + ", agency_enddate=" + agency_enddate + ", agency_eneolldate=" + agency_eneolldate
+				+ agency_startdate + ", agency_enddate=" + agency_enddate + ", agency_enrolldate=" + agency_enrolldate
 				+ ", agency_paytype=" + agency_paytype + ", agency_pay=" + agency_pay + ", agency_status="
 				+ agency_status + ", agency_content=" + agency_content + ", agency_views=" + agency_views + "]";
 	}

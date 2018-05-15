@@ -21,24 +21,6 @@
 		<result property="member_renamephoto" column="member_renamephoto"/>		
 		<result property="member_cash" column="member_cash"/>			
 	</resultMap>
-	
-<!-- 	
-	<resultMap type="Board" id="BoardResult">
-		<id property="agency_no" column="agency_no"/>
-		<result property="agency_writer" column="agency_writer"/>
-		<result property="link2_no" column="link2_no"/>
-		<result property="agency_type" column="agency_type"/>
-		<result property="agency_loc" column="agency_loc"/>
-		<result property="agency_startdate" column="agency_startdate"/>
-		<result property="agency_enddate" column="agency_enddate"/>
-		<result property="agency_eneolldate" column="agency_eneolldate"/>
-		<result property="agency_paytype" column="agency_paytype"/>
-		<result property="agency_pay" column="agency_pay"/>
-		<result property="agency_status" column="agency_status"/>
-		<result property="agency_content" column="agency_content"/>
-		<result property="agency_views" column="agency_views"/>
-	</resultMap> -->
-
 
 	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
 		<![CDATA[
@@ -46,17 +28,18 @@
 		]]>
 	</select>
 	
-<!-- 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
+	<select id="emailCheck" parameterType="string" resultType="Member">
 		<![CDATA[
-			select * from agency where link2_no = #{link2_no}
+			select * from member where member_email = #{tomail}
 		]]>
-	</select> -->
+	</select>
 	
-	
-	
-	
-	
-	
+	<update id="fwdChange" parameterType="Member" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update member set member_pw = #{member_pw} 
+			where member_id = #{member_id}
+		]]>
+	</update>
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

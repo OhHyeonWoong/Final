@@ -19,8 +19,6 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>   
 <!-- 전동기 부트스트랩 영역입니다. -->
-
-
 <style type="text/css">
 
 </style>
@@ -37,33 +35,35 @@
 		<div class="login_form" >
 			<h3 style="text-align : center;">회원가입</h3>
 		<div class="col-md-6 col-md-offset-3">
-			<form role="form">
+<!-- 회원가입 폼 시작 -->
+			<form role="form" enctype="multipart/form-data" method="post" action="">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
-					<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-					<img src="#" name ="profile_img"/>
-					</div><br>
+					<div style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
+					<img src="/goodluck/resources/A3.JDK/images/base_profile.png" name ="profile_img" style="width : 130px; height : auto;">
+					</div>
+					<br>
 					<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
 				</div>
 				<div class="form-group">
 					<label for="userid">아이디</label>
 					<div class="input-group">
-					<input type="text" name="member_id" class="form-control" id="InputId" placeholder="아이디" required="required">
+					<input type="text"  id="member_id" name="member_id" class="form-control" placeholder="아이디" required="required">
 					<span class="input-group-btn"><button class="btn btn-default" style="">
 					<i class = "fa fa-search"></i> 중복검사</button></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="username">이름</label> <input type="text"
-						class="form-control" id="member_name" placeholder="이름을 입력해 주세요" required="required">
+					<label for="username">이름</label> 
+					<input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해 주세요" required="required">
 				</div>
 				<div class="form-group">
-					<label for="InputPassword1">비밀번호</label> <input type="password"
-						class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호" required="required">
+					<label for="InputPassword1">비밀번호</label> 
+					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="비밀번호" required="required">
 				</div>
 				<div class="form-group">
-					<label for="InputPassword2">비밀번호 확인</label> <input type="password"
-						class="form-control" id="InputPassword2" placeholder="비밀번호 확인" required="required">
+					<label for="InputPassword2">비밀번호 확인</label> 
+					<input type="password" class="form-control" id="password2" placeholder="비밀번호 확인" required="required">
 					<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 				</div>
 				<div class="form-group">
@@ -103,8 +103,6 @@
 					</div>
 				</div>
 				
-				
-				
 				<div class="form-group text-center">
 					<div class="form-group">
 						 <input id="agree" type="checkbox" autocomplete="off"> 
@@ -120,6 +118,7 @@
 					
 				</div>
 			</form>
+<!-- 회원가입 폼 종료 -->
 				</div>
 			</div>
 		</div>

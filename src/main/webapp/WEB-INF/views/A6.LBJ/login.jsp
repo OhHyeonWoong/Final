@@ -67,7 +67,7 @@
 							</div>
 							<div>
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
-								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button>
+								<button id="login_lost_btn" type="button" class="btn btn-link" onclick="location.href='lbjmoveLostFwdView.go'">비밀번호재설정</button>
 								<button id="login_register_btn" type="button" class="btn btn-link" onclick="location.href='jdkregistration.go'">회원가입</button>
 								<hr style="border-color: red;">
 								<H4 style="text-align:center;">또는</H4>
@@ -97,7 +97,7 @@
 					<!-- End # Login Form -->
 
 					<!-- Begin | Lost Password Form -->
-					<form id="lost-form" class="loginForm1" style="display: none;">
+					<!-- <form id="lost-form" class="loginForm1" style="display: none;">
 						<div class="modal-body">
 							<div id="div-lost-msg">
 								<div id="icon-lost-msg"
@@ -111,7 +111,7 @@
 						</div>
 						<div class="modal-footer">
 							<div>
-								<!-- <button type="submit" class="btn btn-primary btn-lg btn-block">비밀번호 재설정</button> -->
+								<button type="submit" class="btn btn-primary btn-lg btn-block">비밀번호 재설정</button>
 								<input type="button" class="btn btn-primary btn-lg btn-block" value="비밀번호 재설정"
 									onclick="fnFindPwd();">
 							</div>
@@ -141,7 +141,7 @@
 								}
 							</script>
 						</div>
-					</form>
+					</form> -->
 					<!-- End | Lost Password Form -->
 					 <!-- Begin | Lost Id Form -->
                     <form id="lost-id-form" class="loginForm1" style="display:none;">
@@ -160,7 +160,7 @@
                             </div>
                             <div>
                                 <button id="lostid_login_btn" type="button" class="btn btn-link">로그인</button>
-                                <button id="lostid_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button>
+                                <!-- <button id="lostid_lost_btn" type="button" class="btn btn-link">비밀번호재설정</button> -->
                             </div>
 		    		    </div>
                     </form>
