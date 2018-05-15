@@ -17,6 +17,9 @@
 <!-- 부트스트랩용 자바스크립트 파일 공용 폴더 내부  js 파일 사용-->
 <script src="/rs/resources/common/bootstrap.min.js"></script>
 <!---------------------------------- Jeon Dong Gi-------------------------------->
+<!-- byungjun -->
+<link href="/goodluck/resources/A6.LBJ/css/lbj_sidebar.css" rel="stylesheet">
+<!-- byungjun -->
 <style type="text/css">
  	.lbjdiv{
  		margin-bottom:50px;
@@ -208,6 +211,7 @@
 	<hr>
 	</div>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/login.jsp" %> --%>
+	<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
