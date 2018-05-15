@@ -1,6 +1,7 @@
 package com.kh.goodluck.common.controller;
 
 import javax.mail.internet.MimeMessage;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -65,6 +66,7 @@ public class MailController {
 			 msg += "</form></div>";
 			 //messageHelper.setText(msg); // 메일 내용
 			// messageHelper.set
+			 
 			 
 			 email.setHtmlMsg(msg);
 			 email.send();
