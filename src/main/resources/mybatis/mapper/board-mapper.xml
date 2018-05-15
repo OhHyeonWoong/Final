@@ -24,7 +24,8 @@
 		<![CDATA[
 			select * from agency where link2_no = #{link2_no}
 		]]>
-	</select>	
+	</select>
+	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

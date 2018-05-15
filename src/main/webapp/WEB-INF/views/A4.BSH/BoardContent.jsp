@@ -103,13 +103,16 @@
 			<!-- 카테고리 -->
 			sidebar
 			
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 			function getBoard(){
 				var board = ${"#"}
 				
 			}
 			
-			</script>
+			</script> -->
+			<form action="bshtest.go" method="get">
+				<input type="submit" value="aaa">
+			</form>
 			
 			<h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
