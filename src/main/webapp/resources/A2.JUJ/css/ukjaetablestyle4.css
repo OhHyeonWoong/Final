@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+	.jwj-innertable3 {
+	    border-collapse: collapse;
+	    border-spacing: 0;
+	    width: 100%;
+	    height : 80%;
+	    border: 1px solid #ddd;	
+	}		
+	
+	.jwj-innertable3 tr th {
+    text-align: left;
+    padding: 10px;   
+	}
+	
+	.jwj-innertable3 tr td {
+    text-align: center;
+    padding: 10px;
+	}
+	
+	.jwj-innertable3 tr:nth-child(even) {
+	    background-color: #e0e010;
+	    animation: mymove3 5s infinite;
+	}
+	
+	/* Chrome, Safari, Opera */
+	@-webkit-keyframes mymove3 {
+	    from {background-color: #e0e010;}
+	    to {background-color: #ffff68;}
+	} */
+	
+	/* Standard syntax */
+	@keyframes mymove3 {
+	    from {background-color: #e0e010;}
+	    to {background-color: #ffff68;}
+	} 	

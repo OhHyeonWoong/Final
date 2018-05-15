@@ -1,21 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-
-<% 
-	ArrayList<String> list = new ArrayList<String>(); /* ArrayList에 메인에사용되는 이미파일의 경로를 넣는다. */
-	list.add("/goodluck/resources/common/img/main/공지사항.jpg");
-	list.add("/goodluck/resources/common/img/main/생활.jpg");
-	list.add("/goodluck/resources/common/img/main/반려동물2");
-	list.add("/goodluck/resources/common/img/main/게임.jpg");
-	list.add("/goodluck/resources/common/img/main/음악.jpg");
-	list.add("/goodluck/resources/common/img/main/렌탈.jpg");
-	list.add("/goodluck/resources/common/img/main/여행.jpg");
-	list.add("/goodluck/resources/common/img/main/프리랜서.jpg");
-	list.add("/goodluck/resources/common/img/main/구인.jpg");	
-	String bgcolor = "basic";
-%>
-
         
 <!DOCTYPE html>
 <html>
@@ -26,11 +11,10 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){	
-		$("#topcaro, #topcaro1").click(function(){
-		      
+		$("#topcaro, #topcaro1").click(function(){    
 		         //리스트별 컬러추가.
 		         colors=["red","blue","black","white","yellow","orange","gray"];
-		         pictures=["/goodluck/resources/common/img/main/공지사항.jpg","/goodluck/resources/common/img/main/생활.jpg","/goodluck/resources/common/img/main/반려동물2","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/구인.jpg"];
+		         pictures=["/goodluck/resources/common/img/main/생활.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/구인.jpg"];
 		         
 		         for(var i=0; i<8 ; i++){
 		            console.log($("div#"+i+".item.active").attr("id"));
@@ -38,66 +22,64 @@
 		            if($("div#"+i+".item.active").attr("id") >= 0 )
 		            	picture=pictures[$("div#"+i+".item.active").attr("id")];
 		            	
-		         $("#main").attr("background",picture);     
-     
-		         
+		         	$("#main").attr("background",picture);     
 		         }
 		});	
-	});  
+	});   
 </script>
-<link rel="stylesheet" type="text/css" href="resources/common/css/ukjaeAnimal.css">
-<link rel="stylesheet" type="text/css" href="resources/common/css/ukjaetablestyle.css">
-<link rel="stylesheet" type="text/css" href="resources/common/css/ukjaetablestyle2.css">
-<link rel="stylesheet" type="text/css" href="resources/common/css/ukjaetablestyle3.css">
-<style type="text/css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeAnimal.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaemainEvent.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle2.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle3.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle4.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle5.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle6.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle7.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle8.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle9.css">
 
+<style type="text/css">
 	.ohw-home-table {
 		margin:0;
-		padding:0;
 		width:100%;
 		height:800px;
-		border:1 solid black;
 	}
-
 	.ohw-home-table-td {
-		margin:0;
+		margin:200;
 		padding:0;	
 		padding-top:0;
 		width:50%;
 		height:400px;
 	}
-	
-    .ohw-home-table-td font {
-	position: relative;
-    -webkit-animation: mymove2 5s infinite; /* Safari 4.0 - 8.0 */
-    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
-    animation: mymove10 5s infinite;
-    animation-delay: 2s;
-    
+    .ohw-carousel-img {
+      height:400px !important;
+   }   
+	.ohw-home-table2 {
+		border:1px solid gray;
+		width: 97%;
+		height: 97%;
 	}
 	
-	/* Safari 4.0 - 8.0 */
-	@-webkit-keyframes mymove10 {
-	    from {left: -200px;}
-	    to {left: 10px;}
+	.ohw-home-table2 tr td{
+		padding: 0;
+		margin: 0;
+		text-align: center;
 	}
 	
-	@keyframes mymove10 {
-	    from {left: -200px;}
-	    to {left: 10px;}
-	}	
-	
-	.ohw-carousel-img {
-		height:400px !important;
-	}		
-	
+	jwj-innertable{
+		width: 400px;
+		height: 400px;	
+	}
 </style>
 
 </head> 
-<body id="main" class="main" background="/goodluck/resources/common/img/main/공지사항.jpg" style="background-size: 100%;">
+<body id="main">
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
-<div class="container" id="container">  
+		
+<div class="container">  
+	<a href="Notice2.go">나의거래중 목록 List보기 Click</a>	
+		
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<% String inside = null; %>
 		<!-- Indicators -->
@@ -115,7 +97,6 @@
 		<div class="carousel-inner">
 			<div class="item active" id="0">
 				<a href="Notice.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"></a>
-				<c:set var="v1" value="/goodluck/resources/common/img/main/공지사항.jpg"/>
 			</div>
 			
 			<div class="item" id="1">
@@ -165,6 +146,8 @@
   
  <hr>
  
+ 
+ 	
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 
 		<!-- Indicators -->
@@ -184,28 +167,114 @@
 			<div class="item active">
 			<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"> -->
 			
-			<table class="ohw-home-table" border = "1"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- main  -->
 				<tr>
 					<td class = "ohw-home-table-td" align = "center"> 
-						<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-						<table class="jwj-innertable" border="1">
-							<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-							<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-							<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-							<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-							<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-							<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-							<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-							<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-							<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-							<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-							<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-						</table>
+												
+					<table class="ohw-home-table2" style="border: 1px solid gray;">
+						<tr>
+							<td style="padding: 0;">
+										<div class="row" align="center" style="margin: 0; padding-right: 20px; padding-left: 20px;">
+										  <div class="col-sm-4">
+										   <div class="mega-pricing-item gradient-style-1">
+									     	 <div class="pricing-icon">
+										     <i class="fa fa-heart-o"></i>
+										     </div>
+										 
+										 	<h3><strong>이벤트</strong><br><br><button style="background: none;" onclick="event1();">하나!!</button></h3>
+
+										   </div>
+										  </div>
+										 
+										 <div class="col-sm-4">
+											 <div class="mega-pricing-item gradient-style-2 active">
+											 <div class="pricing-icon">
+											 <i class="fa fa-plane"></i>
+											 </div>
+											 
+										 	 <h3><strong>이벤트</strong><br><br><button style="background: none;" onclick="event2();">두울!!</button></h3>
+										 	
+											 </div>
+										 </div>
+										 
+										 <div class="col-sm-4">
+										 <div class="mega-pricing-item gradient-style-3">
+										 <div class="pricing-icon">
+										 <i class="fa fa-grav"></i>
+										 </div>
+										 
+										 	 <h3><strong>이벤트</strong><br><br><button style="background: none;" onclick="event3();">세엣!!</button></h3>
+													<script type="text/javascript">
+														function event1(){			
+															window.open("Eventpopup1.go","","width=300,height=500");
+															
+														}
+														function event2(){			
+															window.open("Eventpopup2.go","","width=300,height=500");
+															
+														}
+														function event3(){			
+															window.open("Eventpopup3.go","","width=300,height=500");
+															
+														}
+													</script>
+										 </div>
+										 </div>
+										
+									</div>		
+							</td>
+						</tr>
+					</table>	
+
 					</td>
-					<td class = "ohw-home-table-td" align = "center"><br>
-						<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+					<td class = "ohw-home-table-td" align = "center">
+						<!-- <table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table> -->
+						
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td>
+									<iframe width="520" height="320" src="https://www.youtube.com/embed/QI7cYnBlkFQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+									<br>
+									<font size="6" face="굴림" style="font-weight: bold;">독신들을 위한 레시피!!</font>
+								</td>
+							</tr>
+						</table>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<!-- <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
 						<div id="homeCarousel" class="ohw-homeCarousel2 carousel slide" data-ride="carousel" data-interval="false">
-							<!-- Indicators -->
+							Indicators
 							<ol class="carousel-indicators">
 								<li data-target=".ohw-homeCarousel2" data-slide-to="0" class="active"></li>
 								<li data-target=".ohw-homeCarousel2" data-slide-to="1" class="active"></li>
@@ -255,408 +324,425 @@
 								<span class="glyphicon glyphicon-chevron-right"></span> 
 								<span class="sr-only">Next</span>
 							</a>
-						</div> 	<!-- homeCarousel -->	
-						
+						</div> 	homeCarousel -->							
 					</td>
 				</tr>
 				<tr>
-					<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-						<table class="jwj-innertable" border="1">
-							<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-							<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-							<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-							<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-							<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-							<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-							<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-							<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-							<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-							<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-							<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-						</table>
+					<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>							
+								</td>
+							</tr>
+						</table>				
 					</td>
-					<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-						<table class="jwj-innertable" border="1">
-							<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-							<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-							<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-							<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-							<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-							<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-							<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-							<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-							<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-							<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-							<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-						</table>
+					<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>								
+								</td>
+							</tr>
+						</table>					
 					</td>
 				</tr>
 			</table>
-
-			</div>
+			</div> 
 
 			<div class="item">
 				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"> -->
 
-				<table class = "ohw-home-table" border = "1"> <!-- 생활  -->
+				<table class = "ohw-home-table"> <!-- 생활  -->
 						<tr>
-						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable2" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>						
-
+						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+									<table class="jwj-innertable2" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
 						</td>
 						
-						
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable2" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+									<table class="jwj-innertable2" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
 						</td>
 					</tr>
 					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable2" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+									<table class="jwj-innertable2" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
 						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;"> FAQ </font>
-							<table class="jwj-innertable2" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
+									<table class="jwj-innertable2" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
 						</td>
 					</tr>
 				</table>
 			</div>    
 			
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/반려동물.jpg" alt="반려동물" style="width:100%;"> -->
-				<table class = "ohw-home-table" border = "1"> <!-- 반려동물  -->
+				<table class = "ohw-home-table"> <!-- 반려동물  -->
+					<tr>
+						<td class = "ohw-home-table-td" align = "center"> 	
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+								<tr>
+									<td style="padding: 0;">
+											<!-- Team -->
+											<section id="team" class="pb-5">
+											    <div id="team_inner_div">
+											        <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+																								        
+											        <div class="row">
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4" >
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">페퍼</h4>
+											                                    <p class="card-text"> Mouse On.. </p>
+											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4" style="padding-bottom:2px; margin: 0;">
+											                                    <h4 class="card-title"> 페퍼 </h4>
+											                                    <p class="card-text" style="padding-right: 10px;" align="center">
+											                                    	<Table style="text-align: center;" border="1">
+											                                    		<tr><td colspan="2" align="center"> Sort : 코숏 </td></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table>
+											                                    </p>
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4">
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">타래</h4>
+											                                    <p class="card-text">Mouse On..</p>
+											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4">
+											                                    <h4 class="card-title">Sunlimetech</h4>
+											                                    <p class="card-text"> 
+											 										<Table style="text-align: center;" border="1">
+											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table>                                   
+											                                    
+											                                     </p>
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4">
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">혼다</h4>
+											                                    <p class="card-text"> Mouse On.. </p>
+											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4">
+											                                    <h4 class="card-title">Sunlimetech</h4>
+											                                    <p class="card-text">
+											 										<Table style="text-align: center;" border="1">
+											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table>      							                                    
+											                                    
+											                                    
+											                                    </p>
+				
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4">
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">야옹이</h4>
+											                                    <p class="card-text"> Mouse On..</p>
+											                                   <!--  <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4">
+											                                    <h4 class="card-title">Sunlimetech</h4>
+											                                    <p class="card-text">
+											 										<Table style="text-align: center;" border="1">
+											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table>      							                                    
+											                                    
+											                                    
+											                                    </p>
+				
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4">
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">깜냥이</h4>
+											                                    <p class="card-text"> Mouse On..</p>
+											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4">
+											                                    <h4 class="card-title">Sunlimetech</h4>
+											                                    <p class="card-text">
+											 										<Table style="text-align: center;" border="1">
+											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table>      							                                    
+											                                    
+											                                    
+											                                    </p>
+				
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											            <!-- Team member -->
+											            <div class="col-xs-12 col-sm-6 col-md-4">
+											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+											                    <div class="mainflip">
+											                        <div class="frontside">
+											                            <div class="card">
+											                                <div class="card-body text-center">
+											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg" alt="card image" width="90" height="65"></p>
+											                                    <h4 class="card-title">나비</h4>
+											                                    <p class="card-text"> Mouse On.. </p>
+											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
+											                                </div>
+											                            </div>
+											                        </div>
+											                        <div class="backside">
+											                            <div class="card">
+											                                <div class="card-body text-center mt-4">
+											                                    <h4 class="card-title">Sunlimetech</h4>
+											                                    <p class="card-text">
+											 										<Table style="text-align: center;" border="1">
+											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
+											                                    		<tr><td>Age</td><td>2세</td></tr>
+											                                    		<tr><td>Gender</td><td>남아</td></tr>
+											                                    		<tr><td>character</td><td>개냥이</td></tr>
+											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
+											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
+											                                    	</Table> 
+											                                    </p>
+											                                </div>
+											                            </div>
+											                        </div>
+											                    </div>
+											                </div>
+											            </div>
+											            <!-- ./Team member -->
+											
+											        </div>
+											    </div>
+											</section>
+											<!-- Team -->
+								
+								
+									</td>
+								</tr>
+						</table>
+						
+
+						</td>
+						<td class = "ohw-home-table-td" align = "center">						
+							<table class="ohw-home-table2" style="border: 1px solid gray;">
+								<tr>
+									<td style="padding: 0;">
+										<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+										<table class="jwj-innertable3" border="1">
+											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+											<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+											<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+											<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+										</table>						
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 					<tr>
 						<td class = "ohw-home-table-td" align = "center"> 
-							<!-- Team -->
-							<section id="team" class="pb-5">
-							    <div id="team_inner_div">
-							        <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							        <div class="row">
-							        
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">페퍼</h4>
-							                                    <p class="card-text"> Mouse On.. </p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4" style="padding: 0; margin: 0;">
-							                                    <h4 class="card-title"> 페퍼 </h4>
-							                                    <p class="card-text" style="padding-right: 10px;" align="center">
-							                                    	<Table style="text-align: center;" border="1">
-							                                    		<tr><td colspan="2" align="center"> Sort : 코숏 </td></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table>
-							                                    </p>
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">타래</h4>
-							                                    <p class="card-text">Mouse On..</p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4">
-							                                    <h4 class="card-title">Sunlimetech</h4>
-							                                    <p class="card-text"> 
-							 										<Table style="text-align: center;" border="1">
-							                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table>                                   
-							                                    
-							                                     </p>
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">혼다</h4>
-							                                    <p class="card-text"> Mouse On.. </p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4">
-							                                    <h4 class="card-title">Sunlimetech</h4>
-							                                    <p class="card-text">
-							 										<Table style="text-align: center;" border="1">
-							                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table>      							                                    
-							                                    
-							                                    
-							                                    </p>
-
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">야옹이</h4>
-							                                    <p class="card-text"> Mouse On..</p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4">
-							                                    <h4 class="card-title">Sunlimetech</h4>
-							                                    <p class="card-text">
-							 										<Table style="text-align: center;" border="1">
-							                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table>      							                                    
-							                                    
-							                                    
-							                                    </p>
-
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">깜냥이</h4>
-							                                    <p class="card-text"> Mouse On..</p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4">
-							                                    <h4 class="card-title">Sunlimetech</h4>
-							                                    <p class="card-text">
-							 										<Table style="text-align: center;" border="1">
-							                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table>      							                                    
-							                                    
-							                                    
-							                                    </p>
-
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							            <!-- Team member -->
-							            <div class="col-xs-12 col-sm-6 col-md-4">
-							                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-							                    <div class="mainflip">
-							                        <div class="frontside">
-							                            <div class="card">
-							                                <div class="card-body text-center">
-							                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg" alt="card image" width="90" height="65"></p>
-							                                    <h4 class="card-title">나비</h4>
-							                                    <p class="card-text"> Mouse On.. </p>
-							                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-							                                </div>
-							                            </div>
-							                        </div>
-							                        <div class="backside">
-							                            <div class="card">
-							                                <div class="card-body text-center mt-4">
-							                                    <h4 class="card-title">Sunlimetech</h4>
-							                                    <p class="card-text">
-							 										<Table style="text-align: center;" border="1">
-							                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-							                                    		<tr><td>Age</td><td>2세</td></tr>
-							                                    		<tr><td>Gender</td><td>남아</td></tr>
-							                                    		<tr><td>character</td><td>개냥이</td></tr>
-							                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-							                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-							                                    	</Table> 
-							                                    </p>
-							                                </div>
-							                            </div>
-							                        </div>
-							                    </div>
-							                </div>
-							            </div>
-							            <!-- ./Team member -->
-							
-							        </div>
-							    </div>
-							</section>
-							<!-- Team -->
-
-
-
-
-
-
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;"> 뉴스ROOM </font>							
-							<table class="jwj-innertable3" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+							<table class="ohw-home-table2" style="border: 1px solid gray;">
+								<tr>
+									<td style="padding: 0;">
+										<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+										<table class="jwj-innertable3" border="1">
+											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+											<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+											<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+											<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+										</table>						
+									</td>
+								</tr>
 							</table>
 						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable3" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable3" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
+						<td class = "ohw-home-table-td" align = "center"> 
+							<table class="ohw-home-table2" style="border: 1px solid gray;">
+								<tr>
+									<td style="padding: 0;">
+										<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
+										<table class="jwj-innertable3" border="1">
+											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+											<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+											<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+											<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+										</table>						
+									</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -664,435 +750,480 @@
 
 			</div>
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/게임.jpg" alt="게임" style="width:100%;"> -->
-				<table class = "ohw-home-table" border = "1"> <!-- 게임  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+			<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
 			</div>
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/음악2.jpg" alt="음악" style="width:100%;"> -->
-
-				<table class = "ohw-home-table" border = "1"> <!-- 음악  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+				<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
 				
 			</div>
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/렌탈.jpg" alt="렌탈" style="width:100%;"> -->
-				<table class = "ohw-home-table" border = "1"> <!-- 렌탈  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"><font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"><font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+			<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
 			</div>
 			
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/여행.jpg" alt="여행" style="width:100%;"> -->
-				<table class = "ohw-home-table" border = "1"> <!-- 여행  -->
-					<tr>
-						<td class="ohw-home-table-td" align = "center"><font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"><font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+			<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
 			</div>	
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="문의" style="width:100%;"> -->
-
-				<table class = "ohw-home-table" border = "1"> <!-- 프리랜서  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+			<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
+		
 			</div>
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/무한극장.gif" alt="문의" style="width:100%;"> -->
 
-				<table class = "ohw-home-table" border = "1"> <!-- 구인  -->
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> <font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								<tr><td>06</td><td>2018.05.11 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-10</td><td>97</td></tr>
-								<tr><td>07</td><td>2018.05.12 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-11</td><td>97</td></tr>
-								<tr><td>08</td><td>2018.05.13 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-12</td><td>97</td></tr>
-								<tr><td>09</td><td>2018.05.14 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-13</td><td>97</td></tr>
-								<tr><td>10</td><td>2018.05.15 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-14</td><td>97</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</div>			
-			
+			<table class="ohw-home-table"> <!-- main  -->
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>
+		
+							</td>
+							<td class = "ohw-home-table-td" align = "center">
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>						
+										</td>
+									</tr>
+								</table>						
+							</td>
+						</tr>
+						<tr>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>							
+										</td>
+									</tr>
+								</table>				
+							</td>
+							<td class = "ohw-home-table-td" align = "center"> 
+								<table class="ohw-home-table2" style="border: 1px solid gray;">
+									<tr>
+										<td style="padding: 0;">
+											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+											<table class="jwj-innertable" border="1">
+												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+												<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+												<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+												<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+												<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+												<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+											</table>								
+										</td>
+									</tr>
+								</table>					
+							</td>
+						</tr>
+					</table>
+
+
+
+			</div>
 			
 		</div>		
 
 		
 	</div> <!-- homeCarousel -->	
 </div> <!-- container div  -->
-
-<div class="uk_modaldiv1"> 
-  <%@ include file="/WEB-INF/views/A2.JUJ/newsmodal4.jsp" %>
-</div>
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

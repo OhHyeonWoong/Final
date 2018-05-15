@@ -19,6 +19,12 @@ public class NoticeController {
 		return "A4.BSH/Notice";	
 	}
 	
+	@RequestMapping("Notice2.go")
+	public String notice2(HttpServletRequest request,HttpServletResponse response) {
+		
+		return "A2.JUJ/Dealing";	
+	}
+	
 
 	
 }
