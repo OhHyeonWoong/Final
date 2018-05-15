@@ -340,7 +340,7 @@ window.resizeTo(560,580);
 								<ul>
 									<li class="dropdown-header">Dresses</li>
 									<li><a href="bshtest.go?link2_no=1">link2_no=1 테스트</a></li>
-									<li><a href="#">Image Responsive</a></li>
+									<li><a href="bshtest.go?link2_no=2">link2_no=2 테스트</a></li>
 									<li><a href="#">Auto Carousel</a></li>
 									<li><a href="#">Newsletter Form</a></li>
 									<li><a href="#">Four columns</a></li>

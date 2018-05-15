@@ -12,7 +12,7 @@
 		<result property="agency_loc" column="agency_loc"/>
 		<result property="agency_startdate" column="agency_startdate"/>
 		<result property="agency_enddate" column="agency_enddate"/>
-		<result property="agency_eneolldate" column="agency_eneolldate"/>
+		<result property="agency_enrolldate" column="agency_enrolldate"/>
 		<result property="agency_paytype" column="agency_paytype"/>
 		<result property="agency_pay" column="agency_pay"/>
 		<result property="agency_status" column="agency_status"/>
