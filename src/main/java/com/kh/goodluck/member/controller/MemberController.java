@@ -86,6 +86,23 @@ public class MemberController {
 		out.close();
 	}
 	
+	@RequestMapping(value="lbjfindpwd.go",method=RequestMethod.POST)
+	public String findPwdMethod(Member member) {
+		System.out.println("findPwdMethod member 정보");
+		System.out.println(member.getMember_id());
+		System.out.println(member.getMember_pw());
+		
+		//member service를 부르고, 아이디를 이용해 저 비밀번호로 비밀번호 체인지
+		int result = memberService.findPwdMethod(member);
+		if(result > 0) {
+			System.out.println("비밀번호 변경 성공");
+		}else {
+			System.out.println("비밀번호 변경 실패");
+		}
+		////////////////////////
+		return "home";
+	}
+	
 	
 	//회원 가입 버튼 누를 시 회원 가입 창으로 보내는 메소드
 	@RequestMapping(value="jdkregistration.go", method=RequestMethod.GET)
