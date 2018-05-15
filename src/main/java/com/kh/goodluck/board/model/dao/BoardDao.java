@@ -6,8 +6,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goodluck.board.model.vo.Board;
 
-@Repository("boarddao")
+
+
+@Repository("boardDao")
 public class BoardDao {
 	
 	@Autowired
@@ -17,10 +20,13 @@ public class BoardDao {
 		
 	}
 	
-	public List<Object> selectCategory(String smallcategory) {
+	
+	
+	public List<Board> selectCategory(Board board) {
 		
-		return sqlSession.selectList("selectCategory", smallcategory);
+		return sqlSession.selectList("selectCategory", board);
 	}
+	
 	
 	
 }
