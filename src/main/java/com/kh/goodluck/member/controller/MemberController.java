@@ -98,4 +98,15 @@ public class MemberController {
 	public String serviceTerms() {
 		return "A3.JDK/termsOfService";
 	}
+	
+	//어드민 페이지 이동용 메소드
+	@RequestMapping(value="jdkadminpage.go", method=RequestMethod.GET)
+	public String adminpage() {
+		return "A3.JDK/admin_main";
+	}
+		
+	
+	
+	
+	
 }
