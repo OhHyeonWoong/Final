@@ -28,6 +28,19 @@
 		]]>
 	</select>
 	
+	<select id="emailCheck" parameterType="string" resultType="Member">
+		<![CDATA[
+			select * from member where member_email = #{tomail}
+		]]>
+	</select>
+	
+	<update id="fwdChange" parameterType="Member" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update member set member_pw = #{member_pw} 
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 
