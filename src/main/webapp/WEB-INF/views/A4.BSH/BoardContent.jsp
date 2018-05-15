@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +94,7 @@
 		
 	});
 	
+	
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
@@ -110,10 +117,10 @@
 			}
 			
 			</script> -->
-			<form action="bshtest.go" method="get">
-				<input type="submit" value="aaa">
-			</form>
-			
+			<%-- <form action="" method="get">
+				<input type="submit" value="${boardlist }">
+			</form> --%>
+			${boardlist.get(0).agency_no}	
 			<h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
 			<h5 class="small" id="한식" style="display: none;">한식</h5>
@@ -122,7 +129,7 @@
 			<h4 class="middle" id="AB" style="display: none;">AB</h4>
 			<h5 class="small" id="ABA" style="display: none;">ABA</h5>
 			<h5 class="small" id="ABB" style="display: none;">ABB</h5>
-
+			
 			<hr>
 			<h3>대 카테고리</h3>
 			<h4>중 카테고리</h4>
@@ -308,32 +315,47 @@
 					<thead style="border: 1px solid black;">
 						<tr>
 							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 50%;">제목</th>
+							<th style="border: 1px solid black; width: 40%;">제목</th>
 							<th style="border: 1px solid black; width: 5%;">지역</th>
 							<th style="border: 1px solid black; width: 5%;">구분</th>
 							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
+							<th style="border: 1px solid black; width: 15%;">등록날짜</th>
+							<th style="border: 1px solid black; width: 15%;">시작날짜</th>
 							<th style="border: 1px solid black; width: 5%;">상태</th>
 						</tr>
 
 					</thead>
 					<tbody>
-						<%
-							for (int i = 0; i < 20; i++) {
-						%>
-						<tr>
-							<%
-								for (int j = 0; j < 8; j++) {
-							%>
-							<td><%=i%>,<%=j%></td>
-							<%
-								}
-							%>
-						</tr>
-						<%
-							}
-						%>
+						
+						<c:forEach var="board" items="${boardlist }">
+							<tr>
+							<td>
+							${board.agency_type }
+							</td>
+							<td>
+							<a href="#">${board.agency_content }</a>
+							</td>
+							<td>
+							${board.agency_loc }
+							</td>
+							<td>
+							${board.agency_paytype }
+							</td>
+							<td>
+							${board.agency_pay }
+							</td>
+							<td>
+							${board.agency_startdate }
+							</td>
+							<td>
+							${board.agency_enrolldate }
+							</td>
+							<td>
+							${board.agency_status }
+							</td>
+							</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 				<span class="bsh_span_button">

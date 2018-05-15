@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
@@ -30,7 +31,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="bshtest.go", method=RequestMethod.GET)
-	public void test(Board board) {
+	public ModelAndView test(Board board,ModelAndView mv) {
 		
 		
 		System.out.println(board);
@@ -41,10 +42,11 @@ public class BoardController {
 		for(Board b:boardlist) {
 			System.out.println("글번호:"+b.getAgency_no());
 		}
-		
+		mv.setViewName("A4.BSH/Board");
+		mv.addObject("boardlist", boardlist);
+		//A4.BSH/Board
+		return mv;
 	}
-
-
 	
 	
 	
