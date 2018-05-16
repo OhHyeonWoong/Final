@@ -391,7 +391,17 @@ window.resizeTo(560,580);
 							<td class = "ohw-menu-col-td"><a href = "">음악</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">렌탈</a></td>
 							<td class = "ohw-menu-col-td"><a href = "">여행</a></td>
-							<td class = "ohw-menu-col-td"><a href = "ohw-movePaymentPage.go">문의</a></td>
+							<td class = "ohw-menu-col-td dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 작업 <span class="caret"></span></a>							
+								<ul class="dropdown-menu">
+									<li><a href = "ohw-movePaymentPage.go">현웅</a></li>
+									<li><a href="#">욱재</a></li>
+									<li><a href="#">동기</a></li>
+									<li><a href="#">승호</a></li>
+									<li><a href="#">지석</a></li>
+									<li><a href="#">뱅준</a></li>
+								</ul>								
+							</td>
 							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
 						</tr>
 					</table>
