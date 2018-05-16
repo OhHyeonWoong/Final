@@ -13,9 +13,6 @@
 <script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-window.resizeTo(560,580);
-</script>
 
 <!-- 병준이 3개 추가 -->
 <link href="/goodluck/resources/A6.LBJ/css/lbj_login.css" rel="stylesheet">
@@ -207,10 +204,7 @@ window.resizeTo(560,580);
 			<div class = "ohw-div-login">
 				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
 					<i class = "fa fa-sign-in"></i> LogIn
-				</button>
-				<!-- <button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
-							<i class = "fa fa-address-card"></i> MyPage
-				</button> -->
+				</button>				
 			</div>
 		</c:if>
 		<c:if test="${!empty loginUser}">
@@ -399,7 +393,7 @@ window.resizeTo(560,580);
 									<li><a href="#">동기</a></li>
 									<li><a href="#">승호</a></li>
 									<li><a href="#">지석</a></li>
-									<li><a href="#">뱅준</a></li>
+									<li><a href="lbjmypage.go">뱅준</a></li>
 								</ul>								
 							</td>
 							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
