@@ -13,7 +13,8 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="/goodluck/resources/A3.JDK/css/style.css" media="screen" title="no title" charset="utf-8">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins)common 폴더 내 공용파일 사용 -->
-<script	src="/rs/resources/common/js/jquery-3.3.1.min.js"></script>
+<!-- <script	src="/rs/resources/common/js/jquery-3.3.1.min.js"></script> -->
+<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <!-- 부트스트랩용 자바스크립트 파일 공용 폴더 내부  js 파일 사용-->
 <script src="/rs/resources/common/bootstrap.min.js"></script>
 <!---------------------------------- Jeon Dong Gi-------------------------------->
@@ -42,7 +43,7 @@ $(function(){
     var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
      /*사용자 설정 값 시작*/
     var speed          = 500;     // 따라다닐 속도 : "slow", "normal", or "fast" or numeric(단위:msec)
-    var easing         = 'linear'; // 따라다니는 방법 기본 두가지 linear, swing
+    var easing         = 'swing'; // 따라다니는 방법 기본 두가지 linear, swing
     var $layer         = $('.float_sidebar'); // 레이어 셀렉팅
     var layerTopOffset = 0;   // 레이어 높이 상한선, 단위:px
     $layer.css('position', 'relative').css('z-index', '1');
@@ -54,7 +55,7 @@ $(function(){
         $win.scrollTop(0);
      //스크롤이벤트가 발생하면
     $(window).scroll(function(){
-        yPosition = $win.scrollTop() - 450; //이부분을 조정해서 화면에 보이도록 맞추세요
+        yPosition = $win.scrollTop() - 270; //이부분을 조정해서 화면에 보이도록 맞추세요
         if (yPosition < 0)
     {
             yPosition = 0;
@@ -62,29 +63,27 @@ $(function(){
         $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
     });
 });
-</script>
-<script type="text/javascript">
-	$(function(){
-		$(window).scroll(function(){
-			$(this).scrollTop() > 1000 ? $(".float_sidebar").fadeIn() : $(".float_sidebar").fadeOut();
-		});
+$(function(){
+	$(window).scroll(function(){
+		$(this).scrollTop() > -100 ? $(".float_sidebar").fadeIn() : $(".float_sidebar").fadeOut();
 	});
+});
 </script>
 </head>
 <body style="display:absolute; overflow:auto;">
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
-	<div class="container" style="background: blue;">
-		<div style="width: 20%; background: ivory; float: left; height: 100%;">
+	<div class="container" id="lbjMyPageUp">
+		<div style="width: 20%; float: left; height: 100%;">
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
-		<div style="width: 76%; margin-left: 4%; background: pink; float: left; height: 100%;">
+		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
 			<h2 style="text-align:center;">마이페이지</h2>
 			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
-		 	<div class="container">
+		 	<div id="lbjMyPage">
 				<div class="login_form" >
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-6 col-md-offset-3" style="float:none;">
 					<form role="form">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
@@ -146,8 +145,10 @@ $(function(){
 					</div>
 			</div>
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
-			<h3 class="lbjh3">현재 예약 정보보기</h3>
+			
+			<h3 class="lbjh3" id="lbjnowreservationInfo">현재 예약 정보보기</h3>
 			<div class="lbjdiv">
+			
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">상태</th></tr>
 					<tr><td>게임</td><td><a href="#">롤 자크 배우실분 구합니다 現마스터</a></td><td>예약중</td></tr>
@@ -158,7 +159,7 @@ $(function(){
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3">지난 이용정보 보기</h3>
+			<h3 class="lbjh3" id="lbjpreservationInfo">지난 이용정보 보기</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">상태</th></tr>
@@ -167,7 +168,7 @@ $(function(){
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3">나의 QnA</h3>
+			<h3 class="lbjh3" id="lbjQnA">나의 QnA</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr>
@@ -219,7 +220,7 @@ $(function(){
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3">내가 쓴 신고글 보기</h3>
+			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
@@ -229,7 +230,7 @@ $(function(){
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3">내가 사용한 아이템 내역 보기</h3>
+			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">아이템명</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">상태</th></tr>
