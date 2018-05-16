@@ -8,7 +8,7 @@
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function () {
-        var kanbanCol = $('.panel-body');
+        var kanbanCol = $('.panel-body1');
         kanbanCol.css('max-height', (window.innerHeight - 150) + 'px');
 
         var kanbanColCount = parseInt(kanbanCol.length);
@@ -17,7 +17,7 @@
         draggableInit();
 
         $('.panel-heading').click(function() {
-            var $panelBody = $(this).parent().children('.panel-body');
+            var $panelBody = $(this).parent().children('.panel-body1');
             $panelBody.slideToggle();
         });
     });
@@ -30,11 +30,11 @@
             event.originalEvent.dataTransfer.setData("text/plain", event.target.getAttribute('id'));
         });
 
-        $('.panel-body').bind('dragover', function (event) {
+        $('.panel-body1').bind('dragover', function (event) {
             event.preventDefault();
         });
 
-        $('.panel-body').bind('drop', function (event) {
+        $('.panel-body1').bind('drop', function (event) {
             var children = $(this).children();
             var targetId = children.attr('id');
 
@@ -57,358 +57,45 @@
         });
     }
 </script>
-<style>
-img {
-    vertical-align: middle;
+<style type="text/css">
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
 }
-
-.img-responsive {
-    display: block;
-    height: auto;
-    max-width: 100%;
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+	color: #fff;
+	background-color: #3071a9;
+	border-color: transparent;
 }
-
-.img-rounded {
-    border-radius: 3px;
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+	color: #428bca;
+	background-color: #fff;
+	border-color: #428bca;
+	border-bottom-color: transparent;
 }
-
-.img-thumbnail {
-    background-color: #fff;
-    border: 1px solid #ededf0;
-    border-radius: 3px;
-    display: inline-block;
-    height: auto;
-    line-height: 1.428571429;
-    max-width: 100%;
-    moz-transition: all .2s ease-in-out;
-    o-transition: all .2s ease-in-out;
-    padding: 2px;
-    transition: all .2s ease-in-out;
-    webkit-transition: all .2s ease-in-out;
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #428bca;
+    border-color: #3071a9;
 }
-
-.img-circle {
-    border-radius: 50%;
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #fff;   
 }
-
-.kanban-centered {
-    position: relative;
-    margin-bottom: 30px;
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #3071a9;
 }
-
-    .kanban-centered:before, .kanban-centered:after {
-        content: " ";
-        display: table;
-    }
-
-    .kanban-centered:after {
-        clear: both;
-    }
-
-    .kanban-centered:before, .kanban-centered:after {
-        content: " ";
-        display: table;
-    }
-
-    .kanban-centered:after {
-        clear: both;
-    }
-
-    .kanban-centered:before {
-        content: '';
-        position: absolute;
-        display: block;
-        width: 2px;
-        /*background: #f5f5f6;*/
-        top: 20px;
-        bottom: 20px;
-        /*margin-left: 18px;*/
-    }
-
-    .kanban-centered .kanban-entry {
-        position: relative;
-        /*width: 50%;
-        float: right;*/
-        margin: 10px 8px;
-        clear: both;
-        border-radius: 4px;
-        -webkit-box-shadow: 1px 1px 2px 0px rgba(50, 50, 50, 0.5);
-        -moz-box-shadow: 1px 1px 2px 0px rgba(50, 50, 50, 0.5);
-        box-shadow: 1px 1px 2px 0px rgba(50, 50, 50, 0.5);
-    }
-
-        .kanban-centered .kanban-entry:before, .kanban-centered .kanban-entry:after {
-            content: " ";
-            display: table;
-        }
-
-        .kanban-centered .kanban-entry:after {
-            clear: both;
-        }
-
-        .kanban-centered .kanban-entry:before, .kanban-centered .kanban-entry:after {
-            content: " ";
-            display: table;
-        }
-
-        .kanban-centered .kanban-entry:after {
-            clear: both;
-        }
-
-        .kanban-centered .kanban-entry.begin {
-            margin-bottom: 0;
-        }
-
-        .kanban-centered .kanban-entry.left-aligned {
-            float: left;
-        }
-
-            .kanban-centered .kanban-entry.left-aligned .kanban-entry-inner {
-                margin-left: 0;
-                margin-right: -18px;
-            }
-
-                .kanban-centered .kanban-entry.left-aligned .kanban-entry-inner .kanban-time {
-                    left: auto;
-                    right: -100px;
-                    text-align: left;
-                }
-
-                .kanban-centered .kanban-entry.left-aligned .kanban-entry-inner .kanban-icon {
-                    float: right;
-                }
-
-                .kanban-centered .kanban-entry.left-aligned .kanban-entry-inner .kanban-label {
-                    margin-left: 0;
-                    margin-right: 70px;
-                }
-
-                    .kanban-centered .kanban-entry.left-aligned .kanban-entry-inner .kanban-label:after {
-                        left: auto;
-                        right: 0;
-                        margin-left: 0;
-                        margin-right: -9px;
-                        -moz-transform: rotate(180deg);
-                        -o-transform: rotate(180deg);
-                        -webkit-transform: rotate(180deg);
-                        -ms-transform: rotate(180deg);
-                        transform: rotate(180deg);
-                    }
-
-        .kanban-centered .kanban-entry .kanban-entry-inner {
-            position: relative;
-            /*margin-left: -24px;*/
-        }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner:before, .kanban-centered .kanban-entry .kanban-entry-inner:after {
-                content: " ";
-                display: table;
-            }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner:after {
-                clear: both;
-            }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner:before, .kanban-centered .kanban-entry .kanban-entry-inner:after {
-                content: " ";
-                display: table;
-            }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner:after {
-                clear: both;
-            }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner .kanban-time {
-                position: absolute;
-                left: -100px;
-                text-align: right;
-                padding: 10px;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-time > span {
-                    display: block;
-                }
-
-                    .kanban-centered .kanban-entry .kanban-entry-inner .kanban-time > span:first-child {
-                        font-size: 15px;
-                        font-weight: bold;
-                    }
-
-                    .kanban-centered .kanban-entry .kanban-entry-inner .kanban-time > span:last-child {
-                        font-size: 12px;
-                    }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon {
-                background: #fff;
-                color: #737881;
-                display: block;
-                width: 25px;
-                height: 25px;
-                -webkit-background-clip: padding-box;
-                -moz-background-clip: padding;
-                background-clip: padding-box;
-                -webkit-border-radius: 20px;
-                -moz-border-radius: 20px;
-                border-radius: 20px;
-                text-align: center;
-                -moz-box-shadow: 0 0 0 4px #f5f5f6;
-                -webkit-box-shadow: 0 0 0 4px #f5f5f6;
-                box-shadow: 0 0 0 4px #f5f5f6;
-                float: left;
-                margin-top: 6px;
-            }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-primary {
-                    background-color: #303641;
-                    color: #fff;
-                }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-secondary {
-                    background-color: #ee4749;
-                    color: #fff;
-                }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-success {
-                    background-color: #00a651;
-                    color: #fff;
-                }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-info {
-                    background-color: #21a9e1;
-                    color: #fff;
-                }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-warning {
-                    background-color: #fad839;
-                    color: #fff;
-                }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-icon.bg-danger {
-                    background-color: #cc2424;
-                    color: #fff;
-                }
-
-            .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label {
-                position: relative;
-                background: #f5f5f6;
-                padding: 0.75em;
-                /*margin-left: 50px;*/
-                -webkit-background-clip: padding-box;
-                -moz-background-clip: padding;
-                background-clip: padding-box;
-                -webkit-border-radius: 3px;
-                -moz-border-radius: 3px;
-                border-radius: 3px;
-            }
-
-                /*.kanban-centered .kanban-entry .kanban-entry-inner .kanban-label:after {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    border-style: solid;
-                    border-width: 9px 9px 9px 0;
-                    border-color: transparent #f5f5f6 transparent transparent;
-                    left: 0;
-                    top: 10px;
-                    margin-left: -9px;
-                }*/
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label h2, .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label p {
-                    color: #737881;
-                    font-family: "Noto Sans",sans-serif;
-                    font-size: 12px;
-                    margin: 0;
-                    line-height: 1.428571429;
-                }
-
-                    .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label p + p {
-                        margin-top: 15px;
-                    }
-
-                .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label h2 {
-                    font-size: 16px;
-                    margin-bottom: 10px;
-                }
-
-                    .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label h2 a {
-                        color: #303641;
-                    }
-
-                    .kanban-centered .kanban-entry .kanban-entry-inner .kanban-label h2 span {
-                        -webkit-opacity: .6;
-                        -moz-opacity: .6;
-                        opacity: .6;
-                        -ms-filter: alpha(opacity=60);
-                        filter: alpha(opacity=60);
-                    }
-
-
-.modal-static {
-    position: fixed;
-    top: 50% !important;
-    left: 50% !important;
-    margin-top: -100px;
-    margin-left: -100px;
-    overflow: visible !important;
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    background-color: #4a9fe9;
 }
-
-    .modal-static,
-    .modal-static .modal-dialog,
-    .modal-static .modal-content {
-        width: 200px;
-        height: 150px;
-    }
-
-        .modal-static .modal-dialog,
-        .modal-static .modal-content {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-.kanban-col {
-    width: 300px;
-    margin-right: 20px;
-    float: left;
-}
-
-.panel-body {
-    padding: 15px 0 0 0;
-    overflow-y: auto;
-}
-
-
-
-/*.panel-heading {
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: grab;
-}*/
-
-.grab {
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-}
-
-.grabbing {
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-}
-
-.panel-heading {
-    cursor: context-menu;
-}
-
-    .panel-heading i {
-        cursor: pointer;
-    }
-
-
-
 </style>
 <meta charset="UTF-8">
 <title>보더 타이틀</title>
@@ -454,40 +141,45 @@ img {
 </th>
 </tr>
 <tr>
-<table style="width: 100%; height: 300px;">
+<table style="width: 100%; height: 200px;">
 <tr>
 <th style="width: 70%">
-  <div class="col-md-6" style="width: 100%">
-            <div class="panel with-nav-tabs panel-default">
+  		<div class="col-md-6" style="width: 100%;">
+            <div class="panel with-nav-tabs panel-primary">
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
-                          <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                            <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-                            <li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
-                     </ul>
+                            <li class="active"><a href="#tab1primary" data-toggle="tab">Primary 1</a></li>
+                            <li><a href="#tab2primary" data-toggle="tab">Primary 2</a></li>
+                            <li><a href="#tab3primary" data-toggle="tab">Primary 3</a></li>
+                        </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1default">Default 1</div>
-                        <div class="tab-pane fade" id="tab2default">Default 2</div>
-                        <div class="tab-pane fade" id="tab3default">Default 3</div>
+                        <div class="tab-pane fade in active" id="tab1primary">Primary 1</div>
+                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
+                        <div class="tab-pane fade" id="tab3primary">Primary 3</div>
                     </div>
                 </div>
             </div>
-        </div>     
-        
-            <center><button>신청하기</button> <button>뒤로가기</button></center>     
+        </div>    
+        <hr style="clear: both;">
+     <center><button>신청하기</button> <button>뒤로가기</button></center> 
+         
 </th>
-<th style="width: 25%">
+
+
+
+
+<th style="width: 25%; "> 
 <div class="panel panel-primary kanban-col" >
                 <div class="panel-heading">
-                    TODO
+                    작성자의 다른 글 보기
                     <i class="fa fa-2x fa-plus-circle pull-right"></i>
                 </div>
-                <div class="panel-body" style="height: 300px; overflow: scroll;">
+                <div class="panel-body1" style="height: 300px; overflow: scroll; max-height: 799px; display: none;" >
                     <div id="TODO" class="kanban-centered">
 
-                        <article class="kanban-entry grab" id="item1" draggable="true">
+                        <article class="kanban-entry grab" id="item1" draggable="true" >
                             <div class="kanban-entry-inner">
                                 <div class="kanban-label">
                                     <h2><a href="#">Art Ramadani</a> <span>posted a status update</span></h2>
@@ -532,7 +224,7 @@ img {
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="#">작성자의 다른글 보기</a>
+                    <a href="#">작성자가 받은 리뷰 보기</a>
                 </div>
             </div>
        </th>
