@@ -10,6 +10,7 @@ list-style:none;
 } 
 
 .panel-default>.panel-heading {
+	width:170px;
     color: red;
     background-color: #00436a;
     border-color: #ddd;
