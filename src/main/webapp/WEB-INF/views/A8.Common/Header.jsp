@@ -197,7 +197,7 @@
 
 </head>
 <body>
-<div class = "container">
+<div id = "doktop" class = "container">
 	<div align = "right">
 		<c:if test="${empty loginUser}">
 		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
