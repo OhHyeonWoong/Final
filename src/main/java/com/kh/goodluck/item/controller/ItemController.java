@@ -53,7 +53,11 @@ public class ItemController {
 	@RequestMapping("cjsitemmellhome.go")
 	public String itemmallmove() {
 		return "A5.CJS/itemMall";
-		
+	}
+	
+	@RequestMapping("cjsitemDetail.go")
+	public String itemDetailmove() {
+		return "A5.CJS/itemDetail";
 	}
 	
 }
