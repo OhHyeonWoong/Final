@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){	
-		$("#topcaro, #topcaro1").click(function(){    
+		$("#topcaro1").click(function(){ //오른쪽 넘기기 버튼을 클릭했을경우
 		         //리스트별 컬러추가.
 		         colors=["red","blue","black","white","yellow","orange","gray"];
 		         pictures=["/goodluck/resources/common/img/main/생활.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/구인.jpg"];
@@ -24,20 +24,27 @@
 		            	
 		         	$("#main").attr("background",picture);     
 		         }
-		});	
+		});
+		
+		$("#topcaro").click(function(){    
+		         //리스트별 컬러추가.
+		         pictures2=["/goodluck/resources/common/img/main/구인.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/생활.jpg"];
+
+		         
+		         for(var i=0; i<8 ; i++){
+		            console.log($("div#"+i+".item.active").attr("id"));
+		            
+		            if($("div#"+i+".item.active").attr("id") >= 0 )
+		            	picture2=pictures2[$("div#"+i+".item.active").attr("id")];
+		            	
+		         	$("#main").attr("background",picture2);     
+		         }
+		});
 	});   
 </script>
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeAnimal.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaemainEvent.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle2.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle3.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle4.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle5.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle6.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle7.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle8.css">
-<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle9.css">
+
 
 <style type="text/css">
 	.ohw-home-table {
@@ -72,13 +79,25 @@
 		height: 400px;	
 	}
 </style>
-
 </head> 
+
 <body id="main">
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 		
 <div class="container">  
-	<a href="Notice2.go">나의거래중 목록 List보기 Click</a>	
+	<ul>
+		<li><a href="Notice2.go">나의거래중 목록 List보기 Click</a></li> 
+		<li>
+			<button onclick="goMyChat();">채팅Click!</button>
+			<script type="text/javascript">
+				function goMyChat(){
+					window.open("Chatting.go","채팅창","width=350,height=550");
+				}			
+			</script>
+		</li> 
+	</ul>
+
+		
 		
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<% String inside = null; %>
@@ -145,14 +164,11 @@
 	<!-- -------------------------------------------------------------------------------------------------------------------  -->
   
  <hr>
- 
-     
  	
-	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
+	<div id="homeCarousel" class="ohw-homeCarousel carousel slide"  data-ride="carousel" data-interval="false" >
 
 		<!-- Indicators -->
-
-		<ol class="carousel-indicators">
+		<ol class="carousel-indicators" hidden="true">
 			<li data-target=".ohw-homeCarousel" data-slide-to="0" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="1" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="2" class="active"></li>
@@ -161,13 +177,12 @@
 			<li data-target=".ohw-homeCarousel" data-slide-to="5" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="6" class="active"></li>
 			<li data-target=".ohw-homeCarousel" data-slide-to="7" class="active"></li>
+			<li data-target=".ohw-homeCarousel" data-slide-to="8" class="active"></li>
 		</ol>		
 		
 		<div class="carousel-inner">
 			<div class="item active">
-			<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"> -->
-			
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- main화면 data-slide-to="0" -->
 				<tr>
 					<td class = "ohw-home-table-td" align = "center"> 
 												
@@ -206,16 +221,16 @@
 										 	 <h3><strong>이벤트</strong><br><br><button style="background: none;" onclick="event3();">세엣!!</button></h3>
 													<script type="text/javascript">
 														function event1(){			
-															window.open("Eventpopup1.go","","width=300,height=500");
-															
+															window.open("Eventpopup1.go","이벤트 원","width=350,height=550");
+															/* 아이템컨트롤러와 연동 */
 														}
 														function event2(){			
-															window.open("Eventpopup2.go","","width=300,height=500");
-															
+															window.open("Eventpopup2.go","이벤트 투","width=350,height=550");
+															/* 아이템컨트롤러와 연동 */
 														}
 														function event3(){			
-															window.open("Eventpopup3.go","","width=300,height=500");
-															
+															window.open("Eventpopup3.go","이벤트 쓰리","width=350,height=550");
+															/* 아이템컨트롤러와 연동 */
 														}
 													</script>
 										 </div>
@@ -228,22 +243,6 @@
 
 					</td>
 					<td class = "ohw-home-table-td" align = "center">
-						<!-- <table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>2018.05.08 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>2018.05.09 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>2018.05.10 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table> -->
-						
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td>
@@ -253,25 +252,6 @@
 								</td>
 							</tr>
 						</table>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						<!-- <font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
 						<div id="homeCarousel" class="ohw-homeCarousel2 carousel slide" data-ride="carousel" data-interval="false">
 							Indicators
@@ -367,16 +347,14 @@
 			</div> 
 
 			<div class="item">
-				<!-- <img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"> -->
-
-				<table class = "ohw-home-table"> <!-- 생활  -->
+				<table class = "ohw-home-table"> <!-- 생활화면 data-slide-to="1" -->
 						<tr>
 						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-									<table class="jwj-innertable2" border="1">
+									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -394,7 +372,7 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-									<table class="jwj-innertable2" border="1">
+									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -413,7 +391,7 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-									<table class="jwj-innertable2" border="1">
+									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -430,7 +408,7 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-									<table class="jwj-innertable2" border="1">
+									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 										<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -447,245 +425,15 @@
 			</div>    
 			
 			<div class="item">
-				<table class = "ohw-home-table"> <!-- 반려동물  -->
+				<table class = "ohw-home-table"> <!-- 반려동물화면 data-slide-to="2" -->
 					<tr>
 						<td class = "ohw-home-table-td" align = "center"> 	
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 								<tr>
 									<td style="padding: 0;">
-											<!-- Team -->
-											<section id="team" class="pb-5">
-											    <div id="team_inner_div">
-											        <font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-																								        
-											        <div class="row">
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4" >
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">페퍼</h4>
-											                                    <p class="card-text"> Mouse On.. </p>
-											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4" style="padding-bottom:2px; margin: 0;">
-											                                    <h4 class="card-title"> 페퍼 </h4>
-											                                    <p class="card-text" style="padding-right: 10px;" align="center">
-											                                    	<Table style="text-align: center;" border="1">
-											                                    		<tr><td colspan="2" align="center"> Sort : 코숏 </td></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table>
-											                                    </p>
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4">
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">타래</h4>
-											                                    <p class="card-text">Mouse On..</p>
-											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4">
-											                                    <h4 class="card-title">Sunlimetech</h4>
-											                                    <p class="card-text"> 
-											 										<Table style="text-align: center;" border="1">
-											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table>                                   
-											                                    
-											                                     </p>
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4">
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_03.png" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">혼다</h4>
-											                                    <p class="card-text"> Mouse On.. </p>
-											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4">
-											                                    <h4 class="card-title">Sunlimetech</h4>
-											                                    <p class="card-text">
-											 										<Table style="text-align: center;" border="1">
-											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table>      							                                    
-											                                    
-											                                    
-											                                    </p>
-				
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4">
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">야옹이</h4>
-											                                    <p class="card-text"> Mouse On..</p>
-											                                   <!--  <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4">
-											                                    <h4 class="card-title">Sunlimetech</h4>
-											                                    <p class="card-text">
-											 										<Table style="text-align: center;" border="1">
-											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table>      							                                    
-											                                    
-											                                    
-											                                    </p>
-				
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4">
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_05.png" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">깜냥이</h4>
-											                                    <p class="card-text"> Mouse On..</p>
-											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4">
-											                                    <h4 class="card-title">Sunlimetech</h4>
-											                                    <p class="card-text">
-											 										<Table style="text-align: center;" border="1">
-											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table>      							                                    
-											                                    
-											                                    
-											                                    </p>
-				
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											            <!-- Team member -->
-											            <div class="col-xs-12 col-sm-6 col-md-4">
-											                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-											                    <div class="mainflip">
-											                        <div class="frontside">
-											                            <div class="card">
-											                                <div class="card-body text-center">
-											                                    <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_06.jpg" alt="card image" width="90" height="65"></p>
-											                                    <h4 class="card-title">나비</h4>
-											                                    <p class="card-text"> Mouse On.. </p>
-											                                    <!-- <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a> -->
-											                                </div>
-											                            </div>
-											                        </div>
-											                        <div class="backside">
-											                            <div class="card">
-											                                <div class="card-body text-center mt-4">
-											                                    <h4 class="card-title">Sunlimetech</h4>
-											                                    <p class="card-text">
-											 										<Table style="text-align: center;" border="1">
-											                                    		<tr><th colspan="2" align="center"> Sort : 코숏 </th></tr>
-											                                    		<tr><td>Age</td><td>2세</td></tr>
-											                                    		<tr><td>Gender</td><td>남아</td></tr>
-											                                    		<tr><td>character</td><td>개냥이</td></tr>
-											                                    		<tr><td>like</td><td>오뎅꼬치장난감</td></tr>
-											                                    		<tr><td>Pay</td><td>200,000원</td></tr>
-											                                    	</Table> 
-											                                    </p>
-											                                </div>
-											                            </div>
-											                        </div>
-											                    </div>
-											                </div>
-											            </div>
-											            <!-- ./Team member -->
-											
-											        </div>
-											    </div>
-											</section>
-											<!-- Team -->
-								
-								
+
+
+
 									</td>
 								</tr>
 						</table>
@@ -696,8 +444,8 @@
 							<table class="ohw-home-table2" style="border: 1px solid gray;">
 								<tr>
 									<td style="padding: 0;">
-										<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-										<table class="jwj-innertable3" border="1">
+										<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font> <i class="fa fa-facebook fa-3x"></i> <i class="fa fa-twitter fa-3x"></i>
+										<table class="jwj-innertable" border="1">
 											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -716,7 +464,7 @@
 								<tr>
 									<td style="padding: 0;">
 										<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-										<table class="jwj-innertable3" border="1">
+										<table class="jwj-innertable" border="1">
 											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -733,7 +481,7 @@
 								<tr>
 									<td style="padding: 0;">
 										<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-										<table class="jwj-innertable3" border="1">
+										<table class="jwj-innertable" border="1">
 											<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 											<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 											<tr><td>02</td><td>2018.05.07 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -750,7 +498,7 @@
 
 			</div>
 			<div class="item">
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- 게임화면 data-slide-to="3" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -827,7 +575,7 @@
 					</table>
 			</div>
 			<div class="item">
-				<table class="ohw-home-table"> <!-- main  -->
+				<table class="ohw-home-table"> <!-- 음악화면 data-slide-to="4" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -905,7 +653,7 @@
 				
 			</div>
 			<div class="item">
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- 렌탈화면 data-slide-to="5" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -983,7 +731,7 @@
 			</div>
 			
 			<div class="item">
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- 여행화면 data-slide-to="6" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -1060,7 +808,7 @@
 					</table>
 			</div>	
 			<div class="item">
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- 프리랜서화면 data-slide-to="7" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -1139,7 +887,7 @@
 			</div>
 			<div class="item">
 
-			<table class="ohw-home-table"> <!-- main  -->
+			<table class="ohw-home-table"> <!-- 대행화면 data-slide-to="8" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -1214,16 +962,11 @@
 							</td>
 						</tr>
 					</table>
-
-
-
-			</div>
-			
-		</div>		
-
-		
+			</div>	
+		</div>				
 	</div> <!-- homeCarousel -->	
 </div> <!-- container div  -->
+
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

@@ -29,4 +29,10 @@ public CJS_BoardController() {
 		return "A5.CJS/boarddetail";
 		
 	}
+	
+	@RequestMapping("DealingState.go") //욱재작업 - 신청후 거래중페이지 이동
+	public String DealingStatemove() {
+		return "A5.CJS/dealingState";
+		
+	}
 }
