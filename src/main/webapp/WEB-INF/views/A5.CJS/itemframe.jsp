@@ -286,6 +286,7 @@ background: red;
 보유 중인 아이템 : 33<br> 
 사용 중인 아이템 : 10<br>
 사용 중인 아이콘 : dd<br>
+
 </div>
 
 <div class="container" style="margin-left: 150px; width: 400px;">
@@ -297,6 +298,7 @@ background: red;
                 <div class="panel-heading" style="border-radius: 8px 8px 10px 10px">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
+                            
                             <li><a href="#tab2primary" data-toggle="tab">적용중인 아이템</a></li>
                         </ul>
                 </div>
