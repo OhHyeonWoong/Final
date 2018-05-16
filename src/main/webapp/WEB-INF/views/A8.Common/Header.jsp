@@ -247,7 +247,7 @@
 	<table class = "ohw-menu-table">
 		<tr>
 			<td class = "ohw-menu-table-td">
-				<a id = "doktop" href = "home.go">
+				<a href = "home.go">
 					<img class = "ohw-menu-logo" alt="DokSinSa" src="/goodluck/resources/common/img/Logo1.png">
 				</a>			
 			</td>
@@ -266,7 +266,7 @@
 				</div>
 			</td>
 			<td class = "ohw-menu-table-td">
-				<label class = "ohw-menu-label"></label>
+				<label id = "doktop" class = "ohw-menu-label"></label>
 			</td>
 		</tr>
 	</table>
