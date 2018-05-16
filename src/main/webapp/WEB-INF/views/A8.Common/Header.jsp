@@ -197,7 +197,7 @@
 
 </head>
 <body>
-<div id = "doktop" class = "container">
+<div class = "container">
 	<div align = "right">
 		<c:if test="${empty loginUser}">
 		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
@@ -247,7 +247,7 @@
 	<table class = "ohw-menu-table">
 		<tr>
 			<td class = "ohw-menu-table-td">
-				<a href = "home.go">
+				<a id = "doktop" href = "home.go">
 					<img class = "ohw-menu-logo" alt="DokSinSa" src="/goodluck/resources/common/img/Logo1.png">
 				</a>			
 			</td>
