@@ -66,39 +66,26 @@
 <!-- 내용 출력하기 -->
 <div class="w3-container" style="width:70%; float: right;">
 <!-- 여기서 부터 작성하시면 됩니다.  -->
-<h3 style="test-align: center;">회원 가입 리스트</h3>
 <table class="table table-striped custab">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Parent ID</th>
+            <th>아이템 식별 번호</th>
+            <th>아이템</th>
+            <th>기간</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
             <tr>
-                <td>1</td>
-                <td>News</td>
-                <td>News Cate</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Products</td>
-                <td>Main Products</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Blogs</td>
-                <td>Parent Blogs</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td>아이템 이름 부분</td>
+                <td>아이템 이름</td>
+                <td>기간</td>
+                <td class="text-center">
+                <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>수정</a> 
+                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
             </tr>
     </table>
-</div>
 <!-- 작성 영역 끝-->
 </div>
-
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
