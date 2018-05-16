@@ -50,4 +50,10 @@ public class ItemController {
 		return "A2.JUJ/Event3";
 	}
 	
+	@RequestMapping("cjsitemmellhome.go")
+	public String itemmallmove() {
+		return "A5.CJS/itemMall";
+		
+	}
+	
 }

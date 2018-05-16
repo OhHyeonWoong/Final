@@ -163,7 +163,10 @@
             </div>
         </div>    
         <hr style="clear: both;">
-     <center><button>신청하기</button> <button>뒤로가기</button></center> 
+     <center>
+     <button>신청하기</button> 
+     <button>뒤로가기</button>
+     </center> 
          
 </th>
 
@@ -171,7 +174,7 @@
 
 
 <th style="width: 25%; "> 
-<div class="panel panel-primary kanban-col" >
+<div class="panel panel-primary kanban-col"  style="">
                 <div class="panel-heading">
                     작성자의 다른 글 보기
                     <i class="fa fa-2x fa-plus-circle pull-right"></i>
