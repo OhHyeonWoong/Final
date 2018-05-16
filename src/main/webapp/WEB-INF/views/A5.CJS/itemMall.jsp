@@ -6,25 +6,26 @@
 <script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
+
 <meta charset="UTF-8">
 <style type="text/css">
 
-.glyphicon { margin-right:10px; }
-.panel-body { padding:0px; }
-.panel-body table tr td { padding-left: 15px }
-.panel-body .table {margin-bottom: 0px; }
 </style>
+<script type="text/javascript">
+
+</script>
 <title>아이템몰</title>
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+
+
 <div style="overflow: hidden;">
-따라다니는 사이드바 넣기.
 </div>
 <div class="container">
 
 
-
+    
 <!-- 아이템몰 사이드바 -->
 <div class="container" style="background: red; float: left; width:100%;">
 <div class="row">
@@ -49,6 +50,15 @@
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
+                             	<tr>
+                                    <td>
+                                      
+                                        <form action="">
+                                        <input type="text" name="itemname" placeholder="아이템검색">
+                                        <input type="submit" value="검섹">
+                                        </form>
+                                        </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">최신 아이템보기</a>
