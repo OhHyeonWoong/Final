@@ -79,7 +79,7 @@
 		        <div class="col-md-5">
 		            <div class="panel panel-primary">
 		                <div class="panel-heading" id="accordion">
-		                    <span class="glyphicon glyphicon-comment"></span> Chat
+		                    <span class="glyphicon glyphicon-comment"></span> 채팅!!
 		                    <div class="btn-group pull-right">
 		                        <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 		                            <span class="glyphicon glyphicon-chevron-down"></span>
@@ -113,7 +113,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    네 안녕하세요 문의드릴사항이 있습니다.
@@ -141,7 +141,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -168,7 +168,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -194,7 +194,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -220,7 +220,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -246,7 +246,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -272,7 +272,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -298,7 +298,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..
@@ -324,7 +324,7 @@
 		                            <div class="chat-body clearfix">
 		                                <div class="header">
 		                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-		                                    <strong class="pull-right primary-font">고객</strong>
+		                                    <strong class="pull-right primary-font">욱재</strong>
 		                                </div>
 		                                <p>
 		                                    5월15일 프리랜서 ooo씨와 거래중에 사고가 났어요..

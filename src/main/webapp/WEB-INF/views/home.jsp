@@ -85,19 +85,6 @@
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 		
 <div class="container">  
-	<ul>
-		<li><a href="Notice2.go">나의거래중 목록 List보기 Click</a></li> 
-		<li>
-			<button onclick="goMyChat();">채팅Click!</button>
-			<script type="text/javascript">
-				function goMyChat(){
-					window.open("Chatting.go","채팅창","width=350,height=550");
-				}			
-			</script>
-		</li> 
-	</ul>
-
-		
 		
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<% String inside = null; %>

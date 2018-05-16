@@ -166,16 +166,15 @@
             </div>
         </div>    
         <hr style="clear: both;">
-     <center><button id="ukapplybtn" data-target="#myModal2">신청하기</button> <button>뒤로가기</button></center> 
 
-         
+     <center><button id="ukapplybtn" data-target="#myModal2">신청하기</button> <button>뒤로가기</button></center> 
 </th>
 
 
 
 
 <th style="width: 25%; "> 
-<div class="panel panel-primary kanban-col" >
+<div class="panel panel-primary kanban-col"  style="">
                 <div class="panel-heading">
                     작성자의 다른 글 보기
                     <i class="fa fa-2x fa-plus-circle pull-right"></i>
@@ -246,12 +245,13 @@
 		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">로그인 실패</h4>
+		        <h4 class="modal-title" id="myModalLabel">신청하기</h4>
 		      </div>
 		      <div class="modal-body">
 
 				
-				<button onclick="test1();">신청하기</button>
+				<button onclick="test1();">확인</button>
+				<button onclick="test2();">취소</button>
 				<script type="text/javascript">
 					function test1(){
 					      var bool = confirm('정말로 신청 하시겠습니까?');
@@ -262,6 +262,9 @@
 					         alert("신청이 취소 되었습니다.");            
 					      }
 					}			
+					  function test2(){
+							$('#myModal').modal('hide');											
+					  }
 				</script>
 					<br />
 					<br />
