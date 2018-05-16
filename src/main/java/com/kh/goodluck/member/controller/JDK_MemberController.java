@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kh.goodluck.member.model.service.MemberService;
 
 @Controller
-@SessionAttributes("loginUser")
+@SessionAttributes("JDKloginUser")
 public class JDK_MemberController {
 	@Autowired
 	private MemberService memberService;
@@ -32,12 +32,11 @@ public class JDK_MemberController {
 			return "A3.JDK/admin_main";
 		}
 		
+		//어드민 페이지 회원관리 창 이동용 메소드
 		@RequestMapping(value="", method=RequestMethod.GET)
 		public String adminMemberManagement() {
 			return "A3.JDK/admin_main";
 		}
-		
-		
 		
 	
 }
