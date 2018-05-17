@@ -19,7 +19,7 @@ public class NoticeController {
 		return "A4.BSH/Notice";	
 	}
 	
-	@RequestMapping("Notice2.go")
+	@RequestMapping("Notice2.go")  //욱재작업 - 나의 거래중 테이블View로 이동
 	public String notice2(HttpServletRequest request,HttpServletResponse response) {
 		
 		return "A2.JUJ/Dealing";	

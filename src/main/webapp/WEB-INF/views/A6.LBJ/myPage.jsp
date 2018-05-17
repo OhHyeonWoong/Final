@@ -78,12 +78,13 @@ $(function(){
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
-			<h2 style="text-align:center;">마이페이지</h2>
+			<h2 style="text-align:left;">마이페이지</h2>
 			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
-		 	<div id="lbjMyPage">
+		 	<div>
+		 		<h3 class="lbjh3" id="lbjMyPage" style="margin-left:170px;">내 정보보기</h3>
 				<div class="login_form" >
-				<div class="col-md-6 col-md-offset-3" style="float:none;">
+				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
 					<form role="form">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
@@ -145,7 +146,7 @@ $(function(){
 					</div>
 			</div>
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
-			
+			<hr>
 			<h3 class="lbjh3" id="lbjnowreservationInfo">현재 예약 정보보기</h3>
 			<div class="lbjdiv">
 			

@@ -389,7 +389,7 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 작업 <span class="caret"></span></a>							
 								<ul class="dropdown-menu">
 									<li><a href = "ohw-movePaymentPage.go">현웅</a></li>
-									<li><a href="#">욱재</a></li>
+									<li><a href="ukWookTest.go">욱재</a></li>
 									<li><a href="#">동기</a></li>
 									<li><a href="#">승호</a></li>
 									<li><a href="#">지석</a></li>

@@ -106,8 +106,44 @@ $(document).ready( function() {
         
        	<div style="background: blue">
         <div class="col-sm-9 col-md-9">
-      
-       	아이템 디테일 넣기
+       <div class="panel panel-default">
+        	    <div class="panel-heading">
+                 <table style="width: 100%; height: 100%">
+                 <tr>
+                 <th style="width: 20%; height: 90%; background: red; padding: 10px;">
+		
+				<img src="/goodluck/resources/common/img/Logo1.png" style="width: 80px; height:70px; background: red">
+
+				</th>
+                 <th style="width: 78%;">
+                 상품명: ....<br>
+        	가격: ....<br>
+        	기간:....<br>				
+                 
+                 
+                 
+                 </th>
+                 </tr>
+                 </table>
+        	     </div>
+                <div class="panel-body">
+                <ul>
+                <li>상세설명1</li>
+                <li>상세설명2</li>
+                <li>상세설명3</li>
+                <li>청약 철회 관련  바로가기</li>
+                </ul>    
+				
+
+                </div>
+                <div class="panel-footer">
+                    <div class="pull-right">
+                      <button>구매하기</button>
+                      <button>뒤로가기</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+    		</div>
         
         </div>
         
