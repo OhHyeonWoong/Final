@@ -20,9 +20,22 @@
 		<result property="agency_views" column="agency_views"/>
 	</resultMap>
 	
+	
+	<resultMap type="BigCategory" id="BigCategoryAll">
+		<id property="category_big_code" column="category_big_code"/>
+		<result property="category_big_name" column="category_big_name"/>
+		<result property="category_big_views" column="category_big_views"/>
+	</resultMap>
+	
 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
 			select * from agency where link2_no = #{link2_no}
+		]]>
+	</select>
+	
+	<select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
+		<![CDATA[
+			select * from bigcategory
 		]]>
 	</select>
 	
