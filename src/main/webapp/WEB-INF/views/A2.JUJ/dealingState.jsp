@@ -500,7 +500,7 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항 </h2>
+					<h2> 주 의 사 항 </h2><Br>
 						<div class="row">
 					  
 					        <ul>
