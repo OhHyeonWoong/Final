@@ -10,7 +10,7 @@
 <title>Home</title>
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	$(function(){	
+	/* $(function(){	
 		$("#topcaro1").click(function(){ //오른쪽 넘기기 버튼을 클릭했을경우
 		         //리스트별 컬러추가.
 		         colors=["red","blue","black","white","yellow","orange","gray"];
@@ -29,7 +29,6 @@
 		$("#topcaro").click(function(){    
 		         //리스트별 컬러추가.
 		         pictures2=["/goodluck/resources/common/img/main/구인.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/생활.jpg"];
-
 		         
 		         for(var i=0; i<8 ; i++){
 		            console.log($("div#"+i+".item.active").attr("id"));
@@ -40,7 +39,7 @@
 		         	$("#main").attr("background",picture2);     
 		         }
 		});
-	});   
+	}); */   
 </script>
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaemainEvent.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
