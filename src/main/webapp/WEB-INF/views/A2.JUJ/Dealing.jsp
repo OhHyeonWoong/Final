@@ -41,13 +41,11 @@
 	    animation: titlemove 5s infinite;
 	}
 	
-	/* Chrome, Safari, Opera */
 	@-webkit-keyframes titlemove {
 	    from {color: red;}
 	    to {color: blue;}
 	} */
 	
-	/* Standard syntax */
 	@keyframes titlemove {
 	    from {color: red;}
 	    to {color: blue;}
