@@ -6,6 +6,8 @@
 	<typeAliases>		
 		<typeAlias type="com.kh.goodluck.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.BigCategory" alias="BigCategory"/>
+		
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>
