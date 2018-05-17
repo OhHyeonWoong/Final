@@ -298,7 +298,7 @@
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+									<font size="6" face="굴림" style="font-weight: bold;"><a href="Notice.go">공지사항</a></font>
 									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>2018.05.06 독신사 홈페이지 공지사항안내.</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
