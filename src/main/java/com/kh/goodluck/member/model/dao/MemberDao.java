@@ -30,6 +30,11 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("emailCheck",tomail);
 	}
+
+	public Member findIdMethod(Member member) {
+		//아이디 찾기용 메소드
+		return sqlSession.selectOne("findId", member);
+	}
 	
 	
 }

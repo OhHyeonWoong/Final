@@ -120,7 +120,7 @@
 			<%-- <form action="" method="get">
 				<input type="submit" value="${boardlist }">
 			</form> --%>
-			${boardlist.get(0).agency_no}	
+			<%-- ${boardlist.get(0).agency_no} --%>	
 			<h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
 			<h5 class="small" id="한식" style="display: none;">한식</h5>
@@ -131,75 +131,13 @@
 			<h5 class="small" id="ABB" style="display: none;">ABB</h5>
 			
 			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
-			<hr>
-			<h3>대 카테고리</h3>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-			<h4>중 카테고리</h4>
-			<h5>소 카테고리</h5>
-			<h5>소 카테고리</h5>
-
+			
+			<c:forEach var="bigcategory" items="${bigcategorylist }">
+				${bigcategory.category_big_code }&nbsp;
+				${bigcategory.category_big_name }&nbsp;
+				${bigcategory.category_big_views }<br>
+			</c:forEach>
+			
 		</div>
 
 		<div class="bsh_center">

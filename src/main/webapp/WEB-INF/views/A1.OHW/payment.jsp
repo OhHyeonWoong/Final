@@ -85,6 +85,11 @@
 		resize:none;
 	}
 	
+	.ohw-payment-modal-footer {
+		margin-bottom:15px;
+		text-align:center !important;
+	}
+	
 </style>
 
 </head>
@@ -161,20 +166,37 @@
 						<td>
 							<h3>최종 결제 금액</h3>
 							<div><h2>1500원</h2></div> <br>
-							<input type = "checkbox"> 개인 정보 판매자 제공 동의 <br>
+							<input type = "checkbox" required> 개인 정보 판매자 제공 동의 <br>
 								<textarea rows="3" cols="40" readonly> 고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부시 서비스 이용이 제한됩니다.</textarea> <br> <br>
-							<input type = "checkbox"> 개인 정보 수집 및 이용 동의 <br>
+							<input type = "checkbox" required> 개인 정보 수집 및 이용 동의 <br>
 								<textarea rows="3" cols="40" readonly> 고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 서비스 이용, 구매 및 결제, 일부 포인트 적립이 제한됩니다. 수집이용목적 수집 항목 보유기간 대금 결제/환불 서비스 제공, 주문/배송/거래 내역 조회 서비스 제공, 전자상거래법 준수 등 신용카드 정보, 계좌 정보, 주문/배송/거래 내역 회원탈퇴 시 까지. 단, 관계 법령의 규정에 따라 보존할 의무가 있으면 해당 기간 동안 보존용계약(이용약관)이 존속중인 탈퇴하지 않은 회원의 경우 보유기간은 보존의무기간 이상 보관할 수 있으며 이 기간이 경과된 기록에 대해서 파기요청이 있는 경우 파기함. 결제수단에 따른 개인정보 수집.이용 항목이 상이할 수 있음</textarea> <br> <br>
-							<input type = "checkbox"> 주문 상품 정보에 동의 <br>
+							<input type = "checkbox" required> 주문 상품 정보에 동의 <br>
 								<textarea rows="3" cols="40" readonly> 주문 서비스의 서비스명, 가격, 서비스 정보에 동의합니다.</textarea> <br> <br>
-							<button class = "btn tbn-default"><i class = "fa fa-check"></i> 결제하기</button> &nbsp; &nbsp;
+							<button class = "btn tbn-default" data-toggle="modal" data-target="#paymentModal"><i class = "fa fa-check"></i> 결제하기</button> &nbsp; &nbsp;
 							<button class = "btn tbn-default"><i class = "fa fa-close"></i> 취소하기</button>
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
-	</table>
+	</table>	
+	<!-- Modal -->
+	<div class="modal fade" id="paymentModal" role="dialog">
+		<div class="modal-dialog modal-sm">    
+		<!-- Modal content-->
+			<div class="modal-content" align = "center">				
+				<div class="modal-body">
+					<h3>결제가</h3>
+					<h3>완료되었습니다.</h3>
+				</div>
+				<div class="ohw-payment-modal-footer" align = "center">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onClick = "ohw-movePaymentPage.go">
+						<i class = "fa fa-check"></i> 확인
+					</button>
+				</div>
+			</div>      
+		</div>
+	</div>
 </div>
 
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>

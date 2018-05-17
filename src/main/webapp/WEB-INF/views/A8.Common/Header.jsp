@@ -165,11 +165,7 @@
 	.ohw-menu-col-td > a:hover {
 		display:inline-block;
 		color:black;		
-	}
-	
-	.ohw-menu-realtimebar {
-		padding-left:50px;
-	}
+	}	
 	
 	.ohw-menu-table {
 		width:100%;
@@ -193,10 +189,70 @@
 		height:135px;
 	}
 	
+	.ohw-menu-realtimebar {
+		padding-left:100px;
+	}		
+
+	.ohw-menu-realtimebar-dl a {
+		color: black;
+		text-decoration: none;
+	}
+
+	.ohw-menu-realtimebar-dl a:hover {
+		color: purple;
+	}
+
+	.ohw-menu-realtimebar-dl {
+		overflow: hidden;
+		width: 160px;
+		height: 20px;
+		margin: 0;
+	}
+
+	.ohw-menu-realtimebar-dt {
+		display: none;
+	}
+
+	.ohw-menu-realtimebar-dd {
+		position: relative;
+		margin: 0;
+	}
+
+	.ohw-menu-realtimebar-ol {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	
+	.ohw-menu-realtimebar-li {
+		height: 20px;
+		line-height: 20px;
+	}
+	
 </style>
 
 </head>
 <body>
+<!-- 실시간 검색어 애니메이션 함수 -->
+<script type="text/javascript">
+	$(function() {
+		var count = $('.ohw-menu-realtimebar-li').length;
+		var height = $('.ohw-menu-realtimebar-li').height();
+	
+		function step(index) {
+			$('.ohw-menu-realtimebar-ol').delay(3000).animate({
+				top: -height * index,
+			}, 500, function() {
+				step((index + 1) % count);
+			});
+		}	
+		step(1);
+	});
+	<!-- 실시간 검색어 애니메이션 함수 끝-->	
+</script>
 <div class = "container">
 	<div align = "right">
 		<c:if test="${empty loginUser}">
@@ -396,7 +452,31 @@
 									<li><a href="lbjmypage.go">뱅준</a></li>
 								</ul>								
 							</td>
-							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
+							<td class = "ohw-menu-col-td ohw-menu-realtimebar">								
+								<div id="content" class = "ohw-menu-realtimebar-content">
+									<dl id="rank-list" class = "ohw-menu-realtimebar-dl">										
+										<dd class = "ohw-menu-realtimebar-dd">
+											<ol class = "ohw-menu-realtimebar-ol">
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">1. 애인</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">2. 여행</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">3. 렌탈</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">4. 생활</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">5. 게임</a>
+												</li>												
+											</ol>
+										</dd>
+									</dl>
+								</div>
+							</td>
 						</tr>
 					</table>
 				</div>				
