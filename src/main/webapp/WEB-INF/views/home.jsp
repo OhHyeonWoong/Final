@@ -86,91 +86,170 @@
 	.icon-btn { padding: 1px 5px 3px 2px; border-radius:50px;}			  												
 	
 	
-				/* **************************************************************  */
+	/* **************************************************************  */
 
-				/*font Awesome http://fontawesome.io*/
-				@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-				/*Comment List styles*/
-				.comment-list .row {
-				  margin-bottom: 0px;
-				  padding-top:0;
-				  width: 100%;
-				}
-				.comment-list .panel .panel-heading {
-				  margin-top:0;
-				  /* padding: 4px 15px; */
-				  position: absolute;
-				  border:none;
-				  /*Panel-heading border radius*/
-				  border-top-right-radius:0px;
-				  top: 1px;
-				}
-				.comment-list .panel .panel-heading.right {
-				  border-right-width: 0px;
-				  /*Panel-heading border radius*/
-				  border-top-left-radius:0px;
-				  
-				}
-				.comment-list .panel .panel-heading .panel-body {
-				  padding-top: 6px;
-				}
-				.comment-list figcaption {
-				  /*For wrapping text in thumbnail*/
-				  word-wrap: break-word;
-				}
-				/* Portrait tablets and medium desktops */
-				@media (min-width: 768px) {
-				  .comment-list .arrow:after, .comment-list .arrow:before {
-				    content: "";
-				    position: absolute;
-				    width: 0;
-				    height: 0;
-				    border-style: solid;
-				    border-color: transparent;
-				  }
-				  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
-				    border-left: 0;
-				  }
-				  /*****Left Arrow*****/
-				  /*Outline effect style*/
-				  .comment-list .panel.arrow.left:before {
-				    left: 0px;
-				    top: 30px;
-				    /*Use boarder color of panel*/
-				    border-right-color: inherit;
-				    border-width: 16px;
-				  }
-				  /*Background color effect*/
-				  .comment-list .panel.arrow.left:after {
-				    left: 1px;
-				    top: 31px;
-				    /*Change for different outline color*/
-				    border-right-color: #FFFFFF;
-				    border-width: 15px;
-				  }
-				  /*****Right Arrow*****/
-				  /*Outline effect style*/
-				  .comment-list .panel.arrow.right:before {
-				    right: -16px;
-				    top: 30px;
-				    /*Use boarder color of panel*/
-				    border-left-color: inherit;
-				    border-width: 16px;
-				  }
-				  /*Background color effect*/
-				  .comment-list .panel.arrow.right:after {
-				    right: -14px;
-				    top: 31px;
-				    /*Change for different outline color*/
-				    border-left-color: #FFFFFF;
-				    border-width: 15px;
-				  }
-				}
-				.comment-list .comment-post {
-				  margin-top: 6px;
-				}		
+	/* 고객의 소리 */
+	@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+	/*Comment List styles*/
+	.comment-list .row {
+	  margin-bottom: 0px;
+	  padding-top:0;
+	  width: 100%;
+	}
+	.comment-list .panel .panel-heading {
+	  margin-top:0;
+	  /* padding: 4px 15px; */
+	  position: absolute;
+	  border:none;
+	  /*Panel-heading border radius*/
+	  border-top-right-radius:0px;
+	  top: 1px;
+	}
+	.comment-list .panel .panel-heading.right {
+	  border-right-width: 0px;
+	  /*Panel-heading border radius*/
+	  border-top-left-radius:0px;
+	  
+	}
+	.comment-list .panel .panel-heading .panel-body {
+	  padding-top: 6px;
+	}
+	.comment-list figcaption {
+	  /*For wrapping text in thumbnail*/
+	  word-wrap: break-word;
+	}
+	/* Portrait tablets and medium desktops */
+	@media (min-width: 768px) {
+	  .comment-list .arrow:after, .comment-list .arrow:before {
+	    content: "";
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    border-style: solid;
+	    border-color: transparent;
+	  }
+	  .comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+	    border-left: 0;
+	  }
+	  /*****Left Arrow*****/
+	  /*Outline effect style*/
+	  .comment-list .panel.arrow.left:before {
+	    left: 0px;
+	    top: 30px;
+	    /*Use boarder color of panel*/
+	    border-right-color: inherit;
+	    border-width: 16px;
+	  }
+	  /*Background color effect*/
+	  .comment-list .panel.arrow.left:after {
+	    left: 1px;
+	    top: 31px;
+	    /*Change for different outline color*/
+	    border-right-color: #FFFFFF;
+	    border-width: 15px;
+	  }
+	  /*****Right Arrow*****/
+	  /*Outline effect style*/
+	  .comment-list .panel.arrow.right:before {
+	    right: -16px;
+	    top: 30px;
+	    /*Use boarder color of panel*/
+	    border-left-color: inherit;
+	    border-width: 16px;
+	  }
+	  /*Background color effect*/
+	  .comment-list .panel.arrow.right:after {
+	    right: -14px;
+	    top: 31px;
+	    /*Change for different outline color*/
+	    border-left-color: #FFFFFF;
+	    border-width: 15px;
+	  }
+	}
+	.comment-list .comment-post {
+	  margin-top: 6px;
+	}		
 	
+
+	/* ********************************반려동물쪽******************************  */
+	
+
+/**** BASE ****/
+a {
+    color: #03a1d1;
+    text-decoration: none!important;
+}
+
+/**** LAYOUT ****/
+.list-inline>li {
+    padding: 0 10px 0 0;
+}
+.container-pad {
+    padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+    background-color: #fff!important;
+}
+.box-shad {
+    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+    border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+    font-size: .9em;
+}
+.fnt-lighter {
+    color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+    padding: 10px!important;
+}
+.mrg-0 {
+    margin: 0!important;
+}
+.btm-mrg-10 {
+    margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+    margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+    color: #535353;
+}
+/**** MEDIA QUERIES ****/
+@media only screen and (max-width: 991px) {
+    #property-listings .property-listing {
+        padding: 5px!important;
+    }
+    #property-listings .property-listing a {
+        margin: 0;
+    }
+    #property-listings .property-listing .media-body {
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #property-listings .property-listing img {
+        max-width: 180px;
+    }
+}
+	
+
+
 </style>
+
 </head> 
 
 <body id="main">
@@ -261,12 +340,160 @@
 		
 		<div class="carousel-inner">
 			<div class="item active">
+
+
+				<div style="width: 62%; float: left;">
+				  <div class="well">
+					      <div class="media">
+					      	<a class="pull-left" href="#">
+					    		<img class="media-object" src="/goodluck/resources/common/img/main/이용자2.JPG" width="110" height="120">
+					  		</a>
+					  		<div class="media-body">
+					  			<br>
+					    		<h4 class="media-heading">오늘의 주인공</h4>
+								<!--  <p class="text-right">By Francisco</p> -->
+								          <p>  	
+								           서비스 이용한지 어느덧 10개월째 되가네요 항상 만족하며 서비스 이용하고있습니다~♥
+								          </p>
+					          <ul class="list-inline list-unstyled">
+					  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+					            <li>|</li>
+					            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+					            <li>|</li>
+					            <li>
+					               			<span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					            </li>
+					            <li>|</li>
+					            <li>
+					            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+					              <span><i class="fa fa-facebook-square"></i></span>
+					              <span><i class="fa fa-twitter-square"></i></span>
+					              <span><i class="fa fa-google-plus-square"></i></span>
+					            </li>
+								</ul>
+					       </div>
+					    </div>
+					  </div>
+					</div>
+
+
+					<script type="text/javascript">
+					(function($) {
+					    /**
+						 * attaches a character counter to each textarea element in the jQuery object
+						 * usage: $("#myTextArea").charCounter(max, settings);
+						 */
+						
+						$.fn.charCounter = function (max, settings) {
+							max = max || 100;
+							settings = $.extend({
+								container: "<span></span>",
+								classname: "charcounter",
+								format: "(%1 characters remaining)",
+								pulse: true,
+								delay: 0
+							}, settings);
+							var p, timeout;
+							
+							function count(el, container) {
+								el = $(el);
+								if (el.val().length > max) {
+								    el.val(el.val().substring(0, max));
+								    if (settings.pulse && !p) {
+								    	pulse(container, true);
+								    };
+								};
+								if (settings.delay > 0) {
+									if (timeout) {
+										window.clearTimeout(timeout);
+									}
+									timeout = window.setTimeout(function () {
+										container.html(settings.format.replace(/%1/, (max - el.val().length)));
+									}, settings.delay);
+								} else {
+									container.html(settings.format.replace(/%1/, (max - el.val().length)));
+								}
+							};
+							
+							function pulse(el, again) {
+								if (p) {
+									window.clearTimeout(p);
+									p = null;
+								};
+								el.animate({ opacity: 0.1 }, 100, function () {
+									$(this).animate({ opacity: 1.0 }, 100);
+								});
+								if (again) {
+									p = window.setTimeout(function () { pulse(el) }, 200);
+								};
+							};
+							
+							return this.each(function () {
+								var container;
+								if (!settings.container.match(/^<.+>$/)) {
+									// use existing element to hold counter message
+									container = $(settings.container);
+								} else {
+									// append element to hold counter message (clean up old element first)
+									$(this).next("." + settings.classname).remove();
+									container = $(settings.container)
+													.insertAfter(this)
+													.addClass(settings.classname);
+								}
+								$(this)
+									.unbind(".charCounter")
+									.bind("keydown.charCounter", function () { count(this, container); })
+									.bind("keypress.charCounter", function () { count(this, container); })
+									.bind("keyup.charCounter", function () { count(this, container); })
+									.bind("focus.charCounter", function () { count(this, container); })
+									.bind("mouseover.charCounter", function () { count(this, container); })
+									.bind("mouseout.charCounter", function () { count(this, container); })
+									.bind("paste.charCounter", function () { 
+										var me = this;
+										setTimeout(function () { count(me, container); }, 10);
+									});
+								if (this.addEventListener) {
+									this.addEventListener('input', function () { count(this, container); }, false);
+								};
+								count(this, container);
+							});
+						};
+
+					})(jQuery);
+
+					$(function() {
+					    $(".counted").charCounter(320,{container: "#counter"});
+					});
+					</script>
+
+
+					<div style="width: 37%; float: right;">		
+						  <div class="row" style="width: 100%;">
+								<div class="col-sm-4 col-md-4" style="width: 100%; padding-right: 0;">
+						            <div class="panel panel-default" style="width: 100%;">
+						            	<h4 style="padding-left: 25px; margin-bottom: 0;"> 소원의 봉투함</h4>
+						                <div class="panel-body" style="width: 100%; padding-top: 0; padding-bottom: 8px;" align="right">                
+						                    <form accept-charset="UTF-8" action="" method="POST">
+
+						                        <textarea class="form-control counted" name="message" placeholder="당신이 원하는것을 입력하시면 소원이 이루어진데요!.." rows="3" cols="100" style="margin-bottom:10px;"></textarea>
+						                        <button class="btn btn-info" type="submit">전달</button>
+						                    </form>
+						                </div>
+						            </div>
+						        </div>
+							</div>
+					</div>	
+			
 			<table class="ohw-home-table"> <!-- main화면 data-slide-to="0" -->
 				<tr>
 					<td class = "ohw-home-table-td" align = "center"> 										
 					<table class="ohw-home-table2" style="border: 1px solid gray;">
 						<tr>
-							<td style="padding-left: 21px; padding-right: 0; padding-top: 0; padding-bottom: 0;" align="center">
+							<td id="ukcustom_talk" style="padding-left: 21px; padding-right: 0; padding-top: 0; padding-bottom: 0;" align="center">
 							  <div class="row" style="width: 100%;">
 							    <div class="col-md-8" style="width: 101%; padding-right: 0; padding-left: 0; margin: 0;">
 							     <br>
@@ -540,17 +767,7 @@
 									</div>		
 							</td>							
 							
-								<!-- <td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>							
-								</td> -->
+
 							</tr>
 						</table>				
 					</td>
@@ -558,7 +775,7 @@
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
+									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문!!FAQ</font>								
 									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -654,7 +871,180 @@
 			</div>    
 			
 			<div class="item">
-				<table class = "ohw-home-table"> <!-- 반려동물화면 data-slide-to="2" -->
+				<div style="width: 40%; float: left; overflow: scroll;">
+						
+						
+						    <div class="container-fluid" style="background-color:YELLOW">
+						        <div class="container container-pad" id="property-listings">
+						            
+						            <div class="row">
+						              <div class="col-md-12">
+						                <h1>타이틀</h1>
+						                <p>설명</p>
+						              </div>
+						            </div>
+						            
+						            <div class="row">
+						                <div class="col-sm-6"> 
+						
+						                    <!-- Begin Listing: 609 W GRAVERS LN-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,975,000 <small class="pull-right">609 W Gravers Ln</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>4,820 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">Situated between fairmount
+						                                park and the prestigious philadelphia cricket
+						                                club, this beautiful 2+ acre property is truly
+						                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
+						                                Evergreen</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,295,000 <small class="pull-right">9006 Crefeld St</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>7,672 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>7 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">Located in chestnut hill,
+						                                recently named by the american planning
+						                                association as one of america's top 10 great
+						                                neighborh...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of RE/MAX Services</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						
+						                    <!-- Begin Listing: 701 W ALLENS LN-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>9,824 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>8 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">A once in a lifetime
+						                                opportunity! live in this grand home with its
+						                                stunning entry and staircase, bedroom suites,
+						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
+						                                Evergreen</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->						
+
+						
+
+						                </div>
+						
+
+						            </div><!-- End row -->
+						        </div><!-- End container -->
+						    </div>				
+				</div>
+			
+			
+				<div style="width: 100%; float: left;">
+				  <div class="well">
+					      <div class="media">
+					      	<a class="pull-left" href="#">
+					    		<img class="media-object" src="/goodluck/resources/common/img/main/이용자2.JPG" width="110" height="120">
+					  		</a>
+					  		<div class="media-body">
+					  			<br>
+					    		<h4 class="media-heading">오늘의 당첨자</h4>
+								<!--  <p class="text-right">By Francisco</p> -->
+								          <p> 
+								          	반려동물 서비스를 받은지 어느덧 10개월째 되가네요 항상 만족하며 싸이트를 이용하고있습니다.
+								          </p>
+					          <ul class="list-inline list-unstyled">
+					  			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+					            <li>|</li>
+					            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+					            <li>|</li>
+					            <li>
+					               <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star"></span>
+					                        <span class="glyphicon glyphicon-star-empty"></span>
+					            </li>
+					            <li>|</li>
+					            <li>
+					            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+					              <span><i class="fa fa-facebook-square"></i></span>
+					              <span><i class="fa fa-twitter-square"></i></span>
+					              <span><i class="fa fa-google-plus-square"></i></span>
+					            </li>
+								</ul>
+					       </div>
+					    </div>
+					  </div>
+
+
+
+		
+				<!-- <table class = "ohw-home-table"> 반려동물화면 data-slide-to="2"
 						<tr>
 						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -728,8 +1118,8 @@
 						</table>
 						</td>
 					</tr>
-				</table>
-
+				</table> -->
+				</div>
 			</div>
 			<div class="item">
 			<table class="ohw-home-table"> <!-- 게임화면 data-slide-to="3" -->
