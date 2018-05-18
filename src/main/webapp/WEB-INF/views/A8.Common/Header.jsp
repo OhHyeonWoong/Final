@@ -74,9 +74,9 @@
 		border-left: 17px solid transparent;
 		position: absolute;
 		top: -15px;
-		left: 285px;
+		left: 159.5px;
 		z-index: 10;
-	}
+	}	
 
 	.mega-dropdown-menu:after {
 		content: "";
@@ -85,8 +85,12 @@
 		border-left: 19px solid transparent;
 		position: absolute;
 		top: -17px;
-		left: 283px;
+		left: 158px;
 		z-index: 8;
+	}
+	
+	.navbar-collapse {
+		padding:0;
 	}
 
 	.mega-dropdown-menu > li > ul {
@@ -204,7 +208,7 @@
 
 	.ohw-menu-realtimebar-dl {
 		overflow: hidden;
-		width: 160px;
+		width: 120px;
 		height: 20px;
 		margin: 0;
 	}
@@ -232,6 +236,7 @@
 		line-height: 20px;
 	}
 	
+
 	/* 병준이추가 */
 	.lbj-div{
 		width:300px;
@@ -243,6 +248,19 @@
 		font-size:10px;
 	}
 	/* 병준이추가 */
+
+	.ohw-menu-realtimebar-dropdown {
+		
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a {
+		color:black;
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a:hover {
+		color:purple;
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -261,6 +279,7 @@
 		}	
 		step(1);
 	});
+
 	/* 실시간 검색어 애니메이션 */
 	
 	/* 로그아웃 Function */
@@ -278,6 +297,7 @@
 	}
 	/* 로그아웃 Function */
 	
+
 </script>
 
 </head>
@@ -296,6 +316,7 @@
 		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>
+					<td>${ loginUser.member_name } 님 &nbsp;</td>
 					<td>
 					<div class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">${ loginUser.member_name } 님<b class="caret"></b></a>
@@ -558,13 +579,15 @@
 											</ol>
 										</dd>
 									</dl>
-								</div>
-								<button onClick = "">
-									<i></i>
-								</button>
+								</div>																
+							</td>
+							<td class = "ohw-menu-realtimebar-dropdown">
+								<a>
+									<i class = "fa fa-chevron-down"></i>
+								</a>
 							</td>
 						</tr>
-					</table>
+					</table>					
 				</div>				
 			</div>
 		<!-- /.nav-collapse -->

@@ -41,9 +41,6 @@ $(document).ready( function() {
 <div style="overflow: hidden;">
 </div>
 <div class="container">
-
-
-    
 <!-- 아이템몰 사이드바 -->
 <div class="container" style=" float: left; width:100%;">
 <div class="row">
@@ -63,12 +60,19 @@ $(document).ready( function() {
                         <div class="panel-body">
                             <table class="table">
                              	<tr>
-                                    <td>
-                                       <form action="">
-                                        <input type="text" name="itemname" placeholder="아이템검색">
-                                        <input type="submit" value="검섹">
-                                        </form>
-                                        </td>
+                               	 <td>
+                             <div class="input-group">
+    	<div class="form-group  has-feedback">
+            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px  ">검색!</button>
+        </span>
+    </div>
+                                
+                                </td>
+                                
                                 </tr>
                                 <tr>
                                     <td>
@@ -180,13 +184,49 @@ $(document).ready( function() {
         <div class="col-md-6" style="width: 100%; height: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
-					<h3 class="panel-title">     최신 추가된 아이템  8x2 </h3>
-				    >인기 바로가기
+					<h3 class="panel-title">     최신 추가된 아이템   </h3>
+				   
 				</div>
 				<div class="panel-body" style="width: 100%; padding: 10">    
-				  <table style="background: red; width: 100%; height: 100%;">
-					  <tr><th>1</th><th>1</th><th>1</th><th>1</th></tr>
-					  <tr><th>1</th><th>1</th><th>1</th><th>1</th></tr>
+				  <table style="width: 100%; height: 100%;">
+				<tr>
+			<c:forEach var="item" items="${newitem}" begin="0" end="3">
+   			<th>
+   			<center>
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
+   			<br>
+   			 이름 : ${item.ITEMNAME}<br>
+   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			 
+   			 
+   			 </center>
+			</th>
+			</c:forEach>
+			
+					  </tr>
+					  <tr>
+					  <td><label> </label></td>
+					  </tr>
+					  <tr>		
+			<c:forEach var="item" items="${newitem}" begin="4">
+   			<th>
+   			<center>
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
+   			<br>
+   			 이름 : ${item.ITEMNAME}<br>
+   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			 
+   			 </center>
+			</th>
+			</c:forEach>
+					  </tr>
+				 
+				 
+				 
+				 
+				 
 				  </table>
 					
 		
