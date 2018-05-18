@@ -18,18 +18,20 @@
 	
 		<h7> 여기는 정욱재가 페이지UI를 설계하는데 이동하게하는 모든 연결공간입니다. </h7>
 		<hr style="clear: both;">
-	
+			<div align="left">
 			<ul>
-				<li>작업1 : <a href="Notice2.go">나의거래중 목록 List보기 Click</a> </li>
-				<li>작업2 :  
+				<li>View작업1 : <a href="Notice2.go"> 나의거래중 목록 List보기 Click </a> (마이페이지에 해당됨)</li><br>
+				<li>View작업2 :  
 					<button onclick="goMyChat();">채팅Click!</button>
 					<script type="text/javascript">
 						function goMyChat(){
 							window.open("Chatting.go","채팅창","width=350,height=550");
 						}			
 					</script>				
-				</li>
+				</li><br>
+				<li>Veiw작업3 : <a href="DealingState.go"> 사용자-이용자간의 거래현황 페이지 </a> </li><br>			
 			</ul>
+			</div>
 	</div>
 
 	
