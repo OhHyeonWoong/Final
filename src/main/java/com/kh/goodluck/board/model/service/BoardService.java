@@ -29,4 +29,13 @@ public class BoardService {
 		return boardDao.selectBigCategoryAll();
 	}
 	
+	public List<BigCategory> selectMidCategoryAll(){
+		
+		return boardDao.selectMidCategoryAll();
+	}
+	
+	public List<BigCategory> selectSmallCategoryAll(){
+		
+		return boardDao.selectSmallCategoryAll();
+	}
 }

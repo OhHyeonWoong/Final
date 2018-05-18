@@ -35,9 +35,11 @@ public class BoardController {
 	public ModelAndView test(Board board, BigCategory bigcategory, ModelAndView mv) {
 		
 		
-		System.out.println(board);
+		//System.out.println(board);
 		List<Board> boardlist = boardservice.selectCategory(board);
 		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
+		List<BigCategory> midcategorylist = boardservice.selectMidCategoryAll();
+		List<BigCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
 		
 		
 		//System.out.println(boardlist);
@@ -47,6 +49,8 @@ public class BoardController {
 		}*/
 		mv.setViewName("A4.BSH/Board");
 		mv.addObject("bigcategorylist",bigcategorylist);
+		mv.addObject("midcategorylist",midcategorylist);
+		mv.addObject("smallcategorylist",smallcategorylist);
 		mv.addObject("boardlist", boardlist);
 		//A4.BSH/Board
 		return mv;
