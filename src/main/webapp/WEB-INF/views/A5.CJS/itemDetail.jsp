@@ -106,22 +106,18 @@ $(document).ready( function() {
         
        	<div style="background: blue">
         <div class="col-sm-9 col-md-9">
-       <div class="panel panel-default">
+      		 <div class="panel panel-default">
         	    <div class="panel-heading">
                  <table style="width: 100%; height: 100%">
                  <tr>
                  <th style="width: 20%; height: 90%; background: red; padding: 10px;">
 		
 				<img src="/goodluck/resources/common/img/Logo1.png" style="width: 80px; height:70px; background: red">
-
 				</th>
                  <th style="width: 78%;">
                  상품명: ....<br>
         	가격: ....<br>
         	기간:....<br>				
-                 
-                 
-                 
                  </th>
                  </tr>
                  </table>

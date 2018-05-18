@@ -103,7 +103,26 @@ public class MemberController {
 		return "home";
 	}
 	
-	
+	@RequestMapping(value="lbjfindid.go",method=RequestMethod.POST)
+	public void findIdMethod(Member member,HttpServletResponse response) throws IOException{
+		System.out.println("findIdMethod run...");
+		System.out.println("id = " + member.getMember_id());
+		System.out.println("email = " + member.getMember_email());
+		System.out.println("name = " + member.getMember_name());
+		
+		Member me = memberService.findIdMethod(member);
+		System.out.println("에미 : " + me);
+		
+		PrintWriter out = response.getWriter();
+		if(me != null) {
+			System.out.println("아이디 찾기 성공");
+			out.print(me.getMember_id());
+		}else {
+			out.print("실패 기모띠 실패");
+		}
+		out.flush();
+		out.close();
+	}
 	
 	
 	
