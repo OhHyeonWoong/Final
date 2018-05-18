@@ -74,9 +74,9 @@
 		border-left: 17px solid transparent;
 		position: absolute;
 		top: -15px;
-		left: 285px;
+		left: 159.5px;
 		z-index: 10;
-	}
+	}	
 
 	.mega-dropdown-menu:after {
 		content: "";
@@ -85,8 +85,12 @@
 		border-left: 19px solid transparent;
 		position: absolute;
 		top: -17px;
-		left: 283px;
+		left: 158px;
 		z-index: 8;
+	}
+	
+	.navbar-collapse {
+		padding:0;
 	}
 
 	.mega-dropdown-menu > li > ul {
@@ -204,7 +208,7 @@
 
 	.ohw-menu-realtimebar-dl {
 		overflow: hidden;
-		width: 160px;
+		width: 120px;
 		height: 20px;
 		margin: 0;
 	}
@@ -230,6 +234,18 @@
 	.ohw-menu-realtimebar-li {
 		height: 20px;
 		line-height: 20px;
+	}
+	
+	.ohw-menu-realtimebar-dropdown {
+		
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a {
+		color:black;
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a:hover {
+		color:purple;
 	}
 	
 </style>
@@ -480,13 +496,15 @@
 											</ol>
 										</dd>
 									</dl>
-								</div>
-								<button onClick = "">
-									<i></i>
-								</button>
+								</div>																
+							</td>
+							<td class = "ohw-menu-realtimebar-dropdown">
+								<a>
+									<i class = "fa fa-chevron-down"></i>
+								</a>
 							</td>
 						</tr>
-					</table>
+					</table>					
 				</div>				
 			</div>
 		<!-- /.nav-collapse -->
