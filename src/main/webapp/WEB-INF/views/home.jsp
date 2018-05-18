@@ -652,6 +652,7 @@ a {
 									<iframe width="520" height="320" src="https://www.youtube.com/embed/QI7cYnBlkFQ" allowfullscreen></iframe>
 									<br>
 									<font size="6" face="굴림" style="font-weight: bold;">독신들을 위한 레시피!!</font>
+
 								</td>
 							</tr>
 						</table>
