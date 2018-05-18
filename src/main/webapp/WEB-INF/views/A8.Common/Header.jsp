@@ -375,7 +375,6 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">독신사</h4>
 		      </div>
 		      <div class="modal-body">
 		        <table style="width:100%;">
@@ -388,18 +387,98 @@
 		        			<span class="lbjspan">충전 후 마일리지 : </span><br>
 		        			<hr>
 		        			<span class="lbjspan lbjex">※ 최대 구매 가능한 마일리지는</span><br>
-		        			<span class="lbjspan lbjex">1000,000 입니다.</span><br>
+		        			<span class="lbjspan lbjex">500,000 입니다.</span><br>
 		        		</td>
-		        		<td style="width:63%; background:white;">
+		        		<td style="position:absolute; width:63%; background:white; vertical-align: top;">
 		        			<span class="lbjspan">결제수단</span><br>
 		        			<a href="javascript:void(0);" class="lbjspan" onclick="fnPaymentMethod(); return false;"><i class="fa fa-sort-down" style="font-size:24px"></i>휴대폰</a>
-		        			<div id="lbjpayment-div" style="display: none;">
-		        				안녕
+		        			<div id="lbjpayment-div" class="lbjspan" style="display: none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        						<td><button class="">휴대폰</button></td>
+		        						<td><button>카카오페이</button></td>
+		        						<td><button onclick="fnCreditMethod();">신용카드</button></td>
+		        						<td><button onclick="fnNoBankBook();">무통장입금</button></td>
+		        					</tr>
+		        					<tr>
+		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
+		        					</tr>
+		        				</table>
+		        			</div>
+		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="신한">신한</td>
+		        						<td><input type="radio" name="credit" value="삼성">삼성</td>
+		        						<td><input type="radio" name="credit" value="국민">국민</td>
+		        						<td><input type="radio" name="credit" value="현대">현대</td>
+		        					</tr>
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="NH농협">NH농협</td>
+		        						<td><input type="radio" name="credit" value="BC">BC</td>
+		        						<td><input type="radio" name="credit" value="우리">우리</td>
+		        						<td><input type="radio" name="credit" value="하나">하나</td>
+		        					</tr>
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="롯데">롯데</td>
+		        						<td><input type="radio" name="credit" value="씨티">씨티</td>
+		        						<td><input type="radio" name="credit" value="카카오뱅크">카카오뱅크</td>
+		        						<td><input type="radio" name="credit" value="기타">기타</td>
+		        					</tr>
+		        					<tr>
+		        						<td><label> </label></td>
+		        					</tr>
+		        					<tr>
+		        						<td colspan="2">할부기간</td>
+		        						<td colspan="2"><a href="#">일시불</a></td><!-- dropdown으로 구현해야됨 -->
+		        					</tr>
+		        				</table>
+		        			</div>
+		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        					 	<td colspan="2">받는이</td>
+		        					</tr>
+		        					<tr>
+		        						<td>은행명</td><td>신한은행</td>
+		        					</tr>
+		        					<tr>
+		        						<td>이름</td><td>이병준</td>
+		        					</tr>
+		        					<tr>
+		        						<td>계좌</td><td>110-333-111111</td>
+		        					</tr>
+		        					<tr>
+		        						<td><label> </label></td>
+		        					</tr>
+		        					<tr>
+		        					 	<td colspan="2">보내는이</td>
+		        					</tr>
+		        					<tr>
+		        						<td>은행명</td><td><input type="text" placeholder="은행명"></td>
+		        					</tr>
+		        					<tr>
+		        						<td>이름</td><td>${loginUser.member_name}</td>
+		        					</tr>
+		        					<tr>
+		        						<td>계좌</td><td><input type="text" placeholder="계좌"></td>
+		        					</tr>
+		        				</table>
 		        			</div>
 		        			<script type="text/javascript">
 		        				function fnPaymentMethod(){
 		        					var i = $('#lbjpayment-div');
-		        					i.css('display','block');
+		        					i.toggle(".5");
+		        				}
+		        				
+		        				function fnCreditMethod(){
+		        					var z = $('#lbjcreditcard-div');
+		        					z.toggle(".5");
+		        				}
+		        				
+		        				function fnNoBankBook(){
+		        					var z = $('#lbjNoBankBook-div');
+		        					z.toggle(".5");
 		        				}
 		        			</script>
 		        		</td>
