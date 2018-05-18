@@ -13,24 +13,28 @@
 </style>
 <script type="text/javascript">
 $(document).ready( function() {
+	
 	var clickEvent = false;
 	$('#myCarousel').on('click', '.nav a', function() {
 			clickEvent = true;
-			$('.nav li').removeClass('active');
+			$('.nav .mall').removeClass('active');
 			$(this).parent().addClass('active');		
+	
 	}).on('slid.bs.carousel', function(e) {
 		if(!clickEvent) {
 			var count = $('.nav').children().length -1;
-			var current = $('.nav li.active');
+			var current = $('.nav .mall.active');
 			current.removeClass('active').next().addClass('active');
 			var id = parseInt(current.data('slide-to'));
 			if(count == id) {
-				$('.nav li').first().addClass('active');	
+				$('.nav .mall').first().addClass('active');	
 			}
 		}
 		clickEvent = false;
 	});
 });
+
+
 </script>
 
 <div style="overflow: hidden;">
@@ -115,7 +119,8 @@ $(document).ready( function() {
            
            
            <!--카로셀 시작 -->
-         <div id="myCarousel" class="carousel slide" data-ride="carousel">
+         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false	">
+         
     
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
@@ -156,11 +161,10 @@ $(document).ready( function() {
 
 
     	<ul class="nav nav-pills nav-justified">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"><a href="#"><small>이달의 랜덤박스</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="1"><a href="#"><small>이달의 최신 아이템!</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="2"><a href="#"><small>이달의 패키지 상품</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="3"><a href="#"><small>이달의 인기 아이템</small></a></li>
-          
+          <li data-target="#myCarousel" data-slide-to="0" class="mall active"><a  href="#"><small>이달의 랜덤박스</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="1" class="mall"><a href="#"><small>이달의 최신 아이템!</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="mall"><a  href="#"><small>이달의 패키지 상품</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="3" class="mall"><a href="#"><small>이달의 인기 아이템</small></a></li>
         </ul>
 
 

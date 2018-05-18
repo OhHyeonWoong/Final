@@ -6,7 +6,6 @@
 
 
 <style>
-
 .panel.with-nav-tabs .panel-heading{
     padding: 5px 5px 0 5px;
 }
@@ -17,23 +16,23 @@
 	margin-bottom: -1px;
 }
 
-.with-nav-tabs.panel-primary .nav-tabs > li > a,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+.with-nav-tabs.panel-primary .nav-tabs > li > .havaitem,
+.with-nav-tabs.panel-primary .nav-tabs > li > .havaitem:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > .havaitem:focus {
     color: #fff;
 }
-.with-nav-tabs.panel-primary .nav-tabs > .open > a,
-.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+.with-nav-tabs.panel-primary .nav-tabs > .open > .havaitem,
+.with-nav-tabs.panel-primary .nav-tabs > .open > .havaitem:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > .havaitem:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > .havaitem:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > .havaitem:focus {
 	color: #fff;
 	background-color: #3071a9;
 	border-color: transparent;
 }
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
-.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+.with-nav-tabs.panel-primary .nav-tabs > li.active > .havaitem,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > .havaitem:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > .havaitem:focus {
 	color: #428bca;
 	background-color: #fff;
 	border-color: #428bca;
@@ -74,9 +73,12 @@
                 <div class="panel-heading" style="border-radius: 8px 8px 0px 0px">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                            <a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
+                            <a class='havaitem' href="#tab1primary" data-toggle="tab">보유 중인 아이템</a>
+                            </li>
                             
-                            <li><a href="#tab2primary" data-toggle="tab">적용중인 아이템</a></li>
+                            <li>
+                            <a class='havaitem' href="#tab2primary" data-toggle="tab">적용중인 아이템</a>
+                            </li>
                         </ul>
                 </div>
                   <style>

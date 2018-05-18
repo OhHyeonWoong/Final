@@ -93,7 +93,7 @@ public class ItemController {
 	}
 	
 	@RequestMapping("cjsitemDetail.go")
-	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno,ModelAndView mv) {
+	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno , ModelAndView mv) {
 		
 		ITEMLIST li= ItemService.itemdetail(itemno);
 		
