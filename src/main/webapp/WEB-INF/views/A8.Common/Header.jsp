@@ -251,7 +251,7 @@
 		}	
 		step(1);
 	});
-	<!-- 실시간 검색어 애니메이션 함수 끝-->	
+/* 실시간 검색어 애니메이션 함수 끝 */	
 </script>
 <div class = "container">
 	<div align = "right">
