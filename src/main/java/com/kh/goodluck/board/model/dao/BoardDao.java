@@ -34,6 +34,20 @@ public class BoardDao {
 
 		return sqlSession.selectList("selectBigCategoryAll");
 	}
+
+
+
+	public List<BigCategory> selectMidCategoryAll() {
+		
+		return sqlSession.selectList("selectMidCategoryAll");
+	}
+
+
+
+	public List<BigCategory> selectSmallCategoryAll() {
+		
+		return sqlSession.selectList("selectSmallCategoryAll");
+	}
 	
 	
 	

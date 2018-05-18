@@ -3,6 +3,44 @@
 	<!-- BEGIN # MODAL LOGIN -->
 
 <!-- Modal -->
+
+
+<style>
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+	color: #fff;
+	background-color: #3071a9;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+	color: #428bca;
+	background-color: #fff;
+	border-color: #428bca;
+	border-bottom-color: transparent;
+}
+
+</style>
 <div id="myitem" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -14,7 +52,7 @@
       </div>
       <div class="modal-body">
         <Br>
-<div class="11" style="background: black; float: left; margin-left:10px;">
+<div class="11" style="background: black; float: left; margin-left:10px; ">
 <center>
 <img alt="회원이미지" src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb" style="width: 100px; height: 100px">
 </center>
@@ -25,24 +63,24 @@
 보유 중인 아이템 : 33<br> 
 사용 중인 아이템 : 10<br>
 사용 중인 아이콘 : dd<br>
-
 </div>
 
 <div class="container" style="margin-left: 150px; width: 400px;">
     <table>
     </table>
     <div class="row">
-     <div class="col-md-6">
+     <div class="col-md-6" style="width: 100%;">
             <div class="panel with-nav-tabs panel-primary" style="border-radius: 10px 10px 10px 10px">
-                <div class="panel-heading" style="border-radius: 8px 8px 10px 10px">
+                <div class="panel-heading" style="border-radius: 8px 8px 0px 0px">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
+                            <li class="active">
+                            <a href="#tab1primary" data-toggle="tab">보유 중인 아이템</a></li>
                             
                             <li><a href="#tab2primary" data-toggle="tab">적용중인 아이템</a></li>
                         </ul>
                 </div>
                   <style>
-                  th {
+                .itemth {
                   width:50px;
                   height:50px;
                   background:white;
@@ -51,7 +89,7 @@
                   }
                   </style> 
                    
-                <div class="panel-body" style="padding:0px; margin-top:-193px; background:#e9e9e9; border-radius: 0 0 10px 10px">
+                <div class="panel-body" style="padding:0px;  background:#e9e9e9; border-radius: 0 0 10px 10px">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary" >
 						<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
@@ -59,7 +97,7 @@
 						<%for(int i=0 ; i<4; i++){%>
 							<tr>
 							<% for(int j=0; j<4; j++){ %>
-							<th>
+							<th class="itemth">
 							<%= j %>
 							</th>
 							<%} %>
@@ -88,7 +126,7 @@
 					<%for(int i=0 ; i<2; i++){%>
 						<tr>
 							<% for(int j=0; j<4; j++){ %>
-							<th>
+							<th class="itemth">
 							<%= j %>
 							</th>
 							<%} %>
