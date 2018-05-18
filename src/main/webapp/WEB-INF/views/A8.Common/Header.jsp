@@ -234,10 +234,9 @@
 	
 </style>
 
-</head>
-<body>
-<!-- 실시간 검색어 애니메이션 함수 -->
 <script type="text/javascript">
+
+	<!-- 실시간 검색어 애니메이션 함수 -->
 	$(function() {
 		var count = $('.ohw-menu-realtimebar-li').length;
 		var height = $('.ohw-menu-realtimebar-li').height();
@@ -251,8 +250,13 @@
 		}	
 		step(1);
 	});
-	<!-- 실시간 검색어 애니메이션 함수 끝-->	
+	<!-- 실시간 검색어 애니메이션 함수 끝-->
+	
 </script>
+
+</head>
+
+<body>
 <div class = "container">
 	<div align = "right">
 		<c:if test="${empty loginUser}">
