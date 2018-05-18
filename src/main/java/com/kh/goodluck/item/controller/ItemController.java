@@ -42,11 +42,7 @@ public class ItemController {
 		return "A5.CJS/itemframe";
 	}
 	
-	@RequestMapping("cjsitemmellhome.go")
-	public String itemmallmove() {
-		return "A5.CJS/itemMall";
-	}
-	
+
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	
