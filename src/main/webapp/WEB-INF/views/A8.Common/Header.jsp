@@ -74,9 +74,9 @@
 		border-left: 17px solid transparent;
 		position: absolute;
 		top: -15px;
-		left: 285px;
+		left: 159.5px;
 		z-index: 10;
-	}
+	}	
 
 	.mega-dropdown-menu:after {
 		content: "";
@@ -85,8 +85,12 @@
 		border-left: 19px solid transparent;
 		position: absolute;
 		top: -17px;
-		left: 283px;
+		left: 158px;
 		z-index: 8;
+	}
+	
+	.navbar-collapse {
+		padding:0;
 	}
 
 	.mega-dropdown-menu > li > ul {
@@ -204,7 +208,7 @@
 
 	.ohw-menu-realtimebar-dl {
 		overflow: hidden;
-		width: 160px;
+		width: 120px;
 		height: 20px;
 		margin: 0;
 	}
@@ -232,12 +236,23 @@
 		line-height: 20px;
 	}
 	
+	.ohw-menu-realtimebar-dropdown {
+		
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a {
+		color:black;
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a:hover {
+		color:purple;
+	}
+	
 </style>
 
-</head>
-<body>
-<!-- 실시간 검색어 애니메이션 함수 -->
 <script type="text/javascript">
+
+	/* 실시간 검색어 애니메이션 함수 */
 	$(function() {
 		var count = $('.ohw-menu-realtimebar-li').length;
 		var height = $('.ohw-menu-realtimebar-li').height();
@@ -251,8 +266,30 @@
 		}	
 		step(1);
 	});
-/* 실시간 검색어 애니메이션 함수 끝 */	
+
+	/* 실시간 검색어 애니메이션 */
+	
+	/* 로그아웃 Function */
+	function fnLogout(){
+		$.ajax({
+			url:"lbjlogout1.go",
+			success:function(data){
+				alert(data);
+				window.history.go(0);
+			},
+			error:function(a,b,c){
+				alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+			}
+		});
+	}
+	/* 로그아웃 Function */
+	
+
 </script>
+
+</head>
+
+<body>
 <div class = "container">
 	<div align = "right">
 		<c:if test="${empty loginUser}">
@@ -271,30 +308,16 @@
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
 						</button>
+					</td>					
+					<td>
+						<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=560, height=580,toolbar=no, scrollbars=no, status=no, resizable=no')">
+							<i class = "fa fa-address-card"></i> MyItem
+						</button>
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
 							<i class = "fa fa-sign-out"></i> LogOut
-						</button>
-						<script type="text/javascript">
-							function fnLogout(){
-								$.ajax({
-									url:"lbjlogout1.go",
-									success:function(data){
-										alert(data);
-										window.history.go(0);
-									},
-									error:function(a,b,c){
-										alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
-									}
-								});
-							}
-						</script>
-					</td>
-					<td>
-					<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=560, height=580,toolbar=no, scrollbars=no, status=no, resizable=no')">
-					<i class = "fa fa-address-card"></i> MyItem
-					</button>
+						</button>						
 					</td>
 				</tr>			
 			</table>		
@@ -453,8 +476,8 @@
 								</ul>								
 							</td>
 							<td class = "ohw-menu-col-td ohw-menu-realtimebar">								
-								<div id="content" class = "ohw-menu-realtimebar-content">
-									<dl id="rank-list" class = "ohw-menu-realtimebar-dl">										
+								<div class = "ohw-menu-realtimebar-content">
+									<dl class = "ohw-menu-realtimebar-dl">										
 										<dd class = "ohw-menu-realtimebar-dd">
 											<ol class = "ohw-menu-realtimebar-ol">
 												<li class = "ohw-menu-realtimebar-li">
@@ -475,10 +498,15 @@
 											</ol>
 										</dd>
 									</dl>
-								</div>
+								</div>																
+							</td>
+							<td class = "ohw-menu-realtimebar-dropdown">
+								<a>
+									<i class = "fa fa-chevron-down"></i>
+								</a>
 							</td>
 						</tr>
-					</table>
+					</table>					
 				</div>				
 			</div>
 		<!-- /.nav-collapse -->
