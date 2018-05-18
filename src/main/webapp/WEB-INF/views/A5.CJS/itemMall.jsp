@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
-
 <meta charset="UTF-8">
-<style type="text/css">
 
+<title>아이템몰</title>
+</head>
+<body>
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+<style type="text/css">
 </style>
 <script type="text/javascript">
 $(document).ready( function() {
@@ -32,11 +32,6 @@ $(document).ready( function() {
 	});
 });
 </script>
-<title>아이템몰</title>
-</head>
-<body>
-<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 
 <div style="overflow: hidden;">
 </div>
@@ -49,11 +44,8 @@ $(document).ready( function() {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                            </span>
-                            ~~님<br>
-                            보유 캐시 : xxxx원
-               </a>
+                 ${loginUser.member_name} 회원님<br>
+                   보유 캐시:${loginUser.member_cash} 포인트
                  </h4>
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">
@@ -63,7 +55,7 @@ $(document).ready( function() {
                                	 <td>
                              <div class="input-group">
     	<div class="form-group  has-feedback">
-            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px">
+            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
         </div>
         <span class="input-group-btn">
@@ -92,6 +84,12 @@ $(document).ready( function() {
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">기간제 보기</a>
+                                        
+                                    </td>
+                                </tr>
+                                  <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">이모티콘 보기</a>
                                         
                                     </td>
                                 </tr>
@@ -198,7 +196,7 @@ $(document).ready( function() {
    			 이름 : ${item.ITEMNAME}<br>
    			 가격 : ${item.ITEMPRICE} 원 <br>
    			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
-   			 
+   			 	
    			 
    			 </center>
 			</th>
@@ -240,17 +238,36 @@ $(document).ready( function() {
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
 					<h3 class="panel-title">인기목록</h3>
-				    >인기 바로가기
+				    
 				</div>
-				<div class="panel-body" style="width: 100%; padding: auto"	>    
+				<div class="panel-body" style="width: 100%; padding: 5px"	>    
 
-				<table style="width: 80%; height: 100%; background: red">
-				<tr><th >1</th></tr>
-				<tr><th>1</th></tr>
-				<tr><th>1</th></tr>
-				<tr><th>1</th></tr>
-				</table>
-            
+<center>
+<table style="width: 80%; height: 100%;">
+				
+		
+		<c:forEach var="item" items="${popularlitm}" begin="0" end="2">
+			<tr>
+   			<td style="width:30%">
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px; margin-right: 15px">
+			</td>
+		 <td  style="width:65%">
+		 <center>
+   			 ${item.ITEMNAME}<br>
+   			 ${item.ITEMPRICE} 원 <br>
+   			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			
+   			</center>
+   			 </td>
+			</tr>
+			<tr><td><label> </label></td></tr>
+			</c:forEach>
+				
+				
+	
+	
+</table>
+          </center>  
             
             
             </div>

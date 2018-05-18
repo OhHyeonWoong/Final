@@ -309,8 +309,8 @@
 							<i class = "fa fa-address-card"></i> MyPage
 						</button>
 					</td>					
-					<td>
-						<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=560, height=580,toolbar=no, scrollbars=no, status=no, resizable=no')">
+					<td> 
+						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
 							<i class = "fa fa-address-card"></i> MyItem
 						</button>
 					</td>
@@ -514,5 +514,6 @@
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/A6.LBJ/login.jsp" %>
+<%@ include file="/WEB-INF/views/A5.CJS/itemframe.jsp" %>
 </body>
 </html>

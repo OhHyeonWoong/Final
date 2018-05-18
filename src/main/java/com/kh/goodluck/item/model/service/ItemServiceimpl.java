@@ -23,5 +23,16 @@ public List<ITEMLIST> homenewlitm() {
 	return itemlistDao.homenewitem();
 }
 
+@Override
+public ITEMLIST itemdetail(int itemno) {
+	return itemlistDao.itemdetail(itemno);
+}
+
+@Override
+public List<ITEMLIST> homepopularlitm() {
+
+	return itemlistDao.homepopularlitm();
+}
+
 
 }

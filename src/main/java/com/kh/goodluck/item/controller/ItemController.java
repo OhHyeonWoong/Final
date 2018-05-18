@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,17 +78,28 @@ public class ItemController {
 	@RequestMapping("cjsitemmellhome.go")
 	public ModelAndView itemmallmove(ModelAndView mv) {
 	//아이템몰 메인	
+		
+		//8개 뽑기. 최신.
 		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.homenewlitm();
 	
+		//4개뽑기 인기
+		ArrayList<ITEMLIST> al1= (ArrayList<ITEMLIST>)ItemService.homepopularlitm();
+		
+		
 		mv.addObject("newitem",al);
+		mv.addObject("popularlitm",al1);
 		mv.setViewName("A5.CJS/itemMall");
 		return mv;
 	}
 	
 	@RequestMapping("cjsitemDetail.go")
-	public String itemDetailmove() {
+	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno,ModelAndView mv) {
 		
-		return "A5.CJS/itemDetail";
+		ITEMLIST li= ItemService.itemdetail(itemno);
+		
+		mv.addObject("detail",li);
+		mv.setViewName("A5.CJS/itemDetail");
+		return mv;
 	}
 
 }

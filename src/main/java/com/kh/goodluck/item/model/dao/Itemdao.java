@@ -20,7 +20,20 @@ public class Itemdao {
 
 	
 	public List<ITEMLIST> homenewitem() {
-	
 	return sqlSession.selectList("homenewltem");
 	}
+
+
+	public ITEMLIST itemdetail(int itemno) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("selectitemdetail",itemno);
+	}
+
+
+	public List<ITEMLIST> homepopularlitm() {
+		// TODO Auto-generated method stub
+	 return sqlSession.selectList("homepopularlitm");
+	}
+	
+	
 }

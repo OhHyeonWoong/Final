@@ -20,6 +20,16 @@
 ]]>
 </select>
 
+<select id="selectitemdetail" resultType="ITEMLIST">
+<![CDATA[
+select * from ITEMLIST where ITEMLIST_NO = #{itemno}
+]]>
+</select>
+<select id="homepopularlitm" resultMap="itemResult">
+<![CDATA[
+select * from (select * from ITEMLIST order by ITEMSELLCOUNT desc) where rownum <= 4
+]]>
+</select>
 
 
 </mapper>
