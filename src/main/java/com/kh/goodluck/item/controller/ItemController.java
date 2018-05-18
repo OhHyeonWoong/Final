@@ -2,6 +2,8 @@ package com.kh.goodluck.item.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.item.model.service.ItemService;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 
 @Controller
@@ -21,6 +26,9 @@ public class ItemController {
 	
 //	@Autowired
 //	private MemberService memberService;
+	
+	@Autowired
+	private ItemService ItemService;
 //	
 	public ItemController() {
 		// TODO Auto-generated constructor stub
@@ -61,12 +69,18 @@ public class ItemController {
 	}
 	
 	@RequestMapping("cjsitemmellhome.go")
-	public String itemmallmove() {
-		return "A5.CJS/itemMall";
+	public ModelAndView itemmallmove(ModelAndView mv) {
+	//아이템몰 메인	
+		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.homenewlitm();
+	
+		mv.addObject("newitem",al);
+		mv.setViewName("A5.CJS/itemMall");
+		return mv;
 	}
 	
 	@RequestMapping("cjsitemDetail.go")
 	public String itemDetailmove() {
+		
 		return "A5.CJS/itemDetail";
 	}
 	
