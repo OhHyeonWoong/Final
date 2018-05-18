@@ -27,18 +27,6 @@
 		<result property="category_big_views" column="category_big_views"/>
 	</resultMap>
 	
-	<resultMap type="MidCategory" id="MidCategoryAll">
-		<id property="category_mid_code" column="category_mid_code"/>
-		<result property="category_mid_name" column="category_mid_name"/>
-		<result property="category_mid_views" column="category_mid_views"/>
-	</resultMap>
-	
-	<resultMap type="SmallCategory" id="SmallCategoryAll">
-		<id property="category_small_code" column="category_small_code"/>
-		<result property="category_small_name" column="category_small_name"/>
-		<result property="category_small_views" column="category_small_views"/>
-	</resultMap>
-	
 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
 			select * from agency where link2_no = #{link2_no}
@@ -48,18 +36,6 @@
 	<select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
 		<![CDATA[
 			select * from bigcategory
-		]]>
-	</select>
-	
-	<select id="selectMidCategoryAll" parameterType="MidCategory" resultMap="MidCategoryAll">
-		<![CDATA[
-			select * from midcategory
-		]]>
-	</select>
-	
-	<select id="selectSmallCategoryAll" parameterType="SmallCategory" resultMap="SmallCategoryAll">
-		<![CDATA[
-			select * from smallcategory
 		]]>
 	</select>
 	

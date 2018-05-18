@@ -138,18 +138,6 @@
 				${bigcategory.category_big_views }<br>
 			</c:forEach>
 			
-			<c:forEach var="midcategory" items="${midcategorylist }">
-				${midcategory.category_mid_code }&nbsp;
-				${midcategory.category_mid_name }&nbsp;
-				${midcategory.category_mid_views }<br>
-			</c:forEach>
-			
-			<c:forEach var="smallcategory" items="${smallcategorylist }">
-				${smallcategory.category_small_code }&nbsp;
-				${smallcategory.category_small_name }&nbsp;
-				${smallcategory.category_small_views }<br>
-			</c:forEach>
-			
 		</div>
 
 		<div class="bsh_center">
