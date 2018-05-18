@@ -132,6 +132,14 @@
 		margin-bottom: 3px;
 	}
 	
+	.ohw-menu-a > a {
+		color:black;
+	}
+	
+	.ohw-menu-a > a:hover {
+		color:purple;
+	}
+	
 	.ohw-div-search {		
 		width:400px;
 	}
@@ -315,29 +323,28 @@
 		</c:if>
 		<c:if test="${!empty loginUser}">
 			<table>
-				<tr>
-					<td>${ loginUser.member_name } 님 &nbsp;</td>
+				<tr>					
 					<td>
-					<div class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">${ loginUser.member_name } 님<b class="caret"></b></a>
-						<div class="dropdown-menu lbj-div">
-							<div style="margin-left:10px; margin-right:10px;">
-							<table style="width:100%; height:100%;">
-								<tr>
-									<td style="">${ loginUser.member_name } 님</td>
-									<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go'">MyPage</button></td>
-								</tr><!-- style="margin-left:140px;"  -->
-								<tr>
-									<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
-								</tr>
-								<tr>
-									<td>내 마일리지 : 3,000</td>
-									<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
-								</tr>
-							</table>
+						<div class="dropdown  ohw-menu-a">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							<div class="dropdown-menu lbj-div">
+								<div style="margin-left:10px; margin-right:10px;">
+									<table style="width:100%; height:100%;">
+										<tr>
+											<td> ${ loginUser.member_name } 님 </td>
+											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go'">MyPage</button></td>
+										</tr><!-- style="margin-left:140px;"  -->
+										<tr>
+											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
+										</tr>
+										<tr>
+											<td>내 마일리지 : 3,000</td>
+											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
+										</tr>
+									</table>
+								</div>
 							</div>
 						</div>
-					</div>
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
