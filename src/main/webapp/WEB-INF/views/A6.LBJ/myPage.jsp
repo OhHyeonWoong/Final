@@ -9,7 +9,7 @@
 <!-- 부트스트랩: common 폴더 내 부트스르랩 공용 파일 사용 -->
 <link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
 <!-- font awesome -->
-<link rel="stylesheet" href="/goodluck/A3.JDK/resources/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="/goodluck/resources/A3.JDK/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
 <!-- Custom style -->
 <link rel="stylesheet" href="/goodluck/resources/A3.JDK/css/style.css" media="screen" title="no title" charset="utf-8">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins)common 폴더 내 공용파일 사용 -->
@@ -47,18 +47,21 @@
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
+		 	<a href="">마일리지 충전</a>
 			<h2 style="text-align:left;">마이페이지</h2>
 			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
 		 	<div>
-		 		<h3 class="lbjh3" id="lbjMyPage" style="margin-left:170px;">내 정보보기</h3>
+		 	    <!-- 병준이 추가, 이상하시면 지우세요 동기형 -->
+		 		<h3 class="lbjh3" id="lbjMyPage" style="">내 정보보기</h3>
+		 		<!-- 벼어어어어어어어어어어주누누누누누이이이 -->
 				<div class="login_form" >
 				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
 					<form role="form">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
 							<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-							<img src="#" name ="profile_img"/>
+							<img src="#" name ="profile_img" alt="profile_img"/>
 							</div><br>
 							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
 						</div>
