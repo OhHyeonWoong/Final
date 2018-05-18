@@ -110,9 +110,8 @@ $(document).ready( function() {
         	    <div class="panel-heading">
                  <table style="width: 100%; height: 100%">
                  <tr>
-                 <th style="width: 20%; height: 90%; background: red; padding: 10px;">
-		
-				<img src="/goodluck/resources/common/img/Logo1.png" style="width: 80px; height:70px; background: red">
+                 <th style="width: 20%; height: 90%; padding: 10px;">
+			<img src="/goodluck/resources/A5.CJS/itemimg/${detail.ITEMFILENAME}" style="width: 80px; height:70px; background: red">
 				</th>
                  <th style="width: 78%;">
                  상품명: ....<br>
