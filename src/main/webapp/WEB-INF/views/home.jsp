@@ -618,7 +618,7 @@
 			</div>    
 			
 			<div class="item">
-				<table class = "ohw-home-table"> <!-- 반려동물 -->
+				<table class = "ohw-home-table">
 						<tr>
 						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -692,250 +692,7 @@
 						</table>
 						</td>
 					</tr>
-				</table>			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-				<div style="width: 55%; float: left; overflow: hidden;">
-						    <div class="container-fluid" style="background-color:green;">
-						        <div class="container container-pad" id="property-listings" style="width: auto;">
-						            
-						            <div class="row" style="width: auto;">
-						              <div class="col-md-12" style="width: auto;">
-						                <h1>Today HotNews</h1>
-						                <p>부연 설명</p>
-						              </div>
-						            </div>
-						            
-						            <div class="row" style="width: auto;">
-						                <div class="col-sm-6" style="width: auto;"> 
-						
-						                    <!-- Begin Listing: 609 W GRAVERS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,975,000 <small class="pull-right">609 W Gravers Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>4,820 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">Situated between fairmount
-						                                park and the prestigious philadelphia cricket
-						                                club, this beautiful 2+ acre property is truly
-						                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,295,000 <small class="pull-right">9006 Crefeld St</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>7,672 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>7 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">Located in chestnut hill,
-						                                recently named by the american planning
-						                                association as one of america's top 10 great
-						                                neighborh...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of RE/MAX Services</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-
-						
-
-						                </div>
-						
-
-						            </div><!-- End row -->
-						        </div><!-- End container -->
-						    </div>				
-				</div>
-				
-				<div style="width: 40%; max-height:400; float: right; overflow: scroll;"> <!-- 오른쪽 영역  -->
-				
-				
-				
-				   
-				
-				</div>
-				
-				<div style="width: 40%; float: right; overflow: scroll;">
-				
-				
-				</div>
-				
-				</div>
-			
-
-
-
-
-		
-				<table class = "ohw-home-table"> 반려동물화면 data-slide-to="2"
-						<tr>
-						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-						
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-					</tr>
-				</table>
+				</table>	
 			</div>
 			<div class="item">
 			<table class="ohw-home-table"> <!-- 게임화면 data-slide-to="3" -->
@@ -1171,7 +928,155 @@
 			</div>
 			
 			<div class="item">
-			<table class="ohw-home-table"> <!-- 여행화면 data-slide-to="6" -->
+				<div style="width: 55%; float: left; overflow: hidden;">
+						    <div class="container-fluid" style="background-color:green;">
+						        <div class="container container-pad" id="property-listings" style="width: auto;">
+						            
+						            <div class="row" style="width: auto;">
+						              <div class="col-md-12" style="width: auto;">
+						                <h1>Today HotNews</h1>
+						                <p>부연 설명</p>
+						              </div>
+						            </div>
+						            
+						            <div class="row" style="width: auto;">
+						                <div class="col-sm-6" style="width: auto;"> 
+						
+						                    <!-- Begin Listing: 609 W GRAVERS LN-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/Yu59d899Ocpyr_RnF0-8qNJX1oYibjwp9TiLy-bZvU9vRJ2iC1zSQgFwW-fTCs6tVkKrj99s7FFm5Ygwl88xIA.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,975,000 <small class="pull-right">609 W Gravers Ln</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>4,820 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">Situated between fairmount
+						                                park and the prestigious philadelphia cricket
+						                                club, this beautiful 2+ acre property is truly
+						                                ...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
+						                                Evergreen</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,295,000 <small class="pull-right">9006 Crefeld St</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>7,672 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>7 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">Located in chestnut hill,
+						                                recently named by the american planning
+						                                association as one of america's top 10 great
+						                                neighborh...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of RE/MAX Services</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						
+						                    <!-- Begin Listing: 701 W ALLENS LN-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>9,824 SqFt</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>8 Beds</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>5 Baths</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">A once in a lifetime
+						                                opportunity! live in this grand home with its
+						                                stunning entry and staircase, bedroom suites,
+						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
+						                                Evergreen</span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->						
+
+						
+
+						                </div>
+						
+
+						            </div><!-- End row -->
+						        </div><!-- End container -->
+						    </div>				
+				</div>
+				
+				<div style="width: 40%; max-height:400; float: right; overflow: scroll;"> <!-- 오른쪽 영역  -->
+				
+				
+				
+				   
+				
+				</div>
+				
+				<div style="width: 40%; float: right; overflow: scroll;">
+				
+				
+				</div>			
+			
+			
+			
+			
+			
+			
+			<!-- <table class="ohw-home-table"> 여행화면 data-slide-to="6"
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -1245,7 +1150,7 @@
 								</table>					
 							</td>
 						</tr>
-					</table>
+					</table> -->
 			</div>	
 			<div class="item">
 			<table class="ohw-home-table"> <!-- 프리랜서화면 data-slide-to="7" -->
