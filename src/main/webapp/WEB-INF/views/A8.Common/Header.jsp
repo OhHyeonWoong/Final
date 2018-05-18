@@ -303,7 +303,7 @@
 		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>
-					<td>${ loginUser.member_name } 님</td>
+					<td>${ loginUser.member_name } 님 &nbsp;</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
