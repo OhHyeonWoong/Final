@@ -119,7 +119,7 @@ $(document).ready( function() {
            
            
            <!--카로셀 시작 -->
-         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false	">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false	">
          
     
       <!-- Wrapper for slides -->

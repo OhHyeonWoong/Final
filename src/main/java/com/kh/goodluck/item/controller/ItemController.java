@@ -42,37 +42,6 @@ public class ItemController {
 		
 		return "A5.CJS/itemframe";
 	}
-	
-
-
-	///////////////////////////////////////////////////////////////////////////////////////////////
-	
-	@RequestMapping("ukWookTest.go")  //(욱재작업) 메인화면에서 작업 드롭박스 욱재영역으로 이동하기 
-	public String ukjaeworkingpageMove(){
-		return "A2.JUJ/Allworking";
-	}
-	
-	@RequestMapping("Eventpopup1.go") //(욱재작업) 이벤트 페이지 팝업창 띄우기1 Window.open
-	public String event1Popup1() {
-
-		return "A2.JUJ/Event1";
-	}
-
-	@RequestMapping("Eventpopup2.go") //(욱재작업) 이벤트 페이지 팝업창 띄우기2 Window.open
-	public String event1Popup2() {
-		return "A2.JUJ/Event2";
-	}
-	
-	@RequestMapping("Eventpopup3.go") //(욱재작업) 이벤트 페이지 팝업창 띄우기3 Window.open
-	public String event1Popup3() {
-		return "A2.JUJ/Event3";
-	}
-	 
-	@RequestMapping("Chatting.go")  //(욱재작업) 채팅창페이지로 이동하기
-	public String chartPageMove(){
-		return "A2.JUJ/Chatting";
-	}
-	
 
 	
 	@RequestMapping("cjsitemmellhome.go")
