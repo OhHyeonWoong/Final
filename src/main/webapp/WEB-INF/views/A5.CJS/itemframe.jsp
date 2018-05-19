@@ -51,10 +51,12 @@
       </div>
       <div class="modal-body">
         <Br>
-<div class="11" style="background: black; float: left; margin-left:10px; ">
+<div class="11" style="background: black; float: left; margin-left:10px;">
+
 <center>
 <img alt="회원이미지" src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb" style="width: 100px; height: 100px">
 </center>
+
 <br>
 회원님 아이디: ㅇ323<br>
 회원님 이름 : <br>
