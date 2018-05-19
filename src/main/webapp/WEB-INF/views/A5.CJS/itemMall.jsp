@@ -9,11 +9,9 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-<style type="text/css">
-</style>
+
 <script type="text/javascript">
 $(document).ready( function() {
-	
 	var clickEvent = false;
 	$('#myCarousel').on('click', '.nav a', function() {
 			clickEvent = true;
@@ -119,7 +117,7 @@ $(document).ready( function() {
            
            
            <!--카로셀 시작 -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false	">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
          
     
       <!-- Wrapper for slides -->
@@ -163,7 +161,7 @@ $(document).ready( function() {
     	<ul class="nav nav-pills nav-justified">
           <li data-target="#myCarousel" data-slide-to="0" class="mall active"><a  href="#"><small>이달의 랜덤박스</small></a></li>
           <li data-target="#myCarousel" data-slide-to="1" class="mall"><a href="#"><small>이달의 최신 아이템!</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="2" class="mall"><a  href="#"><small>이달의 패키지 상품</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="mall"><a href="#"><small>이달의 패키지 상품</small></a></li>
           <li data-target="#myCarousel" data-slide-to="3" class="mall"><a href="#"><small>이달의 인기 아이템</small></a></li>
         </ul>
 
