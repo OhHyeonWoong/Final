@@ -670,22 +670,22 @@
 			      <!-- Wrapper for slides -->
 			      <div class="carousel-inner">
 			      
-			        <div class="item active">
+			        <div class="item active" id="0">
 								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
 			        
 			        </div><!-- End Item -->
 			 
-			         <div class="item">
+			         <div class="item" id="1">
 								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
 			         
    			         </div><!-- End Item -->
 			        
-			        <div class="item">
+			        <div class="item" id="2">
 			        
 								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
 			        </div><!-- End Item -->
 			        
-			        <div class="item">
+			        <div class="item" id="3">
 			        
 								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
 			        </div><!-- End Item -->
