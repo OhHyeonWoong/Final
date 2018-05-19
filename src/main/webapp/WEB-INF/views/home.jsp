@@ -45,16 +45,17 @@
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaemainEvent.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeTravelContents.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
+<link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeLifeContents.css">
 
 
 <style type="text/css">
 	.ohw-home-table {
-		margin:0;
+		Sectiongin:0;
 		width:100%;
 		height:800px;
 	}
 	.ohw-home-table-td {
-		margin:200;
+		Sectiongin:200;
 		padding:0;	
 		padding-top:0;
 		width:50%;
@@ -71,7 +72,7 @@
 	
 	.ohw-home-table2 tr td{
 		padding-top: 0px;
-		margin: 0;
+		Sectiongin: 0;
 		text-align: center;
 		font-size: 16px;
 	}
@@ -94,7 +95,7 @@
 		overflow: hidden;
 		width: 100%;
 		height: 160px;
-		margin: 0;
+		Sectiongin: 0;
 	}
 
 	.juj-home-realtimebar-dt {
@@ -103,14 +104,14 @@
 
 	.juj-home-realtimebar-dd {
 		position: relative;
-		margin: 0;
+		Sectiongin: 0;
 	}
 
 	.juj-home-realtimebar-ol {
 		position: absolute;
 		top: 0;
 		left: 0;
-		margin: 0;
+		Sectiongin: 0;
 		padding: 0;
 		list-style-type: none;
 	}
@@ -142,19 +143,19 @@
 		
 		
 	/* 고객의 소리 */					
-	.btn-glyphicon { padding:2px; background:#ffffff; margin-right:2px; } 
+	.btn-glyphicon { padding:2px; background:#ffffff; Sectiongin-right:2px; } 
 	
 	.icon-btn { padding: 1px 5px 3px 2px; border-radius:50px;}		
 
 	@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 	/*Comment List styles*/
 	.comment-list .row {
-	  margin-bottom: 0px;
+	  Sectiongin-bottom: 0px;
 	  padding-top:0;
 	  width: 100%;
 	}
 	.comment-list .panel .panel-heading {
-	  margin-top:0;
+	  Sectiongin-top:0;
 	  /* padding: 4px 15px; */
 	  position: absolute;
 	  border:none;
@@ -226,8 +227,9 @@
 	  }
 	}
 	.comment-list .comment-post {
-	  margin-top: 6px;
+	  Sectiongin-top: 6px;
 	}		
+	
 </style>
 
 <script type="text/javascript"> /* 오늘의주인공 애니메이션 함수 끝 */	
@@ -337,7 +339,7 @@
 		<div class="carousel-inner">
 			<div class="item active">	
 					
-				<div style="width: 100%; margin-bottom: 12px;">			
+				<div style="width: 100%; Sectiongin-bottom: 12px;">			
 					<div class = "juj-home-realtimebar-content">
 									<dl class = "juj-home-realtimebar-dl">										
 										<dd class ="juj-home-realtimebar-dd">
@@ -538,12 +540,12 @@
 					
 			<table class="ohw-home-table"> <!-- main화면 data-slide-to="0" -->					
 				<tr>
-					<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
+					<td class = "ohw-home-table-td" align = "center" style="padding: 0; Sectiongin: 0;">
 					<table class="ohw-home-table2" style="border: 1px solid gray;">
 						<tr>
 							<td style="padding: 0;">							
 								<font size="6" face="굴림" style="font-weight: bold;">오늘의 이벤트</font><br><br>
-									<div class="row" align="center" style="margin: 0; padding-right: 20px; padding-left: 20px;">
+									<div class="row" align="center" style="Sectiongin: 0; padding-right: 20px; padding-left: 20px;">
 									  <div class="col-sm-4">
 									   <div class="mega-pricing-item gradient-style-1">
 								     	 <div class="pricing-icon">
@@ -645,91 +647,133 @@
 				</tr>
 			</table>
 			</div> 
-
-
-
 			
 			<div class="item">		
-				<table class = "ohw-home-table">
-						<tr>
-						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-						
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-					</tr>
-					<tr>
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-						<td class = "ohw-home-table-td" align = "center"> 
-						<table class="ohw-home-table2" style="border: 1px solid gray;">
-							<tr>
-								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-									</table>						
-								</td>
-							</tr>
-						</table>
-						</td>
-					</tr>
-				</table>	
+			
+				<div class='container2'>
+				  <div class='blog-posts'>
+				    <div class='post featured'>
+				      <a href='#'>
+				        <!-- <div class='image' style='background-image: url(https://unsplash.it/600/400/?random)'> -->
+				        <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활1.jpg');"></div>
+				        <div class='content' style="overflow: ">
+					       	<center><h2> 제 공 해 요 </h2></center>
+							<table border="1" style="width: 100%; height: 50%;">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+							</table>
+				        </div>
+				      </a>
+				    </div>
+				    
+				    <div class='row cf'>
+				      <div class='post'>
+				        <a href='#'>
+				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활1.jpg');">
+
+				          </div>
+				          <div class='content'>
+				          	거실 꾸미기, 가벽 세우고 화이트 톤으로 페인팅<br>
+				          	(서비스 제공자 : 홍 길 동)
+				          
+		
+				            
+				            
+				          </div>
+				        </a>
+				      </div>
+				      <div class='post'>
+				        <a href='#'>
+				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활2.jpg');">
+
+				          </div>
+				          <div class='content'>
+				          	수납은 기본, 바다를 닮은 좁은 아이방 만들기!<br>
+				          	(서비스 제공자 : 정 욱 재)
+		
+				            
+				            
+				          </div>
+				        </a>
+				      </div>
+				      
+				      <div class='post'>
+				        <a href='#'>
+				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활3.jpg');">
+
+				          </div>
+				          <div class='content'>
+				            다시짱짱해게! 늘어난 티셔츠 수선해드립니다!<br>
+				          	(서비스 제공자 : 도 우 너 )
+		
+				            
+				            
+				          </div>
+				        </a>
+				      </div>
+
+
+				    </div>
+				    
+				    
+				    <div class='row cf'>
+				      <div class='post'>
+				        <a href='#'>
+				          <div class='image'>
+				            <div class='time'>
+				              <div class='date'>
+				                4
+				              </div>
+				              <div class='month'>Section</div>
+				            </div>
+				          </div>
+				          <div class='content'>
+				            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+				            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+				            <div class='meta'>
+				              <div class='icon-comment'>22 Comments</div>
+				              <ul class='tags'>
+				                <li></li>
+				                <li></li>
+				              </ul>
+				            </div>
+				          </div>
+				        </a>
+				      </div>
+				      <div class='post'>
+				        <a href='#'>
+				          <div class='image'>
+				            <div class='time'>
+				              <div class='date'>
+				                5
+				              </div>
+				              <div class='month'>Section</div>
+				            </div>
+				          </div>
+				          <div class='content'>
+				            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
+				            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
+				            <div class='meta'>
+				              <div class='icon-comment'>22 Comments</div>
+				              <ul class='tags'>
+				                <li></li>
+				                <li></li>
+				              </ul>
+				            </div>
+				          </div>
+				        </a>
+				      </div>
+				    </div>
+
+				  </div>
+				</div>
 				
-							
-			
-			
-          		  
 <!-- 			<div id="ukjaeLifeCarousel" class="carousel slide" data-ride="carousel">
 			      <div class="carousel-inner">
 			      
@@ -808,7 +852,7 @@
 		    <div class="item">
 				<table class = "ohw-home-table">
 						<tr>
-						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
+						<td class = "ohw-home-table-td" align = "center" style="padding: 0; Sectiongin: 0;">
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
@@ -1481,9 +1525,9 @@
 				<div style="width: 44%; height:330px; border:1px solid gray;  max-height:350px; float: right;" align="center"> <!-- 오른쪽 영역2  -->
 				
   						  <div class="row" style="width: 100%;">
-							    <div class="col-md-8" style="width: 100%;  height:330px; padding-right: 0; padding-left: 0; margin: 0;">
+							    <div class="col-md-8" style="width: 100%;  height:330px; padding-right: 0; padding-left: 0; Sectiongin: 0;">
 							     <br>
-							      <h2 class="page-header" style="margin-top: 1px; margin-bottom: 1; width: 300px; margin-bottom: 0px;"> 고객의 소리
+							      <h2 class="page-header" style="Sectiongin-top: 1px; Sectiongin-bottom: 1; width: 300px; Sectiongin-bottom: 0px;"> 고객의 소리
 							      </h2>
 							        <section class="comment-list" style="padding-left: 2px; max-height:264px; width:100%; overflow: scroll;">
 							          <!-- First Comment -->
@@ -1507,7 +1551,7 @@
 												 	맡겼는데 너무 친절하게 잘 해주셔서 감사합니다.
 												 	
 												<br> <br>	
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+												<a class="btn icon-btn btn-priSectiony" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-priSectiony"></span>Like</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
 							                    </p>
 							                  </div>
@@ -1532,7 +1576,7 @@
 							                  <div class="comment-post">
 							                    <p align="left">
 												   독신사싸이트 덕분에 새로운 가족이 생겼어요 !! <br> <br>	
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+												<a class="btn icon-btn btn-priSectiony" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-priSectiony"></span>Like</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
 
 							                    </p>
@@ -1558,7 +1602,7 @@
 							                  <div class="comment-post">
 							                    <p align="left">
 												   우리 아지 미용 너무 잘시켜주셔서 감사해요!<br> 또 이용할께요^^ <br> <br>	
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+												<a class="btn icon-btn btn-priSectiony" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-priSectiony"></span>Like</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
 
 							                    </p>
@@ -1588,7 +1632,7 @@
 												   잘 설계해주셔서 너무좋습니다~~♥	
 												   
 												   <br> <br>							                    
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+												<a class="btn icon-btn btn-priSectiony" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-priSectiony"></span>Like</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
 							                  </p>
 							                  </div>
@@ -1614,7 +1658,7 @@
 							                    <p align="left">
 												   매번 잘 이용하고있어요 독신사 화이팅~~ 
 												<br> <br>	
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+												<a class="btn icon-btn btn-priSectiony" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-priSectiony"></span>Like</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
 
 							                    </p>
