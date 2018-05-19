@@ -240,7 +240,7 @@
 	.square, .btn {
 	    border-radius: 0px!important;
 	}
-	
+	              
 	/* -- color classes -- */
 	.coralbg {
 	    background-color: #FA396F;
