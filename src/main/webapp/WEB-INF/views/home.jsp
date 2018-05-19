@@ -118,16 +118,8 @@
 	.juj-home-realtimebar-li {
 		height: 160px;
 		line-height: 20px;
-	}
+	}	
 	
-	
-	/* .well{
-	 background: #18b9e5;
-	 background: -webkit-linear-gradient(45deg, #18b9e5 0%, #81d9b8 100%);
-	 background: linear-gradient(45deg, #18b9e5 0%, #81d9b8 100%);
-	 filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#18b9e5', endColorstr='#81d9b8', GradientType=1);
-
-	}*/
 	
 	/* 여행컨텐츠  */
 	
@@ -238,7 +230,7 @@
 	}		
 </style>
 
-<script type="text/javascript">
+<script type="text/javascript"> /* 오늘의주인공 애니메이션 함수 끝 */	
 	$(function() {
 		var count = $('.juj-home-realtimebar-li').length;
 		var height = $('.juj-home-realtimebar-li').height();
@@ -252,7 +244,6 @@
 		}	
 		step(1);
 	});
-/* 실시간 검색어 애니메이션 함수 끝 */	
 </script>
 
 </head> 
@@ -621,7 +612,7 @@
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>								
+									<font size="6" face="굴림" style="font-weight: bold;">독신사 공지사항</font>								
 									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -638,7 +629,7 @@
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding: 0;">
-									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문!!FAQ</font>								
+									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문?!!..FAQ</font>								
 									<table class="jwj-innertable" border="1">
 										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -655,43 +646,119 @@
 			</table>
 			</div> 
 
-			<div class="item">
-			
-          		 <!--카로셀 시작 -->
-			    <div id="ukjaeLifeCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 
+
+			
+			<div class="item">		
+				<table class = "ohw-home-table">
+						<tr>
+						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
+						</td>
+						
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
+						</td>
+						<td class = "ohw-home-table-td" align = "center"> 
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+				</table>	
+				
+							
+			
+			
+          		  
+<!-- 			<div id="ukjaeLifeCarousel" class="carousel slide" data-ride="carousel">
+			      <div class="carousel-inner">
+			      
+			        <div class="item active">
+			          <img src="/goodluck/resources/common/img/main/여행1.jpg">
+			        </div>End Item
+			 
+			         <div class="item">
+			          <img src="/goodluck/resources/common/img/main/여행2.jpg">
+  			         </div>End Item
+			        
+			        <div class="item">
+			          <img src="/goodluck/resources/common/img/main/여행3.jpg">
+			        </div>End Item
+			        
+			        <div class="item">
+			          <img src="/goodluck/resources/common/img/main/여행4.jpg">
+			        </div>End Item  
+			        
+			      </div>End Carousel Inner
+			      
+			 
 			    	<ul class="nav nav-pills nav-justified">
 			          <li data-target="#ukjaeLifeCarousel" data-slide-to="0" class="mall active"></li>
 			          <li data-target="#ukjaeLifeCarousel" data-slide-to="1" class="mall"></li>
 			          <li data-target="#ukjaeLifeCarousel" data-slide-to="2" class="mall"></li>
 			          <li data-target="#ukjaeLifeCarousel" data-slide-to="3" class="mall"></li>
-			        </ul>
-
-			      <!-- Wrapper for slides -->
-			      <div class="carousel-inner">
-			      
-			        <div class="item active" id="0">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
-			        
-			        </div><!-- End Item -->
-			 
-			         <div class="item" id="1">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
-			         
-   			         </div><!-- End Item -->
-			        
-			        <div class="item" id="2">
-			        
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
-			        </div><!-- End Item -->
-			        
-			        <div class="item" id="3">
-			        
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
-			        </div><!-- End Item -->
-			                
-			      </div><!-- End Carousel Inner -->
-			    </div><!-- End Carousel -->			
+			        </ul>			      
+			    </div>End Carousel	 -->		
 					
 					
 					
@@ -736,10 +803,9 @@
 							<span class="sr-only">Next</span>
 						</a>
 					</div> homeCarousel -->	
-			</div>	 
-			    
-			
-			<div class="item">
+
+		    </div>	 
+		    <div class="item">
 				<table class = "ohw-home-table">
 						<tr>
 						<td class = "ohw-home-table-td" align = "center" style="padding: 0; margin: 0;">
@@ -1050,21 +1116,246 @@
 			</div>
 			
 			<div class="item">
-				<div style="width: 55%; float: left; overflow: hidden;">
-						    <div class="container-fluid" style="overflow: scroll; max-height: 712px;">
+				<div style="width: 55%; float: left;">
+						    <div class="container-fluid" style="overflow: scroll; max-height: 684px;">
 						        <div class="container container-pad" id="property-listings" style="width: auto;">
 						            
 						              <div class="col-md-12" style="width: 100%;" align="center">
-						                <h1 id="ukjaeTarvel_title">추천 여행지</h1>
+						                <h2 id="ukjaeTarvel_title">추천 여행지</h2>
 						              </div>
+						              <hr style="clear: both;">
 						            
 						            <div class="row" style="width: auto;">
 						                <div class="col-sm-6" style="width: auto;"> 
+						                
 						                    <!-- Begin Listing: 9006 CREFELD ST-->
 						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
 						                        <div class="media">
 						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"></a>
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
+						
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+						                        <div class="media">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
 						
 						                            <div class="clearfix visible-sm"></div>
 						
@@ -1097,312 +1388,27 @@
 						                        </div>
 						                    </div><!-- End Listing-->
 						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
-						                    <!-- Begin Listing: 701 W ALLENS LN-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/K12MLs4i-e2rsQ-rA6DoCwlysXSrEXZyHtCFkrOLsvK1y2mvbUrlmw5pMXX1laXlnY9_0VU82YeS3EucwIchtg.jpg"></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">$1,175,000 <small class="pull-right">701 W Allens Ln</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>9,824 SqFt</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>8 Beds</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>5 Baths</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">A once in a lifetime
-						                                opportunity! live in this grand home with its
-						                                stunning entry and staircase, bedroom suites,
-						                                firepla...</p><span class="fnt-smaller fnt-lighter fnt-arial">Courtesy of HS Fox & Roach-Chestnut Hill
-						                                Evergreen</span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->						
 
-						
-
+						                    				
 						                </div>
 						            </div><!-- End row -->
 						        </div><!-- End container -->
 						    </div>				
-				</div>
-				
-				
-				<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap" async defer></script>				
-				<script type="text/javascript">
-					function initMap() {
-					    var map = new google.maps.Map(document.getElementById('map'), {
-					      center: {lat: -33.8688, lng: 151.2195},
-					      zoom: 13
-					    });
-					    var input = document.getElementById('searchInput');
-					    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-					
-					    var autocomplete = new google.maps.places.Autocomplete(input);
-					    autocomplete.bindTo('bounds', map);
-					
-					    var infowindow = new google.maps.InfoWindow();
-					    var marker = new google.maps.Marker({
-					        map: map,
-					        anchorPoint: new google.maps.Point(0, -29)
-					    });
-					
-					    autocomplete.addListener('place_changed', function() {
-					        infowindow.close();
-					        marker.setVisible(false);
-					        var place = autocomplete.getPlace();
-					        if (!place.geometry) {
-					            window.alert("Autocomplete's returned place contains no geometry");
-					            return;
-					        }
-					  
-					        // If the place has a geometry, then present it on a map.
-					        if (place.geometry.viewport) {
-					            map.fitBounds(place.geometry.viewport);
-					        } else {
-					            map.setCenter(place.geometry.location);
-					            map.setZoom(17);
-					        }
-					        marker.setIcon(({
-					            url: place.icon,
-					            size: new google.maps.Size(71, 71),
-					            origin: new google.maps.Point(0, 0),
-					            anchor: new google.maps.Point(17, 34),
-					            scaledSize: new google.maps.Size(35, 35)
-					        }));
-					        marker.setPosition(place.geometry.location);
-					        marker.setVisible(true);
-					    
-					        var address = '';
-					        if (place.address_components) {
-					            address = [
-					              (place.address_components[0] && place.address_components[0].short_name || ''),
-					              (place.address_components[1] && place.address_components[1].short_name || ''),
-					              (place.address_components[2] && place.address_components[2].short_name || '')
-					            ].join(' ');
-					        }
-					    
-					        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-					        infowindow.open(map, marker);
-					      
-					        //Location details
-					        for (var i = 0; i < place.address_components.length; i++) {
-					            if(place.address_components[i].types[0] == 'postal_code'){
-					                document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-					            }
-					            if(place.address_components[i].types[0] == 'country'){
-					                document.getElementById('country').innerHTML = place.address_components[i].long_name;
-					            }
-					        }
-					        document.getElementById('location').innerHTML = place.formatted_address;
-					        document.getElementById('lat').innerHTML = place.geometry.location.lat();
-					        document.getElementById('lon').innerHTML = place.geometry.location.lng();
-					    });
-					}
-				</script>
+						</div>
 
 
 
 				<div style="width: 44%; height:40%; float: right; border: 1px solid black; padding-bottom: 20px;" align="center" > <!-- 오른쪽 영역1  -->
-						<h2>Calender</h2>
+						<h2>Planer</h2>
 						<hr style="clear: both;">
 						<div class="row">
 							<div class="span12">
-					    	    <table class="table-condensed table-bordered table-striped" style="width: 90%;" align="center">
+					    	    <table class="table-condensed table-bordered table-striped" style="width: 90%;">
 					                <thead>
 					                    <tr>
 					                      <th colspan="7" align="center">
 					                        <a class="btn"><i class="icon-chevron-left"></i></a>
-					                        <a class="btn">February 2012</a>
+					                        <a class="btn" al>February 2012</a>
 					                        <a class="btn"><i class="icon-chevron-right"></i></a>
 					                      </th>
 					                    </tr>
@@ -1470,16 +1476,16 @@
 	
 				</div>
 				
-				<div style="float: right; width: 40%; height: 50px;"> &nbsp; </div> <!-- 오른쪽1,2 두 영역의 공백을 주기위한 div -->
+				<div style="float: right; width: 44%; height: 15px;"> &nbsp; </div> <!-- 오른쪽1,2 두 영역의 공백을 주기위한 div -->
 				
-				<div style="width: 40%; height:330px; max-height:350px; float: right; overflow: scroll;"> <!-- 오른쪽 영역2  -->
+				<div style="width: 44%; height:330px; border:1px solid gray;  max-height:350px; float: right;" align="center"> <!-- 오른쪽 영역2  -->
 				
   						  <div class="row" style="width: 100%;">
-							    <div class="col-md-8" style="width: 101%; padding-right: 0; padding-left: 0; margin: 0;">
+							    <div class="col-md-8" style="width: 100%;  height:330px; padding-right: 0; padding-left: 0; margin: 0;">
 							     <br>
-							      <h2 class="page-header" style="margin-top: 1px; margin-bottom: 1; width: 25;"> 고객의 소리
+							      <h2 class="page-header" style="margin-top: 1px; margin-bottom: 1; width: 300px; margin-bottom: 0px;"> 고객의 소리
 							      </h2>
-							        <section class="comment-list" style="padding-left: 40px; max-height:311px; width:100%; ">
+							        <section class="comment-list" style="padding-left: 2px; max-height:264px; width:100%; overflow: scroll;">
 							          <!-- First Comment -->
 							          <article class="row">
 							            <div class="col-md-2 col-sm-2 hidden-xs">
@@ -1621,86 +1627,8 @@
 							    </div>
 							  </div>
 						</div>			
-			
-				
-			
-						
 
-			<!-- <table class="ohw-home-table"> 여행화면 data-slide-to="6"
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>
-		
-							</td>
-							<td class = "ohw-home-table-td" align = "center">
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>						
-							</td>
-						</tr>
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>							
-										</td>
-									</tr>
-								</table>				
-							</td>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>								
-										</td>
-									</tr>
-								</table>					
-							</td>
-						</tr>
-					</table> -->
+				<hr style="clear: both;">	
 			</div>	
 			<div class="item">
 			<table class="ohw-home-table"> <!-- 프리랜서화면 data-slide-to="7" -->
