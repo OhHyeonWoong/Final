@@ -46,9 +46,7 @@
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeTravelContents.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaeLifeContents.css">
-<link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">  
-
-
+<link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen"> 
 
 <style type="text/css">
 	.ohw-home-table {
@@ -262,7 +260,6 @@
 	    color: #fff!important;
 	}
 	
-	/* -- The "User's Menu Container" specific elements. Custom container for the snippet -- */
 	div.user-menu-container {
 	  z-index: 10;
 	  background-color: #fff;
@@ -461,9 +458,48 @@
 	    }
 	}	
 
+	/* 음악영역 */
 	
+	#pinBoot {
+	  position: relative;
+	  max-width: 100%;
+	  width: 100%;
+	}
+
+	.white-panel {
+	  position: absolute;
+	  background: white;
+	  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	  padding: 10px;
+	}
+	/*
+	stylize any heading tags withing white-panel below
+	*/
 	
+	.white-panel h1 {
+	  font-size: 1em;
+	}
+	.white-panel h1 a {
+	  color: #A92733;
+	}
+	.white-panel:hover {
+	  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	  margin-top: -5px;
+	  -webkit-transition: all 0.3s ease-in-out;
+	  -moz-transition: all 0.3s ease-in-out;
+	  -o-transition: all 0.3s ease-in-out;
+	  transition: all 0.3s ease-in-out;
+	}
 	
+	/* 프리랜서 상부영역 */
+	.tutor-content{ color : white; width: 230px; }
+	
+	.tutor-block { background-image : url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg'); width: 250px; margin-right: 0;}
+	.tutor-img { width: 230px; height: 150px; margin-right: 0; }
+	.tutor-img img { width: 150px; height:150px; padding: 0; margin: 0; }
+	.social-media { background-color: #292929; padding: 12px; text-align: center; }
+	.social-media span { margin-right: 18px; font-size: 20px; font-family: "FontAwesome";}
+	.mb60{margin-bottom:60px;}
 	
 	
 </style>
@@ -515,7 +551,7 @@
 			</div>    
 
 			<div class="item" id="2">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="반려동물" style="width:100%;"></a>
+				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/반려동물.jpg" alt="반려동물" style="width:100%;"></a>
 			</div>
 
 			<div class="item" id="3">
@@ -558,7 +594,6 @@
  <hr>
  	
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide"  data-ride="carousel" data-interval="false" >
-
 		<!-- Indicators -->
 		<ol class="carousel-indicators" hidden="true">
 			<li data-target=".ohw-homeCarousel" data-slide-to="0" class="active"></li>
@@ -769,11 +804,8 @@
 										</dd>
 									</dl>
 								</div>
-								
-								
-				    
-					</div>
-					
+							</div>
+						
 			<table class="ohw-home-table"> <!-- main화면 data-slide-to="0" -->					
 				<tr>
 					<td class = "ohw-home-table-td" align = "center" style="padding: 0; Sectiongin: 0;">
@@ -836,8 +868,8 @@
 						<table class="ohw-home-table2" style="border: 1px solid gray;">
 							<tr>
 								<td style="padding-top: 11px; padding-bottom: 4px;">
-									<iframe width="520" height="320" src="https://www.youtube.com/embed/QI7cYnBlkFQ" allowfullscreen></iframe>
-
+									<iframe width="520" height="320" src="https://www.youtube.com/embed/QI7cYnBlkFQ"></iframe>
+				
 									<br>
 									<font size="6" face="굴림" style="font-weight: bold;">독신들을 위한 레시피!!</font>
 
@@ -889,11 +921,10 @@
 				<div class='container2'>
 				  <div class='blog-posts'>
 				    <div class='post featured'>
-				      <a href='#'>
 				        <!-- <div class='image' style='background-image: url(https://unsplash.it/600/400/?random)'> -->
 				        <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활1.jpg');"></div>
-				        <div class='content' style="overflow: ">
-					       	<center><h2> 제 공 해 요 </h2></center>
+				        <div class='content' align="center">
+					       	<h2> 제 공 해 요 </h2>
 							<table border="1" style="width: 100%; height: 50%;">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -905,12 +936,10 @@
 								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 							</table>
 				        </div>
-				      </a>
 				    </div>
 				    
 				    <div class='row cf'>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활1.jpg');">
 
 				          </div>
@@ -922,10 +951,8 @@
 				            
 				            
 				          </div>
-				        </a>
 				      </div>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활2.jpg');">
 
 				          </div>
@@ -936,11 +963,10 @@
 				            
 				            
 				          </div>
-				        </a>
+
 				      </div>
 				      
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활3.jpg');">
 
 				          </div>
@@ -951,197 +977,41 @@
 				            
 				            
 				          </div>
-				        </a>
+				
 				      </div>
 
 
 				    </div>
 				    
-				    
-				    
 				    <div class='row cf'>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활3.jpg');">
-
 				          </div>
 				          <div class='content'>
 				            다시짱짱해게! 늘어난 티셔츠 수선해드립니다!<br>
 				          	(서비스 제공자 : 도 우 너)
-		
-				            
-				            
 				          </div>
-				        </a>
+				
 				      </div>				    
-			    
-				    
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활1.jpg');">
-
 				          </div>
 				          <div class='content'>
 				          	거실 꾸미기, 가벽 세우고 화이트 톤으로 페인팅<br>
 				          	(서비스 제공자 : 홍 길 동)
-				          
-		
-				            
-				            
 				          </div>
-				        </a>
-				      </div>
-				      
+				      </div>				      
 				      <div class='post'>
-				        <a href='#'>
-				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활2.jpg');">
-	
+				          <div class='image' style="background-image: url('/goodluck/resources/common/img/life/생활2.jpg');">	
 				          </div>
 				          <div class='content'>
 				          	수납은 기본, 바다를 닮은 좁은 아이방 만들기!<br>
 				          	(서비스 제공자 : 정 욱 재)
-		
-				            
-				            
-				          </div>
-				        </a>
+				          </div>				 
 				      </div>	
-				      
-
-
-
 				    </div>				    
-				    
-				    
-				    
-				    
-				    
-				    <!-- <div class='row cf'>
-				      <div class='post'>
-				        <a href='#'>
-				          <div class='image'>
-				            <div class='time'>
-				              <div class='date'>
-				                4
-				              </div>
-				              <div class='month'>Section</div>
-				            </div>
-				          </div>
-				          <div class='content'>
-				            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
-				            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
-				            <div class='meta'>
-				              <div class='icon-comment'>22 Comments</div>
-				              <ul class='tags'>
-				                <li></li>
-				                <li></li>
-				              </ul>
-				            </div>
-				          </div>
-				        </a>
-				      </div>
-				      <div class='post'>
-				        <a href='#'>
-				          <div class='image'>
-				            <div class='time'>
-				              <div class='date'>
-				                5
-				              </div>
-				              <div class='month'>Section</div>
-				            </div>
-				          </div>
-				          <div class='content'>
-				            <h1>Man called gathering us great subdue unto herb sixth forth.</h1>
-				            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam a nostrum nihil nulla hic laborum illum...</p>
-				            <div class='meta'>
-				              <div class='icon-comment'>22 Comments</div>
-				              <ul class='tags'>
-				                <li></li>
-				                <li></li>
-				              </ul>
-				            </div>
-				          </div>
-				        </a>
-				      </div>
-				    </div> -->
-
 				  </div>
 				</div>
-				
-<!-- 			<div id="ukjaeLifeCarousel" class="carousel slide" data-ride="carousel">
-			      <div class="carousel-inner">
-			      
-			        <div class="item active">
-			          <img src="/goodluck/resources/common/img/main/여행1.jpg">
-			        </div>End Item
-			 
-			         <div class="item">
-			          <img src="/goodluck/resources/common/img/main/여행2.jpg">
-  			         </div>End Item
-			        
-			        <div class="item">
-			          <img src="/goodluck/resources/common/img/main/여행3.jpg">
-			        </div>End Item
-			        
-			        <div class="item">
-			          <img src="/goodluck/resources/common/img/main/여행4.jpg">
-			        </div>End Item  
-			        
-			      </div>End Carousel Inner
-			      
-			 
-			    	<ul class="nav nav-pills nav-justified">
-			          <li data-target="#ukjaeLifeCarousel" data-slide-to="0" class="mall active"></li>
-			          <li data-target="#ukjaeLifeCarousel" data-slide-to="1" class="mall"></li>
-			          <li data-target="#ukjaeLifeCarousel" data-slide-to="2" class="mall"></li>
-			          <li data-target="#ukjaeLifeCarousel" data-slide-to="3" class="mall"></li>
-			        </ul>			      
-			    </div>End Carousel	 -->		
-					
-					
-					
-					<!-- <div class="jwj-lifeCarousel carousel slide" data-ride="carousel">
-						Indicators
-						<ol class="carousel-indicators">
-							<li data-target=".jwj-lifeCarousel" data-slide-to="0" class="active2"></li> 
-							<li data-target=".jwj-lifeCarousel" data-slide-to="1" class="active2"></li>
-							<li data-target=".jwj-lifeCarousel" data-slide-to="2" class="active2"></li>
-							<li data-target=".jwj-lifeCarousel" data-slide-to="3" class="active2"></li>
-							<li data-target=".jwj-lifeCarousel" data-slide-to="4" class="active2"></li>
-						</ol>
-						<div class="carousel-inner">
-							<div class="item active2" id="0">
-							
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">									
-							</div>
-							
-							<div class="item" id="1">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;">	
-							</div>    
-				
-							<div class="item" id="2">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/반려동물2.jpg" alt="반려동물" style="width:100%;">
-							</div>
-				
-							<div class="item" id="3">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/게임.jpg" alt="게임" style="width:100%;">
-							</div>
-				
-							<div class="item" id="4">
-								<img class = "jwj-lifeCarousel-img" src="/goodluck/resources/common/img/main/음악.jpg" alt="음악" style="width:100%;">
-							</div>
-						</div>		
-						
-						<a class="left carousel-control" href=".jwj-lifeCarousel" data-slide="prev" id="topcaro">
-							<span class="glyphicon glyphicon-chevron-left"></span> 화면상에 < 로 보여지는 버튼
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="right carousel-control" href=".jwj-lifeCarousel" data-slide="next" id="topcaro1">
-							<span class="glyphicon glyphicon-chevron-right"></span> 화면상에 > 로 보여지는 버튼
-							<span class="sr-only">Next</span>
-						</a>
-					</div> homeCarousel -->	
-
 		    </div>	 
 		    <div class="item" style="background-image:-webkit-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-moz-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:-o-linear-gradient(left,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4);background-image:linear-gradient(to right,#c4e17f,#c4e17f 12.5%,#f7fdca 12.5%,#f7fdca 25%,#fecf71 25%,#fecf71 37.5%,#f0776c 37.5%,#f0776c 50%,#db9dbe 50%,#db9dbe 62.5%,#c49cde 62.5%,#c49cde 75%,#669ae1 75%,#669ae1 87.5%,#62c2e4 87.5%,#62c2e4)">		    
  					<script type="text/javascript">
@@ -1198,21 +1068,19 @@
 					                    </div>
 					                </div>
 					            </div>
-					            <div class="row overview">
+					            <div class="row overview" style=" background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg');">
 					                <div class="col-md-4 user-pad text-center" align="center"> 
-					                    <h3>FOLLOWERS </h3>
-					                    <h4>588<Br>
-					                    <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a></h4>
+					                    <h3 style="color: white">FOLLOWERS - <span class="fa fa-heart-o"></span> </h3>
+					                    <h4 style="color: white">588</h4>
 					                </div>
 					                <div class="col-md-4 user-pad text-center" align="center">
-					                    <h3>FOLLOWING</h3>
-					                    <h4>456<Br>
-					                   	<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a></h4>
+					                    <h3 style="color: white">FOLLOWING - <span class="fa fa-heart-o"></span></h3>
+					                    <h4 style="color: white">456</h4>
 					      
 					                </div>
 					                <div class="col-md-4 user-pad text-center" >
-					                    <h3>APPRECIATIONS</h3>
-					                    <h4>4,901</h4>
+					                    <h3 style="color: white">SOSO</h3>
+					                    <h4 style="color: white">12</h4>
 					                </div>
 					            </div>
 					        </div>
@@ -1235,47 +1103,43 @@
 					        <div class="col-md-4 user-menu user-pad">
 					            <div class="user-menu-content active">
 					                <h3>
-					                    Recent Interactions
+					                    서비스 제공해요
+					                </h3>
+
+									<table border="1" style="width: 100%; height: 50%;">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									</table>	
+
+					            </div>  
+					            <div class="user-menu-content">
+					                <h3>
+					                    독신사 안내사항(반려동물)
 					                </h3>
 					                <ul class="user-menu-list">
 					                    <li>
-					                        <h4><i class="fa fa-user coral"></i> Roselynn Smith followed you.</h4>
+					                        <h4> 1.고객상담 가능시간 <br><small class="coral"><strong>운영시간</strong> 
+					                        <i class="fa fa-clock-o"></i> 8:00 A.M. ~ <i class="fa fa-clock-o"></i>20:00 P.M.</small></h4>
 					                    </li>
 					                    <li>
-					                        <h4><i class="fa fa-heart-o coral"></i> Jonathan Hawkins followed you.</h4>
+					                        <h4> 2.고객상담 가능시간 <br><small class="coral"><strong>운영시간</strong> 
+					                        <i class="fa fa-clock-o"></i> 8:00 A.M. ~ <i class="fa fa-clock-o"></i>20:00 P.M.</small></h4>
 					                    </li>
 					                    <li>
-					                        <h4><i class="fa fa-paper-plane-o coral"></i> Gracie Jenkins followed you.</h4>
-					                    </li>
-					                    <li>
-					                        <button type="button" class="btn btn-labeled btn-success" href="#">
-					                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>View all activity</button>
+					                        <h4> 3.고객상담 가능시간 <br><small class="coral"><strong>운영시간</strong> 
+					                        <i class="fa fa-clock-o"></i> 8:00 A.M. ~ <i class="fa fa-clock-o"></i>20:00 P.M.</small></h4>
 					                    </li>
 					                </ul>
 					            </div>
 					            <div class="user-menu-content">
 					                <h3>
-					                    Your Inbox
-					                </h3>
-					                <ul class="user-menu-list">
-					                    <li>
-					                        <h4>From Roselyn Smith <small class="coral"><strong>NEW</strong> <i class="fa fa-clock-o"></i> 7:42 A.M.</small></h4>
-					                    </li>
-					                    <li>
-					                        <h4>From Jonathan Hawkins <small class="coral"><i class="fa fa-clock-o"></i> 10:42 A.M.</small></h4>
-					                    </li>
-					                    <li>
-					                        <h4>From Georgia Jennings <small class="coral"><i class="fa fa-clock-o"></i> 10:42 A.M.</small></h4>
-					                    </li>
-					                    <li>
-					                        <button type="button" class="btn btn-labeled btn-danger" href="#">
-					                            <span class="btn-label"><i class="fa fa-envelope-o"></i></span>View All Messages</button>
-					                    </li>
-					                </ul>
-					            </div>
-					            <div class="user-menu-content">
-					                <h3>
-					                    Trending
+					                    반려동물 News
 					                </h3>
 					                <div class="row">
 					                    <div class="col-md-6">
@@ -1285,11 +1149,11 @@
 					                                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
 					                                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
 					                            </div>
-					                            <img src="http://24.media.tumblr.com/273167b30c7af4437dcf14ed894b0768/tumblr_n5waxesawa1st5lhmo1_1280.jpg" class="img-responsive">
+					                            <img src="/goodluck/resources/common/img/pet/펫1.jpg" class="img-responsive" style="height: 110px;">
 					                        </div>
 					                        <div class="info">
-					                            <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-					                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted Today | 10:42 A.M.</small>
+					                            <p class="small" style="text-overflow: ellipsis">나 올라갈래~~ 강아지는<br> 높은곳을 좋아할까요?</p>
+					                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> 10:42 A.M.
 					                        </div>
 					                        <div class="stats turqbg">
 					                            <span class="fa fa-heart-o"> <strong>47</strong></span>
@@ -1303,11 +1167,11 @@
 					                                <a href="" rel="tooltip" title="Appreciate"><span class="fa fa-heart-o fa-2x"></span></a>
 					                                <a href="" rel="tooltip" title="View"><span class="fa fa-search fa-2x"></span></a>
 					                            </div>
-					                            <img src="http://24.media.tumblr.com/282fadab7d782edce9debf3872c00ef1/tumblr_n3tswomqPS1st5lhmo1_1280.jpg" class="img-responsive">
+					                            <img src="/goodluck/resources/common/img/pet/펫2.jpg" class="img-responsive" style="height: 110px;">
 					                        </div>
 					                        <div class="info">
-					                            <p class="small" style="text-overflow: ellipsis">An Awesome Title</p>
-					                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> Posted Today | 10:42 A.M.</small>
+					                            <p class="small" style="text-overflow: ellipsis">'친구 사귀라니까...'애견카페만 가면 얼음되는 댕댕이</p>
+					                            <p class="small coral text-right"><i class="fa fa-clock-o"></i> 14:20 P.M.
 					                        </div>
 					                        <div class="stats turqbg">
 					                            <span class="fa fa-heart-o"> <strong>47</strong></span>
@@ -1316,41 +1180,40 @@
 					                    </div>
 					                </div>
 					            </div>
+					            
 					            <div class="user-menu-content">
 					                <h2 class="text-center">
-					                    START SHARING
+					                    반려동물 Care꿀팁
 					                </h2>
-					                <center><i class="fa fa-cloud-upload fa-4x"></i></center>
-					                <div class="share-links">
-					                    <center><button type="button" class="btn btn-lg btn-labeled btn-success" href="#" style="margin-bottom: 15px;">
-					                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>A FINISHED PROJECT
-					                    </button></center>
-					                    <center><button type="button" class="btn btn-lg btn-labeled btn-warning" href="#">
-					                            <span class="btn-label"><i class="fa fa-bell-o"></i></span>A WORK IN PROGRESS
-					                    </button></center>
-					                </div>
+
+					                <ul class="user-menu-list">
+					                    <li>
+					                        <h4 id="ukjaeTarvel_title"> 1.외출후 잘 씻긴다. </h4>
+					                    </li>
+					                    <li>
+					                        <h4 id="ukjaeTarvel_title"> 2.잘 타이른다. </h4> 
+					                    </li>
+					                    <li>
+					                        <h4 id="ukjaeTarvel_title"> 3.맛있는 간식을 많이준다. </h4>
+					                    </li>
+					                </ul>		
+					                
 					            </div>
 					        </div>
 					    </div>
+			<div style="width: 100%; height: 600px; margin-top: 10px;"> &nbsp;
 			</div>
-
- 
- 
-
+			<hr style="clear: both;">
 			
-			
-			
-			
-			
+			</div> <!-- item end  -->
 			<div class="item">
 				<div class='container2'>
 				  <div class='blog-posts'>
 				    <div class='post featured'>
-				      <a href='#'>
 				        <!-- <div class='image' style='background-image: url(https://unsplash.it/600/400/?random)'> -->
 				        <div class='image' style="background-image: url('/goodluck/resources/common/img/game/게임1.jpg');"></div>
-				        <div class='content' style="overflow: ">
-					       	<center><h2> 제 공 해 요 </h2></center>
+				        <div class='content' align="center">
+					       	<h2> 제 공 해 요 </h2>
 							<table border="1" style="width: 100%; height: 50%;">
 								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
@@ -1362,14 +1225,12 @@
 								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 							</table>
 				        </div>
-				      </a>
 				    </div>
 				    
 				   <div class='row cf'>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image'>
-							<iframe style="width:280px; height: 199px;" src="https://www.youtube.com/embed/4mh-5-dEoVs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							<iframe style="width:280px; height: 199px;" src="https://www.youtube.com/embed/4mh-5-dEoVs"></iframe>
 				          </div>
 				          <div class='content' style="padding-top: 10px;">
 							
@@ -1377,12 +1238,10 @@
 
 
 				          </div>
-				        </a>
 				      </div>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image'>
-							<iframe  style="width:280px; height: 199px;" src="https://www.youtube.com/embed/u9mjViuNoDM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+							<iframe  style="width:280px; height: 199px;" src="https://www.youtube.com/embed/u9mjViuNoDM"></iframe>
 				          </div>
 				          <div class='content' style="padding-top: 10px;">
 							
@@ -1390,7 +1249,6 @@
 
 
 				          </div>
-				        </a>
 				      </div>
 				      
 				      
@@ -1400,7 +1258,6 @@
 
 				    <div class='row cf'>
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/game/게임3.jpg');">
 
 				          </div>
@@ -1408,32 +1265,20 @@
 				          	<br>
 				            (PS3)던전 앤 드레곤<br> 타이틀판매.<br><br>
 				            (제공자 : 태 극 기)
-		
-				            
-				            
 				          </div>
-				        </a>
 				      </div>				    
-			    
-				    
-				      <div class='post'>
-				        <a href='#'>
-				          <div class='image' style="background-image: url('/goodluck/resources/common/img/game/게임2.jpg');">
 
+				      <div class='post'>
+				          <div class='image' style="background-image: url('/goodluck/resources/common/img/game/게임2.jpg');">
 				          </div>
 				          <div class='content'>
 				            <br>(닌텐도)신게임 '마리오테니스'! 친절하게 가르쳐 드립니다.<br><br>
 				            (제공자 : 짱 짱 맨)
-				          
-		
-				            
-				            
+
 				          </div>
-				        </a>
 				      </div>
 				      
 				      <div class='post'>
-				        <a href='#'>
 				          <div class='image' style="background-image: url('/goodluck/resources/common/img/game/게임5.jpg');">
 
 				          </div>
@@ -1445,176 +1290,407 @@
 				            
 				            
 				          </div>
-				        </a>
+		
 				      </div>
 
 				    </div>				    
-				    
-				    
-				    
-				    
-				    
-
-
+			
 				  </div>
 				</div>
 			</div>
 			<div class="item">
-				<table class="ohw-home-table"> <!-- 음악화면 data-slide-to="4" -->
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>
+				<script type="text/javascript"> /* 음악 영역에 대한 스크립트. */
+					$(document).ready(function() {
+							$('#pinBoot').pinterest_grid({
+							no_columns: 4,
+							padding_x: 10,
+							padding_y: 10,
+							margin_bottom: 50,
+							single_column_breakpoint: 700
+							});
+						});
 		
-							</td>
-							<td class = "ohw-home-table-td" align = "center">
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>						
-							</td>
-						</tr>
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>							
-										</td>
-									</tr>
-								</table>				
-							</td>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>								
-										</td>
-									</tr>
-								</table>					
-							</td>
-						</tr>
-					</table>
-				
-			</div>
-			<div class="item">
-			<table class="ohw-home-table"> <!-- 렌탈화면 data-slide-to="5" -->
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">이벤트</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>
+						;(function ($, window, document, undefined) {
+						    var pluginName = 'pinterest_grid',
+						        defaults = {
+						            padding_x: 10,
+						            padding_y: 10,
+						            no_columns: 3,
+						            margin_bottom: 50,
+						            single_column_breakpoint: 700
+						        },
+						        columns,
+						        $article,
+						        article_width;
 		
-							</td>
-							<td class = "ohw-home-table-td" align = "center">
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">뉴스ROOM</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>						
-							</td>
-						</tr>
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>							
-										</td>
-									</tr>
-								</table>				
-							</td>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2" style="border: 1px solid gray;">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>								
-										</td>
-									</tr>
-								</table>					
-							</td>
-						</tr>
-					</table>
-			</div>
+						    function Plugin(element, options) {
+						        this.element = element;
+						        this.options = $.extend({}, defaults, options) ;
+						        this._defaults = defaults;
+						        this._name = pluginName;
+						        this.init();
+						    }
+		
+						    Plugin.prototype.init = function () {
+						        var self = this,
+						            resize_finish;
+		
+						        $(window).resize(function() {
+						            clearTimeout(resize_finish);
+						            resize_finish = setTimeout( function () {
+						                self.make_layout_change(self);
+						            }, 11);
+						        });
+		
+						        self.make_layout_change(self);
+		
+						        setTimeout(function() {
+						            $(window).resize();
+						        }, 500);
+						    };
+		
+						    Plugin.prototype.calculate = function (single_column_mode) {
+						        var self = this,
+						            tallest = 0,
+						            row = 0,
+						            $container = $(this.element),
+						            container_width = $container.width();
+						            $article = $(this.element).children();
+		
+						        if(single_column_mode === true) {
+						            article_width = $container.width() - self.options.padding_x;
+						        } else {
+						            article_width = ($container.width() - self.options.padding_x * self.options.no_columns) / self.options.no_columns;
+						        }
+		
+						        $article.each(function() {
+						            $(this).css('width', article_width);
+						        });
+		
+						        columns = self.options.no_columns;
+		
+						        $article.each(function(index) {
+						            var current_column,
+						                left_out = 0,
+						                top = 0,
+						                $this = $(this),
+						                prevAll = $this.prevAll(),
+						                tallest = 0;
+		
+						            if(single_column_mode === false) {
+						                current_column = (index % columns);
+						            } else {
+						                current_column = 0;
+						            }
+		
+						            for(var t = 0; t < columns; t++) {
+						                $this.removeClass('c'+t);
+						            }
+		
+						            if(index % columns === 0) {
+						                row++;
+						            }
+		
+						            $this.addClass('c' + current_column);
+						            $this.addClass('r' + row);
+		
+						            prevAll.each(function(index) {
+						                if($(this).hasClass('c' + current_column)) {
+						                    top += $(this).outerHeight() + self.options.padding_y;
+						                }
+						            });
+		
+						            if(single_column_mode === true) {
+						                left_out = 0;
+						            } else {
+						                left_out = (index % columns) * (article_width + self.options.padding_x);
+						            }
+		
+						            $this.css({
+						                'left': left_out,
+						                'top' : top
+						            });
+						        });
+		
+						        this.tallest($container);
+						        $(window).resize();
+						    };
+		
+						    Plugin.prototype.tallest = function (_container) {
+						        var column_heights = [],
+						            largest = 0;
+		
+						        for(var z = 0; z < columns; z++) {
+						            var temp_height = 0;
+						            _container.find('.c'+z).each(function() {
+						                temp_height += $(this).outerHeight();
+						            });
+						            column_heights[z] = temp_height;
+						        }
+		
+						        largest = Math.max.apply(Math, column_heights);
+						        _container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
+						    };
+		
+						    Plugin.prototype.make_layout_change = function (_self) {
+						        if($(window).width() < _self.options.single_column_breakpoint) {
+						            _self.calculate(true);
+						        } else {
+						            _self.calculate(false);
+						        }
+						    };
+		
+						    $.fn[pluginName] = function (options) {
+						        return this.each(function () {
+						            if (!$.data(this, 'plugin_' + pluginName)) {
+						                $.data(this, 'plugin_' + pluginName,
+						                new Plugin(this, options));
+						            }
+						        });
+						    }
+		
+						})(jQuery, window, document);			
+					</script>
+					
 			
+			
+			   <div  style="width: 100%; height: 100%;" align="center">  
+				  <div class="row"  style="width: 98%; height: auto; max-width:100%; overflow: scroll;">
+				    <h2> 음 악 영 역  서비스 제공공간 </h2>
+				    		
+				    <hr>
+				    <section id="pinBoot">
+				
+				     <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+  			     	 </article>
+				
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]흉성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>				
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]기초부터~실전까지.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비강의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]복식호흡의 기초</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="width: 220px; height: 230px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]공명점의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				     <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+  			     	 </article>
+				
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]흉성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>				
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]기초부터~실전까지.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비강의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]복식호흡의 기초</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="width: 220px; height: 230px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]공명점의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				     <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+  			     	 </article>
+				
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]흉성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>				
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]기초부터~실전까지.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비강의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]복식호흡의 기초</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="width: 220px; height: 230px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]공명점의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				     <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+  			     	 </article>
+				
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]흉성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>				
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg" style="width: 220px; height: 220px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]기초부터~실전까지.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg" style="width: 220px; height: 103px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]비강의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]복식호흡의 기초</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="width: 220px; height: 230px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]공명점의 울림</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				      
+				      <article class="white-panel"><img src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg" style="width: 220px; height: 150px;" alt="이미지준비중">
+				        <h4><a href="#">[보컬]두성 알려드립니다.</a><br>(제공자: 정 욱 재)</h4>
+
+				      </article>
+				    </section>
+				    <hr>
+				    
+				  <p>
+				    노 래 는 한 만 큼 실 력 이 늘 은 다.
+				  </p>
+
+				  </div>
+
+				</div>
+			</div>
+			<br><br>
+			
+			<div class="item"> <!-- 렌탈 작성영역  -->
+	
+				<div class='container2'>
+				  <div class='blog-posts'>
+				    <div class='post featured'>				    
+				        <div class='image' style="background-image: url('/goodluck/resources/common/img/rent/렌탈1.jpg');"></div>
+				        <div class='content' align="center">
+					       	<h2> 홈(HOME) 제 공 해 요 </h2>
+							<table border="1" style="width: 100%; height: 50%;">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+							</table>
+				        </div>
+				    </div>
+				    <div class='post featured'>
+				        <div class='content' align="center">
+					       	<h2> 스포츠용품(SPORTS) 제 공 해 요 </h2>
+							<table border="1" style="width: 100%; height: 50%;">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+							</table>
+				        </div>
+				        <div class='image' style="background-image: url('/goodluck/resources/common/img/rent/렌탈2.jpg');"></div>				        
+				    </div>
+				    <div class='post featured'>
+				        <div class='image' style="background-image: url('/goodluck/resources/common/img/rent/렌탈3.jpg');"></div>
+				        <div class='content' align="center">
+					       	<h2> 생활용품(Liveing) 제 공 해 요 </h2>
+							<table border="1" style="width: 100%; height: 50%;">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+							</table>
+				        </div>
+				    </div>
+				    <div class='post featured'>
+				        <div class='content' align="center">
+					        <h2> 기타(Etc) 제 공 해 요 </h2>
+							<table border="1" style="width: 100%; height: 50%;">
+								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+								<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+								<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+								<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+							</table>
+				        </div>
+				        <div class='image' style="background-image: url('/goodluck/resources/common/img/rent/렌탈4.jpg');"></div>				        
+				    </div>
+				  </div>
+				</div>
+			<div style="width: 100%; height: 35px;"> &nbsp; </div>	
+				
+			</div>			
 			<div class="item">
 				<div style="width: 55%; float: left;">
 						    <div class="container-fluid" style="overflow: scroll; max-height: 684px;">
@@ -1629,267 +1705,330 @@
 						                <div class="col-sm-6" style="width: auto;"> 
 						                
 						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
 						                            <a class="pull-left" href="#" target="_parent">
 						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-						                            <!-- <img alt="image" class="img-responsive" src="http://images.prd.mris.com/image/V2/1/uLp58OH37CTPHxXcgJXYw8zT2u3xg_2XIbFndB6J0WTSAStGBaEV6YsdAseSZTKAdthm0OzG-Ca_EIkoXIEBxw.jpg"> --></a>
-						
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading">
-						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
-						
-						
-						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
-						                                    <li>온천</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>함박스테이크</li>
-						
-						                                    <li style="list-style: none">|</li>
-						
-						                                    <li>XXX호텔</li>
-						                                </ul>
-						
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						
 
-						                    				
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+						                    <!-- Begin Listing: 9006 CREFELD ST-->
+						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" style="background: none;">
+						                        <div class="media"  style="background: black; color: white;">
+						                            <a class="pull-left" href="#" target="_parent">
+						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
+
+						                            <div class="clearfix visible-sm"></div>
+						
+						                            <div class="media-body fnt-smaller">
+						                                <a href="#" target="_parent"></a>
+						
+						                                <h4 class="media-heading">
+						                                  <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>
+						
+						
+						                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+						                                    <li>온천</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>함박스테이크</li>
+						
+						                                    <li style="list-style: none">|</li>
+						
+						                                    <li>XXX호텔</li>
+						                                </ul>
+						
+						                                <p class="hidden-xs">
+							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
+							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
+																자세한 내용은 여행블로그 참고해보세요~^^
+																비행시간도 짧아서 부담없으실거에요~						                                
+						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
+						                            </div>
+						                        </div>
+						                    </div><!-- End Listing-->
+
 						                </div>
 						            </div><!-- End row -->
 						        </div><!-- End container -->
@@ -1898,82 +2037,22 @@
 
 
 
-				<div style="width: 44%; height:40%; float: right; border: 1px solid black; padding-bottom: 20px;" align="center" > <!-- 오른쪽 영역1  -->
-						<h2>Planer</h2>
-						<hr style="clear: both;">
-						<div class="row">
-							<div class="span12">
-					    	    <table class="table-condensed table-bordered table-striped" style="width: 90%;">
-					                <thead>
-					                    <tr>
-					                      <th colspan="7" align="center">
-					                        <a class="btn"><i class="icon-chevron-left"></i></a>
-					                        <a class="btn" al>May 2018</a>
-					                        <a class="btn"><i class="icon-chevron-right"></i></a>
-					                      </th>
-					                    </tr>
-					                    <tr>
-					                        <th>Su</th>
-					                        <th>Mo</th>
-					                        <th>Tu</th>
-					                        <th>We</th>
-					                        <th>Th</th>
-					                        <th>Fr</th>
-					                        <th>Sa</th>
-					                    </tr>
-					                </thead>
-					                <tbody>
-					                    <tr>
-					                        <td class="muted">29</td>
-					                        <td class="muted">30</td>
-					                        <td class="muted">31</td>
-					                        <td>1</td>
-					                        <td>2</td>
-					                        <td>3</td>
-					                        <td>4</td>
-					                    </tr>
-					                    <tr>
-					                        <td>5</td>
-					                        <td>6</td>
-					                        <td>7</td>
-					                        <td>8</td>
-					                        <td>9</td>
-					                        <td>10</td>
-					                        <td>11</td>
-					                    </tr>
-					                    <tr>
-					                        <td>12</td>
-					                        <td>13</td>
-					                        <td>14</td>
-					                        <td>15</td>
-					                        <td>16</td>
-					                        <td>17</td>
-					                        <td>18</td>
-					                    </tr>
-					                    <tr>
-					                        <td>19</td>
-					                        <td><strong>20</strong></td>
-					                        <td>21</td>
-					                        <td>22</td>
-					                        <td>23</td>
-					                        <td>24</td>
-					                        <td>25</td>
-					                    </tr>
-					                    <tr>
-					                        <td>26</td>
-					                        <td>27</td>
-					                        <td>28</td>
-					                        <td>29</td>
-					                        <td class="muted">1</td>
-					                        <td class="muted">2</td>
-					                        <td class="muted">3</td>
-					                    </tr>
-					                </tbody>
-					            </table>    
-							</div>
-						</div>
-
-	
+					<div style="width: 44%; height:40%; float: right; border: 1px solid gray; padding-bottom: 44px; padding-top: 44px;" align="center" > <!-- 오른쪽 영역1  -->
+						<table class="ohw-home-table2" style="border: 1px solid gray;">
+							<tr>
+								<td style="padding: 0;">
+									<font size="6" face="굴림" style="font-weight: bold;">여행가이드 제공해요</font>
+									<table class="jwj-innertable" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									</table>						
+								</td>
+							</tr>
+						</table>										
 				</div>
 				
 				<div style="float: right; width: 44%; height: 15px;"> &nbsp; </div> <!-- 오른쪽1,2 두 영역의 공백을 주기위한 div -->
@@ -2115,8 +2194,74 @@
 
 				<hr style="clear: both;">	
 			</div>	
-			<div class="item">
-			<table class="ohw-home-table"> <!-- 프리랜서화면 data-slide-to="7" -->
+			<div class="item" align="center">  <!-- 대행화면 data-slide-to="7" -->
+
+	            <div class="row" style="width: 100%; height: 30px; padding-left: 40px;">
+	                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60 text-center" style="margin-bottom: 0;">
+	                        <h2 style="margin-top: 0;">추천 프리랜서</h2>
+	             		</div>
+	            </div>
+	            <div class="row"  align="center" style="padding-left: 50px;" >
+	                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30" style="width: 260px;">
+	                    <div class="tutor-block">
+	                        <div class="tutor-img">
+	                            <img src="/goodluck/resources/common/img/free/프리랜서1.jpg">
+	                        </div>
+	                        <div class="tutor-content">
+	                        		타이틀 : 싸이트개발해드립니다.<br>
+	                        		이름 : 황마담<br>
+									직종 : 프로그래머 <br>
+									주종 : JAVA언어 <br>
+									경력 : 웹개발5년차 
+	                        </div>
+	                    </div>
+	                 </div>
+	                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30" style="width: 260px;">
+	                    <div class="tutor-block">
+	                        <div class="tutor-img">
+	                            <img src="/goodluck/resources/common/img/free/프리1.jpg">
+	                        </div>
+	                        <div class="tutor-content">
+	                        		타이틀 : 출장부폐 차려드립니다. <br>
+	                        		이름 : 백종원<br>
+									직종 : 요리사 <br>
+									주종 : 만능 <br>
+									경력 : 요리10년차 이상 
+	                        </div>
+	                    </div>
+	                 </div>
+	                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30" style="width: 260px;">
+	                    <div class="tutor-block">
+	                        <div class="tutor-img">
+	                            <img src="/goodluck/resources/common/img/free/프리2.jpg">
+	                        </div>
+	                        <div class="tutor-content">
+	                        		타이틀 : 홈페이지 디자인 해드려요<br>
+	                        		이름 : 미소미<br>
+									직종 : 웹디자이너 <br>
+									주종 : 포토샵,CSS,JAVASCRIPT <br>
+									경력 : 웹디자이너 3년차
+	                        </div>
+	                    </div>
+	                 </div>
+	                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30" style="width: 260px;">
+	                    <div class="tutor-block">
+	                        <div class="tutor-img">
+	                            <img src="/goodluck/resources/common/img/free/프리3.jpg">
+	                        </div>
+	                        <div class="tutor-content">
+	                        		타이틀 : 문서 번역해드립니다.<br>(영어,일본어,중국어) <br>
+	                        		이름 : 나번역<br>
+									직종 : 번역가 <br>
+									경력 : 번역 10년차
+	                        </div>
+	                    </div>
+	                 </div>
+		  	 </div>
+			
+			<hr style="clear: both;">
+
+			<table class="ohw-home-table"> <!-- 대행화면 data-slide-to="8" -->
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2" style="border: 1px solid gray;">
@@ -2191,8 +2336,8 @@
 							</td>
 						</tr>
 					</table>
-		
-			</div>
+ 
+		   </div>
 			<div class="item">
 
 			<table class="ohw-home-table"> <!-- 대행화면 data-slide-to="8" -->
