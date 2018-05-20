@@ -71,3 +71,24 @@
 	        max-width: 180px;
 	    }
 	}
+	
+	.container-fluid{
+	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;	
+	}
+	
+	/* 파->빨->파로 계속 변하는 효과 */
+	#ukjaeTarvel_title{ 
+		color:red;
+		animation: traveltitle 2s infinite;		
+	}
+			
+	@-webkit-keyframes traveltitle {
+	    from {color: red;}
+	    to {color: blue;}
+	} 
+	
+	@keyframes traveltitle {
+	    from {color: red;}
+	    to {color: blue;}
+	}  
+	/* 파->빨->파로 계속 변하는 효과 */
