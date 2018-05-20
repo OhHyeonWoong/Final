@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 
@@ -34,6 +35,9 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 	 return sqlSession.selectList("homepopularlitm");
 	}
-	
-	
+
+	public List<GetMyItem> GetMyItem(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("Getmyitem",memberid);
+	}
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,20 +113,40 @@ public class ItemController {
 	
 	@RequestMapping("cjsgetmyitem.go")
 	public void getmyitem(@RequestParam("member_id") String memberid, HttpServletResponse response) throws IOException {
-	
+	//내아이템 작업.
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
 		
-		GetMyItem gmi = new GetMyItem();
+		List<GetMyItem> al = ItemService.GetMyItem(memberid);
 		
+		System.out.println(al);
+		
+		JSONObject json = new JSONObject();
+		
+		JSONArray jarr = new JSONArray();
+		
+		for(GetMyItem l : al) {
+			JSONObject job = new JSONObject();
+			job.put("MYITEM_NO", l.getMYITEM_NO());
+			job.put("MEMBER_ID", l.getMEMBER_ID());
+	job.put("BUY_DATE", l.getBUY_DATE().toString());
+			job.put("MYITEM_STATUS", l.getMYITEM_STATUS());
+		job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
+		job.put("ITEMNAME", l.getITEMNAME());
+		job.put("ITEMPRICE", l.getITEMPRICE());
+			job.put("ITEMPERIOD", l.getITEMPERIOD());
+			job.put("ITEMTYPE", l.getITEMTYPE());
+			job.put("ITEMFILENAME", l.getITEMFILENAME());
+		jarr.add(job);
+		}
+		
+		json.put("havingitem", jarr);
 		PrintWriter out = response.getWriter();
-
+		out.print(json.toJSONString());
 		out.flush();
 		out.close();
 	
 	}
-	 
-	
 }
 
 

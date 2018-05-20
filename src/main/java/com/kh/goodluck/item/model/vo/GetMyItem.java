@@ -5,7 +5,6 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-
 @Component("getmyitem")
 public class GetMyItem implements Serializable{
 
@@ -121,6 +120,11 @@ public class GetMyItem implements Serializable{
 		ITEMFILENAME = iTEMFILENAME;
 	}
 
-	 
+	@Override
+	public String toString() {
+		return "Item [ITEMLIST_NO=" + ITEMLIST_NO + ", ITEMNAME=" + ITEMNAME + ", ITEMPRICE=" + ITEMPRICE + ", ITEMPERIOD="
+				+ ITEMPERIOD + ", ITEMTYPE=" + ITEMTYPE + ", ITEMFILENAME=" + ITEMFILENAME + ","
+				+ "]";
+	}
 	
 }

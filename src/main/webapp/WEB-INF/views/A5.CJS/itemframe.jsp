@@ -14,10 +14,52 @@ $(function(){
 		data:{
 			member_id: id		
 		},
+		dataType: "json",
 		success:function(data){
+
+		var jsonStr = JSON.stringify(data);
 			
-			alert("에이작스로 페이징 처리해야합니다... 싀벌 처리후 삭제.");
+		var json = JSON.parse(jsonStr);
+			
+		console.log(json);
 		
+		var count1=1; 
+		var count2=1; 
+		var value1="";
+		var value2="";
+		value1+="<tr>";
+		for(var i in json.havingitem){//보유중 아이템 삽입.
+			
+<%-- 			<%for(int i=0 ; i<4; i++){%> --%>
+// 			<tr>
+<%-- 			<% for(int j=0; j<4; j++){ %> --%>
+// 			<th class="itemth">
+<%-- 			<%= j %> --%>
+// 			</th>
+<%-- 			<%} %> --%>
+// 		    </tr>
+<%-- 		<%} %> --%>
+		
+		if(json.havingitem[i].ITEMTYPE != 2){//이모티콘을 제외하고 모두
+			if(count1%5 == 0){
+			value1+="</tr>";
+			}
+            
+			value1+="<th class='itemth'><img src='/goodluck/resources/A5.CJS/itemimg/"+json.havingitem[i].ITEMFILENAME+"' style='width:100%; height:100%;  border-radius: 10px 10px 10px 10px; border-color: black;' ></th>";
+			if(count1%4 == 0){
+			value1+="<tr>";
+			}
+			count1++;
+		}else{//이모티콘만
+		count2++;
+			$("#haveimticon").html("");
+			}
+		}
+		value1+="</tr>";
+		console.log(value1);
+		$("#nowhaveitem").html(value1);	
+		$("#haveimticon").html(value2);
+			
 		},
 		error:function(a,b,c){
 			alert("a : " + a + ", b : " + b + ", c : " + c);
@@ -73,10 +115,10 @@ $(function(){
       </div>
       <div class="modal-body">
         <Br>
-<div class="11" style="background: black; float: left; margin-left:10px;">
+<div class="11" style="float: left; margin-left:10px;">
 
 <center>
-<img alt="회원이미지" src="https://images.pexels.com/photos/262508/pexels-photo-262508.jpeg?h=350&auto=compress&cs=tinysrgb" style="width: 100px; height: 100px">
+<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
 </center>
 
 <br>
@@ -98,14 +140,13 @@ $(function(){
                             <li class="active">
                             <a class='havaitem' href="#tab1primary" data-toggle="tab">보유 중인 아이템</a>
                             </li>
-                            
                             <li>
                             <a class='havaitem' href="#tab2primary" data-toggle="tab">적용중인 아이템</a>
                             </li>
                         </ul>
                 </div>
                   <style>
-                .itemth {
+               	 .itemth {
                   width:50px;
                   height:50px;
                   background:white;
@@ -117,8 +158,8 @@ $(function(){
                 <div class="panel-body" style="padding:0px;  background:#e9e9e9; border-radius: 0 0 10px 10px">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary" >
-						<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
-				
+		<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
+					<tbody id="nowhaveitem">
 						<%for(int i=0 ; i<4; i++){%>
 							<tr>
 							<% for(int j=0; j<4; j++){ %>
@@ -128,7 +169,7 @@ $(function(){
 							<%} %>
 						    </tr>
 						<%} %>
-						
+					</tbody>	
 						
 						</table>
 						<center>
@@ -148,6 +189,8 @@ $(function(){
 		</div>
 		<div class="panel-body" style="padding: 0px; background:#e9e9e9;  border-radius: 0px 0px 10px 10px">
 		<table style="height:80%; width:100%; background:#e9e9e9; border-collapse: separate; border-spacing: 10px;">
+					
+					<tbody id="haveimticon">
 					<%for(int i=0 ; i<2; i++){%>
 						<tr>
 							<% for(int j=0; j<4; j++){ %>
@@ -157,6 +200,7 @@ $(function(){
 							<%} %>
 						    </tr>
 						<%} %> 
+					</tbody>
 						</table>
 						<center>
 						<<페이징>> 
