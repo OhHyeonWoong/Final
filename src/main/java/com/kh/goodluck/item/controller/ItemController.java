@@ -19,8 +19,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.item.model.service.ItemService;
+import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
+
+import jdk.incubator.http.HttpResponse;
 
 @Controller
 public class ItemController {
@@ -46,13 +49,20 @@ public class ItemController {
 	
 	@RequestMapping("cjsitemmellhome.go")
 	public ModelAndView itemmallmove(ModelAndView mv) {
-	//아이템몰 메인	
+		
+		//아이템몰 메인	
 		
 		//8개 뽑기. 최신.
 		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.homenewlitm();
 	
 		//4개뽑기 인기
 		ArrayList<ITEMLIST> al1= (ArrayList<ITEMLIST>)ItemService.homepopularlitm();
+		
+		//카로셀에 넣을것.
+		
+		//공지사항
+		
+		//할인 목록.
 		
 		
 		mv.addObject("newitem",al);
@@ -70,7 +80,7 @@ public class ItemController {
 		mv.setViewName("A5.CJS/itemDetail");
 		return mv;
 	}
-	
+
 	
 	@RequestMapping("ukWookTest.go")  //(욱재작업) 메인화면에서 작업 드롭박스 욱재영역으로 이동하기 
 	public String ukjaeworkingpageMove(){
@@ -96,8 +106,25 @@ public class ItemController {
 	@RequestMapping("Chatting.go")  //(욱재작업) 채팅창페이지로 이동하기
 	public String chartPageMove(){
 		return "A2.JUJ/Chatting";
+		
 	}
+	
+	@RequestMapping("cjsgetmyitem.go")
+	public void getmyitem(@RequestParam("member_id") String memberid, HttpServletResponse response) throws IOException {
+	
+		System.out.println("member : " + memberid);
+		//로그인 작업을 합니다 세션에 넣어요
+		
+		GetMyItem gmi = new GetMyItem();
+		
+		PrintWriter out = response.getWriter();
 
+		out.flush();
+		out.close();
+	
+	}
+	 
+	
 }
 
 

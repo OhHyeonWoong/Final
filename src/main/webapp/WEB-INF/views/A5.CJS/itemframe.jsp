@@ -1,9 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>	
-	<!-- BEGIN # MODAL LOGIN -->
 
-<!-- Modal -->
+<script>
 
+$(function(){
+	if("${loginUser}" != ""){
+	//로그인 했을경우에만 발동함.
+	var id = "${loginUser.member_id}";
+
+	$.ajax({
+		url:"cjsgetmyitem.go",
+		type:"post",
+		data:{
+			member_id: id		
+		},
+		success:function(data){
+			
+			alert("에이작스로 페이징 처리해야합니다... 싀벌 처리후 삭제.");
+		
+		},
+		error:function(a,b,c){
+			alert("a : " + a + ", b : " + b + ", c : " + c);
+		}
+	});
+	}
+})
+</script>
 
 <style>
 .panel.with-nav-tabs .panel-heading{
@@ -58,12 +80,11 @@
 </center>
 
 <br>
-회원님 아이디: ㅇ323<br>
-회원님 이름 : <br>
-보유 캐시 : 5000<br>
-보유 중인 아이템 : 33<br> 
-사용 중인 아이템 : 10<br>
-사용 중인 아이콘 : dd<br>
+회원님 아이디:${loginUser.member_id}<br>
+회원님 이름 : ${loginUser.member_name}<br>
+보유  포인트 :${loginUser.member_cash}<br>
+최대 게시글 수:${loginUser.member_write_count}<br>
+최대 키워드 수:${loginUser.member_keyword_count}<br>
 </div>
 
 <div class="container" style="margin-left: 150px; width: 400px;">
