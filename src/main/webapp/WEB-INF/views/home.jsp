@@ -1117,7 +1117,7 @@
 										<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 									</table>	
 
-					            </div>
+					            </div>  
 					            <div class="user-menu-content">
 					                <h3>
 					                    독신사 안내사항(반려동물)
