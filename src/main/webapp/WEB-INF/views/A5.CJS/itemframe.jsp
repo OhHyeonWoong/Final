@@ -4,6 +4,7 @@
 <script>
 
 $(function(){
+	
 	if("${loginUser}" != ""){
 	//로그인 했을경우에만 발동함.
 	var id = "${loginUser.member_id}";
@@ -23,53 +24,83 @@ $(function(){
 			
 		console.log(json);
 		
-		var Array1= new Array; 
-		var Array2= new Array; 
-		var Array3= new Array(new Array(4),new Array(4) );
-		var Array4= new Array(new Array(4),new Array(4) );
-		
+		var Array1= new Array(); 
+		var Array2= new Array(); 
+		var Array3= new Array();
+		Array3[0]=new Array();
+		Array3[1]=new Array();
+		Array3[2]=new Array();
+		Array3[3]=new Array();
+		var Array4= new Array();
+		Array4[0]=new Array();
+		Array4[1]=new Array();
+		Array4[2]=new Array();
 		var value1="";
-		var value2="";
+	
 		for(var i in json.havingitem){//보유중 아이템 삽입.
 			
-<%-- 			<%for(int i=0 ; i<4; i++){%> --%>
-// 			<tr>
-<%-- 			<% for(int j=0; j<4; j++){ %> --%>
-// 			<th class="itemth">
-<%-- 			<%= j %> --%>
-// 			</th>
-<%-- 			<%} %> --%>
-// 		    </tr>
-<%-- 		<%} %> --%>
-		if(json.havingitem[i].ITEMTYPE != 2){//이모티콘을 제외하고 모두
-		Array1.push(json.havingitem[i]);
+	if(json.havingitem[i].ITEMTYPE != 2){//이모티콘을 제외하고 모두
+	Array1.push(json.havingitem[i]);
 		}else{//이모티콘만
 		Array2.push(json.havingitem[i]);
 		}
 	}
 		
-		//각 배열을 직렬화
+//각 배열을 직렬화
 		for(var i=Array1.length; i<16; i++ ){
 			Array1.push("");
 		}
 		for(var i=Array2.length; i<8; i++ ){
 			Array2.push("");
 		}
-
-		console.log(Array1[1]);
-		var count=1;
+	
+		var count1=0;
+		var count2=0;
+		
+//직렬화 배열을 다시 2차원으로 나눔.
 		for(var i=0; i<4; i++){
 			for(var j=0; j<4; j++){
-			Array3[i][j]=Array1[1];
-			count++;
+			Array3[i][j]=Array1[count1];
+			count1++;
 			}
 		}
+		for(var i=0; i<2; i++){
+			for(var j=0; j<4; j++){
+				Array4[i][j]=Array2[count2];
+				count2++;
+			}
+		}//직렬화 를 2차원으로 배열 완료
 		
-		
+
+//2차원배열을 이제 인벤토리에 넣을 value밸류에 넣어줘야한다. 
+
+
+
+		for(var i=0; i<4; i++){//소모성 아이템부터 
+			value1+="<tr>";
+			for(var j=0; j<4; j++){
+			if(Array3[i][j].ITEMFILENAME!=null)
+			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
+			else
+			value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
+			}
+			value1+="</th>"; 
+		}
+		var value2="";
+		for(var i=0; i<2; i++){//이모티콘
+			value2+="<tr>";
+			for(var j=0; j<4; j++){
+			if(Array4[i][j].ITEMFILENAME!=null)
+				value2+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";
+				else
+			value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
+			}
+			value2+="</th>";
+		}
 	
 		console.log(Array3);
 
-
+		console.log(Array4);
 		
 		$("#nowhaveitem").html(value1);	
 		$("#haveimticon").html(value2);
@@ -81,9 +112,55 @@ $(function(){
 	});
 	}
 })
+function useitem(itempk){
+console.log(itempk.id);
+}
+function useimticon(itempk){
+	console.log(itempk.id);
+}
 </script>
 
 <style>
+ .itemth {
+     width:50px;
+      height:50px;
+     background:white;
+      border-radius: 10px 10px 10px 10px;
+     border: 1px solid black;
+       }
+ .cjstransition{
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+}
+/* --------- Text View ----------*/
+.product-div2{
+    position:relative;
+    overflow:hidden;
+}
+.product-div2:hover .text-view{
+     top: 50%;
+     opacity:1;
+}
+.product-div2:hover img{
+    opacity:.2;
+}
+.text-view{
+    position:absolute;
+    top: 60%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity:0;
+    color:black;
+}
+
+
+
+
 .panel.with-nav-tabs .panel-heading{
     padding: 5px 5px 0 5px;
 }
@@ -161,30 +238,14 @@ $(function(){
                             </li>
                         </ul>
                 </div>
-                  <style>
-               	 .itemth {
-                  width:50px;
-                  height:50px;
-                  background:white;
-                  border-radius: 10px 10px 10px 10px;
-                  border-color: black;
-                  }
-                  </style> 
+           
                    
                 <div class="panel-body" style="padding:0px;  background:#e9e9e9; border-radius: 0 0 10px 10px">
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="tab1primary" >
 		<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
 					<tbody id="nowhaveitem">
-						<%for(int i=0 ; i<4; i++){%>
-							<tr>
-							<% for(int j=0; j<4; j++){ %>
-							<th class="itemth">
-							<%= j %>
-							</th>
-							<%} %>
-						    </tr>
-						<%} %>
+					
 					</tbody>	
 						
 						</table>
@@ -207,17 +268,9 @@ $(function(){
 		<table style="height:80%; width:100%; background:#e9e9e9; border-collapse: separate; border-spacing: 10px;">
 					
 					<tbody id="haveimticon">
-					<%for(int i=0 ; i<2; i++){%>
-						<tr>
-							<% for(int j=0; j<4; j++){ %>
-							<th class="itemth">
-							<%= j %>
-							</th>
-							<%} %>
-						    </tr>
-						<%} %> 
+					
 					</tbody>
-						</table>
+					</table>
 						<center>
 						<<페이징>> 
 						</center>
