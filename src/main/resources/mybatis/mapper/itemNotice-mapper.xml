@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="itemnotice-mapper">
+
+	<resultMap id="itemNotice" type="ItemNotice">
+		<id property="ITEMNOTICE_NO" column="ITEMNOTICE_NO"/>
+		<result property="ITEMNOTICE_TITLE" column="ITEMNOTICE_TITLE"/>
+		<result property="ITEMNOTICE_CONTENTS" column="ITEMNOTICE_CONTENTS"/>
+		<result property="ITEMNOTICE_DATE" column="ITEMNOTICE_DATE"/>
+	
+	</resultMap>
+
+<select id="homeitemnotice" resultMap="itemNotice">
+
+<![CDATA[
+select * from (select * from ItemNotice order by ITEMNOTICE_NO desc) where rownum <= 4
+]]>
+</select>
+
+
+</mapper>

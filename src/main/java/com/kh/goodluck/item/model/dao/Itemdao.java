@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.member.model.vo.Member;
 
 @Repository("itemlistDao")
@@ -39,5 +40,11 @@ public class Itemdao {
 	public List<GetMyItem> GetMyItem(String memberid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("Getmyitem",memberid);
+	}
+
+
+	public List<ItemNotice> notice() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("homeitemnotice");
 	}
 }

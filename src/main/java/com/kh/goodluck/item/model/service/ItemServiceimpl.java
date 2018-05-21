@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.goodluck.item.model.dao.Itemdao;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemNotice;
 
 @Service("ItemService")
 public class ItemServiceimpl implements ItemService{
@@ -40,6 +41,12 @@ public List<ITEMLIST> homepopularlitm() {
 public List<GetMyItem> GetMyItem(String memberid) {
 	
 	return itemlistDao.GetMyItem(memberid);
+}
+
+@Override
+public List<ItemNotice> notice() {
+	
+	return itemlistDao.notice();
 }
 
 

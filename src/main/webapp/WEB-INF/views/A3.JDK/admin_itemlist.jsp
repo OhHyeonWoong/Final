@@ -66,39 +66,32 @@
 <!-- 내용 출력하기 -->
 <div class="w3-container" style="width:70%; float: right;">
 <!-- 여기서 부터 작성하시면 됩니다.  -->
-<h3 style="test-align: center;">회원 가입 리스트</h3>
 <table class="table table-striped custab">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Parent ID</th>
-            <th class="text-center">Action</th>
+            <th>아이템 식별 번호</th>
+            <th>아이템 명</th>
+            <th>종류</th>
+            <th>기간</th>
+            <th class="text-center">수정 및 삭제</th>
         </tr>
     </thead>
             <tr>
-                <td>1</td>
-                <td>News</td>
-                <td>News Cate</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Products</td>
-                <td>Main Products</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Blogs</td>
-                <td>Parent Blogs</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td>0101</td>
+                <td>캐시 아이템</td>
+                <td>90일</td>
+                <td class="text-center">
+                <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>수정</a>
+                <a class="btn btn-danger btn-xs" href="#"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
             </tr>
     </table>
-</div>
+    <div style="margin: 0 auto;">
+    <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>아이템 등록</a>
+    </div>
+    
 <!-- 작성 영역 끝-->
 </div>
-
+<div style="clear: both;">
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

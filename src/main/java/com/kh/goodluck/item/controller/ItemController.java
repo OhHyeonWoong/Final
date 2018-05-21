@@ -3,6 +3,7 @@ package com.kh.goodluck.item.controller;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.member.model.vo.Member;
-
-import jdk.incubator.http.HttpResponse;
 
 @Controller
 public class ItemController {
@@ -64,12 +64,18 @@ public class ItemController {
 		//카로셀에 넣을것.
 		
 		//공지사항
+		ArrayList<ItemNotice> al3=(ArrayList<ItemNotice>)ItemService.notice();
+		SimpleDateFormat sdf=new SimpleDateFormat("MM-dd");
+		for(ItemNotice i : al3) {
+		i.setITEMNOTICE_DATE(i.getITEMNOTICE_DATE().toString().substring(5,10));
+		}
 		
 		//할인 목록.
 		
 		
 		mv.addObject("newitem",al);
 		mv.addObject("popularlitm",al1);
+		mv.addObject("itemNotice",al3);
 		mv.setViewName("A5.CJS/itemMall");
 		return mv;
 	}
@@ -130,11 +136,11 @@ public class ItemController {
 			JSONObject job = new JSONObject();
 			job.put("MYITEM_NO", l.getMYITEM_NO());
 			job.put("MEMBER_ID", l.getMEMBER_ID());
-	job.put("BUY_DATE", l.getBUY_DATE().toString());
+			job.put("BUY_DATE", l.getBUY_DATE().toString());
 			job.put("MYITEM_STATUS", l.getMYITEM_STATUS());
-		job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
-		job.put("ITEMNAME", l.getITEMNAME());
-		job.put("ITEMPRICE", l.getITEMPRICE());
+			job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
+			job.put("ITEMNAME", l.getITEMNAME());
+			job.put("ITEMPRICE", l.getITEMPRICE());
 			job.put("ITEMPERIOD", l.getITEMPERIOD());
 			job.put("ITEMTYPE", l.getITEMTYPE());
 			job.put("ITEMFILENAME", l.getITEMFILENAME());
@@ -146,8 +152,13 @@ public class ItemController {
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
-	
 	}
+	
+	@RequestMapping("jdkitemlist.go")
+	public String itemList() {
+		return "A3.JDK/admin_itemlist";
+	}
+	
 }
 
 

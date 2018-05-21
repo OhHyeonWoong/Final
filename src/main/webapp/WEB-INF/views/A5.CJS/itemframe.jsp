@@ -39,7 +39,6 @@ $(function(){
 <%-- 			<%} %> --%>
 // 		    </tr>
 <%-- 		<%} %> --%>
-		
 		if(json.havingitem[i].ITEMTYPE != 2){//이모티콘을 제외하고 모두
 			if(count1%5 == 0){
 			value1+="</tr>";
@@ -50,6 +49,7 @@ $(function(){
 			value1+="<tr>";
 			}
 			count1++;
+		
 		}else{//이모티콘만
 		count2++;
 			$("#haveimticon").html("");
@@ -124,9 +124,11 @@ $(function(){
 <br>
 회원님 아이디:${loginUser.member_id}<br>
 회원님 이름 : ${loginUser.member_name}<br>
-보유  포인트 :${loginUser.member_cash}<br>
+보유  포인트 :${loginUser.member_cash} <br>
 최대 게시글 수:${loginUser.member_write_count}<br>
 최대 키워드 수:${loginUser.member_keyword_count}<br>
+<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
+<button>충전</button>
 </div>
 
 <div class="container" style="margin-left: 150px; width: 400px;">

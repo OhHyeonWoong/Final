@@ -1,18 +1,17 @@
 package com.kh.goodluck.board.model.service;
-
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.kh.goodluck.board.model.dao.BoardDao;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 
 @Service("boardService")
 public class BoardService {
-
-	public BoardService() {
+	
+		public BoardService() {
 		
 	}
 	
@@ -38,4 +37,8 @@ public class BoardService {
 		
 		return boardDao.selectSmallCategoryAll();
 	}
+	
+
+	
+	
 }
