@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.board.model.service.BoardService;
-import com.kh.goodluck.board.model.service.BoardServiceImpl;
 import com.kh.goodluck.board.model.vo.Board;
 
 @Controller
 public class CJS_BoardController {
 
 	@Autowired
-	private BoardServiceImpl boardservice;
+	private BoardService boardservice;
 public CJS_BoardController() {
 	// TODO Auto-generated constructor stub
 }
@@ -28,6 +27,15 @@ public CJS_BoardController() {
 	@RequestMapping("BoardDetail.go")
 	public String boarddetailmove() {
 		return "A5.CJS/boarddetail";
+		
+	}
+	
+	
+///////////////////////////////////////////////////////////////////////////////////	
+	
+	@RequestMapping("DealingState.go") //욱재작업 - 신청후 거래중페이지 이동
+	public String DealingStatemove() {
+		return "A2.JUJ/dealingState";
 		
 	}
 }

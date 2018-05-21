@@ -30,4 +30,10 @@ public class MemberServiceImpl implements MemberService{
 		//비밀번호 재설정 메일 보내기 전에 이메일 있는지 없는지 체크
 		return memberDao.emailCheckMethod(tomail);
 	}
+	
+	@Override
+	public Member findIdMethod(Member member) {
+		//아이디 찾기용 메소드
+		return memberDao.findIdMethod(member);
+	}
 }

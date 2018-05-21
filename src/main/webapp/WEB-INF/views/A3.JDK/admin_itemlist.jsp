@@ -70,14 +70,15 @@
     <thead>
         <tr>
             <th>아이템 식별 번호</th>
-            <th>아이템</th>
+            <th>아이템 명</th>
+            <th>종류</th>
             <th>기간</th>
             <th class="text-center">수정 및 삭제</th>
         </tr>
     </thead>
             <tr>
+                <td>0101</td>
                 <td>캐시 아이템</td>
-                <td>글림프</td>
                 <td>90일</td>
                 <td class="text-center">
                 <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>수정</a>

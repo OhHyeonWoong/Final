@@ -3,47 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
-
 <meta charset="UTF-8">
-<style type="text/css">
 
-</style>
-<script type="text/javascript">
-$(document).ready( function() {
-	var clickEvent = false;
-	$('#myCarousel').on('click', '.nav a', function() {
-			clickEvent = true;
-			$('.nav li').removeClass('active');
-			$(this).parent().addClass('active');		
-	}).on('slid.bs.carousel', function(e) {
-		if(!clickEvent) {
-			var count = $('.nav').children().length -1;
-			var current = $('.nav li.active');
-			current.removeClass('active').next().addClass('active');
-			var id = parseInt(current.data('slide-to'));
-			if(count == id) {
-				$('.nav li').first().addClass('active');	
-			}
-		}
-		clickEvent = false;
-	});
-});
-</script>
 <title>아이템몰</title>
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 
+<script type="text/javascript">
+$(document).ready( function() {
+	var clickEvent = false;
+	$('#myCarousel').on('click', '.nav a', function() {
+			clickEvent = true;
+			$('.nav .mall').removeClass('active');
+			$(this).parent().addClass('active');		
+	
+	}).on('slid.bs.carousel', function(e) {
+		if(!clickEvent) {
+			var count = $('.nav').children().length -1;
+			var current = $('.nav .mall.active');
+			current.removeClass('active').next().addClass('active');
+			var id = parseInt(current.data('slide-to'));
+			if(count == id) {
+				$('.nav .mall').first().addClass('active');	
+			}
+		}
+		clickEvent = false;
+	});
+});
+
+
+</script>
 
 <div style="overflow: hidden;">
 </div>
 <div class="container">
-
-
-    
 <!-- 아이템몰 사이드바 -->
 <div class="container" style=" float: left; width:100%;">
 <div class="row">
@@ -52,23 +46,27 @@ $(document).ready( function() {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                            </span>
-                            ~~님<br>
-                            보유 캐시 : xxxx원
-               </a>
+                 ${loginUser.member_name} 회원님<br>
+                   보유 캐시:${loginUser.member_cash} 포인트
                  </h4>
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                              	<tr>
-                                    <td>
-                                       <form action="">
-                                        <input type="text" name="itemname" placeholder="아이템검색">
-                                        <input type="submit" value="검섹">
-                                        </form>
-                                        </td>
+                               	 <td>
+                             <div class="input-group">
+    	<div class="form-group  has-feedback">
+            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px  ">검색!</button>
+        </span>
+    </div>
+                                
+                                </td>
+                                
                                 </tr>
                                 <tr>
                                     <td>
@@ -88,6 +86,12 @@ $(document).ready( function() {
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">기간제 보기</a>
+                                        
+                                    </td>
+                                </tr>
+                                  <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">이모티콘 보기</a>
                                         
                                     </td>
                                 </tr>
@@ -113,7 +117,8 @@ $(document).ready( function() {
            
            
            <!--카로셀 시작 -->
-         <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+         
     
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
@@ -154,11 +159,10 @@ $(document).ready( function() {
 
 
     	<ul class="nav nav-pills nav-justified">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"><a href="#"><small>이달의 랜덤박스</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="1"><a href="#"><small>이달의 최신 아이템!</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="2"><a href="#"><small>이달의 패키지 상품</small></a></li>
-          <li data-target="#myCarousel" data-slide-to="3"><a href="#"><small>이달의 인기 아이템</small></a></li>
-          
+          <li data-target="#myCarousel" data-slide-to="0" class="mall active"><a  href="#"><small>이달의 랜덤박스</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="1" class="mall"><a href="#"><small>이달의 최신 아이템!</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="mall"><a href="#"><small>이달의 패키지 상품</small></a></li>
+          <li data-target="#myCarousel" data-slide-to="3" class="mall"><a href="#"><small>이달의 인기 아이템</small></a></li>
         </ul>
 
 
@@ -180,13 +184,49 @@ $(document).ready( function() {
         <div class="col-md-6" style="width: 100%; height: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
-					<h3 class="panel-title">     최신 추가된 아이템  8x2 </h3>
-				    >인기 바로가기
+					<h3 class="panel-title">     최신 추가된 아이템   </h3>
+				   
 				</div>
 				<div class="panel-body" style="width: 100%; padding: 10">    
-				  <table style="background: red; width: 100%; height: 100%;">
-					  <tr><th>1</th><th>1</th><th>1</th><th>1</th></tr>
-					  <tr><th>1</th><th>1</th><th>1</th><th>1</th></tr>
+				  <table style="width: 100%; height: 100%;">
+				<tr>
+			<c:forEach var="item" items="${newitem}" begin="0" end="3">
+   			<th>
+   			<center>
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
+   			<br>
+   			 이름 : ${item.ITEMNAME}<br>
+   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			 	
+   			 
+   			 </center>
+			</th>
+			</c:forEach>
+			
+					  </tr>
+					  <tr>
+					  <td><label> </label></td>
+					  </tr>
+					  <tr>		
+			<c:forEach var="item" items="${newitem}" begin="4">
+   			<th>
+   			<center>
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
+   			<br>
+   			 이름 : ${item.ITEMNAME}<br>
+   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			 
+   			 </center>
+			</th>
+			</c:forEach>
+					  </tr>
+				 
+				 
+				 
+				 
+				 
 				  </table>
 					
 		
@@ -200,17 +240,36 @@ $(document).ready( function() {
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
 					<h3 class="panel-title">인기목록</h3>
-				    >인기 바로가기
+				    
 				</div>
-				<div class="panel-body" style="width: 100%; padding: auto"	>    
+				<div class="panel-body" style="width: 100%; padding: 5px"	>    
 
-				<table style="width: 80%; height: 100%; background: red">
-				<tr><th >1</th></tr>
-				<tr><th>1</th></tr>
-				<tr><th>1</th></tr>
-				<tr><th>1</th></tr>
-				</table>
-            
+<center>
+<table style="width: 80%; height: 100%;">
+				
+		
+		<c:forEach var="item" items="${popularlitm}" begin="0" end="2">
+			<tr>
+   			<td style="width:30%">
+   			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px; margin-right: 15px">
+			</td>
+		 <td  style="width:65%">
+		 <center>
+   			 ${item.ITEMNAME}<br>
+   			 ${item.ITEMPRICE} 원 <br>
+   			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+   			
+   			</center>
+   			 </td>
+			</tr>
+			<tr><td><label> </label></td></tr>
+			</c:forEach>
+				
+				
+	
+	
+</table>
+          </center>  
             
             
             </div>
@@ -232,8 +291,24 @@ $(document).ready( function() {
 					<h3 class="panel-title">아이템 관련 공지사항  전체공지바로가기></h3>
 				    >인기 바로가기
 				</div>
-				<div class="panel-body" style="width: 100%; "	>   
-			단순 리스트 방식 4개정도.
+				<div class="panel-body" style="width: 100%; ">   
+	
+	<table>
+	<tr>
+	<th>글번호</th>
+	<th><center>공지사항</center></th>
+	<th>작성일</th>
+	</tr>
+	<c:forEach var="notice" items="${itemNotice}">
+	<tr>
+	<th><center>${notice.ITEMNOTICE_NO}</center></th>
+	<th>${notice.ITEMNOTICE_TITLE}</th>
+	<th>${notice.ITEMNOTICE_DATE}</th>
+	</tr>
+	</c:forEach>
+	</table>
+	
+
 </div>
 			</div>
 		</div>

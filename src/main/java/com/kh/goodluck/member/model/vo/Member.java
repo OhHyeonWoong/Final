@@ -25,6 +25,9 @@ public class Member implements Serializable{
 	private int member_status;
 	private String member_renamephoto;
 	private int member_cash;
+	private String member_accesstoken;
+	private String member_refreshtoken;
+	private int member_keyword_count;
 	
 	public Member() {
 		
@@ -33,7 +36,8 @@ public class Member implements Serializable{
 	public Member(String member_id, String member_pw, String member_name, String member_email, String member_address,
 			String member_phone, int member_regident_number, int member_write_count, Date member_enroll_date,
 			Date member_lastlogin, Date member_lastpassword, int member_yellowcard, int member_status,
-			String member_renamephoto,int member_cash) {
+			String member_renamephoto,int member_cash,String member_accesstoken,String member_refreshtoken,
+			int member_keyword_count) {
 		super();
 		this.member_id = member_id;
 		this.member_pw = member_pw;
@@ -50,8 +54,11 @@ public class Member implements Serializable{
 		this.member_status = member_status;
 		this.member_renamephoto = member_renamephoto;
 		this.member_cash = member_cash;
+		this.member_accesstoken = member_accesstoken;
+		this.member_refreshtoken = member_refreshtoken;
+		this.member_keyword_count = member_keyword_count;
 	}
-
+	
 	public String getMember_id() {
 		return member_id;
 	}
@@ -172,6 +179,30 @@ public class Member implements Serializable{
 		this.member_cash = member_cash;
 	}
 
+	public String getMember_accesstoken() {
+		return member_accesstoken;
+	}
+
+	public void setMember_accesstoken(String member_accesstoken) {
+		this.member_accesstoken = member_accesstoken;
+	}
+
+	public String getMember_refreshtoken() {
+		return member_refreshtoken;
+	}
+
+	public void setMember_refreshtoken(String member_refreshtoken) {
+		this.member_refreshtoken = member_refreshtoken;
+	}
+
+	public int getMember_keyword_count() {
+		return member_keyword_count;
+	}
+
+	public void setMember_keyword_count(int member_keyword_count) {
+		this.member_keyword_count = member_keyword_count;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
@@ -180,7 +211,9 @@ public class Member implements Serializable{
 				+ member_write_count + ", member_enroll_date=" + member_enroll_date + ", member_lastlogin="
 				+ member_lastlogin + ", member_lastpassword=" + member_lastpassword + ", member_yellowcard="
 				+ member_yellowcard + ", member_status=" + member_status + ", member_renamephoto=" + member_renamephoto
-				+ ", member_cash=" + member_cash + "]";
+				+ ", member_cash=" + member_cash + ", member_accesstoken=" + member_accesstoken
+				+ ", member_refreshtoken=" + member_refreshtoken + ", member_keyword_count=" + member_keyword_count
+				+ "]";
 	}
 	
 }

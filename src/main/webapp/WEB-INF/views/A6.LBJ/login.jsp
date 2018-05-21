@@ -156,7 +156,33 @@
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">아이디찾기</button>
+                                <button class="btn btn-primary btn-lg btn-block" onclick="fnLostId();">아이디찾기</button>
+                                <script type="text/javascript">
+                                	function fnLostId(){
+                                		var member_name = $('#lostid_username').val();
+                                		var member_email = $('#lostid_email').val();
+                                		var member_pw = $('#lostid_userpwd').val();
+                                		
+                                		$.ajax({
+                                			url:"lbjfindid.go",
+                                			type:"post",
+                                			data:{
+                                				member_pw: member_pw,
+                                				member_email: member_email,
+                                				member_name: member_name
+                                			},
+                                			success:function(data){
+                                				alert(data);
+                                				if(data != '실패 기모띠 실패'){
+                                					alert("입력하신 정보가 잘못되었습니다.");
+                                				}
+                                			},
+                                			error:function(a,b,c){
+                                				alert("a = " + a + ", b = " + b + ", c = " + c);
+                                			}
+                                		});
+                                	}
+                                </script>
                             </div>
                             <div>
                                 <button id="lostid_login_btn" type="button" class="btn btn-link">로그인</button>

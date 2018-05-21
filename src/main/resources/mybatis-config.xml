@@ -6,11 +6,20 @@
 	<typeAliases>		
 		<typeAlias type="com.kh.goodluck.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.BigCategory" alias="BigCategory"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.ITEMLIST" alias="ITEMLIST"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.GetMyItem" alias="GetMyItem"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MidCategory" alias="MidCategory"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.SmallCategory" alias="SmallCategory"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.ItemNotice" alias="ItemNotice"/>
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mapper/member-mapper.xml"/>
 		<mapper resource="mybatis/mapper/board-mapper.xml"/>
+		<mapper resource="mybatis/mapper/item-mapper.xml"/>
+		<mapper resource="mybatis/mapper/getmyitem-mapper.xml"/>
+		<mapper resource="mybatis/mapper/itemNotice-mapper.xml"/>
 		<!-- <mapper resource="notice/model/mapper/notice-mapper.xml"/> -->
 	</mappers>
 </configuration>

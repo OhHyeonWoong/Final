@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Getmyitem-mapper">
+
+	<resultMap id="GetmyitemResult" type="GetMyItem">
+		<id property="MYITEM_NO" column="MYITEM_NO"/>
+		<result property="MEMBER_ID" column="MEMBER_ID"/>
+		<result property="ITEMLIST_NO" column="ITEMLIST_NO"/>
+		<result property="BUY_DATE" column="BUY_DATE"/>
+		<result property="MYITEM_STATUS" column="MYITEM_STATUS"/>
+		<result property="ITEMNAME" column="ITEMNAME"/>
+		<result property="ITEMPRICE" column="ITEMPRICE"/>
+		<result property="ITEMPERIOD" column="ITEMPERIOD"/>
+		<result property="ITEMTYPE" column="ITEMTYPE"/>
+		<result property="ITEMFILENAME" column="ITEMFILENAME"/>
+	</resultMap>
+	
+<select id="Getmyitem" resultMap="GetmyitemResult">
+select * from my_item,ITEMLIST where member_id =#{memberid} and myitem_status = 1 and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO
+
+</select>
+
+
+
+</mapper>

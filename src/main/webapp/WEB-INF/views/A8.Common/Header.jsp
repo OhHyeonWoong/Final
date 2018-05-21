@@ -74,9 +74,9 @@
 		border-left: 17px solid transparent;
 		position: absolute;
 		top: -15px;
-		left: 285px;
+		left: 159.5px;
 		z-index: 10;
-	}
+	}	
 
 	.mega-dropdown-menu:after {
 		content: "";
@@ -85,8 +85,12 @@
 		border-left: 19px solid transparent;
 		position: absolute;
 		top: -17px;
-		left: 283px;
+		left: 158px;
 		z-index: 8;
+	}
+	
+	.navbar-collapse {
+		padding:0;
 	}
 
 	.mega-dropdown-menu > li > ul {
@@ -128,6 +132,14 @@
 		margin-bottom: 3px;
 	}
 	
+	.ohw-menu-a > a {
+		color:black;
+	}
+	
+	.ohw-menu-a > a:hover {
+		color:purple;
+	}
+	
 	.ohw-div-search {		
 		width:400px;
 	}
@@ -165,11 +177,7 @@
 	.ohw-menu-col-td > a:hover {
 		display:inline-block;
 		color:black;		
-	}
-	
-	.ohw-menu-realtimebar {
-		padding-left:50px;
-	}
+	}	
 	
 	.ohw-menu-table {
 		width:100%;
@@ -193,9 +201,115 @@
 		height:135px;
 	}
 	
+	.ohw-menu-realtimebar {
+		padding-left:100px;
+	}		
+
+	.ohw-menu-realtimebar-dl a {
+		color: black;
+		text-decoration: none;
+	}
+
+	.ohw-menu-realtimebar-dl a:hover {
+		color: purple;
+	}
+
+	.ohw-menu-realtimebar-dl {
+		overflow: hidden;
+		width: 120px;
+		height: 20px;
+		margin: 0;
+	}
+
+	.ohw-menu-realtimebar-dt {
+		display: none;
+	}
+
+	.ohw-menu-realtimebar-dd {
+		position: relative;
+		margin: 0;
+	}
+
+	.ohw-menu-realtimebar-ol {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	
+	.ohw-menu-realtimebar-li {
+		height: 20px;
+		line-height: 20px;
+	}
+	
+
+	/* 병준이추가 */
+	.lbj-div{
+		width:300px;
+	}
+	.lbjspan{
+		margin-left:10px;
+	}
+	.lbjex{
+		font-size:10px;
+	}
+	/* 병준이추가 */
+
+	.ohw-menu-realtimebar-dropdown {
+		
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a {
+		color:black;
+	}
+	
+	.ohw-menu-realtimebar-dropdown > a:hover {
+		color:purple;
+	}
+	
 </style>
 
+<script type="text/javascript">
+
+	/* 실시간 검색어 애니메이션 함수 */
+	$(function() {
+		var count = $('.ohw-menu-realtimebar-li').length;
+		var height = $('.ohw-menu-realtimebar-li').height();
+	
+		function step(index) {
+			$('.ohw-menu-realtimebar-ol').delay(3000).animate({
+				top: -height * index,
+			}, 500, function() {
+				step((index + 1) % count);
+			});
+		}	
+		step(1);
+	});
+
+	/* 실시간 검색어 애니메이션 */
+	
+	/* 로그아웃 Function */
+	function fnLogout(){
+		$.ajax({
+			url:"lbjlogout1.go",
+			success:function(data){
+				alert(data);
+				window.history.go(0);
+			},
+			error:function(a,b,c){
+				alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+			}
+		});
+	}
+	/* 로그아웃 Function */
+	
+
+</script>
+
 </head>
+
 <body>
 <div class = "container">
 	<div align = "right">
@@ -209,41 +323,176 @@
 		</c:if>
 		<c:if test="${!empty loginUser}">
 			<table>
-				<tr>
-					<td>${ loginUser.member_name } 님</td>
+				<tr>					
+					<td>
+						<div class="dropdown  ohw-menu-a">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							<div class="dropdown-menu lbj-div">
+								<div style="margin-left:10px; margin-right:10px;">
+									<table style="width:100%; height:100%;">
+										<tr>
+											<td> ${ loginUser.member_name } 님 </td>
+											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go'">MyPage</button></td>
+										</tr><!-- style="margin-left:140px;"  -->
+										<tr>
+											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
+										</tr>
+										<tr>
+											<td>내 마일리지 : 3,000</td>
+											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
+						</button>
+						
+
+					</td>					
+					<td> 
+						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
+
+							<i class = "fa fa-address-card"></i> MyItem
 						</button>
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
 							<i class = "fa fa-sign-out"></i> LogOut
-						</button>
-						<script type="text/javascript">
-							function fnLogout(){
-								$.ajax({
-									url:"lbjlogout1.go",
-									success:function(data){
-										alert(data);
-										window.history.go(0);
-									},
-									error:function(a,b,c){
-										alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
-									}
-								});
-							}
-						</script>
-					</td>
-					<td>
-					<button type = "button" class = "btn btn-default" onclick="window.open('myitem.go', '아이템창',' top=100, left=100, width=560, height=580,toolbar=no, scrollbars=no, status=no, resizable=no')">
-					<i class = "fa fa-address-card"></i> MyItem
-					</button>
+						</button>						
 					</td>
 				</tr>			
 			</table>		
 		</c:if>
 	</div>
+	<!-- 병준이 캐시 충전용 모달 -->
+	<div id="chargeCash" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		      <div class="modal-body">
+		        <table style="width:100%;">
+		        	<tr style="height:300px;">
+		        		<td style="width:35%; background:black; color:white;">
+		        			<span class="lbjspan" style="font-size: 20px;"><i class="fa fa-money" style="font-size:24px"></i>마일리지</span><br><br>
+		        			<input type="number" min=10000 max=100000 step=5000 placeholder="충전금액" style="align:center; margin-left:10px; width:80%;">
+		        			<br><br>
+		        			<span class="lbjspan">보유 마일리지 : 50</span><br>
+		        			<span class="lbjspan">충전 후 마일리지 : </span><br>
+		        			<hr>
+		        			<span class="lbjspan lbjex">※ 최대 구매 가능한 마일리지는</span><br>
+		        			<span class="lbjspan lbjex">500,000 입니다.</span><br>
+		        		</td>
+		        		<td style="position:absolute; width:63%; background:white; vertical-align: top;">
+		        			<span class="lbjspan">결제수단</span><br>
+		        			<a href="javascript:void(0);" class="lbjspan" onclick="fnPaymentMethod(); return false;"><i class="fa fa-sort-down" style="font-size:24px"></i>휴대폰</a>
+		        			<div id="lbjpayment-div" class="lbjspan" style="display: none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        						<td><button class="">휴대폰</button></td>
+		        						<td><button>카카오페이</button></td>
+		        						<td><button onclick="fnCreditMethod();">신용카드</button></td>
+		        						<td><button onclick="fnNoBankBook();">무통장입금</button></td>
+		        					</tr>
+		        					<tr>
+		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
+		        					</tr>
+		        				</table>
+		        			</div>
+		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="신한">신한</td>
+		        						<td><input type="radio" name="credit" value="삼성">삼성</td>
+		        						<td><input type="radio" name="credit" value="국민">국민</td>
+		        						<td><input type="radio" name="credit" value="현대">현대</td>
+		        					</tr>
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="NH농협">NH농협</td>
+		        						<td><input type="radio" name="credit" value="BC">BC</td>
+		        						<td><input type="radio" name="credit" value="우리">우리</td>
+		        						<td><input type="radio" name="credit" value="하나">하나</td>
+		        					</tr>
+		        					<tr>
+		        						<td><input type="radio" name="credit" value="롯데">롯데</td>
+		        						<td><input type="radio" name="credit" value="씨티">씨티</td>
+		        						<td><input type="radio" name="credit" value="카카오뱅크">카카오뱅크</td>
+		        						<td><input type="radio" name="credit" value="기타">기타</td>
+		        					</tr>
+		        					<tr>
+		        						<td><label> </label></td>
+		        					</tr>
+		        					<tr>
+		        						<td colspan="2">할부기간</td>
+		        						<td colspan="2"><a href="#">일시불</a></td><!-- dropdown으로 구현해야됨 -->
+		        					</tr>
+		        				</table>
+		        			</div>
+		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
+		        				<table style="width:100%;">
+		        					<tr>
+		        					 	<td colspan="2">받는이</td>
+		        					</tr>
+		        					<tr>
+		        						<td>은행명</td><td>신한은행</td>
+		        					</tr>
+		        					<tr>
+		        						<td>이름</td><td>이병준</td>
+		        					</tr>
+		        					<tr>
+		        						<td>계좌</td><td>110-333-111111</td>
+		        					</tr>
+		        					<tr>
+		        						<td><label> </label></td>
+		        					</tr>
+		        					<tr>
+		        					 	<td colspan="2">보내는이</td>
+		        					</tr>
+		        					<tr>
+		        						<td>은행명</td><td><input type="text" placeholder="은행명"></td>
+		        					</tr>
+		        					<tr>
+		        						<td>이름</td><td>${loginUser.member_name}</td>
+		        					</tr>
+		        					<tr>
+		        						<td>계좌</td><td><input type="text" placeholder="계좌"></td>
+		        					</tr>
+		        				</table>
+		        			</div>
+		        			<script type="text/javascript">
+		        				function fnPaymentMethod(){
+		        					var i = $('#lbjpayment-div');
+		        					i.toggle(".5");
+		        				}
+		        				
+		        				function fnCreditMethod(){
+		        					var z = $('#lbjcreditcard-div');
+		        					z.toggle(".5");
+		        				}
+		        				
+		        				function fnNoBankBook(){
+		        					var z = $('#lbjNoBankBook-div');
+		        					z.toggle(".5");
+		        				}
+		        			</script>
+		        		</td>
+		        	</tr>
+		        </table>
+		      </div>
+		      <div class="modal-footer" style="text-align:right;">
+		      	<button class="btn btn-primary">결제</button>
+		        <button type="button" class="btn btn-Danger" data-dismiss="modal">취소</button>
+		      </div>
+		    </div>	
+	  </div>
+	</div>
+	<!-- 병준이 모달 끝 -->
 	<table class = "ohw-menu-table">
 		<tr>
 			<td class = "ohw-menu-table-td">
@@ -389,16 +638,45 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 작업 <span class="caret"></span></a>							
 								<ul class="dropdown-menu">
 									<li><a href = "ohw-movePaymentPage.go">현웅</a></li>
-									<li><a href="#">욱재</a></li>
+									<li><a href="ukWookTest.go">욱재</a></li>
 									<li><a href="#">동기</a></li>
 									<li><a href="#">승호</a></li>
 									<li><a href="#">지석</a></li>
 									<li><a href="lbjmypage.go">뱅준</a></li>
 								</ul>								
 							</td>
-							<td class = "ohw-menu-col-td ohw-menu-realtimebar"><input type = "text" placeholder = "실시간 검색" readonly></td>
+							<td class = "ohw-menu-col-td ohw-menu-realtimebar">								
+								<div class = "ohw-menu-realtimebar-content">
+									<dl class = "ohw-menu-realtimebar-dl">										
+										<dd class = "ohw-menu-realtimebar-dd">
+											<ol class = "ohw-menu-realtimebar-ol">
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">1. 애인</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">2. 여행</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">3. 렌탈</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">4. 생활</a>
+												</li>												
+												<li class = "ohw-menu-realtimebar-li">
+													<a href="#">5. 게임</a>
+												</li>												
+											</ol>
+										</dd>
+									</dl>
+								</div>																
+							</td>
+							<td class = "ohw-menu-realtimebar-dropdown">
+								<a>
+									<i class = "fa fa-chevron-down"></i>
+								</a>
+							</td>
 						</tr>
-					</table>
+					</table>					
 				</div>				
 			</div>
 		<!-- /.nav-collapse -->
@@ -406,5 +684,6 @@
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/A6.LBJ/login.jsp" %>
+<%@ include file="/WEB-INF/views/A5.CJS/itemframe.jsp" %>
 </body>
 </html>

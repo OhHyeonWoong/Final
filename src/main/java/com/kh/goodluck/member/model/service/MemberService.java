@@ -6,4 +6,5 @@ public interface MemberService {
 	public abstract Member loginCheck(Member member);
 	public abstract int findPwdMethod(Member member);
 	public abstract Member emailCheckMethod(String tomail);
+	public abstract Member findIdMethod(Member member);
 }

@@ -129,6 +129,9 @@
 	    width: 33%;
 	    height: 50%;
 	}
+	.mt-4{
+	background : red;
+	}
 	
 	.backside .card a {
 	    font-size: 18px;
