@@ -39,7 +39,7 @@
 			<form role="form" enctype="multipart/form-data" method="post" action="">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
-					<div style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
+					<div style="width : 130px; height : auto; margin: 0 auto;">
 					<img src="/goodluck/resources/A3.JDK/images/base_profile.png" name ="profile_img" style="width : 130px; height : auto;">
 					</div>
 					<br>
