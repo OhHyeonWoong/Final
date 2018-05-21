@@ -80,7 +80,7 @@ $(function(){
 			value1+="<tr>";
 			for(var j=0; j<4; j++){
 			if(Array3[i][j].ITEMFILENAME!=null)
-			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
+			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"'  name='"+Array3[i][j].ITEMNAME+"'     style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
 			else
 			value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
@@ -113,10 +113,14 @@ $(function(){
 	}
 })
 function useitem(itempk){
-console.log(itempk.id);
+	
+console.log(itempk.id); //소모성아이템 id
+console.log(itempk.name);//소모성아이템 이름
+
 }
+
 function useimticon(itempk){
-	console.log(itempk.id);
+console.log(itempk.id);//이모티콘 아이디
 }
 </script>
 
@@ -195,6 +199,17 @@ function useimticon(itempk){
 }
 
 </style>
+
+
+
+
+
+
+
+
+
+
+
 <div id="myitem" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -205,28 +220,29 @@ function useimticon(itempk){
         <h4 class="modal-title">${loginUser.member_name}님의 인벤토리</h4>
       </div>
       <div class="modal-body">
-        <Br>
-<div class="11" style="float: left; margin-left:10px;">
-
-<center>
-<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
-</center>
-
-<br>
-회원님 아이디:${loginUser.member_id}<br>
-회원님 이름 : ${loginUser.member_name}<br>
-보유  포인트 :${loginUser.member_cash} <br>
-최대 게시글 수:${loginUser.member_write_count}<br>
-최대 키워드 수:${loginUser.member_keyword_count}<br>
-<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
-<button>충전</button>
-</div>
-
-<div class="container" style="margin-left: 150px; width: 400px;">
-    <table>
-    </table>
-    <div class="row">
-     <div class="col-md-6" style="width: 100%;">
+      <div>
+       
+        
+ <div class="container" style="width: 100%">
+ <table style="width:100%;">
+ <tr>
+ <th>
+	<div class="11" style="margin-left:10px;">
+		<center>
+		<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
+		</center>
+		<br>
+		회원님 아이디:${loginUser.member_id}<br>
+		회원님 이름 : ${loginUser.member_name}<br>
+		보유  포인트 :${loginUser.member_cash} <br>
+		최대 게시글 수:${loginUser.member_write_count}<br>
+		최대 키워드 수:${loginUser.member_keyword_count}<br>
+		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
+		<button>충전</button>
+	</div>
+</th>
+<th style="width:100%">
+	 <div class="col-md-6" style="width: 100%;">
             <div class="panel with-nav-tabs panel-primary" style="border-radius: 10px 10px 10px 10px">
                 <div class="panel-heading" style="border-radius: 8px 8px 0px 0px">
                         <ul class="nav nav-tabs">
@@ -242,15 +258,15 @@ function useimticon(itempk){
                    
                 <div class="panel-body" style="padding:0px;  background:#e9e9e9; border-radius: 0 0 10px 10px">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1primary" >
-		<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
+                    <div class="tab-pane fade in active" id="tab1primary" >
+					<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
 					<tbody id="nowhaveitem">
 					
 					</tbody>	
 						
 						</table>
 						<center>
-						<<페이징>> 
+						<<페이징>>
 						</center>
 						</div>
                         <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px">Primary 2</div>
@@ -258,8 +274,11 @@ function useimticon(itempk){
                 </div>
             </div>
         </div>
-	</div>
-
+	</th>
+</tr>
+<tr>
+<th></th>
+<th style="padding:15px;">
 <div class="panel panel-primary" style="height:100%; border-radius: 8px 8px 10px 10px"> 
 		<div class="panel-heading" style="border-radius: 5px 5px 0 0">
 				보유 아이콘
@@ -277,14 +296,37 @@ function useimticon(itempk){
 		</div>
 
 </div>
-
-	</div>
-
-      </div>
-      <div class="modal-footer">
+</th>
+</tr>	
+<tr>
+<th colspan="2">
+ <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+     </div>
+</th>
+<th></th>
+
+       
+
+</tr>
+     
+     
+      </table>
     </div>
 
   </div>
+  </div>
+</div>
+
+
+
+
+
+
+ 
+
+
+
+
+</div>
 </div>
