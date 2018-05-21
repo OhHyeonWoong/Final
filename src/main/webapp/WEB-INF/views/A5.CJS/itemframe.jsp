@@ -23,11 +23,13 @@ $(function(){
 			
 		console.log(json);
 		
-		var count1=1; 
-		var count2=1; 
+		var Array1= new Array; 
+		var Array2= new Array; 
+		var Array3= new Array(new Array(4),new Array(4) );
+		var Array4= new Array(new Array(4),new Array(4) );
+		
 		var value1="";
 		var value2="";
-		value1+="<tr>";
 		for(var i in json.havingitem){//보유중 아이템 삽입.
 			
 <%-- 			<%for(int i=0 ; i<4; i++){%> --%>
@@ -40,23 +42,35 @@ $(function(){
 // 		    </tr>
 <%-- 		<%} %> --%>
 		if(json.havingitem[i].ITEMTYPE != 2){//이모티콘을 제외하고 모두
-			if(count1%5 == 0){
-			value1+="</tr>";
-			}
-            
-			value1+="<th class='itemth'><img src='/goodluck/resources/A5.CJS/itemimg/"+json.havingitem[i].ITEMFILENAME+"' style='width:100%; height:100%;  border-radius: 10px 10px 10px 10px; border-color: black;' ></th>";
-			if(count1%4 == 0){
-			value1+="<tr>";
-			}
-			count1++;
-		
+		Array1.push(json.havingitem[i]);
 		}else{//이모티콘만
-		count2++;
-			$("#haveimticon").html("");
+		Array2.push(json.havingitem[i]);
+		}
+	}
+		
+		//각 배열을 직렬화
+		for(var i=Array1.length; i<16; i++ ){
+			Array1.push("");
+		}
+		for(var i=Array2.length; i<8; i++ ){
+			Array2.push("");
+		}
+
+		console.log(Array1[1]);
+		var count=1;
+		for(var i=0; i<4; i++){
+			for(var j=0; j<4; j++){
+			Array3[i][j]=Array1[1];
+			count++;
 			}
 		}
-		value1+="</tr>";
-		console.log(value1);
+		
+		
+	
+		console.log(Array3);
+
+
+		
 		$("#nowhaveitem").html(value1);	
 		$("#haveimticon").html(value2);
 			
