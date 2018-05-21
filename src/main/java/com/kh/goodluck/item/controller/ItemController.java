@@ -60,4 +60,9 @@ public class ItemController {
 		return "A5.CJS/itemDetail";
 	}
 	
+	@RequestMapping("jdkitemlist.go")
+	public String itemList() {
+		return "A3.JDK/admin_itemlist";
+	}
+	
 }

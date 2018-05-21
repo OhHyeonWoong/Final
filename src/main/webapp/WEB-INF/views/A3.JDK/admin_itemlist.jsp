@@ -72,20 +72,25 @@
             <th>아이템 식별 번호</th>
             <th>아이템</th>
             <th>기간</th>
-            <th class="text-center">Action</th>
+            <th class="text-center">수정 및 삭제</th>
         </tr>
     </thead>
             <tr>
-                <td>아이템 이름 부분</td>
-                <td>아이템 이름</td>
-                <td>기간</td>
+                <td>캐시 아이템</td>
+                <td>글림프</td>
+                <td>90일</td>
                 <td class="text-center">
-                <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>수정</a> 
-                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
+                <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>수정</a>
+                <a class="btn btn-danger btn-xs" href="#"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
             </tr>
     </table>
+    <div style="margin: 0 auto;">
+    <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>아이템 등록</a>
+    </div>
+    
 <!-- 작성 영역 끝-->
 </div>
+<div style="clear: both;">
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

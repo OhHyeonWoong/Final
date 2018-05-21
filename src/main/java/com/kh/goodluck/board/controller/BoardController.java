@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.service.BoardServiceImpl;
 import com.kh.goodluck.board.model.vo.Board;
 
 @Controller
@@ -22,7 +23,7 @@ public class BoardController {
 		
 	}
 	@Autowired
-	private BoardService boardservice;
+	private BoardServiceImpl boardservice;
 	
 	@RequestMapping("Board.go")
 	public String notice(HttpServletRequest request,HttpServletResponse response) {

@@ -1,5 +1,5 @@
 package com.kh.goodluck.qna.model.service;
 
-public class QNAService {
+public interface QNAService {
 
 }

@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.service.BoardServiceImpl;
 import com.kh.goodluck.board.model.vo.Board;
 
 @Controller
 public class CJS_BoardController {
 
 	@Autowired
-	private BoardService boardservice;
+	private BoardServiceImpl boardservice;
 public CJS_BoardController() {
 	// TODO Auto-generated constructor stub
 }
