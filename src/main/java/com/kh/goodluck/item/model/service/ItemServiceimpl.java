@@ -38,9 +38,9 @@ public List<ITEMLIST> homepopularlitm() {
 }
 
 @Override
-public List<GetMyItem> GetMyItem(String memberid) {
+public List<GetMyItem> GetMyItem(GetMyItem gmi) {
 	
-	return itemlistDao.GetMyItem(memberid);
+	return itemlistDao.GetMyItem(gmi);
 }
 
 @Override
@@ -48,6 +48,27 @@ public List<ItemNotice> notice() {
 	
 	return itemlistDao.notice();
 }
+
+@Override
+public int gethavingListCount(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.gethavingListCount(memberid);
+}
+
+
+@Override
+public List<GetMyItem> GetMyItem1(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
+	// TODO Auto-generated method stub
+	return itemlistDao.GetMyItem1(gmi);
+}
+
+@Override
+public int gethavingListCount1(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.gethavingListCount1(memberid);
+}
+
+
 
 
 }

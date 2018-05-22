@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -119,19 +120,42 @@ public class ItemController {
 	}
 	
 	@RequestMapping("cjsgetmyitem.go")
-	public void getmyitem(@RequestParam("member_id") String memberid, HttpServletResponse response) throws IOException {
-	//내아이템 작업.
+	public void getmyitem(@RequestParam("member_id") String memberid, HttpServletRequest request , HttpServletResponse response) throws IOException {
+		//내아이템 작업.
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
+		int currentPage = 1;
 		
-		List<GetMyItem> al = ItemService.GetMyItem(memberid);
+		//전달된 페이지값 추출
+		if(request.getParameter("page") != null) {
+		currentPage = Integer.parseInt(request.getParameter("page"));
+		}
 		
+		//한 페이지당 출력할 목록 갯수 지정
+		int limit = 17;
+	
+		//현 맴버가 보유하고있는 아이템 갯수 계산.
+		int listCount = ItemService.gethavingListCount(memberid);
+		System.out.println( listCount + " / (To.아이템컨트롤러 소모성아이템갯수)");
+		
+		int maxPage = (int)((double)listCount / limit + 0.9);
+	
+		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
+		
+		//현재 페이지에 출력할 목록 조회		
+		GetMyItem gmi=new GetMyItem();
+		gmi.setCurrentPage(currentPage);
+		gmi.setLimit(limit);
+		gmi.setMEMBER_ID(memberid);
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		gmi.setStartRow(startRow);
+		gmi.setEndRow(endRow);		
+		gmi.setMaxpage(maxPage);
+		List<GetMyItem> al = ItemService.GetMyItem(gmi); 
 		System.out.println(al);
-		
 		JSONObject json = new JSONObject();
-		
 		JSONArray jarr = new JSONArray();
-		
 		for(GetMyItem l : al) {
 			JSONObject job = new JSONObject();
 			job.put("MYITEM_NO", l.getMYITEM_NO());
@@ -144,11 +168,66 @@ public class ItemController {
 			job.put("ITEMPERIOD", l.getITEMPERIOD());
 			job.put("ITEMTYPE", l.getITEMTYPE());
 			job.put("ITEMFILENAME", l.getITEMFILENAME());
+			job.put("currentPage",gmi.getCurrentPage());
+			job.put("maxPage", gmi.getMaxpage());
 		jarr.add(job);
 		}
+		json.put("havingitem", jarr); //소모성아이템만 담는다.
 		
-		json.put("havingitem", jarr);
+		
+		//내 이모티콘
+				currentPage=1;
+				//전달된 페이지값 추출
+				if(request.getParameter("page1") != null) {
+				currentPage = Integer.parseInt(request.getParameter("page1"));
+				}
+				
+				//한 페이지당 출력할 목록 갯수 지정
+				limit = 9;
+			
+				//현 맴버가 보유하고있는 이모티콘 갯수 계산.
+				listCount = ItemService.gethavingListCount1(memberid);
+				System.out.println( listCount + " / (To.아이템컨트롤러 이모티콘갯수)");
+				maxPage = (int)((double)listCount / limit + 0.9);
+				startRow = (currentPage - 1) * limit + 1;
+				endRow = startRow + limit - 1;
+				//현재 페이지에 출력할 목록 조회		
+				gmi=new GetMyItem();
+				gmi.setCurrentPage(currentPage);
+				gmi.setLimit(limit);
+				gmi.setMEMBER_ID(memberid);
+				startRow = (currentPage - 1) * limit + 1;
+				endRow = startRow + limit - 1;
+				gmi.setStartRow(startRow);
+				gmi.setEndRow(endRow);	
+				gmi.setMaxpage(maxPage);
+				//이모티콘을 얻기위한 새로운 것.
+				
+				List<GetMyItem> al1 = ItemService.GetMyItem1(gmi); 
+			
+				
+				jarr = new JSONArray();
+				
+				for(GetMyItem l : al1) {
+			JSONObject job = new JSONObject();
+					job.put("MYITEM_NO", l.getMYITEM_NO());
+					job.put("MEMBER_ID", l.getMEMBER_ID());
+					job.put("BUY_DATE", l.getBUY_DATE().toString());
+					job.put("MYITEM_STATUS", l.getMYITEM_STATUS());
+					job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
+					job.put("ITEMNAME", l.getITEMNAME());
+					job.put("ITEMPRICE", l.getITEMPRICE());
+					job.put("ITEMPERIOD", l.getITEMPERIOD());
+					job.put("ITEMTYPE", l.getITEMTYPE());
+					job.put("ITEMFILENAME", l.getITEMFILENAME());
+					job.put("currentPage",gmi.getCurrentPage());
+					job.put("maxPage", gmi.getMaxpage());
+				jarr.add(job);
+				}
+				
+		json.put("havingimticon", jarr); //이모티콘만 담는다.
 		PrintWriter out = response.getWriter();
+		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
