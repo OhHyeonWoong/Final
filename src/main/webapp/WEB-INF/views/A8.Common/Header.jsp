@@ -517,13 +517,18 @@
 		        					z.show();
 		        					//z.toggle(".5");
 		        				}
+		        				
+		        				function fnMovePaymentPage(){
+		        					/* location.href='lbjmoveMileagePaymentPage.go' */
+		        					window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+		        				}
 		        			</script>
 		        		</td>
 		        	</tr>
 		        </table>
 		      </div>
 		      <div class="modal-footer" style="text-align:right;">
-		      	<button class="btn btn-primary">결제</button>
+		      	<button class="btn btn-primary" onclick="fnMovePaymentPage();">결제</button>
 		        <button type="button" class="btn btn-Danger" data-dismiss="modal">취소</button>
 		      </div>
 		    </div>	
