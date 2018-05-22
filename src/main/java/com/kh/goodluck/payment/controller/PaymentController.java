@@ -14,5 +14,12 @@ public class PaymentController {
 	@RequestMapping(value = "ohw-movePaymentPage.go", method = RequestMethod.GET)
 	public String movePaymentPage() {
 		return "A1.OHW/payment";		
-	}	
+	}
+	
+	//병준 컨트롤러///////
+	@RequestMapping(value="lbjmoveMileagePaymentPage.go")
+	public String moveMileagePaymentPage() {
+		return "A6.LBJ/payment/paymentView";
+	}
+	//////////////////
 }
