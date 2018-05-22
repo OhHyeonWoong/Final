@@ -38,12 +38,26 @@
 	$(function(){
 		$('input[type="checkbox"]').on("click",function(){
 			if($('input[type="checkbox"]').is(":checked")){
-				$('.lbj-payment-i').css("color","black"); 	
+				$('.lbj-payment-i').css("color","black"); 
+				$('#lbj-payment-cbox').attr("disabled",false);
 			}else{
-				$('.lbj-payment-i').css("color","#bebebe"); 
+				$('.lbj-payment-i').css("color","#bebebe");
+				$('#lbj-payment-cbox').attr("disabled",true);
 			}
 		});
 	});
+	
+	function fnMovePractice1(){
+		window.open("lbj-movePaymentPractice1.go","","width=600,height=600");
+	}
+	
+	function fnMovePractice2(){
+		window.open("lbj-movePaymentPractice2.go","","width=650,height=600");
+	}
+	
+	function fnMovePractice3(){
+		window.open("lbj-movePaymentPractice3.go","","width=650,height=600");
+	}
 </script>
 </head>
 <body>
@@ -58,21 +72,21 @@
 				<tr>
 					<td colspan="2"><i class="fa fa-check lbj-payment-i"> </i></td>
 					<td> 전자금융거래 이용약관 </td>
-					<td colspan="3" class="lbj-payment-td"><a href="">상세보기</a></td>
+					<td colspan="3" class="lbj-payment-td"><a href="javascript:void(0);" onclick="fnMovePractice1(); return false;">상세보기</a></td>
 				</tr>
 			</table>
 			<table style="width:100%; text-align:center;">
 				<tr>
 					<td colspan="2"><i class="fa fa-check lbj-payment-i"> </i></td>
 					<td> 개인정보의 수집 및 이용동의 </td>
-					<td colspan="3" class="lbj-payment-td"><a href="">상세보기</a></td>
+					<td colspan="3" class="lbj-payment-td"><a href="javascript:void(0);" onclick="fnMovePractice2(); return false;">상세보기</a></td>
 				</tr>
 			</table>
 			<table style="width:100%; text-align:center;">
 				<tr>
 					<td colspan="2"><i class="fa fa-check lbj-payment-i"> </i></td>
 					<td> 개인정보 제공 및 위탁안내 </td>
-					<td colspan="3" class="lbj-payment-td"><a href="">상세보기</a></td>
+					<td colspan="3" class="lbj-payment-td"><a href="javascript:void(0);" onclick="fnMovePractice3(); return false;">상세보기</a></td>
 				</tr>
 			</table>
 		</div>
