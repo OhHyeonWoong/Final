@@ -12,7 +12,7 @@
 	
 <select id='getUsingItem' resultMap="UsingItem">
 <![CDATA[
-select ITEMFILENAME,ITEMNAME,END_DATE 
+select ITEMFILENAME,substr(ITEMNAME,1,8) ITEMNAME,max(END_DATE) END_DATE
 from USING_ITEM u,my_item m,itemlist i
 where 
 u.MYITEM_NO=m.MYITEM_NO 
@@ -20,6 +20,7 @@ and
 m.ITEMLIST_NO=i.ITEMLIST_NO
 and u.START_DATE-u.END_DATE<=0
 and m.member_id=#{memberid}
+group by ITEMFILENAME,substr(ITEMNAME,1,8)
 ]]>
 
 </select>
@@ -32,6 +33,63 @@ select MYITEM_NO from MY_ITEM where MEMBER_ID=#{memberid} and ITEMLIST_NO in
 )
 ]]>
 </select>
+
+
+<insert id="insertusingitem">
+insert into using_item values( (select max(USING_ITEM_NO)+1 from USING_ITEM), #{useritempk} , sysdate , 
+sysdate+(
+select ITEMPERIOD 
+from itemlist 
+where ITEMLIST_NO = (select ITEMLIST_NO from my_item where MYITEM_NO=#{useritempk})))
+</insert>
+
+<insert id="insertusingitem1">
+<![CDATA[
+insert into using_item values( 
+(select max(USING_ITEM_NO)+1 from USING_ITEM),#{useritempk},
+(select max(end_date) from USING_ITEM u ,MY_ITEM m,ITEMLIST i 
+where 
+u.START_DATE-u.END_DATE<=0 and 
+u.MYITEM_NO=m.MYITEM_NO and
+m.ITEMLIST_NO=i.ITEMLIST_NO and 
+m.MEMBER_ID = (select MEMBER_ID from MY_ITEM where MYITEM_NO= #{useritempk} ) and
+i.itemtype = (select ITEMTYPE from ITEMLIST where ITEMLIST_NO = (select ITEMLIST_NO from MY_ITEM where MYITEM_NO = #{useritempk})))
+, 
+((select max(end_date) from USING_ITEM u ,MY_ITEM m,ITEMLIST i 
+where 
+u.START_DATE-u.END_DATE<=0 and 
+u.MYITEM_NO=m.MYITEM_NO and
+m.ITEMLIST_NO=i.ITEMLIST_NO and 
+m.MEMBER_ID = (select MEMBER_ID from MY_ITEM where MYITEM_NO= #{useritempk} ) and
+i.itemtype = (select ITEMTYPE from ITEMLIST where ITEMLIST_NO = (select ITEMLIST_NO from MY_ITEM where MYITEM_NO = #{useritempk})))+(select ITEMPERIOD 
+from itemlist 
+where ITEMLIST_NO = (select ITEMLIST_NO from my_item where MYITEM_NO=#{useritempk})
+)))
+]]>
+</insert>
+
+<select id="checkitemusing" resultType="int">
+<![CDATA[
+select count(*)
+from USING_ITEM u ,MY_ITEM m,ITEMLIST i 
+where 
+u.START_DATE-u.END_DATE<=0 and 
+u.MYITEM_NO=m.MYITEM_NO and
+m.ITEMLIST_NO=i.ITEMLIST_NO and 
+m.MEMBER_ID = (select MEMBER_ID from MY_ITEM where MYITEM_NO= #{useritempk} ) and
+i.itemtype = (select ITEMTYPE from ITEMLIST where ITEMLIST_NO = (select ITEMLIST_NO from MY_ITEM where MYITEM_NO = #{useritempk})
+)
+]]>
+</select>
+<insert id="Insertitemlog" parameterType="int">
+insert into item_log values((select max(ITEM_LOG_NO)+1 from ITEM_LOG),(select USING_ITEM_NO from USING_ITEM where  MYITEM_NO = #{useritempk}),1,sysdate)
+</insert>
+
+<insert id="Insertitemlog1" parameterType="int">
+insert into item_log values((select max(ITEM_LOG_NO)+1 from ITEM_LOG),(select USING_ITEM_NO from USING_ITEM where  MYITEM_NO = #{useritempk}),2,sysdate)
+</insert>
+
+
 
 
 </mapper>
