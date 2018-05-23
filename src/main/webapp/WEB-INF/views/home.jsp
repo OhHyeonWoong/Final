@@ -168,7 +168,7 @@
 }
 
 #ukjae_TableAreaThird {
-	border: 1px solid black;
+    border: 1px solid black; 
 }
 
 #ukjae_TableAreaThird tr td {
@@ -195,7 +195,7 @@
 }
 
 #ukjae_TableAreaFiveth{
-	background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg');
+	/* background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg'); */
 	border: none;
 }
 
@@ -761,9 +761,10 @@
 					                </div>
 					                <div class="col-md-6 no-pad">
 					                    <div class="user-image">
-					                        <img src="/goodluck/resources/common/img/main/반려동물2.jpg" class="img-responsive thumbnail"  style="width:300px; height:80px; margin-top: 40px; ">
-					                    </div>
-					                </div>
+											<!-- <img src="/goodluck/resources/common/img/main/반려동물2.jpg" class="img-responsive thumbnail"  style="width:300px; height:80px; margin-top: 40px; ">-->					        
+           									<iframe width="350" height="200" src="https://www.youtube.com/embed/qM6Jtq_U3e0" style="padding-top: 35px;"></iframe>
+           								</div>
+					               </div>
 					            </div>
 					            <div class="row overview" style=" background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg');">
 					                <div class="col-md-4 user-pad text-center" align="center"> 
@@ -902,33 +903,39 @@
  			<div align="center">
  			<h2> 동 물 뉴 스 </h2>
 			<table id="ukjae_TableAreaFiveth">
-				<tr>
-					<td style="width: 5px;"></td> 		
+				<tr align="center">
+					<td style="width: 5px; border: none;"></td> 		
 					<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-	   
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
 					
 					</td>
-					<td style="width: 5px;"></td> 	
+					<td style="width: 5px; border: none;"></td> 
 
 
 					<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-					
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
 					</td>
-					<td style="width: 5px;"></td> 	
+					<td style="width: 5px; border: none;"></td> 	
 
 					<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-					
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
 					</td>
-					<td style="width: 5px;"></td> 	
+					<td style="width: 5px; border: none;"></td> 	
 
-					<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg"></td>
-					<td style="width: 5px;"></td> 	 	
+					<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+					</td>
+					<td style="width: 5px; border: none;"></td> 	 	
 
-					<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg"></td>
-					<td style="width: 5px;"></td> 	
+					<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+					</td>
+					<td style="width: 5px; border: none;"></td> 	
 
-					<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg"></td>
-					<td style="width: 5px;"></td> 	
+					<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+					</td>
+					<td style="width: 5px; border: none;"></td> 		
 				</tr>				
 			</table>		
 			</div>		
@@ -974,104 +981,105 @@
 			</div>
 			<div class="item"> <!-- 음악영역 -->
 			
-				<table id="ukjae_TableAreaFiveth">					
-					<tr align="center">
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg"><br>
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>
-						</td> 	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-						</td>
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>
-						<td style="width: 5px;"></td> 			
-					</tr>
-				</table>
+				<div style="max-height:800px; overflow: scroll;">
+					<table id="ukjae_TableAreaFiveth">					
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg"><br>
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>
+							</td> 	
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td>
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td> 	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>
+							<td style="width: 5px; border: none;"></td> 			
+						</tr>
+					</table>
+					<div id="ukjae_Areaspace"></div>				
+					<table id="ukjae_TableAreaFiveth">					
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td>
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>						
+						</tr>
+					</table>
+					<div id="ukjae_Areaspace"></div>				
+					<table id="ukjae_TableAreaFiveth">					
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td>
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>
+							<td style="width: 5px; border: none;"></td>			
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td> 	
+							<td style="width: 5px; border: none;"></td>	
+						</tr>
+					</table>
+					<div id="ukjae_Areaspace"></div>				
+					<table id="ukjae_TableAreaFiveth">					
+						<tr align="center">					
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>
+							<td style="width: 5px; border: none;"></td> 					
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>	
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td> 			
+							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
+							</td>	
+							<td style="width: 5px; border: none;"></td>											
+						</tr>
+					</table>
 				<div id="ukjae_Areaspace"></div>				
-				<table id="ukjae_TableAreaFiveth">					
-					<tr align="center">
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 		
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 							
-					</tr>
-				</table>
-				<div id="ukjae_Areaspace"></div>				
-				<table id="ukjae_TableAreaFiveth">					
-					<tr align="center">
-					    <td style="width: 5px;"></td>
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>
-						<td style="width: 5px;"></td> 			
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td> 	
-						<td style="width: 5px;"></td> 	
-					</tr>
-				</table>
-				<div id="ukjae_Areaspace"></div>				
-				<table id="ukjae_TableAreaFiveth">					
-					<tr align="center">					
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>
-						<td style="width: 5px;"></td> 					
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;"></td> 			
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
-						<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-						</td>	
-						<td style="width: 5px;">				
-						</td> 							
-					</tr>
-				</table>
-				<div id="ukjae_Areaspace"></div>				
-
+				
+				</div>
 				
 				<br>
 				
@@ -1129,27 +1137,27 @@
 				<h3> 추 천 여 행 가 이 더 </h3>
 				<table id="ukjae_TableAreaFiveth">					
 					<tr align="center">
-						<td style="width: 5px;"></td> 	
+						<td style="width: 5px; border: none;"></td>	
 						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg"><br>
 						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>
 						</td> 	
-						<td style="width: 5px;"></td> 	
+						<td style="width: 5px; border: none;"></td>	
 						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
 						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
 						</td>
-						<td style="width: 5px;"></td> 	
+						<td style="width: 5px; border: none;"></td> 	
 						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
 						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
 						</td>	
-						<td style="width: 5px;"></td> 	
+						<td style="width: 5px; border: none;"></td>	
 						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
 						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>						
 						</td>	
-						<td style="width: 5px;"></td> 	
+						<td style="width: 5px; border: none;"></td> 	
 						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
 						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
 						</td>
-						<td style="width: 5px;"></td> 			
+						<td style="width: 5px; border: none;"></td> 			
 					</tr>
 				</table>
 				</div>
@@ -1541,31 +1549,31 @@
 					<h2> 추 천 프 리 랜 서 </h2>
 					<table id="ukjae_TableAreaFiveth">					
 						<tr align="center">
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td> 		
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리1.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "요리사 백종원" </font>
 							</td> 	
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td> 	
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리2.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "웹 디자이너" </font>
 							</td> 	
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td> 	
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리3.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "JAVA 프로그래머" </font>
 							</td> 	
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td> 	
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리2.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "웹 디자이너" </font>
 							</td> 	
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td> 	
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리1.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "요리사 백종원" </font>
 							</td> 	
-							<td style="width: 5px;"></td> 	
+							<td style="width: 5px; border: none;"></td>  	
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리랜서1.jpg"><br>
-							<font id="ukjaeTitle_effect"> - </font>
+							<font id="ukjaeTitle_effect"> "JAVA 프로그래머" </font>
 							</td> 	
- 							<td style="width: 5px;"></td> 			
+							<td style="width: 5px; border: none;"></td> 		
 						</tr>
 					</table>			
 				</div>
@@ -1647,8 +1655,39 @@
 					</table>
 		    </div>
 			<div class="item">
+				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
+					<tr> 
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
+						<td colspan="3" align="center"> 
+							<h3> 제 공 합 니 다 </h3>
+							<h3> 제공합니다 1인대역 </h3>
+						</td>					
+					</tr>
+				</table>	
+				<div id="ukjae_Areaspace"></div>			
+				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
+					<tr> 
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
+						<td colspan="3" align="center"> 
+							<h3> 제 공 합 니 다 </h3>
+							<h3> 제공합니다 다인대역  </h3>
+						</td>					
+					</tr>
+				</table>	
+				<div id="ukjae_Areaspace"></div>			
+				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
+					<tr> 
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
+						<td colspan="3" align="center"> 
+							<h3> 제 공 합 니 다 </h3>
+							<h3> 기타 제공 </h3>
+						</td>					
+					</tr>
+				</table>	
+				<div id="ukjae_Areaspace"></div>			
 
-			<table class="ohw-home-table"> <!-- 대행화면 data-slide-to="8" -->
+
+<!-- 			<table class="ohw-home-table"> 대행화면 data-slide-to="8"
 						<tr>
 							<td class = "ohw-home-table-td" align = "center"> 
 								<table class="ohw-home-table2">
@@ -1722,7 +1761,7 @@
 								</table>					
 							</td>
 						</tr>
-					</table>
+					</table> -->
 			</div>	
 		</div>				
 	</div> <!-- homeCarousel -->	
