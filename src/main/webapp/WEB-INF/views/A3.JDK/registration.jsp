@@ -19,24 +19,27 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>   
 <!-- 전동기 부트스트랩 영역입니다. -->
+<!-- 개별 페이지 스타일 영역입니다. -->
 <style type="text/css">
 
 </style>
+<!-- 자바스크립트 영역입니다. -->
 <script type="text/javascript">
-
-
+/* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함) */
+function sigIn(){
+	
+}
 </script>
 
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 	<div class="container" >
 		<div class="login_form" >
 			<h3 style="text-align : center;">회원가입</h3>
 		<div class="col-md-6 col-md-offset-3">
 <!-- 회원가입 폼 시작 -->
-			<form role="form" enctype="multipart/form-data" method="post" action="">
+			<form role="form" enctype="multipart/form-data" method="post" action="signIn();">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
 					<div style="width : 130px; height : auto; margin: 0 auto;">

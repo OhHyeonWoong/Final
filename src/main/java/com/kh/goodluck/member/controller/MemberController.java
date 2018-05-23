@@ -124,6 +124,9 @@ public class MemberController {
 		out.close();
 	}
 	
-	
+	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
+	public void signIn() {
+		
+	}
 	
 }
