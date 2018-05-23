@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.vo.Member;
 
 @Repository("itemlistDao")
@@ -66,5 +67,17 @@ public class Itemdao {
 	public List<GetMyItem> GetMyItem1(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("Getmyitem1",gmi);
+	}
+
+
+	public List<UsingItem> getUsingItem(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getUsingItem",memberid);
+	}
+
+
+	public int getmyimticon(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmyimticon",memberid);
 	}
 }

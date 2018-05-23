@@ -77,13 +77,13 @@
 	
 	<select id="selectCategoryLink1" parameterType="CategoryLink1" resultMap="CategoryLink1All">
 		<![CDATA[
-			select * from categorylink1
+			select l.LINK1_NO, b.CATEGORY_BIG_NAME as CATEGORY_BIG_CODE, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE from categorylink1 l,BIGCATEGORY b, MIDCATEGORY m where l.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE
 		]]>
 	</select>
 	
 	<select id="selectCategoryLink2" parameterType="CategoryLink2" resultMap="CategoryLink2All">
 		<![CDATA[
-			select * from categorylink2
+			select l.LINK2_NO, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE, s.CATEGORY_SMALL_NAME as CATEGORY_SMALL_CODE from CATEGORYLINK2 l,MIDCATEGORY m, SMALLCATEGORY s where l.CATEGORY_MID_CODE = m.CATEGORY_MID_CODE and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE
 		]]>
 	</select>
 	

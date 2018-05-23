@@ -2,14 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 
 <meta charset="UTF-8">
 <style type="text/css">
 
 </style>
+
+<title>아이템 상세보기</title>
+</head>
+<body>
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <script type="text/javascript">
 $(document).ready( function() {
 	var clickEvent = false;
@@ -31,11 +33,6 @@ $(document).ready( function() {
 	});
 });
 </script>
-<title>아이템 상세보기</title>
-</head>
-<body>
-<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 
 <div style="overflow: hidden;">
 </div>

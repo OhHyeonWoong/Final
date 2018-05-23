@@ -2,16 +2,19 @@
     pageEncoding="UTF-8"%>	
 
 <script>
+
 function paging(page){
 	if("${loginUser}" != ""){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
+	
 		$.ajax({
 			url:"cjsgetmyitem.go",
 			type:"post",
 			data:{
 				member_id: id,
-				page:page
+				page:page,
+				page1:$("#itempage1").val()
 			},
 			dataType: "json",
 			success:function(data){
@@ -20,7 +23,7 @@ function paging(page){
 				
 			var json = JSON.parse(jsonStr);
 				
-			console.log(json);
+			
 			
 			var Array1= new Array(); 
 			var Array2= new Array(); 
@@ -37,12 +40,23 @@ function paging(page){
 		
 			for(var i in json.havingitem){//보유중 아이템 삽입.
 			Array1.push(json.havingitem[i]);
+		
 			}
 			for(var i in json.havingimticon){
 			Array2.push(json.havingimticon[i]);
+		
+			}
+		
+			if(json.havingitem[0]!=null){
+			$("#itempage").val(json.havingitem[0].currentPage);
+		
 			}
 			
-		
+			if(json.havingimticon[0]!=null){
+			$("#itempage1").val(json.havingimticon[0].currentPage);
+			
+			}
+			
 			
 	//각 배열을 직렬화
 			for(var i=Array1.length; i<16; i++ ){
@@ -83,10 +97,11 @@ function paging(page){
 				value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 				}
 				value1+="</th>"; 
+			
 			}
 			
-			console.log(json.havingitem[0].maxPage);
-			console.log(json.havingitem[0].currentPage);
+			
+			
 			
 		//페이징처리
 			$("#havingitempaging").html("");
@@ -95,7 +110,8 @@ function paging(page){
 	 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
 			else
 		    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
-		}
+			
+	 		}
 
 //	 		job.put("currentPage",gmi.getCurrentPage());
 //	 		job.put("maxPage", gmi.getMaxpage());
@@ -111,11 +127,12 @@ function paging(page){
 				value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 				}
 				value2+="</th>";
+		
 			}
 			
 			//페이징처리
 			$("#havingimticonpaging").html("");
-			for(var i=1; i<=json.havingimticon[0].maxPage; i++){
+		 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 				if(i==json.havingimticon[0].currentPage)
 		 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
 				else
@@ -131,18 +148,21 @@ function paging(page){
 				alert("a : " + a + ", b : " + b + ", c : " + c);
 			}
 		});
+		
 		}
 }
-function paging1(page){
+function paging1(page1){
 	if("${loginUser}" != ""){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
+		
 		$.ajax({
 			url:"cjsgetmyitem.go",
 			type:"post",
 			data:{
 				member_id: id,
-				page1:page
+				page1:page1,
+				page:$("#itempage").val()
 			},
 			dataType: "json",
 			success:function(data){
@@ -151,7 +171,7 @@ function paging1(page){
 				
 			var json = JSON.parse(jsonStr);
 				
-			console.log(json);
+	
 			
 			var Array1= new Array(); 
 			var Array2= new Array(); 
@@ -168,12 +188,23 @@ function paging1(page){
 		
 			for(var i in json.havingitem){//보유중 아이템 삽입.
 			Array1.push(json.havingitem[i]);
+		
 			}
 			for(var i in json.havingimticon){
 			Array2.push(json.havingimticon[i]);
+		
+			}
+		
+			if(json.havingitem[0]!=null){
+			$("#itempage").val(json.havingitem[0].currentPage);
+			
 			}
 			
-		
+			if(json.havingimticon[0]!=null){
+			$("#itempage1").val(json.havingimticon[0].currentPage);
+			
+			}
+			
 			
 	//각 배열을 직렬화
 			for(var i=Array1.length; i<16; i++ ){
@@ -214,10 +245,11 @@ function paging1(page){
 				value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 				}
 				value1+="</th>"; 
+			
 			}
 			
-			console.log(json.havingitem[0].maxPage);
-			console.log(json.havingitem[0].currentPage);
+			
+			
 			
 		//페이징처리
 			$("#havingitempaging").html("");
@@ -226,7 +258,8 @@ function paging1(page){
 	 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
 			else
 		    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
-		}
+			
+	 		}
 
 //	 		job.put("currentPage",gmi.getCurrentPage());
 //	 		job.put("maxPage", gmi.getMaxpage());
@@ -242,11 +275,12 @@ function paging1(page){
 				value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 				}
 				value2+="</th>";
+		
 			}
 			
 			//페이징처리
 			$("#havingimticonpaging").html("");
-			for(var i=1; i<=json.havingimticon[0].maxPage; i++){
+		 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 				if(i==json.havingimticon[0].currentPage)
 		 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
 				else
@@ -262,9 +296,11 @@ function paging1(page){
 				alert("a : " + a + ", b : " + b + ", c : " + c);
 			}
 		});
+		
 		}
 }
 $(function(){
+	
 	if("${loginUser}" != ""){
 	//로그인 했을경우에만 발동함.
 	var id = "${loginUser.member_id}";
@@ -281,7 +317,7 @@ $(function(){
 			
 		var json = JSON.parse(jsonStr);
 			
-		console.log(json);
+	
 		
 		var Array1= new Array(); 
 		var Array2= new Array(); 
@@ -298,12 +334,23 @@ $(function(){
 	
 		for(var i in json.havingitem){//보유중 아이템 삽입.
 		Array1.push(json.havingitem[i]);
+	
 		}
 		for(var i in json.havingimticon){
 		Array2.push(json.havingimticon[i]);
+	
+		}
+	
+		if(json.havingitem[0]!=null){
+		$("#itempage").val(json.havingitem[0].currentPage);
+	
 		}
 		
-	
+		if(json.havingimticon[0]!=null){
+		$("#itempage1").val(json.havingimticon[0].currentPage);
+		
+		}
+		
 		
 //각 배열을 직렬화
 		for(var i=Array1.length; i<16; i++ ){
@@ -339,14 +386,16 @@ $(function(){
 			value1+="<tr>";
 			for(var j=0; j<4; j++){
 		if(Array3[i][j].ITEMFILENAME!=null)
-			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"'  name='"+Array3[i][j].ITEMNAME+"'     style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
+			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"'  name='"+Array3[i][j].ITEMNAME+" 'style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center; padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
 		else
 			value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value1+="</th>"; 
+		
 		}
 		
-	
+		
+		
 		
 	//페이징처리
 		$("#havingitempaging").html("");
@@ -355,7 +404,8 @@ $(function(){
  		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
 		else
 	    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
-	}
+		
+ 		}
 
 // 		job.put("currentPage",gmi.getCurrentPage());
 // 		job.put("maxPage", gmi.getMaxpage());
@@ -365,12 +415,15 @@ $(function(){
 		for(var i=0; i<2; i++){//이모티콘
 			value2+="<tr>";
 			for(var j=0; j<4; j++){
-			if(Array4[i][j].ITEMFILENAME!=null)
+			if(Array4[i][j].selected==1){
+			value2+="<th class='itemth' style='border: 1px solid red;'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";		
+			}else if(Array4[i][j].ITEMFILENAME!=null)
 			value2+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";
-				else
+			else
 			value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value2+="</th>";
+	
 		}
 		
 		//페이징처리
@@ -391,7 +444,9 @@ $(function(){
 			alert("a : " + a + ", b : " + b + ", c : " + c);
 		}
 	});
+	
 	}
+
 })
 function useitem(itempk){
 	
@@ -403,9 +458,18 @@ console.log(itempk.name);//소모성아이템 이름
 function useimticon(itempk){
 console.log(itempk.id);//이모티콘 아이디
 }
+
+
+
 </script>
 
 <style>
+#nowhaveitem > tr{
+height: 78px;
+}
+#haveimticon > tr{
+height: 78px;
+}
  .itemth {
      width:50px;
       height:50px;
@@ -547,13 +611,41 @@ console.log(itempk.id);//이모티콘 아이디
 						
 						</table>
 						<center>
-						<p id="havingitempaging">
-					
-					
-						</p>
+<p id="havingitempaging"></p>
 						</center>
 						</div>
-                        <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px">Primary 2</div>
+                        <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px; height:100%">
+                        
+	                        <div style="background: red; width: 100%; height: 400px; border-radius: 0 0 8px 8px">
+	                        
+	                      <table style="width: 100%; height: 100%;">
+	                    	<tr style="width:100%">
+	                      	<th style="width:20%">...</th>
+	                        <th style="width:50%">아이템</th>
+	                        <th style="width:30%">기간</th>
+	                        <tr>
+	                        <tbody id="myusingitem">
+	                        <tr style="width:100%">
+	                     	<th style="width:20%">...</th>
+	                        <th style="width:50%">아이템</th>
+	                        <th style="width:30%">기간</th>
+	                     	<tr>
+	                        
+	                        
+	                        </tbody>
+	                 	</table>
+	                        
+	                       
+	                        
+                        
+                        </div>
+                       		
+                        
+                        
+                        
+                        
+                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -565,7 +657,7 @@ console.log(itempk.id);//이모티콘 아이디
 <th style="padding:15px;">
 <div class="panel panel-primary" style="height:100%; border-radius: 8px 8px 10px 10px"> 
 		<div class="panel-heading" style="border-radius: 5px 5px 0 0">
-				보유 아이콘
+		보유 아이콘
 		</div>
 		<div class="panel-body" style="padding: 0px; background:#e9e9e9;  border-radius: 0px 0px 10px 10px">
 		<table style="height:80%; width:100%; background:#e9e9e9; border-collapse: separate; border-spacing: 10px;">
@@ -575,10 +667,7 @@ console.log(itempk.id);//이모티콘 아이디
 					</tbody>
 					</table>
 						<center >
-						<p id="havingimticonpaging">
-					
-					
-						</p>
+						<p id="havingimticonpaging"></p>
 						</center>
 		</div>
 
@@ -588,7 +677,7 @@ console.log(itempk.id);//이모티콘 아이디
 <tr>
 <th colspan="2">
  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">아이템창 닫기</button>
      </div>
 </th>
 <th></th>
@@ -601,19 +690,18 @@ console.log(itempk.id);//이모티콘 아이디
       </table>
     </div>
 
+<input type="hidden" id='itempage' value="1">
+
+<input type="hidden" id='itempage1' value="2">
+
   </div>
   </div>
 </div>
 
 
+<script type="text/javascript">
 
-
-
-
- 
-
-
-
+</script>
 
 </div>
 </div>

@@ -2,7 +2,9 @@ package com.kh.goodluck.item.controller;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.vo.Member;
 
 @Controller
@@ -115,8 +118,12 @@ public class ItemController {
 	 
 	@RequestMapping("Chatting.go")  //(욱재작업) 채팅창페이지로 이동하기
 	public String chartPageMove(){
-		return "A2.JUJ/Chatting";
-		
+		return "A2.JUJ/Chatting";		
+	}
+	
+	@RequestMapping("Ukcarousel.go")  //(욱재작업) 채팅창페이지로 이동하기
+	public String carouselTestPageMove(){
+		return "A2.JUJ/Carousel_test";
 	}
 	
 	@RequestMapping("cjsgetmyitem.go")
@@ -153,7 +160,7 @@ public class ItemController {
 		gmi.setEndRow(endRow);		
 		gmi.setMaxpage(maxPage);
 		List<GetMyItem> al = ItemService.GetMyItem(gmi); 
-		System.out.println(al);
+		
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
 		for(GetMyItem l : al) {
@@ -187,7 +194,7 @@ public class ItemController {
 			
 				//현 맴버가 보유하고있는 이모티콘 갯수 계산.
 				listCount = ItemService.gethavingListCount1(memberid);
-				System.out.println( listCount + " / (To.아이템컨트롤러 이모티콘갯수)");
+				
 				maxPage = (int)((double)listCount / limit + 0.9);
 				startRow = (currentPage - 1) * limit + 1;
 				endRow = startRow + limit - 1;
@@ -201,15 +208,25 @@ public class ItemController {
 				gmi.setStartRow(startRow);
 				gmi.setEndRow(endRow);	
 				gmi.setMaxpage(maxPage);
-				//이모티콘을 얻기위한 새로운 것.
 				
+				//이모티콘을 얻기위한 새로운 것.
 				List<GetMyItem> al1 = ItemService.GetMyItem1(gmi); 
-			
+				
+				//현재 사용중인 이모티콘 pk얻어오기
+				
+				int nowusingimticonpk;
+						
+				try {
+				nowusingimticonpk = ItemService.getmyimticon(memberid) ;
+				}catch(NullPointerException e) {
+					nowusingimticonpk=0;
+				}	
+				
 				
 				jarr = new JSONArray();
 				
 				for(GetMyItem l : al1) {
-			JSONObject job = new JSONObject();
+					JSONObject job = new JSONObject();
 					job.put("MYITEM_NO", l.getMYITEM_NO());
 					job.put("MEMBER_ID", l.getMEMBER_ID());
 					job.put("BUY_DATE", l.getBUY_DATE().toString());
@@ -222,10 +239,31 @@ public class ItemController {
 					job.put("ITEMFILENAME", l.getITEMFILENAME());
 					job.put("currentPage",gmi.getCurrentPage());
 					job.put("maxPage", gmi.getMaxpage());
+					if(nowusingimticonpk == l.getMYITEM_NO()){
+					job.put("selected",1);
+					}else {
+					job.put("selected",0);
+					}
 				jarr.add(job);
 				}
 				
 		json.put("havingimticon", jarr); //이모티콘만 담는다.
+		
+		//현재사용중인 아이템 리스트를 가져온다.
+		List<UsingItem> al2 = ItemService.getUsingItem(memberid);
+	
+		jarr = new JSONArray();
+		
+		for(GetMyItem l : al1) {
+		
+		JSONObject job = new JSONObject();
+			
+		jarr.add(job);
+		}
+		
+		json.put("usingitem", jarr); //사용중 아이템을 넣는다.
+		
+		
 		PrintWriter out = response.getWriter();
 		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());

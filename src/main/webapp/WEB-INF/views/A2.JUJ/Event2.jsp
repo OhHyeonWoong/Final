@@ -41,7 +41,7 @@
 		    margin-top:5px;
 		    font-weight:bold
 		}
-	
+	    
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(ev){
@@ -62,15 +62,24 @@
 
 			<div class="container-fluid">
 			    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+			    
 			        <!-- Wrapper for slides -->
 			        <div class="carousel-inner">
 			            <div class="item active">
 			                <div class="container-fluid">
 			                    <div class="row">
-			                        <div class="col-md-3"><img src="/goodluck/resources/common/img/무한극장.gif" class="img-responsive"></div>
-			                        <div class="col-md-9">
-			                            <h2>Slide 1</h2>
-			                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+			                        <div class="col-md-3"><img src="/goodluck/resources/common/img/무한극장.gif" class="img-responsive" style="height: 250px;"></div>
+			                        <div class="col-md-9" align="center">
+			                            <h2>이벤트 하나</h2>
+			                            <p>
+			                            	<ol>
+			                            	<li><h4> 50%할인 </h4></li>
+			                            	<li><h4> 내용2 </h4></li>
+			                            	<li><h4> 내용3 </h4></li>
+			                            	<li><h4> 내용4 </h4></li>
+			                            	</ol>
+			                            	
+			                            </p>
 			                        </div>
 			                    </div>
 			                </div>            
@@ -78,10 +87,17 @@
 			            <div class="item">
 			                <div class="container-fluid">
 			                    <div class="row">
-			                        <div class="col-md-3"><img src="http://placehold.it/350x250" class="img-responsive"></div>
-			                        <div class="col-md-9">
-			                            <h2>Slide 2</h2>
-			                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+			                        <div class="col-md-3"><img src="/goodluck/resources/common/img/main/여행3.jpg" class="img-responsive"  style="height: 250px;"></div>
+			                        <div class="col-md-9" align="center">
+			                            <h2>이벤트 두울</h2>
+			                            <p>
+			                            	<ol>
+			                            	<li><h4> 50%할인 </h4></li>
+			                            	<li><h4> 내용2 </h4></li>
+			                            	<li><h4> 내용3 </h4></li>
+			                            	<li><h4> 내용4 </h4></li>
+			                            	</ol>			                            	
+			                            </p>
 			                        </div>
 			                    </div>
 			                </div>            
@@ -89,10 +105,17 @@
 			            <div class="item">
 			                <div class="container-fluid">
 			                    <div class="row">
-			                        <div class="col-md-3"><img src="http://placehold.it/350x250" class="img-responsive"></div>
-			                        <div class="col-md-9">
-			                            <h2>Slide 4</h2>
-			                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+			                        <div class="col-md-3"><img src="/goodluck/resources/common/img/main/여행4.jpg" class="img-responsive"  style="height: 250px;"></div>
+			                        <div class="col-md-9" align="center">
+			                            <h2>이벤트 셋</h2>
+			                            <p>
+			                            	<ol>
+			                            	<li><h4> 50%할인 </h4></li>
+			                            	<li><h4> 내용2 </h4></li>
+			                            	<li><h4> 내용3 </h4></li>
+			                            	<li><h4> 내용4 </h4></li>
+			                            	</ol>			                            	
+			                            </p>
 			                        </div>
 			                    </div>
 			                </div>           
@@ -100,10 +123,17 @@
 			            <div class="item">
 			                <div class="container-fluid">
 			                    <div class="row">
-			                        <div class="col-md-3"><img src="http://placehold.it/350x250" class="img-responsive"></div>
-			                        <div class="col-md-9">
-			                            <h2>Slide 3</h2>
-			                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+			                        <div class="col-md-3"><img src="/goodluck/resources/common/img/main/여행5.jpg" class="img-responsive"  style="height: 250px;"></div>
+			                        <div class="col-md-9" align="center">
+			                            <h2>이벤트 넷</h2>
+			                            <p>
+			                            	<ol>
+			                            	<li><h4> 50%할인 </h4></li>
+			                            	<li><h4> 내용2 </h4></li>
+			                            	<li><h4> 내용3 </h4></li>
+			                            	<li><h4> 내용4 </h4></li>
+			                            	</ol>			                            	
+			                            </p>
 			                        </div>
 			                    </div>
 			                </div>           
@@ -113,10 +143,10 @@
 			        <!-- End Carousel Inner -->
 			        <div class="controls">
 			            <ul class="nav">
-			                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="http://placehold.it/50x50"><small>Slide One</small></a></li>
-			                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Two</small></a></li>
-			                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Three</small></a></li>
-			                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Four</small></a></li>
+			                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="/goodluck/resources/common/img/무한극장.gif" width="50" height="50"><small>Slide One</small></a></li>
+			                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="/goodluck/resources/common/img/main/여행3.jpg" width="50" height="50"><small>Slide Two</small></a></li>
+			                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="/goodluck/resources/common/img/main/여행4.jpg" width="50" height="50"><small>Slide Three</small></a></li>
+			                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="/goodluck/resources/common/img/main/여행5.jpg" width="50" height="50"><small>Slide Four</small></a></li>
 			            </ul>
 			        </div>
 			    </div>
