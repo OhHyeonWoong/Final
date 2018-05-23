@@ -52,5 +52,10 @@ public class UkjaeController {
 		return "A2.JUJ/Chatting";
 	}
 	
+	@RequestMapping("Ukcarousel.go")  //(욱재작업) 채팅창페이지로 이동하기
+	public String carouselTestPageMove(){
+		return "A2.JUJ/Carousel_test";
+	}
+
 
 }

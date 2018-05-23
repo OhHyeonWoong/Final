@@ -1,24 +1,17 @@
 @charset "UTF-8";
 
-	/**** BASE ****/
-	a {
-	    color: #03a1d1;
-	    text-decoration: none!important;
-	}
 	
 	/**** LAYOUT ****/
 	.list-inline>li {
 	    padding: 0 10px 0 0;
-	}
+	}	
 	.container-pad {
 	    padding: 30px 15px;
 	}
 	
-	
-	/**** MODULE ****/
-	.bgc-fff {
-	    background-color: #fff!important;
-	}
+		
+	/**** MODULE ****/	
+
 	.box-shad {
 	    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
 	    box-shadow: 1px 1px 0 rgba(0,0,0,.2);
@@ -32,7 +25,7 @@
 	    font-size: .9em;
 	}
 	.fnt-lighter {
-	    color: #bbb;
+	    color: white;
 	}
 	
 	/* Padding - Margins */
@@ -55,6 +48,10 @@
 	}
 	/**** MEDIA QUERIES ****/
 	@media only screen and (max-width: 991px) {
+		.property-listing{
+			background-color: black;
+		}
+	
 	    #property-listings .property-listing {
 	        padding: 5px!important;
 	    }
@@ -72,23 +69,4 @@
 	    }
 	}
 	
-	.container-fluid{
-	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;	
-	}
-	
-	/* 파->빨->파로 계속 변하는 효과 */
-	#ukjaeTarvel_title{ 
-		color:red;
-		animation: traveltitle 2s infinite;		
-	}
-			
-	@-webkit-keyframes traveltitle {
-	    from {color: red;}
-	    to {color: blue;}
-	} 
-	
-	@keyframes traveltitle {
-	    from {color: red;}
-	    to {color: blue;}
-	}  
-	/* 파->빨->파로 계속 변하는 효과 */
+

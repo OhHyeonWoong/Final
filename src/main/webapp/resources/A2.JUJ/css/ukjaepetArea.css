@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-	/* 반려동물 영역 */
-	
 	.btn-glyphicon { float:right; padding:8px; background:#ffffff; margin-left:4px; }
 	.icon-btn { padding: 1px 2px 3px 6px; border-radius:50px; float:left; line-height:2em; margin-left:3px;}
 	
@@ -32,7 +30,7 @@
 	
 	div.user-menu-container {
 	  z-index: 10;
-	  background-color: #fff;
+	  background:white;
 	  margin-top: 20px;
 	  background-clip: padding-box;
 	  opacity: 0.97;
@@ -132,7 +130,16 @@
 	
 	.user-pad {
 	    padding: 20px 25px;
+	    
 	}
+	
+	.ukjae_petborder{
+		width: 100%;
+		borde: 1px solid gray; 
+	}	
+	
+	
+	
 	
 	.no-pad {
 	    padding-right: 0;
@@ -226,4 +233,4 @@
 	    .user-image {
 	        max-height: 400px;
 	    }
-	}	
+	}		

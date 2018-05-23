@@ -2,6 +2,7 @@ package com.kh.goodluck.item.controller;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,6 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
-
-import jdk.incubator.http.HttpResponse;
 
 @Controller
 public class ItemController {
@@ -108,8 +107,12 @@ public class ItemController {
 	 
 	@RequestMapping("Chatting.go")  //(욱재작업) 채팅창페이지로 이동하기
 	public String chartPageMove(){
-		return "A2.JUJ/Chatting";
-		
+		return "A2.JUJ/Chatting";		
+	}
+	
+	@RequestMapping("Ukcarousel.go")  //(욱재작업) 채팅창페이지로 이동하기
+	public String carouselTestPageMove(){
+		return "A2.JUJ/Carousel_test";
 	}
 	
 	@RequestMapping("cjsgetmyitem.go")

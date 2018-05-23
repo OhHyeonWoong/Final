@@ -1,19 +1,17 @@
 @charset "UTF-8";
 
 	/* 고객의 소리 */					
-	@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
-	/*Comment List styles*/
-	.comment-list .row {
+	 /* @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css); */
+ 	.comment-list .row {
 	  Sectiongin-bottom: 0px;
 	  padding-top:0;
 	  width: 100%;
 	}
 	.comment-list .panel .panel-heading {
 	  Sectiongin-top:0;
-	  /* padding: 4px 15px; */
+	  padding: 4px 15px; 
 	  position: absolute;
 	  border:none;
-	  /*Panel-heading border radius*/
 	  border-top-right-radius:0px;
 	  top: 1px;
 	}

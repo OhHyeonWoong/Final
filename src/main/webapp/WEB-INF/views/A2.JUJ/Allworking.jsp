@@ -17,7 +17,7 @@
 		                </div>
 		                <ul class="list-group">
 		                    <a href="#" class="list-group-item">작업 1 : </a>
-		                    <a href="#" class="list-group-item">작업 2 : </a>
+		                    <a href="Ukcarousel.go" class="list-group-item">작업 2 : 카로셀 </a>
 		                    <a href="#" class="list-group-item">작업 3 : </a>
 		                    <a href="#" class="list-group-item">작업 4 : 구현중 </a>
 		                    <a href="#" class="list-group-item">작업 5 : 구현중 </a>
