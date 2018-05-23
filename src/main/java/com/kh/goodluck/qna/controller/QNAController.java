@@ -13,7 +13,7 @@ public class QNAController {
 		
 	}
 	
-	@RequestMapping("QNA.go")
+	@RequestMapping("bsh-QNA.go")
 	public String report(HttpServletRequest request,HttpServletResponse response) {
 		
 		return "A4.BSH/QNA";	
