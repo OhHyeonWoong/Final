@@ -62,7 +62,7 @@ public class MemberController {
 		
 		//로그인 작업을 합니다 세션에 넣어요
 		Member m = memberService.loginCheck(member);
-		System.out.println("m : " + m);
+		
 		PrintWriter out = response.getWriter();
 		if(m != null) {
 			out.write("로그인 성공");
