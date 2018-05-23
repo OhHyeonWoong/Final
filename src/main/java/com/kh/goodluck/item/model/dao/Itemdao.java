@@ -37,14 +37,34 @@ public class Itemdao {
 	 return sqlSession.selectList("homepopularlitm");
 	}
 
-	public List<GetMyItem> GetMyItem(String memberid) {
+	public List<GetMyItem> GetMyItem(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("Getmyitem",memberid);
+	
+		
+		return sqlSession.selectList("Getmyitem",gmi);
 	}
 
 
 	public List<ItemNotice> notice() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("homeitemnotice");
+	}
+
+
+	public int gethavingListCount(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("gethavingListCount",memberid);
+	}
+
+
+	
+	public int gethavingListCount1(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("gethavingListCount1",memberid);
+	}
+
+	public List<GetMyItem> GetMyItem1(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("Getmyitem1",gmi);
 	}
 }

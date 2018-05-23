@@ -12,6 +12,8 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.MidCategory" alias="MidCategory"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.SmallCategory" alias="SmallCategory"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemNotice" alias="ItemNotice"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink1" alias="CategoryLink1"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink2" alias="CategoryLink2"/>
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>

@@ -15,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
+import com.kh.goodluck.board.model.vo.CategoryLink1;
+import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.SmallCategory;
 
 @Controller
 public class BoardController {
@@ -38,9 +42,10 @@ public class BoardController {
 		//System.out.println(board);
 		List<Board> boardlist = boardservice.selectCategory(board);
 		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
-		List<BigCategory> midcategorylist = boardservice.selectMidCategoryAll();
-		List<BigCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
-		
+		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
+		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
+		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
+		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
 		
 		//System.out.println(boardlist);
 		
@@ -52,6 +57,13 @@ public class BoardController {
 		mv.addObject("midcategorylist",midcategorylist);
 		mv.addObject("smallcategorylist",smallcategorylist);
 		mv.addObject("boardlist", boardlist);
+		mv.addObject("categorylink1list",categorylink1list);
+		mv.addObject("categorylink2list",categorylink2list);
+		
+		//System.out.println(categorylink1list);
+		//System.out.println(categorylink2list);
+		
+		
 		//A4.BSH/Board
 		return mv;
 	}

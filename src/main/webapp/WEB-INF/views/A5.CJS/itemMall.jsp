@@ -198,8 +198,6 @@ $(document).ready( function() {
    			 이름 : ${item.ITEMNAME}<br>
    			 가격 : ${item.ITEMPRICE} 원 <br>
    			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
-   			 	
-   			 
    			 </center>
 			</th>
 			</c:forEach>
@@ -222,14 +220,7 @@ $(document).ready( function() {
 			</th>
 			</c:forEach>
 					  </tr>
-				 
-				 
-				 
-				 
-				 
 				  </table>
-					
-		
 </div>
 			</div>
 		</div>

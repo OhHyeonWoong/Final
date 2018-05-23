@@ -26,7 +26,7 @@
 <!-- 자바스크립트 영역입니다. -->
 <script type="text/javascript">
 /* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함) */
-function sigIn(){
+function signIn(){
 	
 }
 </script>
@@ -39,7 +39,7 @@ function sigIn(){
 			<h3 style="text-align : center;">회원가입</h3>
 		<div class="col-md-6 col-md-offset-3">
 <!-- 회원가입 폼 시작 -->
-			<form role="form" enctype="multipart/form-data" method="post" action="signIn();">
+			<form role="form" enctype="multipart/form-data" method="post" action="return signIn();">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
 					<div style="width : 130px; height : auto; margin: 0 auto;">
@@ -52,8 +52,8 @@ function sigIn(){
 					<label for="userid">아이디</label>
 					<div class="input-group">
 					<input type="text"  id="member_id" name="member_id" class="form-control" placeholder="아이디" required="required">
-					<span class="input-group-btn"><button class="btn btn-default" style="">
-					<i class = "fa fa-search"></i> 중복검사</button></span>
+					<span class="input-group-btn"><a href="#" class="btn btn-default" style="">
+					<i class = "fa fa-search"></i> 중복검사</a></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -93,7 +93,7 @@ function sigIn(){
 					<div class="input-group">
 						<input type="text" class="form-control" id="register" placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
 						<!--email 인증 요청--> 
-						<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</button>	</span>
+						<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a>	</span>
 					</div>
 				</div>
 
@@ -102,12 +102,12 @@ function sigIn(){
 					<div class="input-group">
 					<input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 					<!-- 인증번호 요청시 번호 입력확인 -->
-					<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</button></span>
+					<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
 					</div>
 				</div>
 				
 				<div class="form-group text-center">
-					<div class="form-group">
+					<div class="input-group">
 						 <input id="agree" type="checkbox" autocomplete="off"> 
 						<a href="location.href=''" data-toggle="modal" data-target="#termsOfService">이용약관</a> 에 동의 합니다.
 					</div>

@@ -150,6 +150,21 @@
 				${smallcategory.category_small_views }<br>
 			</c:forEach>
 			
+			<c:forEach var="categorylink1" items="${categorylink1list }">
+				${categorylink1.link1_no }&nbsp;
+				${categorylink1.category_big_code }&nbsp;
+				${categorylink1.category_mid_code }<br>
+			</c:forEach>
+			
+			<c:forEach var="categorylink2" items="${categorylink2list }">
+				${categorylink2.link2_no }&nbsp;
+				${categorylink2.category_mid_code }&nbsp;
+				${categorylink2.category_small_code }<br>
+			</c:forEach>
+			
+			
+			
+			
 		</div>
 
 		<div class="bsh_center">
