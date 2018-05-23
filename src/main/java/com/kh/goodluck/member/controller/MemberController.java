@@ -31,8 +31,11 @@ public class MemberController {
 	}
 	//병준 마이페이지 테스트용 메소드
 	@RequestMapping("lbjmypage.go")
-	public String mypageGo() {
-		return "A6.LBJ/myPage";
+	public ModelAndView mypageGo(ModelAndView mv) {
+		//마이페이지 ㄱㄱ
+		//뷰로 이동하기 전에 필요한 모든 정보 셋팅해서 보내기
+		mv.setViewName("A6.LBJ/myPage");
+		return mv;
 	}
 	@RequestMapping("lbjqnadetail.go")
 	public String qnaDetailGo() {
@@ -124,6 +127,9 @@ public class MemberController {
 		out.close();
 	}
 	
-	
+	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
+	public void signIn() {
+		
+	}
 	
 }

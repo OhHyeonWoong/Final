@@ -47,7 +47,6 @@
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
-		 	<a href="">마일리지 충전</a>
 			<h2 style="text-align:left;">마이페이지</h2>
 			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
@@ -61,23 +60,26 @@
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
 							<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-							<img src="#" name ="profile_img" alt="profile_img"/>
+							<img src="${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img"/>
 							</div><br>
 							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
 						</div>
 						<div class="form-group">
 							<label for="userid">아이디</label>
 							<div class="form-group">
-							<input type="text" name="member_id" class="form-control" id="InputId" placeholder="아이디" readonly="readonly">
+							<input type="text" name="member_id" class="form-control" id="InputId" placeholder="아이디" 
+								readonly="readonly" value="${loginUser.member_id}">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="username">이름</label> <input type="text"
-								class="form-control" id="member_name" placeholder="이름을 입력해 주세요" required="required" readonly="readonly">
+								class="form-control" id="member_name" placeholder="이름을 입력해 주세요" required="required" 
+								readonly="readonly" value="${loginUser.member_name}">
 						</div>
 						<div class="form-group">
 							<label for="InputPassword1">비밀번호</label> <input type="password"
-								class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호" required="required">
+								class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호"
+								 required="required" value="${loginUser.member_pw}">
 						</div>
 						<div class="form-group">
 							<label for="InputPassword2">비밀번호 확인</label> <input type="password"
@@ -88,28 +90,43 @@
 							<label for="username">주민등록번호</label><br> 
 							<table>
 							<tr>
-							<td><input type="text" class="form-control" readonly="readonly"></td>
+							<td><input type="text" class="form-control" readonly="readonly" 
+							value="${fn:substring(loginUser.member_regident_number,0,6)}"></td>
 							<td>-</td>
-							<td><input type="text" class="form-control" readonly="readonly"></td>
+							<td><input type="text" class="form-control" readonly="readonly" 
+							value="${fn:substring(loginUser.member_regident_number,6,7)}******"></td>
 							</tr>	
 							</table>
 						</div>
 						<div class="form-group">
 							<label for="username">주소</label><br> 
-							<input type="text" class="form-control" id="member_address" name="member_address" placeholder="주소를 입력해 주세요." required="required">
+							<input type="text" class="form-control" id="member_address" name="member_address" 
+							placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}">
 						</div>
 						<div class="form-group">
 							<label for="username">전화번호</label><br> 
-							<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="전화번호를 입력해주세요." required="required">
+							<input type="text" class="form-control" id="member_phone" name="member_phone" 
+							placeholder="전화번호를 입력해주세요." required="required" value="${loginUser.member_phone}">
 						</div>
 						
 						<div class="form-group">
 							<label for="useremail">이메일</label>
-							<div class="form-group">
-								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="" readonly="readonly">
-								email 인증 요청 
+							<div class="input-group">
+								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
+								readonly="readonly" value="${loginUser.member_email}">
+								<!--email 인증 요청--> 
+                  				<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a></span>
 							</div>
 						</div>
+						 <div class="form-group">
+			               <label for="username">인증번호 입력</label>
+			               <div class="input-group">
+			               <input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
+			               <!-- 인증번호 요청시 번호 입력확인 -->
+			               <span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+			               <!-- <input type="button" class="btn btn-default" value="인증번호 입력"> -->
+			               </div>
+			            </div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-info">확인</button>
 						</div>
@@ -152,7 +169,6 @@
 							<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
 						</td>
 						<td class="lbjth" style="text-align:right;">
-							<button onclick="location.href='qnawrite.go'">1:1 상담하기 > </button>
 							<a class='btn btn-info btn-xs' href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a>
 						</td>
 					</tr>

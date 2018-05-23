@@ -386,7 +386,7 @@ $(function(){
 			value1+="<tr>";
 			for(var j=0; j<4; j++){
 		if(Array3[i][j].ITEMFILENAME!=null)
-			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"'  name='"+Array3[i][j].ITEMNAME+"'     style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
+			value1+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array3[i][j].MYITEM_NO+"'  name='"+Array3[i][j].ITEMNAME+" 'style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useitem(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array3[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center; padding-top: 30%'>"+Array3[i][j].ITEMNAME+"</div></a></th></div>";
 		else
 			value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
@@ -415,9 +415,11 @@ $(function(){
 		for(var i=0; i<2; i++){//이모티콘
 			value2+="<tr>";
 			for(var j=0; j<4; j++){
-			if(Array4[i][j].ITEMFILENAME!=null)
+			if(Array4[i][j].selected==1){
+			value2+="<th class='itemth' style='border: 1px solid red;'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";		
+			}else if(Array4[i][j].ITEMFILENAME!=null)
 			value2+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";
-				else
+			else
 			value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value2+="</th>";
@@ -462,6 +464,12 @@ console.log(itempk.id);//이모티콘 아이디
 </script>
 
 <style>
+#nowhaveitem > tr{
+height: 78px;
+}
+#haveimticon > tr{
+height: 78px;
+}
  .itemth {
      width:50px;
       height:50px;
@@ -603,13 +611,41 @@ console.log(itempk.id);//이모티콘 아이디
 						
 						</table>
 						<center>
-						<p id="havingitempaging">
-					
-					
-						</p>
+<p id="havingitempaging"></p>
 						</center>
 						</div>
-                        <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px">Primary 2</div>
+                        <div class="tab-pane fade" id="tab2primary" style="border-radius: 0 0 10px 10px; height:100%">
+                        
+	                        <div style="background: red; width: 100%; height: 400px; border-radius: 0 0 8px 8px">
+	                        
+	                      <table style="width: 100%; height: 100%;">
+	                    	<tr style="width:100%">
+	                      	<th style="width:20%">...</th>
+	                        <th style="width:50%">아이템</th>
+	                        <th style="width:30%">기간</th>
+	                        <tr>
+	                        <tbody id="myusingitem">
+	                        <tr style="width:100%">
+	                     	<th style="width:20%">...</th>
+	                        <th style="width:50%">아이템</th>
+	                        <th style="width:30%">기간</th>
+	                     	<tr>
+	                        
+	                        
+	                        </tbody>
+	                 	</table>
+	                        
+	                       
+	                        
+                        
+                        </div>
+                       		
+                        
+                        
+                        
+                        
+                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -621,7 +657,7 @@ console.log(itempk.id);//이모티콘 아이디
 <th style="padding:15px;">
 <div class="panel panel-primary" style="height:100%; border-radius: 8px 8px 10px 10px"> 
 		<div class="panel-heading" style="border-radius: 5px 5px 0 0">
-				보유 아이콘
+		보유 아이콘
 		</div>
 		<div class="panel-body" style="padding: 0px; background:#e9e9e9;  border-radius: 0px 0px 10px 10px">
 		<table style="height:80%; width:100%; background:#e9e9e9; border-collapse: separate; border-spacing: 10px;">
@@ -631,10 +667,7 @@ console.log(itempk.id);//이모티콘 아이디
 					</tbody>
 					</table>
 						<center >
-						<p id="havingimticonpaging">
-					
-					
-						</p>
+						<p id="havingimticonpaging"></p>
 						</center>
 		</div>
 
@@ -644,7 +677,7 @@ console.log(itempk.id);//이모티콘 아이디
 <tr>
 <th colspan="2">
  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">아이템창 닫기</button>
      </div>
 </th>
 <th></th>
@@ -668,11 +701,7 @@ console.log(itempk.id);//이모티콘 아이디
 
 <script type="text/javascript">
 
-
 </script>
-
-
-
 
 </div>
 </div>
