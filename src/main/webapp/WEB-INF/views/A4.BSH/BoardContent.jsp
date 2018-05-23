@@ -108,7 +108,7 @@
 	<div class="container">
 		<div class="bsh_sidebar">
 			<!-- 카테고리 -->
-			sidebar
+			<!-- sidebar -->
 			
 			<!-- <script type="text/javascript">
 			function getBoard(){
@@ -121,7 +121,7 @@
 				<input type="submit" value="${boardlist }">
 			</form> --%>
 			<%-- ${boardlist.get(0).agency_no} --%>	
-			<h3 class="big" id="생활">생활</h3>
+			<!-- <h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
 			<h5 class="small" id="한식" style="display: none;">한식</h5>
 			<h5 class="small" id="중식" style="display: none;">중식</h5>
@@ -130,9 +130,9 @@
 			<h5 class="small" id="ABA" style="display: none;">ABA</h5>
 			<h5 class="small" id="ABB" style="display: none;">ABB</h5>
 			
-			<hr>
+			<hr> -->
 			
-			<c:forEach var="bigcategory" items="${bigcategorylist }">
+			<%-- <c:forEach var="bigcategory" items="${bigcategorylist }">
 				${bigcategory.category_big_code }&nbsp;
 				${bigcategory.category_big_name }&nbsp;
 				${bigcategory.category_big_views }<br>
@@ -160,8 +160,15 @@
 				${categorylink2.link2_no }&nbsp;
 				${categorylink2.category_mid_code }&nbsp;
 				${categorylink2.category_small_code }<br>
-			</c:forEach>
+			</c:forEach> --%>
 			
+			<%-- ${catelink1[0].category_big_code }<br>
+			${catelink1length } --%>
+			
+			<c:forEach var="str" items="${strlist }">
+				${str }<br>
+			
+			</c:forEach>
 			
 			
 			
