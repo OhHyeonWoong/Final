@@ -1074,7 +1074,7 @@
 							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
 							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
 							</td>	
-							<td style="width: 5px; border: none;"></td>											
+							<td style="width: 5px; border: none;"></td>									
 						</tr>
 					</table>
 				<div id="ukjae_Areaspace"></div>				
