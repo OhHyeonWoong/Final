@@ -45,9 +45,9 @@ public class BoardController {
 		
 		//System.out.println(board);
 		List<Board> boardlist = boardservice.selectCategory(board);
-		//List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
-		//List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
-		//List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
+		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
+		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
+		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
 		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
 		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
 		
@@ -61,7 +61,7 @@ public class BoardController {
 		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
 		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
 		
-		int catelink1length = catelink1.length;
+		//int catelink1length = catelink1.length;
 		
 		
 		//bigmid.put(key, value)
@@ -117,14 +117,14 @@ public class BoardController {
 			}		
 		}
 		
-		System.out.println("-----------------");
+		/*System.out.println("-----------------");
 		for (String str : strlist) {
 			System.out.println(str);
-		}
+		}*/
 		mv.setViewName("A4.BSH/Board");
-		//mv.addObject("bigcategorylist",bigcategorylist);
-		//mv.addObject("midcategorylist",midcategorylist);
-		//mv.addObject("smallcategorylist",smallcategorylist);
+		mv.addObject("bigcategorylist",bigcategorylist);
+		mv.addObject("midcategorylist",midcategorylist);
+		mv.addObject("smallcategorylist",smallcategorylist);
 		
 		
 		mv.addObject("boardlist", boardlist);

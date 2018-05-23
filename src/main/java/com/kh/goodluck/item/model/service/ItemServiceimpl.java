@@ -10,6 +10,7 @@ import com.kh.goodluck.item.model.dao.Itemdao;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.UsingItem;
 
 @Service("ItemService")
 public class ItemServiceimpl implements ItemService{
@@ -66,6 +67,18 @@ public List<GetMyItem> GetMyItem1(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
 public int gethavingListCount1(String memberid) {
 	// TODO Auto-generated method stub
 	return itemlistDao.gethavingListCount1(memberid);
+}
+
+@Override
+public List<UsingItem> getUsingItem(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.getUsingItem(memberid);
+}
+
+@Override
+public int getmyimticon(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.getmyimticon(memberid);
 }
 
 

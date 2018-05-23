@@ -52,7 +52,7 @@
 	    });
 		
 		/* 디비에서 가져와서 그정보를 어떻게 구현하지.. 여기부터*/
-		$("#생활").click(function(){
+		/* $("#생활").click(function(){
 			if($("#생활").next("h4").is(":visible")){
 				$("#음식").slideUp();
 				$("#AB").slideUp();
@@ -88,7 +88,7 @@
 				$("#ABA").slideDown();
 				$("#ABB").slideDown();
 			}
-		});
+		}); */
 		
 		/* 여기까지를 알고리즘으로 짜야댐 */
 		
@@ -148,15 +148,15 @@
 				${smallcategory.category_small_code }&nbsp;
 				${smallcategory.category_small_name }&nbsp;
 				${smallcategory.category_small_views }<br>
-			</c:forEach>
+			</c:forEach> --%>
 			
-			<c:forEach var="categorylink1" items="${categorylink1list }">
+			<%-- <c:forEach var="categorylink1" items="${categorylink1list }">
 				${categorylink1.link1_no }&nbsp;
 				${categorylink1.category_big_code }&nbsp;
 				${categorylink1.category_mid_code }<br>
-			</c:forEach>
+			</c:forEach> --%>
 			
-			<c:forEach var="categorylink2" items="${categorylink2list }">
+			<%-- <c:forEach var="categorylink2" items="${categorylink2list }">
 				${categorylink2.link2_no }&nbsp;
 				${categorylink2.category_mid_code }&nbsp;
 				${categorylink2.category_small_code }<br>
@@ -166,8 +166,20 @@
 			${catelink1length } --%>
 			
 			<c:forEach var="str" items="${strlist }">
-				${str }<br>
-			
+				<%-- ${str }<br> --%>
+				<%-- <c:set var="category" value="${str }"/>
+				<c:choose>
+					<c:when test="${category eq '생활'}">
+						<h3>${str }</h3><br>
+					</c:when>
+					
+					<c:otherwise>
+						<h5>${str }</h5><br>
+					</c:otherwise>
+				</c:choose> --%>
+				<c:forEach var="big" items="${bigcategory }">
+				
+				</c:forEach>
 			</c:forEach>
 			
 			

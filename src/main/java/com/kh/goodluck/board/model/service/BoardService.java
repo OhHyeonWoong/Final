@@ -16,6 +16,7 @@ import com.kh.goodluck.board.model.vo.SmallCategory;
 @Service("boardService")
 public class BoardService {
 
+
 	public BoardService() {
 		
 	}

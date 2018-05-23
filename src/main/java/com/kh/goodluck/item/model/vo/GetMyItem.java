@@ -29,6 +29,7 @@ public class GetMyItem implements Serializable{
 	private int startRow;
 	private int endRow;
 	private int maxpage;
+	private int selectedimticon;
 
 	public int getMYITEM_NO() {
 		return MYITEM_NO;
@@ -120,9 +121,24 @@ public class GetMyItem implements Serializable{
 	public void setMaxpage(int maxpage) {
 		this.maxpage = maxpage;
 	}
+	public int getSelectedimticon() {
+		return selectedimticon;
+	}
+	public void setSelectedimticon(int selectedimticon) {
+		this.selectedimticon = selectedimticon;
+	}
+	@Override
+	public String toString() {
+		return "GetMyItem [MYITEM_NO=" + MYITEM_NO + ", MEMBER_ID=" + MEMBER_ID + ", ITEMLIST_NO=" + ITEMLIST_NO
+				+ ", BUY_DATE=" + BUY_DATE + ", MYITEM_STATUS=" + MYITEM_STATUS + ", ITEMNAME=" + ITEMNAME
+				+ ", ITEMPRICE=" + ITEMPRICE + ", ITEMPERIOD=" + ITEMPERIOD + ", ITEMTYPE=" + ITEMTYPE
+				+ ", ITEMFILENAME=" + ITEMFILENAME + ", currentPage=" + currentPage + ", limit=" + limit + ", startRow="
+				+ startRow + ", endRow=" + endRow + ", maxpage=" + maxpage + ", selectedimticon=" + selectedimticon
+				+ "]";
+	}
 	public GetMyItem(int mYITEM_NO, String mEMBER_ID, int iTEMLIST_NO, Date bUY_DATE, int mYITEM_STATUS,
 			String iTEMNAME, int iTEMPRICE, int iTEMPERIOD, int iTEMTYPE, String iTEMFILENAME, int currentPage,
-			int limit, int startRow, int endRow, int maxpage) {
+			int limit, int startRow, int endRow, int maxpage, int selectedimticon) {
 		super();
 		MYITEM_NO = mYITEM_NO;
 		MEMBER_ID = mEMBER_ID;
@@ -139,13 +155,8 @@ public class GetMyItem implements Serializable{
 		this.startRow = startRow;
 		this.endRow = endRow;
 		this.maxpage = maxpage;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [ITEMLIST_NO=" + ITEMLIST_NO + ", ITEMNAME=" + ITEMNAME + ", ITEMPRICE=" + ITEMPRICE + ", ITEMPERIOD="
-				+ ITEMPERIOD + ", ITEMTYPE=" + ITEMTYPE + ", ITEMFILENAME=" + ITEMFILENAME + ", ITEMSELLCOUNT="
-				+ "]";
+		this.selectedimticon = selectedimticon;
 	}
 	
+
 }
