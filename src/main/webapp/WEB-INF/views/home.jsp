@@ -898,7 +898,7 @@
 					    </div>
 					
  			<hr style="clear: both;">
- 				
+
  			<div align="center">
  			<h2> 동 물 뉴 스 </h2>
 			<table id="ukjae_TableAreaFiveth">
