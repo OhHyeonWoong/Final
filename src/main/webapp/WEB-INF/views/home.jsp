@@ -905,7 +905,7 @@
 				<tr>
 					<td style="width: 5px;"></td> 		
 					<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-					
+	   
 					
 					</td>
 					<td style="width: 5px;"></td> 	
