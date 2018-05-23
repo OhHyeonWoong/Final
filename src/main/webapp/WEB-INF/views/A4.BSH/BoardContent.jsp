@@ -52,7 +52,7 @@
 	    });
 		
 		/* 디비에서 가져와서 그정보를 어떻게 구현하지.. 여기부터*/
-		$("#생활").click(function(){
+		/* $("#생활").click(function(){
 			if($("#생활").next("h4").is(":visible")){
 				$("#음식").slideUp();
 				$("#AB").slideUp();
@@ -88,7 +88,7 @@
 				$("#ABA").slideDown();
 				$("#ABB").slideDown();
 			}
-		});
+		}); */
 		
 		/* 여기까지를 알고리즘으로 짜야댐 */
 		
@@ -108,7 +108,7 @@
 	<div class="container">
 		<div class="bsh_sidebar">
 			<!-- 카테고리 -->
-			sidebar
+			<!-- sidebar -->
 			
 			<!-- <script type="text/javascript">
 			function getBoard(){
@@ -121,7 +121,7 @@
 				<input type="submit" value="${boardlist }">
 			</form> --%>
 			<%-- ${boardlist.get(0).agency_no} --%>	
-			<h3 class="big" id="생활">생활</h3>
+			<!-- <h3 class="big" id="생활">생활</h3>
 			<h4 class="middle" id="음식" style="display: none;">음식</h4>
 			<h5 class="small" id="한식" style="display: none;">한식</h5>
 			<h5 class="small" id="중식" style="display: none;">중식</h5>
@@ -130,9 +130,9 @@
 			<h5 class="small" id="ABA" style="display: none;">ABA</h5>
 			<h5 class="small" id="ABB" style="display: none;">ABB</h5>
 			
-			<hr>
+			<hr> -->
 			
-			<c:forEach var="bigcategory" items="${bigcategorylist }">
+			<%-- <c:forEach var="bigcategory" items="${bigcategorylist }">
 				${bigcategory.category_big_code }&nbsp;
 				${bigcategory.category_big_name }&nbsp;
 				${bigcategory.category_big_views }<br>
@@ -148,7 +148,41 @@
 				${smallcategory.category_small_code }&nbsp;
 				${smallcategory.category_small_name }&nbsp;
 				${smallcategory.category_small_views }<br>
+			</c:forEach> --%>
+			
+			<%-- <c:forEach var="categorylink1" items="${categorylink1list }">
+				${categorylink1.link1_no }&nbsp;
+				${categorylink1.category_big_code }&nbsp;
+				${categorylink1.category_mid_code }<br>
+			</c:forEach> --%>
+			
+			<%-- <c:forEach var="categorylink2" items="${categorylink2list }">
+				${categorylink2.link2_no }&nbsp;
+				${categorylink2.category_mid_code }&nbsp;
+				${categorylink2.category_small_code }<br>
+			</c:forEach> --%>
+			
+			<%-- ${catelink1[0].category_big_code }<br>
+			${catelink1length } --%>
+			
+			<c:forEach var="str" items="${strlist }">
+				<%-- ${str }<br> --%>
+				<%-- <c:set var="category" value="${str }"/>
+				<c:choose>
+					<c:when test="${category eq '생활'}">
+						<h3>${str }</h3><br>
+					</c:when>
+					
+					<c:otherwise>
+						<h5>${str }</h5><br>
+					</c:otherwise>
+				</c:choose> --%>
+				<c:forEach var="big" items="${bigcategory }">
+				
+				</c:forEach>
 			</c:forEach>
+			
+			
 			
 		</div>
 

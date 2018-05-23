@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
+import com.kh.goodluck.board.model.vo.CategoryLink1;
+import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.SmallCategory;
 
 
 
@@ -37,16 +41,31 @@ public class BoardDao {
 
 
 
-	public List<BigCategory> selectMidCategoryAll() {
+	public List<MidCategory> selectMidCategoryAll() {
 		
 		return sqlSession.selectList("selectMidCategoryAll");
 	}
 
 
 
-	public List<BigCategory> selectSmallCategoryAll() {
+	public List<SmallCategory> selectSmallCategoryAll() {
 		
 		return sqlSession.selectList("selectSmallCategoryAll");
+	}
+
+
+
+	public List<CategoryLink1> selectCategoryLink1() {
+		
+		return sqlSession.selectList("selectCategoryLink1");
+		//return null;
+	}
+
+
+
+	public List<CategoryLink2> selectCategoryLink2() {
+		
+		return sqlSession.selectList("selectCategoryLink2");
 	}
 	
 	

@@ -198,8 +198,6 @@ $(document).ready( function() {
    			 이름 : ${item.ITEMNAME}<br>
    			 가격 : ${item.ITEMPRICE} 원 <br>
    			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
-   			 	
-   			 
    			 </center>
 			</th>
 			</c:forEach>
@@ -222,14 +220,7 @@ $(document).ready( function() {
 			</th>
 			</c:forEach>
 					  </tr>
-				 
-				 
-				 
-				 
-				 
 				  </table>
-					
-		
 </div>
 			</div>
 		</div>
@@ -291,8 +282,24 @@ $(document).ready( function() {
 					<h3 class="panel-title">아이템 관련 공지사항  전체공지바로가기></h3>
 				    >인기 바로가기
 				</div>
-				<div class="panel-body" style="width: 100%; "	>   
-			단순 리스트 방식 4개정도.
+				<div class="panel-body" style="width: 100%; ">   
+	
+	<table>
+	<tr>
+	<th>글번호</th>
+	<th><center>공지사항</center></th>
+	<th>작성일</th>
+	</tr>
+	<c:forEach var="notice" items="${itemNotice}">
+	<tr>
+	<th><center>${notice.ITEMNOTICE_NO}</center></th>
+	<th>${notice.ITEMNOTICE_TITLE}</th>
+	<th>${notice.ITEMNOTICE_DATE}</th>
+	</tr>
+	</c:forEach>
+	</table>
+	
+
 </div>
 			</div>
 		</div>

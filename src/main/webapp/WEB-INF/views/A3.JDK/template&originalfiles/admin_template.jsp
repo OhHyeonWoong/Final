@@ -13,12 +13,13 @@
 <style type="text/css">
 </style>
 </head>
-
 <body>
+<!-- 헤더 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+<!-- 전체 헤더 영역 푸터 영역 사이 컨테이너 영역 -->
 <div class="container">
+	  <!--사이드바 시작-->
     <div class="left-container" id="left-container" style="width:25%; float:left;">
-      <!--사이드바 시작-->
       <div class="w3-sidebar w3-bar-block" id="show-nav">
         <ul id="side" class="side-nav">
           <li class="panel">
@@ -67,9 +68,11 @@
 <div class="w3-container" style="width:70%; float: right;">
 <!-- 여기서 부터 작성하시면 됩니다.  -->
 
+
+
+
 <!-- 작성 영역 끝-->
 </div>
-
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

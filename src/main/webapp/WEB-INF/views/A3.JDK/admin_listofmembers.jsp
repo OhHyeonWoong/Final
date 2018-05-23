@@ -66,7 +66,31 @@
 <!-- 내용 출력하기 -->
 <div class="w3-container" style="width:70%; float: right;">
 <!-- 여기서 부터 작성하시면 됩니다.  -->
+
+<!-- 관리자 회원 관리 리스트 시작 -->
+<!-- 헤더 영역 -->
 <h3 style="test-align: center;">회원 가입 리스트</h3>
+<!-- 회원 검색 -->
+<div>
+<form>
+<select name="">
+<option></option>
+<option></option>
+<option></option>
+</select>
+<select name="">
+<option></option>
+<option></option>
+<option></option>
+</select>
+<select name="">
+<option></option>
+<option></option>
+<option></option>
+</select>
+</form>
+</div>
+<!-- 리스트 출력 테이블 -->
 <table class="table table-striped custab">
     <thead>
         <tr>
@@ -80,19 +104,9 @@
                 <td>1</td>
                 <td>News</td>
                 <td>News Cate</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Products</td>
-                <td>Main Products</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Blogs</td>
-                <td>Parent Blogs</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                <td class="text-center">
+                <a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span>회원 정보 수정</a> 
+                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>회원 탈퇴 처리</a></td>
             </tr>
     </table>
 </div>

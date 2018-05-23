@@ -15,13 +15,40 @@
 		<result property="ITEMPERIOD" column="ITEMPERIOD"/>
 		<result property="ITEMTYPE" column="ITEMTYPE"/>
 		<result property="ITEMFILENAME" column="ITEMFILENAME"/>
+	
+	
 	</resultMap>
+
 	
 <select id="Getmyitem" resultMap="GetmyitemResult">
-select * from my_item,ITEMLIST where member_id =#{memberid} and myitem_status = 1 and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO
-
+<![CDATA[
+select * from (  
+select * from 
+(select ROWNUM AS RNUM, A.* FROM  
+(select * from my_item where member_id = #{MEMBER_ID} and myitem_status = 1 and (select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO) !=2 ) 
+A WHERE ROWNUM < #{endRow}) 
+WHERE RNUM >= #{startRow} ORDER BY MYITEM_NO DESC
+) a, itemlist b where a.ITEMLIST_NO= b.ITEMLIST_NO 
+]]>
+</select>
+<select id="Getmyitem1" resultMap="GetmyitemResult">
+<![CDATA[
+select * from (  
+select * from 
+(select ROWNUM AS RNUM, A.* FROM  
+(select * from my_item where member_id = #{MEMBER_ID} and (select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO)=2  ) 
+A WHERE ROWNUM < #{endRow}) 
+WHERE RNUM >= #{startRow} ORDER BY MYITEM_NO DESC
+) a, itemlist b where a.ITEMLIST_NO= b.ITEMLIST_NO
+]]>
 </select>
 
+<select id="gethavingListCount" resultType="int">
+select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and myitem_status = 1 and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE != 2
+</select>
+<select id="gethavingListCount1" resultType="int">
+select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE = 2
+</select>
 
 
 </mapper>

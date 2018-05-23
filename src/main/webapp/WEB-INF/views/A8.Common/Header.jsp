@@ -346,13 +346,11 @@
 							</div>
 						</div>
 					</td>
-					<td>
+					<!-- <td>
 						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
 							<i class = "fa fa-address-card"></i> MyPage
 						</button>
-						
-
-					</td>					
+					</td> -->			
 					<td> 
 						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
 
@@ -391,14 +389,14 @@
 		        		</td>
 		        		<td style="position:absolute; width:63%; background:white; vertical-align: top;">
 		        			<span class="lbjspan">결제수단</span><br>
-		        			<a href="javascript:void(0);" class="lbjspan" onclick="fnPaymentMethod(); return false;"><i class="fa fa-sort-down" style="font-size:24px"></i>휴대폰</a>
+		        			<a href="javascript:void(0);" id="lbjpay" class="lbjspan" onclick="fnPaymentMethod(); return false;"><i class="fa fa-sort-down" style="font-size:24px"></i>휴대폰</a>
 		        			<div id="lbjpayment-div" class="lbjspan" style="display: none;">
 		        				<table style="width:100%;">
 		        					<tr>
-		        						<td><button class="">휴대폰</button></td>
-		        						<td><button>카카오페이</button></td>
-		        						<td><button onclick="fnCreditMethod();">신용카드</button></td>
-		        						<td><button onclick="fnNoBankBook();">무통장입금</button></td>
+		        						<td><button id="lbjbtnPhone" class="" onclick="fnKindOfPay(this);">휴대폰</button></td>
+		        						<td><button id="lbjbtnKakao" onclick="fnKindOfPay(this);">카카오페이</button></td>
+		        						<td><button id="lbjbtnCredit" onclick="fnCreditMethod(this);">신용카드</button></td>
+		        						<td><button id="lbjbtnnobank" onclick="fnNoBankBook(this);">무통장입금</button></td>
 		        					</tr>
 		        					<tr>
 		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
@@ -430,12 +428,19 @@
 		        					</tr>
 		        					<tr>
 		        						<td colspan="2">할부기간</td>
-		        						<td colspan="2"><a href="#">일시불</a></td><!-- dropdown으로 구현해야됨 -->
+		        						<td colspan="2">
+		        							<select>
+		        								<option>일시불</option>
+		        								<option>1개월</option>
+		        								<option>2개월</option>
+		        								<option>3개월</option>
+		        							</select>
+		        						</td>
 		        					</tr>
 		        				</table>
 		        			</div>
 		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
-		        				<table style="width:100%;">
+		        				<table style="width:100%; background:ivory;">
 		        					<tr>
 		        					 	<td colspan="2">받는이</td>
 		        					</tr>
@@ -463,22 +468,59 @@
 		        					<tr>
 		        						<td>계좌</td><td><input type="text" placeholder="계좌"></td>
 		        					</tr>
+		        					<tr><td><label> </label></td></tr>
 		        				</table>
 		        			</div>
 		        			<script type="text/javascript">
+		        				function fnKindOfPay(data){
+		        					var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';		        			
+		        					
+		        					switch(data.id){
+		        					case "lbjbtnPhone":
+										str += $('#lbjbtnPhone').text();
+		        						break;
+		        					case "lbjbtnKakao":
+		        						str += $('#lbjbtnKakao').text();
+		        						break;
+		        					case "lbjbtnCredit":
+		        						str += $('#lbjbtnCredit').text();
+		        						break;
+		        					case "lbjbtnnobank":
+		        						str += $('#lbjbtnnobank').text();
+		        						break;
+		        					default:
+		        						console.log("default");
+		        					}
+		        					
+		        					$('#lbjpay').html(str);
+		        				}
+		        				
 		        				function fnPaymentMethod(){
 		        					var i = $('#lbjpayment-div');
+		        					$('#lbjNoBankBook-div').hide();
+		        					$('#lbjcreditcard-div').hide();
 		        					i.toggle(".5");
 		        				}
 		        				
-		        				function fnCreditMethod(){
+		        				function fnCreditMethod(a){
+		        					fnKindOfPay(a);
 		        					var z = $('#lbjcreditcard-div');
-		        					z.toggle(".5");
+		        					$('#lbjNoBankBook-div').hide();
+		        					z.show();
+		        					//z.toggle(".5");
 		        				}
 		        				
-		        				function fnNoBankBook(){
+		        				function fnNoBankBook(a){
+		        					fnKindOfPay(a);
 		        					var z = $('#lbjNoBankBook-div');
-		        					z.toggle(".5");
+		        					$('#lbjcreditcard-div').hide();
+		        					z.show();
+		        					//z.toggle(".5");
+		        				}
+		        				
+		        				function fnMovePaymentPage(){
+		        					/* location.href='lbjmoveMileagePaymentPage.go' */
+		        					window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
 		        				}
 		        			</script>
 		        		</td>
@@ -486,7 +528,7 @@
 		        </table>
 		      </div>
 		      <div class="modal-footer" style="text-align:right;">
-		      	<button class="btn btn-primary">결제</button>
+		      	<button class="btn btn-primary" onclick="fnMovePaymentPage();">결제</button>
 		        <button type="button" class="btn btn-Danger" data-dismiss="modal">취소</button>
 		      </div>
 		    </div>	
@@ -584,7 +626,7 @@
 									<li class="dropdown-header">Dresses</li>
 									<li><a href="bshtest.go?link2_no=1">link2_no=1 테스트</a></li>
 									<li><a href="bshtest.go?link2_no=2">link2_no=2 테스트</a></li>
-									<li><a href="#">Auto Carousel</a></li>
+									<li><a href="jdkitemlist.go">관리자 페이지 아이템 리스트</a></li>
 									<li><a href="#">Newsletter Form</a></li>
 									<li><a href="#">Four columns</a></li>
 									<li class="divider"></li>
