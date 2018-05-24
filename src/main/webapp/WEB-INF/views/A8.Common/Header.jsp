@@ -332,7 +332,7 @@
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td> ${ loginUser.member_name } 님 </td>
-											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go'">MyPage</button></td>
+											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button></td>
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
 											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
@@ -639,8 +639,8 @@
 							<li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">Dresses</li>
-									<li><a href="bshtest.go?link2_no=1">link2_no=1 테스트</a></li>
-									<li><a href="bshtest.go?link2_no=2">link2_no=2 테스트</a></li>
+									<li><a href="bshtest.go?link2_no=파티">link2_no=파티 테스트</a></li>
+									<li><a href="bshtest.go?link2_no=인테리어">link2_no=인테리어 테스트</a></li>
 									<li><a href="jdkitemlist.go">관리자 페이지 아이템 리스트</a></li>
 									<li><a href="#">Newsletter Form</a></li>
 									<li><a href="#">Four columns</a></li>
