@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category-mapper">
+
+	<resultMap id="HeaderCategoryBigResult" type="Category">
+		<id property="category_big_code" column="category_big_code"/>
+		<result property="category_big_name" column="category_big_name"/>
+		<result property="category_big_views" column="category_big_views"/>
+		<result property="category_big_count" column="category_big_count"/>			
+	</resultMap>	
+	
+	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
+		<![CDATA[
+			select category_big_code, category_big_name, category_big_views, category_big_count 
+			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc) 
+			where rownum <= 6
+		]]>
+	</select>
+	
+	<update id="CategoryCountUpdate" parameterType="int" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update member 
+			set userpwd = #{userPwd}, 
+			age = #{age}, 
+			phone = #{phone}, 
+			email = #{email}, 
+			hobby = #{hobby}, 
+			etc = #{etc}, 
+			lastmodified = sysdate 
+			where userid = #{userId}
+		]]>
+	</update>
+	
+	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
+		insert into member 
+		values 
+		(#{userId}, 
+		#{userPwd}, 
+		#{userName}, 
+		#{gender}, 
+		#{age}, 
+		#{phone}, 
+		#{email}, 
+		#{hobby}, 
+		#{etc}, 
+		sysdate, 
+		sysdate)		
+	</insert>
+	
+	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
+		update member 
+		set userpwd = #{userPwd}, 
+		age = #{age}, 
+		phone = #{phone}, 
+		email = #{email}, 
+		hobby = #{hobby}, 
+		etc = #{etc}, 
+		lastmodified = sysdate 
+		where userid = #{userId}
+	</update>
+	
+	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
+		delete from member 
+		where userid = #{userId}
+	</delete> -->
+
+</mapper>

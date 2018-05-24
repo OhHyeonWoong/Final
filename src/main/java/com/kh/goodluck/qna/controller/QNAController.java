@@ -19,6 +19,8 @@ public class QNAController {
 		return "A4.BSH/QNA";
 	}
 	
-	
+	/*public String moveMyPageQnA() {
+		return "";
+	}*/
 	
 }

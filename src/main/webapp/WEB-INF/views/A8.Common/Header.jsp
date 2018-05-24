@@ -403,7 +403,7 @@
 		        					</tr>
 		        				</table>
 		        			</div>
-		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none;">
+		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
 		        				<table style="width:100%;">
 		        					<tr>
 		        						<td><input type="radio" name="credit" value="신한">신한</td>
@@ -471,29 +471,44 @@
 		        					<tr><td><label> </label></td></tr>
 		        				</table>
 		        			</div>
-		        			<script type="text/javascript">
-		        				function fnKindOfPay(data){
-		        					var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';		        			
-		        					
-		        					switch(data.id){
-		        					case "lbjbtnPhone":
+							<script type="text/javascript">
+								function fnKindOfPay(data) {
+									$('#lbjNoBankBook-div').hide();
+									$('#lbjcreditcard-div').hide();	                             
+									var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';	                             
+									switch(data.id) {
+										case "lbjbtnPhone":
 										str += $('#lbjbtnPhone').text();
-		        						break;
-		        					case "lbjbtnKakao":
-		        						str += $('#lbjbtnKakao').text();
-		        						break;
-		        					case "lbjbtnCredit":
-		        						str += $('#lbjbtnCredit').text();
-		        						break;
-		        					case "lbjbtnnobank":
-		        						str += $('#lbjbtnnobank').text();
-		        						break;
-		        					default:
-		        						console.log("default");
-		        					}
-		        					
-		        					$('#lbjpay').html(str);
-		        				}
+										break;
+										case "lbjbtnKakao":
+										str += $('#lbjbtnKakao').text();
+										break;
+										case "lbjbtnCredit":
+										str += $('#lbjbtnCredit').text();
+										break;
+										case "lbjbtnnobank":
+										str += $('#lbjbtnnobank').text();
+										break;
+										default:
+										console.log("default");
+									}	                             
+									$('#lbjpay').html(str);
+								}
+	                          
+								function fnPaymentMethod(){
+									var i = $('#lbjpayment-div');
+									$('#lbjNoBankBook-div').hide();
+									$('#lbjcreditcard-div').hide();
+									i.toggle(".5");
+								}
+	                          
+								function fnCreditMethod(a){
+									fnKindOfPay(a);
+									var z = $('#lbjcreditcard-div');
+									$('#lbjNoBankBook-div').hide();
+									z.show();
+									//z.toggle(".5");
+								}
 		        				
 		        				function fnPaymentMethod(){
 		        					var i = $('#lbjpayment-div');
