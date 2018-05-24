@@ -1,6 +1,7 @@
 package com.kh.goodluck.item.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -116,4 +117,22 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("Insertitemlog1", useritempk);
 	}
+
+
+	public int insertimticon(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertimticon", useritempk);
+	}
+
+	public int getmyimticon1(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmyimticon1",memberid);
+	}
+
+
+	public int updateimticon(HashMap<String,Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("updateimticon",map);
+	}
+	
 }

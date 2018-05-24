@@ -177,8 +177,48 @@
 						<h5>${str }</h5><br>
 					</c:otherwise>
 				</c:choose> --%>
-				<c:forEach var="big" items="${bigcategory }">
 				
+				<c:forEach var="bigcategory" items="${bigcategorylist }">
+					<%-- str: ${str }<br>
+					bigcategory: ${bigcategory.category_big_name }<br> --%>
+					<c:set var="category" value="${bigcategory.category_big_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h3><a href="">${str }</a></h3><br>
+							<%-- bigcategory: ${bigcategory.category_big_name }<br> --%>
+						</c:when>
+						<c:otherwise>
+						
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:forEach var="midcategory" items="${midcategorylist }">
+					<%-- str: ${str }<br>
+					midcategory: ${midcategory.category_mid_name }<br> --%>
+					<c:set var="category" value="${midcategory.category_mid_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h4><a href="">${str }</a></h4><br>
+							<%-- midcategory: ${midcategory.category_mid_name }<br> --%>
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:forEach var="smallcategory" items="${smallcategorylist }">
+					<%-- str: ${str }<br>
+					midcategory: ${midcategory.category_mid_name }<br> --%>
+					<c:set var="category" value="${smallcategory.category_small_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h5><a href="">${str }</a></h5><br>
+							<%-- smallcategory: ${smallcategory.category_small_name }<br> --%>
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</c:forEach>
 			
@@ -314,10 +354,15 @@
 						<c:forEach var="board" items="${boardlist }">
 							<tr>
 							<td>
+							
+							<c:if test="">
+							
+							</c:if>
+							 밥먹고와서 이프문 완성
 							${board.agency_type }
 							</td>
 							<td>
-							<a href="#">${board.agency_content }</a>
+							<a href="#">${board.agency_title }</a>
 							</td>
 							<td>
 							${board.agency_loc }

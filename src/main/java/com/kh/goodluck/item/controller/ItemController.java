@@ -7,8 +7,10 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -136,23 +138,19 @@ public class ItemController {
 		if(request.getParameter("usitempk") != null) {
 		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
 		System.out.println("usitempk="+usitempk);
-		int result=ItemService.turnitemstatus(usitempk);
-			if(result>0) {
+			if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
-				
 				//해당 아이템의 타입이 현재 적용중인이 확인.
-				if(ItemService.checkitemusing(usitempk) == 0) {
+		if(ItemService.checkitemusing(usitempk) == 0) {
 				System.out.println("해당 아이템타입의 아이템은 현재 적용중이지 않음.");
 					//새롭게 인설트
-					ItemService.insertusingitem(usitempk);
-					//이후 로그에 남김.(최초 실행으로 넘김)
-					ItemService.Insertitemlog(usitempk);
+						if(ItemService.insertusingitem(usitempk)!=0)
+							ItemService.Insertitemlog(usitempk);
 				}else {
-				System.out.println("해당 아이템타입의 아이템은 현재 적용중이므로, 기간만큼 늘어남.");
+		System.out.println("해당 아이템타입의 아이템은 현재 적용중이므로, 기간만큼 늘어남.");
 					// 현재의 값에서 없데이트
-				ItemService.insertusingitem1(usitempk);
-					//이후 로그에 남김.(기간연장으로 사용됨)
-				ItemService.Insertitemlog1(usitempk);
+						if(ItemService.insertusingitem1(usitempk)!=0)
+							ItemService.Insertitemlog1(usitempk);
 				}
 			}else {
 				System.out.println("해당아이템 소모실패");
@@ -243,13 +241,12 @@ public class ItemController {
 				List<GetMyItem> al1 = ItemService.GetMyItem1(gmi); 
 				
 				//현재 사용중인 이모티콘 pk얻어오기
-				
 				int nowusingimticonpk;
-						
+				
 				try {
 				nowusingimticonpk = ItemService.getmyimticon(memberid) ;
 				}catch(NullPointerException e) {
-					nowusingimticonpk=0;
+				nowusingimticonpk=0;
 				}	
 				
 				
@@ -269,11 +266,11 @@ public class ItemController {
 					job.put("ITEMFILENAME", l.getITEMFILENAME());
 					job.put("currentPage",gmi.getCurrentPage());
 					job.put("maxPage", gmi.getMaxpage());
-					if(nowusingimticonpk == l.getMYITEM_NO()){
+				if(nowusingimticonpk == l.getMYITEM_NO()){
 					job.put("selected",1);
-					}else {
+				}else {
 					job.put("selected",0);
-					}
+				}
 				jarr.add(job);
 				}
 				
@@ -306,14 +303,113 @@ public class ItemController {
 		return "A3.JDK/admin_itemlist";
 	}
 	
+	
+	
+	
+	
+	@RequestMapping("cjsadjectimticon.go")
+	public void cjsadjectimticon(
+			@RequestParam("page1") int page1 , 
+			@RequestParam("member_id") String memberid , 
+			@RequestParam("usitempk") int usitempk , 
+			HttpServletRequest request , 
+			HttpServletResponse response) {
+		int currentPage=1;
+		//전달된 페이지값 추출
+		if(request.getParameter("page1") != null) {
+		currentPage = Integer.parseInt(request.getParameter("page1"));
+		}
+		
+		//현재 이모티콘이 적용중인지 확인
+		int nowusingimticonpk ;
+		try {
+		nowusingimticonpk = ItemService.getmyimticon1(memberid);
+		//nowusingimticonpk=현재 사용되고있는 이모티콘 pk
+		System.out.println("nowusingimticonpk="+nowusingimticonpk);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("nowusingimticonpk",nowusingimticonpk);
+		map.put("usitempk",usitempk);
+		int result=ItemService.updateimticon(map);
+		System.out.println("updateimticon="+result);
+		}catch(NullPointerException e){
+		int result=ItemService.insertimticon(usitempk);
+		System.out.println("insertimticon="+result);
+		}
+
+		int limit = 9;
+		
+		int nowusingimticonpk1 = 0;
+		try {
+		nowusingimticonpk1 = ItemService.getmyimticon(memberid) ;
+		}catch(NullPointerException e) {
+		nowusingimticonpk=0;
+		}	
+		//현 맴버가 보유하고있는 이모티콘 갯수 계산.
+		int listCount = ItemService.gethavingListCount1(memberid);
+		
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		//현재 페이지에 출력할 목록 조회		
+		GetMyItem gmi=new GetMyItem();
+		gmi.setCurrentPage(currentPage);
+		gmi.setLimit(limit);
+		gmi.setMEMBER_ID(memberid);
+		startRow = (currentPage - 1) * limit + 1;
+		endRow = startRow + limit - 1;
+		gmi.setStartRow(startRow);
+		gmi.setEndRow(endRow);	
+		gmi.setMaxpage(maxPage);
+		
+		//이모티콘을 얻기위한 새로운 것. 
+		List<GetMyItem> al1 = ItemService.GetMyItem1(gmi); 
+		
+		//al1==보유중인 아이콘.
+		
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		for(GetMyItem l : al1) {
+			JSONObject job = new JSONObject();
+			job.put("MYITEM_NO", l.getMYITEM_NO());
+			job.put("MEMBER_ID", l.getMEMBER_ID());
+			job.put("BUY_DATE", l.getBUY_DATE().toString());
+			job.put("MYITEM_STATUS", l.getMYITEM_STATUS());
+			job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
+			job.put("ITEMNAME", l.getITEMNAME());
+			job.put("ITEMPRICE", l.getITEMPRICE());
+			job.put("ITEMPERIOD", l.getITEMPERIOD());
+			job.put("ITEMTYPE", l.getITEMTYPE());
+			job.put("ITEMFILENAME", l.getITEMFILENAME());
+			job.put("currentPage",gmi.getCurrentPage());
+			job.put("maxPage", gmi.getMaxpage());
+			if(nowusingimticonpk1 == l.getMYITEM_NO()){
+				job.put("selected",1);
+			}else {
+				job.put("selected",0);
+			}
+		jarr.add(job);
+		System.out.println(l.toString());
+		}
+		
+json.put("havingimticon", jarr);
+
+PrintWriter out;
+try {
+	out = response.getWriter();
+	System.out.println(json.toJSONString());
+	out.print(json.toJSONString());
+	out.flush();
+	out.close();
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
 }
 
 
+}
 
 
-
-
-
+}
 
 
 

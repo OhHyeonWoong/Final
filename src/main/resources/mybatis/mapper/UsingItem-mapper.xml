@@ -15,32 +15,49 @@
 select ITEMFILENAME,substr(ITEMNAME,1,8) ITEMNAME,max(END_DATE) END_DATE
 from USING_ITEM u,my_item m,itemlist i
 where 
-u.MYITEM_NO=m.MYITEM_NO 
-and 
-m.ITEMLIST_NO=i.ITEMLIST_NO
-and u.START_DATE-u.END_DATE<=0
-and m.member_id=#{memberid}
+u.MYITEM_NO=m.MYITEM_NO and 
+m.ITEMLIST_NO=i.ITEMLIST_NO and 
+u.START_DATE-u.END_DATE<=0 and 
+m.member_id=#{memberid} and
+i.ITEMTYPE != 2
 group by ITEMFILENAME,substr(ITEMNAME,1,8)
 ]]>
 
 </select>
 
-<select id="getmyimticon" resultType="int">
+<select id="getmyimticon" resultType="int" parameterType="String">
 <![CDATA[
+select MYITEM_NO from (
 select MYITEM_NO from USING_ITEM where MYITEM_NO in (
-select MYITEM_NO from MY_ITEM where MEMBER_ID=#{memberid} and ITEMLIST_NO in 
-(select ITEMLIST_NO from itemlist where ITEMTYPE =2 )
+select MYITEM_NO from MY_ITEM 
+where MEMBER_ID=#{memberid} and 
+ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 )
+))
+]]>
+</select>
+<select id="getmyimticon1" resultType="int" parameterType="String">
+<![CDATA[
+select USING_ITEM_NO from USING_ITEM where MYITEM_NO in (
+select MYITEM_NO from MY_ITEM 
+where MEMBER_ID=#{memberid} and 
+ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 )
 )
 ]]>
 </select>
 
+
+
+<insert id='insertimticon' parameterType="int">
+insert into USING_ITEM values((select max(USING_ITEM_NO)+1 from USING_ITEM),#{useritempk},sysdate,sysdate)
+</insert>
 
 <insert id="insertusingitem">
 insert into using_item values( (select max(USING_ITEM_NO)+1 from USING_ITEM), #{useritempk} , sysdate , 
 sysdate+(
 select ITEMPERIOD 
 from itemlist 
-where ITEMLIST_NO = (select ITEMLIST_NO from my_item where MYITEM_NO=#{useritempk})))
+where ITEMLIST_NO =
+(select ITEMLIST_NO from my_item where MYITEM_NO=#{useritempk})))
 </insert>
 
 <insert id="insertusingitem1">
@@ -89,6 +106,12 @@ insert into item_log values((select max(ITEM_LOG_NO)+1 from ITEM_LOG),(select US
 insert into item_log values((select max(ITEM_LOG_NO)+1 from ITEM_LOG),(select USING_ITEM_NO from USING_ITEM where  MYITEM_NO = #{useritempk}),2,sysdate)
 </insert>
 
+<update id="updateimticon" parameterType="hashmap">
+update USING_ITEM set MYITEM_NO = 
+#{usitempk}
+where USING_ITEM_NO = 
+#{nowusingimticonpk}
+</update>
 
 
 
