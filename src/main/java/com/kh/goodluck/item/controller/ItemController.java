@@ -139,8 +139,8 @@ public class ItemController {
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
 		int currentPage = 1;
-		Member member=null;
-		
+		Member member=new Member();
+		member.setMember_id(memberid);
 		if(request.getParameter("usitempk") != null) {
 		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
 		int itemlistno=ItemService.getitemlistno(usitempk);
@@ -149,18 +149,17 @@ public class ItemController {
 				if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
 				ItemService.upgradeboardcount(memberid);
-				member=new Member();
-				member.setMember_id(memberid);
-				member=memberService.loginCheck(member);
+				if(ItemService.insertusingitem(usitempk)!=0)
+					ItemService.Insertitemlog(usitempk);
+				
 				}
 		}else if(itemlistno==56) {
 		//최대태그수+1
 					if(ItemService.turnitemstatus(usitempk)>0) {
 					System.out.println("해당아이템 소모완료");
 					ItemService.upgradekeywordcount(memberid);
-					member=new Member();
-					member.setMember_id(memberid);
-					member=memberService.loginCheck(member);
+					if(ItemService.insertusingitem(usitempk)!=0)
+						ItemService.Insertitemlog(usitempk);
 				}
 		}else{
 		System.out.println("usitempk="+usitempk);
@@ -184,7 +183,8 @@ public class ItemController {
 		}
 	}
 		
-		
+	
+		Member member1=memberService.loginCheck(member);
 		
 		
 		//전달된 페이지값 추출
@@ -317,10 +317,12 @@ public class ItemController {
 		}
 		json.put("usingitem", jarr); //사용중 아이템을 넣는다.
 		
-//		member=memberService.loginCheck(member);
-		json.put("boardcount",member.getMember_keyword_count());
-		json.put("keywordcount", member.getMember_write_count());
 		
+		json.put("boardcount",member1.getMember_keyword_count());
+		json.put("keywordcount", member1.getMember_write_count());
+		
+		System.out.println("member1.getMember_keyword_count()="+member1.getMember_keyword_count());
+		System.out.println("member1.getMember_write_count()="+member1.getMember_write_count());
 		PrintWriter out = response.getWriter();
 		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());

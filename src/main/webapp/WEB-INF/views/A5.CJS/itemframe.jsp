@@ -505,6 +505,17 @@ $(function(){
 	 }	
 		$("#nowhaveitem").html(value1);	
 		$("#haveimticon").html(value2);
+		
+		
+		if(json.boardcount!=null)
+			{$("#boardcount").html(json.boardcount);
+			}
+			if(json.keywordcount!=null)
+			{$("#keywordcount").html(json.keywordcount)
+			
+			}
+		
+		
 		},
 		error:function(a,b,c){
 			alert("a : " + a + ", b : " + b + ", c : " + c);
