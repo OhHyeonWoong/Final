@@ -18,6 +18,13 @@ public interface ItemService {
 	public abstract int gethavingListCount(String memberid);
 	public abstract int gethavingListCount1(String memberid);
 	public abstract int getmyimticon(String memberid);
+	public abstract int turnitemstatus(int useritempk);
+	public abstract int insertusingitem(int useritempk);
+	public abstract int insertusingitem1(int useritempk);
+	public abstract int checkitemusing(int useritempk);
+	public abstract int Insertitemlog(int useritempk);
+	public abstract int Insertitemlog1(int useritempk);
 	public abstract List<UsingItem> getUsingItem(String memberid);
+
 	
 }

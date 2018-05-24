@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-	/* style pricing */
-	.col-sm-4{
-		padding : 0;
-		margin-right: 0;
-		margin-left: 0;
-		width: auto;		
-		height: auto;
-	}
-
 	.mega-pricing-item {
 	 background: #fff none repeat scroll 0 0;
 	 box-shadow: 0 0 10px #f1f1f1;
@@ -139,3 +130,9 @@
 	 font-size: 14px;
 	 line-height: 20px;
 	}				
+	
+	
+
+	
+	
+	

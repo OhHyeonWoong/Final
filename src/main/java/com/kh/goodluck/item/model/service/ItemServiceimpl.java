@@ -81,6 +81,42 @@ public int getmyimticon(String memberid) {
 	return itemlistDao.getmyimticon(memberid);
 }
 
+@Override
+public int turnitemstatus(int useritempk) {
+	
+	return itemlistDao.turnitemstatus(useritempk);
+}
+
+@Override
+public int insertusingitem(int useritempk) {
+	// TODO Auto-generated method stub
+return itemlistDao.insertusingitem(useritempk);
+}
+
+@Override
+public int checkitemusing(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.checkitemusing(useritempk);
+}
+
+@Override
+public int Insertitemlog(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.Insertitemlog(useritempk);
+}
+
+@Override
+public int insertusingitem1(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.insertusingitem1(useritempk);
+}
+
+@Override
+public int Insertitemlog1(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.Insertitemlog1(useritempk);
+}
+
 
 
 

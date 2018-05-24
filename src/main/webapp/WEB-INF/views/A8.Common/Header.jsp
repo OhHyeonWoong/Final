@@ -207,7 +207,7 @@
 
 	.ohw-menu-realtimebar-dl a {
 		color: black;
-		text-decoration: none;
+		/* text-decoration: none; */
 	}
 
 	.ohw-menu-realtimebar-dl a:hover {
@@ -472,28 +472,46 @@
 		        				</table>
 		        			</div>
 		        			<script type="text/javascript">
-		        				function fnKindOfPay(data){
-		        					var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';		        			
-		        					
-		        					switch(data.id){
-		        					case "lbjbtnPhone":
-										str += $('#lbjbtnPhone').text();
-		        						break;
-		        					case "lbjbtnKakao":
-		        						str += $('#lbjbtnKakao').text();
-		        						break;
-		        					case "lbjbtnCredit":
-		        						str += $('#lbjbtnCredit').text();
-		        						break;
-		        					case "lbjbtnnobank":
-		        						str += $('#lbjbtnnobank').text();
-		        						break;
-		        					default:
-		        						console.log("default");
-		        					}
-		        					
-		        					$('#lbjpay').html(str);
-		        				}
+		        			function fnKindOfPay(data){
+	                             $('#lbjNoBankBook-div').hide();
+	                             $('#lbjcreditcard-div').hide();
+	                             
+	                             var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';                       
+	                             
+	                             switch(data.id){
+	                             case "lbjbtnPhone":
+	                              str += $('#lbjbtnPhone').text();
+	                                break;
+	                             case "lbjbtnKakao":
+	                                str += $('#lbjbtnKakao').text();
+	                                break;
+	                             case "lbjbtnCredit":
+	                                str += $('#lbjbtnCredit').text();
+	                                break;
+	                             case "lbjbtnnobank":
+	                                str += $('#lbjbtnnobank').text();
+	                                break;
+	                             default:
+	                                console.log("default");
+	                             }
+	                             
+	                             $('#lbjpay').html(str);
+	                          }
+	                          
+	                          function fnPaymentMethod(){
+	                             var i = $('#lbjpayment-div');
+	                             $('#lbjNoBankBook-div').hide();
+	                             $('#lbjcreditcard-div').hide();
+	                             i.toggle(".5");
+	                          }
+	                          
+	                          function fnCreditMethod(a){
+	                             fnKindOfPay(a);
+	                             var z = $('#lbjcreditcard-div');
+	                             $('#lbjNoBankBook-div').hide();
+	                             z.show();
+	                             //z.toggle(".5");
+	                          }
 		        				
 		        				function fnPaymentMethod(){
 		        					var i = $('#lbjpayment-div');
@@ -667,15 +685,42 @@
 						</ul>
 					</li>
 				</ul>
+				<script type="text/javascript">
+					<!-- Menu Big Category -->
+					$.ajax({
+					   	url:"categoryBig.go",
+					   	type:"POST",
+					   	dataType:"json",
+					   	success:
+					   		function(data) {					   			
+								
+					   			var jsonStr = JSON.stringify(data);
+								var json = JSON.parse(jsonStr);
+								var bigCategory = "";
+								var menuTd = ""
+								var realTimeBar = "";							
+								
+								for(var i in json.headerCategoryBig){				
+									bigCategory += '<td class = "ohw-menu-col-td"><a href="ohw-' + json.headerCategoryBig[i].headerCategoryBigCode + '">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></td>'
+									realTimeBar += '<li class = "ohw-menu-realtimebar-li"><a href="ohw-' + json.headerCategoryBig[i].headerCategoryBigCode + '">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></li>'
+								}
+								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar"><div class = "ohw-menu-realtimebar-content"><dl class = "ohw-menu-realtimebar-dl"><dd class = "ohw-menu-realtimebar-dd"><ol class = "ohw-menu-realtimebar-ol"></ol></dd></dl></div></td><td class = "ohw-menu-realtimebar-dropdown"><a><i class = "fa fa-chevron-down"></i></a></td>'
+								$('.ohw-menu-tr-category').append(bigCategory);
+								$('.ohw-menu-tr-category').append(menuTd);
+								$('.ohw-menu-realtimebar-ol').append(realTimeBar);
+									
+							}, 
+						error : function(request, status, errorData) {
+									alert("Error Code : " + request.status + "\n"
+									+ "Message : " + request.responseText + "\n"
+									+ "Error : " + errorData);
+						}
+					});				
+					/* Menu Big Category End */						
+				</script>
 				<div class = "ohw-menu-col-div">
-					<table class = "ohw-menu-col-table">
-						<tr>
-							<td class = "ohw-menu-col-td"><a href = "">생활</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">반려동물</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">게임</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">음악</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">렌탈</a></td>
-							<td class = "ohw-menu-col-td"><a href = "">여행</a></td>
+					<table class = "ohw-menu-col-table">						
+						<tr class = "ohw-menu-tr-category">							
 							<td class = "ohw-menu-col-td dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 작업 <span class="caret"></span></a>							
 								<ul class="dropdown-menu">
@@ -687,36 +732,7 @@
 									<li><a href="lbjmypage.go">뱅준</a></li>
 								</ul>								
 							</td>
-							<td class = "ohw-menu-col-td ohw-menu-realtimebar">								
-								<div class = "ohw-menu-realtimebar-content">
-									<dl class = "ohw-menu-realtimebar-dl">										
-										<dd class = "ohw-menu-realtimebar-dd">
-											<ol class = "ohw-menu-realtimebar-ol">
-												<li class = "ohw-menu-realtimebar-li">
-													<a href="#">1. 애인</a>
-												</li>												
-												<li class = "ohw-menu-realtimebar-li">
-													<a href="#">2. 여행</a>
-												</li>												
-												<li class = "ohw-menu-realtimebar-li">
-													<a href="#">3. 렌탈</a>
-												</li>												
-												<li class = "ohw-menu-realtimebar-li">
-													<a href="#">4. 생활</a>
-												</li>												
-												<li class = "ohw-menu-realtimebar-li">
-													<a href="#">5. 게임</a>
-												</li>												
-											</ol>
-										</dd>
-									</dl>
-								</div>																
-							</td>
-							<td class = "ohw-menu-realtimebar-dropdown">
-								<a>
-									<i class = "fa fa-chevron-down"></i>
-								</a>
-							</td>
+							
 						</tr>
 					</table>					
 				</div>				

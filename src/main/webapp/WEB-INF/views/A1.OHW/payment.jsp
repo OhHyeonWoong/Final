@@ -38,6 +38,7 @@
 	}	
 	
 	.ohw-payment-subtable-west-radio-left {
+		width:33.3%;
 		padding-top:10px;
 		padding-bottom:10px;
 		border-left:1px solid black;
@@ -45,12 +46,14 @@
 	}
 	
 	.ohw-payment-subtable-west-radio {
+		width:33.3%;
 		padding-top:10px;
 		padding-bottom:10px;	
 		border-top:1px solid black;
 	}
 	
 	.ohw-payment-subtable-west-radio-right {
+		width:33.3%;
 		padding-top:10px;
 		padding-bottom:10px;
 		border-right:1px solid black;
@@ -88,6 +91,10 @@
 	.ohw-payment-modal-footer {
 		margin-bottom:15px;
 		text-align:center !important;
+	}
+	
+	.ohw-payment-cash {
+		width:100px;
 	}
 	
 </style>
@@ -146,11 +153,28 @@
 			<td valign = "top">
 				<table class = "ohw-payment-subtable-west">								
 					<tr>
-						<td class = "ohw-payment-subtable-west-radio-left"><input type = "radio" name = "choosePay"> 계좌이체</td>
-						<td class = "ohw-payment-subtable-west-radio"><input type = "radio" name = "choosePay"> 무통장입금</td>
-						<td class = "ohw-payment-subtable-west-radio-right"><input type = "radio" name = "choosePay"> 카카오페이</td>
+						<td class = "ohw-payment-subtable-west-radio-left">
+							<input type = "radio" name = "choosePay"> 계좌이체
+						</td>
+							<td class = "ohw-payment-subtable-west-radio">
+						<input type = "radio" name = "choosePay"> 무통장입금
+							</td>
+						<td class = "ohw-payment-subtable-west-radio-right">
+							<input type = "radio" name = "choosePay"> 카카오페이
+						</td>
 					</tr>
-									
+					<tr>
+						<td class = "ohw-payment-subtable-west-radio-left">
+							<input type = "radio" name = "choosePay"> 신용카드
+						</td>
+						<td class = "ohw-payment-subtable-west-radio">
+							<input type = "radio" name = "choosePay"> 휴대폰
+						</td>
+						<td class = "ohw-payment-subtable-west-radio-right">
+							<input type = "radio" name = "choosePay"> 마일리지
+							<input type = "text" class = "ohw-payment-cash" readonly>
+						</td>
+					</tr>									
 					<tr>
 						<td class = "ohw-payment-subtable-west-event" colspan = "3">															
 								각종 이벤트 진행중!<br>

@@ -50,5 +50,12 @@ select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and myitem_s
 select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE = 2
 </select>
 
+<update id="turnitemstatus" parameterType="int">
+update my_item set MYITEM_STATUS = 2 where MYITEM_NO = #{useritempk}
+</update>
+
+
+
+
 
 </mapper>
