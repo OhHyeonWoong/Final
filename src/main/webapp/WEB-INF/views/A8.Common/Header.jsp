@@ -471,47 +471,44 @@
 		        					<tr><td><label> </label></td></tr>
 		        				</table>
 		        			</div>
-		        			<script type="text/javascript">
-		        			function fnKindOfPay(data){
-	                             $('#lbjNoBankBook-div').hide();
-	                             $('#lbjcreditcard-div').hide();
-	                             
-	                             var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';                       
-	                             
-	                             switch(data.id){
-	                             case "lbjbtnPhone":
-	                              str += $('#lbjbtnPhone').text();
-	                                break;
-	                             case "lbjbtnKakao":
-	                                str += $('#lbjbtnKakao').text();
-	                                break;
-	                             case "lbjbtnCredit":
-	                                str += $('#lbjbtnCredit').text();
-	                                break;
-	                             case "lbjbtnnobank":
-	                                str += $('#lbjbtnnobank').text();
-	                                break;
-	                             default:
-	                                console.log("default");
-	                             }
-	                             
-	                             $('#lbjpay').html(str);
-	                          }
+							<script type="text/javascript">
+								function fnKindOfPay(data) {
+									$('#lbjNoBankBook-div').hide();
+									$('#lbjcreditcard-div').hide();	                             
+									var str = '<i class="fa fa-sort-down" style="font-size:24px"></i>';	                             
+									switch(data.id) {
+										case "lbjbtnPhone":
+										str += $('#lbjbtnPhone').text();
+										break;
+										case "lbjbtnKakao":
+										str += $('#lbjbtnKakao').text();
+										break;
+										case "lbjbtnCredit":
+										str += $('#lbjbtnCredit').text();
+										break;
+										case "lbjbtnnobank":
+										str += $('#lbjbtnnobank').text();
+										break;
+										default:
+										console.log("default");
+									}	                             
+									$('#lbjpay').html(str);
+								}
 	                          
-	                          function fnPaymentMethod(){
-	                             var i = $('#lbjpayment-div');
-	                             $('#lbjNoBankBook-div').hide();
-	                             $('#lbjcreditcard-div').hide();
-	                             i.toggle(".5");
-	                          }
+								function fnPaymentMethod(){
+									var i = $('#lbjpayment-div');
+									$('#lbjNoBankBook-div').hide();
+									$('#lbjcreditcard-div').hide();
+									i.toggle(".5");
+								}
 	                          
-	                          function fnCreditMethod(a){
-	                             fnKindOfPay(a);
-	                             var z = $('#lbjcreditcard-div');
-	                             $('#lbjNoBankBook-div').hide();
-	                             z.show();
-	                             //z.toggle(".5");
-	                          }
+								function fnCreditMethod(a){
+									fnKindOfPay(a);
+									var z = $('#lbjcreditcard-div');
+									$('#lbjNoBankBook-div').hide();
+									z.show();
+									//z.toggle(".5");
+								}
 		        				
 		        				function fnPaymentMethod(){
 		        					var i = $('#lbjpayment-div');
@@ -642,8 +639,8 @@
 							<li class="col-sm-3">
 								<ul>
 									<li class="dropdown-header">Dresses</li>
-									<li><a href="bshtest.go?link2_no=1">link2_no=1 테스트</a></li>
-									<li><a href="bshtest.go?link2_no=2">link2_no=2 테스트</a></li>
+									<li><a href="bshtest.go?link2_no=파티">link2_no=파티 테스트</a></li>
+									<li><a href="bshtest.go?link2_no=인테리어">link2_no=인테리어 테스트</a></li>
 									<li><a href="jdkitemlist.go">관리자 페이지 아이템 리스트</a></li>
 									<li><a href="#">Newsletter Form</a></li>
 									<li><a href="#">Four columns</a></li>

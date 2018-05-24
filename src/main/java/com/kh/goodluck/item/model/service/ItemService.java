@@ -1,6 +1,7 @@
 package com.kh.goodluck.item.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.kh.goodluck.item.model.vo.GetMyItem;
@@ -18,12 +19,15 @@ public interface ItemService {
 	public abstract int gethavingListCount(String memberid);
 	public abstract int gethavingListCount1(String memberid);
 	public abstract int getmyimticon(String memberid);
+	public abstract int getmyimticon1(String memberid);
 	public abstract int turnitemstatus(int useritempk);
 	public abstract int insertusingitem(int useritempk);
 	public abstract int insertusingitem1(int useritempk);
 	public abstract int checkitemusing(int useritempk);
 	public abstract int Insertitemlog(int useritempk);
 	public abstract int Insertitemlog1(int useritempk);
+	public abstract int updateimticon(HashMap<String, Object> map);
+	public abstract int insertimticon(int useritempk);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 
 	

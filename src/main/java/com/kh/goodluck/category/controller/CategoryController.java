@@ -23,7 +23,7 @@ public class CategoryController {
 	public void headerCategoryBig(HttpServletResponse response) throws Exception {
 		System.out.println("CategoryController Run!");
 		List<Category> headerCategoryBig = categoryService.headerCategoryBig();
-		System.out.println("HeaderCategoryBig : " + headerCategoryBig + " / To.CategoryController");
+		/*System.out.println("HeaderCategoryBig : " + headerCategoryBig + " / To.CategoryController");*/
 		
 		JSONObject json = new JSONObject();		
 		JSONArray jarr = new JSONArray();
@@ -40,7 +40,7 @@ public class CategoryController {
 		}					
 			
 			json.put("headerCategoryBig", jarr);
-			System.out.println("HeaderCategoryBigJson : " + json.toJSONString() + " / To.CategoryController");			
+			/*System.out.println("HeaderCategoryBigJson : " + json.toJSONString() + " / To.CategoryController");*/			
 			
 			PrintWriter out = response.getWriter();
 			out.println(json.toJSONString());

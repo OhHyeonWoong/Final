@@ -100,7 +100,20 @@
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
 
 <style type="text/css">
-
+	.bgcate{
+		/* 여기에 스타일 입력 */
+		color: red;
+	}
+	
+	.mdcate{
+		/* 여기에 스타일 입력 */
+		
+	}
+	
+	.smcate{
+		/* 여기에 스타일 입력 */
+		
+	}
 </style>
 
 </head>
@@ -110,75 +123,40 @@
 			<!-- 카테고리 -->
 			<!-- sidebar -->
 			
-			<!-- <script type="text/javascript">
-			function getBoard(){
-				var board = ${"#"}
-				
-			}
-			
-			</script> -->
-			<%-- <form action="" method="get">
-				<input type="submit" value="${boardlist }">
-			</form> --%>
-			<%-- ${boardlist.get(0).agency_no} --%>	
-			<!-- <h3 class="big" id="생활">생활</h3>
-			<h4 class="middle" id="음식" style="display: none;">음식</h4>
-			<h5 class="small" id="한식" style="display: none;">한식</h5>
-			<h5 class="small" id="중식" style="display: none;">중식</h5>
-			<h5 class="small" id="양식" style="display: none;">양식</h5>
-			<h4 class="middle" id="AB" style="display: none;">AB</h4>
-			<h5 class="small" id="ABA" style="display: none;">ABA</h5>
-			<h5 class="small" id="ABB" style="display: none;">ABB</h5>
-			
-			<hr> -->
-			
-			<%-- <c:forEach var="bigcategory" items="${bigcategorylist }">
-				${bigcategory.category_big_code }&nbsp;
-				${bigcategory.category_big_name }&nbsp;
-				${bigcategory.category_big_views }<br>
-			</c:forEach>
-			
-			<c:forEach var="midcategory" items="${midcategorylist }">
-				${midcategory.category_mid_code }&nbsp;
-				${midcategory.category_mid_name }&nbsp;
-				${midcategory.category_mid_views }<br>
-			</c:forEach>
-			
-			<c:forEach var="smallcategory" items="${smallcategorylist }">
-				${smallcategory.category_small_code }&nbsp;
-				${smallcategory.category_small_name }&nbsp;
-				${smallcategory.category_small_views }<br>
-			</c:forEach> --%>
-			
-			<%-- <c:forEach var="categorylink1" items="${categorylink1list }">
-				${categorylink1.link1_no }&nbsp;
-				${categorylink1.category_big_code }&nbsp;
-				${categorylink1.category_mid_code }<br>
-			</c:forEach> --%>
-			
-			<%-- <c:forEach var="categorylink2" items="${categorylink2list }">
-				${categorylink2.link2_no }&nbsp;
-				${categorylink2.category_mid_code }&nbsp;
-				${categorylink2.category_small_code }<br>
-			</c:forEach> --%>
-			
-			<%-- ${catelink1[0].category_big_code }<br>
-			${catelink1length } --%>
-			
 			<c:forEach var="str" items="${strlist }">
-				<%-- ${str }<br> --%>
-				<%-- <c:set var="category" value="${str }"/>
-				<c:choose>
-					<c:when test="${category eq '생활'}">
-						<h3>${str }</h3><br>
-					</c:when>
-					
-					<c:otherwise>
-						<h5>${str }</h5><br>
-					</c:otherwise>
-				</c:choose> --%>
-				<c:forEach var="big" items="${bigcategory }">
 				
+				<c:forEach var="bigcategory" items="${bigcategorylist }">
+					<c:set var="category" value="${bigcategory.category_big_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h3><span class="bgcate">${str }</span></h3><br>
+						</c:when>
+						<c:otherwise>
+						
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:forEach var="midcategory" items="${midcategorylist }">
+					<c:set var="category" value="${midcategory.category_mid_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h4><span class="mdcate">${str }</span></h4><br>
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:forEach var="smallcategory" items="${smallcategorylist }">
+					<c:set var="category" value="${smallcategory.category_small_name }"/>
+					<c:choose>
+						<c:when test="${category eq str }">
+							<h5><a class="smcate" href="bshtest.go?link2_no=${str }">${str }</a></h5><br>
+						</c:when>
+						<c:otherwise>
+							
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</c:forEach>
 			
@@ -295,6 +273,7 @@
 				</form>
 			</div>
 			<div class="board_div_maincontent">
+				<h2>${board.link2_no }</h2><br>
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
 						<tr>
@@ -314,10 +293,16 @@
 						<c:forEach var="board" items="${boardlist }">
 							<tr>
 							<td>
-							${board.agency_type }
+							<c:set var="tf" value="${board.agency_type }"/>
+							<c:if test="${tf eq '1' }">
+								구인
+							</c:if>
+							<c:if test="${tf eq '2' }">
+								제공
+							</c:if>
 							</td>
 							<td>
-							<a href="#">${board.agency_content }</a>
+							<a href="#">${board.agency_title }</a>
 							</td>
 							<td>
 							${board.agency_loc }
