@@ -403,7 +403,7 @@
 		        					</tr>
 		        				</table>
 		        			</div>
-		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none;">
+		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
 		        				<table style="width:100%;">
 		        					<tr>
 		        						<td><input type="radio" name="credit" value="신한">신한</td>
