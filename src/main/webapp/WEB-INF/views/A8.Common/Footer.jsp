@@ -60,6 +60,10 @@
 		width:200px !important;
 	}
 	
+	.ohw-footer-textarea {
+		resize:none;
+	}
+	
 </style>
 </head>
 
@@ -101,7 +105,7 @@
 				</div>
 				<div class="ohw-envelope-modal-footer">
 					<form action="">
-						<textarea class = "form-control" rows="6" cols="30"></textarea> <br>
+						<textarea class = "ohw-footer-textarea form-control" rows="6" cols="30"></textarea> <br>
 						<button type="submit" class="btn btn-default" data-dismiss="modal">
 							<i class = "fa fa-check"></i> 전송
 						</button>
