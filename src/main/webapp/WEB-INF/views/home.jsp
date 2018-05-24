@@ -150,8 +150,8 @@
 }
 
 #ukjae_TableAreaFirst tr td {
-	width: 570px !important;
-	height: 280px !important;
+	width: 570px;
+	height: 280px;
 	padding: 0;
 	margin: 0;
 }
@@ -161,19 +161,19 @@
 }
 
 #ukjae_TableAreaSecond tr td {
-	width: 190px !important;
-	height: 210px !important;
+	width: 190px;
+	height: 210px;
 	padding: 0;
 	margin: 0;
 }
 
 #ukjae_TableAreaThird {
+	width:100%;
+	height : 220px;
     border: 1px solid black; 
 }
 
 #ukjae_TableAreaThird tr td {
-	width: 285px; 
-	height: 220px; 
 	padding: 0;
 	margin: 0;
 }
@@ -188,8 +188,8 @@
 }
 
 #ukjae_TableAreaFourth tr td {
-	al width: 180px !important;
-	height: 210px !important;
+	al width: 180px;
+	height: 210px;
 	padding: 0;
 	margin: 0;
 }
@@ -206,6 +206,7 @@
 	margin: 0;
 	border: 1px solid gray;
 }
+
 
 #typical_image {
 	width: 569px !important;
@@ -250,11 +251,44 @@
 }
 
 #ukjae_video{
-	width: 284px !important;
-	height: 210px !important;
+	width: 355px;
+	height: 215px;
 	padding: 0;
-	margin-top: 6px;
+	margin-top: 3px;
+
 }
+
+
+#ukjaetypical_tablearea{
+	width: 550px;
+	height: 220px;
+	margin: 0;
+	padding: 0;
+}
+
+#ukjaetypical_table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+
+#ukjaetypical_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#ukjaetypical_table tr td{
+	width: 40px;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -338,7 +372,7 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active" id="0">
-				<a href="Notice.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/공지사항.jpg" alt="공지사항" style="width:100%;"></a>
+				<a href="Notice.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/메인1.jpg" alt="메인이미지" style="width:100%;"></a>
 			</div>
 			
 			<div class="item" id="1">
@@ -706,9 +740,18 @@
 				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/life/생활1.jpg"></td>
-						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-					
+						<td align="center"> 
+							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
+							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>		
+							</div>
 						</td>					
 					</tr>
 				</table>					
@@ -761,8 +804,8 @@
 					                </div>
 					                <div class="col-md-6 no-pad">
 					                    <div class="user-image">
-											<!-- <img src="/goodluck/resources/common/img/main/반려동물2.jpg" class="img-responsive thumbnail"  style="width:300px; height:80px; margin-top: 40px; ">-->					        
-           									<iframe width="350" height="200" src="https://www.youtube.com/embed/qM6Jtq_U3e0" style="padding-top: 35px;"></iframe>
+											<img src="/goodluck/resources/common/img/main/반려동물2.jpg" class="img-responsive thumbnail"  style="width:300px; height:80px; margin-top: 40px; ">					        
+           									<!-- <iframe width="350" height="200" src="https://www.youtube.com/embed/qM6Jtq_U3e0" style="padding-top: 35px;"></iframe> -->
            								</div>
 					               </div>
 					            </div>
@@ -800,18 +843,18 @@
 					        </div>
 					        <div class="col-md-4 user-menu user-pad" align="center">
 					            <div class="user-menu-content active">
-					                <h3>
+					                <h3 style="margin-top: 10px;">
 					                    서비스 제공해요
 					                </h3>
-									<table border="1">
-										<tr  align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<table border="1" style="width: 100%;">
+										<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+										<tr align="center"><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+										<tr align="center"><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr align="center"><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr align="center"><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr align="center"><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr align="center"><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+										<tr align="center"><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 									</table>	
 					            </div>  
 					            <div class="user-menu-content">
@@ -948,18 +991,27 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/game/게임1.jpg"></td>
 						<td colspan="3" align="center"> 
-						<h3> 제 공 합 니 다 </h3>
-
+							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
+							<div id="ukjaetypical_tablearea" align="center"> 
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>	
+							</div>	
 						</td>					
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				
 				<table id="ukjae_TableAreaThird">					
 					<tr>
-						<td> <iframe id="ukjae_video" src="https://www.youtube.com/embed/uxk1HLGPDA4"></iframe> </td> 
-						<td> (리그오브레젼드)영웅 '메자이'<br> 컨트롤은 이렇게 <br>(SKT페이커 제공) </td>							
-						<td> <iframe id="ukjae_video" src="https://www.youtube.com/embed/xSCYOsnXsNo"></iframe></td> 	
-						<td> (모두의마블)신규캐릭터 꽃미남 아서<br>어떻게써야될까?<br>(Bj랩해도돼? 제공) </td>	
+						<td width="360px;"> <iframe id="ukjae_video" src="https://www.youtube.com/embed/uxk1HLGPDA4"></iframe> </td> 
+						<td width="210px;"> (리그오브레젼드)영웅 '메자이'<br> 컨트롤은 이렇게 <br>(SKT페이커 제공) </td>							
+						<td width="360px;"> <iframe id="ukjae_video" src="https://www.youtube.com/embed/xSCYOsnXsNo"></iframe></td> 	
+						<td width="210px;"> (모두의마블)신규캐릭터 꽃미남 아서<br>어떻게써야될까?<br>(Bj랩해도돼? 제공) </td>	
 					</tr>
 				</table>
 				<div id="ukjae_Areaspace"></div>					
@@ -1089,8 +1141,17 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 홈 렌탈 테이블 삽입 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(홈) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> 
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>	
+							</div>	
 						</td>					
 					</tr>
 				</table>	
@@ -1100,8 +1161,17 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈2.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 스포츠용품 렌탈 테이블 삽입 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(스포츠용품) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> 
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>	
+							</div>	
 						</td>					
 					</tr>
 				</table>	
@@ -1111,8 +1181,17 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈3.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 생활용품 렌탈 테이블 삽입 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(생활용품) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> 
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>	
+							</div>	
 						</td>					
 					</tr>
 				</table>	
@@ -1122,8 +1201,17 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈4.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 기타 렌탈 테이블 삽입 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> 
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>	
+							</div>	
 						</td>					
 					</tr>
 				</table>	
@@ -1175,6 +1263,7 @@
 						            <div class="row" style="width: auto;">
 						                <div class="col-sm-6" style="width: auto;"> 
 						                
+										<% for(int i=0; i<7; i++){ %>
 						                    <!-- Begin Listing: 9006 CREFELD ST-->
 						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
 						                        <div class="media">
@@ -1195,197 +1284,8 @@
 						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
 						                            </div>
 						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
-
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->
-
+						                    </div><!-- End Listing-->														                	
+						                	<% } %>
 
 						                </div>
 						            </div><!-- End row -->
@@ -1407,13 +1307,11 @@
 						<div style="float: right; width: 44%; height: 15px;"> &nbsp; </div> <!-- 오른쪽1,2 두 영역의 공백을 주기위한 div -->
 				
 						<div style="width: 44%; height:330px; max-height:600px; float: right;" align="center"> <!-- 오른쪽 영역2  -->
-						
-		  						  <div class="row" style="width: 100%;">
-									    <div class="col-md-8" style="width: 100%;  height:330px; padding-right: 0; padding-left: 0; Sectiongin: 0;">
+
+									  <div class="col-md-8" style="width: 100%;  height:369px; padding: 0; border: 1px solid gray;">
 									     <br>
-									      <h2 class="page-header" style="Sectiongin-top: 1px; Sectiongin-bottom: 1; width: 300px; Sectiongin-bottom: 0px; margin-top: 0;"> 고객의 소리
-									      </h2>
-									        <section class="comment-list" style="padding-left: 2px; max-height:286px; width:100%; overflow: scroll;">
+									      <h2 class="page-header" style="margin-top: 0;"> 고객의 소리 </h2>
+									        <section class="comment-list" style="padding-left: 2px; max-height:283px; width:100%; overflow: scroll;">
 									          <!-- First Comment -->
 									          <article class="row">
 									            <div class="col-md-2 col-sm-2 hidden-xs">
@@ -1539,10 +1437,11 @@
 									            </div>
 									          </article>
 									        </section>
-									    </div>
-									  </div>
-								</div>		
-								<hr style="clear: both;">	
+								       </div>
+								    </div>
+								    <div style="width:100%; height: 10px; float: left;"> &nbsp; </div>
+								    
+								    
 			</div>	
 			<div class="item" align="center">  <!-- 프리랜서 -->
 				<div>
@@ -1657,10 +1556,38 @@
 			<div class="item">
 				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
 					<tr> 
-						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/gainperson/구인1.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 제공합니다 1인대역 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(1인대역) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>		
+							</div>
+						</td>					
+					</tr>
+				</table>	
+				<div id="ukjae_Areaspace"></div>			
+				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
+					<tr> 
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/gainperson/구인4.jpg"></td>
+						<td colspan="3" align="center"> 
+							<h4 style="margin-top: 0;"> 제공합니다(多,2인이상) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>		
+							</div>
 						</td>					
 					</tr>
 				</table>	
@@ -1669,99 +1596,22 @@
 					<tr> 
 						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
 						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 제공합니다 다인대역  </h3>
-						</td>					
-					</tr>
-				</table>	
-				<div id="ukjae_Areaspace"></div>			
-				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
-					<tr> 
-						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
-						<td colspan="3" align="center"> 
-							<h3> 제 공 합 니 다 </h3>
-							<h3> 기타 제공 </h3>
+							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
+							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
+								<table id="ukjaetypical_table">
+									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
+									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
+									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
+									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
+									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+								</table>		
+							</div>
 						</td>					
 					</tr>
 				</table>	
 				<div id="ukjae_Areaspace"></div>			
 
-
-<!-- 			<table class="ohw-home-table"> 대행화면 data-slide-to="8"
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">1인 대역</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>
-		
-							</td>
-							<td class = "ohw-home-table-td" align = "center">
-								<table class="ohw-home-table2">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">다인 대역</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>						
-										</td>
-									</tr>
-								</table>						
-							</td>
-						</tr>
-						<tr>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">공지사항</font>
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>							
-										</td>
-									</tr>
-								</table>				
-							</td>
-							<td class = "ohw-home-table-td" align = "center"> 
-								<table class="ohw-home-table2">
-									<tr>
-										<td style="padding: 0;">
-											<font size="6" face="굴림" style="font-weight: bold;">FAQ</font>								
-											<table class="jwj-innertable" border="1">
-												<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-												<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-												<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-												<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-												<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-												<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-											</table>								
-										</td>
-									</tr>
-								</table>					
-							</td>
-						</tr>
-					</table> -->
 			</div>	
 		</div>				
 	</div> <!-- homeCarousel -->	
