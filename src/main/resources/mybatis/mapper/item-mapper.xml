@@ -31,5 +31,7 @@ select * from (select * from ITEMLIST order by ITEMSELLCOUNT desc) where rownum 
 ]]>
 </select>
 
-
+<select id="getitemlistno" parameterType="int" resultType="int">
+select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_NO and m.MYITEM_NO=#{useritempk}
+</select>
 </mapper>

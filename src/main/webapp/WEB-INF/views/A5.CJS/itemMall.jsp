@@ -124,11 +124,15 @@ $(document).ready( function() {
       <div class="carousel-inner">
       
         <div class="item active">
-          <img src="http://placehold.it/1200x400/cccccc/ffffff">
-           <div class="carousel-caption">
+         
+         
+         
             <h3>1</h3>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <a href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank" class="label label-danger">Bootstrap 3 - Carousel Collection</a></p>
-          </div>
+           
+        
+        
+        
+        
         </div><!-- End Item -->
  
          <div class="item">
