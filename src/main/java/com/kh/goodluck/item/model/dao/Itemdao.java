@@ -80,4 +80,40 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getmyimticon",memberid);
 	}
+
+
+	public int turnitemstatus(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("turnitemstatus",useritempk);
+	}
+
+
+	public int insertusingitem(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertusingitem",useritempk);
+	}
+
+
+	public int checkitemusing(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("checkitemusing",useritempk);
+	}
+
+
+	public int Insertitemlog(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("Insertitemlog", useritempk);
+	}
+
+
+	public int insertusingitem1(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertusingitem1", useritempk);
+	}
+
+
+	public int Insertitemlog1(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("Insertitemlog1", useritempk);
+	}
 }

@@ -133,6 +133,36 @@ public class ItemController {
 		//로그인 작업을 합니다 세션에 넣어요
 		int currentPage = 1;
 		
+		if(request.getParameter("usitempk") != null) {
+		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
+		System.out.println("usitempk="+usitempk);
+		int result=ItemService.turnitemstatus(usitempk);
+			if(result>0) {
+				System.out.println("해당아이템 소모완료");
+				
+				//해당 아이템의 타입이 현재 적용중인이 확인.
+				if(ItemService.checkitemusing(usitempk) == 0) {
+				System.out.println("해당 아이템타입의 아이템은 현재 적용중이지 않음.");
+					//새롭게 인설트
+					ItemService.insertusingitem(usitempk);
+					//이후 로그에 남김.(최초 실행으로 넘김)
+					ItemService.Insertitemlog(usitempk);
+				}else {
+				System.out.println("해당 아이템타입의 아이템은 현재 적용중이므로, 기간만큼 늘어남.");
+					// 현재의 값에서 없데이트
+				ItemService.insertusingitem1(usitempk);
+					//이후 로그에 남김.(기간연장으로 사용됨)
+				ItemService.Insertitemlog1(usitempk);
+				}
+			}else {
+				System.out.println("해당아이템 소모실패");
+			}
+			
+		}
+		
+		
+		
+		
 		//전달된 페이지값 추출
 		if(request.getParameter("page") != null) {
 		currentPage = Integer.parseInt(request.getParameter("page"));
@@ -254,15 +284,15 @@ public class ItemController {
 	
 		jarr = new JSONArray();
 		
-		for(GetMyItem l : al1) {
+		for(UsingItem l : al2) {
 		
 		JSONObject job = new JSONObject();
-			
+		job.put("ITEMFILENAME", l.getITEMFILENAME());
+		job.put("ITEMNAME", l.getITEMNAME());
+		job.put("END_DATE", l.getEND_DATE().toString());
 		jarr.add(job);
 		}
-		
 		json.put("usingitem", jarr); //사용중 아이템을 넣는다.
-		
 		
 		PrintWriter out = response.getWriter();
 		System.out.println(json.toJSONString());
