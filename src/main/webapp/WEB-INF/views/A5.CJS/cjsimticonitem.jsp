@@ -10,5 +10,7 @@
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <%@ include file = "/WEB-INF/views/A5.CJS/cjsitemheaderandsider.jsp" %>
+<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+
 </body>
 </html>

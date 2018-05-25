@@ -103,11 +103,7 @@ $(document).ready( function() {
        	<div style="background: blue">
         <div class="col-sm-9 col-md-9">
             <div class="well">
-           
-           
-           
-           
-           <!--카로셀 시작 -->
+ <!--카로셀 시작 -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
          
     
@@ -159,7 +155,7 @@ $(document).ready( function() {
           <li data-target="#myCarousel" data-slide-to="2" class="mall"><a href="#"><small>이달의 패키지 상품</small></a></li>
           <li data-target="#myCarousel" data-slide-to="3" class="mall"><a href="#"><small>이달의 인기 아이템</small></a></li>
         </ul>
-
-
     </div><!-- End Carousel -->
- </div>
+
+
+ 

@@ -13,7 +13,10 @@
 <body>
 가벼운 에러 발생함. 404
 <br>
-추후에 수정함.<a href="home.go">
+추후에 수정함.
+<a href="home.go">
 메인으로 돌아감. </a>
+<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+
 </body>
 </html>
