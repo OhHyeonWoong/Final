@@ -146,6 +146,7 @@ public class ItemController {
 		int itemlistno=ItemService.getitemlistno(usitempk);
 		if(itemlistno==55) {
 		//최대게시물수+1
+			System.out.println("최대게시물수+1");
 				if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
 				ItemService.upgradeboardcount(memberid);
@@ -155,6 +156,7 @@ public class ItemController {
 				}
 		}else if(itemlistno==56) {
 		//최대태그수+1
+			System.out.println("최대태그수+1");
 					if(ItemService.turnitemstatus(usitempk)>0) {
 					System.out.println("해당아이템 소모완료");
 					ItemService.upgradekeywordcount(memberid);
@@ -351,10 +353,6 @@ public class ItemController {
 		if(request.getParameter("page1") != null) {
 		currentPage = Integer.parseInt(request.getParameter("page1"));
 		}
-		
-		
-		
-		
 		//현재 이모티콘이 적용중인지 확인
 		int nowusingimticonpk ;
 		try {
@@ -442,8 +440,49 @@ try {
 
 
 }
+	
+	@RequestMapping("cjsnewitem.go")
+	public ModelAndView cjsnewitem(ModelAndView mv){
+		//새로운아이템
+		
+		
+		mv.setViewName("A5.CJS/cjsnewitem");
+		return mv;
+		}
+	@RequestMapping("cjspopitem.go")
+	public ModelAndView cjspopitem(ModelAndView mv){
+		//인기아이템
+		mv.setViewName("A5.CJS/cjspopitem");
+		return mv;
+		}
+	@RequestMapping("cjsspenditme.go")
+	public ModelAndView cjsspenditme(ModelAndView mv){
+		//소모성아이템
+		mv.setViewName("A5.CJS/cjsspenditme");
+		return mv;
+		}
+	@RequestMapping("cjsperioditme.go")
+	public ModelAndView cjsperioditme(ModelAndView mv){
+		//기간제 아이템
+		mv.setViewName("A5.CJS/cjsperioditme");
+		return mv;
+		}
+	@RequestMapping("cjsimticonitem.go")
+	public ModelAndView cjsimticonitem(ModelAndView mv){
+		//이모티콘
+		mv.setViewName("A5.CJS/cjsimticonitem");
 
+		return mv;
+		}
+	@RequestMapping("cjsprovision.go")
+	public ModelAndView cjsprovision(ModelAndView mv){
+	    //청약철회 팝업띄우기
+		mv.setViewName("A5.CJS/cjsprovision");
 
+		return mv;
+		}
+
+	
 }
 
 
