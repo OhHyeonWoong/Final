@@ -17,7 +17,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>   
+<script src="resources/common/js/bootstrap.min.js"></script>   
 <!-- 전동기 부트스트랩 영역입니다. -->
 <!-- 개별 페이지 스타일 영역입니다. -->
 <style type="text/css">
