@@ -943,45 +943,150 @@
 					
  			<hr style="clear: both;">
 
- 			<div align="center">
- 			<h2> 동 물 뉴 스 </h2>
-			<table id="ukjae_TableAreaFiveth">
-				<tr align="center">
-					<td style="width: 5px; border: none;"></td> 		
-					<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+
+				    
+		    <div align="center">
+	
+			 	<h2> 동 물 뉴 스 </h2>
+			 	
+				<div id="animal_news" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ul class="carousel-indicators">
+				    <li data-target="#animal_news" data-slide-to="0" class="active"> <a href="#"> 첫번째 </a> </li>
+				    <li data-target="#animal_news" data-slide-to="1"> <a href="#"> 두번째 </a> </li>
+				    <li data-target="#animal_news" data-slide-to="2"> <a href="#"> 세번째 </a> </li>
+				  </ul>
+				  <!-- The slideshow -->
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+						<table id="ukjae_TableAreaFiveth">
+									<tr align="center">
+										<td style="width: 5px; border: none;"></td> 		
+										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+										
+										</td>
+										<td style="width: 5px; border: none;"></td> 
 					
-					</td>
-					<td style="width: 5px; border: none;"></td> 
+					
+										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	 	
+					
+										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+										</td>
+										<td style="width: 5px; border: none;"></td> 		
+									</tr>				
+								</table>	
+				    </div>
+				    <div class="carousel-item">
+						<table id="ukjae_TableAreaFiveth">
+									<tr align="center">
+										<td style="width: 5px; border: none;"></td> 		
+										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+										
+										</td>
+										<td style="width: 5px; border: none;"></td> 
+					
+					
+										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	 	
+					
+										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+										</td>
+										<td style="width: 5px; border: none;"></td> 		
+									</tr>				
+								</table>	
+				    </div>
+				    <div class="carousel-item">
+						<table id="ukjae_TableAreaFiveth">
+									<tr align="center">
+										<td style="width: 5px; border: none;"></td> 		
+										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+										
+										</td>
+										<td style="width: 5px; border: none;"></td> 
+					
+					
+										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	 	
+					
+										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+										</td>
+										<td style="width: 5px; border: none;"></td> 	
+					
+										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+										</td>
+										<td style="width: 5px; border: none;"></td> 		
+									</tr>				
+								</table>	
+				    </div>
+				  </div>
+				  
+				  <!-- Left and right controls -->
+				  <a class="carousel-control-prev" href="#animal_news" data-slide="prev">
+				    <span class="carousel-control-prev-icon"></span>
+				  </a>
+				  <a class="carousel-control-next" href="#animal_news" data-slide="next">
+				    <span class="carousel-control-next-icon"></span>
+				  </a>
+				</div>
 
 
-					<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-					</td>
-					<td style="width: 5px; border: none;"></td> 	
+            </div>
 
-					<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-					</td>
-					<td style="width: 5px; border: none;"></td> 	
 
-					<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-					</td>
-					<td style="width: 5px; border: none;"></td> 	 	
-
-					<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-					</td>
-					<td style="width: 5px; border: none;"></td> 	
-
-					<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-					<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-					</td>
-					<td style="width: 5px; border: none;"></td> 		
-				</tr>				
-			</table>		
-			</div>		
  			<br>
 			
 			</div> <!-- item end  -->

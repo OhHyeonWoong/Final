@@ -10,6 +10,16 @@
 
 <%@ include file = "/WEB-INF/views/A4.BSH/FAQContent.jsp" %>
 
+
+
+
+
+
+
+			
+<hr style="clear: both;"> 
+	
+
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
