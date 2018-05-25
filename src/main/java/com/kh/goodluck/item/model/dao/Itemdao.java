@@ -134,5 +134,23 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updateimticon",map);
 	}
+
+
+	public int upgradeboardcount(String memberid) {
+		
+		return sqlSession.update("upgradeboardcount",memberid);
+	}
+
+
+	public int upgradekeywordcount(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("upgradekeywordcount",memberid);
+	}
+
+
+	public int getitemlistno(int useritempk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemlistno",useritempk);
+	}
 	
 }

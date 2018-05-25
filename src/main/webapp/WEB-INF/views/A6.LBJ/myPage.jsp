@@ -41,6 +41,18 @@
 <body style="display:absolute; overflow:auto;">
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<script type="text/javascript" src="/goodluck/resources/A6.LBJ/js/lbj_sidebar.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#allCheckBox').on('click',function(){
+				//모든 체크박스를 체크
+				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
+					$('input[type="checkbox"][name="chk1"]').attr('checked',false);
+				}else{
+					$('input[type="checkbox"][name="chk1"]').attr('checked',true);
+				}
+			});
+		});
+	</script>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
 	<div class="container" id="lbjMyPageUp">
 		<div style="width: 20%; float: left; height: 100%;">
@@ -163,7 +175,7 @@
 				<table class="table table-striped lbjtable">
 					<tr>
 						<td class="lbjth">
-							<input type="checkbox" value="">전체선택
+							<input type="checkbox" id="allCheckBox" value="">전체선택
 						</td>
 						<td class="lbjth" colspan="3" style="text-align:left;">
 							<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
@@ -177,8 +189,18 @@
 						<th class="lbjth">분야</th>
 						<th class="lbjth">제목</th>
 						<th class="lbjth">처리상황</th>
-						<th class="lbjth">등록일시</th></tr>
-					<tr>
+						<th class="lbjth">등록일시</th>
+					</tr>
+					<c:forEach var="qna" items="${lbjMyQna}" varStatus="status">
+						<tr>
+							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value=""></td>
+							<td>${qna.question_category}</td>
+							<td><a href="lbjqnadetail.go?question_writer=${qna.question_writer}&question_no=${qna.question_no}">${qna.question_title}</a></td>
+							<td>${qna.question_answer_state}</td>
+							<td>${qna.question_date}</td>
+						</tr>
+					</c:forEach>
+					<!-- <tr>
 						<td><input type="checkbox" value=""></td>
 						<td>취소요청</td>
 						<td><a href="lbjqnadetail.go">단순변심</a></td>
@@ -205,7 +227,7 @@
 						<td><a href="lbjqnadetail.go">아이디탈퇴</a></td>
 						<td>처리완료</td>
 						<td>2018/04/29</td>
-					</tr>
+					</tr> -->
 				</table>
 			</div>
 			<hr>

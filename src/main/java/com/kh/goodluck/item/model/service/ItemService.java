@@ -18,9 +18,12 @@ public interface ItemService {
 	public abstract List<ItemNotice> notice();
 	public abstract int gethavingListCount(String memberid);
 	public abstract int gethavingListCount1(String memberid);
+	public abstract int upgradeboardcount(String memberid);
+	public abstract int upgradekeywordcount(String memberid);
 	public abstract int getmyimticon(String memberid);
 	public abstract int getmyimticon1(String memberid);
 	public abstract int turnitemstatus(int useritempk);
+	public abstract int getitemlistno(int useritempk);
 	public abstract int insertusingitem(int useritempk);
 	public abstract int insertusingitem1(int useritempk);
 	public abstract int checkitemusing(int useritempk);

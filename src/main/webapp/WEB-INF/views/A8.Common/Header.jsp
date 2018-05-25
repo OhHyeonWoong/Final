@@ -332,7 +332,7 @@
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td> ${ loginUser.member_name } 님 </td>
-											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go'">MyPage</button></td>
+											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button></td>
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
 											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>

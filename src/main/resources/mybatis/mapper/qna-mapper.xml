@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member-mapper">
+<mapper namespace="qna-mapper">
 
-	<resultMap id="MemberResult" type="Member">
+	<!-- <resultMap id="MemberResult" type="Member">
 		<id property="member_id" column="member_id"/>
 		<result property="member_pw" column="member_pw"/>
 		<result property="member_name" column="member_name"/>
@@ -23,33 +23,26 @@
 		<result property="member_accesstoken" column="member_accesstoken" />
 		<result property="member_refreshtoken" column="member_refreshtoken" />
 		<result property="member_keyword_count" column="member_keyword_count" />	
-	</resultMap>
+	</resultMap> -->
 
-	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
+	<select id="selectMyQna" parameterType="string" resultType="Qna">
 		<![CDATA[
-			select * from member where member_id = #{member_id}
+			select * from question where question_writer = #{member_id}
 		]]>
 	</select>
 	
-	<select id="emailCheck" parameterType="string" resultType="Member">
+	<select id="selectMyDetailQna" parameterType="Qna" resultType="Qna">
 		<![CDATA[
-			select * from member where member_email = #{tomail}
+			select * from question where question_writer = #{question_writer} 
+			and question_no = #{question_no}
 		]]>
 	</select>
 	
-	<select id="findId" parameterType="Member" resultType="Member">
+	<select id="selectMyDetailQnaAnswer" parameterType="int" resultType="QnaAnswer">
 		<![CDATA[
-			select * from member where member_name = #{member_name} and member_email = #{member_email} 
-			and member_pw = #{member_pw}
+			select * from question_answer where question_no = #{question_no}
 		]]>
 	</select>
-	
-	<update id="fwdChange" parameterType="Member" flushCache="true" statementType="PREPARED">
-		<![CDATA[
-			update member set member_pw = #{member_pw} 
-			where member_id = #{member_id}
-		]]>
-	</update>
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
@@ -83,12 +76,5 @@
 		delete from member 
 		where userid = #{userId}
 	</delete> -->
-<update id="upgradeboardcount" parameterType="String">
-update MEMBER set MEMBER_WRITE_COUNT = (MEMBER_WRITE_COUNT+1) where MEMBER_ID = #{memberid}
-</update>
-
-<update id="upgradekeywordcount" parameterType="String">
-update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_WRITE_COUNT+1) where MEMBER_ID = #{memberid}
-</update>
 
 </mapper>

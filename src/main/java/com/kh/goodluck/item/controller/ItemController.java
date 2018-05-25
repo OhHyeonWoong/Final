@@ -32,6 +32,7 @@ import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.UsingItem;
+import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 
 @Controller
@@ -42,6 +43,10 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService ItemService;
+	
+	@Autowired
+	private MemberService memberService;
+	
 //	
 	public ItemController() {
 		// TODO Auto-generated constructor stub
@@ -134,11 +139,31 @@ public class ItemController {
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
 		int currentPage = 1;
-		
+		Member member=new Member();
+		member.setMember_id(memberid);
 		if(request.getParameter("usitempk") != null) {
 		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
+		int itemlistno=ItemService.getitemlistno(usitempk);
+		if(itemlistno==55) {
+		//최대게시물수+1
+				if(ItemService.turnitemstatus(usitempk)>0) {
+				System.out.println("해당아이템 소모완료");
+				ItemService.upgradeboardcount(memberid);
+				if(ItemService.insertusingitem(usitempk)!=0)
+					ItemService.Insertitemlog(usitempk);
+				
+				}
+		}else if(itemlistno==56) {
+		//최대태그수+1
+					if(ItemService.turnitemstatus(usitempk)>0) {
+					System.out.println("해당아이템 소모완료");
+					ItemService.upgradekeywordcount(memberid);
+					if(ItemService.insertusingitem(usitempk)!=0)
+						ItemService.Insertitemlog(usitempk);
+				}
+		}else{
 		System.out.println("usitempk="+usitempk);
-			if(ItemService.turnitemstatus(usitempk)>0) {
+		if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
 				//해당 아이템의 타입이 현재 적용중인이 확인.
 		if(ItemService.checkitemusing(usitempk) == 0) {
@@ -155,10 +180,11 @@ public class ItemController {
 			}else {
 				System.out.println("해당아이템 소모실패");
 			}
-			
 		}
+	}
 		
-		
+	
+		Member member1=memberService.loginCheck(member);
 		
 		
 		//전달된 페이지값 추출
@@ -291,6 +317,12 @@ public class ItemController {
 		}
 		json.put("usingitem", jarr); //사용중 아이템을 넣는다.
 		
+		
+		json.put("boardcount",member1.getMember_keyword_count());
+		json.put("keywordcount", member1.getMember_write_count());
+		
+		System.out.println("member1.getMember_keyword_count()="+member1.getMember_keyword_count());
+		System.out.println("member1.getMember_write_count()="+member1.getMember_write_count());
 		PrintWriter out = response.getWriter();
 		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());
@@ -319,6 +351,9 @@ public class ItemController {
 		if(request.getParameter("page1") != null) {
 		currentPage = Integer.parseInt(request.getParameter("page1"));
 		}
+		
+		
+		
 		
 		//현재 이모티콘이 적용중인지 확인
 		int nowusingimticonpk ;
