@@ -13,7 +13,7 @@ public class Board implements Serializable{
 	private int agency_no;
 	private String agency_writer;
 	private String agency_title;	
-	private int link2_no;
+	private String link2_no;
 	private int agency_type;
 	private String agency_loc;
 	private Date agency_startdate;
@@ -55,11 +55,11 @@ public class Board implements Serializable{
 		this.agency_title = agency_title;
 	}
 
-	public int getLink2_no() {
+	public String getLink2_no() {
 		return link2_no;
 	}
 
-	public void setLink2_no(int link2_no) {
+	public void setLink2_no(String link2_no) {
 		this.link2_no = link2_no;
 	}
 
@@ -159,7 +159,7 @@ public class Board implements Serializable{
 		this.agency_option = agency_option;
 	}
 
-	public Board(int agency_no, String agency_writer, String agency_title, int link2_no, int agency_type,
+	public Board(int agency_no, String agency_writer, String agency_title, String link2_no, int agency_type,
 			String agency_loc, Date agency_startdate, Date agency_enddate, Date agency_enrolldate, int agency_paytype,
 			int agency_pay, int agency_status, String agency_content, int agency_views, String agency_keyword,
 			String agency_option) {

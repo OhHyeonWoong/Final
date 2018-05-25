@@ -14,11 +14,11 @@
 			<fieldset>
 				<legend>나의 상담 내역</legend>
 				<table class="table table-striped">
-					<tr><td>분야</td><td>취소요청</td><td>문의일자</td><td>2018/04/28</td></tr>
-					<tr><td>제목</td><td colspan="3">단순 변심으로 인한 취소</td></tr>
+					<tr><td>분야</td><td>${myDetailQna.question_category}</td><td>문의일자</td><td>${myDetailQna.question_date}</td></tr>
+					<tr><td>제목</td><td colspan="3">${myDetailQna.question_title}</td></tr>
 					<tr><td>내용</td>
 						<td colspan="3">
-							<div>취소 사유 : 단순 변심</div>
+							<div>${myDetailQna.question_content}</div>
 						</td>
 					</tr>
 				</table>
@@ -29,26 +29,54 @@
 			<fieldset>
 				<legend>답변</legend>
 				<table class="table table-striped">
-					<tr><td>처리상태</td><td>처리완료</td><td>답변일자</td><td>2018/04/30</td></tr>
+					<tr><td>처리상태</td><td>${myDetailQna.question_answer_state}</td><td>답변일자</td><td>${myDetailQnaAnswer.answer_date}</td></tr>
 					<tr><td>답변내용</td>
 						<td colspan="3">
 							<div>
-							홍길동 고객님<br>
-							언제나 고객님에게 신뢰를 드리고 싶은 독신사 개발자 이병준입니다.<br>
-							거래 취소는 정상적으로 되었으며,<br>
-							마이페이지 > 거래내역 에서 확인해보시기 바랍니다. 감사합니다.
+							${myDetailQnaAnswer.answer_content}
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="3" style="text-align:center;">
-							<input type="radio" name="satisfaction" value="매우 만족">매우 만족&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="satisfaction" value="만족">만족&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="satisfaction" value="보통">보통&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="satisfaction" value="불만족">불만족&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="satisfaction" value="불만족">매우불만족&nbsp;&nbsp;&nbsp;
+							<c:if test="${myDetailQnaAnswer.answer_good != null}">
+								<input type="radio" id="r1" name="satisfaction" value="매우 만족" disabled>매우 만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r2" name="satisfaction" value="만족" disabled>만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r3" name="satisfaction" value="보통" disabled>보통&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r4" name="satisfaction" value="불만족" disabled>불만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r5" name="satisfaction" value="불만족" disabled>매우불만족&nbsp;&nbsp;&nbsp;
+							</c:if>
+							<script type="text/javascript">
+								$(function(){
+									var radioVar = $('input[type="radio"][name="satisfaction"]').val(); 
+									switch(radioVar){
+									case "매우 만족":
+										$('#r1').attr('checked',true);
+										break;
+									case "만족":
+										$('#r2').attr('checked',true);
+										break;
+									case "보통":
+										$('#r3').attr('checked',true);
+										break;
+									case "불만족":
+										$('#r4').attr('checked',true);
+										break;
+									case "매우 불만족":
+										$('#r5').attr('checked',true);
+										break;
+									}
+								});
+							</script>
 						</td>
-						<td><button onclick="">만족도 체크</button></td>
+						<td>
+							<c:if test="${empty myDetailQnaAnswer.answer_good}">
+								<button onclick="">만족도 체크</button>
+							</c:if>
+							<c:if test="${myDetailQnaAnswer.answer_good != null}">
+								<button onclick="" disabled>만족도 체크</button>
+							</c:if>
+						</td>
 					</tr>
 				</table>
 			</fieldset>

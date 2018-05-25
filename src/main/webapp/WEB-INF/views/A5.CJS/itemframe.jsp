@@ -488,7 +488,7 @@ $(function(){
 			value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value2+="</th>";
-	
+
 		}
 		
 		//페이징처리
@@ -499,12 +499,23 @@ $(function(){
 	 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
 			else
 		    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
-		}
+		} 
 	 }else{
 	$("#havingimticonpaging").html($("#havingimticonpaging").html()+"1");
 	 }	
 		$("#nowhaveitem").html(value1);	
 		$("#haveimticon").html(value2);
+		
+		
+		if(json.boardcount!=null)
+			{$("#boardcount").html(json.boardcount);
+			}
+			if(json.keywordcount!=null)
+			{$("#keywordcount").html(json.keywordcount)
+			
+			}
+		
+		
 		},
 		error:function(a,b,c){
 			alert("a : " + a + ", b : " + b + ", c : " + c);
@@ -513,14 +524,10 @@ $(function(){
 	}
 })
 function useitem(itempk){
-	
-	
-
 // 		console.log($("#itempage").val());
 // 		console.log($("#itempage1").val());
 // 		console.log(itempk.id); //소모성아이템 id
 // 		console.log(itempk.name);//소모성아이템 이름
-		
 		var usitempk=itempk.id;
 		var id = "${loginUser.member_id}";
 		var txt;
@@ -544,8 +551,7 @@ function useitem(itempk){
 		 					
 		 				var json = JSON.parse(jsonStr);
 		 					
-		 			
-		 				
+
 		 				var Array1= new Array(); 
 		 				var Array2= new Array(); 
 		 				var Array3= new Array();
@@ -683,6 +689,14 @@ function useitem(itempk){
 		 				}}		
 		 				$("#nowhaveitem").html(value1);	
 		 				$("#haveimticon").html(value2);
+		 				if(json.boardcount!=null)
+		 				{$("#boardcount").html(json.boardcount);
+		 				}
+		 				if(json.keywordcount!=null)
+		 				{$("#keywordcount").html(json.keywordcount)
+		 				
+		 				}
+		 	
 		 				},
 		 				error:function(a,b,c){
 		 					alert("a : " + a + ", b : " + b + ", c : " + c);
@@ -898,8 +912,11 @@ height: 78px;
 		아이디:<img id="afterauserajaximg" style="width:20px; height: 30px;">${loginUser.member_id}<br>
 		회원님 이름 : ${loginUser.member_name}<br>
 		보유  포인트 :${loginUser.member_cash} <br>
-		최대 게시글 수:${loginUser.member_write_count}<br>
-		최대 키워드 수:${loginUser.member_keyword_count}<br>
+		최대 게시글 수:<p id="keywordcount"></p>
+		최대 키워드 수:<p id="boardcount"></p>
+		
+			
+		 	
 		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
 		<button>충전</button>
 	</div>
@@ -924,12 +941,10 @@ height: 78px;
                     <div class="tab-pane fade in active" id="tab1primary" >
 					<table style="height:100%; width:100%; background:#e9e9e9; border-collapse: separate;  border-spacing: 10px; border-radius: 0 0 100px 100px">
 					<tbody id="nowhaveitem">
-					
 					</tbody>	
-						
 						</table>
 						<center>
-<p id="havingitempaging"></p>
+						<p id="havingitempaging"></p>
 						</center>
 						</div>
                         <div class="tab-pane fade" id="tab2primary" style="overflow: scroll; border-radius: 0 0 10px 10px; height:100%; padding: 10px">

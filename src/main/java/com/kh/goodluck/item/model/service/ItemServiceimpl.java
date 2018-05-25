@@ -137,6 +137,24 @@ public int updateimticon(HashMap<String,Object> map) {
 	return itemlistDao.updateimticon(map);
 }
 
+@Override
+public int upgradeboardcount(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.upgradeboardcount(memberid);
+}
+
+@Override
+public int upgradekeywordcount(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.upgradekeywordcount(memberid);
+}
+
+@Override
+public int getitemlistno(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.getitemlistno(useritempk);
+}
+
 
 
 

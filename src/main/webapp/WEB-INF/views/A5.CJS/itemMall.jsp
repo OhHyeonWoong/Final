@@ -17,7 +17,6 @@ $(document).ready( function() {
 			clickEvent = true;
 			$('.nav .mall').removeClass('active');
 			$(this).parent().addClass('active');		
-	
 	}).on('slid.bs.carousel', function(e) {
 		if(!clickEvent) {
 			var count = $('.nav').children().length -1;
@@ -31,8 +30,6 @@ $(document).ready( function() {
 		clickEvent = false;
 	});
 });
-
-
 </script>
 
 <div style="overflow: hidden;">
@@ -63,24 +60,26 @@ $(document).ready( function() {
         <span class="input-group-btn">
             <button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px  ">검색!</button>
         </span>
-    </div>
-                                
-                                </td>
-                                
+    </div> 
+           </td>
+                  </tr> <tr>
+                               <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsitemmellhome.go">아이템몰 메인가기</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">최신 아이템보기</a>
+                         <tr>
+                               <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">최신 아이템보기</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">인기 아이템보기</a>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="cjspopitem.go">인기 아이템보기</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">소모품 보기</a>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="cjssp.go">소모품 보기</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -124,11 +123,15 @@ $(document).ready( function() {
       <div class="carousel-inner">
       
         <div class="item active">
-          <img src="http://placehold.it/1200x400/cccccc/ffffff">
-           <div class="carousel-caption">
+         
+         
+         
             <h3>1</h3>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <a href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank" class="label label-danger">Bootstrap 3 - Carousel Collection</a></p>
-          </div>
+           
+        
+        
+        
+        
         </div><!-- End Item -->
  
          <div class="item">
