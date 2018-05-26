@@ -1100,7 +1100,7 @@
 						<td> (PS3)던전 앤 드레곤<br>타이틀 판매! <br>(작 성 자 : 태 극 기)</td>							
 						<td><img id="low_image" alt="첫번째 이미지" src="/goodluck/resources/common/img/game/게임2.jpg"></td> 	
 						<td> (닌텐도)HOT!신작 마리오<br>테니스 같이 하실분~? <br>(작 성 자 : 마 리 오) </td>	
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/game/게임5.jpg" style="border: 1px solid black"></td> 
+						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/game/게임5.jpg"></td> 
 						<td> (게임장비)게임 컨트롤러 판매<br> 사용법 안내해드립니다.<br>(작 성 자 : 장 비 맨) </td>					
 					</tr>
 				</table>
