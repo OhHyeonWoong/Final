@@ -282,7 +282,6 @@
 }
 
 #ukjaetypical_table tr td{
-	width: 40px;
 	height: 30px;
 	margin: 0;
 	padding: 0;
@@ -743,13 +742,15 @@
 						<td align="center"> 
 							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
+								<!-- width: 40px;  -->
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>		
 							</div>
 						</td>					
@@ -846,7 +847,7 @@
 					                <h3 style="margin-top: 10px;">
 					                    서비스 제공해요
 					                </h3>
-									<table border="1" style="width: 100%;">
+									<table id="ukjaetypical_table" border="1" style="width: 100%;">
 										<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
 										<tr align="center"><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
 										<tr align="center"><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
@@ -854,7 +855,6 @@
 										<tr align="center"><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 										<tr align="center"><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 										<tr align="center"><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr align="center"><td>07</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
 									</table>	
 					            </div>  
 					            <div class="user-menu-content">
@@ -948,143 +948,115 @@
 		    <div align="center">
 	
 			 	<h2> 동 물 뉴 스 </h2>
-			 	
-				<div id="animal_news" class="carousel slide" data-ride="carousel">
-				  <!-- Indicators -->
-				  <ul class="carousel-indicators">
-				    <li data-target="#animal_news" data-slide-to="0" class="active"> <a href="#"> 첫번째 </a> </li>
-				    <li data-target="#animal_news" data-slide-to="1"> <a href="#"> 두번째 </a> </li>
-				    <li data-target="#animal_news" data-slide-to="2"> <a href="#"> 세번째 </a> </li>
-				  </ul>
-				  <!-- The slideshow -->
-				  <div class="carousel-inner">
-				    <div class="carousel-item active">
-						<table id="ukjae_TableAreaFiveth">
-									<tr align="center">
-										<td style="width: 5px; border: none;"></td> 		
-										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
-										
-										</td>
-										<td style="width: 5px; border: none;"></td> 
-					
-					
-										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	 	
-					
-										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-										</td>
-										<td style="width: 5px; border: none;"></td> 		
-									</tr>				
-								</table>	
-				    </div>
-				    <div class="carousel-item">
-						<table id="ukjae_TableAreaFiveth">
-									<tr align="center">
-										<td style="width: 5px; border: none;"></td> 		
-										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
-										
-										</td>
-										<td style="width: 5px; border: none;"></td> 
-					
-					
-										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	 	
-					
-										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-										</td>
-										<td style="width: 5px; border: none;"></td> 		
-									</tr>				
-								</table>	
-				    </div>
-				    <div class="carousel-item">
-						<table id="ukjae_TableAreaFiveth">
-									<tr align="center">
-										<td style="width: 5px; border: none;"></td> 		
-										<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
-										
-										</td>
-										<td style="width: 5px; border: none;"></td> 
-					
-					
-										<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	 	
-					
-										<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-										</td>
-										<td style="width: 5px; border: none;"></td> 	
-					
-										<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-										<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-										</td>
-										<td style="width: 5px; border: none;"></td> 		
-									</tr>				
-								</table>	
-				    </div>
-				  </div>
-				  
-				  <!-- Left and right controls -->
-				  <a class="carousel-control-prev" href="#animal_news" data-slide="prev">
-				    <span class="carousel-control-prev-icon"></span>
-				  </a>
-				  <a class="carousel-control-next" href="#animal_news" data-slide="next">
-				    <span class="carousel-control-next-icon"></span>
-				  </a>
+				<table id="ukjae_TableAreaFiveth">
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td> 		
+							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+							
+							</td>
+							<td style="width: 5px; border: none;"></td> 
+		
+		
+							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	 	
+		
+							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+							</td>
+							<td style="width: 5px; border: none;"></td> 		
+						</tr>				
+					</table>	
+				<table id="ukjae_TableAreaFiveth">
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td> 		
+							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+							
+							</td>
+							<td style="width: 5px; border: none;"></td> 
+		
+		
+							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	 	
+		
+							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+							</td>
+							<td style="width: 5px; border: none;"></td> 		
+						</tr>				
+					</table>	
+				<table id="ukjae_TableAreaFiveth">
+						<tr align="center">
+							<td style="width: 5px; border: none;"></td> 		
+							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+							
+							</td>
+							<td style="width: 5px; border: none;"></td> 
+		
+		
+							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	 	
+		
+							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							</td>
+							<td style="width: 5px; border: none;"></td> 	
+		
+							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
+							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+							</td>
+							<td style="width: 5px; border: none;"></td> 		
+						</tr>				
+					</table>	
 				</div>
-
-
-            </div>
 
 
  			<br>
@@ -1099,13 +1071,14 @@
 							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								</table>	
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								</table>		
 							</div>	
 						</td>					
 					</tr>
@@ -1138,7 +1111,7 @@
 			</div>
 			<div class="item"> <!-- 음악영역 -->
 			
-				<div style="max-height:800px; overflow: scroll;">
+				<div style="height:800px; overflow: scroll;">
 					<table id="ukjae_TableAreaFiveth">					
 						<tr align="center">
 							<td style="width: 5px; border: none;"></td>	
@@ -1249,12 +1222,13 @@
 							<h4 style="margin-top: 0;"> 제공합니다(홈) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>	
 							</div>	
 						</td>					
@@ -1269,12 +1243,13 @@
 							<h4 style="margin-top: 0;"> 제공합니다(스포츠용품) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>	
 							</div>	
 						</td>					
@@ -1289,12 +1264,13 @@
 							<h4 style="margin-top: 0;"> 제공합니다(생활용품) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>	
 							</div>	
 						</td>					
@@ -1309,12 +1285,13 @@
 							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>	
 							</div>	
 						</td>					
@@ -1666,13 +1643,14 @@
 							<h4 style="margin-top: 0;"> 제공합니다(1인대역) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								</table>		
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								</table>			
 							</div>
 						</td>					
 					</tr>
@@ -1685,12 +1663,13 @@
 							<h4 style="margin-top: 0;"> 제공합니다(多,2인이상) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>		
 							</div>
 						</td>					
@@ -1699,18 +1678,19 @@
 				<div id="ukjae_Areaspace"></div>			
 				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
 					<tr> 
-						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/rent/렌탈1.jpg"></td>
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/gainperson/대신맨.JPG"></td>
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
 								<table id="ukjaetypical_table">
-									<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-									<tr align="center"><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-									<tr align="center"><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-									<tr align="center"><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-									<tr align="center"><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-									<tr align="center"><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
-								</table>		
+									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
+									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								</table>			
 							</div>
 						</td>					
 					</tr>

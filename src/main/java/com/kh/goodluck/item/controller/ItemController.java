@@ -123,13 +123,8 @@ public class ItemController {
 	public String event1Popup3() {
 		return "A2.JUJ/Event3";
 	}
-	 
-	@RequestMapping("Chatting.go")  //(욱재작업) 채팅창페이지로 이동하기
-	public String chartPageMove(){
-		return "A2.JUJ/Chatting";		
-	}
 	
-	@RequestMapping("Ukcarousel.go")  //(욱재작업) 채팅창페이지로 이동하기
+	@RequestMapping("Ukcarousel.go")  //(욱재작업) 카로셀Test영역
 	public String carouselTestPageMove(){
 		return "A2.JUJ/Carousel_test";
 	}

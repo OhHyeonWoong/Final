@@ -7,370 +7,361 @@
 		<meta charset="UTF-8">
 		<title>서비스 제공자의 글을 보고 사용자가 신청을하였을때 거래진행상황을 나타나는 페이지</title>
 		<style type="text/css">
+		/* *********** 최상단 정보표시영역 Area **********************/
+		.uk_level{
+			color:red;
+			animation: masterlevel 2s infinite;
+		}
 		
-			/* *********** 최상단 정보표시영역 Area **********************/
-			.uk_level{
-				color:red;
-				animation: masterlevel 2s infinite;
+		@-webkit-keyframes masterlevel {
+		    from {color: red;}
+		    to {color: blue;}
+		} 
+		
+		@keyframes masterlevel {
+		    from {color: red;}
+		    to {color: blue;}
+		}  
+							
+		
+		.panel {
+		    background-color: #FFFFFF;
+		    border: 1px solid rgba(0, 0, 0, 0);
+		    border-radius: 4px 4px 4px 4px;
+		    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+		    margin-bottom: 20px;
+		}   
+		
+		.panel-primary {
+		    border-color: #428BCA;
+		}   
+		
+			.panel-primary > .panel-heading {
+			    background-color: #428BCA;
+			    border-color: #428BCA;
+			    color: #FFFFFF;
+			}   
+			
+			.panel-heading {
+			    border-bottom: 1px solid rgba(0, 0, 0, 0);
+			    border-top-left-radius: 3px;
+			    border-top-right-radius: 3px;
+			    padding: 10px 15px;
+			}   
+			
+			.panel-title {
+			    font-size: 16px;
+			    margin-bottom: 0;
+			    margin-top: 0;
+			}   
+			
+			.panel-body:before, .panel-body:after {
+			    content: " ";
+			    display: table;
+			}   
+			
+			.panel-body:before, .panel-body:after {
+			    content: " ";
+			    display: table;
+			}   
+			
+			.panel-body:after {
+			    clear: both;
+			}   
+			
+			.panel-body {
+			    padding: 15px;
+			}   
+			
+			.panel-footer {
+			    background-color: #F5F5F5;
+			    border-bottom-left-radius: 3px;
+			    border-bottom-right-radius: 3px;
+			    border-top: 1px solid #DDDDDD;
+			    padding: 10px 15px;
+			}
+
+			.user-row {
+			    margin-bottom: 14px;
 			}
 			
-			@-webkit-keyframes masterlevel {
-			    from {color: red;}
-			    to {color: blue;}
-			} 
+			.user-row:last-child {
+			    margin-bottom: 0;
+			}
 			
-			@keyframes masterlevel {
-			    from {color: red;}
-			    to {color: blue;}
-			}  
-								
+			.dropdown-user {
+			    margin: 13px 0;
+			    padding: 5px;
+			    height: 100%;
+			}
 			
-			.panel {
-			    background-color: #FFFFFF;
-			    border: 1px solid rgba(0, 0, 0, 0);
-			    border-radius: 4px 4px 4px 4px;
-			    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-			    margin-bottom: 20px;
-			}   
+			.dropdown-user:hover {
+			    cursor: pointer;
+			}
 			
-			.panel-primary {
-			    border-color: #428BCA;
-			}   
+			.table-user-information > tbody > tr {
+			    border-top: 1px solid rgb(221, 221, 221);
+			}
 			
-				.panel-primary > .panel-heading {
-				    background-color: #428BCA;
-				    border-color: #428BCA;
-				    color: #FFFFFF;
-				}   
-				
-				.panel-heading {
-				    border-bottom: 1px solid rgba(0, 0, 0, 0);
-				    border-top-left-radius: 3px;
-				    border-top-right-radius: 3px;
-				    padding: 10px 15px;
-				}   
-				
-				.panel-title {
-				    font-size: 16px;
-				    margin-bottom: 0;
-				    margin-top: 0;
-				}   
-				
-				.panel-body:before, .panel-body:after {
-				    content: " ";
-				    display: table;
-				}   
-				
-				.panel-body:before, .panel-body:after {
-				    content: " ";
-				    display: table;
-				}   
-				
-				.panel-body:after {
-				    clear: both;
-				}   
-				
-				.panel-body {
-				    padding: 15px;
-				}   
-				
-				.panel-footer {
-				    background-color: #F5F5F5;
-				    border-bottom-left-radius: 3px;
-				    border-bottom-right-radius: 3px;
-				    border-top: 1px solid #DDDDDD;
-				    padding: 10px 15px;
+			.table-user-information > tbody > tr:first-child {
+			    border-top: 0;
+			}
+			
+			
+			.table-user-information > tbody > tr > td {
+			    border-top: 0;
+			    
+			}
+			.rating {
+			      float:left;
+			}
+			
+			/*  영역하단 아이콘 */				
+			.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; } 
+			
+			.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}			  												
+			/*  영역하단 아이콘 */
+			
+			/********** 이용약관Area *********/
+			.main-container{
+			    
+				background: #35356a;
+						        
+		    }
+			.highlight  {
+			    width: 100%;
+			    height: 600px;
+			    color: white;
+			    background: rgba(0, 0, 0, 0.26);
+			    border-radius: 10px;
+			    padding: 3%;
+			    
 				}
-
-				.user-row {
-				    margin-bottom: 14px;
-				}
-				
-				.user-row:last-child {
-				    margin-bottom: 0;
-				}
-				
-				.dropdown-user {
-				    margin: 13px 0;
-				    padding: 5px;
-				    height: 100%;
-				}
-				
-				.dropdown-user:hover {
-				    cursor: pointer;
-				}
-				
-				.table-user-information > tbody > tr {
-				    border-top: 1px solid rgb(221, 221, 221);
-				}
-				
-				.table-user-information > tbody > tr:first-child {
-				    border-top: 0;
-				}
-				
-				
-				.table-user-information > tbody > tr > td {
-				    border-top: 0;
-				    
-				}
-				.rating {
-				      float:left;
-				}
-				
-				/*  영역하단 아이콘 */				
-				.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; } 
-				
-				.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}			  												
-				/*  영역하단 아이콘 */
-				
-				/********** 이용약관Area *********/
-				.main-container{
-				    
-				 background: #0a3466;
-				 background: -webkit-linear-gradient(45deg, #0a3466 0%, #17b6e3 100%);
-				 background: linear-gradient(45deg, #0a3466 0%, #17b6e3 100%);
-				 filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0a3466', endColorstr='#17b6e3', GradientType=1);
-							        
+			    
+			.highlight ul {
+			    list-style-image: url('http://icons.iconarchive.com/icons/yusuke-kamiyamane/fugue/16/tick-small-icon.png');
+			    margin-left: 1%;
+			    float: left; 
+			    clear: right
 			    }
-				.highlight  {
-				    width: 100%;
-				    height: 600px;
-				    color: white;
-				    background: rgba(0, 0, 0, 0.26);
-				    border-radius: 10px;
-				    padding: 3%;
-				    
-					}
-				    
-				.highlight ul {
-				    list-style-image: url('http://icons.iconarchive.com/icons/yusuke-kamiyamane/fugue/16/tick-small-icon.png');
-				    margin-left: 1%;
-				    float: left; 
-				    clear: right
-				    }
-				.highlight ul li{
-					font-size : 20px;
-				}    
+			.highlight ul li{
+				font-size : 20px;
+			}    
 
+			
+			.highlight h1,h2,h3,h4,h5,h6 {
+			    padding-bottom: 2%;
+			  border-bottom: 2px dashed rgba(255, 255, 255, 0.41);
+			    font-size:20px;
+			    text-align : center;
+			    text-transform: uppercase;
+			    }
+			    
+			.highlight p {
+			    text-align: justify;
+			    }				
 				
-				.highlight h1,h2,h3,h4,h5,h6 {
-				    padding-bottom: 2%;
-				  border-bottom: 2px dashed rgba(255, 255, 255, 0.41);
-				    font-size:20px;
-				    text-align : center;
-				    text-transform: uppercase;
-				    }
-				    
-				.highlight p {
-				    text-align: justify;
-				    }				
-					
-					
-				/********** 채팅Area *********/
-				* {
-					  box-sizing: border-box;
-					}
-
-				.chat_window {
-
-				  height: 600px;
-				  width : 100%;
-				  border-radius: 10px;
-				  background-color: #fff;
-				  left: 50%;
-				  top: 50%;
-				  transform: translateX(0%) translateY(0%);
-				  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-				  background-color: #f8f8f8;
-				  overflow: hidden;
-				}
 				
-				.top_menu {
-				  background-color: #fff;
-				  width: 100%;
-				  padding: 20px 0 15px;
-				  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-				}
-				.top_menu .buttons {
-				  margin: 3px 0 0 20px;
-				  position: absolute;
-				}
-				.top_menu .buttons .button {
-				  width: 16px;
-				  height: 16px;
-				  border-radius: 50%;
-				  display: inline-block;
-				  margin-right: 10px;
-				  position: relative;
-				}
-
-				.top_menu .title {
-				  text-align: center;
-				  color: black;
-				  font-size: 20px;
-				}
-				
-				.messages {
-				  position: relative;
-				  list-style: none;
-				  padding: 0;
-				  margin: 0;
-				  height: 500px;
-				  overflow: scroll;
-				}
-				.messages .message {
-				  clear: both;
-				  overflow: hidden;
-				  margin-bottom: 20px;
-				  transition: all 0.5s linear;
-				  opacity: 0;
-				}
-				.messages .message.left .avatar {
-				  background-color: green;
-				  float: left;
-				}
-				.messages .message.left .text_wrapper {
-				  background-color: #ffe6cb;
-				  margin-left: 20px;
-				}
-				.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
-				  right: 100%;
-				  border-right-color: #ffe6cb;
-				}
-				.messages .message.left .text {
-				  color: #c48843;
-				}
-				.messages .message.right .avatar {
-				  background-color: black;
-				  float: right;
-
-				}
-				.messages .message.right .text_wrapper {
-				  background-color: #c7eafc;
-				  margin-right: 20px;
-				  float: right;
-				}
-				.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
-				  left: 100%;
-				  border-left-color: #c7eafc;
-				}
-				.messages .message.right .text {
-				  color: #45829b;
-				}
-				.messages .message.appeared {
-				  opacity: 1;
-				}
-				.messages .message .avatar {
-				  width: 60px;
-				  height: 60px;
-				  border-radius: 50%;
-				  display: inline-block;
-				}
-				.messages .message .text_wrapper {
-				  display: inline-block;
-				  padding: 20px;
-				  border-radius: 6px;
-				  width: calc(100% - 85px);
-				  min-width: 100px;
-				  position: relative;
-				}
-				.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
-				  top: 18px;
-				  border: solid transparent;
-				  content: " ";
-				  height: 0;
-				  width: 0;
-				  position: absolute;
-				  pointer-events: none;
-				}
-				.messages .message .text_wrapper::after {
-				  border-width: 13px;
-				  margin-top: 0px;
-				}
-				.messages .message .text_wrapper::before {
-				  border-width: 15px;
-				  margin-top: -2px;
-				}
-				.messages .message .text_wrapper .text {
-				  font-size: 18px;
-				  font-weight: 300;
-				}
-				
-				.bottom_wrapper {
-				  position: relative;
-				  width: 100%;
-				  background-color: #fff;
-				  padding: 20px 20px;
-				  position: absolute;
-				  bottom: 0;
-				}
-				.bottom_wrapper .message_input_wrapper {
-				  display: inline-block;
-				  height: 50px;
-				  border-radius: 25px;
-				  border: 1px solid #bcbdc0;
-				  width: calc(100% - 160px);
-				  position: relative;
-				  padding: 0 20px;
-				}
-				.bottom_wrapper .message_input_wrapper .message_input {
-				  border: none;
-				  height: 100%;
+			/********** 채팅Area *********/
+			* {
 				  box-sizing: border-box;
-				  width: calc(100% - 40px);
-				  position: absolute;
-				  outline-width: 0;
-				  color: gray;
 				}
-				.bottom_wrapper .send_message {
-				  width: 140px;
-				  height: 50px;
-				  display: inline-block;
-				  border-radius: 50px;
-				  background-color: #a3d063;
-				  border: 2px solid #a3d063;
-				  color: #fff;
-				  cursor: pointer;
-				  transition: all 0.2s linear;
-				  text-align: center;
-				  float: right;
-				}
-				.bottom_wrapper .send_message:hover {
-				  color: #a3d063;
-				  background-color: #fff;
-				}
-				.bottom_wrapper .send_message .text {
-				  font-size: 18px;
-				  font-weight: 300;
-				  display: inline-block;
-				  line-height: 48px;
-				}
-				
-				.message_template {
-				  display: none;
-				}
-								
-	
-				/********** 평가하기Area *********/
-				
-				 .animated {
-				    -webkit-transition: height 0.2s;
-				    -moz-transition: height 0.2s;
-				    transition: height 0.2s;
-				}
-				
-				.stars
-				{
-				    
-				    font-size: 24px;
-				    color: #d17581;
-				}	
-				
 
-								
-					
+			.chat_window {
+
+			  height: 600px;
+			  width : 100%;
+			  border-radius: 10px;
+			  background-color: #fff;
+			  left: 50%;
+			  top: 50%;
+			  transform: translateX(0%) translateY(0%);
+			  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+			  background-color: #f8f8f8;
+			  overflow: hidden;
+			}
+			
+			.top_menu {
+			  background-color: #fff;
+			  width: 100%;
+			  padding: 10px 0 7px;
+			  margin-bottom: 10px;
+			  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+			}
+			.top_menu .buttons {
+			  margin: 3px 0 0 20px;
+			  position: absolute;
+			}
+			.top_menu .buttons .button {
+			  width: 16px;
+			  height: 16px;
+			  border-radius: 50%;
+			  display: inline-block;
+			  margin-right: 10px;
+			  position: relative;
+			}
+
+			.top_menu .title {
+			  text-align: center;
+			  color: black;
+			  font-size:30px;
+			}
+			
+			.messages {
+			  position: relative;
+			  list-style: none;
+			  padding: 0;
+			  margin: 0;
+			  height: 500px;
+			  overflow: scroll;
+			}
+			.messages .message {
+			  clear: both;
+			  overflow: hidden;
+			  margin-bottom: 20px;
+			  transition: all 0.5s linear;
+			  opacity: 0;
+			}
+			.messages .message.left .avatar {
+			  float: left;
+			  margin-left: 8px;
+			}
+			.messages .message.left .text_wrapper {
+			  background-color: #ffe6cb;
+			  margin-left: 10px;
+			}
+			.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+			  right: 100%;
+			  border-right-color: #ffe6cb;
+			}
+			.messages .message.left .text {
+			  color: #c48843;
+			}
+			.messages .message.right .avatar {
+			  float: right;
+
+			}
+			.messages .message.right .text_wrapper {
+			  background-color: #c7eafc;
+			  margin-right: 20px; 
+			  float: right;
+			}
+			.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+			  left: 100%;
+			  border-left-color: #c7eafc;
+			}
+			.messages .message.right .text {
+			  color: #45829b;
+			}
+			.messages .message.appeared {
+			  opacity: 1;
+			}
+			.messages .message .avatar {
+			  width: 60px;
+			  height: 60px;
+			  border-radius: 50%;
+			  display: inline-block;
+			}
+			.messages .message .text_wrapper {
+			  display: inline-block;
+			  padding: 20px;
+			  border-radius: 6px;
+			  width: calc(95% - 85px);
+			  min-width: 100px;
+			  position: relative;
+			}
+			.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+			  top: 18px;
+			  border: solid transparent;
+			  content: " ";
+			  height: 0;
+			  width: 0;
+			  position: absolute;
+			  pointer-events: none;
+			}
+			.messages .message .text_wrapper::after {
+			  border-width: 13px;
+			  margin-top: 0px;
+			}
+			.messages .message .text_wrapper::before {
+			  border-width: 15px;
+			  margin-top: -2px;
+			}
+			.messages .message .text_wrapper .text {
+			  font-size: 18px;
+			  font-weight: 300;
+			}
+			
+			.bottom_wrapper {
+			  position: relative;
+			  width: 100%;
+			  background-color: #fff;
+			  padding: 20px 20px;
+			  position: absolute;
+			  bottom: 0;
+			}
+			.bottom_wrapper .message_input_wrapper {
+			  display: inline-block;
+			  height: 50px;
+			  border-radius: 25px;
+			  border: 1px solid #bcbdc0;
+			  width: calc(100% - 160px);
+			  position: relative;
+			  padding: 0 20px;
+			}
+			.bottom_wrapper .message_input_wrapper .message_input {
+			  border: none;
+			  height: 100%;
+			  box-sizing: border-box;
+			  width: calc(100% - 40px);
+			  position: absolute;
+			  outline-width: 0;
+			  color: gray;
+			}
+			.bottom_wrapper .send_message {
+			  width: 140px;
+			  height: 50px;
+			  display: inline-block;
+			  border-radius: 50px;
+			  background-color: #a3d063;
+			  border: 2px solid #a3d063;
+			  color: #fff;
+			  cursor: pointer;
+			  transition: all 0.2s linear;
+			  text-align: center;
+			  float: right;
+			}
+			.bottom_wrapper .send_message:hover {
+			  color: #a3d063;
+			  background-color: #fff;
+			}
+			.bottom_wrapper .send_message .text {
+			  font-size: 18px;
+			  font-weight: 300;
+			  display: inline-block;
+			  line-height: 48px;
+			}
+			
+			.message_template {
+			  display: none;
+			}
+			
+			/********** 평가하기Area *********/			
+			 .animated {
+			    -webkit-transition: height 0.2s;
+			    -moz-transition: height 0.2s;
+			    transition: height 0.2s;
+			}
+			
+			.stars
+			{
+			    
+			    font-size: 24px;
+			    color: #d17581;
+			}	
 		</style>
-		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>		
+		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>	
+			
 		<script type="text/javascript">
 			(function () {
 			    var Message;
@@ -430,7 +421,7 @@
 			        }, 2000);
 			    });
 			}.call(this));	
-		</script>	
+		</script> <!-- 채팅화면 채팅실행 스크립트 -->
 		
 	</head>
 	<body>
@@ -442,7 +433,7 @@
 			            <div class="span10 offset1">
 			                <div class="panel panel-primary">
 			                    <div class="panel-heading" align="center">
-			                        <h3 class="panel-title">당신도 집에서 요리사가 될 수 있습니다. 기초부터친절하게 알려드려요~~!!!!!!</h3>
+			                        <h3 class="panel-title">당신도 집에서 요리사가 될 수 있습니다. 실전의 기초부터 중수까지.</h3>
 			                    </div>
 			                    <div class="panel-body">
 			                        <div class="row-fluid">
@@ -485,8 +476,8 @@
 												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
 												<a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</a>
 												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
-												<a class="btn icon-btn btn-warning" href="#"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Remove</a>
-												<a class="btn icon-btn btn-danger" href="#"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>			                                
+												<!-- <a class="btn icon-btn btn-warning" href="#"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Remove</a>
+												<a class="btn icon-btn btn-danger" href="#"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>	 -->		                                
 			                                </div>
 			                            </div>
 			                        </div>
@@ -507,7 +498,7 @@
 					            <li>첫번째 : 거래확정시 취소불가능합니다.  </li> <br>
 					            <li>두번째 : 서비스 제공자에게 폭언, 폭력을할시 <br>법적으로 처벌 받습니다. </li> <br>
 					            <li>세번째 : 서비스 이용시간을 준수합니다. </li> <br>
-					            <li>네번째 : 이용자는 제공서비스 이외에 불필요한 요구를<br>할수 없습니다. </li> <br>
+					            <li>네번째 : 이용자는 제공서비스 이외에 불필요한<br>요구를 할수 없습니다. </li> <br>
 					        </ul>
 					        </div>
 
@@ -542,7 +533,7 @@
 				<div class="message_template">
 				
 				<li class="message">
-						<div class="avatar"> <img src="/goodluck/resources/common/img/main/백종원.jpg" alt="이미지준비중" width="80" height="80" style="border: 1px solid rgba(0, 0, 0, 0);  border-radius: 4px 4px 4px 4px;"> </div>
+						<div class="avatar"> <img src="/goodluck/resources/common/img/main/백종원.jpg" style="width: 50px; height: 50px;"> </div>
 						<div class="text_wrapper"> <div class="text"></div>
 						</div>
 				</li>

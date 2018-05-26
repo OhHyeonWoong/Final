@@ -16,9 +16,9 @@
 		                    <h3 class="panel-title"> 욱재 작업리스트</h3>
 		                </div>
 		                <ul class="list-group">
-		                    <a href="#" class="list-group-item">작업 1 : </a>
+		                    <a href="DealingState.go" class="list-group-item">작업 1 : 거래신청 후 대기화면</a>
 		                    <a href="Ukcarousel.go" class="list-group-item">작업 2 : 카로셀 </a>
-		                    <a href="#" class="list-group-item">작업 3 : </a>
+		                    <a href="Chatting.go" class="list-group-item">작업 3 : 채팅페이지</a>
 		                    <a href="#" class="list-group-item">작업 4 : 구현중 </a>
 		                    <a href="#" class="list-group-item">작업 5 : 구현중 </a>
 		                    <a href="#" class="list-group-item">작업 6 : 구현중 </a>
