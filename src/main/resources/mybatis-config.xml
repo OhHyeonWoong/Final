@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.UsingItem" alias="UsingItem"/>
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QNA" alias="Qna" />
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QnaAnswer" alias="QnaAnswer" />
+		<typeAlias type="com.kh.goodluck.faq.model.vo.Faq" alias="Faq" />
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>
@@ -29,6 +30,7 @@
 		<mapper resource="mybatis/mapper/category-mapper.xml"/>
 		<mapper resource="mybatis/mapper/UsingItem-mapper.xml"/>
 		<mapper resource="mybatis/mapper/qna-mapper.xml" />
+		<mapper resource="mybatis/mapper/faq-mapper.xml" />
 		<!-- <mapper resource="notice/model/mapper/notice-mapper.xml"/> -->
 	</mappers>
 </configuration>

@@ -1,6 +1,6 @@
 package com.kh.goodluck.faq.model.vo;
 
-public class FAQ implements java.io.Serializable{
+public class Faq implements java.io.Serializable{
 	
 	private static final long serialVersionUID = 123L;
 	
@@ -9,9 +9,9 @@ public class FAQ implements java.io.Serializable{
 	private String faq_title; //게시글 제목
 	private String faq_content; //게시글 내용
 	
-	public FAQ() { }
+	public Faq() { }
 
-	public FAQ(int faq_no, String faq_category, String faq_title, String faq_content) {
+	public Faq(int faq_no, String faq_category, String faq_title, String faq_content) {
 		super();
 		this.faq_no = faq_no;
 		this.faq_category = faq_category;
@@ -57,7 +57,7 @@ public class FAQ implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "FAQ [faq_no=" + faq_no + ", faq_category=" + faq_category + ", faq_title=" + faq_title
+		return "Faq [faq_no=" + faq_no + ", faq_category=" + faq_category + ", faq_title=" + faq_title
 				+ ", faq_content=" + faq_content + "]";
 	}
 
