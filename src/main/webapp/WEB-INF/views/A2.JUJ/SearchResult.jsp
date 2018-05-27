@@ -17,8 +17,8 @@
 			border: 1px solid black;
 			padding-top : 15px;
 			padding-left: 115px;
-			background: black;	
-		}
+			background: darkgray;	
+		}  
 		
 		.ukjae_Bigcategory li{
 			list-style: none;
@@ -33,7 +33,7 @@
 		border-color: white;
 		background-color: transparent;
 		border-radius: 50px;	
-		padding:0px;	
+		padding:5px;	
 		}
 		
 		.ukjae_Bigcategory li a:hover{
@@ -175,6 +175,44 @@
 							<li> 축구 </li>
 							<li> 축구 </li>
 							<li> 축구 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 축구 </li>
+							<li> 기차 </li>
+							<li> 비행기 </li>
+							<li> 여자 </li>
+							<li> 미국 </li>
+														
 							</ol>
 					</div>			
 				 </td>
