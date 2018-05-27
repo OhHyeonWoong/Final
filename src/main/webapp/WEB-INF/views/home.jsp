@@ -952,111 +952,72 @@
 						<tr align="center">
 							<td style="width: 5px; border: none;"></td> 		
 							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
+							<font id="ukjaeTitle_effect"> 아기강아지의 귀여움 <br>(제 공 자 : 정 욱 재) </font>	   
 							
 							</td>
 							<td style="width: 5px; border: none;"></td> 
 		
 		
 							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							<font id="ukjaeTitle_effect"> 동물도 은혜를갚는다 <br>(제 공 자 : 정 욱 재) </font>					
 							</td>
 							<td style="width: 5px; border: none;"></td> 	
 		
 							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							<font id="ukjaeTitle_effect"> 우리해병이를 잊지마<br>(제 공 자 : 정 욱 재) </font>					
 							</td>
 							<td style="width: 5px; border: none;"></td> 	
 		
 							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							<font id="ukjaeTitle_effect"> 누가 더 귀여워? <br>(제 공 자 : 정 욱 재) </font>					
 							</td>
 							<td style="width: 5px; border: none;"></td> 	 	
 		
 							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
+							<font id="ukjaeTitle_effect"> 아기강아지의 귀여움 <br>(제 공 자 : 정 욱 재) </font>					
 							</td>
 							<td style="width: 5px; border: none;"></td> 	
 		
 							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
+							<font id="ukjaeTitle_effect"> 동물도 은혜를갚는다 <br>(제 공 자 : 정 욱 재) </font>				
 							</td>
 							<td style="width: 5px; border: none;"></td> 		
 						</tr>				
-					</table>	
-				<table id="ukjae_TableAreaFiveth">
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td> 		
-							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
-							
-							</td>
-							<td style="width: 5px; border: none;"></td> 
-		
-		
-							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	 	
-		
-							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-							</td>
-							<td style="width: 5px; border: none;"></td> 		
-						</tr>				
-					</table>	
-				<table id="ukjae_TableAreaFiveth">
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td> 		
-							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>	   
-							
-							</td>
-							<td style="width: 5px; border: none;"></td> 
-		
-		
-							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	 	
-		
-							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>				
-							</td>
-							<td style="width: 5px; border: none;"></td> 		
-						</tr>				
-					</table>	
-				</div>
+					</table><br>
+					
+					<div class="icon arrow-refresh"></div>
+					
+					<input type="button" id="animalNews_BeforeBtn" value="이전"> 
+					<script type="text/javascript">
+						
+						
+					</script>
+					&nbsp; &nbsp; &nbsp; &nbsp;	
+					<input type="button" id="animalNews_NextBtn" value="다음">
+					<script type="text/javascript">
+						$(function(){	
+							$("#animalNews_NextBtn").on("click",function(){
+								alert("다음기사로 변경을 시도하셨습니다.")
+								
+								$.ajax({
+									url : "animalPageNews_next.do",
+									data: "",
+									type: "post",
+									datatype: "",
+									success : function(data){
+										
+									},
+									error: function(request, status, errorData){
+										alert("error code : " + request.status + "\n"
+											+ "message : " + request.responseText + "\n"
+											+ "error : " + errorData);
+									}
+								});
+							});
+						
+						});
+					</script>
+			</div>
 
 
  			<br>
