@@ -438,31 +438,64 @@ try {
 }
 	
 	@RequestMapping("cjsnewitem.go")
-	public ModelAndView cjsnewitem(ModelAndView mv){
-		//새로운아이템
+	public ModelAndView cjsnewitem(ModelAndView mv, HttpServletRequest request){
+		//최신+인기
+		
+		int currentPage=1;
+		//전달된 페이지값 추출
+		if(request.getParameter("page1") != null) {
+		currentPage = Integer.parseInt(request.getParameter("page1"));
+		}
+
+		//총아이템갯수.
 		
 		
+		//한 페이지당 출력할 목록 갯수 지정
+		
+		int limit = 13;
+			
+	  //현 맴버가 보유하고있는 아이템 갯수 계산
+		int listCount =  ItemService.countitem();
+		
+		System.out.println( listCount + " / (To.아이템컨트롤러 소모성아이템갯수)");
+		
+		int maxPage = (int)((double)listCount / limit + 0.9);
+			
+		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
+		//현재 페이지에 출력할 목록 조회		
+	    GetMyItem gmi=new GetMyItem();
+	    HashMap<Object,Object> map=new HashMap<Object,Object>();
+	    int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+	
+		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.allitemlist(map);
+		
+		mv.addObject("firstlist",al);
+		mv.addObject("maxPage",maxPage);
+		mv.addObject("currentPage",currentPage);
+		mv.addObject("listCount",listCount);
 		mv.setViewName("A5.CJS/cjsnewitem");
 		return mv;
 		}
-	@RequestMapping("cjspopitem.go")
-	public ModelAndView cjspopitem(ModelAndView mv){
-		//인기아이템
-		mv.setViewName("A5.CJS/cjspopitem");
-		return mv;
-		}
+	
+	
 	@RequestMapping("cjsspenditme.go")
 	public ModelAndView cjsspenditme(ModelAndView mv){
 		//소모성아이템
 		mv.setViewName("A5.CJS/cjsspenditme");
 		return mv;
-		}
+	}
+	
+	
 	@RequestMapping("cjsperioditme.go")
 	public ModelAndView cjsperioditme(ModelAndView mv){
 		//기간제 아이템
 		mv.setViewName("A5.CJS/cjsperioditme");
 		return mv;
-		}
+    }
+
 	@RequestMapping("cjsimticonitem.go")
 	public ModelAndView cjsimticonitem(ModelAndView mv){
 		//이모티콘

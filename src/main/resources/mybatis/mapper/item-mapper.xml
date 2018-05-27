@@ -20,6 +20,16 @@
 ]]>
 </select>
 
+<select id="allitemlist" resultMap="itemResult" parameterType="Hashmap">
+<![CDATA[
+	select * from (select * from ITEMLIST order by ITEMLIST_NO desc) where rownum <= #{endRow} and rownum >= #{startRow} order by ITEMLIST_NO desc 
+]]>
+</select>
+
+<select id="countitem" resultType="int">
+select count(*) from ITEMLIST 
+</select>
+
 <select id="selectitemdetail" resultType="ITEMLIST">
 <![CDATA[
 select * from ITEMLIST where ITEMLIST_NO = #{itemno}

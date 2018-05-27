@@ -152,5 +152,17 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitemlistno",useritempk);
 	}
+
+
+	public List<ITEMLIST> allitemlist(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("allitemlist",map);
+	}
+
+
+	public int countitem() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("countitem");
+	}
 	
 }
