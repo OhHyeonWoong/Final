@@ -3,20 +3,30 @@ package com.kh.goodluck;
 import java.util.ArrayList;
 
 import org.slf4j.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.kh.goodluck.board.model.vo.Board;
+import com.kh.goodluck.notice.model.service.NoticeService;
+import com.kh.goodluck.notice.model.vo.Notice;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private NoticeService noticeService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
 	public String home() {
 		logger.info("HomeController Run");
 		
 		//메인페이지 첫번째영역
-		ArrayList<Board> mainnoticesample = new ArrayList<Board>(); //공지
+		ArrayList<Notice> mainnoticesample = new ArrayList<Notice>(); //공지
+		
+		
+		
 		ArrayList<Board> mainfaqsample = new ArrayList<Board>(); //FAQ
 
 		
