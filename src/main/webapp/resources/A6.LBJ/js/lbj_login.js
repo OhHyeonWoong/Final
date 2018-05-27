@@ -1,5 +1,13 @@
+	
 $(function() {
-    
+	//로그인 창 열릴 시 쿠키 정보 있나없나 확인해서 이메일 뿌려줌
+	var u_id = getCookie("userid");
+	if (u_id) { //쿠키가 존재한다면
+		$('#idSave').attr("checked", true);
+		$('#login_id').val(u_id);
+	}
+	///////////////////////////////////////
+	
     var $formLogin = $('#login-form');
     var $formLost = $('#lost-form');
     //var $formRegister = $('#register-form');

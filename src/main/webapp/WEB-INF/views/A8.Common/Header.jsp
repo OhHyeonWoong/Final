@@ -272,7 +272,38 @@
 </style>
 
 <script type="text/javascript">
-
+	//아이디 기억용 쿠키 생성 및 활용 - made by lbj
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value)
+				+ ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+	
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires="
+				+ expireDate.toGMTString();
+	}
+	
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if (start != -1) {
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if (end == -1)
+				end = cookieData.length;
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}
+	//////////////////////////////////////////
+	
 	/* 실시간 검색어 애니메이션 함수 */
 	$(function() {
 		var count = $('.ohw-menu-realtimebar-li').length;
@@ -292,16 +323,21 @@
 	
 	/* 로그아웃 Function */
 	function fnLogout(){
-		$.ajax({
-			url:"lbjlogout1.go",
-			success:function(data){
-				alert(data);
-				window.history.go(0);
-			},
-			error:function(a,b,c){
-				alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
-			}
-		});
+		var flag = confirm("로그아웃 하시겠습니까?");
+		if(flag){
+			$.ajax({
+				url:"lbjlogout1.go",
+				success:function(data){
+					alert(data);
+					window.history.go(0);
+				},
+				error:function(a,b,c){
+					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+				}
+			});	
+		}else{
+			alert("취소하였습니다.");
+		}
 	}
 	/* 로그아웃 Function */
 	
