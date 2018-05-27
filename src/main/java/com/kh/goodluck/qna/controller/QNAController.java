@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
+import com.kh.goodluck.qna.model.vo.QnaWrite;
 
 @Controller
 public class QNAController {
@@ -49,15 +50,20 @@ public class QNAController {
 	}
 	
 	@RequestMapping("lbjqnawritemethod.go")
-	public String qnaWriteMethod(QNA qna,HttpServletRequest request) {
+	public String qnaWriteMethod(QnaWrite qnaWrite) {
 		//넘어온 qna작성 자료들을 처리
 		/*System.out.println("제목 : " + qna.getQuestion_title());
 		System.out.println("질문자 : " + qna.getQuestion_writer());
 		System.out.println("내용 : " + qna.getQuestion_content());
 		System.out.println("아이디 : " + request.getParameter("member_id"));
 		System.out.println("카테고리 : " + qna.getQuestion_category());*/
-		//vo를 하나 팝시다
-		//int result = qnaService.insertMyQna();
+		//도저언
+		int result = qnaService.insertMyQna(qnaWrite);
+		if(result > 0) {
+			System.out.println("글 입력 성공!");
+		}else {
+			System.out.println("글 입력 실패!");
+		}/*A6.LBJ/myPage*/
 		return "A6.LBJ/myPage";
 	}
 	

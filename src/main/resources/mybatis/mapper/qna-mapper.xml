@@ -44,6 +44,18 @@
 		]]>
 	</select>
 	
+	<insert id="insertMyQna" parameterType="QnaWrite" flushCache="true">
+		<![CDATA[
+			insert into question values 
+			((select max(question_no)+1 from question),
+			#{question_title},
+			#{question_content},
+			(select member_name from member where member_id = #{member_id}),
+			#{question_category},
+			default,
+			default)
+		]]>
+	</insert>
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

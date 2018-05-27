@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
+import com.kh.goodluck.qna.model.vo.QnaWrite;
 
 @Repository("qnaDao")
 public class QNADao {
@@ -25,6 +26,10 @@ public class QNADao {
 
 	public QnaAnswer selectMyDetailQnaAnswer(int question_no) {
 		return sqlSession.selectOne("selectMyDetailQnaAnswer", question_no);
+	}
+
+	public int insertMyQna(QnaWrite qnaWrite) {
+		return sqlSession.insert("insertMyQna", qnaWrite);
 	}
 	
 }

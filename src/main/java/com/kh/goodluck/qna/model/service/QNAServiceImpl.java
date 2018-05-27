@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.goodluck.qna.model.dao.QNADao;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
+import com.kh.goodluck.qna.model.vo.QnaWrite;
 
 @Service("qnaService")
 public class QNAServiceImpl implements QNAService{
@@ -28,5 +29,10 @@ public class QNAServiceImpl implements QNAService{
 	@Override
 	public QnaAnswer selectMyDetailQnaAnswer(int question_no) {
 		return qnaDao.selectMyDetailQnaAnswer(question_no);
+	}
+	
+	@Override
+	public int insertMyQna(QnaWrite qnaWrite) {
+		return qnaDao.insertMyQna(qnaWrite);
 	}
 }
