@@ -19,7 +19,7 @@
 		                    <a href="DealingState.go" class="list-group-item">작업 1 : 거래신청 후 대기화면</a>
 		                    <a href="Ukcarousel.go" class="list-group-item">작업 2 : 카로셀 </a>
 		                    <a href="Chatting.go" class="list-group-item">작업 3 : 채팅페이지</a>
-		                    <a href="Chatting.go" class="list-group-item"> - </a>
+		                    <a href="faqPage.go" class="list-group-item">작업 4: FAQ게시판작업</a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>
