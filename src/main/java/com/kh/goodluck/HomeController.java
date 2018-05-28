@@ -23,7 +23,7 @@ public class HomeController {
 	public String home() {
 		logger.info("HomeController Run");
 		
-		//메인페이지 첫번째영역
+		/*//메인페이지 첫번째영역
 		ArrayList<Notice> mainnoticesample = (ArrayList<Notice>) noticeService.noticeTop5(); //첫페이지 공지6개 글 가져오기
 
 		
@@ -65,7 +65,7 @@ public class HomeController {
 		ArrayList<Board> requiresupplyonlyone = new ArrayList<Board>(); //제공해요(1인)			
 		ArrayList<Board> requiresupplymany = new ArrayList<Board>(); //제공해요(다수,2인상)			
 		ArrayList<Board> requiresupplyetc = new ArrayList<Board>(); //제공해요(기타)	
-		
+*/		
 		return "home";
 	}	
 }
