@@ -3,6 +3,7 @@ package com.kh.goodluck.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,10 +43,44 @@ public class MemberController {
 		//마이페이지 ㄱㄱ
 		//뷰로 이동하기 전에 필요한 모든 정보 셋팅해서 보내기
 		String member_id = request.getParameter("member_id");
-		//System.out.println("qna = " + member_id);
-		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(member_id);
+		/*
+		 * 페이징 처리 Let's go!
+		 * 1. currentPage setting
+		 */
+		int qnaCurrentPage = 1;
+		if(request.getParameter("page") != null) {
+			qnaCurrentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		/*
+		 * 2. 한 페이지 당 데이터 갯수 셋팅
+		 */
+		int limit = 6;
+		/*
+		 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
+		 */
+		int listCount = qnaService.selectMyQnaCount(member_id);
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		/*
+		 * 4. startRow 와 endRow 계산
+		 */
+		int startRow = (qnaCurrentPage - 1) * limit + 1;
+	    int endRow = startRow + limit - 1;
+	    HashMap<Object,Object> map = new HashMap<Object,Object>();
+	    map.put("startRow", startRow);
+	    map.put("endRow", endRow);
+	    map.put("member_id", member_id);
+		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
 		
+		////qna 처리용 오브젝트
 		mv.addObject("lbjMyQna", myQna);
+		mv.addObject("maxPage",maxPage);
+	    mv.addObject("qnaCurrentPage",qnaCurrentPage);
+	    mv.addObject("listCount",listCount);
+	    /*System.out.println("mypage listcount = " + listCount);
+		System.out.println("mypage maxPage = " + maxPage);
+		System.out.println("mypage member_id = " + member_id);
+		System.out.println("mypage currentPage = " + currentPage);*/
+	    ////qna 처리 end
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}

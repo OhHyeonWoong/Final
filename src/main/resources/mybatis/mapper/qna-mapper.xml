@@ -25,9 +25,13 @@
 		<result property="member_keyword_count" column="member_keyword_count" />	
 	</resultMap> -->
 
-	<select id="selectMyQna" parameterType="string" resultType="Qna">
+	<select id="selectMyQna" parameterType="Hashmap" resultType="Qna">
 		<![CDATA[
-			select * from question where question_writer = #{member_id}
+			select * 
+			from 
+			(select * from question 
+			 where question_writer = (select member_name from member where member_id = #{member_id})) 
+			 where rownum <= #{endRow} and rownum >= #{startRow}
 		]]>
 	</select>
 	
@@ -41,6 +45,13 @@
 	<select id="selectMyDetailQnaAnswer" parameterType="int" resultType="QnaAnswer">
 		<![CDATA[
 			select * from question_answer where question_no = #{question_no}
+		]]>
+	</select>
+	
+	<select id="qnaListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from question where question_writer = 
+			(select member_name from member where member_id = #{member_id})
 		]]>
 	</select>
 	
