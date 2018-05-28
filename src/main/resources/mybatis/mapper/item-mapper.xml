@@ -33,25 +33,21 @@
 
 <select id="allitemlist1" resultMap="itemResult" parameterType="Hashmap">
 <![CDATA[
-	select * from 
-	(select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) 
-	where 
-	rownum <= #{endRow} and 
-	rownum >= #{startRow} and
-	ITEMNAME like '%'||#{search}||'%'
-	order by ITEMLIST_NO desc 
+select * from 
+(select ROWNUM AS RNUM, A.* FROM  
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
+A WHERE ROWNUM < #{endRow}) 
+WHERE RNUM >= #{startRow} order by ITEMLIST_NO desc 	
 ]]>
 </select>
 
 <select id="allitemlist2" resultMap="itemResult" parameterType="Hashmap">
 <![CDATA[
-	select * from 
-	(select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) 
-	where 
-	rownum <= #{endRow} and 
-	rownum >= #{startRow} and 
-	ITEMNAME like '%'||#{search}||'%'
-	order by ITEMSELLCOUNT desc 
+select * from 
+(select ROWNUM AS RNUM, A.* FROM  
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
+A WHERE ROWNUM < #{endRow}) 
+WHERE RNUM >= #{startRow} order by ITEMSELLCOUNT desc 	
 ]]>
 </select>
 
