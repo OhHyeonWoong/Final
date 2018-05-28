@@ -41,81 +41,194 @@
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 </style>            
-            
-<input type="button" class="form-control" value="출시순"  style="display: initial; width: auto; height: 100%;" > 
-<input type="button" class="form-control" value="인기순"  style="display: initial; width: auto; height: 100%;" >
-<input type="text" class="cjs1" id="inputSuccess5" style="display: initial; width:150px;  border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
-<button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px; vertical-align: top; height: 100%; ">검색!</button>
+<div class="btn-group" data-toggle="buttons">
+			<label class="btn btn-default active">
+			<input type="radio" name="cjsoptions" value="1" id="option2" autocomplete="off" checked="checked">
+			출시순
+			</label>
+			<label class="btn btn-warning">
+			<input type="radio" name="cjsoptions" value="2" id="option1" autocomplete="off">
+			인기순
+			</label>
+		</div>
+
+<input type="text" class="cjs1" id="cjsinputsearch" style="display: initial; width:150px;  border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
+<button class="btn btn-default" type="button"  onclick="cjsitemsearch();" style="border-radius: 0px 3px 3px 0px; vertical-align: top; height: 100%;">검색!</button>
             </th>
             </tr>
             </table>
-                </div>
-                <div class="panel-body" style="overflow:auto;">
-                   <table >
-                   <tr>
-    
-	
-	
-		
-            <c:forEach var="item" items="${firstlist}" begin="0" end="6">
+            </div>
+            <div class="panel-body" style="overflow:auto;">
+          	
+          	<table >
+          	<tbody id="resulttable">
+            <tr>
+    		
+    		<c:forEach var="item" items="${firstlist}" begin="0" end="6">
    			<th>
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
    			<br>
    			 이름 : ${item.ITEMNAME}<br>
-   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			 가격 : ${item.ITEMPRICE}원 <br>
    			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
    			 </center>
 			</th>
 			</c:forEach>
-			
-					  </tr>
-					  <tr>
-					  <td><label> </label></td>
-					  </tr>
-					  <tr>		
+			</tr>
+			<tr>
+			<td><label> </label></td>
+			</tr>
+			<tr>		
 			<c:forEach var="item" items="${firstlist}" begin="6">
    			<th>
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
    			<br>
    			 이름 : ${item.ITEMNAME}<br>
-   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			 가격 : ${item.ITEMPRICE}원 <br>
    			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
    			 
-   			 </center>
-			</th>
-			</c:forEach>
-                  </tr>
-                   </table>
+   		</center>
+		</th>
+		</c:forEach>
+           </tr>
+           </tbody>
+           </table>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-md-6">
                             <h6>
-                                검색된 아이템 수 <span class="label label-info">${listCount }</span></h6>
+                                검색된 아이템 수 <span class="label label-info" id="listcount">${listCount}</span></h6>
                     </div>
                     <div class="col-md-6">
-                         <ul class="pagination pagination-sm pull-right">
-							<c:forEach var="item" begin="1" end="${maxPage}">
+                       
+                <ul class="pagination pagination-sm pull-right" id="itempagingcjs">
+						<c:forEach var="item" begin="1" end="${maxPage}">
 							<c:if test="${currentPage eq item}">
 							<li class="disable"><a href="javascript:void(0)"><strong>${item}</strong></a></li>
 							</c:if>
 							<c:if test="${currentPage ne item}">
-							<li><a href="javascript:void(0)">${item}</a></li>
+							<li><a href="javascript:void(0)" onclick="pageing(${item});">${item}</a></li>
 							</c:if>
-							</c:forEach>
-                         </ul>
+						</c:forEach>
+                </ul>
                     </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
+<!-- 
+페이징시 보내야할것..
+서치내용,서치옵션, 페이지넘버
+ -->
 
 
    </div></div></div></div></div>
+   
+   
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+<script type="text/javascript">
+
+function cjsitemsearch(){
+	$.ajax({
+		url:"cjsitemseachpageing.go",
+		type:"post",
+		data:{
+		option:$(":input:radio[name=cjsoptions]:checked").val(),
+		search:$("#cjsinputsearch").val()
+		},
+		dataType: "json",
+		success:function(data){
+			
+			var jsonStr = JSON.stringify(data);
+			
+			var json = JSON.parse(jsonStr);
+	     
+			console.log(json);
+			$("#cjsinputsearch1").val(json.search)
+			
+			$("#resulttable").html("");
+			var value="";
+			var count=0;
+			value+="<tr>";
+			console.log(json.size);
+			for (var i in json.firstlist){
+			value+="<th><center><img src='/goodluck/resources/A5.CJS/itemimg/"+json.firstlist[i].ITEMFILENAME+"' style='width: 50px; height: 40px;'>";
+			value+="<br> 이름 : "+json.firstlist[i].ITEMNAME+"<br> 가격 : "+json.firstlist[i].ITEMPRICE+"원 <br> "	;		
+			value+="<button onclick="+"location.href='/goodluck/cjsitemDetail.go?itemno="+json.firstlist[i].ITEMLIST_NO+"'"+">상세보기</button>";
+			value+=" </center></th>";
+			count++;
+				if(count== 7){
+					count--;
+					break;}
+			}
+			
+			value+="</tr><tr><td><label></label></td></tr>";
+			value+="<tr>";
+			for(var count; count<json.size; count++){
+				value+="<th><center><img src='/goodluck/resources/A5.CJS/itemimg/"+json.firstlist[count].ITEMFILENAME+"' style='width: 50px; height: 40px;'>";
+				value+="<br> 이름 : "+json.firstlist[count].ITEMNAME+"<br> 가격 : "+json.firstlist[count].ITEMPRICE+"원 <br> "	;		
+				value+="<button onclick="+"location.href='/goodluck/cjsitemDetail.go?itemno="+json.firstlist[count].ITEMLIST_NO+"'"+">상세보기</button>";
+				value+=" </center></th>";
+			}
+			value+="</tr>";
+			$("#resulttable").html(value);
+		
+   			$("#listcount").text(json.listCount);
+			
+			if (json.maxpage !=0 ){
+			alert("ds");
+			for (i in json.maxpage){
+			$("#itempagingcjs").html('<li><a href="javascript:void(0)" onclick="pageing('+i+');">${item}</a></li>');
+		
+			}
+			}else{
+			$("#itempagingcjs").html('<li class="disable"><a href="javascript:void(0)"><strong>1</strong></a></li>');
+			}
+		
+		
+		}
+	})
+}
+function pageing(page){
+	console.log("page="+page);
+	console.log("옵션="+$(":input:radio[name=cjsoptions]:checked").val());
+	console.log("내용="+$("#cjsinputsearch1").val());
+	$.ajax({
+		url:"cjsitemseachpageing.go",
+		type:"post",
+		data:{
+			page: page,
+			option:$(":input:radio[name=cjsoptions]:checked").val(),
+			search:$("#cjsinputsearch1").val()
+		},
+		dataType: "json",
+		success:function(data){
+			
+			var jsonStr = JSON.stringify(data);
+			
+			var json = JSON.parse(jsonStr);
+				
+		
+	
+			for(var i in json.searchitem){
+							
+			}
+			
+			$('input:radio[name=cjsoptions]').filter('[value="'+data.option+'"]').attr('checked', true);
+			$("#cjsinputsearch").val(json.search);
+			
+			
+			
+			
+		}
+	})
+}
+
+</script>
+<input type="hidden" id="cjsinputsearch1">
 </body>
 </html>
