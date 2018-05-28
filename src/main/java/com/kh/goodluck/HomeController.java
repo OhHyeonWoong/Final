@@ -14,6 +14,9 @@ import com.kh.goodluck.notice.model.vo.Notice;
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private NoticeService noticeService;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
@@ -21,7 +24,7 @@ public class HomeController {
 		logger.info("HomeController Run");
 		
 		//메인페이지 첫번째영역
-		ArrayList<Notice> mainnoticesample = new ArrayList<Notice>(); //공지
+		ArrayList<Notice> mainnoticesample = (ArrayList<Notice>) noticeService.noticeTop5(); //첫페이지 공지6개 글 가져오기
 
 		
 		ArrayList<Board> mainfaqsample = new ArrayList<Board>(); //FAQ

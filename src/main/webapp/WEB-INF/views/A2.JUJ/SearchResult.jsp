@@ -107,6 +107,7 @@
 		<Table class="ukTotal_Area"><!-- 영역을 잡는 전체테이블  -->
 			<tr>
 			  <td style="width: 1170px;">
+			  	User입력한 검색어 : 애완동물 <br>
 			  	<nav>
 			  		<ul class="ukjae_Bigcategory">
 			  			<li><a href="#"> Total </a></li>

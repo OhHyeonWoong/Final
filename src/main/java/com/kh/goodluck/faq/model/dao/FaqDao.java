@@ -11,7 +11,7 @@ import com.kh.goodluck.faq.model.vo.Faq;
 
 @Repository("faqDao")
 public class FaqDao {
-	
+	    
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
