@@ -32,16 +32,20 @@
 	<update id="MidCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
 		<![CDATA[
 			update midcategory 
-			set CATEGORY_MID_VIEWS = #{category_mid_views} + 1		 
-			where CATEGORY_MID_CODE = #{category_mid_code}
+			set CATEGORY_MID_VIEWS = (select CATEGORY_MID_VIEWS 
+										from midcategory
+										where CATEGORY_MID_CODE = #{category_mid_code}) + 1
+			where CATEGORY_MID_CODE = #{category_mid_code}			
 		]]>
 	</update>
 	
 	<update id="SmallCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
 		<![CDATA[
 			update smallcategory 
-			set CATEGORY_SMALL_VIEWS = #{category_small_views} + 1		 
-			where CATEGORY_SMALL_CODE = #{category_small_code}
+			set CATEGORY_SMALL_VIEWS = (select CATEGORY_SMALL_VIEWS 
+										from smallcategory
+										where CATEGORY_SMALL_CODE = #{category_small_code}) + 1
+			where CATEGORY_SMALL_CODE = #{category_small_code}			
 		]]>
 	</update>
 	

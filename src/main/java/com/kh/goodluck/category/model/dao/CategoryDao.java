@@ -21,4 +21,12 @@ public class CategoryDao {
 	public int bigCategoryCount(String bigCategoryCode) {		
 		return sqlSession.update("BigCategoryCountUpdate", bigCategoryCode);
 	}
+	
+	public int midCategoryCount(String midCategoryCode) {		
+		return sqlSession.update("MidCategoryCountUpdate", midCategoryCode);
+	}
+	
+	public int smallCategoryCount(String smallCategoryCode) {		
+		return sqlSession.update("SmallCategoryCountUpdate", smallCategoryCode);
+	}
 }

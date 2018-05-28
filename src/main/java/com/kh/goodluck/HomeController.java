@@ -22,9 +22,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
 	public String home() { 	//메인화면 이동용 메소드
-		logger.info("HomeController Run");
-
-
+		logger.info("HomeController Run");		
 		return "home";
 	}	
 	
