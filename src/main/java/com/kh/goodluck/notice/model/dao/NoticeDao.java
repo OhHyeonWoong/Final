@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.kh.goodluck.notice.model.vo.Notice;
 
-@Repository("noticeDao")
+@Repository("noticeDao")  
 public class NoticeDao {
 
 	@Autowired
