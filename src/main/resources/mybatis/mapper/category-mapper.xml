@@ -21,15 +21,15 @@
 	
 	<update id="BigCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
 		<![CDATA[
-			update bigcategory 
+			update BIGCATEGORY 
 			set CATEGORY_BIG_VIEWS = (select CATEGORY_BIG_VIEWS 
-										from bigcategory
+										from BIGCATEGORY
 										where CATEGORY_BIG_CODE = #{category_big_code}) + 1
 			where CATEGORY_BIG_CODE = #{category_big_code}
 		]]>
 	</update>
 	
-	<update id="MidCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
+	<!-- <update id="MidCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
 		<![CDATA[
 			update midcategory 
 			set CATEGORY_MID_VIEWS = (select CATEGORY_MID_VIEWS 
@@ -47,7 +47,7 @@
 										where CATEGORY_SMALL_CODE = #{category_small_code}) + 1
 			where CATEGORY_SMALL_CODE = #{category_small_code}			
 		]]>
-	</update>
+	</update> -->
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

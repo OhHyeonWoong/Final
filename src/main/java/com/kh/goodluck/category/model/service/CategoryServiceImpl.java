@@ -26,11 +26,11 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.bigCategoryCount(bigCategoryCode);	
 	}
 	
-	public int midCategoryCount(String midCategoryCode) {
+	/*public int midCategoryCount(String midCategoryCode) {
 		return categoryDao.midCategoryCount(midCategoryCode);	
 	}
 	
 	public int smallCategoryCount(String smallCategoryCode) {
 		return categoryDao.smallCategoryCount(smallCategoryCode);	
-	}	
+	}*/	
 }
