@@ -86,6 +86,7 @@ public class QNAController {
 		if(request.getParameter("page") != null) {
 			qnaCurrentPage = Integer.parseInt(request.getParameter("page"));
 		}
+		System.out.println("qnaCurrentPage = " + qnaCurrentPage);
 		/*
 		 * 2. 한 페이지 당 데이터 갯수 셋팅
 		 */
@@ -98,13 +99,18 @@ public class QNAController {
 		/*
 		 * 4. startRow 와 endRow 계산
 		 */
-		int qnaStartRow = (qnaCurrentPage - 1) * qnaLimit + 1;
+		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
+		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int qnaEndRow = qnaStartRow + qnaLimit - 1;
+	    
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();
 	    map.put("startRow", qnaStartRow);
 	    map.put("endRow", qnaEndRow);
 	    map.put("member_id", member_id);
 		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
+		
+		 if (qnaMaxPage < qnaEndRow)
+		 qnaEndRow = qnaMaxPage;
 		
 		System.out.println("mypage listcount = " + qnaListCount);
 	    System.out.println("mypage qnaStartRow = " + qnaStartRow);
@@ -120,17 +126,8 @@ public class QNAController {
 		qnaPage.put("qnaListCount",qnaListCount);*/
 
 		//출력용 JSON 오브젝트
-		JSONObject jobj = new JSONObject();
-		JSONArray jarr = new JSONArray();
-		
-		//배열에 해시맵 옮기기
-		/*JSONObject job1 = new JSONObject();
-		job1.put("qnaMaxPage", qnaMaxPage);
-		job1.put("qnaStartRow", qnaStartRow);
-		job1.put("qnaEndRow", qnaEndRow);
-		job1.put("qnaCurrentPage", qnaCurrentPage);
-		job1.put("qnaListCount", qnaListCount);
-		jarr.add(job1);*/
+	    JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();		
 		
 		for(int i=0;i<myQna.size();i++) {
 			//저 위의 페이징 처리 데이터들을 vo에 넣자
@@ -145,7 +142,7 @@ public class QNAController {
 			job2.put("question_date", myQna.get(i).getQuestion_date().toString());
 			if(i == 0) {
 				job2.put("qnaMaxPage", qnaMaxPage);
-				job2.put("qnaStartRow", qnaStartRow);
+				job2.put("qnaStartPage", qnaStartPage);
 				job2.put("qnaEndRow", qnaEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
 				job2.put("qnaListCount", qnaListCount);

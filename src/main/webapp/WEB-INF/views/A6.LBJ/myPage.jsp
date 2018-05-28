@@ -58,6 +58,7 @@
 		}
 		
 		function fnQnaReload(page){
+			console.log("fnQnaReload(page) = " + page);
 			$.ajax({
 				url:"lbjMyQna.go",
 				dataType:"json",
@@ -95,20 +96,22 @@
 						}else{
 							htmlStr += '<a href="#"> << </a>&nbsp;';
 						}
-						if(json.qna[0].qnaCurrentPage > json.qna[0].qnaStartRow){
+						if(json.qna[0].qnaCurrentPage > json.qna[0].qnaStartPage){
 							htmlStr += '<a href="#"> < </a>&nbsp;';
 						}else{
 							htmlStr += '< &nbsp';
 						}
-						<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-						for(var i=json.qna[0].qnaStartRow;i<=json.qna[0].qnaEndRow;i++){
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						console.log("json.qna[0].qnaStartPage = " + json.qna[0].qnaStartPage);
+						console.log("json.qna[0].qnaEndRow = " + json.qna[0].qnaEndRow);
+						for(var i=json.qna[0].qnaStartPage;i<=json.qna[0].qnaEndRow;i++){
 							if(i == json.qna[0].qnaCurrentPage){
-								htmlStr += '<font color="red" size="4"><b>${i}</b></font>&nbsp;';
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
 								htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+i+'); return false;">'+i+'</a>&nbsp;';
 							}
 						}
-						<!-- 기모리 -->
+						//기모리 ///////////////
 						if(json.qna[0].qnaCurrentPage != json.qna[0].qnaEndRow){
 							htmlStr += '<a href="#">></a>&nbsp;';
 						}else{
@@ -297,14 +300,14 @@
 							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
 								<a href="#"> << </a>
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartRow}">
+							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
 								<a href="#"> < </a>&nbsp;
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartRow}">
+							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
 								< &nbsp;
 							</c:if>
 							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-							<c:forEach var="i" begin="${qnaPage.qnaStartRow}" end="${qnaPage.qnaEndRow}" step="1">
+							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.qnaEndRow}" step="1">
 								<c:if test="${i eq qnaPage.qnaCurrentPage}">
 									<font color="red" size="4"><b>${i}</b></font>&nbsp;
 								</c:if>
