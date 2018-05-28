@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="category-mapper">
+<mapper namespace="search-mapper">
 
-	<resultMap id="HeaderCategoryBigResult" type="Category">
+	<resultMap id="searchResult" type="Search">
 		<id property="category_big_code" column="category_big_code"/>
 		<result property="category_big_name" column="category_big_name"/>
 		<result property="category_big_views" column="category_big_views"/>
@@ -19,19 +19,7 @@
 		]]>
 	</select>
 	
-	<update id="CategoryCountUpdate" parameterType="int" flushCache="true" statementType="PREPARED">
-		<![CDATA[
-			update member 
-			set userpwd = #{userPwd}, 
-			age = #{age}, 
-			phone = #{phone}, 
-			email = #{email}, 
-			hobby = #{hobby}, 
-			etc = #{etc}, 
-			lastmodified = sysdate 
-			where userid = #{userId}
-		]]>
-	</update>
+	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

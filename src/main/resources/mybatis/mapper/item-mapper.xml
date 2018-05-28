@@ -16,28 +16,28 @@
 
 <select id="homenewltem" resultMap="itemResult">
 <![CDATA[
-	select * from (select * from ITEMLIST order by ITEMLIST_NO desc) where rownum <= 8
+	select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) where rownum <= 8
 ]]>
 </select>
 
 <select id="allitemlist" resultMap="itemResult" parameterType="Hashmap">
 <![CDATA[
-	select * from (select * from ITEMLIST order by ITEMLIST_NO desc) where rownum <= #{endRow} and rownum >= #{startRow} order by ITEMLIST_NO desc 
+	select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) where rownum <= #{endRow} and rownum >= #{startRow} order by ITEMLIST_NO desc 
 ]]>
 </select>
 
 <select id="countitem" resultType="int">
-select count(*) from ITEMLIST 
+select count(*) from ITEMLIST where itemfilename not like '%gif%'
 </select>
 
 <select id="selectitemdetail" resultType="ITEMLIST">
 <![CDATA[
-select * from ITEMLIST where ITEMLIST_NO = #{itemno}
+select * from ITEMLIST where ITEMLIST_NO = #{itemno} and itemfilename not like '%gif%'
 ]]>
 </select>
 <select id="homepopularlitm" resultMap="itemResult">
 <![CDATA[
-select * from (select * from ITEMLIST order by ITEMSELLCOUNT desc) where rownum <= 4
+select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMSELLCOUNT desc) where rownum <= 4
 ]]>
 </select>
 

@@ -52,6 +52,10 @@
 				}
 			});
 		});
+		
+		function fnDeleteQna(){
+			
+		}
 	</script>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
 	<div class="container" id="lbjMyPageUp">
@@ -178,7 +182,7 @@
 							<input type="checkbox" id="allCheckBox" value="">전체선택
 						</td>
 						<td class="lbjth" colspan="3" style="text-align:left;">
-							<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
+							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>
 						</td>
 						<td class="lbjth" style="text-align:right;">
 							<a class='btn btn-info btn-xs' href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a>
@@ -193,41 +197,23 @@
 					</tr>
 					<c:forEach var="qna" items="${lbjMyQna}" varStatus="status">
 						<tr>
-							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value=""></td>
+							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value="${qna.question_no}"></td>
 							<td>${qna.question_category}</td>
 							<td><a href="lbjqnadetail.go?question_writer=${qna.question_writer}&question_no=${qna.question_no}">${qna.question_title}</a></td>
 							<td>${qna.question_answer_state}</td>
 							<td>${qna.question_date}</td>
 						</tr>
 					</c:forEach>
-					<!-- <tr>
-						<td><input type="checkbox" value=""></td>
-						<td>취소요청</td>
-						<td><a href="lbjqnadetail.go">단순변심</a></td>
-						<td>답변완료</td>
-						<td>2018/02/11</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" value=""></td>
-						<td>취소요청</td>
-						<td><a href="lbjqnadetail.go">사기당함</a></td>
-						<td>답변완료</td>
-						<td>2018/03/01</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" value=""></td>
-						<td>취소요청</td>
-						<td><a href="lbjqnadetail.go">비쌈</a></td>
-						<td>처리중</td>
-						<td>2017/11/19</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" value=""></td>
-						<td>환불요청</td>
-						<td><a href="lbjqnadetail.go">아이디탈퇴</a></td>
-						<td>처리완료</td>
-						<td>2018/04/29</td>
-					</tr> -->
+					<!-- QnA 페이징 처리를 해봅시다. -->
+					<!-- mv.addObject("lbjMyQna", myQna);
+					mv.addObject("maxPage",maxPage);
+				    mv.addObject("qnaCurrentPage",qnaCurrentPage);
+				    mv.addObject("listCount",listCount); -->
+					<c:if test="${listCount} > 6">
+						
+					</c:if>
+					<!-- QnA 페이징 처리 End -->
+		
 				</table>
 			</div>
 			<hr>
@@ -251,7 +237,6 @@
 				</table>
 			</div>
 		</div>
-	
 	</div>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/login.jsp" %> --%>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
