@@ -2,6 +2,7 @@ package com.kh.goodluck.category.model.vo;
 
 import java.io.Serializable;
 
+
 import org.springframework.stereotype.*;
 
 @Component("category")

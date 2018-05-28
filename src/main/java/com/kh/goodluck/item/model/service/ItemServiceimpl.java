@@ -1,6 +1,8 @@
 package com.kh.goodluck.item.model.service;
 
 import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +108,7 @@ public int Insertitemlog(int useritempk) {
 }
 
 @Override
-public int insertusingitem1(int useritempk) {
+public int insertusingitem1 (int useritempk) {
 	// TODO Auto-generated method stub
 	return itemlistDao.insertusingitem1(useritempk);
 }
@@ -116,6 +118,57 @@ public int Insertitemlog1(int useritempk) {
 	// TODO Auto-generated method stub
 	return itemlistDao.Insertitemlog1(useritempk);
 }
+
+@Override
+public int getmyimticon1(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.getmyimticon1(memberid);
+}
+
+
+@Override
+public int insertimticon(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.insertimticon(useritempk);
+}
+
+@Override
+public int updateimticon(HashMap<String,Object> map) {
+	// TODO Auto-generated method stub
+	return itemlistDao.updateimticon(map);
+}
+
+@Override
+public int upgradeboardcount(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.upgradeboardcount(memberid);
+}
+
+@Override
+public int upgradekeywordcount(String memberid) {
+	// TODO Auto-generated method stub
+	return itemlistDao.upgradekeywordcount(memberid);
+}
+
+@Override
+public int getitemlistno(int useritempk) {
+	// TODO Auto-generated method stub
+	return itemlistDao.getitemlistno(useritempk);
+}
+
+@Override
+public List<ITEMLIST> allitemlist(HashMap<Object,Object> map) {
+	// TODO Auto-generated method stub
+	return itemlistDao.allitemlist(map);
+}
+
+@Override
+public int countitem() {
+	// TODO Auto-generated method stub
+	return itemlistDao.countitem();
+}
+
+
 
 
 

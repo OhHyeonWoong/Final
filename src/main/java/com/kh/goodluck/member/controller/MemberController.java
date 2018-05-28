@@ -2,6 +2,7 @@ package com.kh.goodluck.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.qna.model.service.QNAService;
+import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -26,25 +30,26 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private QNAService qnaService;
+	
 	public String homeGo() {
 		return "home";
 	}
 	//병준 마이페이지 테스트용 메소드
-	@RequestMapping("lbjmypage.go")
-	public ModelAndView mypageGo(ModelAndView mv) {
+	@RequestMapping(value="lbjmypage.go")
+	public ModelAndView mypageGo(ModelAndView mv,HttpServletRequest request) {
 		//마이페이지 ㄱㄱ
 		//뷰로 이동하기 전에 필요한 모든 정보 셋팅해서 보내기
+		String member_id = request.getParameter("member_id");
+		//System.out.println("qna = " + member_id);
+		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(member_id);
+		
+		mv.addObject("lbjMyQna", myQna);
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
-	@RequestMapping("lbjqnadetail.go")
-	public String qnaDetailGo() {
-		return "A6.LBJ/qnaDetail";
-	}
-	@RequestMapping("lbjqnawrite.go")
-	public String qnaWriteGo() {
-		return "A6.LBJ/qnaWrite";
-	}
+	
 	@RequestMapping("lbjmoveLostFwdView.go")
 	public String lostFwdViewGo() {
 		return "A6.LBJ/member/lostFwdView";

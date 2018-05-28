@@ -1,6 +1,7 @@
 package com.kh.goodluck.board.controller;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -81,15 +82,15 @@ public class BoardController {
 			
 			if(i>0) {
 				if(!catelink1[i].getCategory_big_code().equals(catelink1[i-1].getCategory_big_code())) {
-					System.out.println(catelink1[i].getCategory_big_code());
+					//System.out.println(catelink1[i].getCategory_big_code());
 					strlist.add(catelink1[i].getCategory_big_code());
 					for(int j=0;j<catelink1.length;j++) {
 						if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
-							System.out.println(catelink1[j].getCategory_mid_code());
+							//System.out.println(catelink1[j].getCategory_mid_code());
 							strlist.add(catelink1[j].getCategory_mid_code());
 							for(int k=0;k<catelink2.length;k++) {
 								if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
-									System.out.println(catelink2[k].getCategory_small_code());
+									//System.out.println(catelink2[k].getCategory_small_code());
 									strlist.add(catelink2[k].getCategory_small_code());
 								}
 							}
@@ -100,15 +101,15 @@ public class BoardController {
 					
 				}
 			}else {
-				System.out.println(catelink1[i].getCategory_big_code());
+				//System.out.println(catelink1[i].getCategory_big_code());
 				strlist.add(catelink1[i].getCategory_big_code());
 				for(int j=0;j<catelink1.length;j++) {
 					if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
-						System.out.println(catelink1[j].getCategory_mid_code());
+						//System.out.println(catelink1[j].getCategory_mid_code());
 						strlist.add(catelink1[j].getCategory_mid_code());
 						for(int k=0;k<catelink2.length;k++) {
 							if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
-								System.out.println(catelink2[k].getCategory_small_code());
+								//System.out.println(catelink2[k].getCategory_small_code());
 								strlist.add(catelink2[k].getCategory_small_code());
 							}
 						}

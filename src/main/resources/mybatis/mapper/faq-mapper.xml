@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq-mapper">
+	
+	<resultMap id="FaqList" type="Faq">
+		<result property="faq_no" column="faq_no"/>
+		<result property="faq_category" column="faq_category"/>
+		<result property="faq_title" column="faq_title"/>
+		<result property="faq_content" column="faq_content"/>
+	
+	</resultMap>
+	
+	<select id="faqAllList" resultMap="FaqList">
+		<![CDATA[select * from FAQ]]>
+	</select>
+	
+	<select id="faqUseList" resultMap="FaqList">
+		<![CDATA[select * from FAQ where faq_category='이용 관련']]>
+	</select>
+	
+	<select id="faqPaymentList" resultMap="FaqList">
+		<![CDATA[select * from FAQ where faq_category='결제 관련']]>
+	</select>
+	
+	<select id="faqReportList" resultMap="FaqList">
+		<![CDATA[select * from FAQ where faq_category='신고 관련']]>
+	</select>
+	<select id="faqLogList" resultMap="FaqList">
+		<![CDATA[select * from FAQ where faq_category='로그인 관련']]>
+	</select>
+
+	
+</mapper>
