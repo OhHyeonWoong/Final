@@ -17,7 +17,7 @@ import com.kh.goodluck.faq.model.vo.Faq;
 
 @Controller
 public class FaqController {
-	
+	   
 	@Autowired
 	private FaqService faqService;
 

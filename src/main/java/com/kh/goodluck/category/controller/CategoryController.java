@@ -19,6 +19,7 @@ public class CategoryController {
 	@Autowired
 	CategoryService categoryService;	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "categoryBig.go", method = RequestMethod.POST)
 	public void headerCategoryBig(HttpServletResponse response) throws Exception {
 		System.out.println("CategoryController Run!");
@@ -46,6 +47,23 @@ public class CategoryController {
 			out.println(json.toJSONString());
 			out.flush();
 			out.close();		
+	}	
+	
+	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
+	public void BigCategoryCount(HttpServletResponse response, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
+		categoryService.bigCategoryCount(bigCategoryCode);
+		/*System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");*/
 	}
 	
+	/*@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
+	public void MidCategoryCount(HttpServletResponse response, @RequestParam("midCode") String midCategoryCode) throws Exception {		
+		categoryService.bigCategoryCount(midCategoryCode);
+		System.out.println("MidCode : " + midCategoryCode + " / To.CategoryController");		
+	}
+	
+	@RequestMapping(value = "SmallCategoryCount.go", method = RequestMethod.GET)
+	public void SmallCategoryCount(HttpServletResponse response, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
+		categoryService.bigCategoryCount(smallCategoryCode);
+		System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");			
+	}*/
 }

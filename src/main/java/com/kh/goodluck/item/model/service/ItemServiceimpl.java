@@ -168,6 +168,24 @@ public int countitem() {
 	return itemlistDao.countitem();
 }
 
+@Override
+public int countitem(HashMap<Object, Object> map) {
+	// TODO Auto-generated method stub
+	return  itemlistDao.countitem(map);
+}
+
+@Override
+public List<ITEMLIST> allitemlist1(HashMap<Object, Object> map) {
+	// TODO Auto-generated method stub
+	return itemlistDao.allitemlist1(map);
+}
+
+@Override
+public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
+	// TODO Auto-generated method stub
+	return  itemlistDao.allitemlist2(map);
+}
+
 
 
 
