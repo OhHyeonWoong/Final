@@ -734,8 +734,8 @@
 								var realTimeBar = "";							
 								
 								for(var i in json.headerCategoryBig){				
-									bigCategory += '<td class = "ohw-menu-col-td"><a href="ohw-' + json.headerCategoryBig[i].headerCategoryBigCode + '">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></td>'
-									realTimeBar += '<li class = "ohw-menu-realtimebar-li"><a href="ohw-' + json.headerCategoryBig[i].headerCategoryBigCode + '">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></li>'
+									bigCategory += '<td class = "ohw-menu-col-td"><a id = "' + json.headerCategoryBig[i].headerCategoryBigCode + '" onClick = "BigCategoryCount(this.id)" >' + json.headerCategoryBig[i].headerCategoryBigName + '</a></td>'
+									realTimeBar += '<li class = "ohw-menu-realtimebar-li"><a onClick = "">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></li>'
 								}
 								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar"><div class = "ohw-menu-realtimebar-content"><dl class = "ohw-menu-realtimebar-dl"><dd class = "ohw-menu-realtimebar-dd"><ol class = "ohw-menu-realtimebar-ol"></ol></dd></dl></div></td><td class = "ohw-menu-realtimebar-dropdown"><a><i class = "fa fa-chevron-down"></i></a></td>'
 								$('.ohw-menu-tr-category').append(bigCategory);
@@ -749,7 +749,14 @@
 									+ "Error : " + errorData);
 						}
 					});				
-					/* Menu Big Category End */						
+					/* Menu Big Category End */
+					
+					/* Category Click Count */					
+					function BigCategoryCount(id){
+						location.href='/goodluck/BigCategoryCount.go?bigCode='+id;
+					};					
+					/* Category Click Count */
+					
 				</script>
 				<div class = "ohw-menu-col-div">
 					<table class = "ohw-menu-col-table">						

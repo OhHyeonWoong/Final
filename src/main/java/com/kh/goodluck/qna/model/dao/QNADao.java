@@ -16,8 +16,8 @@ public class QNADao {
 	@Autowired
 	private SqlSessionTemplate sqlSession; 
 	
-	public List<QNA> selectMyQna(String member_id) {
-		return sqlSession.selectList("selectMyQna", member_id);
+	public List<QNA> selectMyQna(HashMap<Object, Object> map) {
+		return sqlSession.selectList("selectMyQna", map);
 	}
 
 	public QNA selectMyDetailQna(QNA q) {
@@ -30,6 +30,10 @@ public class QNADao {
 
 	public int insertMyQna(QnaWrite qnaWrite) {
 		return sqlSession.insert("insertMyQna", qnaWrite);
+	}
+
+	public int selectMyQnaCount(String member_id) {
+		return sqlSession.selectOne("qnaListCount", member_id);
 	}
 	
 }

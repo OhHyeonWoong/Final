@@ -14,10 +14,40 @@
 	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
 		<![CDATA[
 			select category_big_code, category_big_name, category_big_views, category_big_count 
-			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc) 
+			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc)
 			where rownum <= 6
 		]]>
 	</select>
+	
+	<update id="BigCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update BIGCATEGORY 
+			set CATEGORY_BIG_VIEWS = (select CATEGORY_BIG_VIEWS 
+										from BIGCATEGORY
+										where CATEGORY_BIG_CODE = #{category_big_code}) + 1
+			where CATEGORY_BIG_CODE = #{category_big_code}
+		]]>
+	</update>
+	
+	<!-- <update id="MidCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update midcategory 
+			set CATEGORY_MID_VIEWS = (select CATEGORY_MID_VIEWS 
+										from midcategory
+										where CATEGORY_MID_CODE = #{category_mid_code}) + 1
+			where CATEGORY_MID_CODE = #{category_mid_code}			
+		]]>
+	</update>
+	
+	<update id="SmallCategoryCountUpdate" parameterType="String" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update smallcategory 
+			set CATEGORY_SMALL_VIEWS = (select CATEGORY_SMALL_VIEWS 
+										from smallcategory
+										where CATEGORY_SMALL_CODE = #{category_small_code}) + 1
+			where CATEGORY_SMALL_CODE = #{category_small_code}			
+		]]>
+	</update> -->
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

@@ -118,6 +118,8 @@ public class BoardController {
 			}		
 		}
 		
+		int strlistlegnth = strlist.size();
+		
 		/*System.out.println("-----------------");
 		for (String str : strlist) {
 			System.out.println(str);
@@ -137,6 +139,7 @@ public class BoardController {
 		//mv.addObject("catelink1",catelink1);
 		//mv.addObject("catelink2",catelink2);
 		//mv.addObject("catelink1length",catelink1length);
+		mv.addObject("strlistlegnth",strlistlegnth);
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;

@@ -17,8 +17,8 @@ public class QNAServiceImpl implements QNAService{
 	private QNADao qnaDao; 
 
 	@Override
-	public List<QNA> selectMyQna(String member_id) {
-		return qnaDao.selectMyQna(member_id);
+	public List<QNA> selectMyQna(HashMap<Object, Object> map) {
+		return qnaDao.selectMyQna(map);
 	}
 	
 	@Override
@@ -34,5 +34,10 @@ public class QNAServiceImpl implements QNAService{
 	@Override
 	public int insertMyQna(QnaWrite qnaWrite) {
 		return qnaDao.insertMyQna(qnaWrite);
+	}
+	
+	@Override
+	public int selectMyQnaCount(String member_id) {
+		return qnaDao.selectMyQnaCount(member_id);
 	}
 }
