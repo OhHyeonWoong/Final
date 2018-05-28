@@ -14,10 +14,17 @@
 	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
 		<![CDATA[
 			select category_big_code, category_big_name, category_big_views, category_big_count 
-			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc) 
+			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc)
 			where rownum <= 6
 		]]>
 	</select>
+	
+	<update id="CategoryCountUpdate" parameterType="int" flushCache="true" statementType="PREPARED">
+		<![CDATA[
+			update category 
+			set 
+		]]>
+	</update>
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
