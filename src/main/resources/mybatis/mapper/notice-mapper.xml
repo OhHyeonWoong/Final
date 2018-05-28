@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice-mapper">
+	
+	<resultMap type="Notice" id="NoticeResult">
+   
+
+	</resultMap>
+	
+
+	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
+		<![CDATA[select * from notice]]>
+	</select>
+	
+</mapper>
