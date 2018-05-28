@@ -15,7 +15,7 @@ public class NoticeDao {
 	
 	public List<Notice> noticeTop5() {
 		
-		return null;
+		return sqlSession.selectList("mainTop5");
 	}
 
 }

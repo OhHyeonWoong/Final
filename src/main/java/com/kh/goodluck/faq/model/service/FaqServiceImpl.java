@@ -11,7 +11,7 @@ import com.kh.goodluck.faq.model.vo.Faq;
 
 @Service("FaqService")
 public class FaqServiceImpl implements FaqService {
-		
+		  
 	@Autowired
 	private FaqDao faqDao;
 	

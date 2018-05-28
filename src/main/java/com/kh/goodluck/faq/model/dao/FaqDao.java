@@ -16,7 +16,7 @@ public class FaqDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public FaqDao() {
-
+   
 	}
 	
 	public List<Faq> selectAll(){

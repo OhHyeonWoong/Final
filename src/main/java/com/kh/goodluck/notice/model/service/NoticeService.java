@@ -1,7 +1,7 @@
 package com.kh.goodluck.notice.model.service;
 
 import java.util.List;
-
+   
 import com.kh.goodluck.notice.model.vo.Notice;
 
 
