@@ -1,6 +1,7 @@
 package com.kh.goodluck.item.model.service;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -153,6 +154,18 @@ public int upgradekeywordcount(String memberid) {
 public int getitemlistno(int useritempk) {
 	// TODO Auto-generated method stub
 	return itemlistDao.getitemlistno(useritempk);
+}
+
+@Override
+public List<ITEMLIST> allitemlist(HashMap<Object,Object> map) {
+	// TODO Auto-generated method stub
+	return itemlistDao.allitemlist(map);
+}
+
+@Override
+public int countitem() {
+	// TODO Auto-generated method stub
+	return itemlistDao.countitem();
 }
 
 

@@ -1,5 +1,6 @@
 package com.kh.goodluck.board.controller;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class CJS_BoardController {
 
 	@Autowired
 	private BoardService boardservice;
-public CJS_BoardController() {
-	// TODO Auto-generated constructor stub
-}
+	public CJS_BoardController() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@RequestMapping("BoardDetail.go")
 	public String boarddetailmove() {

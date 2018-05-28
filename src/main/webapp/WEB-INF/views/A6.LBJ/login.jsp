@@ -31,7 +31,7 @@
 							<input id="login_password" name="member_pw" class="form-control" type="password"
 								placeholder="패스워드" required>
 							<div class="checkbox">
-								<label> <input type="checkbox"> 아이디 기억
+								<label> <input type="checkbox" id="idSave"> 아이디 기억
 								</label>
 							</div>
 						</div>
@@ -55,6 +55,13 @@
 												alert(data);
 												if(data == '로그인 성공'){
 													//$("#login-modal").modal("hide");
+													var selectBox = $('#idSave');
+													if (selectBox[0].checked) {
+														setCookie("userid", $('#login_id').val(), 7); /* 유효기간7일 */
+													} else {
+														deleteCookie("userid");
+													}
+													
 													window.history.go(0);
 												}
 											},

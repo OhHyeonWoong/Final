@@ -25,7 +25,7 @@
 				</td>
 			</tr>
 			<tr><td style="text-align:center;">제목</td><td><input type="text" name="question_title" placeholder="제목" style="width:90%;"></td></tr>
-			<tr><td style="text-align:center;">질문자</td><td><input type="text" name="question_writer" style="width:90%;" value="${loginUser.member_name}"></td></tr>
+			<tr><td style="text-align:center;">질문자</td><td><input type="text" name="question_writer" style="width:90%;" value="${loginUser.member_name}" readonly></td></tr>
 			<tr><td style="text-align:center; vertical-align:middle;">내용</td>
 				<td>
 					<textarea rows="7" style="width:90%;" placeholder="여기에 내용을 입력해주세요" name="question_content"></textarea>
