@@ -17,7 +17,7 @@ $(function(){
     $(window).scroll(function(){
         yPosition = $win.scrollTop() - 200; //이부분을 조정해서 화면에 보이도록 맞추세요
         if (yPosition < 0)
-    {
+    { 
             yPosition = 0;
     }
         $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});

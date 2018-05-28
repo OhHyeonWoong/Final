@@ -62,7 +62,7 @@
                <prop key="mail.debug">true</prop>
          </props>
       </property>
-   </bean>
+   </bean>  
     
     <!-- dataSource(JDBCTemplate에서 Connection)와 transaction을 연결 -->
     <bean id="transactionManager"
