@@ -18,4 +18,7 @@ public class CategoryDao {
 		return sqlSession.selectList("headerCategoryBig");
 	}
 
+	public int bigCategoryCount(String bigCategoryCode) {		
+		return sqlSession.update("BigCategoryCountUpdate", bigCategoryCode);
+	}
 }

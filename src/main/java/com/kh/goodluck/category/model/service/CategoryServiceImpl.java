@@ -22,4 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.headerCategoryBig();		
 	}
 	
+	public int bigCategoryCount(String bigCategoryCode) {
+		return categoryDao.bigCategoryCount(bigCategoryCode);	
+	}	
 }

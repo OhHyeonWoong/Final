@@ -8,5 +8,7 @@ import com.kh.goodluck.category.model.vo.Category;
 public interface CategoryService {
 	
 	List<Category> headerCategoryBig();
+
+	int bigCategoryCount(String bigCategoryCode);
 	
 }

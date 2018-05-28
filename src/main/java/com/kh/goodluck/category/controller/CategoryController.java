@@ -19,6 +19,7 @@ public class CategoryController {
 	@Autowired
 	CategoryService categoryService;	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "categoryBig.go", method = RequestMethod.POST)
 	public void headerCategoryBig(HttpServletResponse response) throws Exception {
 		System.out.println("CategoryController Run!");
@@ -46,6 +47,13 @@ public class CategoryController {
 			out.println(json.toJSONString());
 			out.flush();
 			out.close();		
-	}
+	}	
 	
+	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
+	public void BigCategoryCount(HttpServletResponse response, @RequestParam("bigCode") String bigCategoryCode) throws Exception {
+		
+		int result = categoryService.bigCategoryCount(bigCategoryCode);
+		System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");	
+		System.out.println("BigCode : " + result + " / To.CategoryController");
+	}
 }
