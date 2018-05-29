@@ -52,7 +52,7 @@
 					<c:set var="category" value="${midcategory.category_mid_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<li class="mdcate" id="id${str }">${str }</li>
+							<li class="mdcate" id="id${str }"><a href="bshtest.go?link2_no=${str }">${str }</a></li>
 						</c:when>
 						<c:otherwise>
 							
@@ -186,6 +186,7 @@
 			</div>
 			<div class="board_div_maincontent">
 				<h2>${board.link2_no }</h2><br>
+				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
 						<tr>

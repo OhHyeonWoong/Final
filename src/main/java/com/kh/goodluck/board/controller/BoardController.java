@@ -37,17 +37,37 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="bshtest.go", method=RequestMethod.GET)
-	public ModelAndView test(Board board, BigCategory bigcategory, ModelAndView mv) {
+	public ModelAndView test(Board board, ModelAndView mv) {
 		
 		
 		//System.out.println(board);
-		List<Board> boardlist = boardservice.selectCategory(board);
 		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
 		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
 		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
 		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
 		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
 		
+		String mdname = board.getLink2_no();
+		
+		List<Board> boardlist = null;
+		boolean flag = true;
+		boolean search = false;
+		
+		while(flag) {
+			for(MidCategory m : midcategorylist) {
+				if(m.getCategory_mid_name().equals(mdname)) {
+					/*System.out.println(mdname);*/
+					boardlist = boardservice.selectCategoryMid(board);
+					flag =false;
+					search=true;
+					break;
+				}
+			}
+			flag =false;
+		}
+		if(!search) {
+			boardlist = boardservice.selectCategory(board);
+		}
 		ArrayList<String> strlist = new ArrayList<String>();
 		
 		//System.out.println(boardlist);

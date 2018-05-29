@@ -60,6 +60,12 @@
 		]]>
 	</select>
 	
+	<select id="selectCategoryMid" parameterType="Board" resultMap="BoardResult">
+		<![CDATA[
+			select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,m.CATEGORY_MID_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{link2_no} order by a.AGENCY_NO
+		]]>
+	</select>
+	
 	<select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
 		<![CDATA[
 			select * from bigcategory
