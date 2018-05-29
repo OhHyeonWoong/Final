@@ -79,10 +79,8 @@ public class ItemController {
 		
 		//카로1 (이달의 랜덤박스 정보 pk만 뽑아오기.)
 		ITEMLIST thismonthsrandom = ItemService.randomitem();
-		
 		//카로2 (최신 아이템 pk)
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
-		
 		//카로3 (이달의 패키지 아이템.)
 		ItemPackage pack=ItemService.getitempackage();
 		//패키지아이템의 기본 가격과 목록내용 구하기
@@ -96,12 +94,10 @@ public class ItemController {
         itemsName+="["+packitem.getITEMNAME()+"]" ;
         itemsName+="+";
         };
+        //마지막 '+'지우기
         if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
-        	itemsName = itemsName.substring(0, itemsName.length()-1);
+        itemsName = itemsName.substring(0, itemsName.length()-1);
         }
-       
-       
-        
 		//카로4 (이달의 인기아이템)
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		
@@ -111,17 +107,32 @@ public class ItemController {
 		for(ItemNotice i : al3) {
 		i.setITEMNOTICE_DATE(i.getITEMNOTICE_DATE().toString().substring(5,10));
 		}
-		//할인 목록.
+		
+		//패키지 . (패키지이름+원래가격+할인가격)
+		List<ItemPackage> al4 = ItemService.allpackitem();
+		
+		for(ItemPackage i: al4) {
+			String items1=i.getITEMLIST_NO();
+			String split1[] = items1.split(",");
+			int orimoney1=0;
+	        for (String i1: split1) {
+	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i1));
+	        orimoney1+=packitem.getITEMPRICE();
+	        };
+	        i.setOri_PRICE(orimoney1);
+		}
+		
+		
 		mv.addObject("newitem",al);
 		mv.addObject("popularlitm",al1);
 		mv.addObject("itemNotice",al3);
+		mv.addObject("packageitems",al4);
 		mv.addObject("orimoney",orimoney);
 		mv.addObject("itemsName",itemsName);
 		mv.addObject("pack",pack);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
-		
 		mv.setViewName("A5.CJS/itemMall");
 		return mv;
 	}
@@ -194,7 +205,6 @@ public class ItemController {
 						ItemService.Insertitemlog(usitempk);
 				}
 		}else{
-		System.out.println("usitempk="+usitempk);
 		if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
 				//해당 아이템의 타입이 현재 적용중인이 확인.
@@ -225,11 +235,10 @@ public class ItemController {
 		}
 		
 		//한 페이지당 출력할 목록 갯수 지정
-		int limit = 17;
+		int limit = 16;
 	
 		//현 맴버가 보유하고있는 아이템 갯수 계산.
 		int listCount = ItemService.gethavingListCount(memberid);
-		System.out.println( listCount + " / (To.아이템컨트롤러 소모성아이템갯수)");
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 	
@@ -353,8 +362,6 @@ public class ItemController {
 		json.put("boardcount",member1.getMember_keyword_count());
 		json.put("keywordcount", member1.getMember_write_count());
 		
-		System.out.println("member1.getMember_keyword_count()="+member1.getMember_keyword_count());
-		System.out.println("member1.getMember_write_count()="+member1.getMember_write_count());
 		PrintWriter out = response.getWriter();
 		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());
@@ -388,15 +395,12 @@ public class ItemController {
 		try {
 		nowusingimticonpk = ItemService.getmyimticon1(memberid);
 		//nowusingimticonpk=현재 사용되고있는 이모티콘 pk
-		System.out.println("nowusingimticonpk="+nowusingimticonpk);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("nowusingimticonpk",nowusingimticonpk);
 		map.put("usitempk",usitempk);
-		int result=ItemService.updateimticon(map);
-		System.out.println("updateimticon="+result);
+		ItemService.updateimticon(map);
 		}catch(NullPointerException e){
-		int result=ItemService.insertimticon(usitempk);
-		System.out.println("insertimticon="+result);
+		ItemService.insertimticon(usitempk);
 		}
 
 		int limit = 9;
@@ -451,7 +455,6 @@ public class ItemController {
 				job.put("selected",0);
 			}
 		jarr.add(job);
-		System.out.println(l.toString());
 		}
 		
 json.put("havingimticon", jarr);
@@ -486,7 +489,6 @@ try {
 		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem();
 		int maxPage = (int)((double)listCount / limit + 0.9);
-		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
 		//현재 페이지에 출력할 목록 조회		
 	    HashMap<Object,Object> map=new HashMap<Object,Object>();
 	    int startRow = (currentPage - 1) * limit + 1;
@@ -497,8 +499,8 @@ try {
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		ITEMLIST thismonthsrandom = ItemService.randomitem();
-		 ItemPackage pack=ItemService.getitempackage();
-			//패키지아이템의 기본 가격과 목록내용 구하기
+		ItemPackage pack=ItemService.getitempackage();
+		//패키지아이템의 기본 가격과 목록내용 구하기
 			String items=pack.getITEMLIST_NO();
 			String split[] = items.split(",");
 	        int orimoney=0;
@@ -514,9 +516,9 @@ try {
 	        }
 	        
 	        
-	        mv.addObject("orimoney",orimoney);
-			mv.addObject("itemsName",itemsName);
-			mv.addObject("pack",pack);
+	    mv.addObject("orimoney",orimoney);
+	    mv.addObject("itemsName",itemsName);
+	    mv.addObject("pack",pack);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
@@ -527,37 +529,7 @@ try {
 		mv.setViewName("A5.CJS/cjsnewitem");
 		return mv;
 		}
-	
-	
-	@RequestMapping("cjsspenditme.go")
-	public ModelAndView cjsspenditme(ModelAndView mv){
-		//소모성아이템
-		mv.setViewName("A5.CJS/cjsspenditme");
-		return mv;
-	}
-	
-	
-	@RequestMapping("cjsperioditme.go")
-	public ModelAndView cjsperioditme(ModelAndView mv){
-		//기간제 아이템
-		mv.setViewName("A5.CJS/cjsperioditme");
-		return mv;
-    }
 
-	@RequestMapping("cjsimticonitem.go")
-	public ModelAndView cjsimticonitem(ModelAndView mv){
-		//이모티콘
-		mv.setViewName("A5.CJS/cjsimticonitem");
-
-		return mv;
-		}
-	@RequestMapping("cjsprovision.go")
-	public ModelAndView cjsprovision(ModelAndView mv){
-	    //청약철회 팝업띄우기
-		mv.setViewName("A5.CJS/cjsprovision");
-
-		return mv;
-		}
 
 	
 	
@@ -584,7 +556,7 @@ try {
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("search", search);
 		//한 페이지당 출력할 목록 갯수 지정
-		int limit = 15;
+		int limit = 14;
 		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem(map);
 		System.out.println("listcount="+listCount);
@@ -641,6 +613,73 @@ try {
 		
 		}
 	
+	
+	@RequestMapping("cjsrandom.go")
+	public ModelAndView cjsrandom(ModelAndView mv){
+		//소모성아이템
+		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+		ITEMLIST thismonthsrandom = ItemService.randomitem();
+		ItemPackage pack=ItemService.getitempackage();
+		//패키지아이템의 기본 가격과 목록내용 구하기
+			String items=pack.getITEMLIST_NO();
+			String split[] = items.split(",");
+	        int orimoney=0;
+	        String itemsName=new String();
+	        for (String i: split) {
+	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+	        orimoney+=packitem.getITEMPRICE();
+	        itemsName+="["+packitem.getITEMNAME()+"]" ;
+	        itemsName+="+";
+	        };
+	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+	        	itemsName = itemsName.substring(0, itemsName.length()-1);
+	        }
+	        
+	        
+	    mv.addObject("orimoney",orimoney);
+	    mv.addObject("itemsName",itemsName);
+	    mv.addObject("pack",pack);
+		mv.addObject("thismonthsrandom",thismonthsrandom);
+		mv.addObject("newitemthismonth",newitemthismonth);
+		mv.addObject("popitemthismonth",popitemthismonth);
+		mv.setViewName("A5.CJS/cjsrandom");
+		return mv;
+	}
+	
+
+	@RequestMapping("cjspackage.go")
+	public ModelAndView cjspackage(ModelAndView mv){
+		//패키지
+		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+		ITEMLIST thismonthsrandom = ItemService.randomitem();
+		ItemPackage pack=ItemService.getitempackage();
+		//패키지아이템의 기본 가격과 목록내용 구하기
+			String items=pack.getITEMLIST_NO();
+			String split[] = items.split(",");
+	        int orimoney=0;
+	        String itemsName=new String();
+	        for (String i: split) {
+	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+	        orimoney+=packitem.getITEMPRICE();
+	        itemsName+="["+packitem.getITEMNAME()+"]" ;
+	        itemsName+="+";
+	        };
+	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+	        	itemsName = itemsName.substring(0, itemsName.length()-1);
+	        }
+	        
+	        
+	    mv.addObject("orimoney",orimoney);
+	    mv.addObject("itemsName",itemsName);
+	    mv.addObject("pack",pack);
+		mv.addObject("thismonthsrandom",thismonthsrandom);
+		mv.addObject("newitemthismonth",newitemthismonth);
+		mv.addObject("popitemthismonth",popitemthismonth);
+		mv.setViewName("A5.CJS/cjspackage");
+		return mv;
+    }
 	
 }
 

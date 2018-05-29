@@ -229,4 +229,10 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.randomitem();
 	}
 
+	@Override
+	public List<ItemPackage> allpackitem() {
+		// TODO Auto-generated method stub
+		return itemlistDao.allpackitem();
+	}
+
 }
