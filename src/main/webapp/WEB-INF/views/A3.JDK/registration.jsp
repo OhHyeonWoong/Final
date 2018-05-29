@@ -5,8 +5,6 @@
 <head>
 <meta charset=UTF-8>
 <title>회원 가입 창</title>
-
-
 <!-- 전동기 부트스트랩 영역입니다. -->
 <!-- 제이쿼리 -->
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
@@ -19,6 +17,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="resources/common/js/bootstrap.min.js"></script>   
 <!-- 전동기 부트스트랩 영역입니다. -->
+
 <!-- 개별 페이지 스타일 영역입니다. -->
 <style type="text/css">
 
@@ -79,28 +78,46 @@ function sample4_execDaumPostcode() {
 
 
 <!-- 자바스크립트 영역입니다. -->
+<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+var submition = false; //->true로 바뀔 시 form 전송
+
 
 ///////////////////////////////////////////////////////////////////////////
+
+/* 비밀번호 확인 창 */
+function pwdchecking(){	
+	if($("#password1").val()=="" && $("#password2").val()==""){
+		$("#pwdSame").text("비밀번호 확인을 위해 다시한번 입력 해 주세요").css("color","#737373");
+		submition=false;
+	}else if($("#password1").val()!=$("#password2").val()){
+ 		$("#pwdSame").text("비밀번호가 일치하지 않습니다. 다시 작성해주세요!").css("color","red");
+ 		submition=false;
+ 	}else{
+ 		$("#pwdSame").text("비밀번호가 일치하는 번호 입니다.").css("color","green");
+ 		submition = false;
+ 	}
+ }
+
+
+
+
+/* 정규식 적용 */
 /* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
 // 현재 정규식이 필요한 항목은 다음과 같다.
-// 아이디, 패스워드, 이름, 이메일, 주소, 전화 번호, 주민등록번호
-// 
-var submition = false;
+// 아이디, 패스워드, 이메일, 전화 번호, 주민등록번호
+// 그리고 3가지 조건이 추가로 필요하다
+// 1. 비밀번호 확인 부분이 다를 경우 false
+// 2. 아이디를 중복 검사하지 않았을 경우 false
+// 3. 이메일 인증을 받고 인증코드를 작성하지 않았을 경우 false
+// 4. 정규식 항목 통과하지 못했을 경우 false
 
 function signIn(){
-/* var id= $("#member_id");
-var pw1= $("");
-var pw2=
-var name=
-var email=
-var address =
-var phone=
-var regident_number=
-
 	
-	return false;
- */}
+	return submition;
+}
 </script>
 
 </head>
@@ -134,12 +151,11 @@ var regident_number=
 				</div>
 				<div class="form-group">
 					<label for="InputPassword1">비밀번호</label> 
-					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="비밀번호" required="required">
-				</div>
+					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="비밀번호" required="required" onchange="pwdchecking()">				</div>
 				<div class="form-group">
 					<label for="InputPassword2">비밀번호 확인</label> 
-					<input type="password" class="form-control" id="password2" placeholder="비밀번호 확인" required="required">
-					<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+					<input type="password" class="form-control" id="password2" placeholder="비밀번호 확인" required="required" onchange="pwdchecking()">
+					<p id="pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 				</div>
 				<div class="form-group">
 					<label for="username">주민등록번호</label><br> 
@@ -174,7 +190,7 @@ var regident_number=
 				<div class="form-group">
 					<label for="useremail">이메일</label>
 					<div class="input-group">
-						<input type="text" class="form-control" id="register" placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
+						<input type="text" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
 						<!--email 인증 요청--> 
 						<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a>	</span>
 					</div>
