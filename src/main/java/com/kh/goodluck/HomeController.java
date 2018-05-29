@@ -135,7 +135,7 @@ public class HomeController {
 		out.println(json.toString());
 		out.flush();
 		out.close();
-	}
+	}  
 	
 	/////////////////////////여기까지 생활영역화면//////////////////////////////
 	

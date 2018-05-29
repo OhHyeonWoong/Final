@@ -64,7 +64,7 @@ public class SearchController {
 		ArrayList<QnaAnswer> searchlist7
 		ArrayList<Notice> searchlist8
 		ArrayList<Report> searchlist9
-		ArrayList<Member> searchlist10 . . */
+		ArrayList<Member> searchlist10 . . */  
 		
 		JSONObject json = new JSONObject();
 		JSONObject json2 = new JSONObject();

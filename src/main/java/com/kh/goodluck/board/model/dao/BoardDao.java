@@ -84,7 +84,7 @@ public class BoardDao {
 		return sqlSession.selectList("mainPageShowLifeListPic");
 	}
 
-
+  
 
 	public List<Board> mainShowPetListPickUp() {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출

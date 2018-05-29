@@ -27,7 +27,7 @@ public class QNAController {
 	private QNAService qnaService;
 	
 	public QNAController() {
-		
+		 
 	}
 	
 	@RequestMapping("bsh-QNA.go")
