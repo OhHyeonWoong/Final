@@ -94,10 +94,10 @@
 						if(json.qna[0].qnaCurrentPage <= 1){
 							htmlStr += "<< &nbsp";
 						}else{
-							htmlStr += '<a href="#"> << </a>&nbsp;';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>&nbsp;';
 						}
 						if(json.qna[0].qnaCurrentPage > json.qna[0].qnaStartPage){
-							htmlStr += '<a href="#"> < </a>&nbsp;';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
 						}else{
 							htmlStr += '< &nbsp';
 						}
@@ -113,14 +113,14 @@
 						}
 						//기모리 ///////////////
 						if(json.qna[0].qnaCurrentPage != json.qna[0].qnaEndRow){
-							htmlStr += '<a href="#">></a>&nbsp;';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
 						}else{
 							htmlStr += '> &nbsp;';
 						}
 						if(json.qna[0].qnaCurrentPage >= json.qna[0].qnaMaxPage){
 							htmlStr += '>> &nbsp;';
 						}else{
-							htmlStr += '<a href="#">>></a>';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+json.qna[0].qnaMaxPage+'); return false;">>></a>';
 						}
 					}
 					htmlStr += '</div></td></tr></table>';
