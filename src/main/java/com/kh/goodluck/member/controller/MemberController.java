@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.item.model.service.ItemService;
+import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
@@ -30,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ItemService ItemService;
 	
 	@Autowired
 	private QNAService qnaService;
@@ -51,11 +56,11 @@ public class MemberController {
 		if(request.getParameter("page") != null) {
 			qnaCurrentPage = Integer.parseInt(request.getParameter("page"));
 		}
-		System.out.println("qnaCurrentPage = " + qnaCurrentPage);
 		/*
 		 * 2. 한 페이지 당 데이터 갯수 셋팅
 		 */
 		int qnaLimit = 6;
+		//QnA------------------------------------------------------------
 		/*
 		 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
 		 */
@@ -67,11 +72,6 @@ public class MemberController {
 		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
 		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int qnaEndRow = qnaStartRow + qnaLimit - 1;
-
-	    System.out.println("qnaListCount = " + qnaListCount);
-	    System.out.println("qnaMaxPage = " + qnaMaxPage);
-	    System.out.println("qnaStartRow = " + qnaStartRow);
-	    System.out.println("qnaEndRow = " + qnaEndRow);
 	    
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();
 	    map.put("startRow", qnaStartRow);
@@ -82,10 +82,6 @@ public class MemberController {
 		if (qnaMaxPage < qnaEndRow)
 			qnaEndRow = qnaMaxPage;
 		
-		for(int i=0;i<myQna.size();i++) {
-			System.out.println("myQna.get(i) = " + myQna.get(i).toString());
-		}
-		
 		////qna 처리용 오브젝트
 		//보내기용 arraylist생성
 		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
@@ -94,14 +90,35 @@ public class MemberController {
 		qnaPage.put("qnaEndRow",qnaEndRow);
 		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
 		qnaPage.put("qnaListCount",qnaListCount);
+		
 		mv.addObject("lbjMyQna", myQna);
 		mv.addObject("qnaPage",qnaPage);
-	    System.out.println("mypage listcount = " + qnaListCount);
-	    System.out.println("mypage qnaStartPage = " + qnaStartPage);
-	    System.out.println("mypage qnaEndRow = " + qnaEndRow);
-	    System.out.println("mypage qnaMaxPage = " + qnaMaxPage);
+		//QnA 세팅 끝------------------------------------------------------------
+		//item 세팅 ------------------------------------------------------------
+		int itemListCount = ItemService.selectMyPageItemListCount(member_id);
+		int itemMaxPage = (int)((double)itemListCount / qnaLimit + 0.9);
+		int itemEndRow = qnaStartRow + qnaLimit - 1;
 		
-	    ////qna 처리 end
+		HashMap<Object,Object> map1 = new HashMap<Object,Object>();
+	    map.put("startRow", qnaStartRow);
+	    map.put("endRow", itemEndRow);
+	    map.put("member_id", member_id);
+	    ArrayList<MyPageItem> myItem = (ArrayList<MyPageItem>)ItemService.selectMyPageItem(map);
+	    
+	    System.out.println("myItem size = " + myItem.size());
+		
+		if (qnaMaxPage < itemEndRow)
+			itemEndRow = qnaMaxPage;
+		
+		HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
+		itemPage.put("itemMaxPage",itemMaxPage);
+		itemPage.put("itemEndRow",itemEndRow);
+		itemPage.put("itemListCount",itemListCount);
+		
+		mv.addObject("lbjMyItem", myItem);
+		mv.addObject("itemPage",itemPage);
+		//item 세팅 끝-----------------------------------------------------------
+		
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}

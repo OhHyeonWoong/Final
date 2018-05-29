@@ -73,4 +73,26 @@ select * from (select * from ITEMLIST where itemfilename not like '%gif%' order 
 <select id="getitemlistno" parameterType="int" resultType="int">
 select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_NO and m.MYITEM_NO=#{useritempk}
 </select>
+
+<select id="selectMyPageItemListCount" parameterType="string" resultType="int">
+	<![CDATA[
+		select count(it.ITEMNAME) from my_item mi,item_log il,itemlist it,using_item ui 
+		where mi.ITEMLIST_NO = it.ITEMLIST_NO 
+		and mi.MYITEM_NO = ui.MYITEM_NO
+		and ui.USING_ITEM_NO = il.USING_ITEM_NO
+		and mi.MEMBER_ID = #{member_id} 	
+	]]>
+</select>
+<select id="selectMyPageItem" parameterType="Hashmap" resultType="MyPageItem">
+	<![CDATA[
+		select * from (
+		select rownum rnum,it.ITEMNAME,mi.BUY_DATE,ui.START_DATE,ui.END_DATE,il.FINAL_STATUS 
+		from my_item mi,item_log il,itemlist it,using_item ui 
+		where mi.ITEMLIST_NO = it.ITEMLIST_NO  
+		and mi.MYITEM_NO = ui.MYITEM_NO
+		and ui.USING_ITEM_NO = il.USING_ITEM_NO
+		and mi.MEMBER_ID = #{member_id}) 
+		where rnum >= #{startRow} and rnum <= #{endRow}
+	]]>
+</select>
 </mapper>

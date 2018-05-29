@@ -351,10 +351,10 @@
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
-					<tr><th class="lbjth">아이템명</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">상태</th></tr>
-					<tr><td>글씨크기늘리기</td><td>2017/12/31</td><td>2018/03/02</td><td>사용종료</td></tr>
-					<tr><td>배경색주기</td><td>2017/03/11</td><td>2018/06/11</td><td>사용중</td></tr>
-					<tr><td>폰트바꾸기</td><td>2017/04/01</td><td>2018/06/30</td><td>사용중</td></tr>
+					<tr><th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>
+					<tr><td>글씨크기늘리기</td><td>2017/11/10</td><td>2017/12/31</td><td>2018/03/02</td><td>2</td></tr>
+					<tr><td>배경색주기</td><td>2017/03/09</td><td>2017/03/11</td><td>2018/06/11</td><td>3</td></tr>
+					<tr><td>폰트바꾸기</td><td>2017/02/10</td><td>2017/04/01</td><td>2018/06/30</td><td>1</td></tr>
 				</table>
 			</div>
 		</div>

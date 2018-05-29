@@ -8,6 +8,7 @@ import java.util.List;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 
 public interface ItemService {
@@ -38,6 +39,8 @@ public interface ItemService {
 	public abstract int insertimticon(int useritempk);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 	public abstract List<ITEMLIST> allitemlist2(HashMap<Object, Object> map);
+	//made by byung jun
+	public abstract int selectMyPageItemListCount(String member_id);
+	public abstract List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map);
 
-	
 }
