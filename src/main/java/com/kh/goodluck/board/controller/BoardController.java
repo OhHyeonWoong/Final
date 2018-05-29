@@ -2,11 +2,7 @@ package com.kh.goodluck.board.controller;
 
 import java.util.ArrayList;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
