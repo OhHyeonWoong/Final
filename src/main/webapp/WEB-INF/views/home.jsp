@@ -73,7 +73,7 @@
 		}); /* FAQ top5 Ajax끝 */
 		
 		
-		
+		 
 		/* $.ajax({
 			url :"lifeareasample.go",
 			type : "get",

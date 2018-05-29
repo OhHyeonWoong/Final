@@ -605,7 +605,7 @@
 			</td>
 			<td class = "ohw-menu-table-td">
 				<div align = "center">
-					<form class="" action="">
+					<form class="" action="searchfeedback.go" method="get">
 						<div class="ohw-div-search input-group">
 							<input type="text" class="form-control" placeholder="Search" name="search">
 							<div class="input-group-btn">
