@@ -50,8 +50,7 @@
 			url : "faqtop5.go",
 			type : "get",
 			datatype : "json",
-			success : function(data){
-				alert("진입 테스트용 출력문");
+			success : function(data){				
 				var jsonStr = JSON.stringify(data); //객체를 문자열로 변환
 				console.log(jsonStr);
 				var json = JSON.parse(jsonStr) //문자열을 배열 객체로 바꿈	

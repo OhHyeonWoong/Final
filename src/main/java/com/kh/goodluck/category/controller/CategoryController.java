@@ -52,7 +52,7 @@ public class CategoryController {
 	}	
 	
 	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
-	public void BigCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
+	public void BigCategoryCount(HttpServletResponse response, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
 		System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");
 		int result = categoryService.bigCategoryCount(bigCategoryCode);
 		System.out.println("Result : " + result + " / To.CategoryController");
@@ -61,22 +61,20 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
-	public ModelAndView MidCategoryCount(HttpServletResponse response, ModelAndView mav,@RequestParam("midCode") String midCategoryCode) throws Exception {		
+	public void MidCategoryCount(HttpServletResponse response, @RequestParam("midCode") String midCategoryCode) throws Exception {		
 		/*System.out.println("MidCode : " + midCategoryCode + " / To.CategoryController");*/
 		int result = categoryService.midCategoryCount(midCategoryCode);
 		/*System.out.println("Result : " + result + " / To.CategoryController");*/
 		
-		mav.setViewName(midCategoryCode);
-		return mav;
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + midCategoryCode);
 	}
 	
 	@RequestMapping(value = "SmallCategoryCount.go", method = RequestMethod.GET)
-	public ModelAndView SmallCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
+	public void SmallCategoryCount(HttpServletResponse response, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
 		System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");
 		int result = categoryService.smallCategoryCount(smallCategoryCode);
 		System.out.println("Result : " + result + " / To.CategoryController");
 		
-		mav.setViewName(smallCategoryCode);
-		return mav;
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + smallCategoryCode);
 	}
 }
