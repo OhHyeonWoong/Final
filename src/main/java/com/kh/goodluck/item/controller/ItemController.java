@@ -74,11 +74,19 @@ public class ItemController {
 		ArrayList<ITEMLIST> al1= (ArrayList<ITEMLIST>)ItemService.homepopularlitm();
 		
 		//카로셀에 넣을것.
+		
 		//카로1 (이달의 랜덤박스 정보 pk만 뽑아오기.)
+		ITEMLIST thismonthsrandom = ItemService.thismonthpackage();
 		
+		//카로2 (최신 아이템 pk)
+		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		
+		//카로3 (이달의 패키지 아이템.)
+	
 		
-		
+
+		//카로4 (이달의 인기아이템)
+		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		
 		//공지사항
 		ArrayList<ItemNotice> al3=(ArrayList<ItemNotice>)ItemService.notice();
@@ -86,13 +94,13 @@ public class ItemController {
 		for(ItemNotice i : al3) {
 		i.setITEMNOTICE_DATE(i.getITEMNOTICE_DATE().toString().substring(5,10));
 		}
-		
 		//할인 목록.
-		
-		
 		mv.addObject("newitem",al);
 		mv.addObject("popularlitm",al1);
 		mv.addObject("itemNotice",al3);
+		mv.addObject("newitemthismonth",newitemthismonth);
+		mv.addObject("popitemthismonth",popitemthismonth);
+		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.setViewName("A5.CJS/itemMall");
 		return mv;
 	}
@@ -465,6 +473,12 @@ try {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.allitemlist(map);
+		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+		ITEMLIST thismonthpackage = ItemService.thismonthpackage();
+		mv.addObject("thismonthpackage",thismonthpackage);
+		mv.addObject("newitemthismonth",newitemthismonth);
+		mv.addObject("popitemthismonth",popitemthismonth);
 		mv.addObject("firstlist",al);
 		mv.addObject("maxPage",maxPage);
 		mv.addObject("currentPage",currentPage);

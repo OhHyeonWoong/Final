@@ -197,4 +197,22 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.selectMyPageItem(map);
 	}
 
+	@Override
+	public ITEMLIST newitemthismonth() {
+		// TODO Auto-generated method stub
+		return itemlistDao.newitemthismonth();
+	}
+
+	@Override
+	public ITEMLIST popitemthismonth() {
+		// TODO Auto-generated method stub
+		return itemlistDao.popitemthismonth();
+	}
+
+	@Override
+	public ITEMLIST thismonthpackage() {
+		// TODO Auto-generated method stub
+		return itemlistDao.thismonthpackage();
+	}
+
 }
