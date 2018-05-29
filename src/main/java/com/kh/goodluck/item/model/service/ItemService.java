@@ -17,6 +17,9 @@ public interface ItemService {
 	public abstract List<ITEMLIST> allitemlist1(HashMap<Object,Object> map);
 	public abstract List<ITEMLIST> homepopularlitm();
 	public abstract ITEMLIST itemdetail(int itemno);
+	public abstract ITEMLIST newitemthismonth();
+	public abstract ITEMLIST popitemthismonth();
+	public abstract ITEMLIST thismonthpackage();
 	public abstract List<GetMyItem> GetMyItem(GetMyItem gmi);
 	public abstract List<GetMyItem> GetMyItem1(GetMyItem gmi);
 	public abstract List<ItemNotice> notice();

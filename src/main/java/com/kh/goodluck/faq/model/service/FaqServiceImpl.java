@@ -48,5 +48,10 @@ public class FaqServiceImpl implements FaqService {
 		return faqDao.selectLoginList();
 	}
 	 
+	@Override
+	public List<Faq> faqTop5() { //main화면 faq Top5
+
+		return faqDao.faqTop5();
+	}
 	 
 }

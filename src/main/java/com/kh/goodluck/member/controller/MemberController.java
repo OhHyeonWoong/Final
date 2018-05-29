@@ -79,6 +79,8 @@ public class MemberController {
 	    map.put("member_id", member_id);
 		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
 		
+		System.out.println("myQna.size = " + myQna.size());
+		
 		if (qnaMaxPage < qnaEndRow)
 			qnaEndRow = qnaMaxPage;
 		
@@ -107,8 +109,8 @@ public class MemberController {
 	    
 	    System.out.println("myItem size = " + myItem.size());
 		
-		if (qnaMaxPage < itemEndRow)
-			itemEndRow = qnaMaxPage;
+		if (itemMaxPage < itemEndRow)
+			itemEndRow = itemMaxPage;
 		
 		HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
 		itemPage.put("itemMaxPage",itemMaxPage);

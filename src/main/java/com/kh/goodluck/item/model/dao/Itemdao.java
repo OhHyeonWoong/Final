@@ -180,5 +180,23 @@ public class Itemdao {
 		//마이페이지 아이템 가져오는 메소드
 		return sqlSession.selectList("selectMyPageItem", map);
 	}
+
+
+	public ITEMLIST newitemthismonth() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("newitemthismonth");
+	}
+
+
+	public ITEMLIST popitemthismonth() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("popitemthismonth");
+	}
+
+
+	public ITEMLIST thismonthpackage() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("thismonthpackage");
+	}
 	
 }

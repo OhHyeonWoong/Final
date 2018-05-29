@@ -19,6 +19,12 @@ public class NoticeImpl implements NoticeService{
 
 		return noticeDao.noticeTop5();
 	}
+	
+	/*@Override
+	public Notice noticeDetail(int notice_no) { //공지사항 글 상세보기
 
+		return noticeDao.noticeDetail(notice_no);
+	}
+	 */
 
 }
