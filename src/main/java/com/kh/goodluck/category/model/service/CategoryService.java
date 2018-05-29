@@ -11,8 +11,8 @@ public interface CategoryService {
 
 	int bigCategoryCount(String bigCategoryCode);
 	
-	/*int midCategoryCount(String midCategoryCode);
+	int midCategoryCount(String midCategoryCode);
 	
-	int smallCategoryCount(String smallCategoryCode);*/
+	int smallCategoryCount(String smallCategoryCode);
 	
 }

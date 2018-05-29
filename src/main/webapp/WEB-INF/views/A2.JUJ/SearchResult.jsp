@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
 <!DOCTYPE html>
 <html>
 	<head>
 	<meta charset="UTF-8">
+
 	<title>유저의 검색결과화면</title>
 	<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="/goodluck/resources/A2.JUJ/js/juj_sidebar.js"></script>	<!-- 따라다니는 사이드바 추가 -->
+
 	<style type="text/css">
 		/* effect */
 		#ukjaeTitle_effect {
@@ -119,10 +118,9 @@
 	</head>
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-		<div class="container">
-	
+		<div class="container">	
 
-		<Table class="ukTotal_Area"><!-- 영역을 잡는 전체테이블  -->
+		<table class="ukTotal_Area"><!-- 영역을 잡는 전체테이블  -->
 			<tr>
 			  <td style="width: 1170px;">
 			    <font id="ukjaeTitle_effect"> User입력한 검색어 : 애완동물 </font> <br>

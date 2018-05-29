@@ -18,15 +18,18 @@ public class CategoryDao {
 		return sqlSession.selectList("headerCategoryBig");
 	}
 
-	public int bigCategoryCount(String bigCategoryCode) {		
+	public int bigCategoryCount(String bigCategoryCode) {
+		/*System.out.println("SendBigCode : " + bigCategoryCode + " / To.CategoryDao");*/
 		return sqlSession.update("BigCategoryCountUpdate", bigCategoryCode);
 	}
 	
-	/*public int midCategoryCount(String midCategoryCode) {		
+	public int midCategoryCount(String midCategoryCode) {
+		/*System.out.println("SendMidCode : " + midCategoryCode + " / To.CategoryDao");*/
 		return sqlSession.update("MidCategoryCountUpdate", midCategoryCode);
 	}
 	
 	public int smallCategoryCount(String smallCategoryCode) {		
+		/*System.out.println("SendSmallCode : " + smallCategoryCode + " / To.CategoryDao");*/
 		return sqlSession.update("SmallCategoryCountUpdate", smallCategoryCode);
-	}*/
+	}
 }

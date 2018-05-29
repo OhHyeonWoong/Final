@@ -12,120 +12,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BoardContent</title>
 <!-- js따로 떼야댐 -->
-<script type="text/javascript"
-	src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-	
+<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/goodluck/resources/A4.BSH/BSH.js"></script>	
 	
 <script type="text/javascript">
-	$(document).ready(function() {
-				//alert("aaa");
+/* 여기에 스크립트 입력 */
 
-				/* 체크박스 라디오버튼화 */
-		$('input[type="checkbox"][name="group1"]').click(function() {
-							//클릭 이벤트 발생한 요소가 체크 상태인 경우
-			if ($(this).prop('checked')) {
-			//체크박스 그룹의 요소 전체를 체크 해제후 클릭한 요소 체크 상태지정
-				$('input[type="checkbox"][name="group1"]').prop('checked', false);
-					$(this).prop('checked', true);
-			}
-		});
-
-		$('input[type="checkbox"][name="group2"]').click(function() {
-			if ($(this).prop('checked')) {
-				$('input[type="checkbox"][name="group2"]').prop('checked', false);
-					$(this).prop('checked', true);
-			}
-		});
-
-		$('input[type="checkbox"][name="group3"]').click(function() {
-			if ($(this).prop('checked')) {
-				$('input[type="checkbox"][name="group3"]').prop('checked', false);
-					$(this).prop('checked', true);
-			}
-		});
-
-		$('input[type="checkbox"][name="group4"]').click(function() {
-			if ($(this).prop('checked')) {
-				$('input[type="checkbox"][name="group4"]').prop('checked', false);
-			}
-		});
-
-		$(".bgcate ").click(function() {
-			var flagbg = true;
-						
-			var button = $(this);
-			if(button.next("li").is(":visible")){
-				while(flagbg){
-					if(!(button.next("li").attr("class") == 'mdcate' || button.next("li").attr("class") == 'smcate')){
-						/* console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id")); */
-						flagbg=false;
-					}else{
-						/* console.log(button.attr("id")); */
-						button.next("li").slideUp();
-						button = button.next("li");
-						/* console.log("next했음 현재" +button.attr("id")); */
-					}
-				}				
-			}else{
-				while(flagbg){
-					if(!(button.next("li").attr("class") == 'mdcate' || button.next("li").attr("class") == 'smcate')){
-						/* console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id")); */
-						flagbg=false;
-					}else{
-						if(button.next("li").attr("class") == 'smcate'){
-							/* console.log("smcatepass"); */
-							button = button.next("li");
-							/* console.log("next했음 현재" +button.attr("id")); */
-						}else{
-							/* console.log(button.attr("id")); */
-							button.next("li").slideDown();
-							button = button.next("li");
-							/* console.log("next했음 현재" +button.attr("id")); */
-						}
-					}
-				}	
-			}
-		});
-		
-		$(".mdcate ").click(function() {
-			var flagmd = true;
-			
-			var button = $(this);
-			
-			if(button.next("li").is(":visible")){
-				while(flagmd){
-					if(!(button.next("li").attr("class") == 'smcate')){
-						/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
-						flagmd=false;
-					}else{
-						/* console.log(button.attr("id")); */
-						button.next("li").slideUp();
-						button = button.next("li");
-						/* console.log("next했음 현재" +button.attr("id")); */
-					}
-				}
-			}else{
-				while(flagmd){
-					if(!(button.next("li").attr("class") == 'smcate')){
-						/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
-						flagmd=false;
-					}else{
-						/* console.log(button.attr("id")); */
-						button.next("li").slideDown();
-						button = button.next("li");
-						/* console.log("next했음 현재" +button.attr("id")); */
-					}
-				}
-			}
-		});
-		
-	});
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
 
 <style type="text/css">
-	
+/* 여기에  스타일 입력 */	
+
 </style>
 
 </head>

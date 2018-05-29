@@ -22,7 +22,7 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public QNA selectMyDetailQna(QNA q) {
+	public QNA selectMyDetailQna(QnaWrite q) {
 		return qnaDao.selectMyDetailQna(q);
 	}
 	
