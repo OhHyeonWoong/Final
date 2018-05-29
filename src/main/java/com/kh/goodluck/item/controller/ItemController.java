@@ -447,31 +447,19 @@ try {
 		currentPage = Integer.parseInt(request.getParameter("page1"));
 		}
 
-		//총아이템갯수.
-		
-		
 		//한 페이지당 출력할 목록 갯수 지정
-		
-		int limit = 13;
-			
-	  //현 맴버가 보유하고있는 아이템 갯수 계산
+		int limit = 14;
+		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem();
-		
-		System.out.println( listCount + " / (To.아이템컨트롤러 소모성아이템갯수)");
-		
 		int maxPage = (int)((double)listCount / limit + 0.9);
-			
 		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
 		//현재 페이지에 출력할 목록 조회		
-	    GetMyItem gmi=new GetMyItem();
 	    HashMap<Object,Object> map=new HashMap<Object,Object>();
 	    int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
-	
 		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.allitemlist(map);
-		
 		mv.addObject("firstlist",al);
 		mv.addObject("maxPage",maxPage);
 		mv.addObject("currentPage",currentPage);
@@ -511,6 +499,85 @@ try {
 		return mv;
 		}
 
+	
+	
+	@RequestMapping("cjsitemseachpageing.go")
+	public void cjsnewitem(HttpServletRequest request, HttpServletResponse response){
+		//최신+인기
+		
+		int currentPage=1;
+		//전달된 페이지값 추출
+		if(request.getParameter("page") != null) {
+		currentPage = Integer.parseInt(request.getParameter("page"));
+		}
+
+		int option=Integer.parseInt(request.getParameter("option"));
+		
+		String search= new String("");
+		if(!request.getParameter("search").equals(null)) {
+		search = request.getParameter("search");
+		}
+		
+		System.out.println("option="+option);
+		System.out.println("search="+search);
+	
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("search", search);
+		//한 페이지당 출력할 목록 갯수 지정
+		int limit = 15;
+		//현 맴버가 보유하고있는 아이템 갯수 계산
+		int listCount =  ItemService.countitem(map);
+		System.out.println("listcount="+listCount);
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
+		//현재 페이지에 출력할 목록 조회		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		System.out.println("startRow="+startRow);
+		System.out.println("endRow="+endRow);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		List<ITEMLIST> al = null;
+		if(option==1)
+		al= (List<ITEMLIST>)ItemService.allitemlist1(map);
+		else
+		al= (List<ITEMLIST>)ItemService.allitemlist2(map);
+		
+		JSONObject json = new JSONObject();
+		
+		JSONArray jarr = new JSONArray();
+			
+		for(ITEMLIST l : al) {
+			JSONObject job = new JSONObject();
+			job.put("ITEMFILENAME", l.getITEMFILENAME());
+			job.put("ITEMLIST_NO", l.getITEMLIST_NO());
+			job.put("ITEMNAME", l.getITEMNAME());
+			job.put("ITEMPRICE", l.getITEMPRICE());
+			jarr.add(job);
+		}
+		System.out.println("maxpag="+maxPage);
+		System.out.println("currentPage="+currentPage);
+		json.put("firstlist", jarr);
+		json.put("maxpage", maxPage);
+		json.put("option", option);
+		json.put("search", search);
+		json.put("size",al.size());
+		json.put("listCount", listCount);
+		json.put("currentPage", currentPage);
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(json.toJSONString());
+		out.print(json.toJSONString());
+		out.flush();
+		out.close();
+		
+		}
+	
 	
 }
 

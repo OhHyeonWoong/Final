@@ -2,11 +2,7 @@ package com.kh.goodluck.board.controller;
 
 import java.util.ArrayList;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -118,6 +114,8 @@ public class BoardController {
 			}		
 		}
 		
+		int strlistlegnth = strlist.size();
+		
 		/*System.out.println("-----------------");
 		for (String str : strlist) {
 			System.out.println(str);
@@ -137,6 +135,7 @@ public class BoardController {
 		//mv.addObject("catelink1",catelink1);
 		//mv.addObject("catelink2",catelink2);
 		//mv.addObject("catelink1length",catelink1length);
+		mv.addObject("strlistlegnth",strlistlegnth);
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;

@@ -906,11 +906,13 @@ height: 78px;
  <th style=" width: 30%;">
 	<div class="11" style="margin-left:10px;">
 		<center>
+		<c:if test="${loginUser ne null}">
 		<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
+		</c:if>
 		</center>
 		<br>
 		아이디:<img id="afterauserajaximg" style="width:20px; height: 30px;">${loginUser.member_id}<br>
-		회원님 이름 : ${loginUser.member_name}<br>
+		회원님 이름 :${loginUser.member_name}<br>
 		보유  포인트 :${loginUser.member_cash} <br>
 		최대 게시글 수:<p id="keywordcount"></p>
 		최대 키워드 수:<p id="boardcount"></p>

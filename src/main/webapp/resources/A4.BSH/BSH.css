@@ -60,40 +60,92 @@
 	border-right: 1px dashed #B8B8B8;
 }
 
-.bsh_sidebar{
-	background: yellow; 
-	width: 20%; 
-	height: 100%; 
+.bsh_sidebar {
+	background: #f5f5f5;
+	width: 20%;
+	height: 100%;
 	float: left;
+	border: 1px solid #e7e7e7;
 }
 
-.bsh_center{
-	width: 78%; 
-	height: 100%; 
-	float: left; 
+.bsh_sidebar > ul{
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.bsh_center {
+	width: 78%;
+	height: 100%;
+	float: left;
 	margin-left: 2%
 }
 
-.bsh_span_button{
-	display: table; 
-	margin: 10px; 
-	margin-left: auto; 
+.bsh_span_button {
+	display: table;
+	margin: 10px;
+	margin-left: auto;
 	margin-right: auto;
 }
 
-.board_div_prime{
-	background: #f5f5f5; 
-	width: 100%; 
-	height: 340px; 
-	padding: 10px; 
+.board_div_prime {
+	background: #f5f5f5;
+	width: 100%;
+	height: 360px;
+	padding: 10px;
 	border: 1px solid #e7e7e7;
 }
 
-.board_div_maincontent{
-	background: #f5f5f5; 
-	width: 100%; 
-	height: 480px; 
-	padding: 10px; 
+.board_div_maincontent {
+	background: #f5f5f5;
+	width: 100%;
+	height: 480px;
+	padding: 10px;
 	border: 1px solid #e7e7e7;
-
 }
+
+.bgcate {
+	/* 여기에 스타일 입력 */
+	color: #999;
+	list-style: none;
+	font-size: 24px;
+	cursor: pointer;
+	border-top: 1px solid #999;
+}
+
+.mdcate {
+	/* 여기에 스타일 입력 */
+	color: #999;
+	list-style: none;
+	font-size: 20px;
+	display: none;
+	cursor: pointer;
+	padding-left: 8px;
+	padding-right: 8px;
+	/* border: 1px solid #999; */
+}
+
+.smcate{
+	/* 여기에 스타일 입력 */
+	list-style: none;
+	font-size: 16px;
+	color: #999;
+	display: none;
+	cursor: pointer;
+	padding-left: 15px;
+	padding-right: 15px;
+	/* border: 1px solid #999; */
+}
+
+.mdcate:hover, .bgcate:hover {
+	color: black;
+}
+
+.smcate>a:link, .smcate>a:visited {
+	color: #999;
+	text-decoration: none;
+}
+
+.smcate>a:hover {
+	color: black;
+}
+

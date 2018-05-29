@@ -12,108 +12,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BoardContent</title>
 <!-- js따로 떼야댐 -->
-<script type="text/javascript"
-	src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-	
+<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/goodluck/resources/A4.BSH/BSH.js"></script>	
 	
 <script type="text/javascript">
-	$(document).ready(function() {
-		//alert("aaa");
-		
-		/* 체크박스 라디오버튼화 */
-		$('input[type="checkbox"][name="group1"]').click(function(){
-	        //클릭 이벤트 발생한 요소가 체크 상태인 경우
-	        if ($(this).prop('checked')) {
-	            //체크박스 그룹의 요소 전체를 체크 해제후 클릭한 요소 체크 상태지정
-	            $('input[type="checkbox"][name="group1"]').prop('checked', false);
-	            $(this).prop('checked', true);
-	        }
-	    });
-		
-		$('input[type="checkbox"][name="group2"]').click(function(){
-	        if ($(this).prop('checked')) {
-	            $('input[type="checkbox"][name="group2"]').prop('checked', false);
-	            $(this).prop('checked', true);
-	        }
-	    });
-		
-		$('input[type="checkbox"][name="group3"]').click(function(){
-	        if ($(this).prop('checked')) {
-	            $('input[type="checkbox"][name="group3"]').prop('checked', false);
-	            $(this).prop('checked', true);
-	        }
-	    });
-		
-		$('input[type="checkbox"][name="group4"]').click(function(){
-	        if ($(this).prop('checked')) {
-	            $('input[type="checkbox"][name="group4"]').prop('checked', false);
-	            $(this).prop('checked', true);
-	        }
-	    });
-		
-		/* 디비에서 가져와서 그정보를 어떻게 구현하지.. 여기부터*/
-		/* $("#생활").click(function(){
-			if($("#생활").next("h4").is(":visible")){
-				$("#음식").slideUp();
-				$("#AB").slideUp();
-				$("#한식").slideUp();
-				$("#중식").slideUp();
-				$("#양식").slideUp();
-				$("#ABA").slideUp();
-				$("#ABB").slideUp();
-				
-			}else{
-				$("#음식").slideDown();
-				$("#AB").slideDown();
-			}
-		});
-		
-		$("#음식").click(function(){
-			if($("#음식").next("h5").is(":visible")){
-				$("#한식").slideUp();
-				$("#중식").slideUp();
-				$("#양식").slideUp();
-			}else{
-				$("#한식").slideDown();
-				$("#중식").slideDown();
-				$("#양식").slideDown();
-			}
-		});
-		
-		$("#AB").click(function(){
-			if($("#AB").next("h5").is(":visible")){
-				$("#ABA").slideUp();
-				$("#ABB").slideUp();
-			}else{
-				$("#ABA").slideDown();
-				$("#ABB").slideDown();
-			}
-		}); */
-		
-		/* 여기까지를 알고리즘으로 짜야댐 */
-		
-	});
-	
-	
+/* 여기에 스크립트 입력 */
+
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
 
 <style type="text/css">
-	.bgcate{
-		/* 여기에 스타일 입력 */
-		color: red;
-	}
-	
-	.mdcate{
-		/* 여기에 스타일 입력 */
-		
-	}
-	
-	.smcate{
-		/* 여기에 스타일 입력 */
-		
-	}
+/* 여기에  스타일 입력 */	
+
 </style>
 
 </head>
@@ -122,14 +33,15 @@
 		<div class="bsh_sidebar">
 			<!-- 카테고리 -->
 			<!-- sidebar -->
-			
+			<br>
+			<ul>
 			<c:forEach var="str" items="${strlist }">
 				
 				<c:forEach var="bigcategory" items="${bigcategorylist }">
 					<c:set var="category" value="${bigcategory.category_big_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<h3><span class="bgcate">${str }</span></h3><br>
+							<li class="bgcate" id="id${str }">${str }</li>
 						</c:when>
 						<c:otherwise>
 						
@@ -140,7 +52,7 @@
 					<c:set var="category" value="${midcategory.category_mid_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<h4><span class="mdcate">${str }</span></h4><br>
+							<li class="mdcate" id="id${str }">${str }</li>
 						</c:when>
 						<c:otherwise>
 							
@@ -151,7 +63,7 @@
 					<c:set var="category" value="${smallcategory.category_small_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<h5><a class="smcate" href="bshtest.go?link2_no=${str }">${str }</a></h5><br>
+							<li class="smcate" id="id${str }" ><a href="bshtest.go?link2_no=${str }">${str }</a></li>
 						</c:when>
 						<c:otherwise>
 							
@@ -159,7 +71,7 @@
 					</c:choose>
 				</c:forEach>
 			</c:forEach>
-			
+			</ul>
 			
 			
 		</div>
@@ -167,7 +79,7 @@
 		<div class="bsh_center">
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
-				<h2>프리미엄 글 입니다</h2>
+				<h2>프리미엄 글 입니다</h2><br>
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
 						<tr>
@@ -278,13 +190,13 @@
 					<thead style="border: 1px solid black;">
 						<tr>
 							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 40%;">제목</th>
+							<th style="border: 1px solid black; width: 45%;">제목</th>
 							<th style="border: 1px solid black; width: 5%;">지역</th>
 							<th style="border: 1px solid black; width: 5%;">구분</th>
 							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 15%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 15%;">시작날짜</th>
-							<th style="border: 1px solid black; width: 5%;">상태</th>
+							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
+							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
+							<th style="border: 1px solid black; width: 10%;">상태</th>
 						</tr>
 
 					</thead>
@@ -308,7 +220,14 @@
 							${board.agency_loc }
 							</td>
 							<td>
-							${board.agency_paytype }
+							<c:set var="tf" value="${board.agency_paytype }"/>
+							<c:if test="${tf eq '1' }">
+								일급
+							</c:if>
+							<c:if test="${tf eq '2' }">
+								시급
+							</c:if>
+							<%-- ${board.agency_paytype } --%>
 							</td>
 							<td>
 							${board.agency_pay }
@@ -320,7 +239,20 @@
 							${board.agency_enrolldate }
 							</td>
 							<td>
-							${board.agency_status }
+							<c:set var="tf" value="${board.agency_paytype }"/>
+							<c:if test="${tf eq '1' }">
+								정상
+							</c:if>
+							<c:if test="${tf eq '2' }">
+								예약가능
+							</c:if>
+							<c:if test="${tf eq '3' }">
+								예약불가
+							</c:if>
+							<c:if test="${tf eq '4' }">
+								숨김
+							</c:if>
+							<%-- ${board.agency_status } --%>
 							</td>
 							</tr>
 						</c:forEach>

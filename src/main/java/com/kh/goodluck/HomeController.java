@@ -25,6 +25,13 @@ public class HomeController {
 		logger.info("HomeController Run");		
 		return "home";
 	}	
+
+	
+	/*@RequestMapping(value="maintop5.go", method=RequestMethod.GET)
+	public  ModelAndView throwsBigData(ModelAndView mv) {
+		System.out.println("테스트용 출력문");
+		return mv;
+	}*/
 	
 	/*@RequestMapping(value="maindata.go", method=RequestMethod.POST) 지우지 말아주세염~~~
 	public ModelAndView throwsBigData(ModelAndView mv) { //메인화면에 Ajax를 활용하여 모든 페이지에데이타를 뿌려주는 메소드

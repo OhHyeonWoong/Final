@@ -9,6 +9,21 @@
 <title>메인화면</title>
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url : "maintop5.go",
+			type : "get",
+			success : function(){
+				alert("테스트용 알럿트창")
+			}
+			
+		});
+	});
+
+</script>
+
+
+<script type="text/javascript">
 	/* $(function(){	
 		$("#topcaro1").click(function(){ //오른쪽 넘기기 버튼을 클릭했을경우
 		         //리스트별 컬러추가.
