@@ -51,36 +51,36 @@
 		});
 
 		$(".bgcate ").click(function() {
-			var flag = true;
+			var flagbg = true;
 						
 			var button = $(this);
 			if(button.next("li").is(":visible")){
-				while(flag){
+				while(flagbg){
 					if(!(button.next("li").attr("class") == 'mdcate' || button.next("li").attr("class") == 'smcate')){
-						console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id"));
-						flag=false;
+						/* console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id")); */
+						flagbg=false;
 					}else{
-						console.log(button.attr("id"));
+						/* console.log(button.attr("id")); */
 						button.next("li").slideUp();
 						button = button.next("li");
-						console.log("next했음 현재" +button.attr("id"));
+						/* console.log("next했음 현재" +button.attr("id")); */
 					}
 				}				
 			}else{
-				while(flag){
+				while(flagbg){
 					if(!(button.next("li").attr("class") == 'mdcate' || button.next("li").attr("class") == 'smcate')){
-						console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id"));
-						flag=false;
+						/* console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id")); */
+						flagbg=false;
 					}else{
 						if(button.next("li").attr("class") == 'smcate'){
-							console.log("smcatepass");
+							/* console.log("smcatepass"); */
 							button = button.next("li");
-							console.log("next했음 현재" +button.attr("id"));
+							/* console.log("next했음 현재" +button.attr("id")); */
 						}else{
-							console.log(button.attr("id"));
+							/* console.log(button.attr("id")); */
 							button.next("li").slideDown();
 							button = button.next("li");
-							console.log("next했음 현재" +button.attr("id"));
+							/* console.log("next했음 현재" +button.attr("id")); */
 						}
 					}
 				}	
@@ -88,103 +88,43 @@
 		});
 		
 		$(".mdcate ").click(function() {
-			var flag = true;
+			var flagmd = true;
 			
 			var button = $(this);
-		}
-
-				/* $(".mdcate").click(function(){
-					if($(".mdcate").next("ul").is(":visible")){
-						
+			
+			if(button.next("li").is(":visible")){
+				while(flagmd){
+					if(!(button.next("li").attr("class") == 'smcate')){
+						/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
+						flagmd=false;
 					}else{
-						$(".smcate").slideDown();
+						/* console.log(button.attr("id")); */
+						button.next("li").slideUp();
+						button = button.next("li");
+						/* console.log("next했음 현재" +button.attr("id")); */
 					}
-				});
-				 */
-
-				/* 디비에서 가져와서 그정보를 어떻게 구현하지.. 여기부터*/
-				/* $("#생활").click(function(){
-					if($("#생활").next("h4").is(":visible")){
-						$("#음식").slideUp();
-						$("#AB").slideUp();
-						$("#한식").slideUp();
-						$("#중식").slideUp();
-						$("#양식").slideUp();
-						$("#ABA").slideUp();
-						$("#ABB").slideUp();
-						
+				}
+			}else{
+				while(flagmd){
+					if(!(button.next("li").attr("class") == 'smcate')){
+						/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
+						flagmd=false;
 					}else{
-						$("#음식").slideDown();
-						$("#AB").slideDown();
+						/* console.log(button.attr("id")); */
+						button.next("li").slideDown();
+						button = button.next("li");
+						/* console.log("next했음 현재" +button.attr("id")); */
 					}
-				});
-				
-				$("#음식").click(function(){
-					if($("#음식").next("h5").is(":visible")){
-						$("#한식").slideUp();
-						$("#중식").slideUp();
-						$("#양식").slideUp();
-					}else{
-						$("#한식").slideDown();
-						$("#중식").slideDown();
-						$("#양식").slideDown();
-					}
-				});
-				
-				$("#AB").click(function(){
-					if($("#AB").next("h5").is(":visible")){
-						$("#ABA").slideUp();
-						$("#ABB").slideUp();
-					}else{
-						$("#ABA").slideDown();
-						$("#ABB").slideDown();
-					}
-				}); */
-
-				/* 여기까지를 알고리즘으로 짜야댐 */
+				}
+			}
+		});
+		
 	});
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
 
 <style type="text/css">
-	.bgcate{
-		/* 여기에 스타일 입력 */
-		color: #999;
-		list-style: none;
-		font-size: 24px;
-		cursor: pointer;
-		
-	}
-	
-	.mdcate{
-		/* 여기에 스타일 입력 */
-		color: #999;
-		list-style: none;
-		font-size: 20px;
-		display: none;
-		cursor: pointer;
-	}
-	
-	.smcate{
-		/* 여기에 스타일 입력 */
-		list-style: none;
-		font-size: 16px;
-		color: #999;
-		display: none;
-		cursor: pointer;
-	}
-	.mdcate:hover, .bgcate:hover {
-		color: black;
-	}
-	.smcate > a:link, .smcate > a:visited{
-		color: #999;
-		text-decoration: none;
-	}
-	.smcate > a:hover{
-		color: black;
-	}
-	
 	
 </style>
 
