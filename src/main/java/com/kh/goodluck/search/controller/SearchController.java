@@ -9,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.goodluck.board.model.service.BoardService;
@@ -48,10 +49,10 @@ public class SearchController {
 	@Autowired
 	private ReportService reportService;
 	@Autowired
-	private MemberService memberService;
+	private MemberService memberService; 
 
 	
-	@RequestMapping("searchfeedback.go") //검색창으로부터 String값의 파라미터를 받아
+	@RequestMapping(value="searchfeedback.go", method=RequestMethod.GET) //검색창으로부터 String값의 파라미터를 받아
 	public void searchKeywordFowording(@RequestParam("keyword") String keyword, HttpServletRequest request, HttpServletResponse response) {
 	
 		/*

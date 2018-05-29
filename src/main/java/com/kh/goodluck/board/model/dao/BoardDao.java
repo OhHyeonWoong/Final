@@ -16,7 +16,7 @@ import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 
 
-
+  
 @Repository("boardDao")
 public class BoardDao {
 	

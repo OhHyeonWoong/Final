@@ -123,7 +123,7 @@ public class HomeController {
 
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
-		
+		  
 		for(Board b : lifesupply) {
 			JSONObject js = new JSONObject();
 			

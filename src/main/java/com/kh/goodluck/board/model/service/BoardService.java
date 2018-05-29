@@ -65,7 +65,7 @@ public class BoardService {
 		
 		return boardDao.mainShowLifeListPickUp();
 	}
- 
+  
 	public List<Board> mainShowPetListPickUp() {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
 		return boardDao.mainShowPetListPickUp();
