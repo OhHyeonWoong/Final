@@ -12,6 +12,7 @@ import com.kh.goodluck.item.model.dao.Itemdao;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 
@@ -209,10 +210,23 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.popitemthismonth();
 	}
 
+
 	@Override
-	public ITEMLIST thismonthpackage() {
+	public ItemPackage getitempackage() {
 		// TODO Auto-generated method stub
-		return itemlistDao.thismonthpackage();
+		return itemlistDao.getitempackage();
+	}
+
+	@Override
+	public ITEMLIST getpackitemsinfo(int a) {
+		// TODO Auto-generated method stuba
+		return itemlistDao.getpackitemsinfo(a);
+	}
+
+	@Override
+	public ITEMLIST randomitem() {
+		// TODO Auto-generated method stub
+		return itemlistDao.randomitem();
 	}
 
 }

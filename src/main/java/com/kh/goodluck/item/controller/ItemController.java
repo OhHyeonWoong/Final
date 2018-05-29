@@ -33,6 +33,7 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
@@ -77,15 +78,30 @@ public class ItemController {
 		//카로셀에 넣을것.
 		
 		//카로1 (이달의 랜덤박스 정보 pk만 뽑아오기.)
-		ITEMLIST thismonthsrandom = ItemService.thismonthpackage();
+		ITEMLIST thismonthsrandom = ItemService.randomitem();
 		
 		//카로2 (최신 아이템 pk)
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		
 		//카로3 (이달의 패키지 아이템.)
-	
-		
-
+		ItemPackage pack=ItemService.getitempackage();
+		//패키지아이템의 기본 가격과 목록내용 구하기
+		String items=pack.getITEMLIST_NO();
+		String split[] = items.split(",");
+        int orimoney=0;
+        String itemsName=new String();
+        for (String i: split) {
+        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+        orimoney+=packitem.getITEMPRICE();
+        itemsName+="["+packitem.getITEMNAME()+"]" ;
+        itemsName+="+";
+        };
+        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+        	itemsName = itemsName.substring(0, itemsName.length()-1);
+        }
+       
+       
+        
 		//카로4 (이달의 인기아이템)
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		
@@ -99,9 +115,13 @@ public class ItemController {
 		mv.addObject("newitem",al);
 		mv.addObject("popularlitm",al1);
 		mv.addObject("itemNotice",al3);
+		mv.addObject("orimoney",orimoney);
+		mv.addObject("itemsName",itemsName);
+		mv.addObject("pack",pack);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
+		
 		mv.setViewName("A5.CJS/itemMall");
 		return mv;
 	}
@@ -476,8 +496,28 @@ try {
 		ArrayList<ITEMLIST> al= (ArrayList<ITEMLIST>)ItemService.allitemlist(map);
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
-		ITEMLIST thismonthpackage = ItemService.thismonthpackage();
-		mv.addObject("thismonthpackage",thismonthpackage);
+		ITEMLIST thismonthsrandom = ItemService.randomitem();
+		 ItemPackage pack=ItemService.getitempackage();
+			//패키지아이템의 기본 가격과 목록내용 구하기
+			String items=pack.getITEMLIST_NO();
+			String split[] = items.split(",");
+	        int orimoney=0;
+	        String itemsName=new String();
+	        for (String i: split) {
+	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+	        orimoney+=packitem.getITEMPRICE();
+	        itemsName+="["+packitem.getITEMNAME()+"]" ;
+	        itemsName+="+";
+	        };
+	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+	        	itemsName = itemsName.substring(0, itemsName.length()-1);
+	        }
+	        
+	        
+	        mv.addObject("orimoney",orimoney);
+			mv.addObject("itemsName",itemsName);
+			mv.addObject("pack",pack);
+		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
 		mv.addObject("firstlist",al);

@@ -114,7 +114,11 @@ select * from (select * from ITEMLIST where itemfilename not like '%gif%' order 
 ]]>
 </select>
 
-<select id="thismonthpackage" resultType="itemlist">
+<select id="randomitem" resultType="itemlist">
 select * from ITEMLIST where ITEMTYPE=8 and ITEMPRICE = (select  max(ITEMPRICE) from ITEMLIST where ITEMTYPE=8)
+</select>
+
+<select id="getpackitemsinfo" parameterType="int" resultType="itemlist">
+select * from ITEMLIST where ITEMLIST_NO = #{a}
 </select>
 </mapper>
