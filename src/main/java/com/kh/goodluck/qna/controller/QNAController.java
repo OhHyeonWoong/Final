@@ -157,10 +157,6 @@ public class QNAController {
 		out.print(jobj.toJSONString());
 		out.flush();
 		out.close();
-			    /*System.out.println("mypage listcount = " + qnaListCount);
-			    System.out.println("mypage qnaStartRow = " + qnaStartRow);
-			    System.out.println("mypage qnaEndRow = " + qnaEndRow);
-			    System.out.println("mypage qnaMaxPage = " + qnaMaxPage);*/
 	}
 	
 }
