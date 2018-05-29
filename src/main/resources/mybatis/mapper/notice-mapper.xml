@@ -12,10 +12,24 @@
    		<result property="notice_date" column="notice_date"/>
 	</resultMap>
 	
+	<resultMap type="Notice" id="NoticeResult">
+   		<id property="notice_no" column="notice_no"/>
+   		<result property="notice_title" column="notice_title"/>
+   		<result property="notice_content" column="notice_content"/>
+   		<result property="notice_writer" column="notice_writer"/>
+   		<result property="notice_date" column="notice_date"/>
+	</resultMap>
+	
+	
+	
 	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
 		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
 	     notice_content, notice_date from (select * from notice order 
-	     by notice_no desc)) where rnum>=1 and rnum<=3]]>		
+	     by notice_no desc)) where rnum>=1 and rnum<=4]]>		
+	</select>
+	
+	<select id="noticeDetailShow" parameterType="integer">
+		<![CDATA[select * from notice where notice_no=?]]>
 	</select>
 	
 </mapper>
