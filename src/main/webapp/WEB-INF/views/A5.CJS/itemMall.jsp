@@ -270,10 +270,11 @@ $(document).ready( function() {
            <th width="50"></th>
            <th>
            <table style="width:100%">
-           <tr><th><h2>패키지 출시!</h2></th></tr>
+           <tr><th><h2>${pack.PACKAGE_NAME}출시!</h2></th></tr>
            <tr><th height="10">연령별 패키지와함께!</th></tr>
-           <tr><th>최소 30%off</th></tr>
-           <tr><th>${thismonthpackage.ITEMPRICE}원 <button>바로가기</button></th></tr>
+           <tr><th>${itemsName}</th></tr>
+           <tr><th><del>${orimoney}</del>-> </th></tr>
+           <tr><th>${pack.PACKAGE_PRICE}원 <button>바로가기</button></th></tr>
            </table>
            </th>
           </tr>
