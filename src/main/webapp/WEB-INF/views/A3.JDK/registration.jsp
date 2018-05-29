@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,6 @@
 <style type="text/css">
 
 </style>
-
 <!-- 주소 입력을 위한 스크립트 로딩 영역입니다. -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -76,15 +74,13 @@ function sample4_execDaumPostcode() {
 }
 </script>
 
-
 <!-- 자바스크립트 영역입니다. -->
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 ///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
 var submition = false; //->true로 바뀔 시 form 전송
-
-
+var emailConfirmed = false;//->이메일 인증 받으면 true
+var idConfirmed = false;// -> 아이디 인증을 받아야 true
 ///////////////////////////////////////////////////////////////////////////
 
 /* 비밀번호 확인 창 */
@@ -100,10 +96,42 @@ function pwdchecking(){
  		submition = false;
  	}
  }
+function idConfirmation(){
+	$.ajax({
+		url: "jdkIdConfirmation.go",
+		data: {id: $('member_id').val()},
+		dataType:"text",
+		type:"GET",
+		success:
+			function(result){
+			if(result==true){
+			alert("사용하실 수 있는 아이디 입니다");
+			idConfirmed=true;
+			}
+		},
+		error: function(){
+			alert("아이디 인증 실패!!");
+		}		
+	});
+	
+}
 
+function emailConfirmation(){
+	$.ajax({
+		url: "emailConfirm.do",
+		dataType:"text",
+		type:"GET",
+		success:
+			function(){
+			
+		},
+		error: function(){
+			alert("이메일 인증 실패!!");
+		}		
+	});	
+}
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////////
 /* 정규식 적용 */
 /* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
 // 현재 정규식이 필요한 항목은 다음과 같다.
@@ -114,7 +142,15 @@ function pwdchecking(){
 // 3. 이메일 인증을 받고 인증코드를 작성하지 않았을 경우 false
 // 4. 정규식 항목 통과하지 못했을 경우 false
 
+
 function signIn(){
+//정규식 목록
+//1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
+var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+
+
+
+	
 	
 	return submition;
 }
@@ -137,18 +173,22 @@ function signIn(){
 					<br>
 					<input type="file" name="member_profile" class="form-control" id="inputProfile" style="width: 300px; margin: 0 auto;">
 				</div>
+				
 				<div class="form-group">
 					<label for="userid">아이디</label>
 					<div class="input-group">
-					<input type="text"  id="member_id" name="member_id" class="form-control" placeholder="아이디" required="required">
-					<span class="input-group-btn"><a href="#" class="btn btn-default" style="">
+					<!-- 아이디 -->
+					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가" required="required">
+					<span class="input-group-btn"><a href="javascript: idConfirmation();" class="btn btn-default" style="">
 					<i class = "fa fa-search"></i> 중복검사</a></span>
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label for="username">이름</label> 
 					<input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해 주세요" required="required">
 				</div>
+				
 				<div class="form-group">
 					<label for="InputPassword1">비밀번호</label> 
 					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="비밀번호" required="required" onchange="pwdchecking()">				</div>
@@ -192,7 +232,7 @@ function signIn(){
 					<div class="input-group">
 						<input type="text" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
 						<!--email 인증 요청--> 
-						<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a>	</span>
+						<span class="input-group-btn"><a href="javascript: emailConfirmation();" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a></span>
 					</div>
 				</div>
 				<div class="form-group">

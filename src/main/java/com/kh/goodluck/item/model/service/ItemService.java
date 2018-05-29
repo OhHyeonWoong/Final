@@ -43,6 +43,7 @@ public interface ItemService {
 	public abstract int insertimticon(int useritempk);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 	public abstract List<ITEMLIST> allitemlist2(HashMap<Object, Object> map);
+	public abstract List<ItemPackage> allpackitem();
 	public abstract ItemPackage getitempackage();
 	public abstract ITEMLIST getpackitemsinfo(int a);
 	//made by byung jun

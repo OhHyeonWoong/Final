@@ -213,5 +213,11 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("randomitem");
 	}
+
+
+	public List<ItemPackage> allpackitem() {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectList("allpackitem");
+	}
 	
 }

@@ -10,7 +10,7 @@
    		<result property="notice_content" column="notice_content"/>
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
-	</resultMap>
+	</resultMap> 
 	
 	<resultMap type="Notice" id="NoticeResult2">
    		<id property="notice_no" column="notice_no"/>
