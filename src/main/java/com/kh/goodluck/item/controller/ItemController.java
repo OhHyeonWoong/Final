@@ -448,7 +448,7 @@ try {
 		}
 
 		//한 페이지당 출력할 목록 갯수 지정
-		int limit = 13;
+		int limit = 14;
 		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem();
 		int maxPage = (int)((double)listCount / limit + 0.9);
@@ -524,7 +524,7 @@ try {
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("search", search);
 		//한 페이지당 출력할 목록 갯수 지정
-		int limit = 13;
+		int limit = 15;
 		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem(map);
 		System.out.println("listcount="+listCount);
@@ -556,12 +556,14 @@ try {
 			jarr.add(job);
 		}
 		System.out.println("maxpag="+maxPage);
+		System.out.println("currentPage="+currentPage);
 		json.put("firstlist", jarr);
 		json.put("maxpage", maxPage);
 		json.put("option", option);
 		json.put("search", search);
 		json.put("size",al.size());
 		json.put("listCount", listCount);
+		json.put("currentPage", currentPage);
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();

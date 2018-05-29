@@ -60,11 +60,11 @@
             </div>
             <div class="panel-body" style="overflow:auto;">
           	
-          	<table >
+          	<table style="width: 100%">
           	<tbody id="resulttable">
             <tr>
     		
-    		<c:forEach var="item" items="${firstlist}" begin="0" end="6">
+    		<c:forEach var="item" items="${firstlist}" end="6">
    			<th>
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
@@ -80,7 +80,7 @@
 			<td><label> </label></td>
 			</tr>
 			<tr>		
-			<c:forEach var="item" items="${firstlist}" begin="6">
+			<c:forEach var="item" items="${firstlist}" begin="7" >
    			<th>
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
@@ -155,15 +155,16 @@ function cjsitemsearch(){
 			var count=0;
 			value+="<tr>";
 			console.log(json.size);
+			
 			for (var i in json.firstlist){
 			value+="<th><center><img src='/goodluck/resources/A5.CJS/itemimg/"+json.firstlist[i].ITEMFILENAME+"' style='width: 50px; height: 40px;'>";
 			value+="<br> 이름 : "+json.firstlist[i].ITEMNAME+"<br> 가격 : "+json.firstlist[i].ITEMPRICE+"원 <br> "	;		
 			value+="<button onclick="+"location.href='/goodluck/cjsitemDetail.go?itemno="+json.firstlist[i].ITEMLIST_NO+"'"+">상세보기</button>";
 			value+=" </center></th>";
 			count++;
-				if(count== 7){
-					count--;
-					break;}
+				if(count==7){
+					break;
+				}
 			}
 			
 			value+="</tr><tr><td><label></label></td></tr>";
@@ -178,18 +179,24 @@ function cjsitemsearch(){
 			$("#resulttable").html(value);
 		
    			$("#listcount").text(json.listCount);
-			
-			if (json.maxpage !=0 ){
-			alert("ds");
-			for (i in json.maxpage){
-			$("#itempagingcjs").html('<li><a href="javascript:void(0)" onclick="pageing('+i+');">${item}</a></li>');
-		
-			}
+   			$("#itempagingcjs").html("");
+   			
+   			var value1="";
+			if (json.maxpage <=1 ){
+			value1+='<li class="disable"><a href="javascript:void(0)"><strong>1</strong></a></li>';
 			}else{
-			$("#itempagingcjs").html('<li class="disable"><a href="javascript:void(0)"><strong>1</strong></a></li>');
+			for (var i=1; i<=json.maxpage; i++){
+			value1+='<li><a href="javascript:void(0)" onclick="pageing('+i+');">'+i+'</a></li>';
 			}
+		   }
+			console.log(value1);
+		$("#itempagingcjs").html(value1);
+			
 		
 		
+		},
+		error:function(a,b,c){
+			alert("a : " + a + ", b : " + b + ", c : " + c);
 		}
 	})
 }
@@ -211,20 +218,70 @@ function pageing(page){
 			var jsonStr = JSON.stringify(data);
 			
 			var json = JSON.parse(jsonStr);
-				
-		
-	
 			for(var i in json.searchitem){
-							
+			}
+			$('input:radio[name=cjsoptions]').filter('[value="'+data.option+'"]').attr('checked', true);
+			
+			
+			console.log(json.firstlist);
+			$("#resulttable").html("");
+			var value="";
+			var count=0;
+			value+="<tr>";
+			console.log(json.size);
+			for (var i in json.firstlist){
+			value+="<th><center><img src='/goodluck/resources/A5.CJS/itemimg/"+json.firstlist[i].ITEMFILENAME+"' style='width: 50px; height: 40px;'>";
+			value+="<br> 이름 : "+json.firstlist[i].ITEMNAME+"<br> 가격 : "+json.firstlist[i].ITEMPRICE+"원 <br> "	;		
+			value+="<button onclick="+"location.href='/goodluck/cjsitemDetail.go?itemno="+json.firstlist[i].ITEMLIST_NO+"'"+">상세보기</button>";
+			value+=" </center></th>";
+			count++;
+				if(count==7){
+				break;}
+			}
+			value+="</tr><tr><td><label></label></td></tr>";
+			value+="<tr>";
+			for(var count; count<json.size; count++){
+				value+="<th><center><img src='/goodluck/resources/A5.CJS/itemimg/"+json.firstlist[count].ITEMFILENAME+"' style='width: 50px; height: 40px;'>";
+				value+="<br> 이름 : "+json.firstlist[count].ITEMNAME+"<br> 가격 : "+json.firstlist[count].ITEMPRICE+"원 <br> "	;		
+				value+="<button onclick="+"location.href='/goodluck/cjsitemDetail.go?itemno="+json.firstlist[count].ITEMLIST_NO+"'"+">상세보기</button>";
+				value+=" </center></th>";
 			}
 			
-			$('input:radio[name=cjsoptions]').filter('[value="'+data.option+'"]').attr('checked', true);
-			$("#cjsinputsearch").val(json.search);
-			
-			
-			
+			value+="</tr>";
+			$("#resulttable").html(value);
+		
+   			$("#listcount").text(json.listCount);
+   			
+   			$("#itempagingcjs").html("");
+   			var value1="";
+			if (json.maxpage <=1 ){
+			value1+='<li class="disable"><a href="javascript:void(0)"><strong>1</strong></a></li>';
+			}else{
+			for (var i=1; i<=json.maxpage; i++){
+				
+			if(i == json.currentPage)	
+			value1+='<li class="disable"><a href="javascript:void(0)"><strong>'+i+'</strong></a></li>';	
+			else
+			value1+='<li><a href="javascript:void(0)" onclick="pageing('+i+');">'+i+'</a></li>';
 			
 		}
+
+	}
+			console.log(value1);
+		$("#itempagingcjs").html(value1);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		},
+			error:function(a,b,c){
+					alert("a : " + a + ", b : " + b + ", c : " + c);
+				}
 	})
 }
 
