@@ -19,8 +19,6 @@
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
 	</resultMap>
-	
-	
 	  
 	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
 		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 

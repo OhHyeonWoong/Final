@@ -136,14 +136,15 @@
 		function fnItemReload(page){
 			console.log("fnItemReload(page) = " + page);
 			$.ajax({
-				/* url:"lbjMyQna.go",
+				url:"lbjMyItem.go",
+				type:"post",
 				dataType:"json",
 				data:{
 					member_id: $('#InputId').val(),
 					page: page
 				},
 				success:function(data){
-					var jstr = JSON.stringify(data);
+					/* var jstr = JSON.stringify(data);
 					var json = JSON.parse(jstr);
 					
 					$('#lbjQnaTable').empty();
@@ -198,11 +199,11 @@
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
-					$('#lbjqnaDiv').html(htmlStr);
+					$('#lbjqnaDiv').html(htmlStr); */
 				},
 				error:function(a,b,c){
 					alert("a = " + a + " ,b = " + b + " ,c = " + c);
-				} */
+				}
 			});
 		}
 	</script>

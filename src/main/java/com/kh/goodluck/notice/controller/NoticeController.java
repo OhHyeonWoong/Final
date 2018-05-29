@@ -28,6 +28,13 @@ public class NoticeController {
 		return "A4.BSH/Notice";	
 	}	
 	
+	@RequestMapping("NoticeDetail.go")
+	public String noticeDetailgo() {
+		
+		return "A4.BSH/NoticeDetail";
+	}
+	
+	
 	/*@RequestMapping("NoticeDetail.go")
 	public ModelAndView noticeDetailShow(@RequestParam("notice_no") int notice_no, ModelAndView mv) {
 		

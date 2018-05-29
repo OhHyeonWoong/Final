@@ -48,21 +48,26 @@ $(document).ready(function() {
 					/* console.log("next is mdcate 또는 smcate 가 아님 현재"+button.attr("id")); */
 					flagbg=false;
 				}else{
+					/* 스몰카테고리면 - 미드카테고리 검색도 해야되서 주석처리함
 					if(button.next("li").attr("class") == 'smcate'){
-						/* console.log("smcatepass"); */
+						 console.log("smcatepass"); 
 						button = button.next("li");
-						/* console.log("next했음 현재" +button.attr("id")); */
+						 console.log("next했음 현재" +button.attr("id")); 
 					}else{
-						/* console.log(button.attr("id")); */
+						 console.log(button.attr("id")); 
 						button.next("li").slideDown();
 						button = button.next("li");
-						/* console.log("next했음 현재" +button.attr("id")); */
+						 console.log("next했음 현재" +button.attr("id")); 
 					}
+					*/
+					button.next("li").slideDown();
+					button = button.next("li");
 				}
 			}	
 		}
 	});
 	
+	/*	미드카테고리 눌럿을때 제이쿼리 동작 - 미드카테고리 검색도 해야되서 주석처리함
 	$(".mdcate ").click(function() {
 		var flagmd = true;
 		
@@ -71,30 +76,30 @@ $(document).ready(function() {
 		if(button.next("li").is(":visible")){
 			while(flagmd){
 				if(!(button.next("li").attr("class") == 'smcate')){
-					/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
+					 console.log("next is smcate 가 아님 현재"+button.attr("id")); 
 					flagmd=false;
 				}else{
-					/* console.log(button.attr("id")); */
+					 console.log(button.attr("id")); 
 					button.next("li").slideUp();
 					button = button.next("li");
-					/* console.log("next했음 현재" +button.attr("id")); */
+					 console.log("next했음 현재" +button.attr("id")); 
 				}
 			}
 		}else{
 			while(flagmd){
 				if(!(button.next("li").attr("class") == 'smcate')){
-					/* console.log("next is smcate 가 아님 현재"+button.attr("id")); */
+					 console.log("next is smcate 가 아님 현재"+button.attr("id")); 
 					flagmd=false;
 				}else{
-					/* console.log(button.attr("id")); */
+					 console.log(button.attr("id")); 
 					button.next("li").slideDown();
 					button = button.next("li");
-					/* console.log("next했음 현재" +button.attr("id")); */
+					 console.log("next했음 현재" +button.attr("id")); 
 				}
 			}
 		}
 	});
-	
+	*/
 	
 	
 });

@@ -109,8 +109,8 @@ public class MemberController {
 	    
 	    System.out.println("myItem size = " + myItem.size());
 		
-		if (qnaMaxPage < itemEndRow)
-			itemEndRow = qnaMaxPage;
+		if (itemMaxPage < itemEndRow)
+			itemEndRow = itemMaxPage;
 		
 		HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
 		itemPage.put("itemMaxPage",itemMaxPage);
