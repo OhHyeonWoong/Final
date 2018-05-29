@@ -38,5 +38,12 @@ public class JDK_MemberController {
 			return "A3.JDK/admin_main";
 		}
 		
+		//어드민 페이지 아이템 창 이동용 메소드
+		@RequestMapping(value="jdkadminitemlist.go", method=RequestMethod.GET)
+		public String adminItemManagement() {
+			return "A3.JDK/admin_itemlist";
+		}
+		
+		
 	
 }

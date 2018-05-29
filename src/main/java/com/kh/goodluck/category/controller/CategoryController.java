@@ -51,19 +51,22 @@ public class CategoryController {
 	
 	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
 	public void BigCategoryCount(HttpServletResponse response, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
-		categoryService.bigCategoryCount(bigCategoryCode);
 		/*System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");*/
+		int result = categoryService.bigCategoryCount(bigCategoryCode);
+		/*System.out.println("Result : " + result + " / To.CategoryController");*/
 	}
 	
-	/*@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
+	@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
 	public void MidCategoryCount(HttpServletResponse response, @RequestParam("midCode") String midCategoryCode) throws Exception {		
-		categoryService.bigCategoryCount(midCategoryCode);
-		System.out.println("MidCode : " + midCategoryCode + " / To.CategoryController");		
+		/*System.out.println("MidCode : " + midCategoryCode + " / To.CategoryController");*/
+		int result = categoryService.midCategoryCount(midCategoryCode);
+		/*System.out.println("Result : " + result + " / To.CategoryController");*/
 	}
 	
 	@RequestMapping(value = "SmallCategoryCount.go", method = RequestMethod.GET)
 	public void SmallCategoryCount(HttpServletResponse response, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
-		categoryService.bigCategoryCount(smallCategoryCode);
-		System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");			
-	}*/
+		/*System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");*/
+		int result = categoryService.smallCategoryCount(smallCategoryCode);
+		/*System.out.println("Result : " + result + " / To.CategoryController");*/
+	}
 }

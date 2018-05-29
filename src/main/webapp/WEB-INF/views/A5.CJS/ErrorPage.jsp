@@ -7,16 +7,15 @@
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>가벼운 에러발생</title>
+<title>404 Not Found</title>
 
 </head>
 <body>
-가벼운 에러 발생함. 404
+404 Not Found
 <br>
 추후에 수정함.
 <a href="home.go">
 메인으로 돌아감. </a>
-<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 
 </body>
 </html>
