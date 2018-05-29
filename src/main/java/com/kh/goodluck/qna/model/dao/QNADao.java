@@ -20,7 +20,7 @@ public class QNADao {
 		return sqlSession.selectList("selectMyQna", map);
 	}
 
-	public QNA selectMyDetailQna(QNA q) {
+	public QNA selectMyDetailQna(QnaWrite q) {
 		return sqlSession.selectOne("selectMyDetailQna", q);
 	}
 

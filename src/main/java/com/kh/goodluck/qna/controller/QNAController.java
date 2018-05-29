@@ -37,10 +37,8 @@ public class QNAController {
 	}
 	
 	@RequestMapping("lbjqnadetail.go")
-	public ModelAndView qnaDetailGo(ModelAndView mv,QNA q) {
+	public ModelAndView qnaDetailGo(ModelAndView mv,QnaWrite q) {
 		//qna 디테일로 고고
-		System.out.println(q.getQuestion_writer());
-		System.out.println(q.getQuestion_no());
 		//question and answer 테이블에서 값 꺼내오기
 		QNA myDetailQna = qnaService.selectMyDetailQna(q);
 		QnaAnswer myDetailQnaAnswer = qnaService.selectMyDetailQnaAnswer(q.getQuestion_no());
@@ -57,21 +55,24 @@ public class QNAController {
 	}
 	
 	@RequestMapping("lbjqnawritemethod.go")
-	public String qnaWriteMethod(QnaWrite qnaWrite) {
+	public void qnaWriteMethod(QnaWrite qnaWrite,HttpServletResponse response) throws IOException{
 		//넘어온 qna작성 자료들을 처리
 		/*System.out.println("제목 : " + qna.getQuestion_title());
 		System.out.println("질문자 : " + qna.getQuestion_writer());
 		System.out.println("내용 : " + qna.getQuestion_content());
 		System.out.println("아이디 : " + request.getParameter("member_id"));
 		System.out.println("카테고리 : " + qna.getQuestion_category());*/
-		//도저언
+
 		int result = qnaService.insertMyQna(qnaWrite);
+		PrintWriter out = response.getWriter();
 		if(result > 0) {
-			System.out.println("글 입력 성공!");
+			out.print("게시글 등록 성공");
 		}else {
-			System.out.println("글 입력 실패!");
-		}/*A6.LBJ/myPage*/
-		return "A6.LBJ/myPage";
+			out.print("게시글 등록 실패");
+		}
+		out.flush();
+		out.close();
+		/*A6.LBJ/myPage*/
 	}
 	
 	@RequestMapping(value="lbjMyQna.go")

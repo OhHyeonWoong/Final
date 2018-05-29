@@ -13,17 +13,19 @@ public class MyPageItem implements Serializable{
 	private String itemname;
 	private Date buy_date;
 	private Date start_date;
+	private Date end_date;
 	private int final_status;
 	
 	public MyPageItem() {
 		
 	}
 
-	public MyPageItem(String itemname, Date buy_date, Date start_date, int final_status) {
+	public MyPageItem(String itemname, Date buy_date, Date start_date, Date end_date, int final_status) {
 		super();
 		this.itemname = itemname;
 		this.buy_date = buy_date;
 		this.start_date = start_date;
+		this.end_date = end_date;
 		this.final_status = final_status;
 	}
 
@@ -59,10 +61,19 @@ public class MyPageItem implements Serializable{
 		this.final_status = final_status;
 	}
 
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+
 	@Override
 	public String toString() {
 		return "MyPageItem [itemname=" + itemname + ", buy_date=" + buy_date + ", start_date=" + start_date
-				+ ", final_status=" + final_status + "]";
+				+ ", end_date=" + end_date + ", final_status=" + final_status + "]";
 	}
+	
 	
 }

@@ -10,7 +10,7 @@ public interface QNAService {
 	//myPage 로드시 구동하는 메소드
 	public abstract List<QNA> selectMyQna(HashMap<Object, Object> map);
 	//qna 상세정보 로드 시 사용
-	public abstract QNA selectMyDetailQna(QNA q);
+	public abstract QNA selectMyDetailQna(QnaWrite q);
 	//qna answer 정보 로드 시 사용
 	public abstract QnaAnswer selectMyDetailQnaAnswer(int question_no);
 	//qnaWrite 시 사용
