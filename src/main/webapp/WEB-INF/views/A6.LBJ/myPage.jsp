@@ -144,24 +144,24 @@
 					page: page
 				},
 				success:function(data){
-					/* var jstr = JSON.stringify(data);
+					var jstr = JSON.stringify(data);
 					var json = JSON.parse(jstr);
 					
-					$('#lbjQnaTable').empty();
+					$('#lbjItemTable').empty();
 					
-					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox" value="">전체선택</td>'+
-				'<td class="lbjth" colspan="3" style="text-align:left;"><a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>'+
-				'<td class="lbjth" style="text-align:right;"><a class="btn btn-info btn-xs" href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a></td>'+
-				'</tr><tr><th class="lbjth">선택</th><th class="lbjth">분야</th>'+
-				'<th class="lbjth">제목</th><th class="lbjth">처리상황</th><th class="lbjth">등록일시</th></tr>';
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
+					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
+					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
 					
-					for(var i in json.qna){
-						console.log("json.qna.question_no = " + json.qna[i].question_no);
-						htmlStr += "<tr><td><input type='checkbox' name='chk1' id='chkBox"+i
-						+"' value="+json.qna[i].question_no+"></td><td>"+ json.qna[i].question_category
-						+"</td><td><a href='lbjqnadetail.go?question_writer="+json.qna[i].question_writer+"&question_no="+json.qna[i].question_no+"'>"+json.qna[i].question_title
-					    +"</a></td><td>"+json.qna[i].question_answer_state+"</td><td>"+json.qna[i].question_date+"</td></tr>";
+					for(var i in json.item){
+						console.log("qna 페이징 처리");
+						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
+						'<td>'+json.item[i].buy_date+'</td>'+
+						'<td>'+json.item[i].start_date+'</td>'+
+						'<td>'+json.item[i].end_date+'</td>'+
+						'<td>'+json.item[i].final_status+'</td></tr>';
 					}
+					/* 
 					//페이징 처리//
 					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
 					if(json.qna[0].qnaListCount > 6){
@@ -423,7 +423,7 @@
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
 			<div class="lbjdiv">
-				<table class="table table-striped lbjtable">
+				<table class="table table-striped lbjtable" id="lbjItemTable">
 					<tr><th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>
 					<c:forEach var="item" items="${lbjMyItem}" varStatus="status">
 						<tr>
