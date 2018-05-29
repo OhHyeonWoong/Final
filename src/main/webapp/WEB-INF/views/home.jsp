@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>메인화면</title>
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+
 <script type="text/javascript">
 	$(function(){
 	  $.ajax({
