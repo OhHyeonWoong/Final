@@ -74,7 +74,7 @@
 		
 		
 		
-		$.ajax({
+		/* $.ajax({
 			url :"lifeareasample.go",
 			type : "get",
 			datatype : "json",
@@ -84,9 +84,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 생활영역 제공해요! */
+		});  */
+		/* 생활영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"petareasample.go",
 			type : "get",
 			datatype : "json",
@@ -96,9 +97,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 반려동물영역 제공해요! */
+		});  */
+		/* 반려동물영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"gameareasample.go",
 			type : "get",
 			datatype : "json",
@@ -108,9 +110,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 게임영역 제공해요! */
+		});  */
+		/* 게임영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"musicsample.go",
 			type : "get",
 			datatype : "json",
@@ -120,9 +123,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 음악영역 제공해요! */
+		}); */
+		/* 음악영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"rentalsample.go",
 			type : "get",
 			datatype : "json",
@@ -132,9 +136,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 렌탈영역 제공해요! */
+		});  */
+		/* 렌탈영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"travelsample.go",
 			type : "get",
 			datatype : "json",
@@ -144,9 +149,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 여행영역 제공해요! */
+		});  */
+		/* 여행영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"freesample.go",
 			type : "get",
 			datatype : "json",
@@ -156,9 +162,10 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 프리랜서영역 제공해요! */
+		});  */
+		/* 프리랜서영역 제공해요! */
 		
-		$.ajax({
+		/* $.ajax({
 			url :"requiresample.go",
 			type : "get",
 			datatype : "json",
@@ -168,7 +175,8 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); /* 구인영역 제공해요! */
+		}); */
+		/* 구인영역 제공해요! */
 		
 		
 	});
@@ -192,18 +200,13 @@
 		         	$("#main").attr("background",picture);     
 		         }
 		});
-		
 		$("#topcaro").click(function(){    
 		         //리스트별 컬러추가.
 		         pictures2=["/goodluck/resources/common/img/main/구인.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/생활.jpg"];
-
-		         
 		         for(var i=0; i<8 ; i++){
-		            console.log($("div#"+i+".item.active").attr("id"));
-		            
+		            console.log($("div#"+i+".item.active").attr("id"));	            
 		            if($("div#"+i+".item.active").attr("id") >= 0 )
 		            	picture2=pictures2[$("div#"+i+".item.active").attr("id")];
-		            	
 		         	$("#main").attr("background",picture2);     
 		         }
 		});
