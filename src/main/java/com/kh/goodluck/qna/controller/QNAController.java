@@ -110,8 +110,8 @@ public class QNAController {
 	    map.put("member_id", member_id);
 		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
 		
-		 if (qnaMaxPage < qnaEndRow)
-		 qnaEndRow = qnaMaxPage;
+		if (qnaMaxPage < qnaEndRow)
+		  qnaEndRow = qnaMaxPage;
 		
 		System.out.println("mypage listcount = " + qnaListCount);
 	    System.out.println("mypage qnaStartRow = " + qnaStartRow);
