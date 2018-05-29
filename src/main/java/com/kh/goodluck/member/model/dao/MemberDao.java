@@ -35,6 +35,16 @@ public class MemberDao {
 		//아이디 찾기용 메소드
 		return sqlSession.selectOne("findId", member);
 	}
+
+	public boolean idDuplicate(String id) {
+		//아이디 중복검사용 메소드(전동기)
+		sqlSession.selectOne("idDuplicateCheck", id);
+		if(sqlSession.selectOne(id)==null) {
+		return true;
+		}else {
+		return false;
+		}
+	}
 	
 	
 }

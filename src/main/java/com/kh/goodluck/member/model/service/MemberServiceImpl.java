@@ -36,4 +36,12 @@ public class MemberServiceImpl implements MemberService{
 		//아이디 찾기용 메소드
 		return memberDao.findIdMethod(member);
 	}
+	
+	@Override
+	public boolean idConfirm(String id) {
+		return memberDao.idDuplicate(id); 
+	}
+	
+	
+	
 }
