@@ -843,7 +843,7 @@
 							<li class="col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "HA" onClick = "MidCategoryCount(this.id)">강아지</a></li>
-									<li><a id = "HAA" onClick = "SmallCategoryCount(this.id)">미용</a></li>
+									<li><a id = "HAA" onClick = "SmallCategoryCount(this.id)" href = "Board.go">미용</a></li>
 									<li><a id = "HAB" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
 									<li><a id = "HAC" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
 									<li><a id = "HAD" onClick = "SmallCategoryCount(this.id)">진료</a></li>
@@ -874,7 +874,7 @@
 					   	type:"POST",
 					   	dataType:"json",
 					   	success:
-					   		function(data) {		
+					   		function(data) {
 					   			var jsonStr = JSON.stringify(data);
 								var json = JSON.parse(jsonStr);
 								var bigCategory = "";
