@@ -24,8 +24,8 @@
 			update BIGCATEGORY 
 			set CATEGORY_BIG_VIEWS = (select CATEGORY_BIG_VIEWS 
 										from BIGCATEGORY 
-										where CATEGORY_BIG_CODE = #{category_big_code}) + 1 
-			where CATEGORY_BIG_CODE = #{category_big_code}
+										where CATEGORY_BIG_NAME = #{category_big_name}) + 1 
+			where CATEGORY_BIG_NAME = #{category_big_name}
 		]]>
 	</update>
 	
@@ -34,8 +34,8 @@
 			update MIDCATEGORY 
 			set CATEGORY_MID_VIEWS = (select CATEGORY_MID_VIEWS 
 										from MIDCATEGORY 
-										where CATEGORY_MID_CODE = #{category_mid_code}) + 1 
-			where CATEGORY_MID_CODE = #{category_mid_code}			
+										where CATEGORY_MID_NAME = #{category_mid_name}) + 1 
+			where CATEGORY_MID_NAME = #{category_mid_name}			
 		]]>
 	</update>
 	
@@ -44,8 +44,8 @@
 			update SMALLCATEGORY 
 			set CATEGORY_SMALL_VIEWS = (select CATEGORY_SMALL_VIEWS 
 										from SMALLCATEGORY 
-										where CATEGORY_SMALL_CODE = #{category_small_code}) + 1 
-			where CATEGORY_SMALL_CODE = #{category_small_code}		
+										where CATEGORY_SMALL_NAME = #{category_small_name}) + 1 
+			where CATEGORY_SMALL_NAME = #{category_small_name}		
 		]]>
 	</update>
 	
