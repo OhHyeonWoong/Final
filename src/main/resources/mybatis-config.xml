@@ -21,6 +21,7 @@
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QnaAnswer" alias="QnaAnswer" />
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QnaWrite" alias="QnaWrite" />
 		<typeAlias type="com.kh.goodluck.faq.model.vo.Faq" alias="Faq" />
+		<typeAlias type="com.kh.goodluck.item.model.vo.MyPageItem" alias="MyPageItem"/>
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>    

@@ -12,6 +12,7 @@ import com.kh.goodluck.item.model.dao.Itemdao;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 
 @Service("ItemService")
@@ -185,10 +186,15 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 	// TODO Auto-generated method stub
 	return  itemlistDao.allitemlist2(map);
 }
-
-
-
-
-
+	
+	//made by byung jun
+	@Override
+	public int selectMyPageItemListCount(String member_id) {
+		return itemlistDao.selectMyPageItemListCount(member_id);
+	}
+	@Override
+	public List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map) {
+		return itemlistDao.selectMyPageItem(map);
+	}
 
 }
