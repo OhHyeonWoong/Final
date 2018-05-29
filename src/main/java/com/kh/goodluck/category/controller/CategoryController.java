@@ -52,14 +52,12 @@ public class CategoryController {
 	}	
 	
 	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
-	public ModelAndView BigCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
+	public void BigCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
 		System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");
 		int result = categoryService.bigCategoryCount(bigCategoryCode);
 		System.out.println("Result : " + result + " / To.CategoryController");
 		
-		mav.addObject("bshtest.go?link2_no=" + bigCategoryCode);
-		System.out.println();
-		return mav;
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + bigCategoryCode);
 	}
 	
 	@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
