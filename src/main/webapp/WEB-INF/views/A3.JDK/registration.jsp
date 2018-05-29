@@ -96,17 +96,6 @@ function pwdchecking(){
  		submition = false;
  	}
  }
-
-////////////////////////////////////////////////////////////////////////////////////////////
-/* 정규식 적용 */
-/* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
-// 현재 정규식이 필요한 항목은 다음과 같다.
-// 아이디, 패스워드, 이메일, 전화 번호, 주민등록번호
-// 그리고 3가지 조건이 추가로 필요하다
-// 1. 비밀번호 확인 부분이 다를 경우 false
-// 2. 아이디를 중복 검사하지 않았을 경우 false
-// 3. 이메일 인증을 받고 인증코드를 작성하지 않았을 경우 false
-// 4. 정규식 항목 통과하지 못했을 경우 false
 function idConfirmation(){
 	$.ajax({
 		url: "jdkIdConfirmation.go",
@@ -114,8 +103,11 @@ function idConfirmation(){
 		dataType:"text",
 		type:"GET",
 		success:
-			function(){
+			function(result){
+			if(result==true){
 			alert("사용하실 수 있는 아이디 입니다");
+			idConfirmed=true;
+			}
 		},
 		error: function(){
 			alert("아이디 인증 실패!!");
@@ -139,7 +131,26 @@ function emailConfirmation(){
 	});	
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
+/* 정규식 적용 */
+/* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
+// 현재 정규식이 필요한 항목은 다음과 같다.
+// 아이디, 패스워드, 이메일, 전화 번호, 주민등록번호
+// 그리고 3가지 조건이 추가로 필요하다
+// 1. 비밀번호 확인 부분이 다를 경우 false
+// 2. 아이디를 중복 검사하지 않았을 경우 false
+// 3. 이메일 인증을 받고 인증코드를 작성하지 않았을 경우 false
+// 4. 정규식 항목 통과하지 못했을 경우 false
+
+
 function signIn(){
+//정규식 목록
+//1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
+var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+
+
+
+	
 	
 	return submition;
 }
@@ -167,7 +178,7 @@ function signIn(){
 					<label for="userid">아이디</label>
 					<div class="input-group">
 					<!-- 아이디 -->
-					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="아이디(최소 8자 )" required="required">
+					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가" required="required">
 					<span class="input-group-btn"><a href="javascript: idConfirmation();" class="btn btn-default" style="">
 					<i class = "fa fa-search"></i> 중복검사</a></span>
 					</div>

@@ -13,35 +13,28 @@ public class MemberDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public MemberDao() {
-		
 	}
-	
 	public Member loginCheck(Member member) {
 		//로그인용 메소드
 		return sqlSession.selectOne("loginCheck", member);
 	}
-
 	public int findPwdMethod(Member member) {
 		//비밀번호 재설정용 메소드
 		return sqlSession.update("fwdChange", member);
 	}
-
 	public Member emailCheckMethod(String tomail) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("emailCheck",tomail);
 	}
-
 	public Member findIdMethod(Member member) {
 		//아이디 찾기용 메소드
 		return sqlSession.selectOne("findId", member);
 	}
-
-	public boolean idDuplicate(String id) {
+	public boolean idDuplicate(String member_id) {
 		//아이디 중복검사용 메소드(전동기)
-		sqlSession.selectOne("idDuplicateCheck", id);
-		if(sqlSession.selectOne(id)==null) {
+		if(sqlSession.selectOne("idDuplicateCheck", member_id)==null) {
 		return true;
-		}else {
+		}else{
 		return false;
 		}
 	}

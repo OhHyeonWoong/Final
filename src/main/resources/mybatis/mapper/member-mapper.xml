@@ -93,7 +93,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 
 <select id="idDuplicateCheck" parameterType="String" resultType="String">
 		<![CDATA[
-		select MEMBER_ID from MEMBER where MEMBER_ID= #{}
+		select MEMBER_ID from MEMBER where MEMBER_ID= #{member_id}
 		]]>
 </select>
 

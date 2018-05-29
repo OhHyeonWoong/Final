@@ -31,10 +31,9 @@ public class JDK_MemberController {
 		}
 		
 		@RequestMapping(value="jdkIdConfirmation.go", method=RequestMethod.GET)
-		public void idcheck(HttpServletRequest request, HttpServletResponse response, String id) {
-			memberService.idConfirm(request.getParameter("id"));
+		public boolean idcheck(HttpServletRequest request, HttpServletResponse response, String member_id) {
+			return memberService.idConfirm(request.getParameter("id"));
 		}
-		
 		
 		//어드민 페이지 관련 메소드
 		//어드민 페이지 이동용 메소드

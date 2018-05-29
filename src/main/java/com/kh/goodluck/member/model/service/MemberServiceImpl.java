@@ -38,8 +38,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public boolean idConfirm(String id) {
-		return memberDao.idDuplicate(id); 
+	public boolean idConfirm(String member_id) {
+		return memberDao.idDuplicate(member_id); 
 	}
 	
 	

@@ -7,5 +7,5 @@ public interface MemberService {
 	public abstract int findPwdMethod(Member member);
 	public abstract Member emailCheckMethod(String tomail);
 	public abstract Member findIdMethod(Member member);
-	public abstract boolean idConfirm(String id);
+	public abstract boolean idConfirm(String member_id);
 }
