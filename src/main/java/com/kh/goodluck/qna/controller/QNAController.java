@@ -119,13 +119,6 @@ public class QNAController {
 	    System.out.println("mypage qnaMaxPage = " + qnaMaxPage);
 		////qna 처리용 오브젝트
 		//보내기용 arraylist생성
-		/*HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
-		qnaPage.put("qnaMaxPage",qnaMaxPage);
-		qnaPage.put("qnaStartRow",qnaStartRow);
-		qnaPage.put("qnaEndRow",qnaEndRow);
-		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
-		qnaPage.put("qnaListCount",qnaListCount);*/
-
 		//출력용 JSON 오브젝트
 	    JSONObject jobj = new JSONObject();
 		JSONArray jarr = new JSONArray();		

@@ -2,6 +2,7 @@ package com.kh.goodluck.item.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -66,32 +67,30 @@ public class BJLeeItemController {
 	    JSONObject jobj = new JSONObject();
 		JSONArray jarr = new JSONArray();		
 		
-		/*for(int i=0;i<myQna.size();i++) {
+		for(int i=0;i<myItem.size();i++) {
 			//저 위의 페이징 처리 데이터들을 vo에 넣자
 			JSONObject job2 = new JSONObject();
-			job2.put("question_no", myQna.get(i).getQuestion_no());
-			System.out.println("myQna.get(i).getQuestion_no()" + myQna.get(i).getQuestion_no());
-			job2.put("question_category", myQna.get(i).getQuestion_category());
-			job2.put("question_answer_state", myQna.get(i).getQuestion_answer_state());
-			job2.put("question_content", myQna.get(i).getQuestion_content());
-			job2.put("question_title", myQna.get(i).getQuestion_title());
-			job2.put("question_writer", myQna.get(i).getQuestion_writer());
-			job2.put("question_date", myQna.get(i).getQuestion_date().toString());
+			job2.put("itemname", myItem.get(i).getItemname());
+			job2.put("buy_date", myItem.get(i).getBuy_date().toString());
+			job2.put("start_date", myItem.get(i).getStart_date().toString());
+			job2.put("end_date", myItem.get(i).getEnd_date().toString());
+			job2.put("final_status", myItem.get(i).getFinal_status());
 			if(i == 0) {
-				job2.put("qnaMaxPage", qnaMaxPage);
+				job2.put("itemMaxPage", itemMaxPage);
 				job2.put("qnaStartPage", qnaStartPage);
-				job2.put("qnaEndRow", qnaEndRow);
+				job2.put("itemEndRow", itemEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
-				job2.put("qnaListCount", qnaListCount);
+				job2.put("itemListCount", itemListCount);
+				
 			}
 			jarr.add(job2);
 		}
 		
-		jobj.put("qna", jarr);
+		jobj.put("item", jarr);
 		
 		PrintWriter out = response.getWriter();
 		out.print(jobj.toJSONString());
 		out.flush();
-		out.close();*/
+		out.close();
 	}
 }
