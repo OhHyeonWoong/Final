@@ -74,6 +74,11 @@ public class ItemController {
 		ArrayList<ITEMLIST> al1= (ArrayList<ITEMLIST>)ItemService.homepopularlitm();
 		
 		//카로셀에 넣을것.
+		//카로1 (이달의 랜덤박스 정보 pk만 뽑아오기.)
+		
+		
+		
+		
 		
 		//공지사항
 		ArrayList<ItemNotice> al3=(ArrayList<ItemNotice>)ItemService.notice();
@@ -538,10 +543,13 @@ try {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<ITEMLIST> al = null;
-		if(option==1)
+		if(option==1) {
 		al= (List<ITEMLIST>)ItemService.allitemlist1(map);
-		else
+		System.out.println("옵션1번실행");
+		}else {
 		al= (List<ITEMLIST>)ItemService.allitemlist2(map);
+		System.out.println("옵션2번실행");
+		}
 		
 		JSONObject json = new JSONObject();
 		

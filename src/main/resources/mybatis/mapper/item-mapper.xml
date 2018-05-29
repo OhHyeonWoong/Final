@@ -37,7 +37,7 @@ select * from
 (select ROWNUM AS RNUM, A.* FROM  
 (select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
 A WHERE ROWNUM < #{endRow}) 
-WHERE RNUM >= #{startRow} order by ITEMLIST_NO desc 	
+WHERE RNUM >= #{startRow}
 ]]>
 </select>
 
@@ -45,9 +45,9 @@ WHERE RNUM >= #{startRow} order by ITEMLIST_NO desc
 <![CDATA[
 select * from 
 (select ROWNUM AS RNUM, A.* FROM  
-(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMSELLCOUNT desc)  
 A WHERE ROWNUM < #{endRow}) 
-WHERE RNUM >= #{startRow} order by ITEMSELLCOUNT desc 	
+WHERE RNUM >= #{startRow} 
 ]]>
 </select>
 

@@ -114,44 +114,108 @@ $(document).ready( function() {
            
            
            
-           
+       <style>
+@import url(https://fonts.googleapis.com/css?family=Lato:700);
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: 5px solid #2980b9;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 15px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 18px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.ribbon-top-left::before {
+  top: 0;
+  right: 0;
+}
+.ribbon-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
+}
+       
+       </style>    
            <!--카로셀 시작 -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-         
-    
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-      
-        <div class="item active">
-         
-         
-         
-            <h3>1</h3>
-           
-        
-        
-        
-        
-        </div><!-- End Item -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner ">
+    <div class="item active">
+     <div class="box">
+	<div class="ribbon ribbon-top-left"><span>6월 한정</span></div>
+	</div>
+      <img src="/goodluck/resources/A5.CJS/itemmallcaros/bg.png" style="width:100%; height: 250px;">
+      <div class="carousel-caption" >
+         <table>
+           <tr>
+           <th> 
+          	<img src="/goodluck/resources/A5.CJS/itemmallcaros/fdsadadsf.png" style="width:100%; height: 100%; float:left;">
+          	</th>
+           <th width="100"></th>
+           <th>
+           <table style="width:100%">
+           <tr><th><h2>6월의 랜덤박스</h2></th></tr>
+           <tr><th height="10">여름의 시작 새로운 랜덤박스와 다시</th></tr>
+           <tr><th>한정판 아이콘 포함</th></tr>
+           <tr><th>2018-06 한정      <button>바로가기</button></th></tr>
+           </table>
+           </th>
+          </tr>
+           </table>
+           </div>
+         </div><!-- End Item -->
  
-         <div class="item">
-          <img src="http://placehold.it/1200x400/999999/cccccc">
+        <div class="item">
+          <img src="/goodluck/resources/A5.CJS/itemmallcaros/adsoit57y24d.png" style="width:100%; height: 250px;">
            <div class="carousel-caption">
             <h3>2</h3>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <a href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank" class="label label-danger">Bootstrap 3 - Carousel Collection</a></p>
           </div>
         </div><!-- End Item -->
-        
+     
         <div class="item">
-          <img src="http://placehold.it/1200x400/dddddd/333333">
-           <div class="carousel-caption">
+       <img src="/goodluck/resources/A5.CJS/itemmallcaros/maxresdefault.jpg" style="width:100%; height: 250px;">
+     <div class="carousel-caption">
             <h3>3</h3>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. <a href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank" class="label label-danger">Bootstrap 3 - Carousel Collection</a></p>
           </div>
         </div><!-- End Item -->
         
         <div class="item">
-          <img src="http://placehold.it/1200x400/999999/cccccc">
+          <img src="/goodluck/resources/A5.CJS/itemmallcaros/sdffxxdas.jpg" style="width:100%; height: 250px;">
            <div class="carousel-caption">
             <h3>4</h3>
             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
