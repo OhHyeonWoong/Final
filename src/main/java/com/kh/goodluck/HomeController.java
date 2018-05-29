@@ -38,7 +38,7 @@ public class HomeController {
 	public String home() { 	//메인화면 이동용 메소드
 		logger.info("HomeController Run");		
 		return "home";
-	}	
+	}		
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
 	public void CatchNoticeData(HttpServletRequest request , HttpServletResponse response) throws IOException {
