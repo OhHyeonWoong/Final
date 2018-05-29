@@ -14,7 +14,7 @@
 	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
 		하라는 뜻임 -->
 		
-	<!-- <bean id="dataSource"
+	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName"
@@ -23,9 +23,9 @@
 		<property name="username" value="final" />
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
-	</bean> -->
+	</bean>
 
-	<bean id="dataSource"
+	<!-- <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName"
@@ -34,7 +34,7 @@
 		<property name="username" value="final" />
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
-	</bean>
+	</bean> -->
 	
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"

@@ -14,7 +14,7 @@
 				location.href("Notice.go");
 			}
 		
-			$(function(){
+			$(function(){  
 				$("#AdminAlter").on("click",function(){ /* 게시글수정은 운영자가 Ajax를 통하여 가능하도록한다. */
 					$.ajax({
 						url : ,
