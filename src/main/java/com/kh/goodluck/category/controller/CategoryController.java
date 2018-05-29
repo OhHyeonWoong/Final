@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.category.model.service.CategoryService;
 import com.kh.goodluck.category.model.vo.Category;
@@ -50,23 +52,33 @@ public class CategoryController {
 	}	
 	
 	@RequestMapping(value = "BigCategoryCount.go", method = RequestMethod.GET)
-	public void BigCategoryCount(HttpServletResponse response, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
-		/*System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");*/
+	public ModelAndView BigCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("bigCode") String bigCategoryCode) throws Exception {		
+		System.out.println("BigCode : " + bigCategoryCode + " / To.CategoryController");
 		int result = categoryService.bigCategoryCount(bigCategoryCode);
-		/*System.out.println("Result : " + result + " / To.CategoryController");*/
+		System.out.println("Result : " + result + " / To.CategoryController");
+		
+		mav.addObject("bshtest.go?link2_no=" + bigCategoryCode);
+		System.out.println();
+		return mav;
 	}
 	
 	@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
-	public void MidCategoryCount(HttpServletResponse response, @RequestParam("midCode") String midCategoryCode) throws Exception {		
+	public ModelAndView MidCategoryCount(HttpServletResponse response, ModelAndView mav,@RequestParam("midCode") String midCategoryCode) throws Exception {		
 		/*System.out.println("MidCode : " + midCategoryCode + " / To.CategoryController");*/
 		int result = categoryService.midCategoryCount(midCategoryCode);
 		/*System.out.println("Result : " + result + " / To.CategoryController");*/
+		
+		mav.setViewName(midCategoryCode);
+		return mav;
 	}
 	
 	@RequestMapping(value = "SmallCategoryCount.go", method = RequestMethod.GET)
-	public void SmallCategoryCount(HttpServletResponse response, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
-		/*System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");*/
+	public ModelAndView SmallCategoryCount(HttpServletResponse response, ModelAndView mav, @RequestParam("smallCode") String smallCategoryCode) throws Exception {		
+		System.out.println("SmallCode : " + smallCategoryCode + " / To.CategoryController");
 		int result = categoryService.smallCategoryCount(smallCategoryCode);
-		/*System.out.println("Result : " + result + " / To.CategoryController");*/
+		System.out.println("Result : " + result + " / To.CategoryController");
+		
+		mav.setViewName(smallCategoryCode);
+		return mav;
 	}
 }

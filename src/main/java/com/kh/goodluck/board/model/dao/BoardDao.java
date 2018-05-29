@@ -68,6 +68,13 @@ public class BoardDao {
 		
 		return sqlSession.selectList("selectCategoryLink2");
 	}
+
+
+
+	public List<Board> selectCategoryMid(Board board) {
+		
+		return sqlSession.selectList("selectCategoryMid", board);
+	}
 	
 	
 	

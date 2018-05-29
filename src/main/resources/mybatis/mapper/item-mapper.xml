@@ -16,7 +16,12 @@
 
 <select id="homenewltem" resultMap="itemResult">
 <![CDATA[
-	select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) where rownum <= 8
+SELECT * 
+   FROM (
+select * from ITEMLIST where itemfilename not like '%gif%'
+ORDER BY DBMS_RANDOM.VALUE 
+)  
+WHERE ROWNUM <= 8
 ]]>
 </select>
 
@@ -37,7 +42,7 @@ select * from
 (select ROWNUM AS RNUM, A.* FROM  
 (select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
 A WHERE ROWNUM < #{endRow}) 
-WHERE RNUM >= #{startRow} order by ITEMLIST_NO desc 	
+WHERE RNUM >= #{startRow}
 ]]>
 </select>
 
@@ -45,9 +50,9 @@ WHERE RNUM >= #{startRow} order by ITEMLIST_NO desc
 <![CDATA[
 select * from 
 (select ROWNUM AS RNUM, A.* FROM  
-(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMSELLCOUNT desc)  
 A WHERE ROWNUM < #{endRow}) 
-WHERE RNUM >= #{startRow} order by ITEMSELLCOUNT desc 	
+WHERE RNUM >= #{startRow} 
 ]]>
 </select>
 
@@ -94,5 +99,26 @@ select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_
 		and mi.MEMBER_ID = #{member_id}) 
 		where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>
+</select>
+
+
+<select id="newitemthismonth" resultType="itemlist">
+<![CDATA[
+select * from (select * from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE != 8 order by ITEMLIST_NO desc ) where rownum <= 1
+]]>
+</select>
+
+<select id="popitemthismonth" resultType="itemlist">
+<![CDATA[
+select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMSELLCOUNT desc) where rownum <= 1
+]]>
+</select>
+
+<select id="randomitem" resultType="itemlist">
+select * from ITEMLIST where ITEMTYPE=8 and ITEMPRICE = (select  max(ITEMPRICE) from ITEMLIST where ITEMTYPE=8)
+</select>
+
+<select id="getpackitemsinfo" parameterType="int" resultType="itemlist">
+select * from ITEMLIST where ITEMLIST_NO = #{a}
 </select>
 </mapper>

@@ -53,4 +53,9 @@ public class BoardService {
 		
 		return boardDao.selectCategoryLink2();
 	}
+
+	public List<Board> selectCategoryMid(Board board) {
+		
+		return boardDao.selectCategoryMid(board);
+	}
 }

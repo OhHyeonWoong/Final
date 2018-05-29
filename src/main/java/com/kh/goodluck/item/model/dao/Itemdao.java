@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
+import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.vo.Member;
@@ -179,6 +180,38 @@ public class Itemdao {
 	public List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map) {
 		//마이페이지 아이템 가져오는 메소드
 		return sqlSession.selectList("selectMyPageItem", map);
+	}
+
+
+	public ITEMLIST newitemthismonth() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("newitemthismonth");
+	}
+
+
+	public ITEMLIST popitemthismonth() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("popitemthismonth");
+	}
+
+
+
+
+	public ItemPackage getitempackage() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitempackage");
+	}
+
+
+	public ITEMLIST getpackitemsinfo(int a) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getpackitemsinfo",a);
+	}
+
+
+	public ITEMLIST randomitem() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("randomitem");
 	}
 	
 }
