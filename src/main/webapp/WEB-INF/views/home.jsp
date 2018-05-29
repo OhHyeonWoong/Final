@@ -10,14 +10,166 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$.ajax({
-			url : "maintop5.go",
+	  $.ajax({
+			url : "noticetop5.go",
 			type : "get",
-			success : function(){
-				alert("테스트용 알럿트창")
-			}
+			datatype : "json",
+			success : function(data){
+				/* alert("추가가 완료되었습니다."); */
+				/* console.log("success : " + data); */
+				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+				/* console.log(jsonStr); */
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
 			
-		});
+			 	var tablevalue="<tr>";
+				
+			 	for(var i in json.noticeTop5list){
+				//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
+			 	//decodeURIComponent(json.noticeTop5list[i].notice_title) ??? 인코딩??
+			 	
+			 	tablevalue += "<td>"+json.noticeTop5list[i].notice_no+"</td><td><a href='ndetail.go?no="+json.noticeTop5list[i].notice_no+"'>"+decodeURIComponent(json.noticeTop5list[i].notice_title)+"</a></td><td>"+decodeURIComponent(json.noticeTop5list[i].notice_writer)+"</td><td>"+json.noticeTop5list[i].notice_date+"</td></tr>";
+
+				}
+			 	$("#j1").append(tablevalue); 
+			},
+			error:function(a,b,c){
+				alert(a + ", " + b + ", " + c);
+			}			
+			
+			/* error: function(jqXHR, textStatus, errorThrown){
+				console.log("error : " + jqXHR + ", " 
+						+ textStatus + ", " + 
+						errorThrown);
+			} */
+			
+		}); /* 공지사항 top5 Ajax끝 */ 
+		
+		$.ajax({
+			url : "faqtop5.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				alert("진입 테스트용 출력문");
+				var jsonStr = JSON.stringify(data); //객체를 문자열로 변환
+				console.log(jsonStr);
+				var json = JSON.parse(jsonStr) //문자열을 배열 객체로 바꿈	
+				var values="<tr>";
+				
+				for(var i in json.faqTop5list){
+					values+="<td>"+json.faqTop5list[i].faq_no+"</td><td>"+json.faqTop5list[i].faq_category+"</td><td>"+json.faqTop5list[i].faq_title+"</td></tr>";
+				}
+				$("#j2").append(values);
+				
+				/* js.put("faq_no", f.getFaq_no());
+				js.put("faq_category", f.getFaq_category());
+				js.put("faq_title", f.getFaq_title());
+				js.put("faq_content", f.getFaq_content()); */
+			},
+			error:function(a,b,c){
+				alert(a + ", " + b + ", " + c);
+			}		
+		}); /* FAQ top5 Ajax끝 */
+		
+		
+		
+		$.ajax({
+			url :"lifeareasample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 생활영역 제공해요! */
+		
+		$.ajax({
+			url :"petareasample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 반려동물영역 제공해요! */
+		
+		$.ajax({
+			url :"gameareasample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 게임영역 제공해요! */
+		
+		$.ajax({
+			url :"musicsample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 음악영역 제공해요! */
+		
+		$.ajax({
+			url :"rentalsample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 렌탈영역 제공해요! */
+		
+		$.ajax({
+			url :"travelsample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 여행영역 제공해요! */
+		
+		$.ajax({
+			url :"freesample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 프리랜서영역 제공해요! */
+		
+		$.ajax({
+			url :"requiresample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 구인영역 제공해요! */
+		
+		
 	});
 
 </script>
@@ -649,7 +801,7 @@
 									</dl>
 								</div>
 							</div>
-						
+							
 			<table class="ohw-home-table"> <!-- main화면 data-slide-to="0" -->					
 				<tr>
 					<td class = "ohw-home-table-td" align = "center" style="padding: 0; Sectiongin: 0;">
@@ -715,13 +867,9 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">독신사 공지사항</font>								
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<table class="jwj-innertable" id="j1" border="1">
+										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td></tr>
+
 									</table>								
 								</td>
 							</tr>
@@ -732,13 +880,8 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문?!!..FAQ</font>								
-									<table class="jwj-innertable" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-										<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-										<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+									<table class="jwj-innertable" id="j2" border="1">
+										<tr><td>번호</td><td>카테고리</td><td>제목</td></tr>
 									</table>								
 								</td>
 							</tr>
@@ -772,10 +915,7 @@
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				
-				<table id="ukjae_TableAreaSecond">					
-						<!-- width: 285px; 
-						height: 220px; 	 -->			
-				
+				<table id="ukjae_TableAreaSecond">							
 					<tr>
 						<td><img id="low_image" alt="첫번째 이미지" src="/goodluck/resources/common/img/life/생활1.jpg"></td> 	
 						<td> 거실로 꾸미기, 가벽 세우고<br>화이트 톤 으로 패인팅<br>(서비스 제공자 : 홍 길 동) </td>	
@@ -786,7 +926,6 @@
 					</tr>
 				</table>
 				<div id="ukjae_Areaspace"></div>					
-
 				<table id="ukjae_TableAreaSecond">					
 					<tr>
 						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/life/생활3.jpg"></td> 
@@ -797,11 +936,8 @@
 						<td> 수납은 기본, 바다를 닮은<br>좁안 아이방 만들기!!<br>(서비스 제공자 : 정 욱 재)</td>					
 					</tr>
 				</table>
-
 				<br>
-				
 		    </div>			
-
 		    <div class="item"> 
 
  						<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="이미지준비중.." />

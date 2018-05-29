@@ -44,4 +44,9 @@ public class FaqDao {
 		return sqlSession.selectList("faqLogList");
 	}
 
+	public List<Faq> faqTop5() {
+		
+		return sqlSession.selectList("faqTop5");
+	}
+
 }

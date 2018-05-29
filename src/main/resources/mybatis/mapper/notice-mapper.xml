@@ -15,7 +15,7 @@
 	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
 		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
 	     notice_content, notice_date from (select * from notice order 
-	     by notice_no desc)) where rnum>=1 and rnum<=3]]>		
+	     by notice_no desc)) where rnum>=1 and rnum<=4]]>		
 	</select>
 	
 </mapper>

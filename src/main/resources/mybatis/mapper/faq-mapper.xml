@@ -30,6 +30,11 @@
 	<select id="faqLogList" resultMap="FaqList">
 		<![CDATA[select * from FAQ where faq_category='로그인 관련']]>
 	</select>
+	
+	<select id="faqTop5" resultMap="FaqList">
+		<![CDATA[select * from (select rownum rnum, faq_no, faq_category, faq_title, faq_content from (select * from FAQ order by faq_no desc)) where rnum>=1 and rnum<=5]]>
+	</select>
 
+	
 	
 </mapper>
