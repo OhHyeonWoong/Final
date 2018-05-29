@@ -96,6 +96,14 @@
 		]]>
 	</select>
 	
+	<select id="mainPageShowLifeListPic" resultMap="BoardResult">
+		<![CDATA[ ]]> <!-- 서비스영역이 생활인 부분에서 현재 거래가 가능한 사람의 목록샘플을 추출 -->
+	</select>
+	
+	<select id="mainPageShowPetListPic" resultMap="BoardResult">
+		<![CDATA[ ]]> <!-- 서비스영역이 생활인 부분에서 현재 거래가 가능한 사람의 목록샘플을 추출 -->
+	</select>
+	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

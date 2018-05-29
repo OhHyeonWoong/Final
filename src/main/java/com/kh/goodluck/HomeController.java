@@ -15,6 +15,7 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.faq.model.service.FaqService;
 import com.kh.goodluck.faq.model.vo.Faq;
@@ -32,6 +33,9 @@ public class HomeController {
 	
 	@Autowired
 	private FaqService faqService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
@@ -113,9 +117,24 @@ public class HomeController {
 	@RequestMapping(value="lifeareasample.go", method=RequestMethod.POST)
 	public void CatchLifeData(HttpServletRequest request , HttpServletResponse response) throws IOException{
 	
-		ArrayList<Board> lifesupply = new ArrayList<Board>(); //생활 서비스 제공해요			
+		ArrayList<Board> lifesupply = (ArrayList<Board>) boardService.mainShowLifeListPickUp();		
 		
+		System.out.println("메인에 보여질 생활영역 제공해요 목록 : "+lifesupply.toString());
+
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
 		
+		for(Board b : lifesupply) {
+			JSONObject js = new JSONObject();
+			
+			jarr.add(js);
+		}
+		json.put("lifearea_mainshowlist", jarr);
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json.toString());
+		out.flush();
+		out.close();
 	}
 	
 	/////////////////////////여기까지 생활영역화면//////////////////////////////
@@ -124,6 +143,7 @@ public class HomeController {
 	public void CatchPetData(HttpServletRequest request , HttpServletResponse response) throws IOException{
 		
 		//반려동물 서비스 제공해요
+		ArrayList<Board> petSupply =  (ArrayList<Board>) boardService.mainShowPetListPickUp();
 	}
 	
 	////////////////////////여기까지 반려동물화면//////////////////////////////

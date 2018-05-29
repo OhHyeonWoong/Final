@@ -63,7 +63,4 @@ public class Outside_M implements java.io.Serializable {
 	}
 	
 	
-
-	
-	
 }
