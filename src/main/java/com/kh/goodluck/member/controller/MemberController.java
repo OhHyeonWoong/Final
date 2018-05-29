@@ -51,35 +51,56 @@ public class MemberController {
 		if(request.getParameter("page") != null) {
 			qnaCurrentPage = Integer.parseInt(request.getParameter("page"));
 		}
+		System.out.println("qnaCurrentPage = " + qnaCurrentPage);
 		/*
 		 * 2. 한 페이지 당 데이터 갯수 셋팅
 		 */
-		int limit = 6;
+		int qnaLimit = 6;
 		/*
 		 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
 		 */
-		int listCount = qnaService.selectMyQnaCount(member_id);
-		int maxPage = (int)((double)listCount / limit + 0.9);
+		int qnaListCount = qnaService.selectMyQnaCount(member_id);
+		int qnaMaxPage = (int)((double)qnaListCount / qnaLimit + 0.9);
 		/*
 		 * 4. startRow 와 endRow 계산
 		 */
-		int startRow = (qnaCurrentPage - 1) * limit + 1;
-	    int endRow = startRow + limit - 1;
+		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
+		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
+	    int qnaEndRow = qnaStartRow + qnaLimit - 1;
+
+	    System.out.println("qnaListCount = " + qnaListCount);
+	    System.out.println("qnaMaxPage = " + qnaMaxPage);
+	    System.out.println("qnaStartRow = " + qnaStartRow);
+	    System.out.println("qnaEndRow = " + qnaEndRow);
+	    
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();
-	    map.put("startRow", startRow);
-	    map.put("endRow", endRow);
+	    map.put("startRow", qnaStartRow);
+	    map.put("endRow", qnaEndRow);
 	    map.put("member_id", member_id);
 		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
 		
+		if (qnaMaxPage < qnaEndRow)
+			qnaEndRow = qnaMaxPage;
+		
+		for(int i=0;i<myQna.size();i++) {
+			System.out.println("myQna.get(i) = " + myQna.get(i).toString());
+		}
+		
 		////qna 처리용 오브젝트
+		//보내기용 arraylist생성
+		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
+		qnaPage.put("qnaMaxPage",qnaMaxPage);
+		qnaPage.put("qnaStartPage",qnaStartRow);
+		qnaPage.put("qnaEndRow",qnaEndRow);
+		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
+		qnaPage.put("qnaListCount",qnaListCount);
 		mv.addObject("lbjMyQna", myQna);
-		mv.addObject("maxPage",maxPage);
-	    mv.addObject("qnaCurrentPage",qnaCurrentPage);
-	    mv.addObject("listCount",listCount);
-	    /*System.out.println("mypage listcount = " + listCount);
-		System.out.println("mypage maxPage = " + maxPage);
-		System.out.println("mypage member_id = " + member_id);
-		System.out.println("mypage currentPage = " + currentPage);*/
+		mv.addObject("qnaPage",qnaPage);
+	    System.out.println("mypage listcount = " + qnaListCount);
+	    System.out.println("mypage qnaStartPage = " + qnaStartPage);
+	    System.out.println("mypage qnaEndRow = " + qnaEndRow);
+	    System.out.println("mypage qnaMaxPage = " + qnaMaxPage);
+		
 	    ////qna 처리 end
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;

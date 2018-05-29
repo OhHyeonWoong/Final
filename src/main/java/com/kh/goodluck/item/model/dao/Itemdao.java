@@ -137,32 +137,37 @@ public class Itemdao {
 
 
 	public int upgradeboardcount(String memberid) {
-		
 		return sqlSession.update("upgradeboardcount",memberid);
 	}
-
-
 	public int upgradekeywordcount(String memberid) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("upgradekeywordcount",memberid);
 	}
-
-
 	public int getitemlistno(int useritempk) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitemlistno",useritempk);
 	}
-
-
 	public List<ITEMLIST> allitemlist(HashMap<Object,Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("allitemlist",map);
 	}
-
-
 	public int countitem() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("countitem");
+	}
+	public int countitem(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("countitem1",map);
+	}
+	public List<ITEMLIST> allitemlist1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("allitemlist1",map);
+	}
+
+
+	public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("allitemlist2",map);
 	}
 	
 }

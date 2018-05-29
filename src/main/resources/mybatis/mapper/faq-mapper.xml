@@ -3,7 +3,7 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="faq-mapper">
-	
+	  
 	<resultMap id="FaqList" type="Faq">
 		<result property="faq_no" column="faq_no"/>
 		<result property="faq_category" column="faq_category"/>

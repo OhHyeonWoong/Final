@@ -56,6 +56,83 @@
 		function fnDeleteQna(){
 			
 		}
+		
+		function fnQnaReload(page){
+			console.log("fnQnaReload(page) = " + page);
+			$.ajax({
+				url:"lbjMyQna.go",
+				dataType:"json",
+				data:{
+					member_id: $('#InputId').val(),
+					page: page
+				},
+				success:function(data){
+					var jstr = JSON.stringify(data);
+					var json = JSON.parse(jstr);
+					
+					//$('#lbjQnaTable').empty();
+					$('#lbjQnaTable').empty();
+					/* $('#lbjQnaTable').removeClass("table table-striped lbjtable");
+					$('#lbjQnaTable').addClass("table table-striped lbjtable"); */
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox" value="">전체선택</td>'+
+				'<td class="lbjth" colspan="3" style="text-align:left;"><a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>'+
+				'<td class="lbjth" style="text-align:right;"><a class="btn btn-info btn-xs" href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a></td>'+
+				'</tr><tr><th class="lbjth">선택</th><th class="lbjth">분야</th>'+
+				'<th class="lbjth">제목</th><th class="lbjth">처리상황</th><th class="lbjth">등록일시</th></tr>';
+					
+					for(var i in json.qna){
+						console.log("json.qna.question_no = " + json.qna[i].question_no);
+						htmlStr += "<tr><td><input type='checkbox' name='chk1' id='chkBox"+i
+						+"' value="+json.qna[i].question_no+"></td><td>"+ json.qna[i].question_category
+						+"</td><td><a href='lbjqnadetail.go?question_writer="+json.qna[i].question_writer+"&question_no="+json.qna[i].question_no+"'>"+json.qna[i].question_title
+					    +"</a></td><td>"+json.qna[i].question_answer_state+"</td><td>"+json.qna[i].question_date+"</td></tr>";
+					}
+					//페이징 처리//
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.qna[0].qnaListCount > 6){
+						if(json.qna[0].qnaCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>&nbsp;';
+						}
+						if(json.qna[0].qnaCurrentPage > json.qna[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						console.log("json.qna[0].qnaStartPage = " + json.qna[0].qnaStartPage);
+						console.log("json.qna[0].qnaEndRow = " + json.qna[0].qnaEndRow);
+						for(var i=json.qna[0].qnaStartPage;i<=json.qna[0].qnaEndRow;i++){
+							if(i == json.qna[0].qnaCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						//기모리 ///////////////
+						if(json.qna[0].qnaCurrentPage != json.qna[0].qnaEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.qna[0].qnaCurrentPage >= json.qna[0].qnaMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+json.qna[0].qnaMaxPage+'); return false;">>></a>';
+						}
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 끝//
+					$('#lbjqnaDiv').html(htmlStr);
+					
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+				}
+			});
+		}
 	</script>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
 	<div class="container" id="lbjMyPageUp">
@@ -175,8 +252,8 @@
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjQnA">나의 QnA</h3>
-			<div class="lbjdiv">
-				<table class="table table-striped lbjtable">
+			<div class="lbjdiv" id="lbjqnaDiv">
+				<table class="table table-striped lbjtable" id="lbjQnaTable">
 					<tr>
 						<td class="lbjth">
 							<input type="checkbox" id="allCheckBox" value="">전체선택
@@ -205,15 +282,59 @@
 						</tr>
 					</c:forEach>
 					<!-- QnA 페이징 처리를 해봅시다. -->
-					<!-- mv.addObject("lbjMyQna", myQna);
-					mv.addObject("maxPage",maxPage);
-				    mv.addObject("qnaCurrentPage",qnaCurrentPage);
-				    mv.addObject("listCount",listCount); -->
-					<c:if test="${listCount} > 6">
-						
+					<!-- 
+					qnaPage.put("qnaMaxPage",qnaMaxPage);
+					qnaPage.put("qnaStartRow",qnaStartRow);
+					qnaPage.put("qnaEndRow",qnaEndRow);
+					qnaPage.put("qnaCurrentPage",qnaCurrentPage);
+					qnaPage.put("qnaListCount",qnaListCount);
+				    -->
+					<c:if test="${qnaPage.qnaListCount > 6}">
+						<!-- 페이징 처리를 합니다 -->
+						<tr>
+						<td colspan="5">
+						<div style="text-align:center;">
+							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+								<< &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+								<a href="#"> << </a>
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+								<a href="#"> < </a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+								< &nbsp;
+							</c:if>
+							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.qnaEndRow}" step="1">
+								<c:if test="${i eq qnaPage.qnaCurrentPage}">
+									<font color="red" size="4"><b>${i}</b></font>&nbsp;
+								</c:if>
+								<c:if test="${i != qnaPage.qnaCurrentPage}">
+									<a href="javascript:void(0);" onclick="fnQnaReload(${i}); return false;">${i}</a>&nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${qnaPage.qnaCurrentPage != qnaPage.qnaEndRow}">
+								<a href="#">></a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage eq qnaPage.qnaEndRow}">
+								> &nbsp;
+							</c:if>
+							
+							<c:if test="${qnaPage.qnaCurrentPage >= qnaPage.qnaMaxPage}">
+								>> &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage < qnaPage.qnaMaxPage}">
+								<a href="#">>></a>
+							</c:if>
+						</div>
+						</td>
+						</tr>
 					</c:if>
 					<!-- QnA 페이징 처리 End -->
-		
+					<!-- 페이징 처리 -->
 				</table>
 			</div>
 			<hr>

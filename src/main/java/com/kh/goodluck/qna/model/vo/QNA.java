@@ -17,13 +17,20 @@ public class QNA implements Serializable{
 	private String question_category;
 	private Date question_date;
 	private String question_answer_state;
+	//페이지 처리용 메소드
+	private int qnaMaxPage;
+	private int qnaStartRow;
+	private int qnaEndRow;
+	private int qnaCurrentPage;
+	private int qnaListCount;
 	
 	public QNA() {
 		
 	}
 
 	public QNA(int question_no, String question_title, String question_content, String question_writer,
-			String question_category, Date question_date, String question_answer_state) {
+			String question_category, Date question_date, String question_answer_state, int qnaMaxPage, int qnaStartRow,
+			int qnaEndRow, int qnaCurrentPage, int qnaListCount) {
 		super();
 		this.question_no = question_no;
 		this.question_title = question_title;
@@ -32,6 +39,11 @@ public class QNA implements Serializable{
 		this.question_category = question_category;
 		this.question_date = question_date;
 		this.question_answer_state = question_answer_state;
+		this.qnaMaxPage = qnaMaxPage;
+		this.qnaStartRow = qnaStartRow;
+		this.qnaEndRow = qnaEndRow;
+		this.qnaCurrentPage = qnaCurrentPage;
+		this.qnaListCount = qnaListCount;
 	}
 
 	public int getQuestion_no() {
@@ -90,11 +102,53 @@ public class QNA implements Serializable{
 		this.question_answer_state = question_answer_state;
 	}
 
+	public int getQnaMaxPage() {
+		return qnaMaxPage;
+	}
+
+	public void setQnaMaxPage(int qnaMaxPage) {
+		this.qnaMaxPage = qnaMaxPage;
+	}
+
+	public int getQnaStartRow() {
+		return qnaStartRow;
+	}
+
+	public void setQnaStartRow(int qnaStartRow) {
+		this.qnaStartRow = qnaStartRow;
+	}
+
+	public int getQnaEndRow() {
+		return qnaEndRow;
+	}
+
+	public void setQnaEndRow(int qnaEndRow) {
+		this.qnaEndRow = qnaEndRow;
+	}
+
+	public int getQnaCurrentPage() {
+		return qnaCurrentPage;
+	}
+
+	public void setQnaCurrentPage(int qnaCurrentPage) {
+		this.qnaCurrentPage = qnaCurrentPage;
+	}
+
+	public int getQnaListCount() {
+		return qnaListCount;
+	}
+
+	public void setQnaListCount(int qnaListCount) {
+		this.qnaListCount = qnaListCount;
+	}
+
 	@Override
 	public String toString() {
 		return "QNA [question_no=" + question_no + ", question_title=" + question_title + ", question_content="
 				+ question_content + ", question_writer=" + question_writer + ", question_category=" + question_category
-				+ ", question_date=" + question_date + ", question_answer_state=" + question_answer_state + "]";
+				+ ", question_date=" + question_date + ", question_answer_state=" + question_answer_state
+				+ ", qnaMaxPage=" + qnaMaxPage + ", qnaStartRow=" + qnaStartRow + ", qnaEndRow=" + qnaEndRow
+				+ ", qnaCurrentPage=" + qnaCurrentPage + ", qnaListCount=" + qnaListCount + "]";
 	}
-	
+
 }
