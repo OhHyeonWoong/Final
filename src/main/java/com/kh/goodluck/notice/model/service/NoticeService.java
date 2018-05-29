@@ -9,6 +9,6 @@ public interface NoticeService {
 
 	abstract public List<Notice> noticeTop5();
 
-	public abstract Notice noticeDetail(int notice_no);
+	//public abstract Notice noticeDetail(int notice_no);
 	
 }

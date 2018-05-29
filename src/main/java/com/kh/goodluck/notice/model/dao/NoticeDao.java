@@ -17,9 +17,9 @@ public class NoticeDao {
 		return sqlSession.selectList("mainTop5");
 	}
 
-	public Notice noticeDetail(int notice_no) {
+	/*public Notice noticeDetail(int notice_no) {
 
 		return sqlSession.selectOne("noticeDetailShow", notice_no);
-	}
+	}*/
 
 }
