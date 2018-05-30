@@ -48,7 +48,7 @@ public class HomeController {
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
 	public void CatchNoticeData(HttpServletRequest request , HttpServletResponse response) throws IOException {
-		System.out.println("notice Top5 Ajax실행 준비..");
+		//System.out.println("notice Top5 Ajax실행 준비..");
 		ArrayList<Notice> mainnoticesample = (ArrayList<Notice>) noticeService.noticeTop5(); 
 		//첫페이지 공지5개 글 가져오기
 

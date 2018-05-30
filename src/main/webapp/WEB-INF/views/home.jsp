@@ -301,9 +301,37 @@
 .bgc-fff{
   background : none !important;
 }	
+ 
+#j1 {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  height : 80%;
+  border: 1px solid #ddd;		
+}
 
-#j1 #j_t1{
-	  
+#j_t1{
+  text-align: center;
+  padding: 10px;
+  width: 58px; 	  
+}
+
+#j_t2{
+  text-align: center;
+  padding: 10px;	  
+  width: 300px;
+}
+
+#j_t3{
+  text-align: center;
+  padding: 10px;	  
+  width: 85px;
+}
+
+#j_t4{
+  text-align: center;
+  padding: 10px;
+  width: 105px; 	  
 }
 
 
