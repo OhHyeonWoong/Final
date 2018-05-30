@@ -21,7 +21,7 @@ public class NoticeImpl implements NoticeService{
 		
 		return noticeDao.pullNoticeAllList();
 	}
-	
+	 
 	
 	@Override
 	public List<Notice> noticeTop5() {

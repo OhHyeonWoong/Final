@@ -119,7 +119,7 @@
 							<textarea class="notice_contents" rows="25" cols="86" style="resize: none; overflow: scroll;">${notice_info.notice_content}</textarea>
 							<c:set var="n_contents" value="${ notice_info.notice_content }"/>
 							
-						</td> 
+						</td>  
 					</tr>
 					<tr> 
 						<td colspan="2" align="center"> 

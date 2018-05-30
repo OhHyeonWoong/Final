@@ -943,7 +943,7 @@
 									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>		
 							</div>
-						</td>					
+						</td>					 
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				

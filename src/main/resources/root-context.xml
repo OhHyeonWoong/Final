@@ -35,7 +35,7 @@
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
 	</bean> -->   
-	
+	  
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">

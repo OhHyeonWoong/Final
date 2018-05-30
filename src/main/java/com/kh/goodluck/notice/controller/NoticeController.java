@@ -27,7 +27,7 @@ public class NoticeController {
 	
 	@RequestMapping("Notice.go") //게시글 전체보기
 	public ModelAndView notice(HttpServletRequest request,HttpServletResponse response,ModelAndView mv) {
-		
+		 
 		ArrayList<Notice> noticeAllList = new ArrayList<Notice>();	
 		noticeAllList = (ArrayList<Notice>) noticeService.pullNoticeAllList();
 		mv.addObject("fowordNoticeAllList", noticeAllList);
