@@ -81,6 +81,7 @@ function sample4_execDaumPostcode() {
 var submition = false; //->true로 바뀔 시 form 전송
 var emailConfirmed = false;//->이메일 인증 받으면 true
 var idConfirmed = false;// -> 아이디 인증을 받아야 true
+var termsConfirmed= false// -> 약관 동의 했을 때 true
 ///////////////////////////////////////////////////////////////////////////
 
 /* 비밀번호 확인 창 */
@@ -99,15 +100,16 @@ function pwdchecking(){
 function idConfirmation(){
 	$.ajax({
 		url: "jdkIdConfirmation.go",
-		data: {id: $('member_id').val()},
-		dataType:"text",
-		type:"GET",
+		data: {id: $('#member_id').val()},
+		type:"POST",
 		success:
 			function(result){
-			if(result==true){
+			if(result=='true'){
 			alert("사용하실 수 있는 아이디 입니다");
 			idConfirmed=true;
-			}
+			}else if(result='false'){
+			alert("사용하실 수 없는 아이디 입니다. 다른 아이디를 사용해 주세요");
+		}
 		},
 		error: function(){
 			alert("아이디 인증 실패!!");
@@ -118,9 +120,9 @@ function idConfirmation(){
 
 function emailConfirmation(){
 	$.ajax({
-		url: "emailConfirm.do",
+		url: "emailConfirm.go",
 		dataType:"text",
-		type:"GET",
+		type:"POST",
 		success:
 			function(){
 			
