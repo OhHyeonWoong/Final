@@ -35,5 +35,9 @@ public class QNADao {
 	public int selectMyQnaCount(String member_id) {
 		return sqlSession.selectOne("qnaListCount", member_id);
 	}
+
+	public int deleteQna(HashMap<String,Object> map) {
+		return sqlSession.delete("deleteQna", map);
+	}
 	
 }
