@@ -1,5 +1,6 @@
 package com.kh.goodluck.notice.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +15,30 @@ public class NoticeImpl implements NoticeService{
 	@Autowired
 	private NoticeDao noticeDao;
 	
+	
+	@Override
+	public List<Notice> pullNoticeAllList() {
+		
+		return noticeDao.pullNoticeAllList();
+	}
+	 
+	
 	@Override
 	public List<Notice> noticeTop5() {
 
 		return noticeDao.noticeTop5();
 	}
 	
-	/*@Override
-	public Notice noticeDetail(int notice_no) { //공지사항 글 상세보기
-
+  @Override
+	public Notice noticeDetail(int notice_no) {
+		
 		return noticeDao.noticeDetail(notice_no);
 	}
-	 */
+  
+  @Override
+	public int noticeContentUpdate(Notice newnotice) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

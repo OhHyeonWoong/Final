@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.item.model.service.ItemService;
@@ -205,6 +208,22 @@ public class MemberController {
 		}
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
+	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
+			HttpServletRequest request,Member m) {
+		System.out.println("updateMemberInfo 넘어온 멤버정보 : " + m.toString());
+		
+		String path = request.getSession().getServletContext().getRealPath("resources/uploadProfiles");
+		
+		System.out.println("path : " + path);
+		
+		try {
+			file.transferTo(new File(path + "\\" + file.getOriginalFilename()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
