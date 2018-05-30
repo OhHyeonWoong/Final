@@ -158,12 +158,6 @@ public class QNAController {
 	@RequestMapping(value="lbjDeleteQna.go",method=RequestMethod.POST)
 	public void deleteQnaMethod(@RequestParam(value="question_no[]") List<String> question_no,HttpServletResponse response) 
 			throws IOException{
-		/*String[] question_no = request.getParameterValues("question_no")*/;
-		
-		for(int i=0;i<question_no.size();i++) {
-			System.out.println("question_no = " + question_no.get(i));
-		}
-		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("question_no", question_no);
 		

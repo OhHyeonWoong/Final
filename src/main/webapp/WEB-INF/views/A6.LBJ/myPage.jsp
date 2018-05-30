@@ -230,6 +230,28 @@
 				}
 			});
 		}
+		
+		//회원정보 수정 전(submit 전)에 값 체크해서 보냄
+		function fnValidationCheck(){
+			/*
+			 * 1. 비밀번호가 일치하는지 
+			 * 2. 인증번호가 일치하는지
+			 */
+			//검사 결과가 모두 일치하면 true로 리턴
+			var flag = false; 
+			// 1
+			var pass1 = $('#InputPassword1').val();
+			var pass2 = $('#InputPassword2').val();
+			if(pass1 == pass2){
+				flag = true;
+			}else{
+				flag = false;
+				alert("비밀번호가 일치하지 않습니다.");
+			}
+			// 2
+			
+			return flag;
+		}
 	</script>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
 	<div class="container" id="lbjMyPageUp">
@@ -246,7 +268,9 @@
 		 		<!-- 벼어어어어어어어어어어주누누누누누이이이 -->
 				<div class="login_form" >
 				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
-					<form role="form">
+					<form role="form" action="lbjUpdateMember.go" method="post" enctype="multipart/form-data" 
+					  onsubmit="return fnValidationCheck();">
+					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
 							<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
@@ -263,7 +287,7 @@
 						</div>
 						<div class="form-group">
 							<label for="username">이름</label> <input type="text"
-								class="form-control" id="member_name" placeholder="이름을 입력해 주세요" required="required" 
+								class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해 주세요" required="required" 
 								readonly="readonly" value="${loginUser.member_name}">
 						</div>
 						<div class="form-group">
@@ -305,7 +329,7 @@
 								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
 								readonly="readonly" value="${loginUser.member_email}">
 								<!--email 인증 요청--> 
-                  				<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a></span>
+                  				<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</button></span>
 							</div>
 						</div>
 						 <div class="form-group">
@@ -318,7 +342,8 @@
 			               </div>
 			            </div>
 						<div class="form-group text-center">
-							<button type="submit" class="btn btn-info">확인</button>
+							<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" class="btn btn-danger" value="탈퇴">
 						</div>
 					</form>
 						</div>
