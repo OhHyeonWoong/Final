@@ -34,7 +34,7 @@
 		<property name="username" value="final" />
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
-	</bean> -->
+	</bean> -->   
 	
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"

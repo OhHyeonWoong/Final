@@ -26,11 +26,8 @@
 		
 		<div class="center"style="background: green; width: 78%; height: 100%; float: left; margin-left: 2%">
 			<div class="Notice_div" style="background: #f5f5f5; width: 100%; height: 520px; padding: 10px; border: 1px solid #e7e7e7;">
-				
-			
+
 			공지사항 center
-
-
 			<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
 						<tr>
@@ -42,12 +39,12 @@
     
 					</thead>
 					<tbody>
-						<c:forEach var="noticeAll" items="fowordNoticeAllList">
+						<c:forEach var="noticeall" items="${fowordNoticeAllList}">
 						<tr>
-							<td> ${ fowordNoticeAllList.notice_no } </td>
-							<td><a href="faqdetail.go?faq_checkno=${fowordNoticeAllList.notice_no}">${ fowordNoticeAllList.notice_title }</a></td>
-							<td> ${ fowordNoticeAllList.notice_writer } </td>
-							<td> ${ fowordNoticeAllList.notice_date } </td>
+							<td> ${ noticeall.notice_no } </td>
+			 				<td> <a href="ndetail.go?notice_checkno=${ noticeall.notice_no }">${ noticeall.notice_title }</a></td>
+			 				<td> ${ noticeall.notice_writer } </td>
+							<td> ${ noticeall.notice_date } </td>
 						</tr>
 						</c:forEach>
 					</tbody>
