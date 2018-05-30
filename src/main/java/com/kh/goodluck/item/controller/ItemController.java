@@ -34,6 +34,7 @@ import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
+import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
@@ -616,7 +617,7 @@ try {
 	
 	@RequestMapping("cjsrandom.go")
 	public ModelAndView cjsrandom(ModelAndView mv){
-		//소모성아이템
+		//랜덤아이템 리스트
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		ITEMLIST thismonthsrandom = ItemService.randomitem();
@@ -635,15 +636,17 @@ try {
 	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
 	        	itemsName = itemsName.substring(0, itemsName.length()-1);
 	        }
-	        
-	        
 	    mv.addObject("orimoney",orimoney);
 	    mv.addObject("itemsName",itemsName);
 	    mv.addObject("pack",pack);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
-		mv.setViewName("A5.CJS/cjsrandom");
+		mv.setViewName("A5.CJS/cjsradomlist");
+		
+		//랜덤아이템 리스트 뽑기.
+		List<ITEMLIST> al= ItemService.allRandomlist();
+	    mv.addObject("randomitems",al);
 		return mv;
 	}
 	
@@ -656,9 +659,9 @@ try {
 		ITEMLIST thismonthsrandom = ItemService.randomitem();
 		ItemPackage pack=ItemService.getitempackage();
 		//패키지아이템의 기본 가격과 목록내용 구하기
-			String items=pack.getITEMLIST_NO();
-			String split[] = items.split(",");
-	        int orimoney=0;
+		String items=pack.getITEMLIST_NO();
+		String split[] = items.split(",");
+	      int orimoney=0;
 	        String itemsName=new String();
 	        for (String i: split) {
 	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
@@ -670,10 +673,22 @@ try {
 	        	itemsName = itemsName.substring(0, itemsName.length()-1);
 	        }
 	        
-	        
+	    //모든 아이템패키지 불러오기.
+	     List<ItemPackage> al4 = ItemService.allpackitem();
+		for(ItemPackage i: al4) {
+			String items1=i.getITEMLIST_NO();
+			String split1[] = items1.split(",");
+			int orimoney1=0;
+		    for (String i1: split1) {
+		    ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i1));
+		        orimoney1+=packitem.getITEMPRICE();
+		        };
+		    i.setOri_PRICE(orimoney1);
+		}
 	    mv.addObject("orimoney",orimoney);
 	    mv.addObject("itemsName",itemsName);
 	    mv.addObject("pack",pack);
+	    mv.addObject("packitems",al4);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);
@@ -681,6 +696,119 @@ try {
 		return mv;
     }
 	
+	@RequestMapping("cjsrandomdetail.go")
+	public ModelAndView cjsrandomdetail(@RequestParam("pk") int pk,ModelAndView mv) {
+	     //랜덤아이템 디테일 
+				ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+				ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+				ITEMLIST thismonthsrandom = ItemService.randomitem();
+				ItemPackage pack=ItemService.getitempackage();
+				//패키지아이템의 기본 가격과 목록내용 구하기
+					String items=pack.getITEMLIST_NO();
+					String split[] = items.split(",");
+			        int orimoney=0;
+			        String itemsName=new String();
+			        for (String i: split) {
+			        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+			        orimoney+=packitem.getITEMPRICE();
+			        itemsName+="["+packitem.getITEMNAME()+"]" ;
+			        itemsName+="+";
+			        };
+			        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+			        	itemsName = itemsName.substring(0, itemsName.length()-1);
+			        }
+		//랜덤아이템 정보 가져가기.
+		ITEMLIST item=ItemService.itemdetail(pk);
+		//72-아이콘랜덤, 73-기간제랜덤, 74-전체랜덤
+		//RANDOMBOX_ALL, RANDOMBOX_EMO, RANDOMBOX_TIME
+	
+		
+		List<RanDomBoxChance> al=null;
+		switch(pk) {
+		case 74:
+		al=ItemService.getRanDomBoxChance1();
+		break;
+		case 72: 
+		al=ItemService.getRanDomBoxChance2();
+		break;
+		case 73: 
+		al=ItemService.getRanDomBoxChance3();
+		break;
+		default: 
+		mv.setViewName("A5.CJS/ErrorPage");
+		return mv;
+		}	        
+			   for(RanDomBoxChance i:al) {
+			   i.setCHANCE(i.getCHANCE()*100); 
+			   }
+		
+	
+			        
+			        
+			    mv.addObject("orimoney",orimoney);
+			    mv.addObject("itemsName",itemsName);
+			    mv.addObject("pack",pack);
+			    mv.addObject("itemchance",al);
+			    mv.addObject("item",item);
+			
+				mv.addObject("thismonthsrandom",thismonthsrandom);
+				mv.addObject("newitemthismonth",newitemthismonth);
+				mv.addObject("popitemthismonth",popitemthismonth);
+				mv.setViewName("A5.CJS/cjsrandom");
+				return mv;
+	
+	}
+	
+	@RequestMapping("cjspackitemdetail.go")
+	public ModelAndView cjspackitemdetail(@RequestParam("pk") int pk,ModelAndView mv) {
+		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+		ITEMLIST thismonthsrandom = ItemService.randomitem();
+		ItemPackage pack=ItemService.getitempackage();
+		ItemPackage pack1=ItemService.getitempackage(pk);
+		//패키지아이템의 기본 가격과 목록내용 구하기
+		String items=pack.getITEMLIST_NO();
+		String split[] = items.split(",");
+	     int orimoney=0;
+	        String itemsName=new String();
+	        for (String i: split) {
+	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+	        orimoney+=packitem.getITEMPRICE();
+	        itemsName+="["+packitem.getITEMNAME()+"]" ;
+	        itemsName+="+";
+	        };
+	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+	        	itemsName = itemsName.substring(0, itemsName.length()-1);
+	        }
+	     
+	    	String items1=pack1.getITEMLIST_NO();
+			String split1[] = items1.split(",");
+		     int orimoney1=0;
+		        String itemsName1=new String();
+		        for (String i: split1) {
+		        ITEMLIST packitem1=ItemService.getpackitemsinfo(Integer.parseInt(i));
+		        orimoney1+=packitem1.getITEMPRICE();
+		        itemsName1+="["+packitem1.getITEMNAME()+"]" ;
+		        itemsName1+="+";
+		        };
+		        if (itemsName1.length() > 0 && itemsName1.charAt(itemsName1.length()-1)=='+') {
+		        	itemsName1 = itemsName1.substring(0, itemsName1.length()-1);
+		        }    
+	        
+	        
+		      
+	    mv.addObject("orimoney",orimoney);
+	    mv.addObject("orimoney1",orimoney1);
+	    mv.addObject("itemsName",itemsName);
+	    mv.addObject("pack",pack);
+	    mv.addObject("packitems",pack1);
+	    mv.addObject("itemsName1",itemsName1);
+		mv.addObject("thismonthsrandom",thismonthsrandom);
+		mv.addObject("newitemthismonth",newitemthismonth);
+		mv.addObject("popitemthismonth",popitemthismonth);
+		mv.setViewName("A5.CJS/cjspackdetil");
+		return mv;
+	}
 }
 
 
