@@ -76,8 +76,15 @@ public class BoardDao {
 		
 		return sqlSession.selectList("selectCategoryMid", board);
 	}
+	
+	
+	
+	public List<Board> selectCategoryBig(Board board) {
+		
+		return sqlSession.selectList("selectCategoryBig", board);
+	}
 
-
+    
 
 	public List<Board> mainShowLifeListPickUp() {
 		//메인페이지에 보여질 생활영역_제공해요 리스트추출
@@ -97,7 +104,7 @@ public class BoardDao {
 		//메인페이지에 보여질 게임영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowGameListPic");
 	}
-	
+
 
 	public List<Board> mainShowMusicListPickUp() {
 		//메인페이지에 보여질 음악영역_제공해요 리스트추출		

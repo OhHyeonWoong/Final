@@ -40,4 +40,9 @@ public class QNAServiceImpl implements QNAService{
 	public int selectMyQnaCount(String member_id) {
 		return qnaDao.selectMyQnaCount(member_id);
 	}
+	
+	@Override
+	public int deleteQna(HashMap<String,Object> map) {
+		return qnaDao.deleteQna(map);
+	}
 }

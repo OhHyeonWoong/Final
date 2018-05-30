@@ -34,7 +34,7 @@ public class NoticeController {
 		
 		return mv;
 	}	
-	  
+	    
 	
 	@RequestMapping("ndetail.go")
 	public ModelAndView noticeDetailShow(@RequestParam("notice_checkno") int notice_no, ModelAndView mv) {

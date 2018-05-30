@@ -50,55 +50,27 @@ $(document).ready( function() {
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <table class="table">
-                             	<tr>
-                               	 <td>
-                             <div class="input-group">
-    	<div class="form-group  has-feedback">
-            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
-            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px  ">검색!</button>
-        </span>
-    </div> 
-           </td>
-                  </tr> <tr>
+                            <table class="table">      
+                  <tr>
+               <td>
+            <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsitemmellhome.go">아이템몰 메인</a>
+              </td>
+      </tr>
+         <tr>
                                <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsitemmellhome.go">아이템몰 메인가기</a>
+      <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">아이템 검색</a>
                                     </td>
                                 </tr>
-                         <tr>
-                               <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">아이템 검색</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="cjspopitem.go">기간제 검색</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="cjssp.go">소모품 보기</a>
-                                    </td>
-                                </tr>
-                              
+                               
                                   <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">이모티콘 보기</a>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="cjsrandom.go">랜덤박스 보기</a>
                                         
                                     </td>
                                 </tr>
                                   <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">랜덤박스 보기</a>
-                                        
-                                    </td>
-                                </tr>
-                                  <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">패키지 보기</a>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="cjspackage.go">패키지 보기</a>
                                         
                                     </td>
                                 </tr>
@@ -208,7 +180,7 @@ $(document).ready( function() {
 	</div>
 	
       <img src="/goodluck/resources/A5.CJS/itemmallcaros/bg.png" style="width:100%; height: 250px;">
-      <div class="carousel-caption" >
+      <div class="carousel-caption" style="    width:  80%;" >
          <table>
            <tr>
            <th> 
@@ -235,7 +207,7 @@ $(document).ready( function() {
 	</div>
 	
       <img src="/goodluck/resources/A5.CJS/itemmallcaros/adsoit57y24d.png" style="width:100%; height: 250px;">
-       <div class="carousel-caption">
+       <div class="carousel-caption" style="    width:  80%;">
       	 <table>
            <tr>
            <th> 
@@ -262,20 +234,20 @@ $(document).ready( function() {
 	<div class="ribbon ribbon-top-left"><span>6월 한정</span></div>
 	</div>
 	<img src="/goodluck/resources/A5.CJS/itemmallcaros/maxresdefault.jpg" style="width:100%;height: 250px;">
-         <div class="carousel-caption">
+         <div class="carousel-caption" style="width: 80%; left: 15%;">
         <table>
            <tr>
            <th> 
-          	<img src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="width:150px; height:150px; float:left;">
+          	<img src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="width:140px; height:140px; float:left;">
           	</th>
-           <th width="50"></th>
+           <th width="15"></th>
            <th>
            <table style="width:100%">
-           <tr><th><h2>${pack.PACKAGE_NAME}출시!</h2></th></tr>
+           <tr><th><h4>${pack.PACKAGE_NAME}출시!</h4></th></tr>
            <tr><th height="10">연령별 패키지와함께!</th></tr>
            <tr><th>${itemsName}</th></tr>
            <tr><th><del>${orimoney}</del>-> </th></tr>
-           <tr><th>${pack.PACKAGE_PRICE}원 <button>바로가기</button></th></tr>
+           <tr><th>${pack.PACKAGE_PRICE} <button>바로가기</button></th></tr>
            </table>
            </th>
           </tr>
@@ -291,7 +263,7 @@ $(document).ready( function() {
 	  <div class="ribbon ribbon-top-right"><span style="background-color: gray;">놓히지마셈!</span></div>
 	</div>
           <img src="/goodluck/resources/A5.CJS/itemmallcaros/sdffxxdas.jpg" style="width:100%; height: 250px;">
-           <div class="carousel-caption">
+           <div class="carousel-caption" style="    width:  80%;">
         <table>
            <tr style="width:100%">
            <th> 
@@ -398,9 +370,9 @@ $(document).ready( function() {
 			</td>
 		 <td  style="width:65%">
 		 <center>
-   			 ${item.ITEMNAME}<br>
+   			 <a onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">${item.ITEMNAME}</a>  <br>
    			 ${item.ITEMPRICE} 원 <br>
-   			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
+<%--    			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button> --%>
    			
    			</center>
    			 </td>
@@ -431,11 +403,10 @@ $(document).ready( function() {
        <div class="col-md-6" style="width: 100%; height: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
-					<h3 class="panel-title">아이템 관련 공지사항  전체공지바로가기></h3>
-				    >인기 바로가기
+					<h3 class="panel-title">아이템 관련 공지사항  전체공지바로가기--></h3>
+				    
 				</div>
 				<div class="panel-body" style="width: 100%; ">   
-	
 	<table>
 	<tr>
 	<th>글번호</th>
@@ -464,10 +435,23 @@ $(document).ready( function() {
      <div class="col-md-6" style="width: 100%; height: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
-					<h3 class="panel-title"> 여기 뭐 넣지?</h3>
+					<h3 class="panel-title">신상 패키지</h3>
 				   
 				</div>
-				<div class="panel-body" style="width: 100%; "	>   할인중 아이템</div>
+				<div class="panel-body" style="width: 100%; hei">
+				
+	<table style="width: 100%; height: 100% ">
+	<tr><th>아이템명</th><th>원래가격</th><th></th><th>할인가격</th></tr>
+	<c:forEach var="packageitems" items="${packageitems}">
+	<tr height="50px">
+	<th><center><a href="#">${packageitems.PACKAGE_NAME}</a></center></th>
+	<th><del>${packageitems.ori_PRICE}</del></th>
+	<th>=></th>
+	<th>${packageitems.PACKAGE_PRICE}</th>
+	</tr>
+	</c:forEach>
+	</table>
+</div>
 			</div>
 		</div>
 		
@@ -492,8 +476,7 @@ $(document).ready( function() {
         
     </div>
 
-</div>
-                                                                                
+</div>                                          
 </div>
 <br>
 <br>

@@ -25,7 +25,7 @@
 			</tr>
 			</c:forEach>
 	</table>
-
+  
 </div>
 <%-- <td><a href="faqdetail.go?faq_checkno=${fowordNoticeAllList.notice_no}">${ fowordNoticeAllList.notice_title }</a></td>
  --%>	

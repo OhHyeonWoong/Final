@@ -14,5 +14,10 @@
 select * from itempackage where PACKAGE_PRICE = (select  max(PACKAGE_PRICE) from itempackage)
 </select>
 
+<select id="allpackitem" resultMap="ItemPackage">
+<![CDATA[
+select * from (select * from itempackage) where rownum <= 3
+]]>
+</select>
 
 </mapper>

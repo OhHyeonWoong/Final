@@ -39,7 +39,7 @@
 							<th style="border: 1px solid black;">작성자</th>
 							<th style="border: 1px solid black;">작성일자</th>
 						</tr>
-  
+    
 					</thead>
 					<tbody>
 						<c:forEach var="noticeAll" items="fowordNoticeAllList">

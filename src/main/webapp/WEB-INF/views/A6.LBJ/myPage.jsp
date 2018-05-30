@@ -54,7 +54,33 @@
 		});
 		
 		function fnDeleteQna(){
+			var checkBox1 = $('input[name="chk1"]:checked');
+			var chkValue = new Array();
+			for(var i=0;i<checkBox1.length;i++){
+				chkValue[i] = checkBox1[i].value;
+				console.log(chkValue[i]);
+			}
+			console.log("length = " + chkValue.length);
 			
+			$.ajax({
+				url:"lbjDeleteQna.go",
+				type:"post",
+				data:{
+					question_no: chkValue
+				},
+				success:function(data){
+					alert(data);
+					if(data == '게시글 삭제 성공!'){
+						window.history.go(0);
+					}
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
+			/* var checkBox2 = $('input[name="chk1"]:checked').val();
+			console.log(checkBox1);
+			console.log(checkBox2); */
 		}
 		
 		function fnQnaReload(page){
@@ -161,45 +187,43 @@
 						'<td>'+json.item[i].end_date+'</td>'+
 						'<td>'+json.item[i].final_status+'</td></tr>';
 					}
-					/* 
+					
 					//페이징 처리//
 					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
-					if(json.qna[0].qnaListCount > 6){
-						if(json.qna[0].qnaCurrentPage <= 1){
+					if(json.item[0].itemListCount > 6){
+						if(json.item[0].qnaCurrentPage <= 1){
 							htmlStr += "<< &nbsp";
 						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>&nbsp;';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
 						}
-						if(json.qna[0].qnaCurrentPage > json.qna[0].qnaStartPage){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
 						}else{
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						console.log("json.qna[0].qnaStartPage = " + json.qna[0].qnaStartPage);
-						console.log("json.qna[0].qnaEndRow = " + json.qna[0].qnaEndRow);
-						for(var i=json.qna[0].qnaStartPage;i<=json.qna[0].qnaEndRow;i++){
-							if(i == json.qna[0].qnaCurrentPage){
+						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndRow;i++){
+							if(i == json.item[0].qnaCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
-								htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+i+'); return false;">'+i+'</a>&nbsp;';
+								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
 							}
 						}
 						//기모리 ///////////////
-						if(json.qna[0].qnaCurrentPage != json.qna[0].qnaEndRow){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+(json.qna[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
 						}else{
 							htmlStr += '> &nbsp;';
 						}
-						if(json.qna[0].qnaCurrentPage >= json.qna[0].qnaMaxPage){
+						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
 							htmlStr += '>> &nbsp;';
 						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+json.qna[0].qnaMaxPage+'); return false;">>></a>';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
 						}
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
-					$('#lbjqnaDiv').html(htmlStr); */
+					$('#lbjitemDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
 					alert("a = " + a + " ,b = " + b + " ,c = " + c);
@@ -412,7 +436,7 @@
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
-			<div class="lbjdiv">
+			<div class="lbjdiv" id="lbjitemDiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
 					<tr><td>101</td><td><a href="#">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>

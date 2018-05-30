@@ -55,7 +55,7 @@ public class FaqDao {
 		return sqlSession.selectOne("faqDetailShow", faq_no);
 	}
 
-}
+}  
 
 
 

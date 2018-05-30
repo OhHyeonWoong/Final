@@ -140,12 +140,12 @@
 	color: black;
 }
 
-.smcate>a:link, .smcate>a:visited,.mdcate>a:link, .mdcate>a:visited {
+.smcate>a:link, .smcate>a:visited,.mdcate>a:link, .mdcate>a:visited,.bgcate>a:link, .bgcate>a:visited {
 	color: #999;
 	text-decoration: none;
 }
 
-.smcate>a:hover,.mdcate>a:hover {
+.smcate>a:hover,.mdcate>a:hover,.bgcate>a:hover {
 	color: black;
 }
 

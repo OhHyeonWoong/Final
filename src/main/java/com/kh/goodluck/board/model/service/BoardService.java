@@ -1,6 +1,7 @@
 package com.kh.goodluck.board.model.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,11 @@ public class BoardService {
 		
 		return boardDao.selectCategoryMid(board);
 	}
+	
+	public List<Board> selectCategoryBig(Board board) {
+		
+		return boardDao.selectCategoryBig(board);
+	}
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
@@ -72,7 +78,7 @@ public class BoardService {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
 		return boardDao.mainShowPetListPickUp();
 	}
-	
+
 	public List<Board> mainShowGameListPickUp(){
 		//메인페이지에 보여질 게임영역_제공해요 리스트추출		
 		return boardDao.mainShowGameListPickUp();
@@ -105,10 +111,5 @@ public class BoardService {
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 }

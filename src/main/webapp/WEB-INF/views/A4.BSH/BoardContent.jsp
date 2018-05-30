@@ -35,13 +35,14 @@
 			<!-- sidebar -->
 			<br>
 			<ul>
-			<c:forEach var="str" items="${strlist }">
-				
+			<c:forEach var="str" items="${strlist }">	
 				<c:forEach var="bigcategory" items="${bigcategorylist }">
 					<c:set var="category" value="${bigcategory.category_big_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<li class="bgcate" id="id${str }">${str }</li>
+							<li class="bgcate" id="id${str }"><a href="bshtest.go?link2_no=${str }">${str }</a>
+								<input class="cbtndropdown" type="image" src="/goodluck/resources/A4.BSH/btndropdown.png" style="height:10px; float: right;margin: 8px;border: 1px solid #6799FF; border-radius: 2px;">
+							</li>
 						</c:when>
 						<c:otherwise>
 						

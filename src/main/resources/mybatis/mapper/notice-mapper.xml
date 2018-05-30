@@ -19,7 +19,7 @@
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
 	</resultMap>
-	    
+	      
 	<select id="pickAllList" resultMap="NoticeResult"> 
 		<![CDATA[select * from notice]]>
 	</select>  
@@ -32,6 +32,6 @@
 	
 	<select id="noticeDetailShow" parameterType="integer" statementType="PREPARED" resultMap="NoticeResultOnlyOne">
 		<![CDATA[select * from notice where notice_no=#{notice_no}]]>
-	</select>
+	</select>  
 	
 </mapper>
