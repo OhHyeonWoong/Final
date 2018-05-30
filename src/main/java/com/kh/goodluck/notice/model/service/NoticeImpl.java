@@ -34,5 +34,11 @@ public class NoticeImpl implements NoticeService{
 		
 		return noticeDao.noticeDetail(notice_no);
 	}
+  
+  @Override
+	public int noticeContentUpdate(Notice newnotice) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
