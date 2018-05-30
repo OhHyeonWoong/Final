@@ -1,5 +1,7 @@
 package com.kh.goodluck.notice.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,30 +25,31 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("Notice.go")
-	public String notice(HttpServletRequest request,HttpServletResponse response) {
+	public ModelAndView notice(HttpServletRequest request,HttpServletResponse response,ModelAndView mv) {
 		
-		return "A4.BSH/Notice";	
+		ArrayList<Notice> noticeAllList = new ArrayList<Notice>();	
+		noticeAllList = (ArrayList<Notice>) noticeService.pullNoticeAllList();
+		mv.addObject("fowordNoticeAllList", noticeAllList);
+		mv.setViewName("A4.BSH/Notice");
+		
+		return mv;
 	}	
+	  
 	
-	@RequestMapping("NoticeDetail.go")
-	public String noticeDetailgo() {
-		
-		return "A4.BSH/NoticeDetail";
-	}
-	
-	
-	/*@RequestMapping("NoticeDetail.go")
-	public ModelAndView noticeDetailShow(@RequestParam("notice_no") int notice_no, ModelAndView mv) {
+	@RequestMapping("ndetail.go")
+	public ModelAndView noticeDetailShow(@RequestParam("notice_checkno") int notice_no, ModelAndView mv) {
 		
 		Notice userselectnotice = noticeService.noticeDetail(notice_no);
 		
-		System.out.println("조회된 객체의 정보를 toString으로 출력하기 : "+userselectnotice.toString()+"\n");
+		//System.out.println("조회된 객체의 정보를 toString으로 출력하기 : "+userselectnotice.toString()+"\n");
 
-		mv.addObject(userselectnotice);
-		
+		mv.addObject("notice_info", userselectnotice);
+		mv.setViewName("A4.BSH/NoticeDetail");
 		
 		return mv;
-	}*/
+	}
+	
+	
 	
 	@RequestMapping("Notice2.go")  //욱재작업 - 나의 거래중 테이블View로 이동
 	public String notice2(HttpServletRequest request,HttpServletResponse response) {

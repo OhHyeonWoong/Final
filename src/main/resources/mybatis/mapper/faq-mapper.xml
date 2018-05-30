@@ -9,8 +9,15 @@
 		<result property="faq_category" column="faq_category"/>
 		<result property="faq_title" column="faq_title"/>
 		<result property="faq_content" column="faq_content"/>
-	
 	</resultMap>
+	
+	<resultMap id="FaqOneList" type="Faq">
+		<id property="faq_no" column="faq_no"/>
+		<result property="faq_category" column="faq_category"/>
+		<result property="faq_title" column="faq_title"/>
+		<result property="faq_content" column="faq_content"/>
+	</resultMap>
+	
 	
 	<select id="faqAllList" resultMap="FaqList">
 		<![CDATA[select * from FAQ]]>
@@ -33,6 +40,11 @@
 	
 	<select id="faqTop5" resultMap="FaqList">
 		<![CDATA[select * from (select rownum rnum, faq_no, faq_category, faq_title, faq_content from (select * from FAQ order by faq_no desc)) where rnum>=1 and rnum<=5]]>
+	</select>
+	
+	<select id="faqDetailShow" resultMap="FaqOneList" parameterType="integer" statementType="PREPARED">
+		<![CDATA[select * from faq where faq_no=#{faq_no}]]>
+		
 	</select>
 
 	

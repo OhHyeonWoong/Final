@@ -11,25 +11,9 @@
 		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript">
 			function backalllist(){ //공지사항 전체리스트로 돌아가기
-				location.href("Notice.go");
+				location.href("home.go");
 			}
-		
-			$(function(){  
-				$("#AdminAlter").on("click",function(){ /* 게시글수정은 운영자가 Ajax를 통하여 가능하도록한다. */
-					$.ajax({
-						url : ,
-						type : "get",
-						data : ,
-						datatype : ,
-						success : function(data){
-							
-						},
-						error : function(a,b,c){
-							console.log("a : "+a+"b : "+b+"c : "+c);
-						}
-					});
-				});
-			});
+
 		</script>	
 		<title>공지사항 상세보기 페이지</title>
 		<style type="text/css">
@@ -86,7 +70,7 @@
 	</head>
 	
 	
-	
+	  
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	
@@ -97,24 +81,28 @@
 	
 	<% } %> --%>
 	<div class="container">
+		<Div>
+			${requestScope.userselectnotice.notice_date}
+		</Div>
+
+
 	    <div class="total_Area" style="background-image: url('http://demos.creative-tim.com/material-bootstrap-wizard/assets/img/wizard-book.jpg')">
 			<div class="in_ContentsArea" align="center">
 				<div class="padding"></div>
 				<span class="glyphicon glyphicon-user icon" style="float: left; margin-left: 28%;"></span> <h3  style="float: left;">공 지 글 상 세 보 기</h3>
 				<table class="in_ContentTable">			
-					<tr align="center"> <td class="uk_td1 sec1"> 글제목 </td> <td class="uk_td1"> 공지사항1 </td> </tr>
-					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> 운영자 </td> </tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 글제목</td> <td class="uk_td1"> ${notice_info.notice_title} </td> </tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer} </td> </tr>
 					<tr> 
 						<td class="uk_td2" colspan="2">
-							<textarea rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">불법적인 만남, 혹은 게시물 게재로 신고를 당하였다면 1신고에 아웃입니다. 괸한 불란을 일으켰다가는 무조건 제제입니다.
-							
+							<textarea rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">${notice_info.notice_content}
 							</textarea>
 						
 						</td> 
 					</tr>
 					<tr> 
 						<td colspan="2" align="center"> 
-							<button id="AdminAlter" style="background: none;"> 수정하기 </button> &nbsp;&nbsp;&nbsp;&nbsp;
+							<!-- <button id="AdminAlter" style="background: none;"> 수정하기 </button> &nbsp;&nbsp;&nbsp;&nbsp; -->
 							<button style="background: none;" onclick="backalllist();"> 돌아가기 </button>							
 						</td>
 					</tr>

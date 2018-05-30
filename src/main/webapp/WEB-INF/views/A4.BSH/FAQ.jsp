@@ -10,16 +10,8 @@
 	</head>
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-	
-	<Div>
-	
-	  	<%--   ${alllist.faq_no} ,
-	      ${alllist.faq_category} ,
-	      ${alllist.faqno_title} ,
-	      ${alllist.faqno_content}  --%>
-	
-	
-	</Div>
+	  
+
 	
 	<%@ include file = "/WEB-INF/views/A4.BSH/FAQContent.jsp" %>
 	

@@ -90,7 +90,39 @@ public class BoardDao {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowPetListPic");
 	}
+
+
+
+	public List<Board> mainShowGameListPickUp() {
+		//메인페이지에 보여질 게임영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowGameListPic");
+	}
 	
+
+	public List<Board> mainShowMusicListPickUp() {
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출		
+		return sqlSession.selectList("mainPageShowMusicListPic");
+	}
+
+	public List<Board> mainShowRentListPickUp() {
+		//메인페이지에 보여질 렌트영역_제공해요 리스트추출		
+
+		return sqlSession.selectList("mainPageShowRentListPic");
+	}
 	
+	public List<Board> mainShowTravelListPickUp() {
+		//메인페이지에 보여질 여행영역_제공해요 리스트추출		
+		return sqlSession.selectList("mainPageShowTravelListPic");
+	}
+	
+	public List<Board> mainShowFreeListPickUp() {
+		//메인페이지에 보여질 프리랜서영역_제공해요 리스트추출				
+		return sqlSession.selectList("mainPageShowFreeListPic");
+	}
+
+	public List<Board> mainShowRequireListPickUp() {
+		//메인페이지에 보여질 구인영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowRequireListPic");
+	}
 	
 }

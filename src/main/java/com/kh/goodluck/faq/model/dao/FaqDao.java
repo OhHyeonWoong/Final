@@ -44,9 +44,30 @@ public class FaqDao {
 		return sqlSession.selectList("faqLogList");
 	}
 
+	//main화면 faq Top5
 	public List<Faq> faqTop5() {
 		
 		return sqlSession.selectList("faqTop5");
 	}
+	
+	//main화면 해당 Faq상세보기
+	public Faq faqDetail(int faq_no) {
+		return sqlSession.selectOne("faqDetailShow", faq_no);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
