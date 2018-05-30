@@ -10,7 +10,7 @@ public class Notice implements java.io.Serializable{
 	private String notice_content;
 	private String notice_writer;
 	private Date notice_date;
-	
+	 
 	//기본생성자
 	public Notice() {
 		// TODO Auto-generated constructor stub

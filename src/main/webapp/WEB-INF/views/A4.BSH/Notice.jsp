@@ -6,10 +6,10 @@
 	<title>Notice</title>
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
-<%@ include file = "/WEB-INF/views/A4.BSH/NoticeContent.jsp" %>
-
-<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+	
+	<%@ include file = "/WEB-INF/views/A4.BSH/NoticeContent.jsp" %>
+	
+	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
