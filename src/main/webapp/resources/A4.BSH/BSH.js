@@ -26,10 +26,15 @@ $(document).ready(function() {
 			$('input[type="checkbox"][name="group4"]').prop('checked', false);
 		}
 	});
-		$(".bgcate ").click(function() {
+		$(".cbtndropdown ").click(function() {
 		var flagbg = true;
-					
-		var button = $(this);
+				
+		var button = $(this).parent();
+		
+		//console.log("button.attr('id'):"+button.attr('id'));
+		//console.log("button.next().attr('id'):"+button.next().attr('id'));
+		//console.log("button.parent().next().attr('id'):"+button.parent().next().attr('id'));	
+		
 		if(button.next("li").is(":visible")){
 			while(flagbg){
 				if(!(button.next("li").attr("class") == 'mdcate' || button.next("li").attr("class") == 'smcate')){

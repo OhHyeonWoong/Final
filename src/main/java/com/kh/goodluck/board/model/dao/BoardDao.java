@@ -76,6 +76,13 @@ public class BoardDao {
 		
 		return sqlSession.selectList("selectCategoryMid", board);
 	}
+	
+	
+	
+	public List<Board> selectCategoryBig(Board board) {
+		
+		return sqlSession.selectList("selectCategoryBig", board);
+	}
 
 
 
@@ -90,6 +97,10 @@ public class BoardDao {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowPetListPic");
 	}
+
+
+
+
 	
 	
 	

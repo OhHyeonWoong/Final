@@ -59,6 +59,11 @@ public class BoardService {
 		
 		return boardDao.selectCategoryMid(board);
 	}
+	
+	public List<Board> selectCategoryBig(Board board) {
+		
+		return boardDao.selectCategoryBig(board);
+	}
 
 	public List<Board> mainShowLifeListPickUp() { 
 		//메인페이지에 보여질 생활영역_제공해요 리스트추출
@@ -70,4 +75,6 @@ public class BoardService {
 		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
 		return boardDao.mainShowPetListPickUp();
 	}
+
+
 }
