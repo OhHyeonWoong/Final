@@ -62,10 +62,6 @@ public class JDK_MemberController {
 		      ///////////////////////////////
 		      //이메일은 유니크이기 때문에 조회했을 때 나오는 값이 없을 때 메일이 사용가능하다는 것을 알리고,
 		      //그 확인 부분이 여기입니다.
-		      
-		      
-		      
-		      //////////////////////////////
 		      if(memberService.emailConfirm(request.getParameter("member_email")) == true){
 		          try { 
 		             //MimeMessage message = mailSender.createMimeMessage(); 
@@ -101,11 +97,9 @@ public class JDK_MemberController {
 		             email.send();
 		             //mailSender.send(message); 
 		             //이메일 제대로 발송했는지 유무를 알고 싶습니다.
-		           
 		             out.append(random);
 		             out.flush();
 		             out.close();
-		             
 		          } catch (Exception e) { 
 		             System.out.println(e); 
 		          }
@@ -114,7 +108,53 @@ public class JDK_MemberController {
 		         out.flush();
 		         out.close();
 		      }
-
+		}
+		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
+		public void signIn(HttpServletResponse response, HttpServletRequest request, Member member) throws Exception {
+			//회원을 입력하기 위해서 결론적으로 Member 객체를 완성한 이후에 쿼리문에서 전송하여 올릴 것이므로... 최종적으로 Member 객체를 완성시키는 형식으로 진행
+			//아이디 받아오기
+			String memberId=request.getParameter("member_id");
+			//이름 가지고 오기
+			String memberName=request.getParameter("member_name");
+			//비밀 번호 받아오기
+			// 나중에 암호화 작업을 여기에 추가할 것
+			String memberPwd=request.getParameter("member_pw");
+			//주소 가지고 오기
+			String memberAdd=request.getParameter("address1")+" "+request.getParameter("address2");
+			//전화번호 가지고 오기
+			String memberPhone=request.getParameter("member_phone");
+			//이메일 가지고 오기
+			String memberEmail=request.getParameter("member_email");
+			//프로필 사진 가지고 오는 메소드(추후 이름 값을 현재 시간단위로 바꾸고 변수로 올리는 방식으로 수정)
+			String memberProfile="";
+			/*String memberProfile=request.getParameter("member_profile");*/
+			//주민등록번호 가지고 오기
+			int memberSocialNum=Integer.parseInt(request.getParameter("member_social_front")+request.getParameter("member_social_end"));
+			
+			//멤버 객체 완성
+			member.setMember_id(memberId);	
+			member.setMember_name(memberName);
+			member.setMember_pw(memberPwd);
+			member.setMember_address(memberAdd);
+			member.setMember_phone(memberPhone);
+			member.setMember_renamephoto(memberProfile);
+			member.setMember_regident_number(memberSocialNum);
+			//나머지 필요요소는 쿼리문에서 직접 작성함
+			//이제 서비스 타고 실제 회원 가입 진행
+			int enrollment=memberService.memberEnroll(member);
+			String mess="회원가입이 완료 되었습니다.";
+		try {
+			//회원 가입이 완료되었을 경우
+			if(enrollment==1) {
+				request.setAttribute("message", mess);
+				request.getRequestDispatcher("home").forward(request, response);
+			//회원가입이 안됬을 경우	
+			}else{
+				
+			}
+		}catch(Exception e) {
+			
+		}
 		}
 		//어드민 페이지 관련 메소드
 		//어드민 페이지 이동용 메소드

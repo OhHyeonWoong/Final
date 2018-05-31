@@ -25,26 +25,29 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.findPwdMethod(member);
 	}
 	
-	@Override
+	@Override//비밀번호 재설정 메일 보내기 전에 이메일 있는지 없는지 체크
 	public Member emailCheckMethod(String tomail) {
-		//비밀번호 재설정 메일 보내기 전에 이메일 있는지 없는지 체크
 		return memberDao.emailCheckMethod(tomail);
 	}
+
 	
-	@Override
+	@Override//아이디 찾기용
 	public Member findIdMethod(Member member) {
-		//아이디 찾기용 메소드
 		return memberDao.findIdMethod(member);
 	}
 	
-	@Override
+	@Override//아이디 중복검사
 	public boolean idConfirm(String member_id) {
 		return memberDao.idDuplicate(member_id); 
 	}
 	
-	@Override
+	@Override//이메일 인증
 	public boolean emailConfirm(String member_email) {
 		return memberDao.emailDuplicate(member_email);
 	}
 	
-}
+	@Override//회원 가입 메소드
+	public int memberEnroll(Member member) {
+		return memberDao.memberInsert(member);
+	}
+}	

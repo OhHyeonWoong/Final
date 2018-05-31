@@ -9,4 +9,5 @@ public interface MemberService {
 	public abstract Member findIdMethod(Member member);
 	public abstract boolean idConfirm(String member_id);
 	public abstract boolean emailConfirm(String member_email);
+	public abstract int memberEnroll(Member member);
 }
