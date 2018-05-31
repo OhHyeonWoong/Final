@@ -49,6 +49,8 @@ public class MemberDao {
 	public int memberInsert(Member member) {
 		return sqlSession.insert("memberInsert", member);
 	}
-	
+	public int updateMemberInfo(Member m) {
+		return sqlSession.update("updateMember", m);
+	}
 	
 }

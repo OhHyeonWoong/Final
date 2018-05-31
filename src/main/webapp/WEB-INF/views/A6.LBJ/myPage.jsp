@@ -328,9 +328,9 @@
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
-							<%-- <div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-							<img src="${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img"/>
-							</div><br> --%>
+							<div style="width : 200px; height : 200px; margin: 0 auto; border:1px solid black;">
+							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height : 200px;"/>
+							</div><br>
 							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>

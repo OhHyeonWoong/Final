@@ -51,6 +51,17 @@
 		]]>
 	</update>
 	
+	<update id="updateMember" parameterType="Member" flushCache="true">
+		<![CDATA[
+			update member 
+			set member_renamephoto = #{member_renamephoto},
+			member_pw = #{member_pw},
+			member_address = #{member_address},
+			member_phone = #{member_phone} 
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

@@ -46,6 +46,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.emailDuplicate(member_email);
 	}
 	
+	@Override
+	public int updateMemberInfo(Member m) {
+		return memberDao.updateMemberInfo(m);
+	}
+	
 	@Override//회원 가입 메소드
 	public int memberEnroll(Member member) {
 		return memberDao.memberInsert(member);
