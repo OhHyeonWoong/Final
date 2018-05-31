@@ -10,4 +10,9 @@ public interface MemberService {
 	public abstract boolean idConfirm(String member_id);
 	public abstract boolean emailConfirm(String member_email);
 	public abstract int memberEnroll(Member member);
+	//지석님 서비스 시작
+	public abstract int checkusercash(String memberid);
+	//지석님 서비스 끝
+	
+	
 }

@@ -50,4 +50,10 @@ public class MemberServiceImpl implements MemberService{
 	public int memberEnroll(Member member) {
 		return memberDao.memberInsert(member);
 	}
+
+	@Override
+	public int checkusercash(String memberid) {
+		// TODO Auto-generated method stub
+		return memberDao.checkusercash(memberid);
+	}
 }	

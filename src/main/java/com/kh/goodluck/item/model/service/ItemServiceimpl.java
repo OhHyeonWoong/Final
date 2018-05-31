@@ -273,5 +273,11 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.getitemdetail(itemtype);
 	}
 
+	@Override
+	public String getUsingemticon(String memberid) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getUsingemticon(memberid);
+	}
+
 	
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <script type="text/javascript">
 $(document).ready( function() {
 	var clickEvent = false;
@@ -31,12 +30,22 @@ $(document).ready( function() {
 <div class="container" style=" float: left; width:100%;">
 <div class="row">
         <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                 ${loginUser.member_name} 회원님<br>
+           <div class="panel-group" id="accordion">
+           <div class="panel panel-default">
+           <div class="panel-heading">
+           <h4 class="panel-title">
+         <c:choose>
+         <c:when test="${loginUser ne null}">
+         <img style="width:20px; height: 30px;" src="/goodluck/resources/A5.CJS/itemimg/${loginUser.emoticonfile}">${loginUser.member_name} 회원님<br>
                    보유 캐시:${loginUser.member_cash} 포인트
+                 </c:when>
+                 
+                 <c:when test="${loginUser eq null}">
+                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기
+                 </c:when>
+                 </c:choose>
+       
                  </h4>
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">

@@ -264,4 +264,10 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitemdetail",itemtype);
 	}
+
+
+	public String getUsingemticon(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getUsingemticon",memberid);
+	}
 }

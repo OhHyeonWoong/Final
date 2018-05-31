@@ -49,6 +49,10 @@ public class MemberDao {
 	public int memberInsert(Member member) {
 		return sqlSession.insert("memberInsert", member);
 	}
+	public int checkusercash(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("checkusercash", memberid);
+	}
 	
 	
 }

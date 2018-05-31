@@ -40,6 +40,34 @@ import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 
+/* 
+           ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+			ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+			ITEMLIST thismonthsrandom = ItemService.randomitem();
+			ItemPackage pack=ItemService.getitempackage();    
+			String items=pack.getITEMLIST_NO();
+			String split[] = items.split(",");
+		      int orimoney=0;
+		        String itemsName=new String();
+		        for (String i: split) {
+		        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+		        orimoney+=packitem.getITEMPRICE();
+		        itemsName+="["+packitem.getITEMNAME()+"]" ;
+		        itemsName+="+";
+		        };
+		        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+		        	itemsName = itemsName.substring(0, itemsName.length()-1);
+		        }
+			  mv.addObject("orimoney",orimoney);
+			  
+			    mv.addObject("pack",pack);
+			    mv.addObject("itemsName",itemsName);
+				mv.addObject("thismonthsrandom",thismonthsrandom);
+				mv.addObject("newitemthismonth",newitemthismonth);
+				mv.addObject("popitemthismonth",popitemthismonth);
+ * 
+ * */
+
 
 @Controller
 public class ItemController {
@@ -69,9 +97,12 @@ public class ItemController {
 	
 	@RequestMapping("cjsitemmellhome.go")
 	public ModelAndView itemmallmove(ModelAndView mv,HttpSession session) {
+		
 		if(session.getValue("loginUser") != null) {
+		//맴버 아이디에 아이콘을 같이 가져가기.
 		Member member=(Member)session.getAttribute("loginUser");
 		System.out.println("아이템컨트롤러에서 member호출"+member);
+		member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
 		}
 		//아이템몰 메인	
 		
@@ -144,8 +175,44 @@ public class ItemController {
 	}
 	
 	@RequestMapping("cjsitemDetail.go")
-	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno , ModelAndView mv) {
+	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno , ModelAndView mv ,HttpSession session ) {
 		//아이템 디테일 메소드.
+		if(session.getValue("loginUser") != null) {
+			//맴버 아이디에 아이콘을 같이 가져가기.
+			Member member=(Member)session.getAttribute("loginUser");
+			System.out.println("아이템컨트롤러에서 member호출"+member);
+			member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
+		
+		
+		
+		}
+		 ITEMLIST newitemthismonth =ItemService.newitemthismonth();
+			ITEMLIST popitemthismonth =ItemService.popitemthismonth();
+			ITEMLIST thismonthsrandom = ItemService.randomitem();
+			ItemPackage pack=ItemService.getitempackage();    
+			String items=pack.getITEMLIST_NO();
+			String split[] = items.split(",");
+		      int orimoney=0;
+		        String itemsName=new String();
+		        for (String i: split) {
+		        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
+		        orimoney+=packitem.getITEMPRICE();
+		        itemsName+="["+packitem.getITEMNAME()+"]" ;
+		        itemsName+="+";
+		        };
+		        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
+		        	itemsName = itemsName.substring(0, itemsName.length()-1);
+		        }
+			  mv.addObject("orimoney",orimoney);
+			  
+			    mv.addObject("pack",pack);
+			    mv.addObject("itemsName",itemsName);
+				mv.addObject("thismonthsrandom",thismonthsrandom);
+				mv.addObject("newitemthismonth",newitemthismonth);
+				mv.addObject("popitemthismonth",popitemthismonth);
+		
+		
+		
 		ITEMLIST li= ItemService.itemdetail(itemno);
 		ItemDetail detail = ItemService.getitemdetail(li.getITEMTYPE());
 		mv.addObject("item",li);
@@ -805,8 +872,9 @@ try {
 			        	itemsName1 = itemsName1.substring(0, itemsName1.length()-1);
 			    }    
 	        
-	        
-		      
+		       
+		        
+		        
 	    mv.addObject("orimoney",orimoney);
 	    mv.addObject("orimoney1",orimoney1);
 	    mv.addObject("itemsName",itemsName);

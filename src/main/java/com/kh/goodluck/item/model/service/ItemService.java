@@ -47,6 +47,7 @@ public interface ItemService {
 	public abstract int Insertitemlog1(int useritempk);
 	public abstract int updateimticon(HashMap<String, Object> map);
 	public abstract int insertimticon(int useritempk);
+	public abstract String getUsingemticon(String memberid);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 	public abstract List<ITEMLIST> allitemlist2(HashMap<Object, Object> map);
 	public abstract List<ItemPackage> allpackitem();

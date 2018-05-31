@@ -32,7 +32,6 @@ $(document).ready( function() {
 	});
 });
 </script>
-
 <div style="overflow: hidden;">
 </div>
 <div class="container">
@@ -40,13 +39,13 @@ $(document).ready( function() {
 <div class="container" style=" float: left; width:100%;">
 <div class="row">
         <div class="col-sm-3 col-md-3">
-           <div class="panel-group" id="accordion">
-           <div class="panel panel-default">
-           <div class="panel-heading">
-           <h4 class="panel-title">
+         <div class="panel-group" id="accordion">
+         <div class="panel panel-default">
+         <div class="panel-heading">
+         <h4 class="panel-title">
          <c:choose>
          <c:when test="${loginUser ne null}">
-         <img style="width:20px; height: 30px;">${loginUser.member_name} 회원님<br>
+         <img style="width:20px; height: 30px;" src="/goodluck/resources/A5.CJS/itemimg/${loginUser.emoticonfile}">${loginUser.member_name} 회원님<br>
                    보유 캐시:${loginUser.member_cash} 포인트
                  </c:when>
                  
