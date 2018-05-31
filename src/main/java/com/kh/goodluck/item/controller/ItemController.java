@@ -32,12 +32,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemDetail;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
+
 
 @Controller
 public class ItemController {
@@ -66,8 +68,11 @@ public class ItemController {
 
 	
 	@RequestMapping("cjsitemmellhome.go")
-	public ModelAndView itemmallmove(ModelAndView mv) {
-		
+	public ModelAndView itemmallmove(ModelAndView mv,HttpSession session) {
+		if(session.getValue("loginUser") != null) {
+		Member member=(Member)session.getAttribute("loginUser");
+		System.out.println("아이템컨트롤러에서 member호출"+member);
+		}
 		//아이템몰 메인	
 		
 		//8개 뽑기. 최신.
@@ -140,10 +145,11 @@ public class ItemController {
 	
 	@RequestMapping("cjsitemDetail.go")
 	public ModelAndView itemDetailmove(@RequestParam("itemno") int itemno , ModelAndView mv) {
-		
+		//아이템 디테일 메소드.
 		ITEMLIST li= ItemService.itemdetail(itemno);
-		
-		mv.addObject("detail",li);
+		ItemDetail detail = ItemService.getitemdetail(li.getITEMTYPE());
+		mv.addObject("item",li);
+		mv.addObject("detail",detail);
 		mv.setViewName("A5.CJS/itemDetail");
 		return mv;
 	}
@@ -779,30 +785,35 @@ try {
 	        };
 	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
 	        	itemsName = itemsName.substring(0, itemsName.length()-1);
+	        
 	        }
 	     
 	    	String items1=pack1.getITEMLIST_NO();
 			String split1[] = items1.split(",");
-		     int orimoney1=0;
-		        String itemsName1=new String();
+			ArrayList<ITEMLIST> inpack=new ArrayList<ITEMLIST>();
+			int orimoney1=0;
+			String itemsName1="";
 		        for (String i: split1) {
 		        ITEMLIST packitem1=ItemService.getpackitemsinfo(Integer.parseInt(i));
 		        orimoney1+=packitem1.getITEMPRICE();
+		        inpack.add(packitem1);
 		        itemsName1+="["+packitem1.getITEMNAME()+"]" ;
 		        itemsName1+="+";
+		        
 		        };
 		        if (itemsName1.length() > 0 && itemsName1.charAt(itemsName1.length()-1)=='+') {
-		        	itemsName1 = itemsName1.substring(0, itemsName1.length()-1);
-		        }    
+			        	itemsName1 = itemsName1.substring(0, itemsName1.length()-1);
+			    }    
 	        
 	        
 		      
 	    mv.addObject("orimoney",orimoney);
 	    mv.addObject("orimoney1",orimoney1);
 	    mv.addObject("itemsName",itemsName);
+	    mv.addObject("itemsName1",itemsName1);
 	    mv.addObject("pack",pack);
 	    mv.addObject("packitems",pack1);
-	    mv.addObject("itemsName1",itemsName1);
+	    mv.addObject("inpack",inpack);
 		mv.addObject("thismonthsrandom",thismonthsrandom);
 		mv.addObject("newitemthismonth",newitemthismonth);
 		mv.addObject("popitemthismonth",popitemthismonth);

@@ -155,21 +155,22 @@
 				<div class="col-md-12" style="padding: 0; height:  250px;">
 				<div style="float: left;  padding-top: 50px;" >
 	<div class="product col-md-3 service-image-left"  style="float: left; width: 110px; height: 150px;">
-     <img id="item-display" src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="width: 100%; height: 100%" alt=""></img>
+     <img id="item-display" src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="height: 100%" alt=""></img>
 	</div>
 		
 		</div>		  
 		     
-				<div class="col-md-7" style="margin-left: 50px">
+				<div class="col-md-7" style="margin-left: 10%">
 					<div class="product-title">${packitems.PACKAGE_NAME}</div>
+					${itemsName1}
 					<hr>
 					<div class="product-price">
-					${orimoney1}=>${packitems.PACKAGE_PRICE }
+					<del>${orimoney1}</del>=>${packitems.PACKAGE_PRICE }
 					</div>
 					<hr>
 					<div class="btn-group cart">
 						<button type="button" class="btn btn-success">
-							구매하기
+						구매하기
 						</button>
 					</div>
 				
@@ -188,11 +189,26 @@
 						<div class="tab-pane fade in active" id="service-one">
 						 
 							<section class="container product-info">
-						
-								${itemsName1}<br>
+								<table style="width: 100%" border="1"> 
+								<tr>
+								
+								<c:forEach var="item" items="${inpack}">
+								<th>
+								<center>
+								<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px">
+								<br>
+								${item.ITEMNAME}
+								</center>
+								</th>
+								</c:forEach>
+								
+								</tr>
+								
+								</table>
+								<br><br>
 								해당아이템을 구입 후, my_item란에서 확인 후 사용 하실수 있습니다 <br>
-								각 랜덤박스마다 지정된 아이템은 재기각각 다릅니다. <br>
-								이달의 랜덤박스에서는 일반 아이템몰에서는 구할수없는 희귀 아이콘을 구할수있습니다.<br>
+								패키지 아이템은 구매시 바로 각각의 아이템으로 분할되어 my_item으로 들어갑니다.<br>
+								이후, 일반 아이템처럼 사용하실수있습니다.<br>
 								<h3>주의 사항</h3>
 								<li>이모티콘은 중첩됩니다.</li>
 								<li>구매한뒤 마이아이템에서 사용할수있습니다.	 </li>
@@ -224,6 +240,7 @@
         </div>
     </div>
  </div></div></div></div></div>
+
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 
 </body>

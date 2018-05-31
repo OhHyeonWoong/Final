@@ -40,12 +40,22 @@ $(document).ready( function() {
 <div class="container" style=" float: left; width:100%;">
 <div class="row">
         <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                 ${loginUser.member_name} 회원님<br>
+           <div class="panel-group" id="accordion">
+           <div class="panel panel-default">
+           <div class="panel-heading">
+           <h4 class="panel-title">
+         <c:choose>
+         <c:when test="${loginUser ne null}">
+         <img style="width:20px; height: 30px;">${loginUser.member_name} 회원님<br>
                    보유 캐시:${loginUser.member_cash} 포인트
+                 </c:when>
+                 
+                 <c:when test="${loginUser eq null}">
+                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기
+                 </c:when>
+                 </c:choose>
+       
                  </h4>
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">
@@ -308,19 +318,19 @@ $(document).ready( function() {
         <div class="col-md-6" style="width: 100%; height: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
-					<h3 class="panel-title"> 아이템 몰아보기  </h3>
+					<h3 class="panel-title"> 아이템 랜덤보기  </h3>
 				   
 				</div>
-				<div class="panel-body" style="width: 100%; padding: 10">    
+				<div class="panel-body" style="width: 100%; padding: 25px">    
 				  <table style="width: 100%; height: 100%;">
 				<tr>
 			<c:forEach var="item" items="${newitem}" begin="0" end="3">
-   			<th>
+   			<th style="width: 100px;">
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
    			<br>
-   			 이름 : ${item.ITEMNAME}<br>
-   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			${item.ITEMNAME}<br>
+   			${item.ITEMPRICE} 원 <br>
    			 <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
    			 </center>
 			</th>
@@ -332,12 +342,12 @@ $(document).ready( function() {
 					  </tr>
 					  <tr>		
 			<c:forEach var="item" items="${newitem}" begin="4">
-   			<th>
+   			<th style="width: 100px;">
    			<center>
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px;">
    			<br>
-   			 이름 : ${item.ITEMNAME}<br>
-   			 가격 : ${item.ITEMPRICE} 원 <br>
+   			${item.ITEMNAME}<br>
+   			 ${item.ITEMPRICE} 원 <br>
    			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button>
    			 
    			 </center>
@@ -357,7 +367,7 @@ $(document).ready( function() {
 					<h3 class="panel-title">인기목록</h3>
 				    
 				</div>
-				<div class="panel-body" style="width: 100%; padding: 5px"	>    
+				<div class="panel-body" style="width: 100%;"	>    
 
 <center>
 <table style="width: 80%; height: 100%;">
@@ -397,7 +407,7 @@ $(document).ready( function() {
             <table style="width: 100%; height: 100%;">
             <tr>
             <th style="width: 50%; background: white;">
-       <div class="col-md-6" style="width: 100%; height: 100%;">
+       <div class="col-md-6" style="width: 100%;">
 			<div class="panel panel-primary" style="width: 100%; height: 100%;">
 				<div class="panel-heading" >
 					<h3 class="panel-title">아이템 관련 공지사항  전체공지바로가기--></h3>
@@ -411,7 +421,7 @@ $(document).ready( function() {
 	<th>작성일</th>
 	</tr>
 	<c:forEach var="notice" items="${itemNotice}">
-	<tr>
+	<tr style="height: 30px">
 	<th><center>${notice.ITEMNOTICE_NO}</center></th>
 	<th>${notice.ITEMNOTICE_TITLE}</th>
 	<th>${notice.ITEMNOTICE_DATE}</th>
@@ -435,10 +445,10 @@ $(document).ready( function() {
 					<h3 class="panel-title">신상 패키지</h3>
 				   
 				</div>
-				<div class="panel-body" style="width: 100%; hei">
+				<div class="panel-body" style="width: 100%;    padding-bottom: 0px;">
 				
 	<table style="width: 100%; height: 100% ">
-	<tr><th>아이템명</th><th>원래가격</th><th></th><th>할인가격</th></tr>
+	<tr><th><center>패키지명</center></th><th>원래가격</th><th></th><th>할인가격</th></tr>
 	<c:forEach var="packageitems" items="${packageitems}">
 	<tr height="50px">
 	<th><center><a href="#">${packageitems.PACKAGE_NAME}</a></center></th>

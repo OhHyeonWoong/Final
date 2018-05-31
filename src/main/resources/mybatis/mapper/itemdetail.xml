@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ItemDetail-mapper">
+
+	<resultMap id="ItemDetail" type="ItemDetail">
+		<id property="ITEMDETAIL_NO" column="ITEMDETAIL_NO"/>
+		<result property="ITEMTYPE" column="ITEMTYPE"/>
+		<result property="DETAIL_1" column="DETAIL_1"/>
+		<result property="DETAIL_2" column="DETAIL_2"/>
+		<result property="DETAIL_3" column="DETAIL_3"/>
+		<result property="DETAIL_4" column="DETAIL_4"/>
+	</resultMap>
+
+
+<select id="getitemdetail" parameterType="int" resultType="ItemDetail">
+select * from ITEMDETAIL where ITEMTYPE = #{itemtype}
+</select>
+</mapper>
