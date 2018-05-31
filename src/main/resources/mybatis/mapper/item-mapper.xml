@@ -99,7 +99,8 @@ select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_
 		where mi.ITEMLIST_NO = it.ITEMLIST_NO  
 		and mi.MYITEM_NO = ui.MYITEM_NO
 		and ui.USING_ITEM_NO = il.USING_ITEM_NO
-		and mi.MEMBER_ID = #{member_id}) 
+		and mi.MEMBER_ID = #{member_id} 
+		and it.itemtype != 2) 
 		where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>
 </select>
