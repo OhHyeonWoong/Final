@@ -37,6 +37,7 @@ public class CJSMemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
 	@Autowired
 	private ItemService ItemService;
 	

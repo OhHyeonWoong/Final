@@ -279,5 +279,23 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.getUsingemticon(memberid);
 	}
 
+	@Override
+	public int getitemprice(int pk) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getitemprice(pk);
+	}
+
+	@Override
+	public int insertmyitem(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return itemlistDao.insertmyitem(map);
+	}
+
+	@Override
+	public int updatesellcount(int pk) {
+		// TODO Auto-generated method stub
+		return itemlistDao.updatesellcount(pk);
+	}
+
 	
 }

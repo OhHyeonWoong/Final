@@ -1,5 +1,7 @@
 package com.kh.goodluck.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -57,6 +59,10 @@ public class MemberDao {
 	
 	public int updateMemberInfo(Member m) {
 		return sqlSession.update("updateMember", m);
+	}
+	public int decreaseCash(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("decreaseCash", map);
 	}
 
 }
