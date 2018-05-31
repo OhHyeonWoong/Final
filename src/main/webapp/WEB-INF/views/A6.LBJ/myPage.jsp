@@ -288,7 +288,6 @@
 				flag = false;
 				alert("비밀번호가 일치하지 않습니다.");
 			}
-			// 2
 			
 			if(flag == false){
 				alert("누락된 정보가 없나 확인해보세요.");
@@ -324,10 +323,10 @@
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
-							<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
+							<%-- <div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
 							<img src="${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img"/>
-							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
+							</div><br> --%>
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
 						</div>
 						<div class="form-group">
 							<label for="userid">아이디</label>
