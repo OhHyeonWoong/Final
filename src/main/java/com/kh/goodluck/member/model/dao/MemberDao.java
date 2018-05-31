@@ -38,6 +38,14 @@ public class MemberDao {
 		return false;
 		}
 	}
+	public boolean emailDuplicate(String member_email) {
+		//이메일 중복 검사용 메소드(전동기)
+		if(sqlSession.selectOne("emailDuplicateCheck", member_email)==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
 }
