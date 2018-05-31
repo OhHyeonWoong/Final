@@ -8,7 +8,13 @@
 <title>SearchResult</title>
 
 <style type="text/css">
-	
+	.ohw-search-maintd {
+		width:950px;
+	}
+	.ohw-search-table {
+		text-align:center;
+	}
+		
 </style>	
  
 </head>
@@ -19,34 +25,55 @@
 <script type="text/javascript" src="/goodluck/resources/A2.JUJ/js/juj_sidebar.js"></script>
 <!-- SideBar End -->
 
-<div class="container">
-	<h2>Hover Rows</h2>
-	<p>The .table-hover class enables a hover state on table rows:</p>            
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Firstname</th>
-				<th>Lastname</th>
-				<th>Email</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>John</td>
-				<td>Doe</td>
-				<td>john@example.com</td>
-			</tr>
-			<tr>
-				<td>Mary</td>
-				<td>Moe</td>
-				<td>mary@example.com</td>
-			</tr>
-			<tr>
-				<td>July</td>
-				<td>Dooley</td>
-				<td>july@example.com</td>
-			</tr>
-		</tbody>
+<div class="container">	            
+	<table>
+		<tr>
+			<td class = "ohw-search-maintd">
+				<table class="table table-hover ohw-search-table">
+					<tr>
+						<td><label></label></td>
+						<td></td>
+						<td>제목</td>
+						<td>글쓴이</td>
+						<td>날짜</td>				
+					</tr>	
+					<tr>
+						<td>20344</td>
+						<td><img></td>
+						<td>대세 쉐프 이연북과 함께 하는 즐거운 중화파티</td>
+						<td><img src = "/goodluck/resources/common/img/level/lv62.gif"> 이연북</td>
+						<td>2018-05-31</td>
+					</tr>				
+					<tr>
+						<td>20344</td>
+						<td><img></td>
+						<td>대세 쉐프 이연북과 함께 하는 즐거운 중화파티</td>
+						<td><img src = "/goodluck/resources/common/img/level/lv62.gif"> 이연북</td>
+						<td>2018-05-31</td>
+					</tr>				
+					<tr>
+						<td>20344</td>
+						<td><img></td>
+						<td>대세 쉐프 이연북과 함께 하는 즐거운 중화파티</td>
+						<td><img src = "/goodluck/resources/common/img/level/lv62.gif"> 이연북</td>
+						<td>2018-05-31</td>
+					</tr>				
+					<tr>
+						<td>20344</td>
+						<td><img></td>
+						<td>대세 쉐프 이연북과 함께 하는 즐거운 중화파티</td>
+						<td><img src = "/goodluck/resources/common/img/level/lv62.gif"> 이연북</td>
+						<td>2018-05-31</td>
+					</tr>
+				</table>
+			</td>
+			<td>				
+				<div class="sidecontrol_Div">
+					<%@ include file = "/WEB-INF/views/A2.JUJ/SearchResultSideBar.jsp" %>
+				</div>				
+			</td>
+		</tr>	
+						
 	</table>
 </div>
 
