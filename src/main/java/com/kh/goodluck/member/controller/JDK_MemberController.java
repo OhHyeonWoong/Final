@@ -120,7 +120,7 @@ public class JDK_MemberController {
 			// 나중에 암호화 작업을 여기에 추가할 것
 			String memberPwd=request.getParameter("member_pw");
 			//주소 가지고 오기
-			String memberAdd=request.getParameter("address1")+" "+request.getParameter("address2");
+			String memberAdd=request.getParameter("member_address1")+" "+request.getParameter("member_address2");
 			//전화번호 가지고 오기
 			String memberPhone=request.getParameter("member_phone");
 			//이메일 가지고 오기
