@@ -14,6 +14,7 @@ public interface NoticeService {
 
 	public abstract Notice noticeDetail(int notice_no);
 
+	abstract int noticeContentUpdate(Notice newnotice);
 
 	
 }

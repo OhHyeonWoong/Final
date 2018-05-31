@@ -20,4 +20,7 @@ select * from (select * from itempackage) where rownum <= 3
 ]]>
 </select>
 
+<select id="getitempackage1" parameterType="int" resultType="ItemPackage">
+select * from itempackage where PACKAGEPK=#{pk}
+</select>
 </mapper>

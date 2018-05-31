@@ -302,7 +302,7 @@
   background : none !important;
 }	
  
-#j1 {
+#j1,#j2 {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
@@ -332,6 +332,10 @@
   text-align: center;
   padding: 10px;
   width: 105px; 	  
+}
+
+#j_t1, #j_t2, #j_t3, #j_t4{
+  height: 57px;
 }
 
 
@@ -908,8 +912,8 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문?!!..FAQ</font>								
-									<table class="jwj-innertable" id="j2" border="1">
-										<tr><td>번호</td><td>카테고리</td><td>제목</td></tr>
+									<table id="j2" border="1">
+										<tr><td id="j_t1">번호</td><td>카테고리</td><td>제목</td></tr>
 									</table>								
 								</td>
 							</tr>
@@ -939,7 +943,7 @@
 									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>		
 							</div>
-						</td>					
+						</td>					 
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				

@@ -109,7 +109,7 @@
 					</div>
 					</div>
 		
-			        
+			         
 					<c:forEach var="faquseinglist" items="${useinglist}">
 			        <div class="section2" hidden="true"> 
 						<div class="request_area" align="left">

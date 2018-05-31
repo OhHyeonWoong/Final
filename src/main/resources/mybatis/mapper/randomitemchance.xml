@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RanDomBoxChance-mapper">
+	
+	<resultMap id="RanDomBoxChance" type="RanDomBoxChance">
+		<id property="RANDOMBOX_PK" column="RANDOMBOX_PK"/>
+		<result property="ITEMLIST_NO" column="ITEMLIST_NO"/>
+		<result property="CHANCE" column="CHANCE"/>
+		<result property="itemname" column="itemname"/>
+		<result property="ITEMFILENAME" column="ITEMFILENAME"/>
+	</resultMap>
+	
+<select id="getRanDomBoxChance1" resultMap="RanDomBoxChance">
+select itemname,chance,ITEMFILENAME from  RANDOMBOX_ALL , itemlist where RANDOMBOX_ALL.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+</select>
+<select id="getRanDomBoxChance2" resultMap="RanDomBoxChance">
+select itemname,chance,ITEMFILENAME from  RANDOMBOX_EMO, itemlist where RANDOMBOX_EMO.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+</select>
+<select id="getRanDomBoxChance3" resultMap="RanDomBoxChance">
+select itemname,chance,ITEMFILENAME from  RANDOMBOX_TIME , itemlist where RANDOMBOX_TIME.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+</select>
+
+</mapper>

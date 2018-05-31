@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>신상품 보기</title>
+<title>랜덤아이템 목록</title>
 </head>
 <body>
 <style>
@@ -244,30 +244,25 @@ body {
 </style>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <%@ include file = "/WEB-INF/views/A5.CJS/cjsitemheaderandsider.jsp" %>
+
  </div>
- 			<section class="inner">
+ <section class="inner">
 				<ul class="grid">
-				<c:forEach var="items" items="${packitems}"> 
+				<c:forEach var="items" items="${randomitems}">
 					<li class="grid-tile">
 						<div class="item">
 							<div class="item-img" style="background-image: url('https://www.momastore.org/wcsstore/MOMASTORE1/images/products/96511_A2_Print_NYC_8x10_In.jpg'); background-size: auto auto; background-size: 150%; background-position: center 30%; background-color: #f5f5f5;    padding: 20px;">
-							<a href="cjspackitemdetail.go?pk=${items.PACKAGEPK}">
-							<img style="width: 100%;  height: 160px; " src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png">
+							<a href="cjsrandomdetail.go?pk="+${items.ITEMLIST_NO}>
+							<img style="width: 100%;  height: 160px; " src="/goodluck/resources/A5.CJS/itemmallcaros/${items.ITEMFILENAME}">
 							</a>
 							</div>
 							<div class="item-pnl">
 								<div class="pnl-wrapper">
 									<div class="pnl-description">
-									    <a href="cjspackitemdetail.go?pk=${items.PACKAGEPK}">
-										<span class="pnl-label">
-										<strong>
-										${items.PACKAGE_NAME}
-										</strong>
-										</span>
+									    <a href="cjsrandomdetail.go?pk=${items.ITEMLIST_NO}">
+										<span class="pnl-label">${items.ITEMNAME}</span>
 										</a>
-										<span class="pnl-price">
-										<del>${items.ori_PRICE}</del> => ${items.PACKAGE_PRICE}</span>
-										
+										<span class="pnl-price">${items.ITEMPRICE}</span>
 									</div>
 									<div class="pnl-favorites">
 										
@@ -277,13 +272,10 @@ body {
 							</div>
 						</div>
 					</li>
-				</c:forEach> 
+				</c:forEach>
 		
 				</ul>
 			</section>
- 
- 
- 
  
  
  </div></div></div></div></div>
