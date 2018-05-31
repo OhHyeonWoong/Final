@@ -40,6 +40,7 @@ import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 
+
 @Controller
 public class ItemController {
 	
@@ -67,8 +68,11 @@ public class ItemController {
 
 	
 	@RequestMapping("cjsitemmellhome.go")
-	public ModelAndView itemmallmove(ModelAndView mv) {
-		
+	public ModelAndView itemmallmove(ModelAndView mv,HttpSession session) {
+		if(session.getValue("loginUser") != null) {
+		Member member=(Member)session.getAttribute("loginUser");
+		System.out.println("아이템컨트롤러에서 member호출"+member);
+		}
 		//아이템몰 메인	
 		
 		//8개 뽑기. 최신.

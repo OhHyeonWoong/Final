@@ -34,20 +34,31 @@
                  </table>
         	     </div>
                 <div class="panel-body">
+                     <br>
                 <ul>
-                <li>${detail.DETAIL_1}</li>
-                <li>${detail.DETAIL_2}</li>
-                <li>${detail.DETAIL_3}</li>
-                <li>${detail.DETAIL_4}</li>
-               
+                <li style="height: 50px">${detail.DETAIL_1}</li>
+                <li style="height: 50px">${detail.DETAIL_2}</li>
+                <li style="height: 50px">${detail.DETAIL_3}</li>
+                <li style="height: 50px">${detail.DETAIL_4}</li>
                 </ul>    
-				
-
                 </div>
                 <div class="panel-footer">
                     <div class="pull-right">
-                      <button>구매하기</button>
-                      <button>뒤로가기</button>
+                      
+                      <c:choose>
+                      <c:when test="${loginUser eq null}">  
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기
+				</button>
+				
+				</c:when>
+                      <c:when test="${loginUser ne null}"> <button>구매하기</button></c:when>
+                      </c:choose>
+                      
+                  
+                     
+                     
+                      <button onclick="window.history.go(-1)">뒤로가기</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
