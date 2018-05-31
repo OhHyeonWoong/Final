@@ -6,48 +6,35 @@ import javax.servlet.http.*;
 
 import org.json.simple.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.search.model.service.SearchService;
+import com.kh.goodluck.search.model.vo.Search;
 
 import javafx.scene.control.Pagination;
 
-public class SearchController {
+@Controller
+public class SearchController {	
 	
 	@Autowired
-	private BoardService boardService;	
+	private SearchService searchService;
 	
-	@RequestMapping(value="headerSearch.go", method=RequestMethod.GET)
-	public void searchKeywordFowording(HttpServletRequest request, HttpServletResponse response, 
-			@RequestParam("searchKeyword") String searchKeyword) {		  
+	@RequestMapping(value = "moveSearch.go")
+	public ModelAndView moveSearch(HttpServletResponse response, ModelAndView mav) {
 		
-		JSONObject json = new JSONObject();
-		JSONObject json2 = new JSONObject();
-		JSONObject json3 = new JSONObject();
-		JSONObject json4 = new JSONObject();
-		JSONObject json5 = new JSONObject();
-		JSONObject json6 = new JSONObject();
-		JSONObject json7 = new JSONObject();
-		JSONObject json8 = new JSONObject();
-		JSONObject json9 = new JSONObject();
-		JSONObject json10 = new JSONObject();
-
-		JSONArray jarr = new JSONArray();
-		JSONArray jarr2 = new JSONArray();
-		JSONArray jarr3 = new JSONArray();
-		JSONArray jarr4 = new JSONArray();
-		JSONArray jarr5 = new JSONArray();
-		JSONArray jarr6 = new JSONArray();
-		JSONArray jarr7 = new JSONArray();
-		JSONArray jarr8 = new JSONArray();
-		JSONArray jarr9 = new JSONArray();
-		JSONArray jarr10 = new JSONArray();
+		mav.setViewName("A1.OHW/SearchResult");
 		
-		Pagination p = new Pagination(); 
-		//페이징처리를 자동으로 해주는 객체 사용방법 찾는중
-
-		
+		return mav;
 	}
 	
-
+	
+	@RequestMapping(value = "headerSearch.go", method=RequestMethod.GET)
+	public void searchKeywordFowording(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam("searchKeyword") String searchKeyword) {
+		System.out.println("SendKeyword : " + searchKeyword + " / To.SearchController");
+		List<Search> list = searchService.searchKeyword(searchKeyword);
+		System.out.println("ReturnList : " + list + " / To.SearchController");		
+	}
 }

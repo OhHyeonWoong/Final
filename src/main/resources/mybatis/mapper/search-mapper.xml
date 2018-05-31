@@ -4,19 +4,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search-mapper">
 
-	<resultMap id="searchResult" type="Search">
+	<resultMap id="HeaderSearchKeywordResult" type="Search">
 		<id property="category_big_code" column="category_big_code"/>
 		<result property="category_big_name" column="category_big_name"/>
 		<result property="category_big_views" column="category_big_views"/>
 		<result property="category_big_count" column="category_big_count"/>			
 	</resultMap>	
 	
-	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
-		<![CDATA[
-			select category_big_code, category_big_name, category_big_views, category_big_count 
-			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc) 
-			where rownum <= 6
-		]]>
+	<select id="headerSearchKeyword" resultMap="HeaderSearchKeywordResult">	
+		select * from AGENCY 
+		where 
 	</select>
 	
 	
