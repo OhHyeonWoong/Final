@@ -64,7 +64,8 @@ select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !
 </select>
 
 <select id="countitem1" resultType="int" parameterType="Hashmap">
-select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%' ||#{search}|| '%' and ITEMTYPE !=8
+select count(*) from ITEMLIST where itemfilename not like '%gif%' and 
+ITEMNAME like '%' ||#{search}|| '%' and ITEMTYPE !=8
 </select>
 
 <select id="selectitemdetail" resultType="ITEMLIST">

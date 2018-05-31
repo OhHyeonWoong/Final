@@ -12,118 +12,34 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-<script type="text/javascript">
-$(document).ready( function() {
-	var clickEvent = false;
-	$('#myCarousel').on('click', '.nav a', function() {
-			clickEvent = true;
-			$('.nav li').removeClass('active');
-			$(this).parent().addClass('active');		
-	}).on('slid.bs.carousel', function(e) {
-		if(!clickEvent) {
-			var count = $('.nav').children().length -1;
-			var current = $('.nav li.active');
-			current.removeClass('active').next().addClass('active');
-			var id = parseInt(current.data('slide-to'));
-			if(count == id) {
-				$('.nav li').first().addClass('active');	
-			}
-		}
-		clickEvent = false;
-	});
-});
-</script>
-
-<div style="overflow: hidden;">
+<%@ include file = "/WEB-INF/views/A5.CJS/cjsitemheaderandsider.jsp" %>
 </div>
-<div class="container">
-
-
-    
-<!-- 아이템몰 사이드바 -->
-<div class="container" style=" float: left; width:100%;">
-<div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                            </span>
-                            ~~님<br>
-                            보유 캐시 : xxxx원
-               </a>
-                 </h4>
-                    </div>
-                   	 <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                             	<tr>
-                                    <td>
-                                       <form action="">
-                                        <input type="text" name="itemname" placeholder="아이템검색">
-                                        <input type="submit" value="검섹">
-                                        </form>
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">최신 아이템보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">인기 아이템보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">소모품 보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">기간제 보기</a>
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">청약철회보기</a>
-                                        
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-       	<div style="background: blue">
-        <div class="col-sm-9 col-md-9">
+	<div>
+        <div class="col-sm-9 col-md-9" style="width: 100%">
       		 <div class="panel panel-default">
         	    <div class="panel-heading">
                  <table style="width: 100%; height: 100%">
                  <tr>
                  <th style="width: 20%; height: 90%; padding: 10px;">
-			<img src="/goodluck/resources/A5.CJS/itemimg/${detail.ITEMFILENAME}" style="width: 80px; height:70px; background: red">
+			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 80px; height:70px;">
 				</th>
                  <th style="width: 78%;">
-                 상품명: ....<br>
-        	가격: ....<br>
-        	기간:....<br>				
+                 	
+		
+                 상품명:${item.ITEMNAME}<br>
+        가격:${item.ITEMPRICE}<br>
+        기간:${item.ITEMPERIOD}<br>				
                  </th>
                  </tr>
                  </table>
         	     </div>
                 <div class="panel-body">
                 <ul>
-                <li>상세설명1</li>
-                <li>상세설명2</li>
-                <li>상세설명3</li>
-                <li>청약 철회 관련  바로가기</li>
+                <li>${detail.DETAIL_1}</li>
+                <li>${detail.DETAIL_2}</li>
+                <li>${detail.DETAIL_3}</li>
+                <li>${detail.DETAIL_4}</li>
+               
                 </ul>    
 				
 
@@ -141,15 +57,7 @@ $(document).ready( function() {
         
         
         </div>
-        
-        
-    </div>
-
-</div>
-                                                                                
-</div>
-<br>
-<br>
+ </div></div></div></div></div>
 
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>

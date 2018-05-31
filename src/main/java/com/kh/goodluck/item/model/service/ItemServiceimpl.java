@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.kh.goodluck.item.model.dao.Itemdao;
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemDetail;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
@@ -264,6 +265,12 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 	public ItemPackage getitempackage(int pk) {
 		// TODO Auto-generated method stub
 		return itemlistDao.getitempackage(pk);
+	}
+
+	@Override
+	public ItemDetail getitemdetail(int itemtype) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getitemdetail(itemtype);
 	}
 
 	
