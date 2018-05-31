@@ -229,11 +229,15 @@ public class MemberController {
 			if((fileName != "") && (fileName != memberProfile)) {
 				//수정 된 프로필이 있고, 기존 프로필과 수정된 프로필이 같지 않을 때
 				System.out.println("file.getOriginalFilename = " + file.getOriginalFilename());
-				/*try {
+				//디비에 접근해서 유저 정보 업데이트
+				
+				/////////////////////////
+				try {
+					//파일을 해당 디렉토리에 저장
 					file.transferTo(new File(path + "\\" + fileName));
 				} catch (Exception e) {
 					e.printStackTrace();
-				}*/
+				}
 			}else {
 				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
 			}
