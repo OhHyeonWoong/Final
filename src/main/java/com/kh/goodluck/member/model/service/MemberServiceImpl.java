@@ -42,6 +42,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.idDuplicate(member_id); 
 	}
 	
-	
+	@Override
+	public boolean emailConfirm(String member_email) {
+		return memberDao.emailDuplicate(member_email);
+	}
 	
 }
