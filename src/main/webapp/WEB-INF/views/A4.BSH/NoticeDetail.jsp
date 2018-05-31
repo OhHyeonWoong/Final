@@ -5,32 +5,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />	 -->	
 		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript">
-			function backalllist(){ //공지사항 전체리스트로 돌아가기
-				location.href("Notice.go");
-			}
-		
-			$(function(){  
-				$("#AdminAlter").on("click",function(){ /* 게시글수정은 운영자가 Ajax를 통하여 가능하도록한다. */
-					$.ajax({
-						url : ,
-						type : "get",
-						data : ,
-						datatype : ,
-						success : function(data){
-							
-						},
-						error : function(a,b,c){
-							console.log("a : "+a+"b : "+b+"c : "+c);
-						}
-					});
+			$(function(){
+				$("#return_btn").on("click",function(){
+					alter("돌아가기 버튼을 클릭하셨네요?");
 				});
 			});
 		</script>	
+		<!-- <script type="text/javascript">
+			$(function(){
+				$("#AdminAlter").on("click",function(){
+					$.ajax({
+						url : "notice_alter.go",
+						//3가지를 보낸다.(글번호,글제목,글 내용)
+						data : {  
+								 noticeNo : ${ notice_info.notice_no },
+								 noticeTitle : $(".this_noticeNo").val(),
+								 noticecontents : ${ n_contents }
+						},
+						type : "post",
+						success : function(data){
+							alter("수정이 완료되었습니다.");
+						},
+						error : function(a,b,c){
+							alert(a+", "+b+", "+c);
+						}			
+					});
+				});		
+			});
+
+		</script>	 -->
 		<title>공지사항 상세보기 페이지</title>
 		<style type="text/css">
 			.total_Area{
@@ -82,43 +87,49 @@
 			    padding:5px;
 			    font-size:50px;
 			}
+			.this_noticeNo{
+				width: 330px !important;
+			}
 		</style>	
 	</head>
 	
 	
-	
+	    
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	
 	
 	<%-- <% if(loginUser.equals("admin")){ 관리자면 수정이가능하게 %>
-
+			테이블에 받은 내용을 input타입text로하되 readonly설정을X
 	<% }else if(!(loginUser.equals("admin"))){ 관리자가 아니면 수정이 불가능하게 %>
-	
+			테이블에 받은 내용을 input타입text로하되 readonly설정을O
 	<% } %> --%>
+	
 	<div class="container">
 	    <div class="total_Area" style="background-image: url('http://demos.creative-tim.com/material-bootstrap-wizard/assets/img/wizard-book.jpg')">
 			<div class="in_ContentsArea" align="center">
 				<div class="padding"></div>
 				<span class="glyphicon glyphicon-user icon" style="float: left; margin-left: 28%;"></span> <h3  style="float: left;">공 지 글 상 세 보 기</h3>
+				
 				<table class="in_ContentTable">			
-					<tr align="center"> <td class="uk_td1 sec1"> 글제목 </td> <td class="uk_td1"> 공지사항1 </td> </tr>
-					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> 운영자 </td> </tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 글제목</td> <td class="uk_td1"> <input type="text" width="400" class="this_noticeNo" value="${notice_info.notice_title}"> </td></tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
 					<tr> 
 						<td class="uk_td2" colspan="2">
-							<textarea rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">불법적인 만남, 혹은 게시물 게재로 신고를 당하였다면 1신고에 아웃입니다. 괸한 불란을 일으켰다가는 무조건 제제입니다.
+							<textarea class="notice_contents" rows="25" cols="86" style="resize: none; overflow: scroll;">${notice_info.notice_content}</textarea>
+							<c:set var="n_contents" value="${ notice_info.notice_content }"/>
 							
-							</textarea>
-						
-						</td> 
+						</td>  
 					</tr>
 					<tr> 
 						<td colspan="2" align="center"> 
 							<button id="AdminAlter" style="background: none;"> 수정하기 </button> &nbsp;&nbsp;&nbsp;&nbsp;
-							<button style="background: none;" onclick="backalllist();"> 돌아가기 </button>							
+							<!-- <button style="background: none;" class="return_btn" id="return_btn"> 돌아가기 </button>	 -->	
+							<a class="return_btn" id="return_btn"> 돌아가기 </a>
 						</td>
 					</tr>
 				</table>
+				
 			</div>
 	    	
 	    </div>

@@ -26,7 +26,7 @@ select * from (
 select * from 
 (select ROWNUM AS RNUM, A.* FROM  
 (select * from my_item where member_id = #{MEMBER_ID} and myitem_status = 1 and (select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO) !=2 ) 
-A WHERE ROWNUM < #{endRow}) 
+A WHERE ROWNUM <= #{endRow}) 
 WHERE RNUM >= #{startRow} ORDER BY MYITEM_NO DESC
 ) a, itemlist b where a.ITEMLIST_NO= b.ITEMLIST_NO 
 ]]>
@@ -37,7 +37,7 @@ select * from (
 select * from
 (select ROWNUM AS RNUM, A.* FROM  
 (select * from my_item where member_id = #{MEMBER_ID} and (select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO)=2) 
-A WHERE ROWNUM < #{endRow} )
+A WHERE ROWNUM <= #{endRow} )
 WHERE RNUM >= #{startRow} ORDER BY MYITEM_NO DESC
 ) a, itemlist b where a.ITEMLIST_NO= b.ITEMLIST_NO
 ]]>

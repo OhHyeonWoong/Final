@@ -54,20 +54,33 @@ public class BoardController {
 		boolean search = false;
 		
 		while(flag) {
-			for(MidCategory m : midcategorylist) {
-				if(m.getCategory_mid_name().equals(mdname)) {
+			for(BigCategory b : bigcategorylist) {
+				if(b.getCategory_big_name().equals(mdname)) {
 					/*System.out.println(mdname);*/
-					boardlist = boardservice.selectCategoryMid(board);
+					boardlist = boardservice.selectCategoryBig(board);
 					flag =false;
 					search=true;
 					break;
 				}
+			}	
+			if(flag) {
+				for(MidCategory m : midcategorylist) {
+					if(m.getCategory_mid_name().equals(mdname)) {
+						/*System.out.println(mdname);*/
+						boardlist = boardservice.selectCategoryMid(board);
+						flag =false;
+						search=true;
+						break;
+					}
+				}
 			}
+			
 			flag =false;
 		}
 		if(!search) {
 			boardlist = boardservice.selectCategory(board);
 		}
+		
 		ArrayList<String> strlist = new ArrayList<String>();
 		
 		//System.out.println(boardlist);

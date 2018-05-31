@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.qna.model.service.QNAService;
@@ -27,7 +30,7 @@ public class QNAController {
 	private QNAService qnaService;
 	
 	public QNAController() {
-		
+		 
 	}
 	
 	@RequestMapping("bsh-QNA.go")
@@ -110,8 +113,8 @@ public class QNAController {
 	    map.put("member_id", member_id);
 		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
 		
-		 if (qnaMaxPage < qnaEndRow)
-		 qnaEndRow = qnaMaxPage;
+		if (qnaMaxPage < qnaEndRow)
+		  qnaEndRow = qnaMaxPage;
 		
 		System.out.println("mypage listcount = " + qnaListCount);
 	    System.out.println("mypage qnaStartRow = " + qnaStartRow);
@@ -148,6 +151,24 @@ public class QNAController {
 		
 		PrintWriter out = response.getWriter();
 		out.print(jobj.toJSONString());
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="lbjDeleteQna.go",method=RequestMethod.POST)
+	public void deleteQnaMethod(@RequestParam(value="question_no[]") List<String> question_no,HttpServletResponse response) 
+			throws IOException{
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("question_no", question_no);
+		
+		int result = qnaService.deleteQna(map);
+		
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("게시글 삭제 성공!");
+		}else {
+			out.print("게시글 삭제 실패!");
+		}
 		out.flush();
 		out.close();
 	}

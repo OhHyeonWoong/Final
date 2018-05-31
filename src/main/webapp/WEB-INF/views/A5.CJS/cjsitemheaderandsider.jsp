@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
 <script type="text/javascript">
 $(document).ready( function() {
 	var clickEvent = false;
@@ -42,55 +41,27 @@ $(document).ready( function() {
                     </div>
                    	 <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <table class="table">
-                             	<tr>
-                               	 <td>
-                             <div class="input-group">
-    	<div class="form-group  has-feedback">
-            <input type="text" class="form-control" id="inputSuccess5" style="border-radius: 3px 0px 0px 3px" placeholder="아이템검색">
-            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="button"  style="border-radius: 0px 3px 3px 0px  ">검색!</button>
-        </span>
-    </div> 
-           </td>
-                  </tr> <tr>
+                            <table class="table">      
+                  <tr>
+               <td>
+            <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsitemmellhome.go">아이템몰 메인</a>
+              </td>
+      </tr>
+         <tr>
                                <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsitemmellhome.go">아이템몰 메인가기</a>
+      <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">아이템 검색</a>
                                     </td>
                                 </tr>
-                         <tr>
-                               <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">아이템 검색</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="cjspopitem.go">기간제 검색</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="cjssp.go">소모품 보기</a>
-                                    </td>
-                                </tr>
-                              
+                               
                                   <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">이모티콘 보기</a>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="cjsrandom.go">랜덤박스 보기</a>
                                         
                                     </td>
                                 </tr>
                                   <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">랜덤박스 보기</a>
-                                        
-                                    </td>
-                                </tr>
-                                  <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">패키지 보기</a>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="cjspackage.go">패키지 보기</a>
                                         
                                     </td>
                                 </tr>
@@ -200,7 +171,7 @@ $(document).ready( function() {
 	</div>
 	
       <img src="/goodluck/resources/A5.CJS/itemmallcaros/bg.png" style="width:100%; height: 250px;">
-      <div class="carousel-caption" >
+      <div class="carousel-caption" style="    width:  80%;" >
          <table>
            <tr>
            <th> 
@@ -212,6 +183,7 @@ $(document).ready( function() {
            <tr><th><h2>6월의 랜덤박스</h2></th></tr>
            <tr><th height="10">여름의 시작 새로운 랜덤박스와 다시</th></tr>
            <tr><th>한정판 아이콘 포함</th></tr>
+           <tr><th> </th></tr>
            <tr><th>2018-06 한정      <button>바로가기</button></th></tr>
            </table>
            </th>
@@ -226,7 +198,7 @@ $(document).ready( function() {
 	</div>
 	
       <img src="/goodluck/resources/A5.CJS/itemmallcaros/adsoit57y24d.png" style="width:100%; height: 250px;">
-       <div class="carousel-caption">
+       <div class="carousel-caption" style="    width:  80%;">
       	 <table>
            <tr>
            <th> 
@@ -245,27 +217,28 @@ $(document).ready( function() {
            </table>   
           </div>
         </div><!-- End Item -->
- <!-- thismonthpackage -->
+        
+<!-- thismonthpackage -->
 
   <div class="item">
     <div class="box">
 	<div class="ribbon ribbon-top-left"><span>6월 한정</span></div>
 	</div>
 	<img src="/goodluck/resources/A5.CJS/itemmallcaros/maxresdefault.jpg" style="width:100%;height: 250px;">
-         <div class="carousel-caption">
-       <table>
+         <div class="carousel-caption" style="width: 80%; left: 15%;">
+        <table>
            <tr>
            <th> 
-          	<img src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="width:150px; height:150px; float:left;">
+          	<img src="/goodluck/resources/A5.CJS/itemmallcaros/asdlhka5ylc.png" style="width:140px; height:140px; float:left;">
           	</th>
-           <th width="50"></th>
+           <th width="15"></th>
            <th>
            <table style="width:100%">
-           <tr><th><h2>${pack.PACKAGE_NAME}출시!</h2></th></tr>
+           <tr><th><h4>${pack.PACKAGE_NAME}출시!</h4></th></tr>
            <tr><th height="10">연령별 패키지와함께!</th></tr>
            <tr><th>${itemsName}</th></tr>
-           <tr><th> <del>${orimoney}</del>-> </th></tr>
-           <tr><th>${pack.PACKAGE_PRICE}원 <button>바로가기</button></th></tr>
+           <tr><th><del>${orimoney}</del>-> </th></tr>
+           <tr><th>${pack.PACKAGE_PRICE} <button>바로가기</button></th></tr>
            </table>
            </th>
           </tr>
@@ -281,7 +254,7 @@ $(document).ready( function() {
 	  <div class="ribbon ribbon-top-right"><span style="background-color: gray;">놓히지마셈!</span></div>
 	</div>
           <img src="/goodluck/resources/A5.CJS/itemmallcaros/sdffxxdas.jpg" style="width:100%; height: 250px;">
-           <div class="carousel-caption">
+           <div class="carousel-caption" style="    width:  80%;">
         <table>
            <tr style="width:100%">
            <th> 

@@ -13,6 +13,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
+import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.vo.Member;
 
@@ -213,5 +214,46 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("randomitem");
 	}
+
+
+	public List<ItemPackage> allpackitem() {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectList("allpackitem");
+	}
+
+
+	public List<ITEMLIST> allRandomlist() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("allRandomlist");
+	}
+
+
+	public List<RanDomBoxChance> getRanDomBoxChance(String a) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getRanDomBoxChance",a);
+	}
+
+
+	public List<RanDomBoxChance> getRanDomBoxChance1() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getRanDomBoxChance1");
 	
+	}
+
+	public List<RanDomBoxChance> getRanDomBoxChance2() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getRanDomBoxChance2");
+	
+	}
+	public List<RanDomBoxChance> getRanDomBoxChance3() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getRanDomBoxChance3");
+	
+	}
+
+
+	public ItemPackage getitempackage(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitempackage1",pk);
+	}
 }

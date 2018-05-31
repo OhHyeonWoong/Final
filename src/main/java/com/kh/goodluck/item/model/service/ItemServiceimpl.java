@@ -14,6 +14,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
+import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 
 @Service("ItemService")
@@ -229,4 +230,41 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.randomitem();
 	}
 
+	@Override
+	public List<ItemPackage> allpackitem() {
+		// TODO Auto-generated method stub
+		return itemlistDao.allpackitem();
+	}
+
+	@Override
+	public List<ITEMLIST> allRandomlist() {
+		// TODO Auto-generated method stub
+		return itemlistDao.allRandomlist();
+	}
+
+	@Override
+	public List<RanDomBoxChance> getRanDomBoxChance1() {
+		// TODO Auto-generated method stub
+		return itemlistDao.getRanDomBoxChance1();
+	}
+
+	@Override
+	public List<RanDomBoxChance> getRanDomBoxChance2() {
+		// TODO Auto-generated method stub
+		return itemlistDao.getRanDomBoxChance2();
+	}
+
+	@Override
+	public List<RanDomBoxChance> getRanDomBoxChance3() {
+		// TODO Auto-generated method stub
+		return itemlistDao.getRanDomBoxChance3();
+	}
+
+	@Override
+	public ItemPackage getitempackage(int pk) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getitempackage(pk);
+	}
+
+	
 }

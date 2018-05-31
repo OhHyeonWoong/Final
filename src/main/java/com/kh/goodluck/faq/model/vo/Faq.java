@@ -8,7 +8,7 @@ public class Faq implements java.io.Serializable{
 	private String faq_category; //게시글 카테고리
 	private String faq_title; //게시글 제목
 	private String faq_content; //게시글 내용
-	   
+	     
 	public Faq() { }
 
 	public Faq(int faq_no, String faq_category, String faq_title, String faq_content) {

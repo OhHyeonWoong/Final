@@ -175,7 +175,7 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 // 3. 이메일 정규식 : @ 포함하지 않으면 에러
 var emailpattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
-var ssidnum1pattern = ;
+var ssidnum1pattern ;
 var ssidnum2pattern;
 
 

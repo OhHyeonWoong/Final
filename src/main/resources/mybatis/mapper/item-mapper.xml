@@ -18,7 +18,10 @@
 <![CDATA[
 SELECT * 
    FROM (
-select * from ITEMLIST where itemfilename not like '%gif%'
+select * from ITEMLIST
+ where 
+ itemfilename not like '%gif%' and
+  ITEMTYPE !=8 
 ORDER BY DBMS_RANDOM.VALUE 
 )  
 WHERE ROWNUM <= 8
@@ -28,7 +31,7 @@ WHERE ROWNUM <= 8
 <select id="allitemlist" resultMap="itemResult" parameterType="Hashmap">
 <![CDATA[
 	select * from 
-	(select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMLIST_NO desc) 
+	(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !=8 order by ITEMLIST_NO desc) 
 	where 
 	rownum <= #{endRow} and 
 	rownum >= #{startRow} 
@@ -40,8 +43,8 @@ WHERE ROWNUM <= 8
 <![CDATA[
 select * from 
 (select ROWNUM AS RNUM, A.* FROM  
-(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
-A WHERE ROWNUM < #{endRow}) 
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !=8 and ITEMNAME like '%'||#{search}||'%' order by ITEMLIST_NO desc)  
+A WHERE ROWNUM <= #{endRow}) 
 WHERE RNUM >= #{startRow}
 ]]>
 </select>
@@ -50,28 +53,28 @@ WHERE RNUM >= #{startRow}
 <![CDATA[
 select * from 
 (select ROWNUM AS RNUM, A.* FROM  
-(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%'||#{search}||'%' order by ITEMSELLCOUNT desc)  
-A WHERE ROWNUM < #{endRow}) 
+(select * from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like and ITEMTYPE !=8 and '%'||#{search}||'%' order by ITEMSELLCOUNT desc)  
+A WHERE ROWNUM <= #{endRow}) 
 WHERE RNUM >= #{startRow} 
 ]]>
 </select>
 
 <select id="countitem" resultType="int">
-select count(*) from ITEMLIST where itemfilename not like '%gif%'
+select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !=8
 </select>
 
 <select id="countitem1" resultType="int" parameterType="Hashmap">
-select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%' ||#{search}|| '%'
+select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%' ||#{search}|| '%' and ITEMTYPE !=8
 </select>
 
 <select id="selectitemdetail" resultType="ITEMLIST">
 <![CDATA[
-select * from ITEMLIST where ITEMLIST_NO = #{itemno} and itemfilename not like '%gif%'
+select * from ITEMLIST where ITEMLIST_NO = #{itemno} 
 ]]>
 </select>
 <select id="homepopularlitm" resultMap="itemResult">
 <![CDATA[
-select * from (select * from ITEMLIST where itemfilename not like '%gif%' order by ITEMSELLCOUNT desc) where rownum <= 4
+select * from (select * from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !=8  order by ITEMSELLCOUNT desc) where rownum <= 4 
 ]]>
 </select>
 
@@ -121,4 +124,9 @@ select * from ITEMLIST where ITEMTYPE=8 and ITEMPRICE = (select  max(ITEMPRICE) 
 <select id="getpackitemsinfo" parameterType="int" resultType="itemlist">
 select * from ITEMLIST where ITEMLIST_NO = #{a}
 </select>
+
+<select id="allRandomlist" resultMap="itemResult">
+select * from ITEMLIST where ITEMTYPE=8 order by ITEMPRICE desc
+</select>
+
 </mapper>

@@ -10,15 +10,19 @@
    		<result property="notice_content" column="notice_content"/>
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
-	</resultMap>
+	</resultMap> 
 	
-	<resultMap type="Notice" id="NoticeResult2">
+	<resultMap type="Notice" id="NoticeResultOnlyOne">
    		<id property="notice_no" column="notice_no"/>
    		<result property="notice_title" column="notice_title"/>
    		<result property="notice_content" column="notice_content"/>
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
 	</resultMap>
+	      
+	<select id="pickAllList" resultMap="NoticeResult"> 
+		<![CDATA[select * from notice]]>
+	</select>  
 	  
 	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
 		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
@@ -26,8 +30,8 @@
 	     by notice_no desc)) where rnum>=1 and rnum<=4]]>		
 	</select>
 	
-	<!-- <select id="noticeDetailShow" parameterType="integer">
-		<![CDATA[select * from notice where notice_no=?]]>
-	</select> -->
+	<select id="noticeDetailShow" parameterType="integer" statementType="PREPARED" resultMap="NoticeResultOnlyOne">
+		<![CDATA[select * from notice where notice_no=#{notice_no}]]>
+	</select>  
 	
 </mapper>

@@ -10,6 +10,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
+import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 
 public interface ItemService {
@@ -17,6 +18,10 @@ public interface ItemService {
 	public abstract List<ITEMLIST> allitemlist(HashMap<Object,Object> map);
 	public abstract List<ITEMLIST> allitemlist1(HashMap<Object,Object> map);
 	public abstract List<ITEMLIST> homepopularlitm();
+	public abstract List<ITEMLIST> allRandomlist();
+	public abstract List<RanDomBoxChance> getRanDomBoxChance1();
+	public abstract List<RanDomBoxChance> getRanDomBoxChance2();
+	public abstract List<RanDomBoxChance> getRanDomBoxChance3();
 	public abstract ITEMLIST itemdetail(int itemno);
 	public abstract ITEMLIST newitemthismonth();
 	public abstract ITEMLIST popitemthismonth();
@@ -43,10 +48,13 @@ public interface ItemService {
 	public abstract int insertimticon(int useritempk);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 	public abstract List<ITEMLIST> allitemlist2(HashMap<Object, Object> map);
+	public abstract List<ItemPackage> allpackitem();
 	public abstract ItemPackage getitempackage();
 	public abstract ITEMLIST getpackitemsinfo(int a);
+	public abstract ItemPackage getitempackage(int pk);
 	//made by byung jun
 	public abstract int selectMyPageItemListCount(String member_id);
 	public abstract List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map);
+
 
 }

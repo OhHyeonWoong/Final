@@ -391,12 +391,7 @@
 								</div>
 							</div>
 						</div>
-					</td>
-					<!-- <td>
-						<button type = "button" class = "btn btn-default" onClick = "location.href = 'lbjmypage.go'">
-							<i class = "fa fa-address-card"></i> MyPage
-						</button>
-					</td> -->			
+					</td>								
 					<td> 
 						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
 
@@ -605,9 +600,9 @@
 			</td>
 			<td class = "ohw-menu-table-td">
 				<div align = "center">
-					<form class="" action="">
+					<form action="moveSearch.go" method="get">
 						<div class="ohw-div-search input-group">
-							<input type="text" class="form-control" placeholder="Search" name="search">
+							<input type="text" class="form-control" placeholder="Search" name="searchKeyword">
 							<div class="input-group-btn">
 								<button class="btn btn-default" type="submit">
 									<i class="glyphicon glyphicon-search"></i> Search
@@ -909,8 +904,7 @@
 					};
 					
 					function SmallCategoryCount(id){
-						location.href='/goodluck/SmallCategoryCount.go?smallCode='+id;
-						location.href='Board.go';
+						location.href='/goodluck/SmallCategoryCount.go?smallCode='+id;						
 					};					
 					/* Category Click Count End */
 					
