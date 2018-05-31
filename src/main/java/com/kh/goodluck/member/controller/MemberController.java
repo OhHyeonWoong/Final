@@ -216,13 +216,30 @@ public class MemberController {
 		System.out.println("updateMemberInfo 넘어온 멤버정보 : " + m.toString());
 		
 		String path = request.getSession().getServletContext().getRealPath("resources/uploadProfiles");
-		
+		//프로필 수정 전 기록이 있을 경우 가져옴
+		String memberProfile = request.getParameter("member_profile1");
+		///////////////////////////////////////////////////////
 		System.out.println("path : " + path);
-		
-		try {
-			file.transferTo(new File(path + "\\" + file.getOriginalFilename()));
-		} catch (Exception e) {
-			e.printStackTrace();
+		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
+		String fileName = file.getOriginalFilename();
+		/////////////////////////////////////////////////////////
+		if(fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
+				fileName.toLowerCase().endsWith(".bmp")) {
+			if((fileName != "") && (fileName != memberProfile)) {
+				//수정 된 프로필이 있고, 기존 프로필과 수정된 프로필이 같지 않을 때
+				System.out.println("file.getOriginalFilename = " + file.getOriginalFilename());
+				/*try {
+					file.transferTo(new File(path + "\\" + fileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}*/
+			}else {
+				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
+			}
+			System.out.println("path : " + path);
+		}else {
+			System.out.println("올바른 확장자가 아닙니다.");
 		}
 	}
 	

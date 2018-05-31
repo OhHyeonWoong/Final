@@ -235,6 +235,8 @@
 		var flag = false;
 		//이메일 인증번호 저장용 변수
 		var confirmNum = 0;
+		//인증번호 확인버튼이 눌렸는지 여부 체크하는 변수
+		var clickCheck = false;
 		//이메일 발송 메소드
 		function fnMemberGoEmail(){
 			var email = $('#member_email').val();
@@ -267,10 +269,10 @@
 			var certify = $('#certify').val();
 			if(confirmNum == certify){
 				alert("인증번호가 일치합니다.");
-				flag = true;
+				clickCheck = true;
 			}else{
 				alert("인증번호가 일치하지 않습니다.");
-				flag = false;
+				clickCheck = false;
 			}
 		}
 		//회원정보 수정 전(submit 전)에 값 체크해서 보냄
@@ -288,11 +290,14 @@
 				flag = false;
 				alert("비밀번호가 일치하지 않습니다.");
 			}
-			
-			if(flag == false){
+
+			console.log("flag = " + flag);
+			if(flag == true && clickCheck == true){
+				return true;
+			}else{
 				alert("누락된 정보가 없나 확인해보세요.");
+				return false;
 			}
-			return flag;
 		}
 	</script>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
@@ -326,7 +331,8 @@
 							<%-- <div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
 							<img src="${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img"/>
 							</div><br> --%>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
+							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">
 							<label for="userid">아이디</label>
@@ -387,7 +393,7 @@
 			               <div class="input-group">
 			               <input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 			               <!-- 인증번호 요청시 번호 입력확인 -->
-			               <span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnConfirmNumCheck(); return false;"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+			               <span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnConfirmNumCheck(); return false;"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
 			               <!-- <input type="button" class="btn btn-default" value="인증번호 입력"> -->
 			               </div>
 			            </div>
