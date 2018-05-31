@@ -29,7 +29,7 @@
 				//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 			 	//decodeURIComponent(json.noticeTop5list[i].notice_title) ??? 인코딩??
 			 	
-			 	tablevalue += "<td>"+json.noticeTop5list[i].notice_no+"</td><td><a href='ndetail.go?no="+json.noticeTop5list[i].notice_no+"'>"+decodeURIComponent(json.noticeTop5list[i].notice_title)+"</a></td><td>"+decodeURIComponent(json.noticeTop5list[i].notice_writer)+"</td><td>"+json.noticeTop5list[i].notice_date+"</td></tr>";
+			 	tablevalue += "<td>"+json.noticeTop5list[i].notice_no+"</td><td><a href='ndetail.go?notice_checkno="+json.noticeTop5list[i].notice_no+"'>"+decodeURIComponent(json.noticeTop5list[i].notice_title)+"</a></td><td>"+decodeURIComponent(json.noticeTop5list[i].notice_writer)+"</td><td>"+json.noticeTop5list[i].notice_date+"</td></tr>";
 
 				}
 			 	$("#j1").append(tablevalue); 
@@ -51,27 +51,22 @@
 			type : "get",
 			datatype : "json",
 			success : function(data){
+				/* alert("진입 테스트용 출력문"); */
+
 				var jsonStr = JSON.stringify(data); //객체를 문자열로 변환
 				console.log(jsonStr);
 				var json = JSON.parse(jsonStr) //문자열을 배열 객체로 바꿈	
 				var values="<tr>";
 				
 				for(var i in json.faqTop5list){
-					values+="<td>"+json.faqTop5list[i].faq_no+"</td><td>"+json.faqTop5list[i].faq_category+"</td><td>"+json.faqTop5list[i].faq_title+"</td></tr>";
-				}
+					values+="<td>"+json.faqTop5list[i].faq_no+"</td><td>"+json.faqTop5list[i].faq_category+"</td><td><a href='faqdetail.go?faq_checkno="+json.faqTop5list[i].faq_no+"'>"+json.faqTop5list[i].faq_title+"</td></tr>";
+				}																																					
 				$("#j2").append(values);
-				
-				/* js.put("faq_no", f.getFaq_no());
-				js.put("faq_category", f.getFaq_category());
-				js.put("faq_title", f.getFaq_title());
-				js.put("faq_content", f.getFaq_content()); */
 			},
 			error:function(a,b,c){
 				alert(a + ", " + b + ", " + c);
 			}		
 		}); /* FAQ top5 Ajax끝 */
-		
-		
 		 
 		/* $.ajax({
 			url :"lifeareasample.go",
@@ -176,7 +171,6 @@
 			}
 		}); */
 		/* 구인영역 제공해요! */
-		
 		
 	});
 
@@ -307,6 +301,42 @@
 .bgc-fff{
   background : none !important;
 }	
+ 
+#j1,#j2 {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  height : 80%;
+  border: 1px solid #ddd;		
+}
+
+#j_t1{
+  text-align: center;
+  padding: 10px;
+  width: 58px; 	  
+}
+
+#j_t2{
+  text-align: center;
+  padding: 10px;	  
+  width: 300px;
+}
+
+#j_t3{
+  text-align: center;
+  padding: 10px;	  
+  width: 85px;
+}
+
+#j_t4{
+  text-align: center;
+  padding: 10px;
+  width: 105px; 	  
+}
+
+#j_t1, #j_t2, #j_t3, #j_t4{
+  height: 57px;
+}
 
 
 /*************** 2018.05.22 생활/게임/음악/렌탈 영역작업 ***************/
@@ -870,9 +900,8 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">독신사 공지사항</font>								
-									<table class="jwj-innertable" id="j1" border="1">
-										<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td></tr>
-
+									<table id="j1" border="1">
+										<tr><td id="j_t1">번호</td><td id="j_t2">제목</td><td id="j_t3">작성자</td><td id="j_t4">작성일</td></tr>
 									</table>								
 								</td>
 							</tr>
@@ -883,8 +912,8 @@
 							<tr>
 								<td style="padding: 0;">
 									<font size="6" face="굴림" style="font-weight: bold;">자주묻는질문?!!..FAQ</font>								
-									<table class="jwj-innertable" id="j2" border="1">
-										<tr><td>번호</td><td>카테고리</td><td>제목</td></tr>
+									<table id="j2" border="1">
+										<tr><td id="j_t1">번호</td><td>카테고리</td><td>제목</td></tr>
 									</table>								
 								</td>
 							</tr>
@@ -914,7 +943,7 @@
 									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
 								</table>		
 							</div>
-						</td>					
+						</td>					 
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				

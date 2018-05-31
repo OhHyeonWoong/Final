@@ -17,4 +17,6 @@ public interface QNAService {
 	public abstract int insertMyQna(QnaWrite qnaWrite);
 	//qnaListCount 가져올 때 사용(페이징처리)
 	public abstract int selectMyQnaCount(String member_id);
+	//qna 삭제 버튼 누르면 동작
+	public abstract int deleteQna(HashMap<String,Object> map);
 }

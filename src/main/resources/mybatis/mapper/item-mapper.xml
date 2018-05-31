@@ -124,4 +124,9 @@ select * from ITEMLIST where ITEMTYPE=8 and ITEMPRICE = (select  max(ITEMPRICE) 
 <select id="getpackitemsinfo" parameterType="int" resultType="itemlist">
 select * from ITEMLIST where ITEMLIST_NO = #{a}
 </select>
+
+<select id="allRandomlist" resultMap="itemResult">
+select * from ITEMLIST where ITEMTYPE=8 order by ITEMPRICE desc
+</select>
+
 </mapper>

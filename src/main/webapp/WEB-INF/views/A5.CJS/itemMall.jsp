@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -360,9 +361,7 @@ $(document).ready( function() {
 
 <center>
 <table style="width: 80%; height: 100%;">
-				
-		
-		<c:forEach var="item" items="${popularlitm}" begin="0" end="2">
+	<c:forEach var="item" items="${popularlitm}" begin="0" end="2">
 			<tr>
    			<td style="width:30%">
    			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 50px; height: 40px; margin-right: 15px">
@@ -371,9 +370,8 @@ $(document).ready( function() {
 		 <center>
    			 <a onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">${item.ITEMNAME}</a>  <br>
    			 ${item.ITEMPRICE} 원 <br>
-<%--    			<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button> --%>
-   			
-   			</center>
+<%--<button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${item.ITEMLIST_NO}'">상세보기</button> --%>
+	</center>
    			 </td>
 			</tr>
 			<tr><td><label> </label></td></tr>

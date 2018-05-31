@@ -68,6 +68,15 @@
 			default)
 		]]>
 	</insert>
+	<delete id="deleteQna" parameterType="Hashmap" flushCache="true">
+		<![CDATA[
+			delete from question
+			where 
+		]]>
+		<foreach collection="question_no" item="item" index="index" open="(" close=")" separator="or">
+			question_no = #{item}
+		</foreach>
+	</delete>
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 
