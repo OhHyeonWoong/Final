@@ -97,6 +97,7 @@ function pwdchecking(){
  		submition = false;
  	}
  }
+ 
 function idConfirmation(){
 	$.ajax({
 		url: "jdkIdConfirmation.go",
@@ -105,34 +106,55 @@ function idConfirmation(){
 		success:
 			function(result){
 			if(result=='true'){
-			alert("사용하실 수 있는 아이디 입니다");
 			idConfirmed=true;
+			alert("사용하실 수 있는 아이디 입니다");
 			}else if(result='false'){
+			idConfirmed=false;
 			alert("사용하실 수 없는 아이디 입니다. 다른 아이디를 사용해 주세요");
-		}
+			}
 		},
 		error: function(){
 			alert("아이디 인증 실패!!");
 		}		
 	});
-	
 }
+//이메일 인증 하는 ajax
+var emailReg="";
 
-function emailConfirmation(){
-	$.ajax({
+ function emailConfirmation(){
+	if($("#member_email").val()== ""){
+		alert("이메일을 입력해주세요!!");
+		$("#member_email").focus();
+	} else {
+	 $.ajax({
 		url: "emailConfirm.go",
-		dataType:"text",
+		data: {member_email: $('#member_email').val()},
 		type:"POST",
 		success:
-			function(){
-			
+			function(data){
+			alert("이메일이 발송 되었습니다. 하단 인증번호 인증을 해주세요!!");
+			emailReg=data;
 		},
 		error: function(){
-			alert("이메일 인증 실패!!");
-		}		
-	});	
-}
+			alert("이메일 ajax 에러");
+		}	
+	
+	});
+	}
+} 
 
+ function emailNumCheck(){
+	if(emailReg==$("#certify").val()){
+		emailConfirmed = true;
+		alert("인증 번호가 확인 되었습니다.");
+	}else{
+		alert("인증번호가 맞지 않습니다. 다시 확인해 주세요!!"+emailConfirmed);
+		$("#member_email").focus();
+		emailConfirmed = false;
+	}
+ }
+ 
+ 
 ////////////////////////////////////////////////////////////////////////////////////////////
 /* 정규식 적용 */
 /* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
@@ -149,7 +171,12 @@ function signIn(){
 //정규식 목록
 //1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
 var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
-
+// 2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
+var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
+// 3. 이메일 정규식 : @ 포함하지 않으면 에러
+var emailpattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
+var ssidnum1pattern = ;
+var ssidnum2pattern;
 
 
 	
@@ -190,22 +217,21 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 					<label for="username">이름</label> 
 					<input type="text" class="form-control" id="member_name" name="member_name" placeholder="이름을 입력해 주세요" required="required">
 				</div>
-				
 				<div class="form-group">
 					<label for="InputPassword1">비밀번호</label> 
-					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="비밀번호" required="required" onchange="pwdchecking()">				</div>
+					<input type="password" class="form-control" id="password1" name="member_pw"  placeholder="6~16자리 영문,숫자,특수문자 포함" required="required" onchange="pwdchecking()">				</div>
 				<div class="form-group">
 					<label for="InputPassword2">비밀번호 확인</label> 
-					<input type="password" class="form-control" id="password2" placeholder="비밀번호 확인" required="required" onchange="pwdchecking()">
+					<input type="password" class="form-control" id="password2" placeholder="비밀번호를 다시 입력해주세요" required="required" onchange="pwdchecking()">
 					<p id="pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 				</div>
 				<div class="form-group">
 					<label for="username">주민등록번호</label><br> 
 					<table>
 					<tr>
-					<td><input type="text" class="form-control" required="required" placeholder="주민등록번호 앞 6자리"></td>
+					<td><input type="number" class="form-control" required="required" placeholder="주민등록번호 앞 6자리"></td>
 					<td>-</td>
-					<td><input type="text" class="form-control" required="required" style="width: 35px; float:left;" maxlength="1">●●●●●●</td>
+					<td><input type="number" class="form-control" required="required" style="width: 35px; float:left;" maxlength="1">●●●●●●</td>
 					</tr>	
 					</table>
 				</div>
@@ -214,13 +240,13 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 				<div class="form-group">
 					<label for="username">주소</label>
 					<br>
-					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;">
+					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;" disabled>
 					<span class="input-group-btn">					
 					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
 					<br><br>
 					
-					<input type="text" class="form-control" id="sample4_roadAddress" name="address" placeholder="도로명주소"><br><br>
+					<input type="text" class="form-control" id="sample4_roadAddress" name="address" placeholder="도로명주소" disabled><br><br>
 					<input type="text" class="form-control" id="address" placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
 				</div>
@@ -232,7 +258,7 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 				<div class="form-group">
 					<label for="useremail">이메일</label>
 					<div class="input-group">
-						<input type="text" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
+						<input type="email" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
 						<!--email 인증 요청--> 
 						<span class="input-group-btn"><a href="javascript: emailConfirmation();" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a></span>
 					</div>
@@ -240,9 +266,10 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 				<div class="form-group">
 					<label for="username">인증번호 입력</label>
 					<div class="input-group">
+					<!-- 인증번호 보관 값 -->
 					<input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 					<!-- 인증번호 요청시 번호 입력확인 -->
-					<span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+					<span class="input-group-btn"><a href="javascript:emailNumCheck();" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
 					</div>
 				</div>
 				<div class="form-group text-center">
