@@ -54,7 +54,7 @@ function paging1(page){
 				value3+="<th>"+json.usingitem[i].END_DATE+"</th>"
 				value3+="</tr>";
 				} 
-				console.log(json.usingitem)
+			
 				$("#myusingitem").html(value3);
 //		 		 <tbody id="myusingitem">
 //		          <tr style="width:100%">
@@ -223,7 +223,7 @@ function paging(page){
 				value3+="<th>"+json.usingitem[i].END_DATE+"</th>"
 				value3+="</tr>";
 				} 
-				console.log(json.usingitem)
+			
 				$("#myusingitem").html(value3);
 //		 		 <tbody id="myusingitem">
 //		          <tr style="width:100%">
@@ -392,7 +392,7 @@ $(function(){
 		value3+="<th>"+json.usingitem[i].END_DATE+"</th>"
 		value3+="</tr>";
 		} 
-		console.log(json.usingitem)
+		
 		$("#myusingitem").html(value3);
 // 		 <tbody id="myusingitem">
 //          <tr style="width:100%">

@@ -73,17 +73,21 @@ function sample4_execDaumPostcode() {
     }).open();
 }
 </script>
-
 <!-- 자바스크립트 영역입니다. -->
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 ///////////////////////////////////////////////////////////////////////////
+//전역 변수
 var submition = false; //->true로 바뀔 시 form 전송
 var emailConfirmed = false;//->이메일 인증 받으면 true
 var idConfirmed = false;// -> 아이디 인증을 받아야 true
-var termsConfirmed= false// -> 약관 동의 했을 때 true
+var termsConfirmed = false// -> 약관 동의 했을 때 true
+var pwd1pwd2 = false;
+var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
+var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
+var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
+var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
 ///////////////////////////////////////////////////////////////////////////
-
 /* 비밀번호 확인 창 */
 function pwdchecking(){	
 	if($("#password1").val()=="" && $("#password2").val()==""){
@@ -92,12 +96,15 @@ function pwdchecking(){
 	}else if($("#password1").val()!=$("#password2").val()){
  		$("#pwdSame").text("비밀번호가 일치하지 않습니다. 다시 작성해주세요!").css("color","red");
  		submition=false;
+ 		pwd1pwd2 =false;
  	}else{
  		$("#pwdSame").text("비밀번호가 일치하는 번호 입니다.").css("color","green");
  		submition = false;
+ 		pwd1pwd2 = true;
  	}
  }
  
+//아이디 중복 검사////////////////////////////////////////////////////////////////
 function idConfirmation(){
 	$.ajax({
 		url: "jdkIdConfirmation.go",
@@ -115,12 +122,13 @@ function idConfirmation(){
 		},
 		error: function(){
 			alert("아이디 인증 실패!!");
+			idConfirmed=false;
 		}		
 	});
 }
-//이메일 인증 하는 ajax
-var emailReg="";
 
+//이메일 인증/////////////////////////////////////////////////
+var emailReg="";//컨트롤러에서 임의 난수로 생성된 이메일 인증 번호를 받아주는 변수
  function emailConfirmation(){
 	if($("#member_email").val()== ""){
 		alert("이메일을 입력해주세요!!");
@@ -142,20 +150,18 @@ var emailReg="";
 	});
 	}
 } 
-
+ //인증번호 확인////////////////////////////////////////////////
  function emailNumCheck(){
 	if(emailReg==$("#certify").val()){
 		emailConfirmed = true;
 		alert("인증 번호가 확인 되었습니다.");
 	}else{
-		alert("인증번호가 맞지 않습니다. 다시 확인해 주세요!!"+emailConfirmed);
+		alert("인증번호가 맞지 않습니다. 다시 확인해 주세요!!");
 		$("#member_email").focus();
 		emailConfirmed = false;
 	}
  }
- 
- 
-////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
 /* 정규식 적용 */
 /* 회원가입 버튼을 눌렀을 때 발생하는 메소드(정규식 포함)*/
 // 현재 정규식이 필요한 항목은 다음과 같다.
@@ -165,8 +171,8 @@ var emailReg="";
 // 2. 아이디를 중복 검사하지 않았을 경우 false
 // 3. 이메일 인증을 받고 인증코드를 작성하지 않았을 경우 false
 // 4. 정규식 항목 통과하지 못했을 경우 false
-
-
+////////////////////////////////////////////////////////
+//submit 정규식
 function signIn(){
 //정규식 목록
 //1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
@@ -175,13 +181,51 @@ var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 // 3. 이메일 정규식 : @ 포함하지 않으면 에러
 var emailpattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
-var ssidnum1pattern ;
-var ssidnum2pattern;
+// 4. 주민등록번호 6자리 +1자리 정규식
+/* var ssidnumpattern = ^\\d{6}[1-4]\\d{6}; */
+/*
+iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
+pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
+email=$("#member_email").val(); // 이메일 밸류값 전역 변수
+ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
 
+var submition = false; //->true로 바뀔 시 form 전송
+var emailConfirmed = false;//->이메일 인증 받으면 true
+var idConfirmed = false;// -> 아이디 인증을 받아야 true
+var termsConfirmed = false// -> 약관 동의 했을 때 true
+var pwd1pwd2 = false;
+var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
+var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
+var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
+var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
+*/
+if(idpattern.test(iden)==false){
+	alert("형식에 맞지 않는 아이디 입니다. 형식에 맞는 아이디 입력 및 중복검사를 다시 해 주세요!");
+	submition=false;
+}else if(idConfirmed==false){
+	alert("아이디 중복검사를 다시 해주세요!");
+	submition=false;
+}else if(pwpattern.test(pwd)==false){
+	alert("비밀번호가 양식에서 벗어났습니다. 다시 확인해주세요");
+	submition=false;
+}else if(pwd1pwd2==false){
+	alert("비밀번호 확인 값이 비밀번호와 일치하지 않습니다. 다시 확인해주세요");
+	submition=false;
+}else if(emailpattern.test(email)==false){
+	alert("이메일 형식에 맞지 않는 이메일입니다. 다시 확인해주세요");
+	submition=false;
+}/* else if(ssidnumpattern.test==false){
+	alert("올바른 주민등록번호가 아닙니다. 정확한 주민등록번호를 입력해주세요.");
+	submition=false;
+} */else if(termsConfrimedd == false){
+	alert("약관에 동의해 주세요!!");
+	submition=false;
+}else{
+	submition=true;
+}
 
-	
-	
-	return submition;
+return submition;
+
 }
 </script>
 
@@ -193,7 +237,7 @@ var ssidnum2pattern;
 			<h3 style="text-align : center;">회원가입</h3>
 		<div class="col-md-6 col-md-offset-3">
 <!-- 회원가입 폼 시작 -->
-			<form role="form" enctype="multipart/form-data" method="post" action="return signIn();">
+			<form role="form" enctype="multipart/form-data" method="post" action="jdkmemberregist.go">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
 					<div style="width : 130px; height : auto; margin: 0 auto;">
@@ -229,9 +273,9 @@ var ssidnum2pattern;
 					<label for="username">주민등록번호</label><br> 
 					<table>
 					<tr>
-					<td><input type="number" class="form-control" required="required" placeholder="주민등록번호 앞 6자리"></td>
+					<td><input type="text" id = "ssidFront" name="member_social_front" class="form-control" required="required" placeholder="주민등록번호 앞 6자리"></td>
 					<td>-</td>
-					<td><input type="number" class="form-control" required="required" style="width: 35px; float:left;" maxlength="1">●●●●●●</td>
+					<td><input type="text" id = "ssidEnd" name="member_social_end" class="form-control" required="required" style="width: 35px; float:left;" maxlength="1">●●●●●●</td>
 					</tr>	
 					</table>
 				</div>
@@ -246,8 +290,8 @@ var ssidnum2pattern;
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
 					<br><br>
 					
-					<input type="text" class="form-control" id="sample4_roadAddress" name="address" placeholder="도로명주소" disabled><br><br>
-					<input type="text" class="form-control" id="address" placeholder="상세주소" >
+					<input type="text" class="form-control" id="sample4_roadAddress" name="address1" placeholder="도로명주소입니다" disabled><br><br>
+					<input type="text" class="form-control" id="address" name="address2" placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
 				</div>
 				<!-- 주소 입력 관련 코드 종료 -->
@@ -280,7 +324,7 @@ var ssidnum2pattern;
 				</div>
 					<br><br>	
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-default">회원가입</button>
+					<button type="submit" class="btn btn-default" onsubmit="return signIn();">회원가입</button>
 					<button type="button" class="btn btn-default">가입취소</button>
 				</div>
 			</form>

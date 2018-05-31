@@ -46,6 +46,9 @@ public class MemberDao {
 			return false;
 		}
 	}
+	public int memberInsert(Member member) {
+		return sqlSession.insert("memberInsert", member);
+	}
 	
 	
 }
