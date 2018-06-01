@@ -53,6 +53,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateMemberInfo(m);
 	}
 	
+	@Override
+	public int updateLastLogin(String member_id) {
+		return memberDao.updateLastLogin(member_id);
+	}
+	
+	@Override
+	public int deleteMemberOut(String member_id) {
+		return memberDao.deleteMemberOut(member_id);
+	}
+	
 	@Override//회원 가입 메소드
 	public int memberEnroll(Member member) {
 		return memberDao.memberInsert(member);

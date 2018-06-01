@@ -5,18 +5,39 @@
 <mapper namespace="search-mapper">
 
 	<resultMap id="HeaderSearchKeywordResult" type="Search">
-		<id property="category_big_code" column="category_big_code"/>
-		<result property="category_big_name" column="category_big_name"/>
-		<result property="category_big_views" column="category_big_views"/>
-		<result property="category_big_count" column="category_big_count"/>			
+		<id property="agency_no" column="AGENCY_NO"/>
+		<result property="agency_writer" column="AGENCY_WRITER"/>
+		<result property="agency_title" column="AGENCY_TITLE"/>
+		<result property="link2_no" column="LINK2_NO"/>		
+		<result property="agency_type" column="AGENCY_TYPE"/>		
+		<result property="agency_loc" column="AGENCY_LOC"/>		
+		<result property="agency_startdate" column="AGENCY_STARTDATE"/>		
+		<result property="agency_enddate" column="AGENCY_ENDDATE"/>		
+		<result property="agency_enrolldate" column="AGENCY_ENROLLDATE"/>		
+		<result property="agency_paytype" column="AGENCY_PAYTYPE"/>		
+		<result property="agency_pay" column="AGENCY_PAY"/>		
+		<result property="agency_status" column="AGENCY_STATUS"/>		
+		<result property="agency_content" column="AGENCY_CONTENT"/>		
+		<result property="agency_views" column="AGENCY_VEIWS"/>		
+		<result property="agency_keyword" column="AGENCY_KEYWORD"/>		
+		<result property="agency_option" column="AGENCY_OPTION"/>		
 	</resultMap>	
 	
 	<select id="headerSearchKeyword" resultMap="HeaderSearchKeywordResult">	
-		select * from AGENCY 
-		where 
+		<![CDATA[
+			select * 
+			from AGENCY 
+			where AGENCY_TITLE like '%'||#{agency_title}||'%'
+		]]>
 	</select>
 	
-	
+	<select id="headerSearchListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) 
+			from AGENCY 
+			where AGENCY_TITLE like '%'||#{agency_title}||'%' 				
+		]]>
+	</select>
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

@@ -99,6 +99,7 @@ public class MemberController {
 		mv.addObject("lbjMyQna", myQna);
 		mv.addObject("qnaPage",qnaPage);
 		//QnA 세팅 끝------------------------------------------------------------
+		
 		//item 세팅 ------------------------------------------------------------
 		int itemListCount = ItemService.selectMyPageItemListCount(member_id);
 		int itemMaxPage = (int)((double)itemListCount / qnaLimit + 0.9);
@@ -148,10 +149,18 @@ public class MemberController {
 		
 		PrintWriter out = response.getWriter();
 		if(m != null) {
+			//lastlogin 갱신
+			int result = memberService.updateLastLogin(m.getMember_id());
+			if(result > 0) {
+				System.out.println("Update Last Login.. Success.. ");
+			}else {
+				System.out.println("Update Last Login.. Fail.. ");
+			}
+			/////////////////////////
 			out.write("로그인 성공");
 			model.addAttribute("loginUser", m);
-			System.out.println("session id = " + session.getId());
-			System.out.println("session = " + session.getServletContext());
+			/*System.out.println("session id = " + session.getId());
+			System.out.println("session = " + session.getServletContext());*/
 		}else {
 			out.write("로그인 실패");
 		}
@@ -260,6 +269,22 @@ public class MemberController {
 			System.out.println("올바른 확장자가 아닙니다.");
 		}
 		response.sendRedirect("home.go");
+	}
+	
+	@RequestMapping(value="lbjMemberOut.go",method=RequestMethod.POST)
+	public void memberOutMethod(@RequestParam(name="member_id",required=false) String member_id,
+			HttpServletResponse response) throws IOException{
+		//회원 탈퇴 처리용 메소드
+		//System.out.println("deleteMember member_id = " + member_id);
+		int result = memberService.deleteMemberOut(member_id);
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("회원 탈퇴 성공");
+		}else {
+			out.print("회원 탈퇴 실패");
+		}
+		out.flush();
+		out.close();
 	}
 	
 	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
