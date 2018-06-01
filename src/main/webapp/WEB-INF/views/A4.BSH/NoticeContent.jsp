@@ -101,16 +101,28 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<Br>
+				
+				<div align="right">
+					<A href="javascript:movewritePage();" style="background: yellow">글 작성(Admin)</A>
+					<script type="text/javascript">
+						function movewritePage(){
+							alert("글쓰기 페이지로 이동합니다.");
+							window.open("noticewritepage.go","관리자글쓰기","left=650, top=120, width=350,height=550","width=350,height=480");
+						}
+					</script>
+					<hr style="clear: both;">
+						<span style="display: table; margin: 10px; margin-left: auto; margin-right: auto;">
+							<button>&lt;&lt;</button>
+							<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
+							<button>&gt;</button>
+							<button>&gt;&gt;</button>
+						</span>
+				</div>
+				
 
 				
-				<span
-					style="display: table; margin: 10px; margin-left: auto; margin-right: auto;">
-					<button>&lt;&lt;</button>
-					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
-					<button>&gt;</button>
-					<button>&gt;&gt;</button>
-				</span>
-				
+					
 				</div>
 		</div>
 	</div>

@@ -6,36 +6,6 @@
 <html>
 	<head>
 		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				$("#return_btn").on("click",function(){
-					alter("돌아가기 버튼을 클릭하셨네요?");
-				});
-			});
-		</script>	
-		<!-- <script type="text/javascript">
-			$(function(){
-				$("#AdminAlter").on("click",function(){
-					$.ajax({
-						url : "notice_alter.go",
-						//3가지를 보낸다.(글번호,글제목,글 내용)
-						data : {  
-								 noticeNo : ${ notice_info.notice_no },
-								 noticeTitle : $(".this_noticeNo").val(),
-								 noticecontents : ${ n_contents }
-						},
-						type : "post",
-						success : function(data){
-							alter("수정이 완료되었습니다.");
-						},
-						error : function(a,b,c){
-							alert(a+", "+b+", "+c);
-						}			
-					});
-				});		
-			});
-
-		</script>	 -->
 		<title>공지사항 상세보기 페이지</title>
 		<style type="text/css">
 			.total_Area{
@@ -80,7 +50,6 @@
 			.uk_td2{
 				height: 520px;
 				font-family: fantasy;
-				/* overflow: scroll; */
 			}
 			.icon {
 			    color : #f35050;
@@ -90,10 +59,11 @@
 			.this_noticeNo{
 				width: 330px !important;
 			}
+			.this_ntitle{
+				width: 320px;
+			}
 		</style>	
 	</head>
-	
-	
 	    
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
@@ -111,24 +81,80 @@
 				<div class="padding"></div>
 				<span class="glyphicon glyphicon-user icon" style="float: left; margin-left: 28%;"></span> <h3  style="float: left;">공 지 글 상 세 보 기</h3>
 				
+				<c:if test="${ loginUser eq null }">
 				<table class="in_ContentTable">			
-					<tr align="center"> <td class="uk_td1 sec1"> 글제목</td> <td class="uk_td1"> <input type="text" width="400" class="this_noticeNo" value="${notice_info.notice_title}"> </td></tr>
+					<tr align="center"> 
+						<td class="uk_td1 sec1"> 글제목</td> 
+						<td class="uk_td1"> 
+							<input type="text" width="400" class="this_ntitle" value="${notice_info.notice_title}" readonly="readonly"> 
+							<input type="hidden" class="this_no" value="${notice_info.notice_no}">	
+						</td>
+					</tr>
 					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
 					<tr> 
 						<td class="uk_td2" colspan="2">
-							<textarea class="notice_contents" rows="25" cols="86" style="resize: none; overflow: scroll;">${notice_info.notice_content}</textarea>
-							<c:set var="n_contents" value="${ notice_info.notice_content }"/>
-							
+							<textarea class="this_ncontents" rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">${notice_info.notice_content}</textarea>
 						</td>  
 					</tr>
 					<tr> 
-						<td colspan="2" align="center"> 
-							<button id="AdminAlter" style="background: none;"> 수정하기 </button> &nbsp;&nbsp;&nbsp;&nbsp;
-							<!-- <button style="background: none;" class="return_btn" id="return_btn"> 돌아가기 </button>	 -->	
-							<a class="return_btn" id="return_btn"> 돌아가기 </a>
+						<td colspan="2" align="center"> 	
+							<a href="Notice.go" id="AdminAlter"> 전체 목록으로 </a>
 						</td>
 					</tr>
 				</table>
+				</c:if>
+				
+				<c:if test="${ loginUser!=null  }">
+				<table class="in_ContentTable">			
+					<tr align="center"> 
+						<td class="uk_td1 sec1"> 글제목</td> 
+						<td class="uk_td1"> 
+							<input type="text" class="this_ntitle" value="${notice_info.notice_title}"> 
+							<input type="hidden" class="this_no" value="${notice_info.notice_no}">	
+						</td>
+					</tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
+					<tr> 
+						<td class="uk_td2" colspan="2">
+							<textarea class="this_ncontents" rows="25" cols="86" style="resize: none; overflow: scroll;">${notice_info.notice_content}</textarea>
+						</td>  
+					</tr>
+					<tr> 
+						<td colspan="2" align="center"> 	
+							<a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
+							
+							<script type="text/javascript">
+			
+							 	function alterNoticeContents(){
+							 		/* var no = $(".this_no").val();
+							 		var title = $(".this_ntitle").val();
+							 		var content = $(".this_ncontents").val();
+
+							 		alert(no);
+							 		alert(title);
+							 		alert(content); */
+							 		alert("수정이 완료되었습니다.");
+							 		
+							 		$.ajax({
+										url : "notice_alter.go",
+										//3가지를 보낸다.(글번호,글제목,글 내용)
+										data : {  
+												 noticeNo : $(".this_no").val(),
+												 noticeTitle : $(".this_ntitle").val(),
+												 noticecontents : $(".this_ncontents").val()
+												},
+										type : "get"
+							 		}); 
+								}
+	
+							</script>
+							
+							<a href="Notice.go" id="AdminAlter"> 전체 목록으로 </a>
+						</td>
+					</tr>
+				</table>
+				</c:if>
+				
 				
 			</div>
 	    	

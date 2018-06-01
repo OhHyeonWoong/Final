@@ -55,6 +55,11 @@ public class FaqDao {
 		return sqlSession.selectOne("faqDetailShow", faq_no);
 	}
 
+	//Faq Ajax로 수정하기
+	public int reDefineFaq(Faq reFaq) {
+		return sqlSession.update("faqReDefine", reFaq);
+	}
+
 }  
 
 
