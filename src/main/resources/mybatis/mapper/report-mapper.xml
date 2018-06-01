@@ -53,46 +53,4 @@
 		delete from member 
 		where userid = #{userId}
 	</delete> -->
-
-<select id="idDuplicateCheck" parameterType="String" resultType="String">
-		<![CDATA[
-		select MEMBER_ID from MEMBER 
-		where MEMBER_ID=#{member_id}
-		]]>
-</select>
-
-<select id="emailDuplicateCheck" parameterType="String" resultType="String">
-		<![CDATA[
-		select MEMBER_EMAIL from MEMBER 
-		where MEMBER_EMAIL=#{member_email}
-		]]>
-	</select>
-
-<insert id="memberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">
-	<![CDATA[
-	insert into member values (
-	#{member_id},
-	#{member_pw},
-	#{member_name},
-	#{member_email},
-	#{member_address},
-	#{member_phone},
-	#{member_regident_number},
-	default,
-	default,
-	default,
-	default,
-	default,
-	1,
-	#{member_renamephoto},
-	default,
-	default,
-	default,
-	default
-	)
-	]]>
-	</insert>
-
-
-
 </mapper>
