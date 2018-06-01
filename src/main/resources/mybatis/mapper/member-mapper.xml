@@ -62,6 +62,21 @@
 		]]>
 	</update>
 	
+	<update id="updateLastLogin" parameterType="string" flushCache="true">
+		<![CDATA[
+			update member
+			set member_lastlogin = sysdate
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
+	<delete id="deleteMemberOut" parameterType="string" flushCache="true">
+		<![CDATA[
+			delete from member
+			where member_id = #{member_id}
+		]]>
+	</delete>
+	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

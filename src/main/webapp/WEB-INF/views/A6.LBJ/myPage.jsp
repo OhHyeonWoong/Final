@@ -299,8 +299,33 @@
 				return false;
 			}
 		}
+		
+		function fnMemberOut(){
+			//회원 탈퇴용 함수
+			var member_id = $('#InputId').val();
+			var flag = confirm("정말로 탈퇴 하시겠습니까?");
+			if(flag){
+				$.ajax({
+					url:"lbjMemberOut.go",
+					type:"post",
+					data:{
+						member_id: member_id
+					},
+					success:function(data){
+						alert(data);
+						if(data == '회원 탈퇴 성공'){
+							location.href = "home.go";
+						}
+					},
+					error:function(a,b,c){
+						alert("a = " + a + " , b = " + b + " , c = " + c);
+					}
+				});
+			}else{
+				alert("취소되었습니다.");
+			}
+		}
 	</script>
-	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
 	<c:choose>
 		<c:when test="${loginUser eq null}">
 			<script type="text/javascript">
@@ -399,7 +424,7 @@
 			            </div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" class="btn btn-danger" value="탈퇴">
+							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
 						</div>
 					</form>
 						</div>

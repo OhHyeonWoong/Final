@@ -29,7 +29,7 @@ public class JDK_MemberController {
 		public String signIn() {
 			return "A3.JDK/registration";
 		}
-		//약관 링크 버튼 누를 시 링크모달 띄우는 메소드
+		//약관 링크 버튼 누를 시 회원약관 띄우는 메소드
 		@RequestMapping(value="jdktermsofservice.go", method=RequestMethod.GET)
 		public String serviceTerms() {
 			return "A3.JDK/termsOfService";
@@ -49,9 +49,7 @@ public class JDK_MemberController {
 		         out.flush();
 		      }
 		      out.close();
-			
 		}
-		
 		//이메일 인증용 메소드
 		@RequestMapping(value="emailConfirm.go", method=RequestMethod.POST)
 		public void emailConfirmation(HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -109,6 +107,7 @@ public class JDK_MemberController {
 		         out.close();
 		      }
 		}
+		
 		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
 		public void signIn(HttpServletResponse response, HttpServletRequest request, Member member) throws Exception {
 			//회원을 입력하기 위해서 결론적으로 Member 객체를 완성한 이후에 쿼리문에서 전송하여 올릴 것이므로... 최종적으로 Member 객체를 완성시키는 형식으로 진행
@@ -120,7 +119,7 @@ public class JDK_MemberController {
 			// 나중에 암호화 작업을 여기에 추가할 것
 			String memberPwd=request.getParameter("member_pw");
 			//주소 가지고 오기
-			String memberAdd=request.getParameter("address1")+" "+request.getParameter("address2");
+			String memberAdd=request.getParameter("member_address1")+" "+request.getParameter("member_address2");
 			//전화번호 가지고 오기
 			String memberPhone=request.getParameter("member_phone");
 			//이메일 가지고 오기
@@ -158,17 +157,17 @@ public class JDK_MemberController {
 		}
 		//어드민 페이지 관련 메소드
 		//어드민 페이지 이동용 메소드
-		@RequestMapping(value="jdkadminpage.go", method=RequestMethod.GET)
+		@RequestMapping(value="jdkadminpage.go")
 		public String adminpage() {
 			return "A3.JDK/admin_listofmembers";
 		}
 		//어드민 페이지 회원관리 창 이동용 메소드
-		@RequestMapping(value="", method=RequestMethod.GET)
+		@RequestMapping(value="jdkadminmember.go")
 		public String adminMemberManagement() {
-			return "A3.JDK/admin_main";
+			return "A3.JDK/admin_listofmembers";
 		}
 		//어드민 페이지 아이템 창 이동용 메소드
-		@RequestMapping(value="jdkadminitemlist.go", method=RequestMethod.GET)
+		@RequestMapping(value="jdkadminitemlist.go")
 		public String adminItemManagement() {
 			return "A3.JDK/admin_itemlist";
 		}
