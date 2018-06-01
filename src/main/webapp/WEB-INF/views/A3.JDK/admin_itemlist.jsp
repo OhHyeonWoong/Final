@@ -27,8 +27,7 @@
 	<!-- 여기서 부터 작성하시면 됩니다.  -->
 	<!-- 전체 아이템 리스트 작성 부분 -->
 	<div>
-	<hr>
-	<h3>개별 아이템 리스트</h3>
+	<h4>개별 아이템 리스트</h4>
 	<table class="table table-striped custab">
 	    <thead>
 	        <tr>
@@ -52,7 +51,7 @@
 	            <td>판매횟수</td>
 	            <td>이미지</td>
 	                <td class="text-center">
-	                <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_indi">
+	                <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_modi">
 	                <span class="glyphicon glyphicon-edit"></span>수정</a>
 	                <a class="btn btn-danger btn-xs" href="#">
 	                <span class="glyphicon glyphicon-remove"></span>삭제</a>
@@ -68,7 +67,7 @@
 	<!-- 패키지 별 리스트 작성 부분 -->
     <div>
     <hr>
-    <h3>패키지 리스트</h3>
+    <h4>패키지 리스트</h4>
 	<table class="table table-striped custab">
 	    <thead>
 	        <tr>
@@ -92,7 +91,7 @@
 	            <td>포함 아이템 식별 번호</td>
 	            <td>판매횟수</td>
 	                <td class="text-center">
-	                <a class='btn btn-info btn-xs' data-toggle="modal" href="#">
+	                <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_package">
 	                <span class="glyphicon glyphicon-edit"></span>수정</a>
 	                <a class="btn btn-danger btn-xs" href="#">
 	                <span class="glyphicon glyphicon-remove"></span>삭제</a>
@@ -108,7 +107,7 @@
 	<!-- 랜덤 박스 리스트 작성 부분 -->
     <div>
     <hr>
-    <h3>랜덤 박스 리스트</h3>
+    <h4>랜덤 박스 리스트</h4>
 	<table class="table table-striped custab">
 	    <thead>
 	        <tr>
@@ -131,7 +130,7 @@
 	            <td>포함 아이템 식별번호</td>
 	            <td>판매횟수</td>
                 <td class="text-center">
-                <a class='btn btn-info btn-xs' data-toggle="modal" href="#">
+                <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_random">
                 <span class="glyphicon glyphicon-edit"></span>수정</a>
                 <a class="btn btn-danger btn-xs" href="#">
                 <span class="glyphicon glyphicon-remove"></span>삭제</a>
@@ -151,9 +150,13 @@
 <!-- 등록 버튼 이나 수정 삭제 버튼시 뜨는 모달창 모음 -->
 	<!--개별 아이템 수정 모달창 인클루드-->
 	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_modi.jsp"  %>
-
-
-
+	<!-- 패키지 아이템 수정 모달창 인클루드 -->
+	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_package.jsp"  %>
+	<!-- 랜덤 아이템 수정 모달창 인클루드 -->
+	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_random.jsp"  %>
+	<!--개별 아이템 등록 모달창-->
+	<!--패키지 아이템 등록 모달창-->
+	<!--랜덤 아이템 등록 모달창-->
 <!--푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </div>
