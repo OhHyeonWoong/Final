@@ -552,7 +552,9 @@ function useitem(itempk){
 		 				Array4[1]=new Array();
 		 				Array4[2]=new Array();
 		 				var value1="";
-		 			
+		 			if(json.cjsmessage !=null){
+		 				alert(json.cjsmessage+"가 나왔습니다!");
+		 			}
 		 				for(var i in json.havingitem){//보유중 아이템 삽입.
 		 				Array1.push(json.havingitem[i]);
 		 			

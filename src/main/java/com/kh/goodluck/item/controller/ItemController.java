@@ -254,7 +254,7 @@ public class ItemController {
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
 		int currentPage = 1;
-		
+		String messagefromrandomitem = null;
 		Member sessionmember=(Member)session.getAttribute("loginUser");		
 		Member member=new Member();
 		member.setMember_id(memberid);
@@ -262,28 +262,70 @@ public class ItemController {
 		if(request.getParameter("usitempk") != null) {
 		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
 		int itemlistno=ItemService.getitemlistno(usitempk);
-		if(itemlistno==55) {
-		//최대게시물수+1
+		
+		if(ItemService.getitemtype(itemlistno)==8) {
+		//랜덤박스 아이템  사용==>
+		ItemService.turnitemstatus(usitempk);
+		//사용로그에추가=>
+		ItemService.insertusingitem(usitempk);
+		ItemService.Insertitemlog(usitempk);
+		//랜덤 확률 호출=>
+		List<RanDomBoxChance> al=null;
+		switch(itemlistno) {
+		case 74:
+		al=ItemService.getRanDomBoxChance1();
+		break;
+		case 72: 
+		al=ItemService.getRanDomBoxChance2();
+		break;
+		case 73: 
+		al=ItemService.getRanDomBoxChance3();
+		break;
+		}	   
+	//호출후 아이템1개추출 => 	
+		double d = Math.random();
+		double chance=0;
+		int itemno = 0;
+		
+	for(RanDomBoxChance i:al) {
+			chance+=i.getCHANCE();
+		if(chance>=d) {
+			itemno=i.getITEMLIST_NO();
+			messagefromrandomitem=i.getItemname();
+			break;
+		}
+	} 
+		//myitem에 인설트 =>
+	HashMap<Object,Object> map=new HashMap<Object,Object>();
+	map.put("memberid", memberid);
+	map.put("pk", itemno);
+	int reuslt1=ItemService.insertmyitem(map);
+		}else {
+		switch (itemlistno) {
+		case 55:
 			System.out.println("최대게시물수+1");
-				if(ItemService.turnitemstatus(usitempk)>0) {
-				System.out.println("해당아이템 소모완료");
-				ItemService.upgradeboardcount(memberid);
-				if(ItemService.insertusingitem(usitempk)!=0)
-				ItemService.Insertitemlog(usitempk);
-				} 
-				sessionmember.setMember_write_count(memberService.loginCheck(sessionmember).getMember_write_count());	
-		}else if(itemlistno==56) {
-		//최대태그수+1
+			if(ItemService.turnitemstatus(usitempk)>0) {
+			System.out.println("해당아이템 소모완료");
+			ItemService.upgradeboardcount(memberid);
+			if(ItemService.insertusingitem(usitempk)!=0)
+			ItemService.Insertitemlog(usitempk);
+			} 
+			sessionmember.setMember_write_count(memberService.loginCheck(sessionmember).getMember_write_count());	
+			break;
+		case 56:
 			System.out.println("최대태그수+1");
-					if(ItemService.turnitemstatus(usitempk)>0) {
-					System.out.println("해당아이템 소모완료");
-					ItemService.upgradekeywordcount(memberid);
-					if(ItemService.insertusingitem(usitempk)!=0)
-						ItemService.Insertitemlog(usitempk);
-				}
+			if(ItemService.turnitemstatus(usitempk)>0) {
+			System.out.println("해당아이템 소모완료");
+			ItemService.upgradekeywordcount(memberid);
+			if(ItemService.insertusingitem(usitempk)!=0)
+				ItemService.Insertitemlog(usitempk);
+		}
 			sessionmember.setMember_keyword_count(memberService.loginCheck(sessionmember).getMember_keyword_count());
-		}else{
-		if(ItemService.turnitemstatus(usitempk)>0) {
+	
+			break;
+		
+		default:
+			if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
 				//해당 아이템의 타입이 현재 적용중인이 확인.
 		if(ItemService.checkitemusing(usitempk) == 0) {
@@ -300,9 +342,10 @@ public class ItemController {
 			}else {
 				System.out.println("해당아이템 소모실패");
 			}
+			break;
+		  }
 		}
-	}
-		
+		}
 	
 		Member member1=memberService.loginCheck(member);
 		
@@ -439,6 +482,7 @@ public class ItemController {
 		
 		json.put("boardcount",member1.getMember_keyword_count());
 		json.put("keywordcount", member1.getMember_write_count());
+		json.put("cjsmessage", messagefromrandomitem);
 		
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());

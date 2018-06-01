@@ -288,4 +288,10 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return  sqlSession.update("updatesellcount",pk);
 	}
+
+
+	public int getitemtype(int itemlistno) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemtype",itemlistno);
+	}
 }

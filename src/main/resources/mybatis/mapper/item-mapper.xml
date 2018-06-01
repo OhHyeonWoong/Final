@@ -145,4 +145,8 @@ update ITEMLIST set ITEMSELLCOUNT = ((select ITEMSELLCOUNT from ITEMLIST where I
 where ITEMLIST_NO = #{pk}
 </update>
 
+<select id="getitemtype" parameterType="int" resultType="int">
+select ITEMTYPE from ITEMLIST where ITEMLIST_NO =#{itemlistno}
+</select>
+
 </mapper>

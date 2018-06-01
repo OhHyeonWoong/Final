@@ -58,9 +58,11 @@ public interface ItemService {
 	public abstract int getitemprice(int pk);
 	public abstract int insertmyitem(HashMap<Object, Object> map);
 	public abstract int updatesellcount(int pk);
+	public abstract int getitemtype(int itemlistno);
 	//made by byung jun
 	public abstract int selectMyPageItemListCount(String member_id);
 	public abstract List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map);
+	
 
 
 	

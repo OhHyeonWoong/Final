@@ -19,7 +19,8 @@ u.MYITEM_NO=m.MYITEM_NO and
 m.ITEMLIST_NO=i.ITEMLIST_NO and 
 u.START_DATE-u.END_DATE<=0 and 
 m.member_id=#{memberid} and
-i.ITEMTYPE != 2
+i.ITEMTYPE != 2 and
+i.ITEMTYPE != 8
 group by ITEMFILENAME,substr(ITEMNAME,1,8)
 ]]>
 
@@ -43,7 +44,7 @@ select USING_ITEM_NO from USING_ITEM where USING_ITEM_NO != 0 and MYITEM_NO in (
 select MYITEM_NO from MY_ITEM 
 where MEMBER_ID=#{memberid} and 
 ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 )
-) 
+)
 ]]>
 </select>
 

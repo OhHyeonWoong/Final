@@ -297,5 +297,11 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.updatesellcount(pk);
 	}
 
+	@Override
+	public int getitemtype(int itemlistno) {
+		// TODO Auto-generated method stub
+		return  itemlistDao.getitemtype(itemlistno);
+	}
+
 	
 }
