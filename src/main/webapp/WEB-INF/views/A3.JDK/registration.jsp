@@ -169,20 +169,9 @@ $('#member_id').focus();
 		error: function(){
 			alert("이메일 ajax 에러");
 		}	
-	
 	});
 	}
 }
-
-// 아이디 입력 값이 바꼈을 때 다시 인증받게 하기 위해 전역변수 false 값으로 바꿈.
-function idChanged(){
-	idConfirmed = false;
-}
-//이메일 인증번호 확인 후에 이메일을 바꾸어 버렸을 때!!
-function emailChanged(){
-	emailConfirmed = false;
-}
-
 
  //인증번호 확인////////////////////////////////////////////////
  function emailNumCheck(){
@@ -240,7 +229,7 @@ if(idpattern.test(iden)==false){
 	submition=false;
 }else if(emailConfirmed==false){
 	alert("인증 받은 이메일이 아닙니다. 이메일 인증을 다시 해주세요!");
-}else if(termsConfrimedd == false){
+}else if(termsConfrimed == false){
 	alert("약관에 동의해 주세요!!");
 	submition=false;
 }else{
@@ -248,8 +237,25 @@ if(idpattern.test(iden)==false){
 }
 
 return submition;
-
 }
+
+
+
+
+
+////////////////기타사항/////////////////////////
+//아이디 입력 값이 바꼈을 때 다시 인증받게 하기 위해 전역변수 false 값으로 바꿈.
+function idChanged(){
+	idConfirmed = false;
+}
+//이메일 인증번호 확인 후에 이메일을 바꾸어 버렸을 때!!
+function emailChanged(){
+	emailConfirmed = false;
+}
+//약관 띄우기
+$(function(){
+/* $("#termsOfService").css("display","block"); */	
+});
 </script>
 
 </head>
@@ -314,7 +320,7 @@ return submition;
 					<br><br>
 					
 					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly"><br><br>
-					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" readonly="readonly">
+					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
 				</div>
 				<!-- 주소 입력 관련 코드 종료 -->
@@ -336,16 +342,16 @@ return submition;
 					<!-- 인증번호 보관 값 -->
 					<input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 					<!-- 인증번호 요청시 번호 입력확인 -->
-					<span class="input-group-btn"><a href="javascript:emailNumCheck();" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+					<span class="input-group-btn"><a href="javascript:emailNumCheck();" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
 					</div>
 				</div>
-				<div class="form-group text-center">
+ 				<div class="form-group text-center">
 					<div class="input-group">
 						 <input id="agree" type="checkbox" autocomplete="on"> 
-						<a href="location.href=''" data-toggle="modal" data-target="#termsOfService">이용약관</a> 에 동의 합니다.
+						<a href="" data-toggle="modal" data-target='#termsOfService'>이용약관</a> 에 동의 합니다.
 					</div>
 				</div>
-					<br><br>	
+						<br><br>	
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-default" >회원가입</button>
 					<button type="button" class="btn btn-default">가입취소</button>
@@ -358,7 +364,7 @@ return submition;
 
 <!-- 회원약관 모달창 인클루드 -->
 <%@ include file="/WEB-INF/views/A3.JDK/termsOfService.jsp" %>
-<!-- 회원약관 모달창 인클루드 -->
+<!-- 푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>

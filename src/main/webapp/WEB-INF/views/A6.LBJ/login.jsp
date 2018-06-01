@@ -31,8 +31,7 @@
 							<input id="login_password" name="member_pw" class="form-control" type="password"
 								placeholder="패스워드" required>
 							<div class="checkbox">
-								<label> <input type="checkbox" id="idSave"> 아이디 기억
-								</label>
+								<label> <input type="checkbox" id="idSave">아이디 기억</label>
 							</div>
 						</div>
 						<div class="modal-footer">
