@@ -1,5 +1,6 @@
 package com.kh.goodluck.search.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,12 @@ public class SearchServiceImpl implements SearchService {
 		
 	}
 	
-	public List<Search> searchKeyword(String searchKeyword) {
-		return searchDao.searchKeyword(searchKeyword);		
+	public List<Search> searchKeyword(HashMap<Object, Object> map) {
+		return searchDao.searchKeyword(map);		
+	}
+	
+	public int selectSearchListCount(String searchKeyword) {
+		return searchDao.selectSearchListCount(searchKeyword);
 	}
 	
 }

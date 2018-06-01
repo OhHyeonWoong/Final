@@ -600,7 +600,7 @@
 			</td>
 			<td class = "ohw-menu-table-td">
 				<div align = "center">
-					<form action="moveSearch.go" method="get">
+					<form action="headerSearch.go" method="get">
 						<div class="ohw-div-search input-group">
 							<input type="text" class="form-control" placeholder="Search" name="searchKeyword">
 							<div class="input-group-btn">
