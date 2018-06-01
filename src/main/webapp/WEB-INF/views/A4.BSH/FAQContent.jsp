@@ -120,8 +120,7 @@
 							
 							A.${ faqalllist.faq_content }	
 						</div>
-						<P align="right"> <button class="ukstyle_btn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button>
-						</P>
+						<P align="right"> <button class="ukstyle_btn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>
 						<br><br>
 			        </div>
 			        </c:forEach> 

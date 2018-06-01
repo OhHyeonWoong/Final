@@ -13,5 +13,6 @@ public interface FaqService {
 	abstract public List<Faq> selectLoginList(); //로그인관련리스트 추출
 	public abstract List<Faq> faqTop5(); //main화면 faq Top5
 	public abstract Faq faqDetail(int faq_no);
+	public abstract int reDefineFaq(Faq reFaq);
 
 }

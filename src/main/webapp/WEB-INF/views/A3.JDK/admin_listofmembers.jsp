@@ -30,20 +30,9 @@
 <!-- 회원 검색 -->
 <div>
 <form>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
-</select>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
-</select>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
+<select name="searchOption">
+<option value="">이름</option>
+<option value="">아이디</option>
 </select>
 </form>
 </div>
@@ -51,9 +40,13 @@
 <table class="table table-striped custab">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Parent ID</th>
+            <th>회원 식별 번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>생년월일</th>
+            <th>Email</th>
+            <th></th>
+            <th>이름</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>

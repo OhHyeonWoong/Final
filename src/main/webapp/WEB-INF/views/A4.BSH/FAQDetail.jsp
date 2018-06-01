@@ -24,7 +24,7 @@
 			    background: linear-gradient(45deg, #0a3466 0%, #17b6e3 100%);
 			    padding-top:2px;
 				width: 100%;
-				height: 130px;
+				height: 145px;
 				border: 1px solid gray;
 				font-size: 20px;		
 				color: white;	
@@ -32,6 +32,20 @@
 
 			.glyphicon-comment{
 				font-size: 19px;
+			}
+			.ukstyle_text{
+		 		background: none; 
+		 		color: white; 
+		 		width: 600px;	
+		 		margin-top: 10px;
+		 		margin-left:2px;	
+		 		padding: 0;
+			}
+			.ukstyle_text2{
+		 		background: none; 
+		 		color: white; 
+				margin-left:2px;
+		 		padding: 0;
 			}
 		</style>
 		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>		
@@ -102,36 +116,84 @@
 			        <h3>FAQ게시판(유저의 자주묻는 질문)</h3><br>
 						
 					<div class="section1"> <!-- 유저가 이름을 클릭하였을 때 기본적으로보여지는 화면  -->
-					<div class="request_area" align="left">
-						Q.${ faq_info.faq_title } 
-						<br><br>						
-						A.${ faq_info.faq_content }					
-					</div>
+						<div class="request_area" align="left">
+							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faq_info.faq_title }">			
+							<br><br>		
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faq_info.faq_content }</textarea>				
+								
+							<input type="hidden" id="f_number" value="${ faq_info.faq_no }">	
+							<input type="hidden" id="f_category" value="${ faq_info.faq_category }">	
+						</div>
+						<P align="right"> <button class="ukstyle_btn" onclick="changeFaq();">수정</button> &nbsp; <button class="ukstyle_btn" onclick="deleteFaq();">삭제</button></P>																	
+						<script type="text/javascript">
+							function changeFaq(){
+								alert("수정이 완료되었습니다.");
+								$.ajax({
+									url : "changeFaqContents.go",
+									type : "get",
+									data : {
+										select_fno : $("#f_number").val(),
+										select_ftitle : $("#f_title").val(),
+										select_fcontent : $("#f_contents").val(),
+										select_fcategory : $("#f_category").val()
+									}
+								});
+							}
+							function deleteFaq(){
+								location.href="delFaq.go?selectFaqNo="+$("#f_number").val();
+							}
+						</script>
 					</div>
 		
 			         
 					<c:forEach var="faquseinglist" items="${useinglist}">
 			        <div class="section2" hidden="true"> 
 						<div class="request_area" align="left">
-							Q.${ faquseinglist.faq_title } 
+							<input type="text" class="ukstyle_text" id="f_title" value="Q.${faquseinglist.faq_title}"> 
+							<!-- 관리자가 수정한 타이틀로 보내야됨 -->
 							<br><br>
-							A.${ faq_info.faq_content }			
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${faquseinglist.faq_content }</textarea>	
+							<!-- 관리자가 수정한 내용으로 보내야됨 -->			
+							<input type="hidden" id="sam_no" value="${faquseinglist.faq_no}"> 
+							<!-- forEach에 따른 고유PK -->
+							<input type="hidden" value="${ faquseinglist.faq_category }"> 
+							<!-- 그냥 넘기면됨 -->				 							
 						</div>
+						<P align="right"> <a href="#" onclick="faqfaq_change();"> 수정시도 </a>
+						<%-- "changeFaqContents2.go?f_pk=${faquseinglist.faq_no}&f_title=${faquseinglist.faq_title}&f_contents=${faquseinglist.faq_content}">수정</a> &nbsp; --%> 
+						<button class="ukstyle_btn">삭제</button></P>		
+										
+						<script type="text/javascript">
+							function faqfaq_change(){
+								alert("onclick버튼 클릭!");
+								var faqpk=$(this).prev().
+								
+								location.href="changeFaqContents2.go?f_pk="+${faquseinglist.faq_no};
+							}
+						
+							function deleteFaq(){
+								location.href="delFaq.go?selectFaqNo="+$("#f_number").val();
+							}
+						</script>
 						<br><br>
 			        </div>
-			        </c:forEach> 
-			        
+			        </c:forEach> 					
+					
 			        
 			        
 					<c:forEach var="faqpaymentlist" items="${paymentlist}">
-			        <div class="section3" hidden="true"> 
-						<div class="request_area" align="left">
-							Q.${ faqpaymentlist.faq_title } 
-							<br><br>							
-							A.${ faqpaymentlist.faq_content } 							
-						</div>
-						<br><br>
-			        </div>
+				        <div class="section3" hidden="true"> 
+							<div class="request_area" align="left">
+								<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqpaymentlist.faq_title }"> 
+								<br><br>
+								<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqpaymentlist.faq_content }</textarea>				
+	
+								<input type="hidden" id="f_number" value="${ faqpaymentlist.faq_no }">	
+								<input type="hidden" id="f_category" value="${ faqpaymentlist.faq_category }">						
+							</div>
+							<P align="right"> <button class="ukstyle_paybtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>						
+							<br><br>
+				        </div>
 			        </c:forEach> 
 			        
 			        
@@ -139,23 +201,31 @@
 					<c:forEach var="faqreportlist" items="${reportlist}">
 			        <div class="section4" hidden="true"> 
 						<div class="request_area" align="left">
-							Q.${ faqreportlist.faq_title } 
+							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqreportlist.faq_title }"> 
 							<br><br>
-							A.${ faqreportlist.faq_content } 	
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqreportlist.faq_content }</textarea>				
+							
+							<input type="hidden" id="f_number" value="${ faqreportlist.faq_no }">	
+							<input type="hidden" id="f_category" value="${ faqreportlist.faq_category }">		
 						</div>
+						<P align="right"> <button class="ukstyle_reportbtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>												
 						<br><br>
 			        </div>
 			        </c:forEach> 
 			        
 			        
 
-					<c:forEach var="faquseinglist" items="${loginlist}">
+					<c:forEach var="faqloginlist" items="${loginlist}">
 			        <div class="section5" hidden="true"> 
 						<div class="request_area" align="left">
-							Q.${ faquseinglist.faq_title } 
+							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqloginlist.faq_title }"> 
 							<br><br>
-							A.${ faquseinglist.faq_content } 	
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqloginlist.faq_content }</textarea>				
+							
+							<input type="hidden" id="f_number" value="${ faqloginlist.faq_no }">	
+							<input type="hidden" id="f_category" value="${ faqloginlist.faq_category }">
 						</div>
+						<P align="right"> <button class="ukstyle_useringbtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>												
 						<br><br>
 			        </div>
 			        </c:forEach> 		

@@ -27,8 +27,20 @@ public class NoticeDao {
 
 	
 	public Notice noticeDetail(int notice_no) {
-		//공지사항게시글 상세보기
+		//공지사항 게시글 상세보기
 		return sqlSession.selectOne("noticeDetailShow", notice_no);
+	}
+
+
+	public int noticeContentUpdate(Notice newnotice) {
+		//운영자권한 공지사항 게시글 수정하기
+		return sqlSession.update("AdminWriteAlter", newnotice);
+	}
+
+
+	public void noticeAdd(String new_ntitle, String new_ncontents) {
+
+		
 	}
 
 

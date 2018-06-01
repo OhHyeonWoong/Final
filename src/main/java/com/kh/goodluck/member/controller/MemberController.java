@@ -28,6 +28,8 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
+import com.kh.goodluck.report.model.service.ReportService;
+import com.kh.goodluck.report.model.vo.Report;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -41,6 +43,9 @@ public class MemberController {
 	
 	@Autowired
 	private QNAService qnaService;
+	
+	@Autowired
+	private ReportService reportService;
 	
 	public String homeGo() {
 		return "home";
@@ -106,10 +111,10 @@ public class MemberController {
 		int itemEndRow = qnaStartRow + qnaLimit - 1;
 		
 		HashMap<Object,Object> map1 = new HashMap<Object,Object>();
-	    map.put("startRow", qnaStartRow);
-	    map.put("endRow", itemEndRow);
-	    map.put("member_id", member_id);
-	    ArrayList<MyPageItem> myItem = (ArrayList<MyPageItem>)ItemService.selectMyPageItem(map);
+	    map1.put("startRow", qnaStartRow);
+	    map1.put("endRow", itemEndRow);
+	    map1.put("member_id", member_id);
+	    ArrayList<MyPageItem> myItem = (ArrayList<MyPageItem>)ItemService.selectMyPageItem(map1);
 	    
 	    System.out.println("myItem size = " + myItem.size());
 		
@@ -124,7 +129,32 @@ public class MemberController {
 		mv.addObject("lbjMyItem", myItem);
 		mv.addObject("itemPage",itemPage);
 		//item 세팅 끝-----------------------------------------------------------
+		//Report 세팅 ----------------------------------------------------------
+		int reportListCount = reportService.selectMyPageReportListCount(member_id);
+		int reportMaxPage = (int)((double)reportListCount / qnaLimit + 0.9);
+		int reportEndRow = qnaStartRow + qnaLimit - 1;
 		
+		System.out.println("myReortListCount = " + reportListCount);
+		
+		HashMap<Object,Object> map2 = new HashMap<Object,Object>();
+	    map2.put("startRow", qnaStartRow);
+	    map2.put("endRow", reportEndRow);
+	    map2.put("member_id", member_id);
+	    ArrayList<Report> myReport = (ArrayList<Report>)reportService.selectMyPageReport(map2);
+	    
+	    System.out.println("myReport size = " + myReport.size());
+		
+	    if (reportMaxPage < reportEndRow)
+			reportEndRow = reportMaxPage;
+		
+	    /*HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
+		itemPage.put("itemMaxPage",itemMaxPage);
+		itemPage.put("itemEndRow",itemEndRow);
+		itemPage.put("itemListCount",itemListCount);
+		
+		mv.addObject("lbjMyItem", myItem);
+		mv.addObject("itemPage",itemPage);*/
+		//Report 세팅 끝---------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
