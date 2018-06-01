@@ -14,54 +14,11 @@
 </style>
 </head>
 
-<body>
+<body id="main">
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <div class="container">
-    <div class="left-container" id="left-container" style="width:25%; float:left;">
-      <!--사이드바 시작-->
-      <div class="w3-sidebar w3-bar-block" id="show-nav">
-        <ul id="side" class="side-nav">
-          <li class="panel">
-            <a id="panel1" href="javascript:;" data-toggle="collapse" data-target="#Dashboard"> <i class="fa fa-dashboard"></i> 회원관리
-              <i class="fa fa-chevron-left pull-right" id="arow1"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel2" href="javascript:;" data-toggle="collapse" data-target="#charts"> <i class="fa fa-bar-chart-o"></i> 아이템 관리
-              <i class="fa fa-chevron-left pull-right" id="arow2"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel3" href="javascript:;" data-toggle="collapse" data-target="#calendar"> <i class="fa fa-calendar"></i> 게시판 관리
-              <i class="fa fa-chevron-left pull-right" id="arow3"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel4" href="javascript:;" data-toggle="collapse" data-target="#clipboard"> <i class="fa fa-clipboard"></i> 신고 문의 처리
-              <i class="fa fa fa-chevron-left pull-right" id="arow4"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel5" href="javascript:;" data-toggle="collapse" data-target="#edit"> <i class="fa fa-edit"></i> 질문게시판 처리
-              <i class="fa fa fa-chevron-left pull-right" id="arow5"></i>
-            </a>
-          </li>
-          <li class="panel">
-            <a id="panel6" href="javascript:;" data-toggle="collapse" data-target="#inbox"> <i class="fa fa-inbox"></i> N/A
-              <i class="fa fa fa-chevron-left pull-right" id="arow6"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel7" href="javascript:;" data-toggle="collapse" data-target="#cogs"> <i class="fa fa-cogs"></i> N/A
-              <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel8" href="javascript:;" data-toggle="collapse" data-target="#paper"> <i class="fa fa-paper-plane"></i> N/A
-              <i class="fa fa fa-chevron-left pull-right" id="arow8"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel9" href="javascript:;" data-toggle="collapse" data-target="#trash"> <i class="fa fa-trash"></i> N/A
-              <i class="fa fa fa-chevron-left pull-right" id="arow9"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<!-- 사이드바 -->
+  <%@ include file = "/WEB-INF/views/A3.JDK/admin_sidebar.jsp" %>
 <!-- 사이드바 종료 -->
 <!-- 내용 출력하기 -->
 <div class="w3-container" style="width:70%; float: right;">

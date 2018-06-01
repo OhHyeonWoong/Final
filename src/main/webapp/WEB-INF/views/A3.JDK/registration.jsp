@@ -87,16 +87,28 @@ var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
 var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
 var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
 var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
+var emailReg="";//컨트롤러에서 임의 난수로 생성된 이메일 인증 번호를 받아주는 변수
+//정규식 목록
+//1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
+var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
+//2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
+var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
+//3. 이메일 정규식 : @ 포함하지 않으면 에러
+var emailpattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
+//4. 주민등록번호 6자리 +1자리 정규식
+var ssidnumpattern = /^\\d{6}[1-4]\\d{6}$/;
 ///////////////////////////////////////////////////////////////////////////
 /* 비밀번호 확인 창 */
 function pwdchecking(){	
 	if($("#password1").val()=="" && $("#password2").val()==""){
 		$("#pwdSame").text("비밀번호 확인을 위해 다시한번 입력 해 주세요").css("color","#737373");
 		submition=false;
+		$("#password1").focus();
 	}else if($("#password1").val()!=$("#password2").val()){
  		$("#pwdSame").text("비밀번호가 일치하지 않습니다. 다시 작성해주세요!").css("color","red");
  		submition=false;
  		pwd1pwd2 =false;
+ 		$("#password2").focus();
  	}else{
  		$("#pwdSame").text("비밀번호가 일치하는 번호 입니다.").css("color","green");
  		submition = false;
@@ -106,6 +118,10 @@ function pwdchecking(){
  
 //아이디 중복 검사////////////////////////////////////////////////////////////////
 function idConfirmation(){
+if(idpattern.test($('#member_id').val())==false){
+alert("적절한 아이디가 아닙니다.아이디를 확인해주세요");
+$('#member_id').focus();
+}else{
 	$.ajax({
 		url: "jdkIdConfirmation.go",
 		data: {id: $('#member_id').val()},
@@ -126,30 +142,37 @@ function idConfirmation(){
 		}		
 	});
 }
+}
 
 //이메일 인증/////////////////////////////////////////////////
-var emailReg="";//컨트롤러에서 임의 난수로 생성된 이메일 인증 번호를 받아주는 변수
- function emailConfirmation(){
+ function emailConfirmation(){	
 	if($("#member_email").val()== ""){
 		alert("이메일을 입력해주세요!!");
 		$("#member_email").focus();
-	} else {
+	} else if(emailpattern.test($("#member_email").val())==false){
+		alert("올바른 형식의 이메일이 아닙니다. 이메일을 확인해주세요!");
+		$("#member_email").focus();
+	}else{
 	 $.ajax({
 		url: "emailConfirm.go",
 		data: {member_email: $('#member_email').val()},
 		type:"POST",
 		success:
 			function(data){
-			alert("이메일이 발송 되었습니다. 하단 인증번호 인증을 해주세요!!");
+			if(data=="메일 발송 실패!"){
+			alert("이미 사용중인 메일입니다. 다른 이메일을 사용해 주세요!!");	
+			}else{
+			alert("메일이 발송되었습니다!! 메일을 확인하시고 인증번호를 적어주세요!!");
 			emailReg=data;
+			}
 		},
 		error: function(){
 			alert("이메일 ajax 에러");
 		}	
-	
 	});
 	}
-} 
+}
+
  //인증번호 확인////////////////////////////////////////////////
  function emailNumCheck(){
 	if(emailReg==$("#certify").val()){
@@ -174,31 +197,21 @@ var emailReg="";//컨트롤러에서 임의 난수로 생성된 이메일 인증
 ////////////////////////////////////////////////////////
 //submit 정규식
 function signIn(){
-//정규식 목록
-//1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
-var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
-// 2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
-var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
-// 3. 이메일 정규식 : @ 포함하지 않으면 에러
-var emailpattern = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/
-// 4. 주민등록번호 6자리 +1자리 정규식
-/* var ssidnumpattern = ^\\d{6}[1-4]\\d{6}; */
-/*
-iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
-pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
-email=$("#member_email").val(); // 이메일 밸류값 전역 변수
-ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
+iden=$("#member_id").val(); // 아이디 밸류 
+pwd=$("#password1").val(); // 비밀번호 밸류 
+email=$("#member_email").val(); // 이메일 밸류값
+ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값
 
-var submition = false; //->true로 바뀔 시 form 전송
-var emailConfirmed = false;//->이메일 인증 받으면 true
-var idConfirmed = false;// -> 아이디 인증을 받아야 true
-var termsConfirmed = false// -> 약관 동의 했을 때 true
-var pwd1pwd2 = false;
-var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
-var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
-var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
-var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
-*/
+//var submition = false; //->true로 바뀔 시 form 전송
+//var emailConfirmed = false;//->이메일 인증 받으면 true
+//var idConfirmed = false;// -> 아이디 인증을 받아야 true
+//var termsConfirmed = false// -> 약관 동의 했을 때 true
+//var pwd1pwd2 = false;
+//var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
+//var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
+//var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
+//var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
+
 if(idpattern.test(iden)==false){
 	alert("형식에 맞지 않는 아이디 입니다. 형식에 맞는 아이디 입력 및 중복검사를 다시 해 주세요!");
 	submition=false;
@@ -214,10 +227,9 @@ if(idpattern.test(iden)==false){
 }else if(emailpattern.test(email)==false){
 	alert("이메일 형식에 맞지 않는 이메일입니다. 다시 확인해주세요");
 	submition=false;
-}/* else if(ssidnumpattern.test==false){
-	alert("올바른 주민등록번호가 아닙니다. 정확한 주민등록번호를 입력해주세요.");
-	submition=false;
-} */else if(termsConfrimedd == false){
+}else if(emailConfirmed==false){
+	alert("인증 받은 이메일이 아닙니다. 이메일 인증을 다시 해주세요!");
+}else if(termsConfrimed == false){
 	alert("약관에 동의해 주세요!!");
 	submition=false;
 }else{
@@ -225,8 +237,25 @@ if(idpattern.test(iden)==false){
 }
 
 return submition;
-
 }
+
+
+
+
+
+////////////////기타사항/////////////////////////
+//아이디 입력 값이 바꼈을 때 다시 인증받게 하기 위해 전역변수 false 값으로 바꿈.
+function idChanged(){
+	idConfirmed = false;
+}
+//이메일 인증번호 확인 후에 이메일을 바꾸어 버렸을 때!!
+function emailChanged(){
+	emailConfirmed = false;
+}
+//약관 띄우기
+$(function(){
+/* $("#termsOfService").css("display","block"); */	
+});
 </script>
 
 </head>
@@ -237,7 +266,7 @@ return submition;
 			<h3 style="text-align : center;">회원가입</h3>
 		<div class="col-md-6 col-md-offset-3">
 <!-- 회원가입 폼 시작 -->
-			<form role="form" enctype="multipart/form-data" method="post" action="jdkmemberregist.go">
+			<form role="form" enctype="multipart/form-data" method="post" action="jdkmemberregist.go" onsubmit="return signIn();">
 				<div class="form-group">
 					<label for="userid">프로필 사진</label>
 					<div style="width : 130px; height : auto; margin: 0 auto;">
@@ -251,8 +280,8 @@ return submition;
 					<label for="userid">아이디</label>
 					<div class="input-group">
 					<!-- 아이디 -->
-					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가" required="required">
-					<span class="input-group-btn"><a href="javascript: idConfirmation();" class="btn btn-default" style="">
+					<input type="text" id="member_id" name="member_id" class="form-control" placeholder="4 ~ 20 자리 영문(대,소), 숫자 /첫글자는 숫자 사용 불가" onchange="idChanged();" required="required">
+					<span class="input-group-btn"><a href="javascript: idConfirmation();" class="btn btn-default">
 					<i class = "fa fa-search"></i> 중복검사</a></span>
 					</div>
 				</div>
@@ -284,25 +313,25 @@ return submition;
 				<div class="form-group">
 					<label for="username">주소</label>
 					<br>
-					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;" disabled>
+					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;">
 					<span class="input-group-btn">					
 					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
 					<br><br>
 					
-					<input type="text" class="form-control" id="sample4_roadAddress" name="address1" placeholder="도로명주소입니다" disabled><br><br>
-					<input type="text" class="form-control" id="address" name="address2" placeholder="상세주소" >
+					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly"><br><br>
+					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
 				</div>
 				<!-- 주소 입력 관련 코드 종료 -->
 				<div class="form-group">
 					<label for="username">전화번호</label><br> 
-					<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="전화번호를 입력해주세요." required="required">
+					<input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="'-'제외한 전화번호를 입력해주세요.(예:01011112222)" required="required">
 				</div>
 				<div class="form-group">
 					<label for="useremail">이메일</label>
 					<div class="input-group">
-						<input type="email" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required">
+						<input type="email" class="form-control" id="member_email" name ="member_email"  placeholder="이메일을 입력해주세요 ex)example@example.com" required="required" onchange="emailChanged();">
 						<!--email 인증 요청--> 
 						<span class="input-group-btn"><a href="javascript: emailConfirmation();" class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</a></span>
 					</div>
@@ -313,18 +342,18 @@ return submition;
 					<!-- 인증번호 보관 값 -->
 					<input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 					<!-- 인증번호 요청시 번호 입력확인 -->
-					<span class="input-group-btn"><a href="javascript:emailNumCheck();" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+					<span class="input-group-btn"><a href="javascript:emailNumCheck();" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
 					</div>
 				</div>
-				<div class="form-group text-center">
+ 				<div class="form-group text-center">
 					<div class="input-group">
 						 <input id="agree" type="checkbox" autocomplete="on"> 
-						<a href="location.href=''" data-toggle="modal" data-target="#termsOfService">이용약관</a> 에 동의 합니다.
+						<a href="" data-toggle="modal" data-target='#termsOfService'>이용약관</a> 에 동의 합니다.
 					</div>
 				</div>
-					<br><br>	
+						<br><br>	
 				<div class="form-group text-center">
-					<button type="submit" class="btn btn-default" onsubmit="return signIn();">회원가입</button>
+					<button type="submit" class="btn btn-default" >회원가입</button>
 					<button type="button" class="btn btn-default">가입취소</button>
 				</div>
 			</form>
@@ -335,7 +364,7 @@ return submition;
 
 <!-- 회원약관 모달창 인클루드 -->
 <%@ include file="/WEB-INF/views/A3.JDK/termsOfService.jsp" %>
-<!-- 회원약관 모달창 인클루드 -->
+<!-- 푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>
 </html>
