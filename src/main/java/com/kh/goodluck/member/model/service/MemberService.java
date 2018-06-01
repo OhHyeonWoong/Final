@@ -18,7 +18,7 @@ public interface MemberService {
 	public abstract int decreaseCash(HashMap<Object,Object> map);
 	//지석님 서비스 끝
 	
-	
-
 	public abstract int updateMemberInfo(Member m);
+	public abstract int updateLastLogin(String member_id);
+	public abstract int deleteMemberOut(String member_id);
 }

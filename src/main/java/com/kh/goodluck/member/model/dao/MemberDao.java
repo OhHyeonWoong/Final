@@ -64,5 +64,11 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("decreaseCash", map);
 	}
+	public int updateLastLogin(String member_id) {
+		return sqlSession.update("updateLastLogin", member_id);
+	}
+	public int deleteMemberOut(String member_id) {
+		return sqlSession.delete("deleteMemberOut", member_id);
+	}
 
 }
