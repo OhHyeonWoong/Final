@@ -30,20 +30,10 @@
 <!-- 회원 검색 -->
 <div>
 <form>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
-</select>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
-</select>
-<select name="">
-<option></option>
-<option></option>
-<option></option>
+<select name="searchOption">
+<option value="">이름</option>
+<option value="">아이디</option>
+<option value=""></option>
 </select>
 </form>
 </div>
