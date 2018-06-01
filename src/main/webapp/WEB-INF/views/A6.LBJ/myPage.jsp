@@ -542,7 +542,7 @@
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
-			<div class="lbjdiv" id="lbjitemDiv">
+			<div class="lbjdiv" id="lbjReportDiv">
 				<table class="table table-striped lbjtable">
 					<tr>
 						<th colspan="4" class="lbjth" style="text-align:right;">
@@ -550,6 +550,12 @@
 						</th>
 					</tr>
 					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 					<tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
 					<tr><td>199</td><td><a href="#">3시간 요청했는대 1시간반만 하고 갔습니다..하..</a></td><td>날라리다</td><td>2018/03/29</td></tr>
 					<tr><td>608</td><td><a href="#">듀오 요청했더니 트롤짓 하네요ㅡㅡ</a></td><td>킹스오</td><td>2018/04/21</td></tr>
@@ -557,7 +563,7 @@
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
-			<div class="lbjdiv">
+			<div class="lbjdiv" id="lbjitemDiv">
 				<table class="table table-striped lbjtable" id="lbjItemTable">
 					<tr><th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>
 					<c:forEach var="item" items="${lbjMyItem}" varStatus="status">
