@@ -1,8 +1,10 @@
 package com.kh.goodluck.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.member.model.vo.MemberList;
 
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
@@ -21,4 +23,5 @@ public interface MemberService {
 	public abstract int updateMemberInfo(Member m);
 	public abstract int updateLastLogin(String member_id);
 	public abstract int deleteMemberOut(String member_id);
+	public abstract List<MemberList> adminMemberList();
 }

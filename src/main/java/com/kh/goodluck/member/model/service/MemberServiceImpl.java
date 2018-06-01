@@ -1,6 +1,7 @@
 package com.kh.goodluck.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.member.model.vo.MemberList;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -79,4 +81,12 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.decreaseCash(map);
 	}
+	
+	@Override//어드민 페이지 회원 리스트 출력하는 메소드
+	public List<MemberList> adminMemberList() {
+		
+		return memberDao.adMemberList();
+	}
+	
+	
 }	

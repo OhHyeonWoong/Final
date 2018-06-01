@@ -2,6 +2,7 @@ package com.kh.goodluck.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +12,14 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.member.model.vo.MemberList;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -163,7 +166,15 @@ public class JDK_MemberController {
 		}
 		//어드민 페이지 회원관리 창 이동용 메소드
 		@RequestMapping(value="jdkadminmember.go")
-		public String adminMemberManagement() {
+		public String adminMemberManagement(Model model) {
+			int onePage = 10;
+			int button = 5;
+			
+			
+			List<MemberList>list= memberService.adminMemberList();
+			
+			
+			
 			return "A3.JDK/admin_listofmembers";
 		}
 		//어드민 페이지 아이템 창 이동용 메소드

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>개별 아이템 수정 모달창</title>
+<title>모달창 템플레이트</title>
 <!-- 부트스트랩 링크 -->
 <link rel="stylesheet" type="text/css" href="/goodluck/resources/common/css/bootstrap.min.css">
 <style type="text/css">
@@ -21,23 +21,23 @@
 </head>
 <body>
 <!-- Modal -->
-<div class="modal fade" id="item_package" role="dialog">
+<div class="modal fade" id="item_random_insert" role="dialog">
     <div class="modal-dialog">
+    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">아이템 수정</h4>
+          <h4 class="modal-title">모달 제목</h4>
         </div>
         <div class="modal-body">
           
-          
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
+      
     </div>
   </div>
 </body>

@@ -165,4 +165,13 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	MEMBER_CASH = ((select MEMBER_CASH from member where MEMBER_ID =#{memberid})-#{price})
 	where MEMBER_ID =#{memberid}
 	</update>
+	<select id="adminMemberList"  resultType="MemberList">
+	<![CDATA[
+	select MEMBER_ID,
+	MEMBER_NAME,
+	MEMBER_EMAIL,
+	MEMBER_REGIDENT_NUMBER from (select rownum as a, list.* from (select * from MEMBER order by MEMBER_NAME) list)
+	where  a>=1 and a<= 10 
+	]]>
+	</select>
 	</mapper>
