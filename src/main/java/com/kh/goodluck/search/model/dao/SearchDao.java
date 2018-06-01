@@ -1,5 +1,6 @@
 package com.kh.goodluck.search.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.*;
@@ -14,8 +15,12 @@ public class SearchDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public List<Search> searchKeyword(String searchKeyword) {		
-		return sqlSession.selectList("headerSearchKeyword", searchKeyword);
+	public List<Search> searchKeyword(HashMap<Object, Object> map) {		
+		return sqlSession.selectList("headerSearchKeyword", map);
+	}
+
+	public int selectSearchListCount(String searchKeyword) {		
+		return sqlSession.selectOne("headerSearchListCount", searchKeyword);
 	}
 
 }

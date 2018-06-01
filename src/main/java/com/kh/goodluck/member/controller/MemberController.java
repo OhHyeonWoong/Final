@@ -99,6 +99,7 @@ public class MemberController {
 		mv.addObject("lbjMyQna", myQna);
 		mv.addObject("qnaPage",qnaPage);
 		//QnA 세팅 끝------------------------------------------------------------
+		
 		//item 세팅 ------------------------------------------------------------
 		int itemListCount = ItemService.selectMyPageItemListCount(member_id);
 		int itemMaxPage = (int)((double)itemListCount / qnaLimit + 0.9);
