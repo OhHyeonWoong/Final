@@ -21,46 +21,17 @@
 </head>
 <body>
 <!-- Modal -->
-<div class="modal fade" id="item_modi" role="dialog">
+<div class="modal fade" id="item_random" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-         <h4 class="modal-title">아이템 수정</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">아이템 수정</h4>
         </div>
         <div class="modal-body">
-        <!-- 내용 -->
-          	<table class="table">
-			<tr>
-			<th>아이템 식별 번호</th>
-			<td><input type="text" id="item_pk" readonly="readonly"></td>
-			</tr>
-			<tr>
-			<th>이름</th>
-			<td><input type="text" id="item_name"></td>
-			</tr>
-			<tr>
-			<th>가격</th>
-			<td><input type="text" id="item_price"></td>
-			</tr>
-			<tr>
-			<th>기간</th>
-			<td><input type="number" id="item_period"></td>
-			</tr>
-			<tr>
-			<th>아이템 종류</th>
-			<td><input type="text" id="item_category"></td>
-			</tr>
-			<tr>
-			<th>미리보기</th>
-			<td><img src="/goodluck/resources/A5.CJS/itemimg/00de6bdf90838c69e70d109ffac8cae0.png"/></td>
-			</tr>
-			<tr>
-			<th>첨부파일 수정</th>
-			<td><input type="file" id="item_file" ></td>
-			</tr>
-          	</table>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
