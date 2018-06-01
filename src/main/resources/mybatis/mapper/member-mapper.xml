@@ -27,7 +27,8 @@
 
 	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
 		<![CDATA[
-			select * from member where member_id = #{member_id}
+			select * from member where member_id = #{member_id} and
+			member_pw = #{member_pw}
 		]]>
 	</select>
 	

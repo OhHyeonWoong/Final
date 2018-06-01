@@ -147,13 +147,13 @@ public class MemberController {
 	    if (reportMaxPage < reportEndRow)
 			reportEndRow = reportMaxPage;
 		
-	    /*HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
-		itemPage.put("itemMaxPage",itemMaxPage);
-		itemPage.put("itemEndRow",itemEndRow);
-		itemPage.put("itemListCount",itemListCount);
+	    HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
+		itemPage.put("reportMaxPage",reportMaxPage);
+		itemPage.put("reportEndRow",reportEndRow);
+		itemPage.put("reportListCount",reportListCount);
 		
-		mv.addObject("lbjMyItem", myItem);
-		mv.addObject("itemPage",itemPage);*/
+		mv.addObject("lbjMyReport", myReport);
+		mv.addObject("reportPage",reportPage);
 		//Report 세팅 끝---------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
@@ -252,7 +252,10 @@ public class MemberController {
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
-			Member m,SessionStatus status) throws IOException {
+			Member m,SessionStatus status,HttpSession session) throws IOException {
+		//세션 정보 가져오기용 객체
+		Member member = null;
+		///
 		System.out.println("updateMemberInfo 넘어온 멤버정보 : " + m.toString());
 		
 		String path = request.getSession().getServletContext().getRealPath("resources/uploadProfiles");
@@ -287,10 +290,17 @@ public class MemberController {
 				//세션 정보 갱신을 해줘야됨
 				Member updateMem = memberService.loginCheck(m);
 				
-				if(m != null) {
+				if(session.getValue("loginUser") != null) {
+				    //맴버 아이디에 아이콘을 같이 가져가기.
+				    member=(Member)session.getAttribute("loginUser");
+				    member.setMember_pw(updateMem.getMember_pw());
+				    member.setMember_phone(updateMem.getMember_phone());
+				    member.setMember_renamephoto(updateMem.getMember_renamephoto());
+				}
+				/*if(m != null) {
 					//기존 세션 없앰
 					status.setComplete();
-				}
+				}*/
 				//////////////////
 			}else {
 				System.out.println("멤버 정보 수정 실패!");
@@ -298,7 +308,11 @@ public class MemberController {
 		}else {
 			System.out.println("올바른 확장자가 아닙니다.");
 		}
-		response.sendRedirect("home.go");
+		if(member != null) {
+			response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
+		}else {
+			response.sendRedirect("lbjmypage.go?member_id="+m.getMember_id());
+		}
 	}
 	
 	@RequestMapping(value="lbjMemberOut.go",method=RequestMethod.POST)

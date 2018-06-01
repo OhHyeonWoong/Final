@@ -549,17 +549,19 @@
 							<a class='btn btn-info btn-xs' href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>
 						</th>
 					</tr>
-					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
+					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">카테고리</th><th class="lbjth">작성일</th></tr>
+					<c:forEach var="report" items="${lbjMyReport}">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${report.report_no}</td>
+						<td><a href="javascript:location.href='lbjGoReportDetail.go?report_no=${report.report_no}'">${report.report_title}</a></td>
+						<td>${report.report_category}</td>
+						<td>${report.report_date}</td>
 					</tr>
-					<tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
+					</c:forEach>
+					<!-- <tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
 					<tr><td>199</td><td><a href="#">3시간 요청했는대 1시간반만 하고 갔습니다..하..</a></td><td>날라리다</td><td>2018/03/29</td></tr>
 					<tr><td>608</td><td><a href="#">듀오 요청했더니 트롤짓 하네요ㅡㅡ</a></td><td>킹스오</td><td>2018/04/21</td></tr>
-				</table>
+				 --></table>
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>

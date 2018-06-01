@@ -21,6 +21,12 @@
 		]]>
 	</select>
 	
+	<select id="seletReportDetail" parameterType="int" resultType="Report">
+		<![CDATA[
+			select * from report where report_no = #{report_no}
+		]]>
+	</select>
+	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

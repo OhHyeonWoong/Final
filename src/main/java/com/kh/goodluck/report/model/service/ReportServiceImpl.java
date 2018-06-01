@@ -22,4 +22,9 @@ public class ReportServiceImpl implements ReportService{
 	public List<Report> selectMyPageReport(HashMap<Object, Object> map2) {
 		return reportDao.selectMyPageReport(map2);
 	}
+	
+	@Override
+	public Report selectReportDetail(int report_no) {
+		return reportDao.selectReportDetail(report_no);
+	}
 }
