@@ -28,7 +28,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
-import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
+/*import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;*/
 
 @Controller
 @SessionAttributes("loginUser")
