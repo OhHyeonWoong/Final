@@ -252,7 +252,7 @@ body {
 					<li class="grid-tile">
 						<div class="item">
 							<div class="item-img" style="background-image: url('https://www.momastore.org/wcsstore/MOMASTORE1/images/products/96511_A2_Print_NYC_8x10_In.jpg'); background-size: auto auto; background-size: 150%; background-position: center 30%; background-color: #f5f5f5;    padding: 20px;">
-							<a href="cjsrandomdetail.go?pk="+${items.ITEMLIST_NO}>
+							<a href="cjsrandomdetail.go?pk=${items.ITEMLIST_NO}">
 							<img style="width: 100%;  height: 160px; " src="/goodluck/resources/A5.CJS/itemmallcaros/${items.ITEMFILENAME}">
 							</a>
 							</div>
@@ -279,6 +279,7 @@ body {
  
  
  </div></div></div></div></div>
+
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 
 </body>

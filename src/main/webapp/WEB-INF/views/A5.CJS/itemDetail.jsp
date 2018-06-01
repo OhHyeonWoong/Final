@@ -12,126 +12,104 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-<script type="text/javascript">
-$(document).ready( function() {
-	var clickEvent = false;
-	$('#myCarousel').on('click', '.nav a', function() {
-			clickEvent = true;
-			$('.nav li').removeClass('active');
-			$(this).parent().addClass('active');		
-	}).on('slid.bs.carousel', function(e) {
-		if(!clickEvent) {
-			var count = $('.nav').children().length -1;
-			var current = $('.nav li.active');
-			current.removeClass('active').next().addClass('active');
-			var id = parseInt(current.data('slide-to'));
-			if(count == id) {
-				$('.nav li').first().addClass('active');	
-			}
-		}
-		clickEvent = false;
-	});
-});
-</script>
-
-<div style="overflow: hidden;">
+<%@ include file = "/WEB-INF/views/A5.CJS/cjsitemheaderandsider.jsp" %>
 </div>
-<div class="container">
-
-
-    
-<!-- 아이템몰 사이드바 -->
-<div class="container" style=" float: left; width:100%;">
-<div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                            </span>
-                            ~~님<br>
-                            보유 캐시 : xxxx원
-               </a>
-                 </h4>
-                    </div>
-                   	 <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                             	<tr>
-                                    <td>
-                                       <form action="">
-                                        <input type="text" name="itemname" placeholder="아이템검색">
-                                        <input type="submit" value="검섹">
-                                        </form>
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">최신 아이템보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">인기 아이템보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">소모품 보기</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">기간제 보기</a>
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">청약철회보기</a>
-                                        
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-       	<div style="background: blue">
-        <div class="col-sm-9 col-md-9">
+	<div>
+        <div class="col-sm-9 col-md-9" style="width: 100%">
       		 <div class="panel panel-default">
         	    <div class="panel-heading">
                  <table style="width: 100%; height: 100%">
                  <tr>
                  <th style="width: 20%; height: 90%; padding: 10px;">
-			<img src="/goodluck/resources/A5.CJS/itemimg/${detail.ITEMFILENAME}" style="width: 80px; height:70px; background: red">
+			<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 80px; height:70px;">
 				</th>
                  <th style="width: 78%;">
-                 상품명: ....<br>
-        	가격: ....<br>
-        	기간:....<br>				
+                 	
+		
+		
+                 상품명:${item.ITEMNAME}<br>
+        가격:${item.ITEMPRICE}<br>
+        기간:${item.ITEMPERIOD}<br>				
                  </th>
                  </tr>
                  </table>
         	     </div>
                 <div class="panel-body">
+                     <br>
                 <ul>
-                <li>상세설명1</li>
-                <li>상세설명2</li>
-                <li>상세설명3</li>
-                <li>청약 철회 관련  바로가기</li>
+                <li style="height: 50px">${detail.DETAIL_1}</li>
+                <li style="height: 50px">${detail.DETAIL_2}</li>
+                <li style="height: 50px">${detail.DETAIL_3}</li>
+                <li style="height: 50px">${detail.DETAIL_4}</li>
                 </ul>    
-				
-
                 </div>
                 <div class="panel-footer">
                     <div class="pull-right">
-                      <button>구매하기</button>
-                      <button>뒤로가기</button>
+                      
+                      <c:choose>
+                      <c:when test="${loginUser eq null}">  
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기
+				</button>
+				
+				</c:when>
+				
+		
+		
+		
+                      <c:when test="${loginUser ne null}">
+                        <script type="text/javascript">
+             function buyitem(memberid,itemprice){
+                	
+               console.log(memberid);//유저아이디
+              $.ajax({
+                url:"checkusercash.go",
+                data:{memberid:memberid},
+                success:function(data){
+                if(data >= itemprice){
+                $("#balance").html(data);
+                $('#cjsModalbuyitem').modal('show') 
+                }else{
+                $('#cjsModalbuyitemfail').modal('show') 
+                }
+               }
+              })
+             }
+             function buyitem2(ITEMLIST_NO,member_id){
+            	 $("#realbuyitem").hide();
+            	 console.log(ITEMLIST_NO);//아이템 pk
+            	 console.log(member_id);//유저아이디
+            	 $.ajax({
+                     url:"buyitem.go",
+                     data:{memberid:member_id,
+                    	   itempk:ITEMLIST_NO},
+                     success:function(data){
+                     if(data == 1){
+                    //구매 성공시
+                    alert("구매에 성공하였습니다! 아이템은 my_item인벤토리에서 확인할수있습니다.");
+                    window.history.go(0);
+                   
+                     }else{
+                    //구매 실패시
+                    alert("구매에 실패하였습니다! 자세한 사항은 운영자에게 문의해주세요");
+                    window.histroy.go(0);
+                     }
+                    }
+                 })	 
+                 $("#realbuyitem").show();
+             }
+            
+             
+                </script>
+               <button onclick="buyitem('${loginUser.member_id}','${item.ITEMPRICE}')">구매하기</button></c:when>
+              
+<%--                 '${item.ITEMLIST_NO}','${item.ITEMPRICE}',${loginUser.member_id},'${item.ITEMNAME}' --%>
+                </c:choose>
+                      
+                  
+                     
+                     
+                      <button onclick="window.history.go(-1)">뒤로가기</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -141,15 +119,58 @@ $(document).ready( function() {
         
         
         </div>
-        
-        
-    </div>
+ </div></div></div></div></div>
 
+
+<div class="modal fade" id="cjsModalbuyitem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-top: 10%;  margin-left: 40%;">
+    <div class="modal-content" style=" width: 50%;" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">정말 구매하실건가요?</h4>
+      </div>
+      <div class="modal-body" style="padding: 30px;">
+        <table style="width: 100%">
+        <tr><th rowspan="3" style="width: 30%" bordercolor="black">
+     	<img src="/goodluck/resources/A5.CJS/itemimg/${item.ITEMFILENAME}" style="width: 80px; height:70px;">	
+        </th><th width="20"></th><th> 상품명:${item.ITEMNAME}</th></tr>
+        <tr><th></th><th> 가격:${item.ITEMPRICE}</th></tr>
+        <tr><th></th><th>기간:${item.ITEMPERIOD}</th></tr>
+        <tr><th><label> </label></th></tr>
+        <tr><th>보유잔액:</th><th></th><th><span id="balance" style="color: red"></span></th></tr>
+        </table>
+      </div>
+      <div style="padding: 10px">
+      "구매 확정" 버튼을 누르면 아이템이 구매. <br>아이템정보를 제대로 확인하셨나요?
+     </div>
+      <div class="modal-footer">
+      <center>
+        <button type="button" id="realbuyitem" class="btn btn-primary" onclick="buyitem2('${item.ITEMLIST_NO}','${loginUser.member_id}')"> 구매 확정 </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+       </center>
+      </div>
+    </div>
+  </div>
 </div>
-                                                                                
+
+<div class="modal fade" id="cjsModalbuyitemfail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="margin-top: 10%;  margin-left: 40%;">
+    <div class="modal-content" style=" width: 50%;" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">구매실패!</h4>
+      </div>
+      <div class="modal-body" style="padding: 50px;">
+        <h3>캐시가 부족합니다.</h3>
+      </div>
+      <div style="padding: 10px">
+     </div>
+      <div class="modal-footer">
+     </div>
+    </div>
+  </div>
 </div>
-<br>
-<br>
+
 
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </body>

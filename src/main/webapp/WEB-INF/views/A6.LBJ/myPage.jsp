@@ -231,14 +231,56 @@
 			});
 		}
 		
+		//검사 결과가 모두 일치하면 true로 리턴
+		var flag = false;
+		//이메일 인증번호 저장용 변수
+		var confirmNum = 0;
+		//인증번호 확인버튼이 눌렸는지 여부 체크하는 변수
+		var clickCheck = false;
+		//이메일 발송 메소드
+		function fnMemberGoEmail(){
+			var email = $('#member_email').val();
+			$.ajax({
+				url:"lbjConfirmMailSending.go",
+				type:"post",
+				data:{
+					//이메일 날리기
+					member_email: email
+				},
+				dataType:"json",
+				success:function(data){
+					var jstr = JSON.stringify(data);
+					var json = JSON.parse(jstr);
+					
+					if(json.confirmResult[0].message == '발송성공'){
+						confirmNum = json.confirmResult[0].confirmNum;
+					}
+					alert(json.confirmResult[0].message);
+					console.log("json.confirmResult = " + confirmNum);
+					
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
+		}
+		//인증번호 체크하는 코드
+		function fnConfirmNumCheck(){
+			var certify = $('#certify').val();
+			if(confirmNum == certify){
+				alert("인증번호가 일치합니다.");
+				clickCheck = true;
+			}else{
+				alert("인증번호가 일치하지 않습니다.");
+				clickCheck = false;
+			}
+		}
 		//회원정보 수정 전(submit 전)에 값 체크해서 보냄
 		function fnValidationCheck(){
 			/*
 			 * 1. 비밀번호가 일치하는지 
 			 * 2. 인증번호가 일치하는지
-			 */
-			//검사 결과가 모두 일치하면 true로 리턴
-			var flag = false; 
+			 */ 
 			// 1
 			var pass1 = $('#InputPassword1').val();
 			var pass2 = $('#InputPassword2').val();
@@ -248,13 +290,51 @@
 				flag = false;
 				alert("비밀번호가 일치하지 않습니다.");
 			}
-			// 2
-			
-			return flag;
+
+			console.log("flag = " + flag);
+			if(flag == true && clickCheck == true){
+				return true;
+			}else{
+				alert("누락된 정보가 없나 확인해보세요.");
+				return false;
+			}
+		}
+		
+		function fnMemberOut(){
+			//회원 탈퇴용 함수
+			var member_id = $('#InputId').val();
+			var flag = confirm("정말로 탈퇴 하시겠습니까?");
+			if(flag){
+				$.ajax({
+					url:"lbjMemberOut.go",
+					type:"post",
+					data:{
+						member_id: member_id
+					},
+					success:function(data){
+						alert(data);
+						if(data == '회원 탈퇴 성공'){
+							location.href = "home.go";
+						}
+					},
+					error:function(a,b,c){
+						alert("a = " + a + " , b = " + b + " , c = " + c);
+					}
+				});
+			}else{
+				alert("취소되었습니다.");
+			}
 		}
 	</script>
-	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %> --%>
-	<div class="container" id="lbjMyPageUp">
+	<c:choose>
+		<c:when test="${loginUser eq null}">
+			<script type="text/javascript">
+				location.href="home.go";
+			</script>
+		</c:when>
+		<c:otherwise>
+		
+		<div class="container" id="lbjMyPageUp">
 		<div style="width: 20%; float: left; height: 100%;">
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
@@ -273,10 +353,11 @@
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
-							<div class="container" style="width : 130px; height : auto; margin: 0 auto; border:1px solid black;">
-							<img src="${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img"/>
+							<div style="width : 200px; height : 200px; margin: 0 auto; border:1px solid black;">
+							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height : 200px;"/>
 							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
+							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">
 							<label for="userid">아이디</label>
@@ -329,7 +410,7 @@
 								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
 								readonly="readonly" value="${loginUser.member_email}">
 								<!--email 인증 요청--> 
-                  				<span class="input-group-btn"><button class="btn btn-default"><i class="fa fa-envelope"></i>인증요청</button></span>
+                  				<span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnMemberGoEmail(); return false;"><i class="fa fa-envelope"></i>인증요청</a></span>
 							</div>
 						</div>
 						 <div class="form-group">
@@ -337,13 +418,13 @@
 			               <div class="input-group">
 			               <input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
 			               <!-- 인증번호 요청시 번호 입력확인 -->
-			               <span class="input-group-btn"><a href="#" class="btn btn-default"><i class="fa fa-envelope"></i>인증번호 입력</a></span>
+			               <span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnConfirmNumCheck(); return false;"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
 			               <!-- <input type="button" class="btn btn-default" value="인증번호 입력"> -->
 			               </div>
 			            </div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" class="btn btn-danger" value="탈퇴">
+							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
 						</div>
 					</form>
 						</div>
@@ -404,7 +485,7 @@
 						</tr>
 					</c:forEach>
 					<!-- QnA 페이징 처리를 해봅시다. -->
-					<c:if test="${qnaPage.qnaListCount > 6}">
+					<c:if test="${qnaPage.qnaListCount > 10}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">
@@ -461,17 +542,28 @@
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
-			<div class="lbjdiv" id="lbjitemDiv">
+			<div class="lbjdiv" id="lbjReportDiv">
 				<table class="table table-striped lbjtable">
+					<tr>
+						<th colspan="4" class="lbjth" style="text-align:right;">
+							<a class='btn btn-info btn-xs' href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>
+						</th>
+					</tr>
 					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
-					<tr><td>101</td><td><a href="#">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
 					<tr><td>199</td><td><a href="#">3시간 요청했는대 1시간반만 하고 갔습니다..하..</a></td><td>날라리다</td><td>2018/03/29</td></tr>
 					<tr><td>608</td><td><a href="#">듀오 요청했더니 트롤짓 하네요ㅡㅡ</a></td><td>킹스오</td><td>2018/04/21</td></tr>
 				</table>
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
-			<div class="lbjdiv">
+			<div class="lbjdiv" id="lbjitemDiv">
 				<table class="table table-striped lbjtable" id="lbjItemTable">
 					<tr><th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th><th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>
 					<c:forEach var="item" items="${lbjMyItem}" varStatus="status">
@@ -546,5 +638,8 @@
 	</div>
 	<%-- <%@ include file = "/WEB-INF/views/A6.LBJ/login.jsp" %> --%>
 	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+		</c:otherwise>
+	</c:choose>
+	
 </body>
 </html>

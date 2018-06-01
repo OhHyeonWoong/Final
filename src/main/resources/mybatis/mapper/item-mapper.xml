@@ -64,7 +64,8 @@ select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMTYPE !
 </select>
 
 <select id="countitem1" resultType="int" parameterType="Hashmap">
-select count(*) from ITEMLIST where itemfilename not like '%gif%' and ITEMNAME like '%' ||#{search}|| '%' and ITEMTYPE !=8
+select count(*) from ITEMLIST where itemfilename not like '%gif%' and 
+ITEMNAME like '%' ||#{search}|| '%' and ITEMTYPE !=8
 </select>
 
 <select id="selectitemdetail" resultType="ITEMLIST">
@@ -99,7 +100,8 @@ select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_
 		where mi.ITEMLIST_NO = it.ITEMLIST_NO  
 		and mi.MYITEM_NO = ui.MYITEM_NO
 		and ui.USING_ITEM_NO = il.USING_ITEM_NO
-		and mi.MEMBER_ID = #{member_id}) 
+		and mi.MEMBER_ID = #{member_id} 
+		and it.itemtype != 2) 
 		where rnum >= #{startRow} and rnum <= #{endRow}
 	]]>
 </select>
@@ -128,5 +130,19 @@ select * from ITEMLIST where ITEMLIST_NO = #{a}
 <select id="allRandomlist" resultMap="itemResult">
 select * from ITEMLIST where ITEMTYPE=8 order by ITEMPRICE desc
 </select>
+
+<select id="getitemprice" parameterType="int" resultType="int">
+select ITEMPRICE from ITEMLIST where ITEMLIST_NO = #{pk}
+</select>
+
+<insert id="insertmyitem" parameterType="Hashmap">
+insert into MY_ITEM values(
+(select max(MYITEM_NO)+1 from MY_ITEM),#{memberid},#{pk},sysdate,1)
+</insert>
+
+<update id="updatesellcount" parameterType="int">
+update ITEMLIST set ITEMSELLCOUNT = ((select ITEMSELLCOUNT from ITEMLIST where ITEMLIST_NO = #{pk})+1)
+where ITEMLIST_NO = #{pk}
+</update>
 
 </mapper>

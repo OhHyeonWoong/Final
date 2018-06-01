@@ -51,6 +51,32 @@
 		]]>
 	</update>
 	
+	<update id="updateMember" parameterType="Member" flushCache="true">
+		<![CDATA[
+			update member 
+			set member_renamephoto = #{member_renamephoto},
+			member_pw = #{member_pw},
+			member_address = #{member_address},
+			member_phone = #{member_phone} 
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
+	<update id="updateLastLogin" parameterType="string" flushCache="true">
+		<![CDATA[
+			update member
+			set member_lastlogin = sysdate
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
+	<delete id="deleteMemberOut" parameterType="string" flushCache="true">
+		<![CDATA[
+			delete from member
+			where member_id = #{member_id}
+		]]>
+	</delete>
+	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 
@@ -93,10 +119,50 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 
 <select id="idDuplicateCheck" parameterType="String" resultType="String">
 		<![CDATA[
-		select MEMBER_ID from MEMBER where MEMBER_ID= #{member_id}
+		select MEMBER_ID from MEMBER 
+		where MEMBER_ID=#{member_id}
 		]]>
 </select>
 
-
-
-</mapper>
+<select id="emailDuplicateCheck" parameterType="String" resultType="String">
+		<![CDATA[
+		select MEMBER_EMAIL from MEMBER 
+		where MEMBER_EMAIL=#{member_email}
+		]]>
+	</select>
+	<insert id="memberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">
+	<![CDATA[
+	insert into member values (
+	#{member_id},
+	#{member_pw},
+	#{member_name},
+	#{member_email},
+	#{member_address},
+	#{member_phone},
+	#{member_regident_number},
+	default,
+	default,
+	default,
+	default,
+	default,
+	1,
+	#{member_renamephoto},
+	default,
+	default,
+	default,
+	default
+	)
+	]]>
+	</insert>
+	
+	<select id="checkusercash" parameterType="String" resultType="int">
+	select MEMBER_CASH from MEMBER where MEMBER_ID=#{memberid}
+	</select>
+	
+	<update id="decreaseCash" parameterType="Hashmap">
+	update member 
+	set 
+	MEMBER_CASH = ((select MEMBER_CASH from member where MEMBER_ID =#{memberid})-#{price})
+	where MEMBER_ID =#{memberid}
+	</update>
+	</mapper>

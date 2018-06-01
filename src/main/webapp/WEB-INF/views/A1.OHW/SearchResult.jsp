@@ -5,103 +5,171 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저의 검색결과화면</title>
+<title>SearchResult</title>
 
 <style type="text/css">
-	/* effect */
-	#ukjaeTitle_effect {
-		font-size:13px;
-		color: red;
-		animation: texteffect 2s infinite;
+	.ohw-search-maintd {
+		width:950px;		
+	}
+	.ohw-search-table {
+		text-align:center;
 	}
 	
-	@-webkit-keyframes texteffect {
-		from {color: red; }
-		to { color: blue;  }
-	}
-	@keyframes texteffect  {
-		from {color: red; }
-		to { color: blue;  }
-	}
-	
-	.uk_SideArea{		
-		padding-top: 0;
-	}
-	.uk_Area3{
-		width: 900px;
-		height: 120px;
-		border: 1px solid #e3e3e3;
-	}
-		.ukjae_realContents{
-		margin-left: 45px;
-	}
-	
-	.ukjae_realContents tr .sm1{
-		border: 1px solid #e3e3e3;
-		width: 780px;
-	} 
-	
-	.ukjae_realContents tr .sm2{
-		height: 30px;
-		border: none;
-	}
-	
-	.sidecontrol_Div{
-		width:250px;
-		height: 1350px;
+	.ohw-search-sidebar {		
+		width:220px;
+		height:300px;
+		margin:0px;
+		padding:0px;
+		background:gray;
 	}
 		
-	.bottom_area{
-		margin: 0;
-		padding: 0;
-	}
 </style>	
  
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-<script type="text/javascript" src="/goodluck/resources/A2.JUJ/js/juj_sidebar.js"></script>
-	<div class="container">	
-		<font id="ukjaeTitle_effect"> User입력한 검색어 : 애완동물 </font> <br>
-		<table class="ukTotal_Area">
-			<tr>
-			<td class="uk_Area3"> 
-			<div style="width:auto; height: 1350px;">
-			<p align="center" style="padding-left: 8px;"><font size="6">검 색 결 과</font></p>
-			<hr style="clear: both; margin-top: 0;">				
-				<table class="ukjae_realContents"> 
-					<%for(int i=0; i<10; i++){ %>
+
+<script type="text/javascript">
+	/* SideBar */
+	$(function(){
+	    var $win = $(window);
+	    var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+	     /*사용자 설정 값 시작*/
+	    var speed          = 1000;     // 따라다닐 속도 : "slow", "normal", or "fast" or numeric(단위:msec)
+	    var easing         = 'swing'; // 따라다니는 방법 기본 두가지 linear, swing
+	    var $layer         = $('.ohw-search-sidebar'); // 레이어 셀렉팅
+	    var layerTopOffset = 0;   // 레이어 높이 상한선, 단위:px
+	    $layer.css('position', 'relative').css('z-index', '1');
+	    /*사용자 설정 값 끝*/
+	     // 스크롤 바를 내린 상태에서 리프레시 했을 경우를 위해
+	    if (top > 0 )
+	        $win.scrollTop(layerTopOffset+top);
+	    else
+	        $win.scrollTop(0);
+	     //스크롤이벤트가 발생하면
+	    $(window).scroll(function(){
+	        yPosition = $win.scrollTop() - 200; //이부분을 조정해서 화면에 보이도록 맞추세요
+	        if (yPosition < 0)
+	    { 
+	            yPosition = 0;
+	    }
+	        $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
+	    });
+	});
+	$(function(){
+		$(window).scroll(function(){
+			$(this).scrollTop() > -100 ? $(".ohw-search-sidebar").fadeIn() : $(".ohw-search-sidebar").fadeOut();
+		});
+	});
+	/* SideBar End */	
+	
+</script>
+
+<div class="container">	            
+	<table>
+		<tr>
+			<td class = "ohw-search-maintd" valign = "top">
+				<table class="table table-hover ohw-search-table">
 					<tr>
-						<td> 
-						<font id="ukjaeTitle_effect">Q.홈페이지 디자인 해드립니다.</font> &nbsp;&nbsp;
-						2018.05.15 
-						</td> 
+						<td><label></label></td>
+						<td></td>
+						<td>제목</td>
+						<td>글쓴이</td>
+						<td>날짜</td>				
 					</tr>
-					<tr>
-						<td class="sm1"> 
-							안녕하세요? 웹 디자이너 나잘해 입니다. 3주정도 시간주시면 예쁜디자인의 홈페이지 
-							만들어드리겠습니다. 희망 단가는 700만원입니다. 많은연락 부탁드립니다.^^							
-						</td>					 
-					</tr>
-					<tr>
-						<td class="sm2"></td> 								
-					</tr>
-					
-					<% } %>						
+					<c:forEach var="searchList" items="${ searchList }">
+						<tr>
+							<td>${ searchList.agency_no }</td>
+							<td><img src = ""></td>
+							<td><a href = "">${ searchList.agency_title }</a></td>
+							<td><img src = "">${ searchList.agency_writer }</td>
+							<td>${ searchList.agency_enrolldate }</td>
+						</tr>
+					</c:forEach>
+					<!-- QnA 페이징 처리를 해봅시다. -->
+					<c:if test="${qnaPage.qnaListCount > 6}">
+						<!-- 페이징 처리를 합니다 -->
+						<tr>
+						<td colspan="5">
+						<div style="text-align:center;">
+							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+								<< &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+								<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+								< &nbsp;
+							</c:if>
+							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.qnaEndRow}" step="1">
+								<c:if test="${i eq qnaPage.qnaCurrentPage}">
+									<font color="red" size="4"><b>${i}</b></font>&nbsp;
+								</c:if>
+								<c:if test="${i != qnaPage.qnaCurrentPage}">
+									<a href="javascript:void(0);" onclick="fnQnaReload(${i}); return false;">${i}</a>&nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${qnaPage.qnaCurrentPage != qnaPage.qnaEndRow}">
+								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage eq qnaPage.qnaEndRow}">
+								> &nbsp;
+							</c:if>
+							
+							<c:if test="${qnaPage.qnaCurrentPage >= qnaPage.qnaMaxPage}">
+								>> &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage < qnaPage.qnaMaxPage}">
+								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaMaxPage}); return false;">>></a>
+							</c:if>
+						</div>
+						</td>
+						</tr>
+					</c:if>
+					<c:if test="${qnaPage.qnaListCount <= 6}">
+						<tr>
+							<td colspan="5">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<!-- QnA 페이징 처리 End -->
+					<!-- 페이징 처리 -->										
 				</table>
-				</div>
-				</td>	
-				<td rowspan="4" class="uk_SideArea">
-					<div class="sidecontrol_Div">
-						<%@ include file = "/WEB-INF/views/A2.JUJ/SearchResultSideBar.jsp" %>
-					</div>			
-				 </td>
-			</tr>				
-		</table>
-		<br>
-		<p class="bottom_area" align="center"><a href="home.go">메인으로 돌아가기</a></p>
-		<br>
+			</td>
+			<td>				
+				<div class="ohw-search-sidebar">
+					<table>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+						</tr>
+					</table>
+				</div>				
+			</td>
+		</tr>						
+	</table>
 </div>
+
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp"  %>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.kh.goodluck.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,35 @@ public class MemberDao {
 		return false;
 		}
 	}
+	public boolean emailDuplicate(String member_email) {
+		//이메일 중복 검사용 메소드(전동기)
+		if(sqlSession.selectOne("emailDuplicateCheck", member_email)==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public int memberInsert(Member member) {
+		return sqlSession.insert("memberInsert", member);
+	}
+
+	public int checkusercash(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("checkusercash", memberid);
+	}
 	
-	
+	public int updateMemberInfo(Member m) {
+		return sqlSession.update("updateMember", m);
+	}
+	public int decreaseCash(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("decreaseCash", map);
+	}
+	public int updateLastLogin(String member_id) {
+		return sqlSession.update("updateLastLogin", member_id);
+	}
+	public int deleteMemberOut(String member_id) {
+		return sqlSession.delete("deleteMemberOut", member_id);
+	}
+
 }

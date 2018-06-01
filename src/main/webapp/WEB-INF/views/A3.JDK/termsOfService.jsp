@@ -11,63 +11,20 @@
 <!-- 부트스트랩 스크립트 -->
 <script type="text/javascript" src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 
-<!-- <style type="text/css">
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 100%;
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
- }
- </style> -->
 <script type="text/javascript">
 
 </script>
-
 </head>
 <body>
-<!-- Modal -->
 <div class="modal fade" role="dialog" id="termsOfService">
   <div class="modal-dialog modal-lg">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" style="text-align:center;">회원약관</h4>
       </div>
       <div class="modal-body">
-        <pre>
+<pre>
 1. 개인정보의 처리 목적 <독신사>(‘www.doksinsa.com’이하 ‘독신사’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 
 다음의 목적 이외의 용도로는 이용하지 않습니다.
 - 고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 

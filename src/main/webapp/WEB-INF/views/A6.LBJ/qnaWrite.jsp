@@ -70,7 +70,7 @@
 			</tr>
 			<tr><td colspan="2" style="text-align:center;">
 					<Button class="btn btn-success" onclick="fnQnaWrite();"><i class="fa fa-check" style="font-size:20px"></i> 작성하기</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<Button class="btn btn-danger" onclick="fnQnaWriteCancel();"><i class="fa fa-trash" style="font-size:19px"></i> 취소하기</Button>
+					<a href="javascript:void(0);" class="btn btn-danger" onclick="fnQnaWriteCancel(); return false;"><i class="fa fa-trash" style="font-size:19px"></i> 취소하기</a>
 				</td>
 			</tr>
 		</table>

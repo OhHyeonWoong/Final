@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemDetail;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
@@ -136,6 +137,7 @@ public class Itemdao {
 	public int updateimticon(HashMap<String,Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updateimticon",map);
+	
 	}
 
 
@@ -255,5 +257,35 @@ public class Itemdao {
 	public ItemPackage getitempackage(int pk) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitempackage1",pk);
+	}
+
+
+	public ItemDetail getitemdetail(int itemtype) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemdetail",itemtype);
+	}
+
+
+	public String getUsingemticon(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getUsingemticon",memberid);
+	}
+
+
+	public int getitemprice(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemprice",pk);
+	}
+
+
+	public int insertmyitem(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertmyitem", map);
+	}
+
+
+	public int updatesellcount(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.update("updatesellcount",pk);
 	}
 }

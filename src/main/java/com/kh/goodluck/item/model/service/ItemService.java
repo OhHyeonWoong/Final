@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.goodluck.item.model.vo.GetMyItem;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemDetail;
 import com.kh.goodluck.item.model.vo.ItemNotice;
 import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.MyPageItem;
@@ -46,15 +47,24 @@ public interface ItemService {
 	public abstract int Insertitemlog1(int useritempk);
 	public abstract int updateimticon(HashMap<String, Object> map);
 	public abstract int insertimticon(int useritempk);
+	public abstract String getUsingemticon(String memberid);
 	public abstract List<UsingItem> getUsingItem(String memberid);
 	public abstract List<ITEMLIST> allitemlist2(HashMap<Object, Object> map);
 	public abstract List<ItemPackage> allpackitem();
 	public abstract ItemPackage getitempackage();
 	public abstract ITEMLIST getpackitemsinfo(int a);
 	public abstract ItemPackage getitempackage(int pk);
+	public abstract ItemDetail getitemdetail(int itemtype);
+	public abstract int getitemprice(int pk);
+	public abstract int insertmyitem(HashMap<Object, Object> map);
+	public abstract int updatesellcount(int pk);
 	//made by byung jun
 	public abstract int selectMyPageItemListCount(String member_id);
 	public abstract List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map);
+
+
+	
+
 
 
 }
