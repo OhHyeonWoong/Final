@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="report-mapper">
+
+	<select id="myReportListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from report where report_writer = #{member_id}
+		]]>
+	</select>
+	
+	<select id="myPageList" parameterType="java.util.HashMap" resultType="Report">
+		<![CDATA[
+			select * 
+			from 
+			(select rownum rnum, report_no,report_title,report_content,report_writer,report_category,report_date,report_rename_filename 
+			 from report 
+			 where report_writer = #{member_id}) 
+			 where rnum <= #{endRow} and rnum >= #{startRow}
+		]]>
+	</select>
+	
+	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
+		insert into member 
+		values 
+		(#{userId}, 
+		#{userPwd}, 
+		#{userName}, 
+		#{gender}, 
+		#{age}, 
+		#{phone}, 
+		#{email}, 
+		#{hobby}, 
+		#{etc}, 
+		sysdate, 
+		sysdate)		
+	</insert>
+	
+	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
+		update member 
+		set userpwd = #{userPwd}, 
+		age = #{age}, 
+		phone = #{phone}, 
+		email = #{email}, 
+		hobby = #{hobby}, 
+		etc = #{etc}, 
+		lastmodified = sysdate 
+		where userid = #{userId}
+	</update>
+	
+	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
+		delete from member 
+		where userid = #{userId}
+	</delete> -->
+<update id="upgradeboardcount" parameterType="String">
+update MEMBER set MEMBER_WRITE_COUNT = (MEMBER_WRITE_COUNT+1) where MEMBER_ID = #{memberid}
+</update>
+
+<update id="upgradekeywordcount" parameterType="String">
+update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_ID = #{memberid}
+</update>
+
+<select id="idDuplicateCheck" parameterType="String" resultType="String">
+		<![CDATA[
+		select MEMBER_ID from MEMBER 
+		where MEMBER_ID=#{member_id}
+		]]>
+</select>
+
+<select id="emailDuplicateCheck" parameterType="String" resultType="String">
+		<![CDATA[
+		select MEMBER_EMAIL from MEMBER 
+		where MEMBER_EMAIL=#{member_email}
+		]]>
+	</select>
+	<insert id="memberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">
+	<![CDATA[
+	insert into member values (
+	#{member_id},
+	#{member_pw},
+	#{member_name},
+	#{member_email},
+	#{member_address},
+	#{member_phone},
+	#{member_regident_number},
+	default,
+	default,
+	default,
+	default,
+	default,
+	1,
+	#{member_renamephoto},
+	default,
+	default,
+	default,
+	default
+	)
+	]]>
+	</insert>
+	
+	<select id="checkusercash" parameterType="String" resultType="int">
+	select MEMBER_CASH from MEMBER where MEMBER_ID=#{memberid}
+	</select>
+	
+	<update id="decreaseCash" parameterType="Hashmap">
+	update member 
+	set 
+	MEMBER_CASH = ((select MEMBER_CASH from member where MEMBER_ID =#{memberid})-#{price})
+	where MEMBER_ID =#{memberid}
+	</update>
+	</mapper>
