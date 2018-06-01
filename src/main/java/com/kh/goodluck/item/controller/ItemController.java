@@ -270,7 +270,7 @@ public class ItemController {
 				ItemService.upgradeboardcount(memberid);
 				if(ItemService.insertusingitem(usitempk)!=0)
 				ItemService.Insertitemlog(usitempk);
-				}
+				} 
 				sessionmember.setMember_write_count(memberService.loginCheck(sessionmember).getMember_write_count());	
 		}else if(itemlistno==56) {
 		//최대태그수+1
