@@ -56,7 +56,6 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("checkusercash", memberid);
 	}
-	
 	public int updateMemberInfo(Member m) {
 		return sqlSession.update("updateMember", m);
 	}

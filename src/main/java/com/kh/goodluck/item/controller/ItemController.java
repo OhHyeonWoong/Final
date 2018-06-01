@@ -101,7 +101,7 @@ public class ItemController {
 		if(session.getValue("loginUser") != null) {
 		//맴버 아이디에 아이콘을 같이 가져가기.
 		Member member=(Member)session.getAttribute("loginUser");
-		System.out.println("아이템컨트롤러에서 member호출"+member);
+		member.setMember_cash(memberService.checkusercash(member.getMember_id()));
 		member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
 		}
 		//아이템몰 메인	
@@ -249,13 +249,16 @@ public class ItemController {
 	}
 	
 	@RequestMapping("cjsgetmyitem.go")
-	public void getmyitem(@RequestParam("member_id") String memberid, HttpServletRequest request , HttpServletResponse response) throws IOException {
+	public void getmyitem(HttpSession session,@RequestParam("member_id") String memberid, HttpServletRequest request , HttpServletResponse response) throws IOException {
 		//내아이템 작업.
 		System.out.println("member : " + memberid);
 		//로그인 작업을 합니다 세션에 넣어요
 		int currentPage = 1;
+		
+		Member sessionmember=(Member)session.getAttribute("loginUser");		
 		Member member=new Member();
 		member.setMember_id(memberid);
+		member.setMember_pw(sessionmember.getMember_pw());
 		if(request.getParameter("usitempk") != null) {
 		int usitempk=Integer.parseInt(request.getParameter("usitempk"));
 		int itemlistno=ItemService.getitemlistno(usitempk);
@@ -266,9 +269,9 @@ public class ItemController {
 				System.out.println("해당아이템 소모완료");
 				ItemService.upgradeboardcount(memberid);
 				if(ItemService.insertusingitem(usitempk)!=0)
-					ItemService.Insertitemlog(usitempk);
-				
+				ItemService.Insertitemlog(usitempk);
 				}
+				sessionmember.setMember_write_count(memberService.loginCheck(sessionmember).getMember_write_count());	
 		}else if(itemlistno==56) {
 		//최대태그수+1
 			System.out.println("최대태그수+1");
@@ -278,6 +281,7 @@ public class ItemController {
 					if(ItemService.insertusingitem(usitempk)!=0)
 						ItemService.Insertitemlog(usitempk);
 				}
+			sessionmember.setMember_keyword_count(memberService.loginCheck(sessionmember).getMember_keyword_count());
 		}else{
 		if(ItemService.turnitemstatus(usitempk)>0) {
 				System.out.println("해당아이템 소모완료");
@@ -302,7 +306,6 @@ public class ItemController {
 	
 		Member member1=memberService.loginCheck(member);
 		
-		
 		//전달된 페이지값 추출
 		if(request.getParameter("page") != null) {
 		currentPage = Integer.parseInt(request.getParameter("page"));
@@ -314,7 +317,7 @@ public class ItemController {
 		//현 맴버가 보유하고있는 아이템 갯수 계산.
 		int listCount = ItemService.gethavingListCount(memberid);
 		
-		int maxPage = (int)((double)listCount / limit + 0.9999999);
+		int maxPage = (int)((double)listCount / limit + 0.999999);
 		if(currentPage>maxPage)
 		currentPage=maxPage;
 		
@@ -331,11 +334,6 @@ public class ItemController {
 		gmi.setEndRow(endRow);		
 		gmi.setMaxpage(maxPage);
 		List<GetMyItem> al = ItemService.GetMyItem(gmi); 
-		System.out.println("startRow="+startRow);
-		System.out.println("endRow="+endRow);
-		System.out.println("maxPage="+maxPage);
-		System.out.println("listCount="+listCount);
-		System.out.println(al.toString());
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
 		for(GetMyItem l : al) {
@@ -443,7 +441,6 @@ public class ItemController {
 		json.put("keywordcount", member1.getMember_write_count());
 		
 		PrintWriter out = response.getWriter();
-		System.out.println(json.toJSONString());
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();
@@ -483,7 +480,7 @@ public class ItemController {
 		ItemService.insertimticon(usitempk);
 		}
 
-		int limit = 9;
+		int limit = 8;
 		
 		int nowusingimticonpk1 = 0;
 		try {
@@ -629,24 +626,18 @@ try {
 		if(!request.getParameter("search").equals(null)) {
 		search = request.getParameter("search");
 		}
-		
-		System.out.println("option="+option);
-		System.out.println("search="+search);
-	
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("search", search);
 		//한 페이지당 출력할 목록 갯수 지정
 		int limit = 14;
 		//현 맴버가 보유하고있는 아이템 갯수 계산
 		int listCount =  ItemService.countitem(map);
-		System.out.println("listcount="+listCount);
+	
 		int maxPage = (int)((double)listCount / limit + 0.9999999);
 		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
 		//현재 페이지에 출력할 목록 조회		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		System.out.println("startRow="+startRow);
-		System.out.println("endRow="+endRow);
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		List<ITEMLIST> al = null;
@@ -750,7 +741,7 @@ try {
 	        };
 	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
 	        	itemsName = itemsName.substring(0, itemsName.length()-1);
-	        }
+	    }
 	        
 	    //모든 아이템패키지 불러오기.
 	     List<ItemPackage> al4 = ItemService.allpackitem();
@@ -839,7 +830,14 @@ try {
 	}
 	
 	@RequestMapping("cjspackitemdetail.go")
-	public ModelAndView cjspackitemdetail(@RequestParam("pk") int pk,ModelAndView mv) {
+	public ModelAndView cjspackitemdetail(@RequestParam("pk") int pk,ModelAndView mv,HttpSession session) {
+		 if(session.getValue("loginUser") != null) {
+		      //맴버 아이디에 아이콘을 같이 가져가기.
+		      Member member=(Member)session.getAttribute("loginUser");
+		      System.out.println("아이템컨트롤러에서 member호출"+member);
+		      member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
+		      }
+		
 		ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 		ITEMLIST popitemthismonth =ItemService.popitemthismonth();
 		ITEMLIST thismonthsrandom = ItemService.randomitem();
@@ -850,18 +848,18 @@ try {
 		String split[] = items.split(",");
 	     int orimoney=0;
 	        String itemsName=new String();
+	        String itemsName2=new String();
 	        for (String i: split) {
 	        ITEMLIST packitem=ItemService.getpackitemsinfo(Integer.parseInt(i));
 	        orimoney+=packitem.getITEMPRICE();
 	        itemsName+="["+packitem.getITEMNAME()+"]" ;
 	        itemsName+="+";
+	        itemsName2+="<br>["+packitem.getITEMNAME()+"]</br>";
 	        };
 	        if (itemsName.length() > 0 && itemsName.charAt(itemsName.length()-1)=='+') {
 	        	itemsName = itemsName.substring(0, itemsName.length()-1);
-	        
 	        }
-	     
-	    	String items1=pack1.getITEMLIST_NO();
+	        String items1=pack1.getITEMLIST_NO();
 			String split1[] = items1.split(",");
 			ArrayList<ITEMLIST> inpack=new ArrayList<ITEMLIST>();
 			int orimoney1=0;
@@ -881,6 +879,7 @@ try {
 	    mv.addObject("orimoney1",orimoney1);
 	    mv.addObject("itemsName",itemsName);
 	    mv.addObject("itemsName1",itemsName1);
+	    mv.addObject("itemsName2",itemsName2);
 	    mv.addObject("pack",pack);
 	    mv.addObject("packitems",pack1);
 	    mv.addObject("inpack",inpack);
@@ -891,7 +890,7 @@ try {
 		return mv;
 	}
 	@RequestMapping("buyitem.go")
-	public void buyitem(@RequestParam("memberid") String memberid,@RequestParam("itempk") int pk,HttpServletResponse response) {
+	public void buyitem(HttpSession session , @RequestParam("memberid") String memberid,@RequestParam("itempk") int pk,HttpServletResponse response) {
 		//1 해당 유저 의 보유 캐시와 아이템의 가격을 비교. 성공일시에만 다음 함수 실행
 		int price=ItemService.getitemprice(pk);
 		if(memberService.checkusercash(memberid) > price ) {
@@ -907,7 +906,8 @@ try {
 			map.put("memberid", memberid);
 			map.put("price", price);
 			int reuslt2=memberService.decreaseCash(map);
-			
+			Member member=(Member)session.getAttribute("loginUser");
+			member.setMember_cash(memberService.checkusercash(member.getMember_id()));
 		//4 itemlist에 판매수+1 업데이트 	
 			int reuslt3=ItemService.updatesellcount(pk);
 
@@ -942,13 +942,72 @@ try {
 			out.flush();
 			out.close();
 		}
-		
-	
-			
-		
+
 	}
     
-   
+   @RequestMapping("buypack.go")
+   public void buypack(HttpSession session,@RequestParam("memberid") String memberid,@RequestParam("itempk") int pk,HttpServletResponse response) {
+	       //패키지 아이템 구매.
+	        //1 해당 유저 의 보유 캐시와 아이템의 가격을 비교. 성공일시에만 다음 함수 실행
+	   		ItemPackage pack=ItemService.getitempackage(pk);
+	 		int price=pack.getPACKAGE_PRICE();
+	 		if(memberService.checkusercash(memberid) > price ) {
+	 		
+	 	  //2 my_item 테이블에 새롭게 인설트==>
+	 		HashMap<Object,Object> map=null;
+	 		String items=pack.getITEMLIST_NO();
+	 		String split[] = items.split(",");
+	 		int reuslt1=0;
+	 		for (String i: split) {
+	 	        map=new HashMap<Object,Object>();
+	 	        map.put("memberid", memberid);
+	 	        map.put("pk",Integer.parseInt(i));
+	 	        reuslt1+=ItemService.insertmyitem(map);
+	 	   };
+	 		
+	 	   //3 맴버테이블의 캐시 차감==>
+	 			map=new HashMap<Object,Object>();
+	 			map.put("memberid", memberid);
+	 			map.put("price", price);
+	 			int reuslt2=memberService.decreaseCash(map);
+	 			Member member=(Member)session.getAttribute("loginUser");
+				member.setMember_cash(memberService.checkusercash(member.getMember_id()));
+	 		//4 itemlist에 판매수+1 업데이트 	
+	 			int reuslt3=0;
+	 			for (String i: split) {
+		 	    reuslt3+=ItemService.updatesellcount(Integer.parseInt(i));
+		 	   };
+	 		
+	 		System.out.println("reuslt1= 인설트된아이템갯수."+reuslt1);
+	 		System.out.println("reuslt2="+reuslt2);
+	 		System.out.println("reuslt3="+reuslt3);
+	 		PrintWriter out = null;
+	 		try {
+	 				out = response.getWriter();
+	 			} catch (IOException e) {
+	 				// TODO Auto-generated catch block
+	 				e.printStackTrace();
+	 			}
+	 			if(reuslt1!=0 && reuslt2==1&& reuslt3 == reuslt1 )
+	 			out.print(1);
+	 			else
+	 			out.print(0);
+	 			out.flush();
+	 			out.close();
+	 		}else {
+	 			PrintWriter out = null;
+	 			try {
+	 				out = response.getWriter();
+	 			} catch (IOException e) {
+	 				// TODO Auto-generated catch block
+	 				e.printStackTrace();
+	 			}
+	 			out.print(0);
+	 			out.flush();
+	 			out.close();
+	 		}
+	 		
+   }
 	
 }
 

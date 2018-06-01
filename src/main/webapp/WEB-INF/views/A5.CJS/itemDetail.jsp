@@ -46,19 +46,15 @@
                 <div class="panel-footer">
                     <div class="pull-right">
                       
-                      <c:choose>
-                      <c:when test="${loginUser eq null}">  
+             <c:choose>
+             <c:when test="${loginUser eq null}">  
                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
 					<i class="fa fa-sign-in"></i> 로그인하러가기
 				</button>
 				
 				</c:when>
-				
-		
-		
-		
-                      <c:when test="${loginUser ne null}">
-                        <script type="text/javascript">
+				<c:when test="${loginUser ne null}">
+               <script type="text/javascript">
              function buyitem(memberid,itemprice){
                 	
                console.log(memberid);//유저아이디
@@ -66,7 +62,7 @@
                 url:"checkusercash.go",
                 data:{memberid:memberid},
                 success:function(data){
-                if(data >= itemprice){
+                if(data-itemprice >= 0){
                 $("#balance").html(data);
                 $('#cjsModalbuyitem').modal('show') 
                 }else{
