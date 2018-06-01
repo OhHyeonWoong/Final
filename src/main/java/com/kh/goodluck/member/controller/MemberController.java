@@ -212,18 +212,54 @@ public class MemberController {
 	
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
-			HttpServletRequest request,Member m) {
+			HttpServletRequest request,HttpServletResponse response,
+			Member m,SessionStatus status) throws IOException {
 		System.out.println("updateMemberInfo 넘어온 멤버정보 : " + m.toString());
 		
 		String path = request.getSession().getServletContext().getRealPath("resources/uploadProfiles");
-		
+		//프로필 수정 전 기록이 있을 경우 가져옴
+		String memberProfile = request.getParameter("member_profile1");
+		///////////////////////////////////////////////////////
 		System.out.println("path : " + path);
-		
-		try {
-			file.transferTo(new File(path + "\\" + file.getOriginalFilename()));
-		} catch (Exception e) {
-			e.printStackTrace();
+		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
+		String fileName = file.getOriginalFilename();
+		/////////////////////////////////////////////////////////
+		if((fileName != "") && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
+				fileName.toLowerCase().endsWith(".bmp")) {
+			if((fileName != memberProfile)) {
+				//수정 된 프로필이 있고, 기존 프로필과 수정된 프로필이 같지 않을 때
+				System.out.println("file.getOriginalFilename = " + file.getOriginalFilename());
+				//디비에 접근해서 유저 정보 업데이트
+				m.setMember_renamephoto(fileName);
+				
+				try {
+					//파일을 해당 디렉토리에 저장
+					file.transferTo(new File(path + "\\" + fileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}else {
+				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
+			}
+			int result = memberService.updateMemberInfo(m);
+			if(result > 0) {
+				System.out.println("멤버 정보 수정 성공!");
+				//세션 정보 갱신을 해줘야됨
+				Member updateMem = memberService.loginCheck(m);
+				
+				if(m != null) {
+					//기존 세션 없앰
+					status.setComplete();
+				}
+				//////////////////
+			}else {
+				System.out.println("멤버 정보 수정 실패!");
+			}
+		}else {
+			System.out.println("올바른 확장자가 아닙니다.");
 		}
+		response.sendRedirect("home.go");
 	}
 	
 	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)

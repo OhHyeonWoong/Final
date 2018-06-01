@@ -126,7 +126,7 @@ function paging1(page){
 				if(json.havingitem[0]!= null){
 		 		for(var i=1; i<=json.havingitem[0].maxPage; i++){
 				if(i==json.havingitem[0].currentPage)
-		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
+		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 				else
 			    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
 		 		}
@@ -157,7 +157,7 @@ function paging1(page){
 			if(json.havingimticon[0]!=null){
 			 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 					if(i==json.havingimticon[0].currentPage)
-			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
+			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 					else
 				    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
 				}
@@ -295,7 +295,7 @@ function paging(page){
 				if(json.havingitem[0]!= null){
 		 		for(var i=1; i<=json.havingitem[0].maxPage; i++){
 				if(i==json.havingitem[0].currentPage)
-		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
+		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 				else
 			    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
 		 		}
@@ -326,7 +326,7 @@ function paging(page){
 			if(json.havingimticon[0]!=null){
 			 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 					if(i==json.havingimticon[0].currentPage)
-			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
+			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 					else
 				    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
 				}
@@ -394,13 +394,6 @@ $(function(){
 		} 
 		
 		$("#myusingitem").html(value3);
-// 		 <tbody id="myusingitem">
-//          <tr style="width:100%">
-//       	<th style="width:20%">...</th>
-//          <th style="width:50%">아이템</th>
-//          <th style="width:30%">기간</th>
-//       	<tr>
-//          </tbody>
 		
 		if(json.havingitem[0]!=null){
 		$("#itempage").val(json.havingitem[0].currentPage);
@@ -464,7 +457,7 @@ $(function(){
 		if(json.havingitem[0]!= null){
  		for(var i=1; i<=json.havingitem[0].maxPage; i++){
 		if(i==json.havingitem[0].currentPage)
- 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
+ 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 		else
 	    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
  		}
@@ -492,11 +485,11 @@ $(function(){
 		}
 		
 		//페이징처리
-		$("#havingimticonpaging").html("");
+$("#havingimticonpaging").html("");
 	if(json.havingimticon[0]!=null){
 	 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 			if(i==json.havingimticon[0].currentPage)
-	 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
+	 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 			else
 		    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
 		} 
@@ -545,16 +538,11 @@ function useitem(itempk){
 		 			},
 		 			dataType: "json",
 		 			success:function(data){
-
-
-		 				var jsonStr = JSON.stringify(data);
-		 					
-		 				var json = JSON.parse(jsonStr);
-		 					
-
-		 				var Array1= new Array(); 
-		 				var Array2= new Array(); 
-		 				var Array3= new Array();
+	var jsonStr = JSON.stringify(data);
+	var json = JSON.parse(jsonStr);
+	var Array1= new Array(); 
+	var Array2= new Array(); 
+	var Array3= new Array();
 		 				Array3[0]=new Array();
 		 				Array3[1]=new Array();
 		 				Array3[2]=new Array();
@@ -654,7 +642,7 @@ function useitem(itempk){
 		 				if(json.havingitem[0]!= null){
 		 		 		for(var i=1; i<=json.havingitem[0].maxPage; i++){
 		 				if(i==json.havingitem[0].currentPage)
-		 		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+i);
+		 		 		$("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 		 				else
 		 			    $("#havingitempaging").html($("#havingitempaging").html()+"&nbsp;"+"<a onclick='paging("+i+")' href='javascript:void(0)'>"+i+"</a>");
 		 		 		}
@@ -683,7 +671,7 @@ function useitem(itempk){
 		 				if(json.havingimticon[0]!=null){
 		 			 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 		 					if(i==json.havingimticon[0].currentPage)
-		 			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
+		 			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 		 					else
 		 				    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
 		 				}}		
@@ -776,7 +764,7 @@ $.ajax({
 				if(json.havingimticon[0]!=null){
 			 		for(var i=1; i<=json.havingimticon[0].maxPage; i++){
 					if(i==json.havingimticon[0].currentPage)
-			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+i);
+			 		$("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;<font size=5>"+i+"</font>");
 					else
 				    $("#havingimticonpaging").html($("#havingimticonpaging").html()+"&nbsp;"+"<a onclick='paging1("+i+")' href='javascript:void(0)'>"+i+"</a>");
 				}}		

@@ -264,4 +264,28 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitemdetail",itemtype);
 	}
+
+
+	public String getUsingemticon(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getUsingemticon",memberid);
+	}
+
+
+	public int getitemprice(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemprice",pk);
+	}
+
+
+	public int insertmyitem(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertmyitem", map);
+	}
+
+
+	public int updatesellcount(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.update("updatesellcount",pk);
+	}
 }

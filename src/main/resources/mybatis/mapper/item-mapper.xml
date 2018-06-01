@@ -131,4 +131,18 @@ select * from ITEMLIST where ITEMLIST_NO = #{a}
 select * from ITEMLIST where ITEMTYPE=8 order by ITEMPRICE desc
 </select>
 
+<select id="getitemprice" parameterType="int" resultType="int">
+select ITEMPRICE from ITEMLIST where ITEMLIST_NO = #{pk}
+</select>
+
+<insert id="insertmyitem" parameterType="Hashmap">
+insert into MY_ITEM values(
+(select max(MYITEM_NO)+1 from MY_ITEM),#{memberid},#{pk},sysdate,1)
+</insert>
+
+<update id="updatesellcount" parameterType="int">
+update ITEMLIST set ITEMSELLCOUNT = ((select ITEMSELLCOUNT from ITEMLIST where ITEMLIST_NO = #{pk})+1)
+where ITEMLIST_NO = #{pk}
+</update>
+
 </mapper>

@@ -1,5 +1,7 @@
 package com.kh.goodluck.member.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -46,8 +48,25 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.emailDuplicate(member_email);
 	}
 	
+	@Override
+	public int updateMemberInfo(Member m) {
+		return memberDao.updateMemberInfo(m);
+	}
+	
 	@Override//회원 가입 메소드
 	public int memberEnroll(Member member) {
 		return memberDao.memberInsert(member);
+	}
+
+	@Override//아이템구매에 앞서 회원의 캐시조회
+	public int checkusercash(String memberid) {
+		// TODO Auto-generated method stub
+		return memberDao.checkusercash(memberid);
+	}
+
+	@Override//아이템구매후, 캐시삭감.
+	public int decreaseCash(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		return memberDao.decreaseCash(map);
 	}
 }	
