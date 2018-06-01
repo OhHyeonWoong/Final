@@ -505,7 +505,8 @@ public class ItemController {
 			@RequestParam("member_id") String memberid , 
 			@RequestParam("usitempk") int usitempk , 
 			HttpServletRequest request , 
-			HttpServletResponse response) {
+			HttpServletResponse response,
+			HttpSession session) {
 		int currentPage=1;
 		//전달된 페이지값 추출
 		if(request.getParameter("page1") != null) {
@@ -577,7 +578,12 @@ public class ItemController {
 			}
 		jarr.add(job);
 		}
-		
+		 if(session.getValue("loginUser") != null) {
+		      //맴버 아이디에 아이콘을 같이 가져가기.
+		      Member member=(Member)session.getAttribute("loginUser");
+		      System.out.println("아이템컨트롤러에서 member호출"+member);
+		      member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
+		      }	
 json.put("havingimticon", jarr);
 
 PrintWriter out;
@@ -596,9 +602,14 @@ try {
 }
 	
 	@RequestMapping("cjsnewitem.go")
-	public ModelAndView cjsnewitem(ModelAndView mv, HttpServletRequest request){
+	public ModelAndView cjsnewitem(ModelAndView mv, HttpServletRequest request,HttpSession session){
 		//최신+인기
-		
+		 if(session.getValue("loginUser") != null) {
+		      //맴버 아이디에 아이콘을 같이 가져가기.
+		      Member member=(Member)session.getAttribute("loginUser");
+		      System.out.println("아이템컨트롤러에서 member호출"+member);
+		      member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
+		      }
 		int currentPage=1;
 		//전달된 페이지값 추출
 		if(request.getParameter("page1") != null) {
