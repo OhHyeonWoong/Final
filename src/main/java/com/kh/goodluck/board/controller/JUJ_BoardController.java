@@ -3,6 +3,9 @@ package com.kh.goodluck.board.controller;
 import java.util.*;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,13 +29,17 @@ public class JUJ_BoardController {
 	}
 	
 	
-	
 	@RequestMapping(value="animalPageNews_next.do", method=RequestMethod.POST)
 	private ModelAndView return_Info(ModelAndView mv) {
 		
 		System.out.println("동물뉴스 기사변경을 시도하였습니다.");
 		
 		return mv;
+	}
+
+	@RequestMapping("Notice2.go")  //욱재작업 - 나의 거래중 테이블View로 이동
+	public String notice2(HttpServletRequest request,HttpServletResponse response) {
+		return "A2.JUJ/Dealing";	
 	}
 	
 	

@@ -3,7 +3,6 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="report-mapper">
-
 	<select id="myReportListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) from report where report_writer = #{member_id}
@@ -20,5 +19,10 @@
 			 where rnum <= #{endRow} and rnum >= #{startRow}
 		]]>
 	</select>
-
+	<select id="seletReportDetail" parameterType="int" resultType="Report">
+		<![CDATA[
+			select * from report where report_no = #{report_no}
+		]]>
+	</select>
+	
 </mapper>

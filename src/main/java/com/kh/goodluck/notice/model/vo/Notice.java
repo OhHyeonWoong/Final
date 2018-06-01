@@ -16,7 +16,7 @@ public class Notice implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	//인자생성자
+	//인자생성자1
 	public Notice(int notice_no, String notice_title, String notice_content, String notice_writer, Date notice_date) {
 		super();
 		this.notice_no = notice_no;
@@ -26,6 +26,21 @@ public class Notice implements java.io.Serializable{
 		this.notice_date = notice_date;
 	}
 
+	//인자생성자2
+	public Notice(int notice_no, String notice_title, String notice_content) {
+		super();
+		this.notice_no = notice_no;
+		this.notice_title = notice_title;
+		this.notice_content = notice_content;
+	}
+	
+	
+	//인자생성자3
+	public Notice(String notice_title, String notice_content) {
+		super();
+		this.notice_title = notice_title;
+		this.notice_content = notice_content;
+	}
 
 	public int getNotice_no() {
 		return notice_no;

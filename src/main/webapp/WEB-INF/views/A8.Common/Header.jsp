@@ -896,15 +896,15 @@
 					
 					/* Category Click Count */					
 					function BigCategoryCount(id){
-						location.href='/goodluck/BigCategoryCount.go?bigCode='+id;
+						location.href='/goodluck/BigCategoryCount.go?bigCode=' + id + "&page=1";
 					};
 					
 					function MidCategoryCount(id){
-						location.href='/goodluck/MidCategoryCount.go?midCode='+id;
+						location.href='/goodluck/MidCategoryCount.go?midCode=' + id + "&page=1";
 					};
 					
 					function SmallCategoryCount(id){
-						location.href='/goodluck/SmallCategoryCount.go?smallCode='+id;						
+						location.href='/goodluck/SmallCategoryCount.go?smallCode=' + id + "&page=1";						
 					};					
 					/* Category Click Count End */
 					

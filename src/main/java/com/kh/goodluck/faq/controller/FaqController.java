@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,8 +26,7 @@ public class FaqController {
 
 	public FaqController() {
 		// TODO Auto-generated constructor stub
-	}
-		 
+	} 
 	
 	
 	@RequestMapping("faqPage.go")
@@ -71,7 +71,42 @@ public class FaqController {
 		return mv;
 	}
 	
+	@RequestMapping(value="changeFaqContents.go", method=RequestMethod.GET)
+	public void reDefineFaq(@RequestParam("select_fno") int faq_no,@RequestParam("select_ftitle") String faq_title, @RequestParam("select_fcontent") String faq_content, @RequestParam("select_fcategory") String faq_category) {
+		
+		 System.out.println("수정한 정보출력~~~~"); 
+		 System.out.println(faq_no);
+		 System.out.println(faq_title);
+		 System.out.println(faq_content);
+		 System.out.println(faq_category);
+		 
+		 /*Faq reFaq = new Faq(faq_no, faq_category, faq_title, faq_content);
+		 
+		 int changeFaq = faqService.reDefineFaq(reFaq);
+		 
+		 if(changeFaq>=1) {
+			 System.out.println("FAQ게시글 수정에 성공하였습니다.");
+		 }else {
+			 System.out.println("FAQ게시글 수정에 실패하였습니다.");
+		 }	 */
+	}
 	
+	@RequestMapping("changeFaqContents2.go")
+	public String reDefineFaq2(@RequestParam("f_pk")int userselectPk) {
+		System.out.println("유저가 수정을 시도한 faq_pk번호 : "+userselectPk);
+		/*System.out.println("유저가 수정을 시도한 f제목 : "+userTitle);
+		System.out.println("유저가 수정을 시도한 f내용 : "+userContents);*/
+			
+		
+		return null;
+	}
+	
+	@RequestMapping("delFaq.go")
+	public String deleteFaq(@RequestParam("selectFaqNo") int faq_no) {
+		System.out.println("삭제를 시도하는 Faq의 번호 : "+faq_no);
+		
+		return null;
+	}
 	
 	
 }
