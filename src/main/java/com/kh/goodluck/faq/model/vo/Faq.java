@@ -18,6 +18,8 @@ public class Faq implements java.io.Serializable{
 		this.faq_title = faq_title;
 		this.faq_content = faq_content;
 	}
+	
+	
 
 	public int getFaq_no() {
 		return faq_no;

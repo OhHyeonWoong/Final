@@ -10,7 +10,7 @@
 		<result property="faq_title" column="faq_title"/>
 		<result property="faq_content" column="faq_content"/>
 	</resultMap>
-	
+	  
 	<resultMap id="FaqOneList" type="Faq">
 		<id property="faq_no" column="faq_no"/>
 		<result property="faq_category" column="faq_category"/>
@@ -47,6 +47,9 @@
 		
 	</select>
 
+	<update id="faqReDefine" parameterType="Faq" flushCache="true" statementType="PREPARED">
+		<![CDATA[update faq set faq_title=#{faq_title}, faq_content=#{faq_content} where faq_no=#{faq_no} and faq_category=#{faq_category}]]>
+	</update>
 	
 	
 </mapper>

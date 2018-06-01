@@ -60,6 +60,11 @@ public class FaqServiceImpl implements FaqService {
 		return faqDao.faqDetail(faq_no);
 	}
 	 
+	@Override //Faq Ajax로 수정하기
+	public int reDefineFaq(Faq reFaq) {
+		
+		return faqDao.reDefineFaq(reFaq);
+	}
 	
 	
 }
