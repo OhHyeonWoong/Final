@@ -303,5 +303,11 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return  itemlistDao.getitemtype(itemlistno);
 	}
 
+	@Override
+	public List<com.kh.goodluck.item.model.vo.GetMyItem> GetMyItem2(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
+		// TODO Auto-generated method stub
+		return itemlistDao.GetMyItem2(gmi);
+	}
+
 	
 }
