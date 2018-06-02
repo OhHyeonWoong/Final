@@ -1,11 +1,14 @@
 package com.kh.goodluck.report.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,6 +47,20 @@ public class ReportController {
 	public ModelAndView goReportWriteView(ModelAndView mv) {
 		mv.setViewName("A6.LBJ/report/reportWrite");
 		return mv;
+	}
+	/*,method=RequestMethod.POST*/
+	@RequestMapping(value="lbjReportWrite.go")
+	public void reportWriteMethod(Report report,HttpServletResponse response) throws IOException{
+		//리포트 작성 메소드
+		System.out.println("reportWrite = " + report.getReport_category());
+		System.out.println("reportWrite = " + report.getReport_rename_filename());
+		int result = reportService.insertMyReport(report);
+		if(result > 0) {
+			System.out.println("리포트 작성 성공!");
+		}else {
+			System.out.println("리포트 작성 실패!");
+		}
+		response.sendRedirect("lbjmypage.go?member_id="+report.getReport_writer());
 	}
 	
 }

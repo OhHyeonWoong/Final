@@ -25,5 +25,9 @@ public class ReportDao {
 	public Report selectReportDetail(int report_no) {
 		return sqlSession.selectOne("seletReportDetail", report_no);
 	}
+
+	public int insertMyReport(Report report) {
+		return sqlSession.insert("insertMyReport", report);
+	}
 	
 }

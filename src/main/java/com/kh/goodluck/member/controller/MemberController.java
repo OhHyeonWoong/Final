@@ -96,7 +96,7 @@ public class MemberController {
 		//보내기용 arraylist생성
 		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
 		qnaPage.put("qnaMaxPage",qnaMaxPage);
-		qnaPage.put("qnaStartPage",qnaStartRow);
+		qnaPage.put("qnaStartPage",qnaStartPage);
 		qnaPage.put("qnaEndRow",qnaEndRow);
 		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
 		qnaPage.put("qnaListCount",qnaListCount);
@@ -317,13 +317,14 @@ public class MemberController {
 	
 	@RequestMapping(value="lbjMemberOut.go",method=RequestMethod.POST)
 	public void memberOutMethod(@RequestParam(name="member_id",required=false) String member_id,
-			HttpServletResponse response) throws IOException{
+			HttpServletResponse response,SessionStatus status) throws IOException{
 		//회원 탈퇴 처리용 메소드
 		//System.out.println("deleteMember member_id = " + member_id);
 		int result = memberService.deleteMemberOut(member_id);
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.print("회원 탈퇴 성공");
+			status.setComplete();
 		}else {
 			out.print("회원 탈퇴 실패");
 		}

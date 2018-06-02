@@ -27,4 +27,9 @@ public class ReportServiceImpl implements ReportService{
 	public Report selectReportDetail(int report_no) {
 		return reportDao.selectReportDetail(report_no);
 	}
+	
+	@Override
+	public int insertMyReport(Report report) {
+		return reportDao.insertMyReport(report);
+	}
 }

@@ -485,7 +485,7 @@
 						</tr>
 					</c:forEach>
 					<!-- QnA 페이징 처리를 해봅시다. -->
-					<c:if test="${qnaPage.qnaListCount > 10}">
+					<c:if test="${qnaPage.qnaListCount > 6}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">

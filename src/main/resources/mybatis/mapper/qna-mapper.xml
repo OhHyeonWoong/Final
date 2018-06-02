@@ -51,8 +51,7 @@
 	
 	<select id="qnaListCount" parameterType="string" resultType="int">
 		<![CDATA[
-			select count(*) from question where question_writer = 
-			(select member_name from member where member_id = #{member_id})
+			select count(*) from question where question_writer = #{member_id}
 		]]>
 	</select>
 	

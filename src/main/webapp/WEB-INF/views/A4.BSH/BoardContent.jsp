@@ -18,6 +18,8 @@
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
 
+var pagingcount = (($("listcount").val())/20)+1;	
+
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
@@ -40,7 +42,7 @@
 					<c:set var="category" value="${bigcategory.category_big_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<li class="bgcate" id="id${str }"><a href="bshtest.go?link2_no=${str }">${str }</a>
+							<li class="bgcate" id="id${str }"><a href="bshtest.go?link2_no=${str }&page=1">${str }</a>
 								<input class="cbtndropdown" type="image" src="/goodluck/resources/A4.BSH/btndropdown.png" style="height:10px; float: right;margin: 8px;border: 1px solid #6799FF; border-radius: 2px;">
 							</li>
 						</c:when>
@@ -53,7 +55,7 @@
 					<c:set var="category" value="${midcategory.category_mid_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<li class="mdcate" id="id${str }"><a href="bshtest.go?link2_no=${str }">${str }</a></li>
+							<li class="mdcate" id="id${str }"><a href="bshtest.go?link2_no=${str }&page=1">${str }</a></li>
 						</c:when>
 						<c:otherwise>
 							
@@ -64,7 +66,7 @@
 					<c:set var="category" value="${smallcategory.category_small_name }"/>
 					<c:choose>
 						<c:when test="${category eq str }">
-							<li class="smcate" id="id${str }" ><a href="bshtest.go?link2_no=${str }">${str }</a></li>
+							<li class="smcate" id="id${str }" ><a href="bshtest.go?link2_no=${str }&page=1">${str }</a></li>
 						</c:when>
 						<c:otherwise>
 							
@@ -78,6 +80,9 @@
 		</div>
 
 		<div class="bsh_center">
+			<input type="hidden" id="catename" value="link2name"> 
+			<input type="hidden" id="catetype" value="link2type"> 
+			<input type="hidden" id="listcount" value="agencycount"> 
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
@@ -116,7 +121,8 @@
 
 				<span class="bsh_span_button">
 					<button>&lt;&lt;</button>
-					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
+					<button>&lt;</button> 
+						1 2 3 4 5 6 7 8 9 0
 					<button>&gt;</button>
 					<button>&gt;&gt;</button>
 				</span>
@@ -202,8 +208,7 @@
 						</tr>
 
 					</thead>
-					<tbody>
-						
+					<tbody>						
 						<c:forEach var="board" items="${boardlist }">
 							<tr>
 							<td>
@@ -216,7 +221,7 @@
 							</c:if>
 							</td>
 							<td>
-							<a href="#">${board.agency_title }</a>
+							<a href="BoardDetail.go?BoardNo=${board.agency_no }">${board.agency_title }</a>
 							</td>
 							<td>
 							${board.agency_loc }
@@ -263,7 +268,14 @@
 				</table>
 				<span class="bsh_span_button">
 					<button>&lt;&lt;</button>
-					<button>&lt;</button> 1 2 3 4 5 6 7 8 9 0
+					<button>&lt;</button>
+						
+						<c:forEach var="count" begin="1" end="${agencycount }" step="1">
+							&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;
+							
+							
+						</c:forEach>
+						
 					<button>&gt;</button>
 					<button>&gt;&gt;</button>
 				</span>
