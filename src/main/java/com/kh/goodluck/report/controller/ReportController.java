@@ -1,5 +1,7 @@
 package com.kh.goodluck.report.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,10 +48,19 @@ public class ReportController {
 		mv.setViewName("A6.LBJ/report/reportWrite");
 		return mv;
 	}
-	
-	@RequestMapping(value="lbjReportWrite.go",method=RequestMethod.POST)
-	public void reportWriteMethod(Report report) {
-		System.out.println("report = " + report);
+	/*,method=RequestMethod.POST*/
+	@RequestMapping(value="lbjReportWrite.go")
+	public void reportWriteMethod(Report report,HttpServletResponse response) throws IOException{
+		//리포트 작성 메소드
+		System.out.println("reportWrite = " + report.getReport_category());
+		System.out.println("reportWrite = " + report.getReport_rename_filename());
+		int result = reportService.insertMyReport(report);
+		if(result > 0) {
+			System.out.println("리포트 작성 성공!");
+		}else {
+			System.out.println("리포트 작성 실패!");
+		}
+		response.sendRedirect("lbjmypage.go?member_id="+report.getReport_writer());
 	}
 	
 }

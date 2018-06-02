@@ -16,20 +16,20 @@
 		}
 		
 		function fnReportWrite(){
-			console.log("함수진입");
 			var report_category = $('#report_category option:selected').val();
 			
 			if(report_category != '카테고리선택'){
 				return true;
 			}else{
+				alert("카테고리를 선택해주세요.");
 				return false;	
 			}
 		}
 	</script>
 	<h2 style="text-align:center;">신고페이지 작성하기</h2>
 	<div class="container">
-		<form action="lbjReportWrite.go" method="post" enctype="multipart/form-data" 
-		                                  onsubmit="return fnReportWrite();" >
+	<!-- onsubmit="return fnReportWrite();" -->
+		<form action="lbjReportWrite.go" method="get" enctype="multipart/form-data" onsubmit="return fnReportWrite();">
 		<table class="table table-striped">
 			<tr><td style="text-align:center;">카테고리</td>
 				<td>
