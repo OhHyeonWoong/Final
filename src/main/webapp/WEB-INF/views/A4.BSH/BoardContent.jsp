@@ -221,7 +221,7 @@ var pagingcount = (($("listcount").val())/20)+1;
 							</c:if>
 							</td>
 							<td>
-							<a href="#">${board.agency_title }</a>
+							<a href="BoardDetail.go?BoardNo=${board.agency_no }">${board.agency_title }</a>
 							</td>
 							<td>
 							${board.agency_loc }
