@@ -294,4 +294,16 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getitemtype",itemlistno);
 	}
+
+
+	public List<com.kh.goodluck.item.model.vo.GetMyItem> GetMyItem2(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("GetMyItem2",gmi);
+	}
+
+
+	public ITEMLIST getmixicon(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmixicon",map);
+	}
 }

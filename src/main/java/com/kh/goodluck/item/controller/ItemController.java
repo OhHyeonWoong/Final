@@ -39,6 +39,7 @@ import com.kh.goodluck.item.model.vo.RanDomBoxChance;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
+import com.sun.deploy.net.HttpResponse;
 
 /* 
            ITEMLIST newitemthismonth =ItemService.newitemthismonth();
@@ -461,8 +462,33 @@ public class ItemController {
 				}
 				jarr.add(job);
 				}
+				json.put("havingimticon", jarr); //이모티콘만 담는다.
+					
+				//아이콘 조합을 위해서 현재 사용하는 이모티콘을 제외하고 보유중인 이모티콘들을 불러옴.
+				gmi=new GetMyItem();
+				jarr = new JSONArray();
+				gmi.setMEMBER_ID(memberid);
+				gmi.setMYITEM_NO(nowusingimticonpk);
+				List<GetMyItem> al3 = ItemService.GetMyItem2(gmi); 
+				for(GetMyItem l : al3) {
+					JSONObject job = new JSONObject();
+					job.put("MYITEM_NO", l.getMYITEM_NO());
+					job.put("MEMBER_ID", l.getMEMBER_ID());
+					job.put("BUY_DATE", l.getBUY_DATE().toString());
+					job.put("MYITEM_STATUS", l.getMYITEM_STATUS());
+					job.put("ITEMLIST_NO_1", l.getITEMLIST_NO());
+					job.put("ITEMNAME", l.getITEMNAME());
+					job.put("ITEMPRICE", l.getITEMPRICE());
+					job.put("ITEMPERIOD", l.getITEMPERIOD());
+					job.put("ITEMTYPE", l.getITEMTYPE());
+					job.put("ITEMFILENAME", l.getITEMFILENAME());
+				jarr.add(job);
+				}
+	    json.put("mixitem", jarr);		
 				
-		json.put("havingimticon", jarr); //이모티콘만 담는다.
+				
+				
+				
 		
 		//현재사용중인 아이템 리스트를 가져온다.
 		List<UsingItem> al2 = ItemService.getUsingItem(memberid);
@@ -471,6 +497,7 @@ public class ItemController {
 		
 		for(UsingItem l : al2) {
 		
+		
 		JSONObject job = new JSONObject();
 		job.put("ITEMFILENAME", l.getITEMFILENAME());
 		job.put("ITEMNAME", l.getITEMNAME());
@@ -478,8 +505,6 @@ public class ItemController {
 		jarr.add(job);
 		}
 		json.put("usingitem", jarr); //사용중 아이템을 넣는다.
-		
-		
 		json.put("boardcount",member1.getMember_keyword_count());
 		json.put("keywordcount", member1.getMember_write_count());
 		json.put("cjsmessage", messagefromrandomitem);
@@ -1064,6 +1089,48 @@ try {
 	 		
    }
 	
+   @RequestMapping("cjsmix.go")
+   public void cjsmix(@RequestParam("memberid") String memberid, @RequestParam("pk1") int pk1,@RequestParam("pk2") int pk2,@RequestParam("pk3") int pk3, HttpServletResponse response) {
+	   
+	   
+	   //해당 pk를 제외하고 새로운 이모티콘 하나 가져옴.
+	   System.out.println(pk1);
+	   System.out.println(pk2);
+	   System.out.println(pk3);
+	   HashMap<Object,Object> map=new HashMap<Object,Object>();
+	   map.put("pk1",pk1);
+	   map.put("pk2",pk2);
+	   map.put("pk3",pk3);
+	   ITEMLIST newicon=ItemService.getmixicon(map);
+	   ItemService.turnitemstatus(pk1);
+	   ItemService.turnitemstatus(pk2);
+	   ItemService.turnitemstatus(pk3);
+	   map=new HashMap<Object,Object>();
+	   map.put("memberid", memberid);
+	    map.put("pk",newicon.getITEMLIST_NO());
+		int reuslt1=ItemService.insertmyitem(map);
+	    JSONObject job = new JSONObject();
+		job.put("ITEMFILENAME", newicon.getITEMFILENAME());
+		job.put("ITEMLIST_NO", newicon.getITEMLIST_NO());
+		job.put("ITEMNAME", newicon.getITEMNAME());
+		job.put("ITEMPRICE", newicon.getITEMPRICE());
+	   
+		PrintWriter out = null;
+	   
+		try {
+			out = response.getWriter();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		out.print(job.toJSONString());
+		out.flush();
+		out.close();
+		}
+	   
+   
+   
 }
 
 

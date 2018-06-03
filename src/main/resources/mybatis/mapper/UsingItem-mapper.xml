@@ -33,7 +33,7 @@ select MYITEM_NO from (
 select MYITEM_NO from USING_ITEM where MYITEM_NO in (
 select MYITEM_NO from MY_ITEM 
 where MEMBER_ID=#{memberid} and 
-ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 )
+ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 and MYITEM_STATUS !=2 )
 )) order by rownum desc)
 where rownum= 1
 ]]>
@@ -43,7 +43,7 @@ where rownum= 1
 select USING_ITEM_NO from USING_ITEM where USING_ITEM_NO != 0 and MYITEM_NO in (
 select MYITEM_NO from MY_ITEM 
 where MEMBER_ID=#{memberid} and 
-ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 )
+ITEMLIST_NO in (select ITEMLIST_NO from itemlist where ITEMTYPE = 2 and MYITEM_STATUS !=2 )
 )
 ]]>
 </select>

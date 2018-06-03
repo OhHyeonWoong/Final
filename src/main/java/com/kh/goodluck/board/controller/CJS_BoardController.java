@@ -26,6 +26,11 @@ public class CJS_BoardController {
 		return "A5.CJS/boarddetail";
 		
 	}
+	@RequestMapping("cjstest.go")
+	public String asfd() {
+		return "A5.CJS/test";
+		
+	}
 	
 	
 ///////////////////////////////////////////////////////////////////////////////////	
