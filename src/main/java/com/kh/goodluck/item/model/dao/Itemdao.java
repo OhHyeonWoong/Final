@@ -300,4 +300,10 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("GetMyItem2",gmi);
 	}
+
+
+	public ITEMLIST getmixicon(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmixicon",map);
+	}
 }

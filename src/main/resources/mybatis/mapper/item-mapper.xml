@@ -149,4 +149,13 @@ where ITEMLIST_NO = #{pk}
 select ITEMTYPE from ITEMLIST where ITEMLIST_NO =#{itemlistno}
 </select>
 
+<select id="getmixicon" parameterType="Hashmap" resultType="itemlist">
+select * from( 
+select * from ITEMLIST 
+where  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO= #{pk1} ) 
+and  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO=#{pk2} ) 
+and  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO=#{pk3} ) 
+and ITEMTYPE = 2 order by DBMS_RANDOM.RANDOM 
+)where rownum = 1 
+</select>
 </mapper>

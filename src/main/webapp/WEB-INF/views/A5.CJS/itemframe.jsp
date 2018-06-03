@@ -411,7 +411,7 @@ $(function(){
 		$("#mixlist").html($("#mixlist").html()+json.mixitem);
 		value4+="<th></th>";
 		if(json.mixitem[i].ITEMFILENAME!=null)
-		value4+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+json.mixitem[i].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+json.mixitem[i].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+json.mixitem[i].ITEMNAME+"</div></a></th></div>";
+		value4+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+json.mixitem[i].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='pickicon(this); return false;'><img class='"+json.mixitem[i].MYITEM_NO+"' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+json.mixitem[i].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+json.mixitem[i].ITEMNAME+"</div></a></th></div>";
 		else
 		value4+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 		count3++;

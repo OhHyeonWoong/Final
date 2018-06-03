@@ -309,5 +309,11 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.GetMyItem2(gmi);
 	}
 
+	@Override
+	public ITEMLIST getmixicon(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getmixicon(map);
+	}
+
 	
 }
