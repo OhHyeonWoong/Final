@@ -31,40 +31,60 @@ $(function(){
 	<div class="modal fade" id="item_modi_insert" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
+			<div class="modal-content" class="modal-content" style="width:70%;">
+				<div class="modal-header" style="text-align: center;">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">아이템 등록</h4>
 				</div>
 				<div class="modal-body">
 					<table class="table">
 						<tr>
-							<th>아이템 식별 번호</th>
-							<td><input type="text" id="item_modi_pk" readonly="readonly"></td>
+							<th style="width:30%;">아이템 No.</th>
+							<td style="width:70%; text-align:center;">
+							<label id="item_all_pk" style="margin-bottom: 0;">1</label>
+							</td>
 						</tr>
 						<tr>
-							<th>이름</th>
-							<td><input type="text" id="item_modi_name"></td>
+							<th style="width:30%;">이름</th>
+							<td style="width:70%; text-align:center;">
+							<input type="text" id="item_modi_name">
+							</td>
 						</tr>
 						<tr>
-							<th>가격</th>
-							<td><input type="text" id="item_modi_price"></td>
+							<th style="width:30%;">가격</th>
+							<td style="width:70%; text-align:center;">
+							<input type="number" id="item_modi_price">
+							</td>
 						</tr>
 						<tr>
-							<th>기간</th>
-							<td><input type="number" id="item_modi_period"></td>
+							<th style="width:30%;">기간</th>
+							<td style="width:70%; text-align:center;">
+							<input type="number" id="item_modi_period">
+							</td>
 						</tr>
 						<tr>
-							<th>아이템 종류</th>
-							<td><input type="text" id="item_modi_category"></td>
+							<th style="width:30%;">타입
+							<br>
+							1: 제목색상변경<br>
+							2: 이모티콘(기간없음)<br>
+							3: 최대게시물+1(기간없음)<br>
+							4: 최대태그+1(기간없음)<br>
+							5: 제목크기강조<br>
+							6: 제목굵기강조<br>
+							7: 게시글프리미엄</th>
+							<td style="width:70%; text-align:center;">
+							<input type="number" id="item_modi_category" style="margin-bottom: 0;">
+							</td>
 						</tr>
 						<tr>
-							<th>미리보기</th>
-							<td><img id="item_modi_file_thumb" src=""/></td>
+							<th style="width:30%;">미리보기</th>
+							<td style="width:70%; text-align:center;">
+							<img id="item_modi_file_thumb" src=""/>
+							</td>
 						</tr>
 						<tr>
-							<th>첨부파일 수정</th>
-							<td><input type="file" id="item_modi_file"></td>
+							<th style="width:30%;">첨부파일 수정</th>
+						<td style="width:70%; text-align:center;"><input type="file" id="item_modi_file"></td>
 						</tr>
 					</table>
 

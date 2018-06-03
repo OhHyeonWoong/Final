@@ -71,7 +71,7 @@ $(function(){
 						<th class="text-center"></th>
 					</tr>
 				</thead>
-				<c:foreach> 
+				<%-- <c:foreach> --%>
 				<tr>
 					<td>아이디</td>
 					<td>이름</td>
@@ -82,7 +82,7 @@ $(function(){
 						href="#" class="btn btn-danger btn-xs"><span
 							class="glyphicon glyphicon-remove"></span>회원 탈퇴 </a></td>
 				</tr>
-				</c:foreach>
+				<%-- </c:foreach> --%>
 			</table>
 		</div>
 		<!-- 작성 영역 끝-->

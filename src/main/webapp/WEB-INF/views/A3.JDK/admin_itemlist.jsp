@@ -97,8 +97,10 @@
 	</table>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
     <div style="margin: 0 auto; text-align:center;">
+    	
     <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_package_insert">
-    <span class="glyphicon glyphicon-edit"></span>아이템 등록</a>
+    <span class="glyphicon glyphicon-edit"></span>아이템 등록</a><br><br>
+    	<label style="color: red">※ 변경시 최고 관리자한테 문의하시오.</label>
    </div>
     </div>
     <hr>
@@ -134,10 +136,10 @@
 	            </tr>
 	            <%-- </c:forEach> --%>
 	</table>
+	<br>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
     <div style="margin: 0 auto; text-align:center;">
-    <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_random_insert">
-    <span class="glyphicon glyphicon-edit"></span>아이템 등록</a>
+    <label style="color: red">※ 랜덤박스 추가는 불가능합니다!!</label>
    </div>
     </div>    
 <!-- 작성 영역 끝-->
@@ -156,8 +158,6 @@
 	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_modi_insert.jsp" %>
 	<!--패키지 아이템 등록 모달창-->
 	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_package_insert.jsp" %>
-	<!--랜덤 아이템 등록 모달창-->
-	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_random_insert.jsp" %>
 	
 <!--푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>

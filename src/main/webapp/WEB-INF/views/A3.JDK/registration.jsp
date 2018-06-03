@@ -239,10 +239,6 @@ if(idpattern.test(iden)==false){
 return submition;
 }
 
-
-
-
-
 ////////////////기타사항/////////////////////////
 //아이디 입력 값이 바꼈을 때 다시 인증받게 하기 위해 전역변수 false 값으로 바꿈.
 function idChanged(){
@@ -254,8 +250,8 @@ function emailChanged(){
 }
 //약관 띄우기
 $(function(){
-/* $("#termsOfService").css("display","block"); */	
-});
+$("#termsClick").click();
+ });
 </script>
 
 </head>
@@ -347,14 +343,14 @@ $(function(){
 				</div>
  				<div class="form-group text-center">
 					<div class="input-group">
-						 <input id="agree" type="checkbox" autocomplete="on"> 
-						<a href="" data-toggle="modal" data-target='#termsOfService'>이용약관</a> 에 동의 합니다.
+						 <input id="agree" type="checkbox" autocomplete="off" > 
+						<a href="#termsOfService" data-toggle="modal" id="termsClick">이용약관</a> 에 동의 합니다.
 					</div>
 				</div>
 						<br><br>	
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-default" >회원가입</button>
-					<button type="button" class="btn btn-default">가입취소</button>
+					<button type="button" class="btn btn-default" onclick="disAgreed();">가입취소</button>
 				</div>
 			</form>
 <!-- 회원가입 폼 종료 -->

@@ -20,39 +20,39 @@
 </head>
 <body>
 <!-- Modal -->
-<div class="modal fade" id="item_modi" role="dialog">
+<div class="modal fade" id="item_modi" role="dialog" >
     <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" style="width:70%;">
         	<div class="modal-header">
-         	<h4 class="modal-title">아이템 수정</h4>
+         	<h4 class="modal-title" style="text-align: center;">아이템 수정</h4>
         </div>
         <div class="modal-body">
         <!-- 내용 -->
           	<table class="table">
 			<tr>
-				<th>아이템 식별 번호</th>
-				<td><input type="text" id="item_all_pk" readonly="readonly"></td>
+				<th style="width:30%;">아이템 No.</th>
+				<td style="width:70%; text-align:center;"><label id="item_all_pk" style="margin-bottom: 0;">1</label></td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" id="item_all_name" value=""></td>
+				<td><input type="text" id="item_all_name" value="" style="width:80%;"></td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input type="number" id="item_all_price" value="">원</td>
+				<td><input type="number" id="item_all_price" value="" style="width:80%;">원</td>
 			</tr>
 			<tr>
 			<th>기간</th>
-			<td><input type="number" id="item_all_period" value="">일</td>
+			<td><input type="number" id="item_all_period" value="" style="width:80%;">일</td>
 			</tr>
 			<tr>
 			<th>아이템 종류</th>
-				<td><input type="text" id="item_all_category" value="">타입</td>
+				<td style="width:70%; text-align:center;"><label id="item_all_category" style="margin-bottom: 0; width:100%;">타입</label></td>
 				</tr>
 			<tr>
 				<th>미리보기</th>
-				<td><img src="/goodluck/resources/A5.CJS/itemimg/00de6bdf90838c69e70d109ffac8cae0.png"/></td>
+				<td style="width:70%; text-align:center;"><img src="/goodluck/resources/A5.CJS/itemimg/00de6bdf90838c69e70d109ffac8cae0.png"/></td>
 			</tr>
 			<tr>
 			<th>첨부파일 수정</th>
