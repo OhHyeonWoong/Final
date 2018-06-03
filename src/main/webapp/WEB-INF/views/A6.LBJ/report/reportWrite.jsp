@@ -29,7 +29,8 @@
 	<h2 style="text-align:center;">신고페이지 작성하기</h2>
 	<div class="container">
 	<!-- onsubmit="return fnReportWrite();" -->
-		<form action="lbjReportWrite.go" method="get" enctype="multipart/form-data" onsubmit="return fnReportWrite();">
+		<form action="lbjReportWrite.go" method="post" enctype="multipart/form-data" onsubmit="return fnReportWrite();">
+		<input type="hidden" name="report_rename_filename" value="${report_rename_filename}">
 		<table class="table table-striped">
 			<tr><td style="text-align:center;">카테고리</td>
 				<td>
@@ -42,7 +43,7 @@
 			</tr>
 			<tr><td style="text-align:center;">제목</td><td><input type="text" id="report_title" name="report_title" placeholder="제목" style="width:90%;"></td></tr>
 			<tr><td style="text-align:center;">질문자</td><td><input type="text" id="report_writer" name="report_writer" style="width:90%;" value="${loginUser.member_id}" readonly></td></tr>
-			<tr><td style="text-align:center;">첨부파일</td><td><input type="file" name="report_rename_filename"></td></tr>
+			<tr><td style="text-align:center;">첨부파일</td><td><input type="file" name="file"></td></tr>
 			<tr><td style="text-align:center; vertical-align:middle;">내용</td>
 				<td>
 					<textarea rows="7" style="width:90%;" placeholder="여기에 내용을 입력해주세요" id="report_content" name="report_content"></textarea>

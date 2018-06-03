@@ -179,15 +179,90 @@
 					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
 					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
 					
+					console.log("qna 페이징 처리");
 					for(var i in json.item){
-						console.log("qna 페이징 처리");
 						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
 						'<td>'+json.item[i].buy_date+'</td>'+
 						'<td>'+json.item[i].start_date+'</td>'+
 						'<td>'+json.item[i].end_date+'</td>'+
 						'<td>'+json.item[i].final_status+'</td></tr>';
 					}
+					console.log("qna 페이징 처리");
+					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
+					//페이징 처리//
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.item[0].itemListCount > 6){
+						if(json.item[0].qnaCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndRow;i++){
+							if(i == json.item[0].qnaCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						//기모리 ///////////////
+						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
+						}
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 끝//
+					$('#lbjitemDiv').html(htmlStr);
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+				}
+			});
+		}
+		
+		//여기 수정해야됨
+		function fnReportReload(page){
+			console.log("fnItemReload(page) = " + page);
+			$.ajax({
+				url:"lbjMyItem.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					member_id: $('#InputId').val(),
+					page: page
+				},
+				success:function(data){
+					var jstr = JSON.stringify(data);
+					var json = JSON.parse(jstr);
 					
+					$('#lbjItemTable').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
+					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
+					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
+					
+					console.log("qna 페이징 처리");
+					for(var i in json.item){
+						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
+						'<td>'+json.item[i].buy_date+'</td>'+
+						'<td>'+json.item[i].start_date+'</td>'+
+						'<td>'+json.item[i].end_date+'</td>'+
+						'<td>'+json.item[i].final_status+'</td></tr>';
+					}
+					console.log("qna 페이징 처리");
+					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
 					//페이징 처리//
 					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
 					if(json.item[0].itemListCount > 6){
@@ -554,14 +629,72 @@
 					<tr>
 						<td>${report.report_no}</td>
 						<td><a href="javascript:location.href='lbjGoReportDetail.go?report_no=${report.report_no}'">${report.report_title}</a></td>
-						<td>${report.report_category}</td>
+						<td>
+							<c:if test="${report.report_category eq 1}">
+								불량이용객 신고
+							</c:if>
+							<c:if test="${report.report_category eq 2}">
+								게시물 신고
+							</c:if>
+						</td>
 						<td>${report.report_date}</td>
 					</tr>
 					</c:forEach>
-					<!-- <tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
-					<tr><td>199</td><td><a href="#">3시간 요청했는대 1시간반만 하고 갔습니다..하..</a></td><td>날라리다</td><td>2018/03/29</td></tr>
-					<tr><td>608</td><td><a href="#">듀오 요청했더니 트롤짓 하네요ㅡㅡ</a></td><td>킹스오</td><td>2018/04/21</td></tr>
-				 --></table>
+					<!-- Report 페이징 처리를 해봅시다. -->
+					<c:if test="${reportPage.reportListCount > 6}">
+						<!-- 페이징 처리를 합니다 -->
+						<tr>
+						<td colspan="5">
+						<div style="text-align:center;">
+							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+								<< &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+								<a href="javascript:void(0);" onclick="fnReportReload(1); return false;"> << </a>
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+								< &nbsp;
+							</c:if>
+							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${reportPage.reportEndRow}" step="1">
+								<c:if test="${i eq qnaPage.qnaCurrentPage}">
+									<font color="red" size="4"><b>${i}</b></font>&nbsp;
+								</c:if>
+								<c:if test="${i != qnaPage.qnaCurrentPage}">
+									<a href="javascript:void(0);" onclick="fnReportReload(${i}); return false;">${i}</a>&nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${qnaPage.qnaCurrentPage != reportPage.reportEndRow}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage eq reportPage.reportEndRow}">
+								> &nbsp;
+							</c:if>
+							
+							<c:if test="${qnaPage.qnaCurrentPage >= reportPage.reportMaxPage}">
+								>> &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage < reportPage.reportMaxPage}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${reportPage.reportMaxPage}); return false;">>></a>
+							</c:if>
+						</div>
+						</td>
+						</tr>
+					</c:if>
+					<c:if test="${reportPage.reportListCount <= 6}">
+						<tr>
+							<td colspan="5">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<!-- Report 페이징 처리 End -->
+					<!-- 페이징 처리 -->
+					</table>
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
@@ -582,7 +715,7 @@
 					<tr><td>폰트바꾸기</td><td>2017/02/10</td><td>2017/04/01</td><td>2018/06/30</td><td>1</td></tr>
 				 -->
 				 <!-- item 페이징 처리 -->
-					 <c:if test="${itemPage.qnaListCount > 6}">
+					 <c:if test="${itemPage.itemListCount > 6}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">
@@ -620,7 +753,7 @@
 								>> &nbsp;
 							</c:if>
 							<c:if test="${qnaPage.qnaCurrentPage < itemPage.itemMaxPage}">
-								<a href="javascript:void(0);" onclick="fnItemReload(${qnaPage.itemMaxPage});">>></a>
+								<a href="javascript:void(0);" onclick="fnItemReload(${itemPage.itemMaxPage});">>></a>
 							</c:if>
 						</div>
 						</td>

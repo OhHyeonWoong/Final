@@ -126,6 +126,9 @@ public class MemberController {
 		itemPage.put("itemEndRow",itemEndRow);
 		itemPage.put("itemListCount",itemListCount);
 		
+		System.out.println("itemEndRow = " + itemEndRow);
+		System.out.println("itemListCount = " + itemListCount);
+		
 		mv.addObject("lbjMyItem", myItem);
 		mv.addObject("itemPage",itemPage);
 		//item 세팅 끝-----------------------------------------------------------
@@ -148,9 +151,9 @@ public class MemberController {
 			reportEndRow = reportMaxPage;
 		
 	    HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
-		itemPage.put("reportMaxPage",reportMaxPage);
-		itemPage.put("reportEndRow",reportEndRow);
-		itemPage.put("reportListCount",reportListCount);
+		reportPage.put("reportMaxPage",reportMaxPage);
+		reportPage.put("reportEndRow",reportEndRow);
+		reportPage.put("reportListCount",reportListCount);
 		
 		mv.addObject("lbjMyReport", myReport);
 		mv.addObject("reportPage",reportPage);

@@ -27,7 +27,7 @@
 	<insert id="insertMyReport" parameterType="Report" flushCache="true">
 		<![CDATA[
 			insert into report values ((select max(report_no)+1 from report),#{report_title},
-			#{report_content},#{report_writer},#{report_category},default,#{report_rename_filename});
+			#{report_content},#{report_writer},#{report_category},default,#{report_rename_filename})
 		]]>
 	</insert>
 	
