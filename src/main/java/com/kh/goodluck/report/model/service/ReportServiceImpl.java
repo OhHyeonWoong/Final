@@ -32,4 +32,9 @@ public class ReportServiceImpl implements ReportService{
 	public int insertMyReport(Report report) {
 		return reportDao.insertMyReport(report);
 	}
+	
+	@Override
+	public int deleteMyReport(int report_no) {
+		return reportDao.deleteMyReport(report_no);
+	}
 }

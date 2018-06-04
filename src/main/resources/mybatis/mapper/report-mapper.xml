@@ -30,5 +30,10 @@
 			#{report_content},#{report_writer},#{report_category},default,#{report_rename_filename})
 		]]>
 	</insert>
-	
+	<delete id="deleteMyReport" parameterType="int" flushCache="true">
+		<![CDATA[
+			delete from report 
+			where report_no = #{report_no}
+		]]>
+	</delete>
 </mapper>

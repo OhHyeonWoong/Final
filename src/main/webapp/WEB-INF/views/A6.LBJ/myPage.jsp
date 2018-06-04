@@ -234,9 +234,9 @@
 		
 		//여기 수정해야됨
 		function fnReportReload(page){
-			console.log("fnItemReload(page) = " + page);
+			console.log("fnReportReload(page) = " + page);
 			$.ajax({
-				url:"lbjMyItem.go",
+				url:"lbjMyReport.go",
 				type:"post",
 				dataType:"json",
 				data:{
@@ -247,58 +247,61 @@
 					var jstr = JSON.stringify(data);
 					var json = JSON.parse(jstr);
 					
-					$('#lbjItemTable').empty();
+					$('#lbjReportTable').empty();
 					
-					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
-					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
-					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjReportTable">'+
+					'<tr><th colspan="4" class="lbjth" style="text-align:right;">'+
+					'<a class="btn btn-info btn-xs" href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>'+
+					'</th></tr><tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">카테고리</th><th class="lbjth">작성일</th></tr>';
 					
-					console.log("qna 페이징 처리");
-					for(var i in json.item){
-						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
-						'<td>'+json.item[i].buy_date+'</td>'+
-						'<td>'+json.item[i].start_date+'</td>'+
-						'<td>'+json.item[i].end_date+'</td>'+
-						'<td>'+json.item[i].final_status+'</td></tr>';
+					console.log("report 페이징 처리 시작");
+					for(var i in json.report){
+						htmlStr += '<tr><td>'+json.report[i].report_no+'</td>'+
+						"<td><a href='javascript:location.href='lbjGoReportDetail.go?report_no="+json.report[i].report_no+'">'+json.report[i].report_title+'</a></td>"';
+						if(json.report[i].report_category == 1){
+							htmlStr += "<td>불량이용객 신고</td>";
+						}else if(json.report[i].report_category == 2){
+							htmlStr += "<td>게시물신고</td>";
+						}
+						htmlStr += '<td>'+json.report[i].report_date+'</td></tr>';
 					}
-					console.log("qna 페이징 처리");
-					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
+					console.log("report 페이징 처리 끝");
 					//페이징 처리//
 					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
-					if(json.item[0].itemListCount > 6){
-						if(json.item[0].qnaCurrentPage <= 1){
+					if(json.report[0].reportListCount > 6){
+						if(json.report[0].qnaCurrentPage <= 1){
 							htmlStr += "<< &nbsp";
 						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload(1);"> << </a>&nbsp;';
 						}
-						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						if(json.report[0].qnaCurrentPage > json.report[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+(json.report[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
 						}else{
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndRow;i++){
-							if(i == json.item[0].qnaCurrentPage){
+						for(var i=json.report[0].qnaStartPage;i<=json.report[0].reportEndRow;i++){
+							if(i == json.report[0].qnaCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
-								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
+								htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+i+'); return false;">'+i+'</a>&nbsp;';
 							}
 						}
 						//기모리 ///////////////
-						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						if(json.report[0].qnaCurrentPage != json.report[0].reportEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+(json.report[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
 						}else{
 							htmlStr += '> &nbsp;';
 						}
-						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
+						if(json.report[0].qnaCurrentPage >= json.report[0].reportMaxPage){
 							htmlStr += '>> &nbsp;';
 						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+json.report[0].reportMaxPage+'); return false;">>></a>';
 						}
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
-					$('#lbjitemDiv').html(htmlStr);
+					$('#lbjReportDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
 					alert("a = " + a + " ,b = " + b + " ,c = " + c);
@@ -618,7 +621,7 @@
 			<hr>
 			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
 			<div class="lbjdiv" id="lbjReportDiv">
-				<table class="table table-striped lbjtable">
+				<table class="table table-striped lbjtable" id="lbjReportTable">
 					<tr>
 						<th colspan="4" class="lbjth" style="text-align:right;">
 							<a class='btn btn-info btn-xs' href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>

@@ -351,6 +351,21 @@
 	}
 	/* 로그아웃 Function */
 	
+	//병준이 마일리지 관련 함수들
+	$(function(){
+		$('#chargeMoney').on('change',function(){
+			$('#afterChargeMoney').html("");
+			var fcmHtml = "충전 후 마일리지 : ";
+			var member_cash = $('#member_cash').val()*1;
+			var changeMoney = $(this).val()*1;
+			var sumMoney = member_cash + changeMoney;
+			
+			fcmHtml += sumMoney;
+			$('#afterChargeMoney').html(fcmHtml);
+		})
+	});
+	
+	/////
 
 </script>
 
@@ -384,7 +399,7 @@
 											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
 										</tr>
 										<tr>
-											<td>내 마일리지 : 3,000</td>
+											<td>내 마일리지 : ${loginUser.member_cash}</td>
 											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
 										</tr>
 									</table>
@@ -419,11 +434,12 @@
 		        <table style="width:100%;">
 		        	<tr style="height:300px;">
 		        		<td style="width:35%; background:black; color:white;">
+		        		<input type="hidden" id="member_cash" value="${loginUser.member_cash}">
 		        			<span class="lbjspan" style="font-size: 20px;"><i class="fa fa-money" style="font-size:24px"></i>마일리지</span><br><br>
-		        			<input type="number" min=10000 max=100000 step=5000 placeholder="충전금액" style="align:center; margin-left:10px; width:80%;">
+		        			<input type="number" id="chargeMoney" min="10000" max="500000" step="5000" placeholder="충전금액" style="align:center; margin-left:10px; width:80%; color:black;">
 		        			<br><br>
-		        			<span class="lbjspan">보유 마일리지 : 50</span><br>
-		        			<span class="lbjspan">충전 후 마일리지 : </span><br>
+		        			<span class="lbjspan">보유 마일리지 : ${loginUser.member_cash}</span><br>
+		        			<span id="afterChargeMoney" class="lbjspan">충전 후 마일리지 : </span><br>
 		        			<hr>
 		        			<span class="lbjspan lbjex">※ 최대 구매 가능한 마일리지는</span><br>
 		        			<span class="lbjspan lbjex">500,000 입니다.</span><br>
@@ -576,7 +592,39 @@
 		        				
 		        				function fnMovePaymentPage(){
 		        					/* location.href='lbjmoveMileagePaymentPage.go' */
-		        					window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+		        					var lbjpayVal = $('#lbjpay').text();
+		        					var chargeMoney = $('#chargeMoney').val();
+		
+		        					console.log(lbjpayVal);
+		        					if(chargeMoney != ""){
+		        						switch(lbjpayVal){
+			        					case "휴대폰":
+			        						location.href="lbjMovePaymentByPhone.go?chargeMoney="+$('#chargeMoney').val();
+			        						/* $.ajax({	
+			        							url:"lbjMovePaymentByPhone.go",
+			        							data:{
+			        								chargeMoney: chargeMoney
+			        							},
+			        							success:function(data){
+			        								alert(data);
+			        							},
+			        							error:function(a,b,c){
+			        								alert("a = " + a + " , b = " + b + " , c = " + c);
+			        							}
+			        						}); */
+			        						break;
+			        					case "카카오페이":
+			        						break;
+			        					case "신용카드":
+			        						break;
+			        					case "무통장입금":
+			        						//모든 정보가 입력되었는 지 확인부터 해야됨
+			        						window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+			        						break;
+			        					}
+		        					}else{
+		        						alert("충전할 금액을 입력하세요.");	
+		        					}
 		        				}
 		        			</script>
 		        		</td>
@@ -954,7 +1002,7 @@
 									<li><a href="jdkitemlist.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
-									<li><a href="lbjmypage.go">뱅준</a></li>
+									<li><a href="lbjPayTest.go">뱅준</a></li>
 								</ul>								
 							</td>
 							

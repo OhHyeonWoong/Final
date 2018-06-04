@@ -13,8 +13,31 @@
 			window.history.go(-1);
 		}
 		
-		function fnUpdateReport(){
+		function fnDeleteReport(){
+			var flag = confirm("정말로 게시글을 삭제하시겠습니까?");
 			
+			if(flag){
+				var report_no = $('#report_no').val();
+				
+				$.ajax({
+					url:"lbjReportDelete.go",
+					type:"post",
+					data:{
+						report_no: report_no
+					},
+					success:function(data){
+						alert(data);
+						if(data == '게시글 삭제 성공'){
+							location.href='lbjmypage.go?member_id='+$('#member_id').val();
+						}
+					},
+					error:function(a,b,c){
+						alert("a = " + a + " , b = " + b + " , c = " + c);
+					}
+				});
+			}else{
+				alert("취소하셨습니다.");
+			}
 		}
 	</script>
 	<h2 style="text-align:center;">신고페이지 상세보기</h2>
@@ -23,6 +46,8 @@
 			<fieldset>
 				<legend>나의 신고 내역</legend>
 				<form action="" method="post">
+					<input type="hidden" id="report_no" value="${report.report_no}">
+					<input type="hidden" id="member_id" value="${loginUser.member_id}">
 					<table class="table table-striped" style="text-align:center;">
 						<tr><td>분야</td>
 							<td>
