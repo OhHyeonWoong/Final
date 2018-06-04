@@ -592,7 +592,39 @@
 		        				
 		        				function fnMovePaymentPage(){
 		        					/* location.href='lbjmoveMileagePaymentPage.go' */
-		        					window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+		        					var lbjpayVal = $('#lbjpay').text();
+		        					var chargeMoney = $('#chargeMoney').val();
+		
+		        					console.log(lbjpayVal);
+		        					if(chargeMoney != ""){
+		        						switch(lbjpayVal){
+			        					case "휴대폰":
+			        						location.href="lbjMovePaymentByPhone.go?chargeMoney="+$('#chargeMoney').val();
+			        						/* $.ajax({	
+			        							url:"lbjMovePaymentByPhone.go",
+			        							data:{
+			        								chargeMoney: chargeMoney
+			        							},
+			        							success:function(data){
+			        								alert(data);
+			        							},
+			        							error:function(a,b,c){
+			        								alert("a = " + a + " , b = " + b + " , c = " + c);
+			        							}
+			        						}); */
+			        						break;
+			        					case "카카오페이":
+			        						break;
+			        					case "신용카드":
+			        						break;
+			        					case "무통장입금":
+			        						//모든 정보가 입력되었는 지 확인부터 해야됨
+			        						window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+			        						break;
+			        					}
+		        					}else{
+		        						alert("충전할 금액을 입력하세요.");	
+		        					}
 		        				}
 		        			</script>
 		        		</td>
@@ -970,7 +1002,7 @@
 									<li><a href="jdkitemlist.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
-									<li><a href="lbjmypage.go">뱅준</a></li>
+									<li><a href="lbjPayTest.go">뱅준</a></li>
 								</ul>								
 							</td>
 							
