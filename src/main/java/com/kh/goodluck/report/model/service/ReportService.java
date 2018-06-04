@@ -9,4 +9,5 @@ public interface ReportService {
 	public abstract List<Report> selectMyPageReport(HashMap<Object, Object> map2);
 	public abstract Report selectReportDetail(int report_no);
 	public abstract int insertMyReport(Report report);
+	public abstract int deleteMyReport(int report_no);
 }

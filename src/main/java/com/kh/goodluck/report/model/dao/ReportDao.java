@@ -29,5 +29,9 @@ public class ReportDao {
 	public int insertMyReport(Report report) {
 		return sqlSession.insert("insertMyReport", report);
 	}
+
+	public int deleteMyReport(int report_no) {
+		return sqlSession.delete("deleteMyReport", report_no);
+	}
 	
 }
