@@ -251,7 +251,11 @@ function emailChanged(){
 //약관 띄우기
 $(function(){
 $("#termsClick").click();
- });
+});
+ 
+ 
+ 
+ 
 </script>
 
 </head>
@@ -344,7 +348,7 @@ $("#termsClick").click();
  				<div class="form-group text-center">
 					<div class="input-group">
 						 <input id="agree" type="checkbox" autocomplete="off" > 
-						<a href="#termsOfService" data-toggle="modal" id="termsClick">이용약관</a> 에 동의 합니다.
+						<a href="#termsOfService" data-toggle="modal" id="termsClick" data-backdrop="static">이용약관</a> 에 동의 합니다.
 					</div>
 				</div>
 						<br><br>	
