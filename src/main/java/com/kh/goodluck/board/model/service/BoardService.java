@@ -12,6 +12,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 
@@ -122,6 +123,26 @@ public class BoardService {
 	public List<Board> mainShowRequireListPickUp(){
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출		
 		return boardDao.mainShowRequireListPickUp();			
+	}
+
+	public Board getBoardInfoByNo(int pk) {
+		// TODO Auto-generated method stub
+		return  boardDao.getBoardInfoByNo(pk);		
+	}
+
+	public int IncreaseViewCount(int pk) {
+		// TODO Auto-generated method stub
+		return 	boardDao.IncreaseViewCount(pk);		
+	}
+
+	public GetCategoryForBoardDetail gcfbd(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.GetCategoryForBoardDetail(pk);		
+	}
+
+	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
+		// TODO Auto-generated method stub
+		return boardDao.IncreasesSMALLCATEGORYCOUNT(parseInt);		
 	}
 
 	

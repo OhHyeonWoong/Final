@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board-mapper">
+	
+	<resultMap type="GetCategoryForBoardDetail" id="GetCategoryForBoardDetail">
+		<id property="LINK2_NO" column="LINK2_NO"/>
+		<result property="LINK1_NO" column="LINK1_NO"/>
+		<result property="CATEGORY_SMALL_NAME" column="CATEGORY_SMALL_NAME"/>
+		<result property="CATEGORY_MID_NAME" column="CATEGORY_MID_NAME"/>
+		<result property="CATEGORY_BIG_NAME" column="CATEGORY_BIG_NAME"/>
+		<result property="CATEGORY_SMALL_CODE" column="CATEGORY_SMALL_CODE"/>
+		<result property="CATEGORY_MID_CODE" column="CATEGORY_MID_CODE"/>
+		<result property="CATEGORY_BIG_CODE" column="CATEGORY_BIG_CODE"/>
+	</resultMap>
+	<select id="GetCategoryForBoardDetail" parameterType="int" resultType="GetCategoryForBoardDetail">
+select 
+BIGCATEGORY.CATEGORY_BIG_CODE ,
+MIDCATEGORY.CATEGORY_MID_CODE , 
+SMALLCATEGORY.CATEGORY_SMALL_CODE ,
+BIGCATEGORY.CATEGORY_BIG_NAME , 
+MIDCATEGORY.CATEGORY_MID_NAME , 
+SMALLCATEGORY.CATEGORY_SMALL_NAME ,
+LINK1_NO , 
+LINK2_NO 
+ from MIDCATEGORY, BIGCATEGORY , CATEGORYLINK1, CATEGORYLINK2,SMALLCATEGORY where LINK2_NO=#{pk} and 
+CATEGORYLINK1.CATEGORY_BIG_CODE= BIGCATEGORY.CATEGORY_BIG_CODE and CATEGORYLINK1.CATEGORY_MID_CODE=CATEGORYLINK2.CATEGORY_MID_CODE and
+CATEGORYLINK2.CATEGORY_MID_CODE=MIDCATEGORY.CATEGORY_MID_CODE and CATEGORYLINK2.CATEGORY_SMALL_CODE= SMALLCATEGORY.CATEGORY_SMALL_CODE
+	
+	</select>
+	
+</mapper>
