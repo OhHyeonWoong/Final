@@ -190,14 +190,15 @@ public class MemberController {
 		if(m != null) {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
-			if(result > 0) {
+			if(result > 0 && m.getMember_status() != 2) {
 				System.out.println("Update Last Login.. Success.. ");
+				out.write("로그인 성공");
+				model.addAttribute("loginUser", m);
 			}else {
 				System.out.println("Update Last Login.. Fail.. ");
+				out.write("로그인 제제된 유저입니다.");
 			}
 			/////////////////////////
-			out.write("로그인 성공");
-			model.addAttribute("loginUser", m);
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
 		}else {
