@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board-mapper">
+<mapper namespace="BoardandDetail">
 	
 	<resultMap type="Board" id="BoardResult">
 		<id property="agency_no" column="agency_no"/>
@@ -162,5 +162,11 @@
 		delete from member 
 		where userid = #{userId}
 	</delete> -->
+<select id="getBoardInfoByNo" parameterType="int" resultType="Board">
+select * from AGENCY where AGENCY_NO = #{pk}
+</select>
+<update id="IncreaseViewCount">
+update AGENCY set AGENCY_VEIWS = (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk}) where AGENCY_NO = #{pk}
+</update>
 
 </mapper>

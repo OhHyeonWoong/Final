@@ -17,8 +17,7 @@
 	
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
-
-var pagingcount = (($("listcount").val())/20)+1;	
+	
 
 </script>
 
@@ -83,6 +82,7 @@ var pagingcount = (($("listcount").val())/20)+1;
 			<input type="hidden" id="catename" value="link2name"> 
 			<input type="hidden" id="catetype" value="link2type"> 
 			<input type="hidden" id="listcount" value="agencycount"> 
+			<input type="hidden" id="pagenum" value="pageNum"> 
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
@@ -267,17 +267,61 @@ var pagingcount = (($("listcount").val())/20)+1;
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button>&lt;&lt;</button>
-					<button>&lt;</button>
+					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
+					<c:set var="currentpage" value="${pageNum }"/>
+					<c:if test="${currentpage eq '1'}">
+						<button>&lt;</button>
+					</c:if>
+					
+					<c:if test="${currentpage != '1'}">
+						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
+					</c:if>
+					
+					<c:if test="${currentpage <=5}">
+						<c:forEach var="count" begin="1" end="9" step="1">	
 						
-						<c:forEach var="count" begin="1" end="${agencycount }" step="1">
-							&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;
+							<c:if test="${count eq currentpage}">
+								<c:if test="${count <= agencycount}">
+									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								</c:if>	
+							</c:if>	
+									
+							<c:if test="${count != currentpage}">
+								<c:if test="${count <= agencycount}">
+									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								</c:if>	
+							</c:if>	
+											
+						</c:forEach>	
+					</c:if>
+					
+					<c:if test="${currentpage >5}">
+						<c:forEach var="count" begin="${currentpage-4}" end="${currentpage+4}" step="1">		
 							
+							<c:if test="${count eq currentpage}">
+								<c:if test="${count <= agencycount}">
+									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								</c:if>	
+							</c:if>
 							
+							<c:if test="${count != currentpage}">
+								<c:if test="${count <= agencycount}">
+									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								</c:if>	
+							</c:if>
+													
 						</c:forEach>
+					</c:if>
 						
-					<button>&gt;</button>
-					<button>&gt;&gt;</button>
+					<c:if test="${currentpage eq agencycount}">
+						<button>&gt;</button>
+					</c:if>
+					
+					<c:if test="${currentpage != agencycount}">
+						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
+					</c:if>
+					
+					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
 				</span>
 			</div>
 

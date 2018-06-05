@@ -44,7 +44,7 @@ public class BoardController {
 		String link2name = board.getLink2_no();
 		String link2type = null;
 		
-		System.out.println(pageNum);
+		//System.out.println(pageNum);
 		//System.out.println(board);
 
 		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
@@ -191,6 +191,7 @@ public class BoardController {
 		mv.addObject("agencycount", agencycount);
 		mv.addObject("link2name", link2name);
 		mv.addObject("link2type", link2type);
+		mv.addObject("pageNum", pageNum);
 		mv.addObject("strlistlegnth",strlistlegnth);
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board

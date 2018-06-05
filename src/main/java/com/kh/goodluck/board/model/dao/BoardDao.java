@@ -13,6 +13,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 
@@ -161,6 +162,34 @@ public class BoardDao {
 	public List<Board> mainShowRequireListPickUp() {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowRequireListPic");
+	}
+
+
+
+	public Board getBoardInfoByNo(int pk) {
+		// 보드pk로 보드 정보구하기.
+		return sqlSession.selectOne("getBoardInfoByNo",pk);
+	}
+
+
+
+	public int IncreaseViewCount(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("IncreaseViewCount",  pk);
+	}
+
+
+
+	public GetCategoryForBoardDetail GetCategoryForBoardDetail(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("GetCategoryForBoardDetail",pk);
+	}
+
+
+
+	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
 	}
 
 
