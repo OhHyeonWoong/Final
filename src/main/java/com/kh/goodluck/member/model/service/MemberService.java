@@ -24,4 +24,5 @@ public interface MemberService {
 	public abstract int updateLastLogin(String member_id);
 	public abstract int deleteMemberOut(String member_id);
 	public abstract List<MemberList> adminMemberList();
+	public abstract int updateMemberCashMethod(Member m);
 }

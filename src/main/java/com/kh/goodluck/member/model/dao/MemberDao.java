@@ -74,5 +74,8 @@ public class MemberDao {
 	public List<MemberList> adMemberList() {
 		return sqlSession.selectList("adminMemberList");
 	}
+	public int updateMemberCashMethod(Member m) {
+		return sqlSession.update("updateMemberCash", m);
+	}
 
 }

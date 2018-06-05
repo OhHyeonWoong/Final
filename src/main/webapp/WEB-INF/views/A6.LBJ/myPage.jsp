@@ -319,7 +319,7 @@
 		function fnMemberGoEmail(){
 			var email = $('#member_email').val();
 			$.ajax({
-				url:"lbjConfirmMailSending.go",
+				url:"updateEmailSending.go",
 				type:"post",
 				data:{
 					//이메일 날리기
