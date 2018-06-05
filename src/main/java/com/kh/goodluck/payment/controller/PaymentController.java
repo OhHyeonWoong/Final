@@ -65,4 +65,12 @@ public class PaymentController {
 		return mv;
 	}
 	//////////////////
+	//무통장 결제 화면으로
+	@RequestMapping(value="lbjMovePaymentByNoBankBook.go")
+	public ModelAndView movePaymentByNoBankBook(@RequestParam("chargeMoney") int chargeMoney,ModelAndView mv) {
+		mv.addObject("chargeMoney", chargeMoney);
+		mv.setViewName("A6.LBJ/payment/paymentByNoBankBook");
+		return mv;
+	}
+	///////////////
 }

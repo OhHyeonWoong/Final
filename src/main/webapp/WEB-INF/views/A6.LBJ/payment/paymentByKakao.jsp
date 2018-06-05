@@ -16,7 +16,7 @@
 	    pg : 'html5_inicis',
 	    pay_method : 'vbank',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:마일리지 결제',
+	    name : '독신사 마일리지 결제',
 	    amount : ${chargeMoney},
 	    buyer_email : '${loginUser.member_email}',
 	    buyer_name : '${loginUser.member_name}',

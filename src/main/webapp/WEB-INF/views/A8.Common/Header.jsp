@@ -609,7 +609,8 @@
 			        						break; */
 			        					case "무통장입금":
 			        						//모든 정보가 입력되었는 지 확인부터 해야됨
-			        						window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+			        						//window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
+			        						location.href="lbjMovePaymentByNoBankBook.go?chargeMoney="+$('#chargeMoney').val();
 			        						break;
 			        					}
 		        					}else{
