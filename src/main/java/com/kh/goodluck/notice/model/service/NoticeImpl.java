@@ -1,6 +1,7 @@
 package com.kh.goodluck.notice.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,20 @@ import com.kh.goodluck.notice.model.vo.Notice;
 
 @Service("NoticeService")
 public class NoticeImpl implements NoticeService{
-
+  
 	@Autowired
 	private NoticeDao noticeDao;
 	
+	@Override
+	public int checkNoticeCount() {	
+		return noticeDao.checkNoticeCount();
+	}
 	
 	@Override
-	public List<Notice> pullNoticeAllList() {
+	public List<Notice> noticelistCheck(HashMap<Object, Object> map) {
 		
-		return noticeDao.pullNoticeAllList();
+		return noticeDao.noticelistCheck(map);
 	}
-	 
 	
 	@Override
 	public List<Notice> noticeTop5() {
@@ -44,7 +48,25 @@ public class NoticeImpl implements NoticeService{
 
 	@Override
 	public int noticeAdd(Notice newinsertnotice) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return noticeDao.noticeAdd(newinsertnotice);
 	}
+	
+	@Override
+	public int noticeDel(int parsing_pk) {
+		
+		return noticeDao.noticeDel(parsing_pk);
+	}
+	
+	@Override
+	public List<Notice> pagingOne() {
+		return noticeDao.pagingOne();
+	}
+	
+	@Override
+	public List<Notice> pagingTwo() {		
+		return noticeDao.pagingTwo();
+	}
+	
+
 }

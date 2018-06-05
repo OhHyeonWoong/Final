@@ -194,7 +194,7 @@ public class MemberController {
 		}else {
 			out.write("로그인 실패");
 		}
-		///////
+		///////  
 		out.flush();
 		out.close();
 	}

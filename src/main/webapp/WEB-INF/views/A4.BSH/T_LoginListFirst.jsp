@@ -47,8 +47,14 @@
 			}
 		</style>
 	<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			alert("FAQ내용 수정완료!");			
+		});
+	</script>
 	</head>
 	<body>
+	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	  
 	<div class="container"> <!-- 1170x1966px  -->
 		<div class="sidebar-section">
@@ -118,14 +124,14 @@
 			        <h3>FAQ게시판(유저의 자주묻는 질문)</h3><br>
 
 			        <c:forEach var="faqalllist" items="${alllist}">
-			        <div class="section1"> 
+			        <div class="section1"  hidden="true"> 
 			        	<form action="changeFaqContents1.go" method="get">
 						<div class="request_area" align="left">
 							<input type="text" class="ukstyle_text" id="f_title_a" name="f_title_a" value="Q.${faqalllist.faq_title}"> 
 							<input type="hidden" >
 							<!-- 관리자가 수정한 타이틀로 보내야됨 -->
 							<br><br>
-							<textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_a" name="f_contents_a">A.${faqalllist.faq_content }</textarea>	
+							<textarea rows="2" cols="82" class="ukstyle_text2" id="f_contents_a" name="f_contents_a" style="resize: none;">A.${faqalllist.faq_content }</textarea>	
 							<!-- 관리자가 수정한 내용으로 보내야됨 -->			
 							<input type="hidden" id="f_category_a" name="f_category_a" value="${ faqalllist.faq_category }"> 
 							<input type="hidden" name="f_pk_a" value="${faqalllist.faq_no}">
@@ -149,7 +155,7 @@
 									<input type="hidden" >
 									<!-- 관리자가 수정한 타이틀로 보내야됨 -->
 									<br><br>
-									<textarea rows="2" cols="82" class="ukstyle_text2" name="f_contents_u" id="f_contents_u" style="resize: none;">A.${faquseinglist.faq_content }</textarea>	
+									<textarea rows="2" cols="84" class="ukstyle_text2" name="f_contents_u" id="f_contents_u" style="resize: none;">A.${faquseinglist.faq_content }</textarea>	
 									<!-- 관리자가 수정한 내용으로 보내야됨 -->			
 									<input type="hidden" name="f_pk_u" value="${faquseinglist.faq_no}">
 									<input type="hidden" id="f_category_u" name="f_category_u" value="${ faquseinglist.faq_category }"> 
@@ -177,7 +183,7 @@
 							<div class="request_area" align="left">
 								<input type="text" class="ukstyle_text" id="f_title_p" name="f_title_p" value="Q.${ faqpaymentlist.faq_title }"> 
 								<br><br>
-								<textarea rows="2" cols="82" class="ukstyle_text2" id="f_contents_p" name="f_contents_p">A.${ faqpaymentlist.faq_content }</textarea>				
+								<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents_p" name="f_contents_p">A.${ faqpaymentlist.faq_content }</textarea>				
 								<input type="hidden" id="f_category_p" name="f_category_p" value="${ faqpaymentlist.faq_category }">														
 								<input type="hidden" name="f_pk_p" value="${ faqpaymentlist.faq_no }">
 							</div>
@@ -204,7 +210,7 @@
 						<div class="request_area" align="left">							
 							<input type="text" class="ukstyle_text" id="f_title_r" name="f_title_r" value="Q.${ faqreportlist.faq_title }"> 
 							<br><br>
-							<textarea rows="2" cols="82" class="ukstyle_text2" id="f_contents_r" name="f_contents_r" style="resize: none;">A.${ faqreportlist.faq_content }</textarea>					
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents_r" name="f_contents_r" style="resize: none;">A.${ faqreportlist.faq_content }</textarea>					
 							<input type="hidden" id="f_category_r" name="f_category_r" value="${ faqreportlist.faq_category }">		
 							<input type="hidden" name="f_pk_r" value="${ faqreportlist.faq_no }">
 						</div>
@@ -229,12 +235,12 @@
 			        
 
 					<c:forEach var="faqloginlist" items="${loginlist}">
-			        <div class="section5" hidden="true"> 
+			        <div class="section5"> 
 						<form action="changeFaqContents5.go" method="get">			         
 						<div class="request_area" align="left">
 							<input type="text" class="ukstyle_text" id="f_title_g" name="f_title_g" value="Q.${ faqloginlist.faq_title }"> 
 							<br><br>
-							<textarea rows="2" cols="82" class="ukstyle_text2" id="f_contents_g" name="f_contents_g" style="resize: none;">A.${ faqloginlist.faq_content }</textarea>				
+							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents_g" name="f_contents_g" style="resize: none;">A.${ faqloginlist.faq_content }</textarea>				
 							<input type="hidden" id="f_category_g" name="f_category_g" value="${ faqloginlist.faq_category }">
 							<input type="hidden" name="f_pk_g" value="${ faqloginlist.faq_no }">
 						</div>
@@ -256,5 +262,8 @@
 	    </div>
    	  </div>
 	<hr style="clear: both;"> 
+		
+	
+	<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 	</body>
 </html>

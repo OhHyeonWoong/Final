@@ -19,7 +19,7 @@
 				color: black;
 				width: 75%;
 				height: 770px;			
-				opacity: 0.96;
+				opacity: 0.92;
 				
 			}
 			.padding{
@@ -110,8 +110,8 @@
 						<td class="uk_td1 sec1"> 글제목</td> 
 						<td class="uk_td1"> 
 							<input type="text" class="this_ntitle" value="${notice_info.notice_title}"> 
-							<input type="hidden" class="this_no" value="${notice_info.notice_no}">	
-						</td>
+							<input type="hidden" class="this_no" value="${notice_info.notice_no}">
+						</td>	
 					</tr>
 					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
 					<tr> 
@@ -121,8 +121,8 @@
 					</tr>
 					<tr> 
 						<td colspan="2" align="center"> 	
-							<a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
-							
+							<span class="glyphicon glyphicon-user"></span><a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="glyphicon glyphicon-trash"></span><a href="javascript:delnotice();"> 삭제하기 </a> &nbsp;&nbsp;&nbsp;&nbsp;
 							<script type="text/javascript">
 			
 							 	function alterNoticeContents(){
@@ -146,10 +146,16 @@
 										type : "get"
 							 		}); 
 								}
-	
+							 	
+							 	function delnotice(){
+							
+							 		alert("해당 공지글 삭제가 완료되었습니다.");
+									location.href="admin_ndelete.go?select_pk="+$(".this_no").val();
+							 	}
+							 	
 							</script>
 							
-							<a href="Notice.go" id="AdminAlter"> 전체 목록으로 </a>
+							<span class="glyphicon glyphicon-tags"></span><a href="Notice.go" id="AdminAlter"> 목록으로 </a>
 						</td>
 					</tr>
 				</table>

@@ -45,6 +45,12 @@ public class HomeController {
 		logger.info("HomeController Run");		
 		return "home";
 	}		
+	
+	@RequestMapping("outsideInfo.go")
+	public String outsideInformationShow() {
+		
+		return "A2.JUJ/OutSideInFormation";
+	}
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
 	public void CatchNoticeData(HttpServletRequest request , HttpServletResponse response) throws IOException {

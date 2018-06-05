@@ -10,7 +10,7 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
-	$(function(){
+	$(function(){	
 	  $.ajax({
 			url : "noticetop5.go",
 			type : "get",
@@ -36,8 +36,7 @@
 			},
 			error:function(a,b,c){
 				alert(a + ", " + b + ", " + c);
-			}			
-			
+			}	
 			/* error: function(jqXHR, textStatus, errorThrown){
 				console.log("error : " + jqXHR + ", " 
 						+ textStatus + ", " + 
@@ -54,7 +53,7 @@
 				/* alert("진입 테스트용 출력문"); */
 
 				var jsonStr = JSON.stringify(data); //객체를 문자열로 변환
-				console.log(jsonStr);
+				//console.log(jsonStr);
 				var json = JSON.parse(jsonStr) //문자열을 배열 객체로 바꿈	
 				var values="<tr>";
 				
@@ -73,12 +72,13 @@
 			type : "get",
 			datatype : "json",
 			success : function(data){
+
 				
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		});  */
+		});  */  
 		/* 생활영역 제공해요! */
 		
 		/* $.ajax({
@@ -94,7 +94,31 @@
 		});  */
 		/* 반려동물영역 제공해요! */
 		
-		/* $.ajax({
+		$.ajax({
+			url : "petnewslist.go", 
+			type : "get",
+			datatype : "json",
+			success : function(data){
+			   //console.log(data);
+				
+			   var jsonStr = JSON.stringify(data);
+			   var json = JSON.parse(jsonStr);
+			   var htmlStr ='<tr align="center">';
+			   
+			   for(var i in json.petNewsAll){
+				  htmlStr += '<td style="width:5px; border:none;"></td><td style="height:270px; padding:0;"><a href="petnewsdetail.go?newspk='+petNewsAll[i].osp_news_datano+'"><img id="low_image3" src="'+json.petNewsAll[i].osp_news_pic1+'"></a><div style="width:161px; height:55px;"><font id="ukjaeTitle_effect">'+json.petNewsAll[i].osp_news_datatitle+'<br>출처 : '+json.petNewsAll[i].osp_news_origin+'</font></div></td>';  
+			   }	
+			   	  htmlStr +='<td style="width:5px; border:none;"></tr>';
+			   	  $('#ukjae_TableAreaFiveth').append(htmlStr);
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}			
+		}); 
+
+		
+		
+	    /* $.ajax({
 			url :"gameareasample.go",
 			type : "get",
 			datatype : "json",
@@ -104,8 +128,8 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		});  */
-		/* 게임영역 제공해요! */
+		}); */
+		/* 게임영역 제공해요! */		
 		
 		/* $.ajax({
 			url :"musicsample.go",
@@ -175,27 +199,54 @@
 	});
 
 </script>
-
-
-<script type="text/javascript">
-	/* $(function(){	
+<!-- <script type="text/javascript">
+	$(function(){	
 		$("#topcaro1").click(function(){ //오른쪽 넘기기 버튼을 클릭했을경우
+				var v1 = $(".mainpic1").val();
+				var v2 = $(".mainpic2").val();
+				var v3 = $(".mainpic3").val();
+				var v4 = $(".mainpic4").val();
+				var v5 = $(".mainpic5").val();
+				var v6 = $(".mainpic6").val();
+				var v7 = $(".mainpic7").val();
+				var v8 = $(".mainpic8").val();
+				var v9 = $(".mainpic9").val();
+				
 		         //리스트별 컬러추가.
 		         colors=["red","blue","black","white","yellow","orange","gray"];
-		         pictures=["/goodluck/resources/common/img/main/생활.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/구인.jpg"];
-		         
+		         pictures=[
+		        	 "/goodluck/resources/common/img/main/생활.jpg",
+		        	 "/goodluck/resources/common/img/main/반려동물2.jpg",
+		        	 "/goodluck/resources/common/img/main/게임.jpg",
+		        	 "/goodluck/resources/common/img/main/음악.jpg",
+		        	 "/goodluck/resources/common/img/main/렌탈.jpg",
+		        	 "/goodluck/resources/common/img/main/여행.jpg",
+		        	 "/goodluck/resources/common/img/main/프리랜서.jpg",
+		        	 "/goodluck/resources/common/img/main/구인.jpg"
+		        	 ];
+
 		         for(var i=0; i<8 ; i++){
 		            console.log($("div#"+i+".item.active").attr("id"));
 		            
 		            if($("div#"+i+".item.active").attr("id") >= 0 )
-		            	picture=pictures[$("div#"+i+".item.active").attr("id")];
+		            	picture=pictures3[$("div#"+i+".item.active").attr("id")];
 		            	
 		         	$("#main").attr("background",picture);     
 		         }
 		});
 		$("#topcaro").click(function(){    
 		         //리스트별 컬러추가.
-		         pictures2=["/goodluck/resources/common/img/main/구인.jpg","/goodluck/resources/common/img/main/프리랜서.jpg","/goodluck/resources/common/img/main/여행.jpg","/goodluck/resources/common/img/main/렌탈.jpg","/goodluck/resources/common/img/main/음악.jpg","/goodluck/resources/common/img/main/게임.jpg","/goodluck/resources/common/img/main/반려동물2.jpg","/goodluck/resources/common/img/main/생활.jpg"];
+		         pictures2=[
+		        	 "/goodluck/resources/common/img/main/구인.jpg",
+		        	 "/goodluck/resources/common/img/main/프리랜서.jpg",
+		        	 "/goodluck/resources/common/img/main/여행.jpg",
+		        	 "/goodluck/resources/common/img/main/렌탈.jpg",
+		        	 "/goodluck/resources/common/img/main/음악.jpg",
+		        	 "/goodluck/resources/common/img/main/게임.jpg",
+		        	 "/goodluck/resources/common/img/main/반려동물2.jpg",
+		        	 "/goodluck/resources/common/img/main/생활.jpg"
+		        	 ];
+
 		         for(var i=0; i<8 ; i++){
 		            console.log($("div#"+i+".item.active").attr("id"));	            
 		            if($("div#"+i+".item.active").attr("id") >= 0 )
@@ -204,8 +255,7 @@
 		         }
 		});
 	}); 
-	*/   
-</script>
+</script> -->
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaepetArea.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaemainEvent.css">
 <link rel="stylesheet" type="text/css" href="resources/A2.JUJ/css/ukjaetablestyle.css">
@@ -282,7 +332,7 @@
 	height: 160px;
 	line-height: 20px;
 }
-
+  
 /* effect */
 #ukjaeTitle_effect {
 	color: red;
@@ -339,7 +389,7 @@
 }
 
 
-/*************** 2018.05.22 생활/게임/음악/렌탈 영역작업 ***************/
+/***2018.05.22 생활/게임/음악/렌탈 영역작업***/
 
 /* 내부 대표 제공테이블 */
 #ukjae_Areaspace {
@@ -401,7 +451,7 @@
 
 #ukjae_TableAreaFiveth tr td {
 	width: 190px !important;
-	height: 210px !important;
+	height: 235px !important;
 	padding: 0;
 	margin: 0;
 	border: 1px solid gray;
@@ -433,7 +483,7 @@
 
 #low_image3 {
 	width: 160px !important;
-	height: 210px !important;
+	height: 200px;
 	padding: 0;
 	margin: 0;
 	padding: 0;
@@ -455,7 +505,6 @@
 	height: 215px;
 	padding: 0;
 	margin-top: 3px;
-
 }
 
 
@@ -554,6 +603,15 @@
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 		
 <div class="container">  
+	<!-- <input type="hidden" class="mainpic1" value="/goodluck/resources/common/img/main/생활.jpg">
+	<input type="hidden" class="mainpic2" value="/goodluck/resources/common/img/main/반려동물2.jpg">
+	<input type="hidden" class="mainpic3" value="/goodluck/resources/common/img/main/게임.jpg">
+	<input type="hidden" class="mainpic4" value="/goodluck/resources/common/img/main/음악.jpg">
+	<input type="hidden" class="mainpic5" value="/goodluck/resources/common/img/main/렌탈.jpg">
+	<input type="hidden" class="mainpic6" value="/goodluck/resources/common/img/main/여행.jpg">
+	<input type="hidden" class="mainpic7" value="/goodluck/resources/common/img/main/프리랜서.jpg">
+	<input type="hidden" class="mainpic8" value="/goodluck/resources/common/img/main/구인.jpg">
+	<input type="hidden" class="mainpic9" value="/goodluck/resources/common/img/main/메인1.jpg"> -->
 		
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<% String inside = null; %>
@@ -971,7 +1029,6 @@
 				<br>
 		    </div>			
 		    <div class="item"> 
-
  						<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="이미지준비중.." />
 					    <div class="row user-menu-container square">
 					        <div class="col-md-7 user-details">
@@ -996,16 +1053,16 @@
 					            <div class="row overview" style=" background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg');">
 					                <div class="col-md-4 user-pad text-center" align="center"> 
 					                    <h3 style="color: white">FOLLOWERS</h3>
-					                    <h4 style="color: white">588</h4>
+					                    <h4 style="color: white">102</h4>
 					                </div>
 					                <div class="col-md-4 user-pad text-center" align="center">
 					                    <h3 style="color: white">FOLLOWING</h3>
-					                    <h4 style="color: white">456</h4>
+					                    <h4 style="color: white">98</h4>
 					      
 					                </div>
 					                <div class="col-md-4 user-pad text-center" >
 					                    <h3 style="color: white">SOSO</h3>
-					                    <h4 style="color: white">12</h4>
+					                    <h4 style="color: white">3</h4>
 					                </div>
 					            </div>
 					        </div>
@@ -1129,80 +1186,12 @@
 
 				    
 		    <div align="center">
-	
 			 	<h2> 동 물 뉴 스 </h2>
 				<table id="ukjae_TableAreaFiveth">
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td> 		
-							<td><img id="low_image3" alt="첫번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect"> 아기강아지의 귀여움 <br>(제 공 자 : 정 욱 재) </font>	   
-							
-							</td>
-							<td style="width: 5px; border: none;"></td> 
 		
-		
-							<td><img id="low_image3" alt="두번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect"> 동물도 은혜를갚는다 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="세번째 후보" src="/goodluck/resources/common/img/pet/동물공감3.jpg">
-							<font id="ukjaeTitle_effect"> 우리해병이를 잊지마<br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="네번째 후보" src="/goodluck/resources/common/img/pet/동물공감4.jpg">
-							<font id="ukjaeTitle_effect"> 누가 더 귀여워? <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	 	
-		
-							<td><img id="low_image3" alt="다섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감1.jpg">
-							<font id="ukjaeTitle_effect"> 아기강아지의 귀여움 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-		
-							<td><img id="low_image3" alt="여섯번째 후보" src="/goodluck/resources/common/img/pet/동물공감2.jpg">
-							<font id="ukjaeTitle_effect"> 동물도 은혜를갚는다 <br>(제 공 자 : 정 욱 재) </font>				
-							</td>
-							<td style="width: 5px; border: none;"></td> 		
-						</tr>				
-					</table><br>
-					
-					<div class="icon arrow-refresh"></div>
-					
-					<input type="button" id="animalNews_BeforeBtn" value="이전"> 
-					<script type="text/javascript">
-						
-						
-					</script>
-					&nbsp; &nbsp; &nbsp; &nbsp;	
-					<input type="button" id="animalNews_NextBtn" value="다음">
-					<script type="text/javascript">
-						$(function(){	
-							$("#animalNews_NextBtn").on("click",function(){
-								alert("다음기사로 변경을 시도하셨습니다.")
-								
-								$.ajax({
-									url : "animalPageNews_next.do",
-									data: "",
-									type: "post",
-									datatype: "",
-									success : function(data){
-										
-									},
-									error: function(request, status, errorData){
-										alert("error code : " + request.status + "\n"
-											+ "message : " + request.responseText + "\n"
-											+ "error : " + errorData);
-									}
-								});
-							});
-						
-						});
-					</script>
+				</table><br>
+				<div align="right" style="padding-right: 17px;"><a href="news_total.go"><font style="font-size: 25px;">뉴스전체보기</font></a></div>				
 			</div>
-
-
  			<br>
 			
 			</div> <!-- item end  -->

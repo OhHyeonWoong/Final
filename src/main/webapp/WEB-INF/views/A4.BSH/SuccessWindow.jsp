@@ -82,6 +82,11 @@
 				
 			}
 		</style>	
+		<script type="text/javascript">
+			$(function(){
+				window.open("popup.go","등록완료","left=710,top=280,width=220,height=170");
+			});	
+		</script>		
 	</head>
 	    
 	<body>
