@@ -106,27 +106,83 @@
 ${Board};
 <br>
 ${Cateinfo};
-<table style="border-color: red; width:100%">
+
+<style>
+#boardDetailTable tr {
+ height: 40px;
+}
+</style>
+<table style="border-color: red; width:100%" id="boardDetailTable">
 <tr>
 <th style="width: 60%">
         <div class="col-xs-12 col-sm-6 col-md-6" style="width: 100%">
             <div class="well well-sm">
                 <div class="row">
-                   <div class="col-sm-6 col-md-8">
-                        <h4> 
+                   <div class="col-sm-6 col-md-8" style="width: 100%">
+                        <h3> 
                        ${Cateinfo.CATEGORY_BIG_NAME} > 
                        ${Cateinfo.CATEGORY_MID_NAME} >
                        ${Cateinfo.CATEGORY_SMALL_NAME} 
-                       </h4><Br>
+                       </h3><Br>
+                       <c:choose>
+                       <c:when test="${Board.agency_type == 1}"><h4><font style="color: blue">구합니다!</font></h4></c:when>
+                       <c:when test="${Board.agency_type == 2}"><h4><font style="color: red">해줍니다!</font></h4></c:when>
+    
+                       </c:choose>
+                   
                         <h5>${Board.agency_title}</h5>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                        
+                        <table  style="width: 100%"> 
+                        <tr>
+                        <td width="30%">
+                        <small><cite title="San Francisco, USA">지역 : ${Board.agency_loc}<i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
-                        <p>
-                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                        </td>
+                        <td><i class="glyphicon glyphicon-envelope"></i>email@example.com
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>수행 예정일: ${Board.agency_startdate} </td>
+                        <td>마감 예정일: ${Board.agency_enddate} </td>
+                        </tr>
+             
+                       
+                        <tr>
+                        <td>게시물 등록일 : ${Board. agency_enrolldate}  <i class="fa fa-calendar-check-o"></i></td>
+                        <td>  </td>
+                        </tr>
+                        
+                        <tr>
+                        <td>수당 방식 : 
+                        <c:choose>
+                        <c:when test="${Board.agency_paytype == 1}">시급</c:when>
+                        <c:when test="${Board.agency_paytype == 1}">일급</c:when>
+                        
+                        </c:choose></td>
+                        <td>방식당 페이:${Board.agency_pay}원  </td>
+                        </tr>
+                  
+                  <tr>
+                  <td>조회수 : ${Board.agency_views}
+                  </td>
+                  
+                  </tr>
+                  
+                  <tr>
+                  <th colspan="2" style="width: 80%">
+
+	<c:forEach var="keyword" items="${keywords}">
+	
+	<a href="#">#${keyword}</a> &nbsp;
+	
+	</c:forEach>
+                  
+                  
+                  
+                  </th>
+                  
+                  </tr>
+                        </table>
                     </div>
                 </div>
             </div> 
@@ -162,7 +218,17 @@ ${Cateinfo};
         </div>    
         <hr style="clear: both;">
 
-     <center><button id="ukapplybtn" data-target="#myModal2">신청하기</button> <button>뒤로가기</button></center> 
+     <center>
+     <c:choose>
+     <c:when test="${loginUser eq null}">    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기   </c:when>
+     <c:when test="${loginUser ne null}">  <button id="ukapplybtn" data-target="#myModal2">신청하기</button> </c:when>
+     <c:when test=""></c:when>
+     
+     </c:choose>
+   
+     
+     <button>뒤로가기</button></center> 
 </th>
 
 

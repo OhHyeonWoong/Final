@@ -1,4 +1,5 @@
 package com.kh.goodluck.board.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,18 +35,22 @@ public class CJS_BoardController {
 		boardservice.IncreasesSMALLCATEGORYCOUNT(Integer.parseInt(bo.getLink2_no()));
 		//3: lonk2의pk로 해당 카테고리 상위목록들 가져가기
 		GetCategoryForBoardDetail gcfbd=boardservice.gcfbd(Integer.parseInt(bo.getLink2_no()));
+		//4: 보드의 키워드를 ,단위로 파싱하고 보낸다.
+
+
+		String[] mobNum = bo.getAgency_keyword().split(",");
+		ArrayList<String> keywords =new  ArrayList<String>();
+		for (int i = 0; i < mobNum.length; i++){
+		    keywords.add(mobNum[i]);		
+		}
 		
-		
-		
-		System.out.println(gcfbd);
-	
 		/* GetCategoryForBoardDetail 
 		 * [CATEGORY_BIG_CODE=A, CATEGORY_MID_CODE=AA, 
 		 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 
 		 * CATEGORY_MID_NAME=홈, CATEGORY_SMALL_NAME=파티, 
 		 * LINK1_NO=1, LINK2_NO=1]
 		 * */
-	
+	    mv.addObject("keywords",keywords);
 		mv.addObject("Cateinfo",gcfbd);
 		mv.addObject("Board",bo);
 		mv.setViewName("A5.CJS/boarddetail");
