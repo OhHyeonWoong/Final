@@ -452,7 +452,7 @@
 		        					<tr>
 		        						<td><button id="lbjbtnPhone" class="" onclick="fnKindOfPay(this);">휴대폰</button></td>
 		        						<td><button id="lbjbtnKakao" onclick="fnKindOfPay(this);">카카오페이</button></td>
-		        						<td><button id="lbjbtnCredit" onclick="fnCreditMethod(this);">신용카드</button></td>
+		        						<!-- <td><button id="lbjbtnCredit" onclick="fnCreditMethod(this);">신용카드</button></td> -->
 		        						<td><button id="lbjbtnnobank" onclick="fnNoBankBook(this);">무통장입금</button></td>
 		        					</tr>
 		        					<tr>
@@ -460,7 +460,7 @@
 		        					</tr>
 		        				</table>
 		        			</div>
-		        			<div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
+		        			<!-- <div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
 		        				<table style="width:100%;">
 		        					<tr>
 		        						<td><input type="radio" name="credit" value="신한">신한</td>
@@ -495,7 +495,7 @@
 		        						</td>
 		        					</tr>
 		        				</table>
-		        			</div>
+		        			</div> -->
 		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
 		        				<table style="width:100%; background:ivory;">
 		        					<tr>
@@ -600,23 +600,13 @@
 		        						switch(lbjpayVal){
 			        					case "휴대폰":
 			        						location.href="lbjMovePaymentByPhone.go?chargeMoney="+$('#chargeMoney').val();
-			        						/* $.ajax({	
-			        							url:"lbjMovePaymentByPhone.go",
-			        							data:{
-			        								chargeMoney: chargeMoney
-			        							},
-			        							success:function(data){
-			        								alert(data);
-			        							},
-			        							error:function(a,b,c){
-			        								alert("a = " + a + " , b = " + b + " , c = " + c);
-			        							}
-			        						}); */
 			        						break;
 			        					case "카카오페이":
+			        						location.href="lbjMovePaymentByKakao.go?chargeMoney="+$('#chargeMoney').val();
 			        						break;
-			        					case "신용카드":
-			        						break;
+			        					/* case "신용카드":
+			        						location.href="lbjMovePaymentByCredit.go?chargeMoney="+$('#chargeMoney').val();
+			        						break; */
 			        					case "무통장입금":
 			        						//모든 정보가 입력되었는 지 확인부터 해야됨
 			        						window.open("lbjmoveMileagePaymentPage.go","","width=500,height=450");
