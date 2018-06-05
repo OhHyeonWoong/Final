@@ -26,20 +26,30 @@
 	}, function(rsp) {
 	    if ( rsp.success ) {
 	        var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
+	        /* msg += '고유ID : ' + rsp.imp_uid;
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        msg += '카드 승인번호 : ' + rsp.apply_num; */
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
+	        /* msg += '에러내용 : ' + rsp.error_msg; */
 	    }
-	
+	    
 	    alert(msg);
+	    if(msg == '결제가 완료되었습니다.'){
+	    	var member_cash = $('#member_cash').val() * 1;
+	    	var chargeMoney = $('#chargeMoney').val() * 1;
+	    	var sum = member_cash + chargeMoney;
+	    	
+	    	location.href="lbjUpdateMemberCash.go?member_id="+$('#member_id').val()+"&member_cash="+sum;
+	    }else{
+	    	location.href="home.go";
+	    }
 	});
-	//결제했다는 정보 업데이트 해줄 필요가 있음
-	
-	///////////////
+
 	</script>
+	<input type="hidden" id="member_id" value="${loginUser.member_id}">
+	<input type="hidden" id="member_cash" value="${loginUser.member_cash}">
+	<input type="hidden" id="chargeMoney" value="${chargeMoney}">
 </body>
 </html>

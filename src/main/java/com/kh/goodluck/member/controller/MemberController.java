@@ -342,6 +342,31 @@ public class MemberController {
 		out.close();
 	}
 	
+	@RequestMapping(value="lbjUpdateMemberCash.go")
+	public void updateMemberCashMethod(Member m,HttpServletResponse response,
+			  					HttpSession session) throws IOException{
+		//멤버 캐시 정보 업데이트
+		//세션정보 업데이트용 객체
+		Member member = null;
+		///////////////////////
+		System.out.println("updateMemberCashMethod run...");
+		int result = memberService.updateMemberCashMethod(m);
+		if(result > 0) {
+			//세션 정보 갱신
+			System.out.println("결제 성공...");
+			if(session.getValue("loginUser") != null) {
+				//업데이트된 캐시정보로 정보 바꿔줌
+			    member=(Member)session.getAttribute("loginUser");
+			    member.setMember_cash(m.getMember_cash());
+			}
+		}else {
+			//결제 실패
+			System.out.println("결제 실패...");
+		}
+		/////////////////
+		response.sendRedirect("home.go");
+	}
+	
 	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
 	public void signIn() {
 		
