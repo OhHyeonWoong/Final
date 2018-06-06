@@ -297,5 +297,23 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.updatesellcount(pk);
 	}
 
+	@Override
+	public int getitemtype(int itemlistno) {
+		// TODO Auto-generated method stub
+		return  itemlistDao.getitemtype(itemlistno);
+	}
+
+	@Override
+	public List<com.kh.goodluck.item.model.vo.GetMyItem> GetMyItem2(com.kh.goodluck.item.model.vo.GetMyItem gmi) {
+		// TODO Auto-generated method stub
+		return itemlistDao.GetMyItem2(gmi);
+	}
+
+	@Override
+	public ITEMLIST getmixicon(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getmixicon(map);
+	}
+
 	
 }

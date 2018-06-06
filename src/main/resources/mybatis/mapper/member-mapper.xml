@@ -78,38 +78,14 @@
 		]]>
 	</delete>
 	
-	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
-		insert into member 
-		values 
-		(#{userId}, 
-		#{userPwd}, 
-		#{userName}, 
-		#{gender}, 
-		#{age}, 
-		#{phone}, 
-		#{email}, 
-		#{hobby}, 
-		#{etc}, 
-		sysdate, 
-		sysdate)		
-	</insert>
-	
-	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
-		update member 
-		set userpwd = #{userPwd}, 
-		age = #{age}, 
-		phone = #{phone}, 
-		email = #{email}, 
-		hobby = #{hobby}, 
-		etc = #{etc}, 
-		lastmodified = sysdate 
-		where userid = #{userId}
+	<update id="updateMemberCash" parameterType="Member" flushCache="true">
+		<![CDATA[
+			update member
+			set member_cash = #{member_cash}
+			where member_id = #{member_id}
+		]]>
 	</update>
 	
-	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
-		delete from member 
-		where userid = #{userId}
-	</delete> -->
 <update id="upgradeboardcount" parameterType="String">
 update MEMBER set MEMBER_WRITE_COUNT = (MEMBER_WRITE_COUNT+1) where MEMBER_ID = #{memberid}
 </update>

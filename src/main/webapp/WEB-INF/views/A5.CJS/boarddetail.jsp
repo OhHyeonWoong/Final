@@ -3,30 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
+
+
+<meta charset="UTF-8">
+<title>보더 타이틀</title>
+</head>
+<body>
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+
 <script type="text/javascript">
 	$(function () {
-		
 		$("#ukapplybtn").on("click",function(){		
 			$('#myModal').modal('show');
 		});	
-		
         var kanbanCol = $('.panel-body1');
         kanbanCol.css('max-height', (window.innerHeight - 150) + 'px');
-
         var kanbanColCount = parseInt(kanbanCol.length);
         $('.container-fluid').css('min-width', (kanbanColCount * 350) + 'px');
-
         draggableInit();
-
         $('.panel-heading').click(function() {
             var $panelBody = $(this).parent().children('.panel-body1');
             $panelBody.slideToggle();
         });
     });
-
     function draggableInit() {
         var sourceId;
 
@@ -102,44 +101,96 @@
     background-color: #4a9fe9;
 }
 </style>
-<meta charset="UTF-8">
-<title>보더 타이틀</title>
-</head>
-<body>
-<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <div class="container">
-<table style="border-color: red; width:100%">
+
+${Board};
+<br>
+${Cateinfo};
+
+<style>
+#boardDetailTable tr {
+ height: 40px;
+}
+</style>
+<table style="border-color: red; width:100%" id="boardDetailTable">
 <tr>
 <th style="width: 60%">
         <div class="col-xs-12 col-sm-6 col-md-6" style="width: 100%">
             <div class="well well-sm">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <h4> 카테고리 나열들, 전부 a태그 줘서 항상 바로 검색가능</h4><Br>
-                        <h5> 제목</h5>
-                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                   <div class="col-sm-6 col-md-8" style="width: 100%">
+                        <h3> 
+                       ${Cateinfo.CATEGORY_BIG_NAME} > 
+                       ${Cateinfo.CATEGORY_MID_NAME} >
+                       ${Cateinfo.CATEGORY_SMALL_NAME} 
+                       </h3><Br>
+                       <c:choose>
+                       <c:when test="${Board.agency_type == 1}"><h4><font style="color: blue">구합니다!</font></h4></c:when>
+                       <c:when test="${Board.agency_type == 2}"><h4><font style="color: red">해줍니다!</font></h4></c:when>
+    
+                       </c:choose>
+                   
+                        <h5>${Board.agency_title}</h5>
+                        
+                        <table  style="width: 100%"> 
+                        <tr>
+                        <td width="30%">
+                        <small><cite title="San Francisco, USA">지역 : ${Board.agency_loc}<i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
-                        <p>
-                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                        </td>
+                        <td><i class="glyphicon glyphicon-envelope"></i>email@example.com
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>수행 예정일: ${Board.agency_startdate} </td>
+                        <td>마감 예정일: ${Board.agency_enddate} </td>
+                        </tr>
+             
+                       
+                        <tr>
+                        <td>게시물 등록일 : ${Board. agency_enrolldate}  <i class="fa fa-calendar-check-o"></i></td>
+                        <td>  </td>
+                        </tr>
+                        
+                        <tr>
+                        <td>수당 방식 : 
+                        <c:choose>
+                        <c:when test="${Board.agency_paytype == 1}">시급</c:when>
+                        <c:when test="${Board.agency_paytype == 1}">일급</c:when>
+                        
+                        </c:choose></td>
+                        <td>방식당 페이:${Board.agency_pay}원  </td>
+                        </tr>
+                  
+                  <tr>
+                  <td>조회수 : ${Board.agency_views}
+                  </td>
+                  
+                  </tr>
+                  
+                  <tr>
+                  <th colspan="2" style="width: 80%">
+
+	<c:forEach var="keyword" items="${keywords}">
+	
+	<a href="#">#${keyword}</a> &nbsp;
+	
+	</c:forEach>
+                  
+                  
+                  
+                  </th>
+                  
+                  </tr>
+                        </table>
                     </div>
                 </div>
             </div> 
         </div>
-
-
-
 </th>
 
-<th style="width: 30%"> 
-<div id="map" style="width:100%; height:100%; background: red;">
-여기에 지도 추가하기 
+<th style="width: 30%; height: 325px;"> 
+<div id="map" style="width:100%; height:100%;">
 </div>
 </th>
 </tr>
@@ -167,7 +218,17 @@
         </div>    
         <hr style="clear: both;">
 
-     <center><button id="ukapplybtn" data-target="#myModal2">신청하기</button> <button>뒤로가기</button></center> 
+     <center>
+     <c:choose>
+     <c:when test="${loginUser eq null}">    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+					<i class="fa fa-sign-in"></i> 로그인하러가기   </c:when>
+     <c:when test="${loginUser ne null}">  <button id="ukapplybtn" data-target="#myModal2">신청하기</button> </c:when>
+     <c:when test=""></c:when>
+     
+     </c:choose>
+   
+     
+     <button>뒤로가기</button></center> 
 </th>
 
 
@@ -237,7 +298,95 @@
 
 </table>
 </div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services,clusterer,drawing"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 4 // 지도의 확대 레벨
+};  
+var geocoder = new daum.maps.services.Geocoder();
+var coords="";
+var coords1="";
+geocoder.addressSearch('경기도 도덕공원로', function(result, status) {
 
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+    coords = new daum.maps.LatLng(result[0].y, result[0].x);
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+    console.log("coords="+coords)
+     var circle = new daum.maps.Circle({
+    	    center : coords,  // 원의 중심좌표 입니다 
+    	    radius: 50, // 미터 단위의 원의 반지름입니다 
+    	    strokeWeight: 5, // 선의 두께입니다 
+    	    strokeColor: '#75B8FA', // 선의 색깔입니다
+    	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    	    strokeStyle: 'dashed', // 선의 스타일 입니다
+    	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+    	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+    	}); 
+
+    	// 지도에 원을 표시합니다 
+    	circle.setMap(map); 
+});
+
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+
+// 주소로 좌표를 검색합니다
+
+
+geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+        coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+        console.log("coords1="+coords1);
+        var positions = [
+            {
+                content: '<div text-align:"center">카카오</div>', 
+                latlng: coords1
+            }
+        ];
+
+        for (var i = 0; i < positions.length; i ++) {
+            // 마커를 생성합니다
+            console.log(positions);
+            var marker = new daum.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng // 마커의 위치
+            });
+
+            // 마커에 표시할 인포윈도우를 생성합니다 
+            var infowindow = new daum.maps.InfoWindow({
+                content: positions[i].content // 인포윈도우에 표시할 내용
+            });
+
+            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            (function(marker, infowindow) {
+                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+                daum.maps.event.addListener(marker, 'mouseover', function() {
+                    infowindow.open(map, marker);
+                });
+
+                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+                daum.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                });
+            })(marker, infowindow);
+        }    
+        
+        
+    } 
+});
+</script>
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 
 		<div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

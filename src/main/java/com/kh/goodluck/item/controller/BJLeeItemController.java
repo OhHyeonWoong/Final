@@ -28,6 +28,7 @@ public class BJLeeItemController {
 	
 	@RequestMapping(value="lbjMyItem.go",method=RequestMethod.POST)
 	public void itemListMethod(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println("lbjMyItem.go run...");
 		String member_id = request.getParameter("member_id");		
 		/*
 		 * 페이징 처리 Let's go!
@@ -54,11 +55,15 @@ public class BJLeeItemController {
 		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int itemEndRow = qnaStartRow + qnaLimit - 1;
 	    
+	    System.out.println("qnaStartRow = " + qnaStartRow);
+	    System.out.println("itemEndRow = " + itemEndRow);
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();
 	    map.put("startRow", qnaStartRow);
 	    map.put("endRow", itemEndRow);
 	    map.put("member_id", member_id);
 		ArrayList<MyPageItem> myItem = (ArrayList<MyPageItem>)ItemService.selectMyPageItem(map);
+		
+		System.out.println("myItem size = " + myItem.size());
 		
 		 if (itemMaxPage < itemEndRow)
 		 itemEndRow = itemMaxPage;
@@ -80,10 +85,10 @@ public class BJLeeItemController {
 				job2.put("qnaStartPage", qnaStartPage);
 				job2.put("itemEndRow", itemEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
-				job2.put("itemListCount", itemListCount);
-				
+				job2.put("itemListCount", itemListCount);			
 			}
 			jarr.add(job2);
+			System.out.println("job를 찍어보자" + i + " = " + job2);
 		}
 		
 		jobj.put("item", jarr);

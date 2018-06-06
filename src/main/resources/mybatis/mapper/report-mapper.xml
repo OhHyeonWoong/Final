@@ -24,5 +24,16 @@
 			select * from report where report_no = #{report_no}
 		]]>
 	</select>
-	
+	<insert id="insertMyReport" parameterType="Report" flushCache="true">
+		<![CDATA[
+			insert into report values ((select max(report_no)+1 from report),#{report_title},
+			#{report_content},#{report_writer},#{report_category},default,#{report_rename_filename})
+		]]>
+	</insert>
+	<delete id="deleteMyReport" parameterType="int" flushCache="true">
+		<![CDATA[
+			delete from report 
+			where report_no = #{report_no}
+		]]>
+	</delete>
 </mapper>

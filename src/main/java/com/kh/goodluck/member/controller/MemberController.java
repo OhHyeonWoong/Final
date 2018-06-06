@@ -50,6 +50,12 @@ public class MemberController {
 	public String homeGo() {
 		return "home";
 	}
+	//결제 테스트용
+	@RequestMapping(value="lbjPayTest.go")
+	public String movePayTest() {
+		return "A6.LBJ/test/payTest";
+	}
+	////////////////////
 	//병준 마이페이지 테스트용 메소드
 	@RequestMapping(value="lbjmypage.go")
 	public ModelAndView mypageGo(ModelAndView mv,HttpServletRequest request) {
@@ -96,7 +102,7 @@ public class MemberController {
 		//보내기용 arraylist생성
 		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
 		qnaPage.put("qnaMaxPage",qnaMaxPage);
-		qnaPage.put("qnaStartPage",qnaStartRow);
+		qnaPage.put("qnaStartPage",qnaStartPage);
 		qnaPage.put("qnaEndRow",qnaEndRow);
 		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
 		qnaPage.put("qnaListCount",qnaListCount);
@@ -126,6 +132,9 @@ public class MemberController {
 		itemPage.put("itemEndRow",itemEndRow);
 		itemPage.put("itemListCount",itemListCount);
 		
+		System.out.println("itemEndRow = " + itemEndRow);
+		System.out.println("itemListCount = " + itemListCount);
+		
 		mv.addObject("lbjMyItem", myItem);
 		mv.addObject("itemPage",itemPage);
 		//item 세팅 끝-----------------------------------------------------------
@@ -148,9 +157,9 @@ public class MemberController {
 			reportEndRow = reportMaxPage;
 		
 	    HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
-		itemPage.put("reportMaxPage",reportMaxPage);
-		itemPage.put("reportEndRow",reportEndRow);
-		itemPage.put("reportListCount",reportListCount);
+		reportPage.put("reportMaxPage",reportMaxPage);
+		reportPage.put("reportEndRow",reportEndRow);
+		reportPage.put("reportListCount",reportListCount);
 		
 		mv.addObject("lbjMyReport", myReport);
 		mv.addObject("reportPage",reportPage);
@@ -181,14 +190,15 @@ public class MemberController {
 		if(m != null) {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
-			if(result > 0) {
+			if(result > 0 && m.getMember_status() != 2) {
 				System.out.println("Update Last Login.. Success.. ");
+				out.write("로그인 성공");
+				model.addAttribute("loginUser", m);
 			}else {
 				System.out.println("Update Last Login.. Fail.. ");
+				out.write("로그인 제제된 유저입니다.");
 			}
 			/////////////////////////
-			out.write("로그인 성공");
-			model.addAttribute("loginUser", m);
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
 		}else {
@@ -317,13 +327,14 @@ public class MemberController {
 	
 	@RequestMapping(value="lbjMemberOut.go",method=RequestMethod.POST)
 	public void memberOutMethod(@RequestParam(name="member_id",required=false) String member_id,
-			HttpServletResponse response) throws IOException{
+			HttpServletResponse response,SessionStatus status) throws IOException{
 		//회원 탈퇴 처리용 메소드
 		//System.out.println("deleteMember member_id = " + member_id);
 		int result = memberService.deleteMemberOut(member_id);
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.print("회원 탈퇴 성공");
+			status.setComplete();
 		}else {
 			out.print("회원 탈퇴 실패");
 		}
@@ -331,4 +342,37 @@ public class MemberController {
 		out.close();
 	}
 	
+<<<<<<< HEAD
+=======
+	@RequestMapping(value="lbjUpdateMemberCash.go")
+	public void updateMemberCashMethod(Member m,HttpServletResponse response,
+			  					HttpSession session) throws IOException{
+		//멤버 캐시 정보 업데이트
+		//세션정보 업데이트용 객체
+		Member member = null;
+		///////////////////////
+		System.out.println("updateMemberCashMethod run...");
+		int result = memberService.updateMemberCashMethod(m);
+		if(result > 0) {
+			//세션 정보 갱신
+			System.out.println("결제 성공...");
+			if(session.getValue("loginUser") != null) {
+				//업데이트된 캐시정보로 정보 바꿔줌
+			    member=(Member)session.getAttribute("loginUser");
+			    member.setMember_cash(m.getMember_cash());
+			}
+		}else {
+			//결제 실패
+			System.out.println("결제 실패...");
+		}
+		/////////////////
+		response.sendRedirect("home.go");
+	}
+	
+	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
+	public void signIn() {
+		
+	}
+	
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 }

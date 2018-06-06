@@ -1,7 +1,7 @@
 package com.kh.goodluck.board.model.service;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 
@@ -26,9 +27,9 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	
-	public List<Board> selectCategory(Board board){
+	public List<Board> selectCategory(HashMap<Object, Object> map){
 		
-		return boardDao.selectCategory(board);
+		return boardDao.selectCategory(map);
 	}
 	
 	public List<BigCategory> selectBigCategoryAll(){
@@ -56,14 +57,29 @@ public class BoardService {
 		return boardDao.selectCategoryLink2();
 	}
 
-	public List<Board> selectCategoryMid(Board board) {
+	public List<Board> selectCategoryMid(HashMap<Object, Object> map) {
 		
-		return boardDao.selectCategoryMid(board);
+		return boardDao.selectCategoryMid(map);
 	}
 	
-	public List<Board> selectCategoryBig(Board board) {
+	public List<Board> selectCategoryBig(HashMap<Object, Object> map) {
 		
-		return boardDao.selectCategoryBig(board);
+		return boardDao.selectCategoryBig(map);
+	}
+	
+	public int getAgencyCount(String string) {
+		
+		return boardDao.getAgencyCount(string);
+	}
+	
+	public int getAgencyCountMid(String string) {
+
+		return boardDao.getAgencyCountMid(string);
+	}
+
+	public int getAgencyCountBig(String string) {
+
+		return boardDao.getAgencyCountBig(string);
 	}
 
 	////////////메인영역 뿌려지는 데이터////////////////////
@@ -108,6 +124,28 @@ public class BoardService {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출		
 		return boardDao.mainShowRequireListPickUp();			
 	}
+
+	public Board getBoardInfoByNo(int pk) {
+		// TODO Auto-generated method stub
+		return  boardDao.getBoardInfoByNo(pk);		
+	}
+
+	public int IncreaseViewCount(int pk) {
+		// TODO Auto-generated method stub
+		return 	boardDao.IncreaseViewCount(pk);		
+	}
+
+	public GetCategoryForBoardDetail gcfbd(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.GetCategoryForBoardDetail(pk);		
+	}
+
+	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
+		// TODO Auto-generated method stub
+		return boardDao.IncreasesSMALLCATEGORYCOUNT(parseInt);		
+	}
+
+	
 	
 	
 	

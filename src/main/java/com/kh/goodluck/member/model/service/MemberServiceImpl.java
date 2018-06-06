@@ -88,5 +88,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.adMemberList();
 	}
 	
+	@Override
+	public int updateMemberCashMethod(Member m) {
+		//멤버 캐시 결제
+		return memberDao.updateMemberCashMethod(m);
+	}
 	
 }	

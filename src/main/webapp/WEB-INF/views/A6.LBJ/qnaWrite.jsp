@@ -22,6 +22,7 @@
 			var member_id = $('#member_id').val();
 			var question_category = $('#sel1 option:selected').val();
 			
+			if(question_category != '카테고리선택'){
 			$.ajax({
 				url:"lbjqnawritemethod.go",
 				type:"post",
@@ -42,6 +43,9 @@
 					alert("a = " + a + " , b = " + b + " , c = " + c);
 				}
 			});
+			}else{
+				alert("카테고리를 선택해주세요.");
+			}
 			/* lbjqnawritemethod.go */
 		}
 	</script>

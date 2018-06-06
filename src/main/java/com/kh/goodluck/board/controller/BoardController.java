@@ -1,7 +1,7 @@
 package com.kh.goodluck.board.controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,59 +37,75 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="bshtest.go", method=RequestMethod.GET)
-	public ModelAndView test(Board board, ModelAndView mv) {
+	public ModelAndView test(Board board,HttpServletRequest request,ModelAndView mv) {
 		
+		int pageNum = Integer.parseInt(request.getParameter("page"));
+		int agencycount = -1;
+		String link2name = board.getLink2_no();
+		String link2type = null;
 		
+		//System.out.println(pageNum);
 		//System.out.println(board);
+
 		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
 		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
 		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
 		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
 		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
+		ArrayList<String> strlist = new ArrayList<String>();
+		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
+		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
 		
-		String mdname = board.getLink2_no();
 		
-		List<Board> boardlist = null;
-		boolean flag = true;
-		boolean search = false;
-		
-		while(flag) {
-			for(BigCategory b : bigcategorylist) {
-				if(b.getCategory_big_name().equals(mdname)) {
-					/*System.out.println(mdname);*/
-					boardlist = boardservice.selectCategoryBig(board);
-					flag =false;
-					search=true;
-					break;
-				}
-			}	
-			if(flag) {
-				for(MidCategory m : midcategorylist) {
-					if(m.getCategory_mid_name().equals(mdname)) {
-						/*System.out.println(mdname);*/
-						boardlist = boardservice.selectCategoryMid(board);
-						flag =false;
-						search=true;
-						break;
-					}
+		for(BigCategory b:bigcategorylist) {
+			if(b.getCategory_big_name().equals(link2name)) {
+				link2type ="bigcategory";
+				agencycount = boardservice.getAgencyCountBig(link2name);
+			}
+		}
+		if(link2type == null) {
+			for(MidCategory m:midcategorylist) {
+				if(m.getCategory_mid_name().equals(link2name)) {
+					link2type ="midcategory";
+					agencycount = boardservice.getAgencyCountMid(link2name);
 				}
 			}
-			
-			flag =false;
 		}
-		if(!search) {
-			boardlist = boardservice.selectCategory(board);
+		if(link2type == null) {
+			link2type ="smallcategory";
+			agencycount = boardservice.getAgencyCount(link2name);
 		}
 		
-		ArrayList<String> strlist = new ArrayList<String>();
+		System.out.println("link2type:"+link2type+",agencycount:"+agencycount);
+		
+		
+		List<Board> boardlist = null;
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("categoryname", board.getLink2_no());
+		map.put("startrow", (pageNum*20)-19);
+		map.put("endrow", (pageNum*20));
+		
+		if (link2type.equals("bigcategory")) {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategoryBig(map);
+		} else if (link2type.equals("midcategory")) {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategoryMid(map);
+		} else {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategory(map);
+		}
+			
+		
+		
+		
+		
 		
 		//System.out.println(boardlist);
 		
 		/*for(Board b:boardlist) {
 			System.out.println("글번호:"+b.getAgency_no());
 		}*/
-		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
-		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
 		
 		//int catelink1length = catelink1.length;
 		
@@ -168,13 +184,34 @@ public class BoardController {
 		//mv.addObject("catelink1",catelink1);
 		//mv.addObject("catelink2",catelink2);
 		//mv.addObject("catelink1length",catelink1length);
+		
+		
+		agencycount = (int)((double)(agencycount/20)+1.9);
+		System.out.println("re-agencycount:"+agencycount);
+		mv.addObject("agencycount", agencycount);
+		mv.addObject("link2name", link2name);
+		mv.addObject("link2type", link2type);
+		mv.addObject("pageNum", pageNum);
 		mv.addObject("strlistlegnth",strlistlegnth);
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="bshgetpagecount.go")
+	public void getpagecount(HttpServletRequest request,HttpServletResponse response) {
+		int currentPagecount = 1;
+		if(request.getParameter("page") != null) {
+			currentPagecount = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		System.out.println("currentPagecount = " + currentPagecount);
+		
+		int limit = 20;
+		
+		int agencyCount = boardservice.getAgencyCount(request.getParameter("category").toString());
+		
+	}
 	
 	
 }

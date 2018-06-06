@@ -38,7 +38,8 @@ WHERE RNUM >=#{startRow} ORDER BY MYITEM_NO DESC
 select * from (
 select * from
 (select ROWNUM AS RNUM, A.* FROM  
-(select * from my_item where member_id = #{MEMBER_ID} and (select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO)=2) 
+(select * from my_item where member_id = #{MEMBER_ID} and  myitem_status = 1 and 
+(select itemtype from itemlist where itemlist_no= my_item.ITEMLIST_NO)=2  ) 
 A WHERE ROWNUM <= #{endRow} )
 WHERE RNUM >= #{startRow} ORDER BY MYITEM_NO DESC
 ) a, itemlist b where a.ITEMLIST_NO= b.ITEMLIST_NO
@@ -50,7 +51,8 @@ select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and
 myitem_status = 1 and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE != 2
 </select>
 <select id="gethavingListCount1" resultType="int">
-select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE = 2
+select  count(*) from my_item,ITEMLIST where member_id =#{memberid} and my_item.ITEMLIST_NO=ITEMLIST.ITEMLIST_NO and ITEMTYPE = 2 and 
+myitem_status = 1
 </select>
 
 <update id="turnitemstatus" parameterType="int">
@@ -59,6 +61,9 @@ update my_item set MYITEM_STATUS = 2 where MYITEM_NO = #{useritempk}
 
 
 
-
+<select id="GetMyItem2" parameterType="GetMyItem" resultMap="GetmyitemResult">
+select * from my_item m,itemlist i where m.member_id = 'user02' and  m.myitem_status = 1 and 
+m.itemlist_no=i.itemlist_no and i.ITEMtype=2 and myitem_no != #{MYITEM_NO}
+</select>
 
 </mapper>

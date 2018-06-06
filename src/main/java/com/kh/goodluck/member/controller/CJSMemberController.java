@@ -62,4 +62,9 @@ public class CJSMemberController {
 	out.close();	
 	}
 	
+	@RequestMapping("maptest.go")
+	public String maptestgo() {
+		
+		return "A5.CJS/maptest";
+	}
 }

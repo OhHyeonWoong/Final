@@ -1,6 +1,7 @@
 package com.kh.goodluck.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -12,6 +13,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 
@@ -29,9 +31,14 @@ public class BoardDao {
 	
 	
 	
-	public List<Board> selectCategory(Board board) {
+	public List<Board> selectCategory(HashMap<Object, Object> map) {
 		
-		return sqlSession.selectList("selectCategory", board);
+		return sqlSession.selectList("selectCategory", map);
+	}
+	
+	public List<Board> selectCategoryFirst(Board board) {
+		
+		return sqlSession.selectList("selectCategoryFirst", board);
 	}
 
 
@@ -72,20 +79,45 @@ public class BoardDao {
 
 
 
-	public List<Board> selectCategoryMid(Board board) {
+	public List<Board> selectCategoryMid(HashMap<Object, Object> map) {
 		
-		return sqlSession.selectList("selectCategoryMid", board);
+		return sqlSession.selectList("selectCategoryMid", map);
 	}
 	
-	
-	
-	public List<Board> selectCategoryBig(Board board) {
+	public List<Board> selectCategoryMidFirst(Board board) {
 		
-		return sqlSession.selectList("selectCategoryBig", board);
+		return sqlSession.selectList("selectCategoryMidFirst", board);
 	}
-
+	
+	public List<Board> selectCategoryBig(HashMap<Object, Object> map) {
+		
+		return sqlSession.selectList("selectCategoryBig", map);
+	}
+	
+	public List<Board> selectCategoryBigFirst(Board board) {
+		
+		return sqlSession.selectList("selectCategoryBigFirst", board);
+	}
     
+	
+	public int getAgencyCount(String string) {
 
+		return sqlSession.selectOne("getAgencyCount",string);
+	}
+	
+	public int getAgencyCountMid(String string) {
+
+		return sqlSession.selectOne("getAgencyCountMid",string);
+	}
+	
+	public int getAgencyCountBig(String string) {
+
+		return sqlSession.selectOne("getAgencyCountBig",string);
+	}
+	
+	
+	
+	
 	public List<Board> mainShowLifeListPickUp() {
 		//메인페이지에 보여질 생활영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowLifeListPic");
@@ -131,5 +163,37 @@ public class BoardDao {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowRequireListPic");
 	}
+
+
+
+	public Board getBoardInfoByNo(int pk) {
+		// 보드pk로 보드 정보구하기.
+		return sqlSession.selectOne("getBoardInfoByNo",pk);
+	}
+
+
+
+	public int IncreaseViewCount(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("IncreaseViewCount",  pk);
+	}
+
+
+
+	public GetCategoryForBoardDetail GetCategoryForBoardDetail(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("GetCategoryForBoardDetail",pk);
+	}
+
+
+
+	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
+	}
+
+
+
+
 	
 }
