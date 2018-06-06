@@ -11,8 +11,8 @@
 	<!-- datasource 등록은 서버 연동과 같이 DB 연결이 같이 이루어져야 하기 때문에
 		root-context.xml 에서 설정한다. -->
 	<!-- DataSource 등록 : db연결 정보 -->
-	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close	하라는 뜻임 -->
-	
+	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
+		하라는 뜻임 -->
 
 	<!-- <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
@@ -35,7 +35,7 @@
 		<property name="defaultAutoCommit" value="false" />
 	</bean>-->
 	  
-	<bean id="dataSource"
+	<!--<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName"
@@ -44,7 +44,7 @@
 		<property name="username" value="final" />
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
-	</bean>
+	</bean>-->
 
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"
