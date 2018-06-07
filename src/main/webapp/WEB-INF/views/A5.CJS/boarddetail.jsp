@@ -163,7 +163,7 @@ ${Cateinfo};
                         </tr>
                   
                   <tr>
-                  <td>조회수 : ${Board.agency_views}
+                  <td>조회수 : ${Board.AGENCY_VEIWS}
                   </td>
                   
                   </tr>
@@ -202,16 +202,14 @@ ${Cateinfo};
             <div class="panel with-nav-tabs panel-primary">
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1primary" data-toggle="tab">Primary 1</a></li>
-                            <li><a href="#tab2primary" data-toggle="tab">Primary 2</a></li>
-                            <li><a href="#tab3primary" data-toggle="tab">Primary 3</a></li>
+                            <li class="active"><a href="#tab1primary" data-toggle="tab">상세 설명</a></li>
+                       
                         </ul>
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="tab1primary">Primary 1</div>
-                        <div class="tab-pane fade" id="tab2primary">Primary 2</div>
-                        <div class="tab-pane fade" id="tab3primary">Primary 3</div>
+                        <div class="tab-pane fade in active" id="tab1primary">${Board.agency_content}</div>
+                  
                     </div>
                 </div>
             </div>
@@ -224,10 +222,7 @@ ${Cateinfo};
 					<i class="fa fa-sign-in"></i> 로그인하러가기   </c:when>
      <c:when test="${loginUser ne null}">  <button id="ukapplybtn" data-target="#myModal2">신청하기</button> </c:when>
      <c:when test=""></c:when>
-     
      </c:choose>
-   
-     
      <button>뒤로가기</button></center> 
 </th>
 
@@ -406,7 +401,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 					      var bool = confirm('정말로 신청 하시겠습니까?');
 					      if(bool==true){
 					         alert("신청이 완료 되었습니다!");
-					         location.href="DealingState.go";
+					         location.href="DealingState.go?BoardNo=${Board.agency_no}&memberid=${loginUser.MEMBER_ID}";
 					      }else {
 					         alert("신청이 취소 되었습니다.");            
 					      }
