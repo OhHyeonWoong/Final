@@ -19,6 +19,7 @@
 		<result property="agency_pay" column="agency_pay"/>
 		<result property="agency_status" column="agency_status"/>
 		<result property="agency_content" column="agency_content"/>
+		<result property="AGENCY_VEIWS" column="AGENCY_VEIWS"/>
 		<result property="agency_views" column="agency_views"/>
 		<result property="agency_keyword" column="agency_keyword"/>
 		<result property="agency_option" column="agency_option"/>
@@ -54,6 +55,20 @@
 		<result property="category_mid_code" column="category_mid_code"/>
 		<result property="category_small_code" column="category_small_code"/>
 	</resultMap>
+		
+		
+	<resultMap type="Chat" id="Chat">
+		<id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
+		<result property="CHATROOM_NO" column="CHATROOM_NO"/>
+		<result property="CHATDEATIL_CONTENT" column="CHATDEATIL_CONTENT"/>
+		
+		<result property="CHATDEATIL_MEMBER" column="CHATDEATIL_MEMBER"/>
+		<result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
+		<result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
+		<result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
+
+	</resultMap>
+	
 		
 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
@@ -166,7 +181,17 @@
 select * from AGENCY where AGENCY_NO = #{pk}
 </select>
 <update id="IncreaseViewCount">
-update AGENCY set AGENCY_VEIWS = (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk}) where AGENCY_NO = #{pk}
+update AGENCY set AGENCY_VEIWS = 
+(select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
+ where AGENCY_NO = #{pk}
 </update>
+<select id="updateAgencyStatus" parameterType="HashMap">
+update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
+</select>
+
+
+<insert id="insertchatroom" parameterType="HashMap">
+insert into CHATROOM ((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2})
+</insert>
 
 </mapper>

@@ -16,6 +16,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
+import com.kh.goodluck.board.model.vo.Trade_detail;
 
 
   
@@ -188,9 +189,22 @@ public class BoardDao {
 
 
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
+	return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
 	}
+	public void updateAgencyStatus(HashMap<Object, Object> map) {
+	sqlSession.selectOne("updateAgencyStatus",map);
+	}
+    public int insertNewTradeDetail(Trade_detail td) {
+	return sqlSession.insert("insertNewTradeDetail",td);
+	}
+    public int UpdateTradeReserVation(Trade_detail td) {
+	return sqlSession.update("UpdateTradeReserVation",td);
+	}
+    public int insertchatroom(HashMap<Object, Object> map) {
+	return  sqlSession.insert("insertchatroom",map);
+	}
+
+
 
 
 
