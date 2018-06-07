@@ -215,11 +215,9 @@ public class JDK_MemberController {
 			member.setMember_phone(memberPhone);
 			member.setMember_email(memberEmail);
 			member.setMember_regident_number(memberSocialNum);
-			
 			//나머지 필요요소는 쿼리문에서 직접 작성함
 			//이제 서비스 타고 실제 회원 가입 진행
 			int enrollment=memberService.memberEnroll(member);
-			
 		try {
 			//회원 가입이 완료되었을 경우
 			if(enrollment==1) {
@@ -231,10 +229,8 @@ public class JDK_MemberController {
 				String mess="회원 가입이 실패하였습니다.";
 				request.setAttribute("message", mess);
 				request.getRequestDispatcher("home").forward(request, response);
-				
 			}
 		}catch(Exception e) {
-			
 			}
 		}
 		//어드민 페이지 관련 메소드
@@ -254,13 +250,9 @@ public class JDK_MemberController {
 		public String adminItemManagement() {
 			return "A3.JDK/admin_itemlist";
 		}
-			
 		//병준씨 어드민 페이지 통계 창 이동용 메소드
-				@RequestMapping(value="lbjStatisticsTest.go")
-				public String adminStatistic() {
-					return "A4.LBJ/adminStatistics/admin_loginStatistics";
-				}
-				
-		
-		
+		@RequestMapping(value="lbjStatisticsTest.go")
+		public String adminStatistic() {
+			return "A4.LBJ/adminStatistics/admin_loginStatistics";
+		}
 }

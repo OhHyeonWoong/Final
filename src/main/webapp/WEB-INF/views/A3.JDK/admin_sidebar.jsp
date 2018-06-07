@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="panel">
-            <a id="panel6" href="javascript:;" data-toggle="collapse" data-target="#inbox"> 
+            <a id="panel6" href="lbjStatisticsTest.go" data-toggle="collapse" data-target="#inbox"> 
             <i class="fa fa-inbox"></i> 서비스 통계 <i class="fa fa fa-chevron-left pull-right" id="arow6"></i> </a>
           </li>
           <li class="panel">
