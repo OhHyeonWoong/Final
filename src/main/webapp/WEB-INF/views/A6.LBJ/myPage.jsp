@@ -403,6 +403,16 @@
 				alert("취소되었습니다.");
 			}
 		}
+		
+		$(function(){
+			$('#InputPassword2').blur(function(){
+				if($(this).val() == $('#InputPassword1').val()){
+					alert("비밀번호가 일치합니다.");	
+				}else{
+					alert("비밀번호가 일치하지 않습니다.");
+				}
+			});
+		});
 	</script>
 	<c:choose>
 		<c:when test="${loginUser eq null}">
