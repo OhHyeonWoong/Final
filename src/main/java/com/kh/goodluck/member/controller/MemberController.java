@@ -364,7 +364,7 @@ public class MemberController {
 			//결제 실패
 			System.out.println("결제 실패...");
 		}
-		/////////////////
+
 		response.sendRedirect("home.go");
 	}
 	

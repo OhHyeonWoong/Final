@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.io.PrintWriter;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import oracle.net.aso.b;
 import oracle.net.aso.d;
@@ -121,12 +123,11 @@ public class JDK_MemberController {
 		
 		
 		//회원가입 메소드
+		@Autowired(required = false)
 		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
-		public void signIn(HttpServletResponse response, HttpServletRequest request,MultipartRequest mr, Member member, @RequestParam("member_profile") MultipartFile mf) throws Exception {
-			
+		public void signIn(HttpServletResponse response, HttpServletRequest request, Member member,MultipartRequest mr, @RequestParam("member_profile") MultipartFile mf) throws Exception {
 			//회원을 입력하기 위해서 결론적으로 Member 객체를 완성한 이후에 쿼리문에서 전송하여 올릴 것이므로...
 			//최종적으로 Member 객체를 완성시키는 형식으로 진행
-			
 			//아이디 받아오기
 			String memberId=request.getParameter("member_id");
 			//이름 가지고 오기
@@ -144,7 +145,9 @@ public class JDK_MemberController {
 			//주민등록번호 가지고 오기
 			int memberSocialNum=Integer.parseInt(request.getParameter("member_social_front")+request.getParameter("member_social_end"));
 ////////////////////프로필 사진 가지고 오는 메소드(추후 이름 값을 현재 시간단위로 바꾸고 변수로 올리는 방식으로 수정 : 파일 업로드 처리)////////////
-				/*우선 필요한 값을 정리해보자
+				/*
+				 * 
+				 우선 필요한 값을 정리해보자
 				a. 내가 파일을 저장할 장소에 대한 path
 				b. 파일명을 가지고 와야하고 그 과정에서
 				c. img, png를 제외한 값은 올라가면 안되며
@@ -158,8 +161,7 @@ public class JDK_MemberController {
 			//2.우리가 DB에 저장하고 싶은 파일명이 결정되는 구간입니다.
 			if(profile.equals("")) {
 				//만약 파일을 올리지 않았으면 이름에 "" 값만 있을 것이기 때문에
-				//내가 디폴트로 잡아놓은 이름값을 넣어주면 됨
-				//디폴드 이미지의 이름 값을 vo에 넣어줍니다.
+				//내가 디폴트로 잡아놓은 이름값을 넣어주면 됨 //디폴드 이미지의 이름 값을 vo에 넣어줍니다.
 				profile = "base_profile.png";
 				member.setMember_renamephoto(profile);
 				//이제 해야 할 일은 실제로 파일을 받아서 그 파일 이름을 변환하고 내가 원하는 장소에 저장을 시켜야 합니다. 
@@ -179,34 +181,32 @@ public class JDK_MemberController {
 				//자... 이제 DB와 실제 저장될 이미지의 이름을 구하는 과정이 끝이 났습니다.
 				//이제는 실제 파일의 이름을 우리가 지정한 'rename'으로 고쳐주고
 				//원하는 위치에 지정하여 저장을 해주면 됩니다.
-				
-				
 				//얘는 딱히 지금은 쓸 필요가 없습니다.
-				PrintWriter out = response.getWriter();
-				
+				//PrintWriter out = response.getWriter();
 				//우선 파일을 가지고 오는데 이미 메소드를 실행할 때 파라미터 값을 이용해서 파일을 가지고 온 값이 있습니다.
 				//파일 저장 경로 지정
-				String fileSavePath= "/resources/A3.JDK/images/userprofile";
+				String fileSavePath= "/goodluck/resources/A3.JDK/images/userprofile";
 				//파일 크기 제한
 				int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
 				//encType = "multiPartForm"으로 왔는지 확인
 				String encType="UTF-8"; // 파일 인코딩 방식????
 				if(!ServletFileUpload.isMultipartContent(request)) {
-					response.sendRedirect("A5.CJS/ErrorPage");}
+					response.sendRedirect("A5.CJS/ErrorPage");
+				}
 				//이게 뭔말이지?
 				ServletContext context = request.getSession().getServletContext();
 				//실제 저장 경로????
 				String uploadPath = context.getRealPath("fileSavePath");
-				
 				//MultipartRequest 선언을 통한 실제 업로딩
-				/*mr = new MultipartRequest(request,uploadPath,uploadSizeLimit,encType);*/ 
-				
+				mf.getOriginalFilename(); 
+				File f = new File(fileSavePath+"\\"+rename);
+				mf.transferTo(f);
 			}
 			
-			} catch(Exception e) {
+		} catch(Exception e) {
 				e.printStackTrace();
-			}
-////////////////////////////////////////////////////////////////////////////////////////////////////			
+		}
+			//////////////////////////////////////////////////////////////////			
 			//멤버 객체 직접 완성
 			member.setMember_id(memberId);	
 			member.setMember_name(memberName);
@@ -254,5 +254,5 @@ public class JDK_MemberController {
 		public String adminItemManagement() {
 			return "A3.JDK/admin_itemlist";
 		}
-		
+				
 }
