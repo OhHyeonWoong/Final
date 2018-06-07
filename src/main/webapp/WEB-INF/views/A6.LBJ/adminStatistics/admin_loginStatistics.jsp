@@ -39,21 +39,43 @@
 				<h3 align="center">일일 로그인 수</h3>
 				<div id="areachart"
 					style=""></div><!-- width: 70%; height: 300px; -->
+				<div>
+					${adminListCount} <br>
+					${adminDate} <br>
+					${adminVisitCount}
+				</div>
 				<script>
 				var chart = c3.generate({
 					  bindto: "#areachart",
 					  data: {
-					    x: "year",
+					    x: "date",
 					    columns: [
-					      ["year", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"],
-				
-					      ["total", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270],
+					      /* ["date", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"], */
+					      ["date", 
+					    	  for(int i=0;i<${adminListCount};i++){
+					    		 if(i == ${adminListCount-1}){
+					    			 ${adminDate.get(i)}
+					    		 }else{
+					    			 ${adminDate.get(i)},
+					    		 }
+					    	  }
+					      ],
+					      /* ["count", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270], */
+					      ["count", 
+					    	  for(int i=0;i<${adminListCount};i++){
+					    		  if(i == ${adminListCount-1}){
+						    		 ${adminVisitCount.get(i)}
+						    	  }else{
+						    		 ${adminVisitCount.get(i)},
+						    	  }
+					    	  }
+					      ],
 					    ],
 					    types: {
-					      total: "bar",
+					      count: "bar",
 					    },
 					    colors: {
-					      total: "#B9062F",
+					      count: "#B9062F",
 					    },
 					  },
 					  bar: {
