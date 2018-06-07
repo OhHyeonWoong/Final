@@ -254,5 +254,13 @@ public class JDK_MemberController {
 		public String adminItemManagement() {
 			return "A3.JDK/admin_itemlist";
 		}
+			
+		//병준씨 어드민 페이지 통계 창 이동용 메소드
+				@RequestMapping(value="lbjStatisticsTest.go")
+				public String adminStatistic() {
+					return "A4.LBJ/adminStatistics/admin_loginStatistics";
+				}
 				
+		
+		
 }

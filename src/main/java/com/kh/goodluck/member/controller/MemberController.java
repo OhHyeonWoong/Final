@@ -163,7 +163,8 @@ public class MemberController {
 		
 		mv.addObject("lbjMyReport", myReport);
 		mv.addObject("reportPage",reportPage);
-		//Report 세팅 끝---------------------------------------------------------
+		//Report 세팅 끝
+		//---------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
@@ -182,10 +183,8 @@ public class MemberController {
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
 	public void loginCheck(Member member,Model model,HttpServletResponse response,HttpSession session) throws IOException{
 		System.out.println("member : " + member);
-		
 		//로그인 작업을 합니다 세션에 넣어요
 		Member m = memberService.loginCheck(member);
-		
 		PrintWriter out = response.getWriter();
 		if(m != null) {
 			//lastlogin 갱신
@@ -198,13 +197,13 @@ public class MemberController {
 				System.out.println("Update Last Login.. Fail.. ");
 				out.write("로그인 제제된 유저입니다.");
 			}
-			/////////////////////////
+			//////////////////////////////////////////////////////////
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
 		}else {
 			out.write("로그인 실패");
 		}
-		///////
+		////////////////////////////////////////////////
 		out.flush();
 		out.close();
 	}
