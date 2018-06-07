@@ -34,113 +34,40 @@
 		<!-- 이 div 안에 작성하시면 됩니다.  -->
 		<div class="w3-container" style="width: 70%; float: right;">
 			<!-- 컨텐츠를 넣으세요 -->
-				<h1 align="center">통계 페이지</h1>
-				<br>
-				<h4 align="center" style="color:#329632;">일일 방문자 수</h4>
+				<!-- <h2 align="center">통계 페이지</h2>
+				<br> -->
+				<h3 align="center">일일 로그인 수</h3>
 				<div id="areachart"
-					style="width: 70%; height: 300px; margin-left:270px;"></div>
-				<br><br>
-				<h4 align="center" style="margin-left: 300px; color:#CD1039;">일일 예약 횟수</h4>
-				<div id="areachart1" align="center"
-					style="width: 70%; height: 300px; margin-left:270px;"></div>
+					style=""></div><!-- width: 70%; height: 300px; -->
 				<script>
-					var areachart = c3.generate({
-						bindto : "#areachart",
-						data : {
-							columns : [ 
-									[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
-									[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
-							],
-							type : 'line',
-							colors : {
-								'방문자 수' : '#329632' //C12
-							}
-						},
-						<%-- data : {
-							x : 'x',
-							columns : [
-									[ 'x', 
-										<% for(Visit v:totalVisit){ %>
-										<% if(i == totalVisit.size()){ %>
-											<%= totalVisit.get(i).getVisitDate() %>
-										<% }else{ %>
-											<%= "'" + v.getVisitDate() + "'" %>, 
-											/* new java.util.Date() */
-										<% } %>
-										<% } %> 
-										
-									],
-									[ '방문자 수', 
-										<% for(int i=0;i<totalVisit.size();i++){ %>
-											<% if(i == totalVisit.size()){ %>
-												<%= totalVisit.get(i).getVisitCount() %>
-											<% }else{ %>
-												<%= totalVisit.get(i).getVisitCount() %>,
-											<% } %>
-										<% } %>
-									] 
-								], --%>
-							/* type : 'line',
-							colors : {
-								'방문자 수' : '#329632' //C12
-							} */
-						},
-					  axis : {
-							x : {
-								type : 'timeseries',
-								tick : {
-									format : '%y-%m-%d' //%H:%M:%S
-								}
-							}
-						} 
-					});
-
-					var areachart1 = c3.generate({
-						bindto : "#areachart1",
-						  data : {
-							columns : [ 
-									[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
-									[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
-							],
-							type : 'line',
-							colors : {
-								'x' : '#B0F7FF',
-								'예약 횟수': "#CD1039"
-							}
-						}, 
-						<%-- data : {
-							x : 'x',
-							columns : [
-									[ 'x', 
-										<% for(Visit v:totalReservationCount){ %>
-											<%= "'" + v.getVisitDate() + "'" %>, 
-											/* new java.util.Date() */
-										<% } %>
-									],
-									[ '예약 횟수', 
-										<% for(int i=0;i<totalReservationCount.size();i++){ %>
-											<%= totalReservationCount.get(i).getVisitCount() %>,
-										<% } %>	
-									] 
-							],
-							type : 'line',
-							colors : {
-								'x' : '#B0F7FF',
-								'예약 횟수': "#CD1039"
-							}
-						}, --%>
-						axis : {
-							x : {
-								type : 'timeseries',
-								tick : {
-									format : '%y-%m-%d' //%H:%M:%S
-								}
-							}
-						}
+				var chart = c3.generate({
+					  bindto: "#areachart",
+					  data: {
+					    x: "year",
+					    columns: [
+					      ["year", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"],
+				
+					      ["total", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270],
+					    ],
+					    types: {
+					      total: "bar",
+					    },
+					    colors: {
+					      total: "#B9062F",
+					    },
+					  },
+					  bar: {
+					    width: {
+					      ratio: 0.5,            
+					    },
+					  },
+					  axis: {
+					    x: {
+					      type: "category",
+					    },
+					  },
 					});
 				</script>
-
-			
 			<!-- 작성 영역 끝-->
 		</div>
 	</div>

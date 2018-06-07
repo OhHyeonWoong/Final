@@ -50,12 +50,7 @@ public class MemberController {
 	public String homeGo() {
 		return "home";
 	}
-	//결제 테스트용
-	@RequestMapping(value="lbjStatisticsTest.go")
-	public String movePayTest() {
-		return "A6.LBJ/adminStatistics/admin_loginStatistics";
-	}
-	////////////////////
+	
 	//병준 마이페이지 테스트용 메소드
 	@RequestMapping(value="lbjmypage.go")
 	public ModelAndView mypageGo(ModelAndView mv,HttpServletRequest request) {
