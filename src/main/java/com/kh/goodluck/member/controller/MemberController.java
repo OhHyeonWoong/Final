@@ -342,8 +342,7 @@ public class MemberController {
 		out.close();
 	}
 	
-<<<<<<< HEAD
-=======
+
 	@RequestMapping(value="lbjUpdateMemberCash.go")
 	public void updateMemberCashMethod(Member m,HttpServletResponse response,
 			  					HttpSession session) throws IOException{
@@ -365,7 +364,7 @@ public class MemberController {
 			//결제 실패
 			System.out.println("결제 실패...");
 		}
-		/////////////////
+
 		response.sendRedirect("home.go");
 	}
 	
@@ -374,5 +373,4 @@ public class MemberController {
 		
 	}
 	
->>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 }
