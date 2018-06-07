@@ -342,8 +342,7 @@ public class MemberController {
 		out.close();
 	}
 	
-<<<<<<< HEAD
-=======
+
 	@RequestMapping(value="lbjUpdateMemberCash.go")
 	public void updateMemberCashMethod(Member m,HttpServletResponse response,
 			  					HttpSession session) throws IOException{
@@ -373,6 +372,5 @@ public class MemberController {
 	public void signIn() {
 		
 	}
-	
->>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
+
 }
