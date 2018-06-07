@@ -51,9 +51,9 @@ public class MemberController {
 		return "home";
 	}
 	//결제 테스트용
-	@RequestMapping(value="lbjPayTest.go")
+	@RequestMapping(value="lbjStatisticsTest.go")
 	public String movePayTest() {
-		return "A6.LBJ/test/payTest";
+		return "A6.LBJ/adminStatistics/admin_loginStatistics";
 	}
 	////////////////////
 	//병준 마이페이지 테스트용 메소드
