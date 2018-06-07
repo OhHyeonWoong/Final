@@ -15,6 +15,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
+import com.kh.goodluck.board.model.vo.Trade_detail;
 
 @Service("boardService")
 public class BoardService {
@@ -143,6 +144,28 @@ public class BoardService {
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
 		// TODO Auto-generated method stub
 		return boardDao.IncreasesSMALLCATEGORYCOUNT(parseInt);		
+	}
+
+
+
+	public void updateAgencyStatus(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		boardDao.updateAgencyStatus(map);
+	}
+
+	public int insertNewTradeDetail(Trade_detail td) {
+		// TODO Auto-generated method stub
+		return  boardDao.insertNewTradeDetail(td);		
+	}
+
+	public int UpdateTradeReserVation(Trade_detail td) {
+		// TODO Auto-generated method stub
+		return  boardDao.UpdateTradeReserVation(td);		
+	}
+
+	public int insertchatroom(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return  boardDao.insertchatroom(map);		
 	}
 
 	

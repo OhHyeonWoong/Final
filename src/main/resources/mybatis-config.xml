@@ -29,6 +29,8 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail" alias="GetCategoryForBoardDetail"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.Trade_detail" alias="Trade_detail"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.Chat" alias="Chat"/>
 		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
 	</typeAliases>
 	<mappers>    
@@ -48,6 +50,8 @@
 		<mapper resource="mybatis/mapper/itemdetail.xml" />
 		<mapper resource="mybatis/mapper/report-mapper.xml" />
 		<mapper resource="mybatis/mapper/BoardAndCate.xml" />
+		<mapper resource="mybatis/mapper/TradeDeatil.xml" />
+
 		<!-- <mapper resource="notice/model/mapper/notice-mapper.xml"/> -->
 	</mappers>
 </configuration>
