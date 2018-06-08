@@ -28,8 +28,7 @@
 		<![CDATA[
 			select * 
 			from AGENCY 
-			where AGENCY_TITLE like '%'||#{agency_title}||'%'
-			and rownum <= #{endRow} and rownum >= #{startRow}
+			where AGENCY_TITLE like '%'||#{agency_title}||'%'			
 		]]>
 	</select>
 	

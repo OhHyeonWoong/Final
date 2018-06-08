@@ -484,11 +484,7 @@ public class ItemController {
 					job.put("ITEMFILENAME", l.getITEMFILENAME());
 				jarr.add(job);
 				}
-	    json.put("mixitem", jarr);		
-				
-				
-				
-				
+	    json.put("mixitem", jarr);				
 		
 		//현재사용중인 아이템 리스트를 가져온다.
 		List<UsingItem> al2 = ItemService.getUsingItem(memberid);
