@@ -7,17 +7,7 @@
 <title>관리자 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
 <!-- 스크립트 영역 -->
-<script type="text/javascript"
-	src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-	
-</script>
 <!-- 부트스트랩 링크 -->
-<style type="text/css"
-	src="/goodluck/resources/common/css/bootstrap.min.css"></style>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -52,9 +42,9 @@
 					    columns: [
 					      /* ["date", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"],
 					       */["date", 
-					     	<c:forEach items="${adminDate}" var="date">
-					            ${date},
-					        </c:forEach>
+					    	   <c:forEach items="${adminDate}" var="date">
+					             '${date}',
+					            </c:forEach>
 					      ],
 					      /* ["count", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270],
 					       */["count", 
