@@ -45,6 +45,29 @@
 		]]>
 	</select>
 	
+	<select id="selectIDYNCheck" parameterType="string" resultType="LoginStatistics">
+		<![CDATA[
+			select *
+			from login_statistics
+			where member_id = #{member_id} and to_char(ls_date,'yy/mm/dd') = to_char(sysdate,'yy/mm/dd')
+		]]>
+	</select>
+	
+	<insert id="insertLoginStatistics" parameterType="string" flushCache="true">
+		<!-- <selectKey keyProperty="memberId" resultType="string" order="BEFORE">
+		   <![CDATA[
+		   		select member_id from login_statistics 
+		   		where member_id = #{member_id}
+		   ]]>
+		</selectKey>
+		<if test="#{memberId} != null"> -->
+			<![CDATA[
+				insert into login_statistics 
+				values (sysdate,#{member_id})
+			]]>
+		<!-- </if> -->
+	</insert>
+	
 	<update id="fwdChange" parameterType="Member" flushCache="true" statementType="PREPARED">
 		<![CDATA[
 			update member set member_pw = #{member_pw} 

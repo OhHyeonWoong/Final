@@ -61,75 +61,38 @@
 			$(this).scrollTop() > -100 ? $(".ohw-search-sidebar").fadeIn() : $(".ohw-search-sidebar").fadeOut();
 		});
 	});
-	/* SideBar End */	
+	/* SideBar End */
 	
-	function searchReload(page){			
-			$.ajax({
-				url:"headerSearchReload.go",
-				dataType:"json",
-				data:{
-					searchKeyword : $('.ohw-searchKeyword-hidden').val(),
-					page : page
-				},
-				success:function(data){
-					var jstr = JSON.stringify(data);
-					var json = JSON.parse(jstr);					
+	/* SearchResultAjax */
+	$.ajax({
+	   	url:"headerSearchAjax.go",
+	   	type:"POST",
+	   	data:
+	   	dataType:"json",
+	   	success:
+	   		function(data) {
+	   			var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
+				var searchList = "";											
+				
+				for(var i in json.searchList){				
+					searchList += '<tr><td class = ""><a id = "' + json.searchList[i].agency_no + '" onClick = "" >' + json.searchList[i].agency_title + '</a></td></tr>'
+				}
+				
+				$('.ohw-search-table').append(searchList);				
 					
-					$('.ohw-search-maintd').empty();					
-					
-					var htmlStr = '';
-					
-					for(var i in json.searchPage){						
-						htmlStr += 
-							'<tr>'+
-								'<td>' + ${ searchPage.agency_no } + '</td>' + 
-								'<td>' + <img src = ""> + '</td>' + 
-								'<td><a href = "">' + ${ searchPage.agency_title } + '</a></td>' + 
-								'<td>' + <img src = "">${ searchPage.agency_writer } + '</td>' + 
-								'<td>' + ${ searchPage.agency_enrolldate } + '</td>' +
-							'</tr>'
-					}
-					//페이징 처리//
-					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
-					if(json.searchPage[0].searchListCount > 10){
-						if(json.searchPage[0].searchCurrentPage <= 1){
-							htmlStr += "<< &nbsp";
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="searchReload(1); return false;"> << </a>&nbsp;';
-						}
-						if(json.searchPage[0].searchCurrentPage > json.searchPage[0].searchStartPage){
-							htmlStr += '<a href="javascript:void(0);" onclick="searchReload('+(json.searchPage[0].searchCurrentPage-1)+'); return false;"> < </a>&nbsp;';
-						}else{
-							htmlStr += '< &nbsp';
-						}
-						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						console.log("json.searchPage[0].searchStartPage = " + json.searchPage[0].searchStartPage);
-						console.log("json.searchPage[0].searchEndRow = " + json.searchPage[0].searchEndRow);
-						for(var i=json.searchPage[0].searchStartPage;i<=json.searchPage[0].searchEndRow;i++){
-							if(i == json.searchPage[0].searchCurrentPage){
-								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
-							}else{
-								htmlStr += '<a href="javascript:void(0);" onclick="searchReload('+i+'); return false;">'+i+'</a>&nbsp;';
-							}
-						}
-						//기모리 ///////////////
-						if(json.searchPage[0].searchCurrentPage != json.searchPage[0].searchEndRow){
-							htmlStr += '<a href="javascript:void(0);" onclick="searchReload('+(json.searchPage[0].searchCurrentPage+1)+'); return false;">></a>&nbsp;';
-						}else{
-							htmlStr += '> &nbsp;';
-						}
-						if(json.searchPage[0].searchCurrentPage >= json.searchPage[0].searchListMaxPage){
-							htmlStr += '>> &nbsp;';
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="searchReload('+json.searchPage[0].searchListMaxPage+'); return false;">>></a>';
-						}
-					}
-					htmlStr += '</div></td></tr></table>';
-					//페이징처리 끝//
-					$('#lbjqnaDiv').html(htmlStr);
-				}				
-			});
+			}, 
+		error : function(request, status, errorData) {
+					alert("Error Code : " + request.status + "\n"
+					+ "Message : " + request.responseText + "\n"
+					+ "Error : " + errorData);
 		}
+	});	
+	/* SearchResultAjax End */
+
+	$(document).ready(function() {
+		$('.ohw-hidden-get').val(<%=  %>);
+	});
 	
 </script>
 
@@ -140,12 +103,12 @@
 				<table class="table table-hover ohw-search-table">
 					<tr>
 						<td><label></label></td>
-						<td></td>
+						<td><input type = "text" class = "ohw-hidden-get" value = "${ searchKeyword }" name = "searchKeyword"></td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
 					</tr>
-					<c:forEach var="searchList" items="${ searchList }">
+					<%-- <c:forEach var="searchList" items="${ searchList }">
 						<tr>
 							<td>${ searchList.agency_no }</td>
 							<td><img src = ""></td>
@@ -153,63 +116,10 @@
 							<td><img src = "">${ searchList.agency_writer }</td>
 							<td>${ searchList.agency_enrolldate }</td>
 						</tr>
-					</c:forEach>					
-					<c:if test="${searchPage.searchListCount > 10}">
-						<!-- 페이징 처리를 합니다 -->
-						<tr>
-						<td colspan="5">
-						<div style="text-align:center;">
-							<c:if test="${searchPage.searchCurrentPage <= 1}">
-								<< &nbsp;
-							</c:if>
-							<c:if test="${searchPage.searchCurrentPage >= 2}">
-								<a href="javascript:void(0);" onclick="searchReload(1); return false;"> << </a>
-							</c:if>
-							<c:if test="${searchPage.searchCurrentPage > searchPage.searchStartPage}">
-								<a href="javascript:void(0);" onclick="searchReload(${searchPage.searchCurrentPage-1}); return false;"> < </a>&nbsp;
-							</c:if>
-							<c:if test="${searchPage.searchCurrentPage <= searchPage.searchStartPage}">
-								< &nbsp;
-							</c:if>
-							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-							<c:forEach var="i" begin="${searchPage.searchStartPage}" end="${searchPage.searchEndRow}" step="1">
-								<c:if test="${i eq searchPage.searchCurrentPage}">
-									<font color="red" size="4"><b>${i}</b></font>&nbsp;
-								</c:if>
-								<c:if test="${i != searchPage.searchCurrentPage}">
-									<a href="javascript:void(0);" onclick="searchReload(${i}); return false;">${i}</a>&nbsp;
-								</c:if>
-							</c:forEach>
-							
-							<c:if test="${searchPage.searchCurrentPage != searchPage.searchEndRow}">
-								<a href="javascript:void(0);" onclick="searchReload(${searchPage.searchCurrentPage+1}); return false;">></a>&nbsp;
-							</c:if>
-							<c:if test="${searchPage.searchCurrentPage eq searchPage.searchEndRow}">
-								> &nbsp;
-							</c:if>
-							
-							<c:if test="${searchPage.searchCurrentPage >= searchPage.searchListMaxPage}">
-								>> &nbsp;
-							</c:if>
-							<c:if test="${searchPage.searchCurrentPage < searchPage.searchListMaxPage}">
-								<a href="javascript:void(0);" onclick="searchReload(${searchPage.searchListMaxPage}); return false;">>></a>
-							</c:if>
-						</div>
-						</td>
-						</tr>
-					</c:if>
-					<c:if test="${searchPage.searchListCount <= 10}">
-						<tr>
-							<td colspan="5">
-								<font color="red" size="4"><b>1</b></font>&nbsp;
-							</td>
-						</tr>
-					</c:if>
-					<!-- QnA 페이징 처리 End -->
-					<!-- 페이징 처리 -->										
+					</c:forEach> --%>													
 				</table>
 			</td>
-			<td>				
+			<td valign = "top">				
 				<div class="ohw-search-sidebar">
 					<table>
 						<tr>

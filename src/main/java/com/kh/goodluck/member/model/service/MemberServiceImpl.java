@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
@@ -94,4 +95,15 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateMemberCashMethod(m);
 	}
 	
+	@Override
+	public int insertLoginStatistics(String member_id) {
+		//로그인 통계 내는 용 메소드
+		return memberDao.insertLoginStatistics(member_id);
+	}
+	
+	@Override
+	public LoginStatistics selectIdYNCheck(String member_id) {
+		// loginStatistics 에 아이디 존재하는지 확인
+		return memberDao.selectIDYNCheck(member_id);
+	}
 }	
