@@ -50,4 +50,10 @@ public class lbjAdminController {
 		mv.setViewName("A6.LBJ/admin/admin_loginStatistics");
 		return mv;
 	}
+	
+	@RequestMapping(value="lbjAdminQnaAnswer.go")
+	public ModelAndView moveAdminQnaAnswer(ModelAndView mv) {
+		mv.setViewName("A6.LBJ/admin/admin_qnaAnswer");
+		return mv;
+	}
 }
