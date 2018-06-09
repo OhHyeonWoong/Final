@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="outside_pet_news">
+<mapper namespace="outside_game_news">
 	
-	<resultMap type="PetNews" id="PetNewsList">
+	<resultMap type="GameNews" id="GameNewsList">
    		<result property="osp_news_datano" column="osp_news_datano"/>
    		<result property="osp_news_data" column="osp_news_data"/>
    		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
@@ -20,7 +20,7 @@
    		<result property="osp_news_origin" column="osp_news_origin"/>
 	</resultMap> 
 	
-	<resultMap type="PetNews" id="PetNewsOne">
+	<resultMap type="GameNews" id="GameNewsOne">
    		<id property="osp_news_datano" column="osp_news_datano"/>
    		<result property="osp_news_data" column="osp_news_data"/>
    		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
@@ -35,34 +35,30 @@
    		<result property="osp_news_date" column="osp_news_date"/>
    		<result property="osp_news_origin" column="osp_news_origin"/>
 	</resultMap> 
-	  
-	<!-- <select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
-		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
-	     notice_content, notice_date from (select * from notice order 
-	     by notice_no desc)) where rnum>=1 and rnum<=4]]>		
-	</select> -->
 	
-	<select id="petNewsList" resultMap="PetNewsList">
+	<select id="gameNewsList" resultMap="GameNewsList">
 		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
 		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
-		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where rnum>=1 and rnum<=6]]>	
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_game_news) where rnum>=1 and rnum<=3]]>			
 	</select>
+	
+	<select id="gamenewsOne" parameterType="integer" resultMap="GameNewsOne">
+		<![CDATA[select * from outside_game_news where osp_news_datano=#{osp_news_datano}]]>	
+	</select>
+	
+	<select id="gameNewsList2" resultMap="GameNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_game_news) where rnum>=1 and rnum<=6]]>			
+	</select>
+	
+	<select id="userSearchTitle3" parameterType="GameNews" resultMap="GameNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_game_news) where osp_news_datatitle like '%'||#{osp_news_datatitle}||'%']]>	
+	</select>	
+	
 
-	<select id="petnewsOne" parameterType="integer" resultMap="PetNewsOne">
-		<![CDATA[select * from outside_pet_news where osp_news_datano=#{osp_news_datano}]]>
-	</select>
-	
-	<select id="userSearchTitle" parameterType="PetNews" resultMap="PetNewsList">
-		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
-		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
-		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where osp_news_datatitle like '%'||#{osp_news_datatitle}||'%']]>	
-	</select>																															
-	
-	<select id="userSearchDate">
-		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
-		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
-		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where osp_news_date like '%'||#{osp_news_date}||'%']]>	
-	</select>
 
 </mapper>
 

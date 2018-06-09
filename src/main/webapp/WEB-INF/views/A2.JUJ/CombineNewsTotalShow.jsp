@@ -8,6 +8,92 @@
 	<title>통합정보</title>
 	<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>	
 	<script type="text/javascript" src="/goodluck/resources/A2.JUJ/js/juj_sidebar.js"></script>	<!-- 따라다니는 사이드바 추가 -->		
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url : "animalNews.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+				   var jsonStr = JSON.stringify(data);
+				   var json = JSON.parse(jsonStr);
+				   var htmlStr ="<tr align='center'>";
+				   
+				   for(var i in json.petNewsList){
+					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsList[i].osp_news_datano+"'>"+
+							  "<img id='low_image3' src='"+json.petNewsList[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.petNewsList[i].osp_news_datatitle+"<br>출처 : "+json.petNewsList[i].osp_news_origin+"</font></div></td>";
+				   }	
+				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
+				   	  $('#ukjae_TableAreaFiveth').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}			
+			}); 
+			$.ajax({
+				url : "lifeNews.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+				   var jsonStr = JSON.stringify(data);
+				   var json = JSON.parse(jsonStr);
+				   var htmlStr ="<tr align='center'>";
+				   
+				   for(var i in json.lifeNewsList){
+					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='lifenewsdetail.go?newspk="+json.lifeNewsList[i].osp_news_datano+"'>"+
+							  "<img id='low_image3' src='"+json.lifeNewsList[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.lifeNewsList[i].osp_news_datatitle+"<br>출처 : "+json.lifeNewsList[i].osp_news_origin+"</font></div></td>";
+				   }	
+				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
+				   	  $('#ukjae_TableAreaSixeth').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}			
+			}); 
+			$.ajax({
+				url : "gameNews.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+				   var jsonStr = JSON.stringify(data);
+				   var json = JSON.parse(jsonStr);
+				   var htmlStr ="<tr align='center'>";
+				   
+				   for(var i in json.gameNewsBasic){
+					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='gamenewsdetail.go?newspk="+json.gameNewsBasic[i].osp_news_datano+"'>"+
+							  "<img id='low_image3' src='"+json.gameNewsBasic[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.gameNewsBasic[i].osp_news_datatitle+"<br>출처 : "+json.gameNewsBasic[i].osp_news_origin+"</font></div></td>";
+				   }	
+				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
+				   	  $('#ukjae_TableAreaSeventh').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}			
+			}); 
+			$.ajax({
+				url : "travelnewslist.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+				   var jsonStr = JSON.stringify(data);
+				   var json = JSON.parse(jsonStr);
+				   var htmlStr ="<tr align='center'>";
+				   
+				   for(var i in json.travelNewsAll){
+					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='travelnewsdetail.go?newspk="+json.travelNewsAll[i].osp_news_datano+"'>"+
+							  "<img id='low_image3' src='"+json.travelNewsAll[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.travelNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.travelNewsAll[i].osp_news_origin+"</font></div></td>";
+				   }	
+				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
+				   	  $('#ukjae_TableAreaNineth').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}			
+			}); 
+
+		}); 
+	
+	</script>
 	<style type="text/css">
 		#ukjaeTitle_effect {
 			color: red;
@@ -64,19 +150,6 @@
 			color: red;
 		}
 
-		#ukjae_TableAreaFiveth{
-			/* background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg'); */
-			border: none;
-		}
-		
-		#ukjae_TableAreaFiveth tr td {
-			width: 190px !important;
-			height: 235px !important;
-			padding: 0;
-			margin: 0;
-			border: 1px solid gray;
-		}
-		
 		#low_image4 {
 			width: 160px !important;
 			height: 160px !important;
@@ -117,7 +190,27 @@
 	  	  color : #fff;  
 	  	  border-radius: 10px;  
 		}
+		#low_image3 {
+			width: 120px !important;
+			height: 125px;
+			padding: 0;
+			margin: 0;
+			padding: 0;
+			margin: 0;
+			border-radius: 20px;
+		}		
 
+		#ukjae_TableAreaFiveth, #ukjae_TableAreaSixeth ,#ukjae_TableAreaSeventh, #ukjae_TableAreaNineth ,#SerchResultList{
+			border: none;
+		}
+		
+		#ukjae_TableAreaFiveth tr td ,#ukjae_TableAreaSixeth tr td ,#ukjae_TableAreaSeventh tr td, #ukjae_TableAreaNineth tr td , #SerchResultList tr td{
+			width: 180px !important;
+			height: 190px !important;
+			padding: 0;
+			margin: 0;
+			border: 1px solid gray;
+		}
 	
 	</style>
 	<script type="text/javascript"> 
@@ -136,12 +229,14 @@
 			<table style="margin-right: 3%;">
 				<tr>
 					<td>
-						<select>
-							<option>제목</option>
-							<option>작성자</option>
+						<select class="optionValue">
+							<option value="1">제목</option>
+							<option value="2">작성자</option>
+							<option value="3">작성일</option>
 						</select>		
-						<input type="text"> 	
-						<button onclick="TotalSearch();">Search</button>		
+						<input type="text" class="keyword_input"> 	
+						<a href="javascript:abc();">검색</a>
+						<!-- <button onclick="TotalSearch();">Search</button> -->		
 					</td>
 				</tr>
 			</table>
@@ -149,14 +244,38 @@
 		</div>
 		<br>
 		<script type="text/javascript">
-			function TotalSearch(){
-				alret("유저께서 통합검색을 시도하셨습니다.");
+			function abc(){
+				alert("유저께서 통합검색을 시도하셨습니다.");
+				$.ajax({
+					url : "fowordingkeyword.go",
+					type : "get",
+					data : { 
+						keyword : $(".keyword_input").val(), 
+						seloption : $(".optionValue").val()
+					},
+					success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   
+						   $('.center').empty();
+						   var htmlStr ="<table id='SerchResultList'>";
+						   
+						   for(var i in json.SearchResult){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='searchdetail.go?newspk="+json.SearchResult[i].osp_news_datano+"&newscategory="+json.SearchResult[i].osp_news_data+"'>"+
+									  "<img id='low_image3' src='"+json.SearchResult[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.SearchResult[i].osp_news_datatitle+"<br>출처 : "+json.SearchResult[i].osp_news_origin+"</font></div></td>";
+						   }	
+						   	  htmlStr +="</table>";
+						   	  $('.center').html(htmlStr);
+					},
+					error : function(a,b,c){
+						console.log("a : "+a+"b : "+b+"c : "+c);	
+					} 
+				});
+				
 			}
-			
 		</script>		
 		<div class="sidebar"style="height:1000px; width: 19%; float: left;" align="center">
 			<%@ include file = "/WEB-INF/views/A2.JUJ/SearchResultSideBar.jsp" %>	
-		  
            <!-- <ul class="nav sidebar-nav" style="height: 1002px; padding-top: 15px;">
                <li class="sidebar-brand">
                    <a href="javascript:" class="abs"><span class="glyphicon glyphicon-tags icon"></span> &nbsp; Life</a>
@@ -183,69 +302,33 @@
                     <li><a href="#" class="abs">사</a></li>
                  </ul>
                </li>	                
-           </ul>  -->
- 			
+           </ul>  --> 			
 		</div>
 		
-		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 2%">
-
-			<%-- <c:forEach var="p1" items="${petlist}" step="1" end="5"> 
+		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 15px;">
+			<table id="SerchResultList">
+			
+			</table>	
 		
-		
-			</c:forEach>
-			 --%>
 			<!-- 메인 본문이들어가는 영역  -->
-			<table id="ukjae_TableAreaFiveth">								
-				<tr align="center">
-					<% for(int i=0; i<5; i++){  %> 
-					<td style="width: 5px; border: none;"></td>
-					<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/news_pet/기사6_1.jpg">
-					<font id="ukjaeTitle_effect"> 귀엽고 말랑말한 고양이 발바닥, 관리도 철저해야  <br> 출처 : Naver </font>						
-					</td>
-					<% } %>
-					<td style="width: 5px; border: none;"></td>			
-				</tr>
+			<table id="ukjae_TableAreaFiveth">
+	
+			</table>
+			<br>
+			<table id="ukjae_TableAreaSixeth">
+	
+			</table>	
+			<br><br>	
+			<table id="ukjae_TableAreaSeventh">
+	
+			</table>	
+			<br><br>		
+						
+			<table id="ukjae_TableAreaNineth">
+	
 			</table>
 			<br>
 
-			<table id="ukjae_TableAreaFiveth">								
-				<tr align="center">
-					<% for(int i=0; i<5; i++){  %> 
-					<td style="width: 5px; border: none;"></td>
-					<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/news_pet/기사6_1.jpg">
-					<font id="ukjaeTitle_effect"> 귀엽고 말랑말한 고양이 발바닥, 관리도 철저해야  <br> 출처 : Naver </font>						
-					</td>
-					<% } %>
-					<td style="width: 5px; border: none;"></td>			
-				</tr>
-			</table>
-			<br>
-			
-			<table id="ukjae_TableAreaFiveth">								
-				<tr align="center">
-					<% for(int i=0; i<5; i++){  %> 
-					<td style="width: 5px; border: none;"></td>
-					<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/news_pet/기사6_1.jpg">
-					<font id="ukjaeTitle_effect"> 귀엽고 말랑말한 고양이 발바닥, 관리도 철저해야  <br> 출처 : Naver </font>						
-					</td>
-					<% } %>
-					<td style="width: 5px; border: none;"></td>			
-				</tr>
-			</table>
-			<br>
-			
-			<table id="ukjae_TableAreaFiveth">								
-				<tr align="center">
-					<% for(int i=0; i<5; i++){  %> 
-					<td style="width: 5px; border: none;"></td>
-					<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/news_pet/기사6_1.jpg">
-					<font id="ukjaeTitle_effect"> 귀엽고 말랑말한 고양이 발바닥, 관리도 철저해야  <br> 출처 : Naver </font>						
-					</td>
-					<% } %>
-					<td style="width: 5px; border: none;"></td>			
-				</tr>
-			</table>
-			<br>				 
 	
 		</div>
 	</div>

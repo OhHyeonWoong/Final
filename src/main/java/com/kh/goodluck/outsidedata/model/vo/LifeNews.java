@@ -2,29 +2,33 @@ package com.kh.goodluck.outsidedata.model.vo;
 
 import java.sql.Date;
 
-public class PetNews implements java.io.Serializable {
+public class LifeNews implements java.io.Serializable{
 	
-	private static final long serialVersionUID = 757L;
-	private int osp_news_datano; //PK고유번호
+	private static final long seialVersionUID = 5674L;
+	private int osp_news_datano; //PK고유번호	
 	private String osp_news_data; //관리자가 알아볼 수 있는 데이터설명
 	private String osp_news_datatitle; //게시글 제목
 	private String osp_news_content1; //게시글 내용1
 	private String osp_news_content2; //게시글 내용2
 	private String osp_news_content3; //게시글 내용3
-	private String osp_news_content4; //게시글 내용4
+	private String osp_news_content4; //게시글 내용4  
 	private String osp_news_pic1; //게시글 관련 사진경로1
 	private String osp_news_pic2; //게시글 관련 사진경로2
 	private String osp_news_pic3; //게시글 관련 사진경로3
 	private String osp_news_pic4; //게시글 관련 사진경로4
 	private Date osp_news_date;  //게시글 등록일
-	private String osp_news_origin; //게시글의 자료의 출처
+	private String osp_news_origin; //게시글의 자료의 출처	
 	
-	public PetNews() {
+	public LifeNews() {
 		// TODO Auto-generated constructor stub
 	}
-	  
-	//기본생성자
-	public PetNews(int osp_news_datano, String osp_news_data, String osp_news_datatitle, String osp_news_content1,
+
+	public LifeNews(String osp_news_datatitle) {
+		super();
+		this.osp_news_datatitle = osp_news_datatitle;
+	}
+
+	public LifeNews(int osp_news_datano, String osp_news_data, String osp_news_datatitle, String osp_news_content1,
 			String osp_news_content2, String osp_news_content3, String osp_news_content4, String osp_news_pic1,
 			String osp_news_pic2, String osp_news_pic3, String osp_news_pic4, Date osp_news_date,
 			String osp_news_origin) {
@@ -44,13 +48,6 @@ public class PetNews implements java.io.Serializable {
 		this.osp_news_origin = osp_news_origin;
 	}
 
-	public PetNews(String osp_news_datatitle) {
-		super();
-		this.osp_news_datatitle = osp_news_datatitle;
-	}
-
-	
-	
 	public int getOsp_news_datano() {
 		return osp_news_datano;
 	}
@@ -155,20 +152,17 @@ public class PetNews implements java.io.Serializable {
 		this.osp_news_origin = osp_news_origin;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public static long getSeialversionuid() {
+		return seialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "PetNews [osp_news_datano=" + osp_news_datano + ", osp_news_data=" + osp_news_data
+		return "LifeNews [osp_news_datano=" + osp_news_datano + ", osp_news_data=" + osp_news_data
 				+ ", osp_news_datatitle=" + osp_news_datatitle + ", osp_news_content1=" + osp_news_content1
 				+ ", osp_news_content2=" + osp_news_content2 + ", osp_news_content3=" + osp_news_content3
 				+ ", osp_news_content4=" + osp_news_content4 + ", osp_news_pic1=" + osp_news_pic1 + ", osp_news_pic2="
 				+ osp_news_pic2 + ", osp_news_pic3=" + osp_news_pic3 + ", osp_news_pic4=" + osp_news_pic4
 				+ ", osp_news_date=" + osp_news_date + ", osp_news_origin=" + osp_news_origin + "]";
-	}
-	
-	
-
+	}	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- I was motivated to create this after seeing BhaumikPatel's http://bootsnipp.com/snippets/featured/accordion-menu; I adapted it to a list format rather than a table so that it would be easy to create a nav toggle button when viewed on mobile devices -->
-<div class="col-md-3 float_sidebar" style="width: 215px;">
+<div class="col-md-3 float_sidebar" style="width: 215px; padding-left: 15px;">
 	<div id="sidenav1">
 		<div class="collapse navbar-collapse" id="sideNavbar" style="width: 185px; margin-right: 0;">
 			<div class="panel-group" id="accordion"> 
@@ -19,4 +19,4 @@
 			</div>
 		</div>
 	</div>
-</div>  
+</div>

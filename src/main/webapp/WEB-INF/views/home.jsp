@@ -79,6 +79,8 @@
 				alert(a+","+b+","+c);
 			}
 		});  */  
+		
+		
 		/* 생활영역 제공해요! */
 		
 		/* $.ajax({
@@ -91,9 +93,56 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		});  */
-		/* 반려동물영역 제공해요! */
+		}); */
+
+		/* 생활영역 뉴스 제공해요(1~3) */
+		$.ajax({
+			url : "lifenewslist1.go", 
+			type : "get",
+			datatype : "json",
+			success : function(data){
+			   console.log(data);
+			   var jsonStr = JSON.stringify(data);
+			   var json = JSON.parse(jsonStr);			
+			   var htmlStr ="<tr align='center'>";			  		   
+
+			   for(var i in json.LifeNewsOne){
+					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.LifeNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsOne[i].osp_news_origin+"</font></td>";
+				   }	
+			   		  htmlStr += "</tr>";
+				   	  $('.ukjae_LifeTable1').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}	
+			});  
+
+		/* 생활영역 뉴스 제공해요(4~6) */
+		$.ajax({
+			url : "lifenewslist2.go", 
+			type : "get",
+			datatype : "json",
+			success : function(data){
+			   console.log(data);
+			   var jsonStr = JSON.stringify(data);
+			   var json = JSON.parse(jsonStr);			
+			   var htmlStr ="<tr align='center'>";			  		   
+
+			   for(var i in json.LifeNewsTwo){
+					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsTwo[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsTwo[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.LifeNewsTwo[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsTwo[i].osp_news_origin+"</font></td>";
+				   }	
+			   		  htmlStr += "</tr>";
+				   	  $('.ukjae_LifeTable2').append(htmlStr);
+		   
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}	
+			});  
+
 		
+		
+		/* 반려동물영역 뉴스 제공해요(1~6) */
 		$.ajax({
 			url : "petnewslist.go", 
 			type : "get",
@@ -103,20 +152,21 @@
 				
 			   var jsonStr = JSON.stringify(data);
 			   var json = JSON.parse(jsonStr);
-			   var htmlStr ='<tr align="center">';
+			   var htmlStr ="<tr align='center'>";
 			   
 			   for(var i in json.petNewsAll){
-				  htmlStr += '<td style="width:5px; border:none;"></td><td style="height:270px; padding:0;"><a href="petnewsdetail.go?newspk='+petNewsAll[i].osp_news_datano+'"><img id="low_image3" src="'+json.petNewsAll[i].osp_news_pic1+'"></a><div style="width:161px; height:55px;"><font id="ukjaeTitle_effect">'+json.petNewsAll[i].osp_news_datatitle+'<br>출처 : '+json.petNewsAll[i].osp_news_origin+'</font></div></td>';  
+				  /* htmlStr += '<td style="width:5px; border:none;"></td><td style="height:270px; padding:0;"><img id="low_image3" src="'+json.petNewsAll[i].osp_news_pic1+'"><div style="width:161px; height:55px;"><font id="ukjaeTitle_effect">'+json.petNewsAll[i].osp_news_datatitle+'<br>출처 : '+json.petNewsAll[i].osp_news_origin+'</font></div></td>';   */
+				  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsAll[i].osp_news_datano+"'>"+
+						  "<img id='low_image3' src='"+json.petNewsAll[i].osp_news_pic1+"'></a><div style='width:161px; height:55px;'><font id='ukjaeTitle_effect'>"+json.petNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.petNewsAll[i].osp_news_origin+"</font></div></td>";
 			   }	
-			   	  htmlStr +='<td style="width:5px; border:none;"></tr>';
-			   	  $('#ukjae_TableAreaFiveth').append(htmlStr);
+			   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
+			   	  $('.ukjae_PetTable').append(htmlStr);
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}			
 		}); 
 
-		
 		
 	    /* $.ajax({
 			url :"gameareasample.go",
@@ -131,7 +181,31 @@
 		}); */
 		/* 게임영역 제공해요! */		
 		
-		/* $.ajax({
+
+
+		/* 게임영역 뉴스 제공해요(1~3) */	
+		$.ajax({
+			url : "gamenewslist.go", 
+			type : "get",
+			datatype : "json",
+			success : function(data){
+			   console.log(data);
+			   var jsonStr = JSON.stringify(data);
+			   var json = JSON.parse(jsonStr);			
+			   var htmlStr ="<tr align='center'>";			  		   
+
+			   for(var i in json.GameNewsOne){
+					  htmlStr += "<td><a href='gamenewsdetail.go?newspk="+json.GameNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.GameNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.GameNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.GameNewsOne[i].osp_news_origin+"</font></td>";
+				   }	
+			   		  htmlStr += "</tr>";
+				   	  $('.ukjae_GameTable').append(htmlStr);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}	
+			});  		
+		
+			/* $.ajax({
 			url :"musicsample.go",
 			type : "get",
 			datatype : "json",
@@ -141,7 +215,9 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); */
+		}); */	
+
+		
 		/* 음악영역 제공해요! */
 		
 		/* $.ajax({
@@ -157,6 +233,7 @@
 		});  */
 		/* 렌탈영역 제공해요! */
 		
+		/* 여행영역 제공해요! */
 		/* $.ajax({
 			url :"travelsample.go",
 			type : "get",
@@ -168,7 +245,33 @@
 				alert(a+","+b+","+c);
 			}
 		});  */
-		/* 여행영역 제공해요! */
+		
+		/* 여행영역 뉴스 제공해요(1~6) */	
+		$.ajax({
+			url : "travelnewslist.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+			   var jsonStr = JSON.stringify(data);
+			   var json = JSON.parse(jsonStr);
+			   var htmlStr ="";
+			   
+			   for(var i in json.travelNewsAll){
+				  htmlStr += "<div class='brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing'><div class='media'><a class='pull-left' href='#' target='_parent'><img alt='여행정보' class='img-responsive' src='"+json.travelNewsAll[i].osp_news_pic1+"' style='width: 180px; height: 135px; border-radius: 10px;'></a>"			  
+				  +"<div class='clearfix visible-sm'></div><div class='media-body fnt-smaller'><a href='#' target='_parent'></a><h4 class='media-heading'> <a href='#' target='_parent'>출처 : "+json.travelNewsAll[i].osp_news_origin+"</a></h4>"
+				  +"<p class='hidden-xs'>"+json.travelNewsAll[i].osp_news_datatitle+"</p><span class='fnt-smaller fnt-lighter fnt-arial'><a href='travelnewsdetail.go?newspk="+json.travelNewsAll[i].osp_news_datano+"'>내용 상세보기</a></span></div></div></div>";
+			   }	
+			   $('#mainTravelTable').html(htmlStr);
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}			
+		});  
+		
+
+		
+
+
 		
 		/* $.ajax({
 			url :"freesample.go",
@@ -332,7 +435,7 @@
 	height: 160px;
 	line-height: 20px;
 }
-  
+
 /* effect */
 #ukjaeTitle_effect {
 	color: red;
@@ -1005,27 +1108,16 @@
 					</tr>
 				</table>					
 				<div id="ukjae_Areaspace"></div>				
-				<table id="ukjae_TableAreaSecond">							
-					<tr>
-						<td><img id="low_image" alt="첫번째 이미지" src="/goodluck/resources/common/img/life/생활1.jpg"></td> 	
-						<td> 거실로 꾸미기, 가벽 세우고<br>화이트 톤 으로 패인팅<br>(서비스 제공자 : 홍 길 동) </td>	
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/life/생활2.jpg"></td> 
-						<td> 수납은 기본, 바다를 닮은<br>좁안 아이방 만들기!!<br>(서비스 제공자 : 정 욱 재)</td>	
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/life/생활3.jpg"></td> 
-						<td> 다시 짱짱하게! 늘어난<br> 티셔츠 수선 해드립니다.<br>(서비스 제공자 : 도 우 너)</td>							
-					</tr>
+				<table id="ukjae_TableAreaSecond" class="ukjae_LifeTable1">							
+
+
 				</table>
 				<div id="ukjae_Areaspace"></div>					
-				<table id="ukjae_TableAreaSecond">					
-					<tr>
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/life/생활3.jpg"></td> 
-						<td> 다시 짱짱하게! 늘어난<br> 티셔츠 수선 해드립니다.<br>(서비스 제공자 : 도 우 너)</td>							
-						<td><img id="low_image" alt="첫번째 이미지" src="/goodluck/resources/common/img/life/생활1.jpg"></td> 	
-						<td> 거실로 꾸미기, 가벽 세우고<br>화이트 톤 으로 패인팅<br>(서비스 제공자 : 홍 길 동) </td>	
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/life/생활2.jpg"></td> 
-						<td> 수납은 기본, 바다를 닮은<br>좁안 아이방 만들기!!<br>(서비스 제공자 : 정 욱 재)</td>					
-					</tr>
+				<table id="ukjae_TableAreaSecond" class="ukjae_LifeTable2">					
+
 				</table>
+				<div align="right" style="padding-right: 17px;"><a href="news_total.go"><font style="font-size: 25px;">뉴스전체보기</font></a></div>				
+				
 				<br>
 		    </div>			
 		    <div class="item"> 
@@ -1187,7 +1279,7 @@
 				    
 		    <div align="center">
 			 	<h2> 동 물 뉴 스 </h2>
-				<table id="ukjae_TableAreaFiveth">
+				<table id="ukjae_TableAreaFiveth" class="ukjae_PetTable">
 		
 				</table><br>
 				<div align="right" style="padding-right: 17px;"><a href="news_total.go"><font style="font-size: 25px;">뉴스전체보기</font></a></div>				
@@ -1227,19 +1319,10 @@
 				</table>
 				<div id="ukjae_Areaspace"></div>					
 
-				<table id="ukjae_TableAreaSecond">					
-					<tr>
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/game/게임3.jpg"></td> 
-						<td> (PS3)던전 앤 드레곤<br>타이틀 판매! <br>(작 성 자 : 태 극 기)</td>							
-						<td><img id="low_image" alt="첫번째 이미지" src="/goodluck/resources/common/img/game/게임2.jpg"></td> 	
-						<td> (닌텐도)HOT!신작 마리오<br>테니스 같이 하실분~? <br>(작 성 자 : 마 리 오) </td>	
-						<td><img id="low_image" alt="두번째 이미지" src="/goodluck/resources/common/img/game/게임5.jpg"></td> 
-						<td> (게임장비)게임 컨트롤러 판매<br> 사용법 안내해드립니다.<br>(작 성 자 : 장 비 맨) </td>					
-					</tr>
+				<table id="ukjae_TableAreaSecond" class="ukjae_GameTable">					
+
 				</table>
-
-
-				
+				<div align="right" style="padding-right: 17px;"><a href="news_total.go"><font style="font-size: 25px;">뉴스전체보기</font></a></div>				
 				<br>
 			</div>
 			<div class="item"> <!-- 음악영역 -->
@@ -1471,36 +1554,17 @@
 						        <div class="container container-pad" id="property-listings" style="width: auto;">
 						            
 						              <div class="col-md-12" style="width: 100%;" align="center">
-						                <h2 id="ukjaeTitle_effect">추천 여행지</h2>
+						                <h2 id="ukjaeTitle_effect">여행 정보</h2>
 						              </div>
 						              <hr style="clear: both;">
 						            
 						            <div class="row" style="width: auto;">
-						                <div class="col-sm-6" style="width: auto;"> 
+						                <div class="col-sm-6" id="mainTravelTable" style="width: auto;"> 
 						                
-										<% for(int i=0; i<7; i++){ %>
-						                    <!-- Begin Listing: 9006 CREFELD ST-->
-						                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
-						                        <div class="media">
-						                            <a class="pull-left" href="#" target="_parent">
-						                            <img alt="image" class="img-responsive" src="/goodluck/resources/common/img/travel/후쿠오카.JPG" style="width: auto; height: 135px;"></a>
 
-						                            <div class="clearfix visible-sm"></div>
-						
-						                            <div class="media-body fnt-smaller">
-						                                <a href="#" target="_parent"></a>
-						
-						                                <h4 class="media-heading"> <a href="#" target="_parent">예상경비 : 1,900,000원 <small class="pull-right"> 후쿠오카 JAPAN</small></a></h4>					
-						                                <p class="hidden-xs">
-							                                	후쿠오카가 좋은것같아요 후쿠오카공항에서  
-							                                	바로 유후인으로 가는 버스가 있어서 유후인온천여행하시면 좋을것같네요
-																자세한 내용은 여행블로그 참고해보세요~^^
-																비행시간도 짧아서 부담없으실거에요~						                                
-						                                </p><span class="fnt-smaller fnt-lighter fnt-arial"><a href="https://scurugi.blog.me/221277265688">상세보기</a></span>
-						                            </div>
-						                        </div>
-						                    </div><!-- End Listing-->														                	
-						                	<% } %>
+	
+									                	
+
 
 						                </div>
 						            </div><!-- End row -->
