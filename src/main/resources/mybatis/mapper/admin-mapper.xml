@@ -14,6 +14,22 @@
 		]]>
 	</select>
 	
+	<select id="selectAdminQnaIng" resultType="Qna">
+		<![CDATA[
+			select *
+			from question
+			where QUESTION_ANSWER_STATE = '처리중'
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaEnd" resultType="Qna">
+		<![CDATA[
+			select *
+			from question
+			where QUESTION_ANSWER_STATE = '답변완료'
+		]]>
+	</select>
+	
 	<update id="b" parameterType="int" flushCache="true">
 		<![CDATA[
 			

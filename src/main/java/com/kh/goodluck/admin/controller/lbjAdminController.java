@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.service.AdminService;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.qna.model.vo.QNA;
 
 @Controller
 public class lbjAdminController {
@@ -53,6 +54,19 @@ public class lbjAdminController {
 	
 	@RequestMapping(value="lbjAdminQnaAnswer.go")
 	public ModelAndView moveAdminQnaAnswer(ModelAndView mv) {
+		//처리중 가져오기
+		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng();
+		
+		//답변완료 가져오기
+		ArrayList<QNA> qnaEnd = (ArrayList<QNA>)adminService.selectAdminQnaEnd();
+		
+		if(qnaIng.size() > 0 && qnaEnd.size() > 0) {
+			System.out.println("AdminQnaAnswer 가져오기 성공");
+		}else {
+			System.out.println("AdminQnaAnswer 가져오기 실패");
+		}
+		mv.addObject("qnaIng", qnaIng);
+		mv.addObject("qnaEnd", qnaEnd);
 		mv.setViewName("A6.LBJ/admin/admin_qnaAnswer");
 		return mv;
 	}

@@ -24,10 +24,36 @@
 				<h3 align="center">QnA 답변하기</h3>
 				<fieldset>
 					<legend>답변 대기중</legend>
+					<table class="table table-stripped">
+						<tr>
+							<td>분야</td><td>제목</td><td>글쓴이</td><td>등록일시</td>
+						</tr>
+						<c:forEach items="${qnaIng}" var="ing">
+							<tr>
+								<td>${ing.question_category}</td>
+								<td><a href="#">${ing.question_title}</a></td>
+								<td>${ing.question_writer}</td>
+								<td>${ing.question_date}</td>
+							</tr>
+						</c:forEach>
+					</table>
 				</fieldset>
 				<br><br>
 				<fieldset>
 					<legend>답변 완료</legend>
+					<table class="table table-stripped">
+						<tr>
+							<td>분야</td><td>제목</td><td>글쓴이</td><td>등록일시</td>
+						</tr>
+						<c:forEach items="${qnaEnd}" var="end">
+							<tr>
+								<td>${end.question_category}</td>
+								<td><a href="#">${end.question_title}</a></td>
+								<td>${end.question_writer}</td>
+								<td>${end.question_date}</td>
+							</tr>
+						</c:forEach>
+					</table>
 				</fieldset>
 			<!-- 작성 영역 끝-->
 		</div>

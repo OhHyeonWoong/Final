@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.qna.model.vo.QNA;
 
 @Repository("adminDao")
 public class AdminDao {
@@ -16,6 +17,14 @@ public class AdminDao {
 
 	public List<LoginStatistics> selectAdminStatistics() {
 		return sqlSession.selectList("selectAdminStatistics");
+	}
+
+	public List<QNA> selectAdminQnaIng() {
+		return sqlSession.selectList("selectAdminQnaIng");
+	}
+
+	public List<QNA> selectAdminQnaEnd() {
+		return sqlSession.selectList("selectAdminQnaEnd");
 	}
 	
 }
