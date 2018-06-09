@@ -62,7 +62,7 @@ public class JDK_MemberController {
 		      PrintWriter out = response.getWriter();
 		      if(memberService.idConfirm(request.getParameter("id"))==true) {
 		         out.append("true");
-		         out.flush();         
+		         out.flush();       
 		      }else {
 		         out.append("false");
 		         out.flush();
@@ -91,7 +91,6 @@ public class JDK_MemberController {
 		             email.setSSL(true); //나도 모르겠음...
 		             email.setTLS(true);// 더 모르겠음...
 		             email.setDebug(true);//디버깅?
-		             
 		             email.addTo(tomail, "신규회원가입"); //받는이 같음(입력 받은 값을 주소로 하는...)
 		             email.setFrom("darenchun92@gmail.com", "독신사"); //보내는이
 		             email.setSubject("회원가입 이메일 인증"); // 메일 제목
@@ -125,7 +124,8 @@ public class JDK_MemberController {
 		//회원가입 메소드
 		@Autowired(required = false)
 		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
-		public void signIn(HttpServletResponse response, HttpServletRequest request, Member member,MultipartRequest mr, @RequestParam("member_profile") MultipartFile mf) throws Exception {
+		public ModelAndView signIn(HttpServletResponse response, HttpServletRequest request, Member member,MultipartRequest mr, @RequestParam("member_profile") MultipartFile mf) throws Exception {
+			ModelAndView mv = null;
 			//회원을 입력하기 위해서 결론적으로 Member 객체를 완성한 이후에 쿼리문에서 전송하여 올릴 것이므로...
 			//최종적으로 Member 객체를 완성시키는 형식으로 진행
 			//아이디 받아오기
@@ -190,17 +190,25 @@ public class JDK_MemberController {
 				int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
 				//encType = "multiPartForm"으로 왔는지 확인
 				String encType="UTF-8"; // 파일 인코딩 방식????
+				
 				if(!ServletFileUpload.isMultipartContent(request)) {
+					System.out.println("if 안");
 					response.sendRedirect("A5.CJS/ErrorPage");
 				}
 				//이게 뭔말이지?
-				ServletContext context = request.getSession().getServletContext();
+				//ServletContext context = request.getSession().getServletContext();
+				//System.out.println("context = " + context);
 				//실제 저장 경로????
-				String uploadPath = context.getRealPath("fileSavePath");
+				//String uploadPath = context.getRealPath("fileSavePath");
+				//System.out.println("uploadPath = " + uploadPath);
 				//MultipartRequest 선언을 통한 실제 업로딩
-				mf.getOriginalFilename(); 
-				File f = new File(fileSavePath+"\\"+rename);
-				mf.transferTo(f);
+				//mf.getOriginalFilename();
+				System.out.println("파일 앞");
+				String path = request.getSession().getServletContext().getRealPath("resources/A3.JDK/images/userprofile");
+				//File f = new File(fileSavePath+"\\"+rename);
+				System.out.println("path = " + path);
+				mf.transferTo(new File(path+"\\"+rename));
+				System.out.println("파일 뒤");
 			}
 			
 		} catch(Exception e) {
@@ -222,16 +230,19 @@ public class JDK_MemberController {
 			//회원 가입이 완료되었을 경우
 			if(enrollment==1) {
 				String mess="회원가입이 완료 되었습니다.";
-				request.setAttribute("message", mess);
-				request.getRequestDispatcher("home").forward(request, response);
+				mv= new ModelAndView("home");
+				mv.addObject("signInConfirmed", mess);
+				mv.setViewName("home");
 			//회원가입이 안됬을 경우	
 				}else{
 				String mess="회원 가입이 실패하였습니다.";
-				request.setAttribute("message", mess);
-				request.getRequestDispatcher("home").forward(request, response);
-			}
+				mv= new ModelAndView("home");
+				mv.addObject("signInNotConfirmed", mess);
+				mv.setViewName("home");
+				}
 		}catch(Exception e) {
 			}
+		return mv;
 		}
 		//어드민 페이지 관련 메소드
 		//어드민 페이지 이동용 메소드
@@ -249,10 +260,5 @@ public class JDK_MemberController {
 		@RequestMapping(value="jdkadminitemlist.go")
 		public String adminItemManagement() {
 			return "A3.JDK/admin_itemlist";
-		}
-		//병준씨 어드민 페이지 통계 창 이동용 메소드
-		@RequestMapping(value="lbjStatisticsTest.go")
-		public String adminStatistic() {
-			return "A4.LBJ/adminStatistics/admin_loginStatistics";
 		}
 }

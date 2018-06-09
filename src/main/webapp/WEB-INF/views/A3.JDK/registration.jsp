@@ -82,7 +82,7 @@ var submition = false; //->true로 바뀔 시 form 전송
 var emailConfirmed = false;//->이메일 인증 받으면 true
 var idConfirmed = false;// -> 아이디 인증을 받아야 true
 var termsConfirmed = false// -> 약관 동의 했을 때 true
-var pwd1pwd2 = false;
+var pwd1pwd2 = false;//비밀 번호 재확인 일치여부
 var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
 var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
 var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
@@ -261,6 +261,22 @@ function emailChanged(){
 $(function(){
 $("#termsClick").click();
 });
+/////////////////////////////////////////////////////////////////////////////////////
+/* $(function(){
+	$("#inputProfile").on('change', function(){
+		   readURL(this);
+		   });
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		    
+		    var reader = new FileReader();
+		   reader.onload = function (e) {
+		           $('#preview').attr("src", e.target.result);
+		       }
+		     reader.readAsDataURL(input.files[0]);
+		    } 
+		}	
+}); */
 </script>
 
 </head>

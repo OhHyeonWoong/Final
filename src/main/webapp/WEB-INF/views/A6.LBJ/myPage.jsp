@@ -18,6 +18,59 @@
 <!-- 부트스트랩용 자바스크립트 파일 공용 폴더 내부  js 파일 사용-->
 <!-- <script src="/rs/resources/common/bootstrap.min.js"></script> -->
 <!---------------------------------- Jeon Dong Gi-------------------------------->
+<!-- 주소 입력을 위한 스크립트 로딩 영역입니다. -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+            
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+            } else {
+                document.getElementById('guide').innerHTML = '';
+            }
+        }
+    }).open();
+}
+</script>
+
 <!-- byungjun -->
 <link href="/goodluck/resources/A6.LBJ/css/lbj_sidebar.css" rel="stylesheet">
 <!-- byungjun -->
@@ -353,22 +406,26 @@
 				clickCheck = false;
 			}
 		}
-		//회원정보 수정 전(submit 전)에 값 체크해서 보냄
+		//회원정보 수정 전(submit 전)에 값 체크해서 보냄+ 정규식 적용(동기)
 		function fnValidationCheck(){
-			/*
-			 * 1. 비밀번호가 일치하는지 
-			 * 2. 인증번호가 일치하는지
-			 */ 
-			// 1
+			/* 1. 비밀번호가 일치하는지 
+			 * 2. 인증번호가 일치하는지 */ 
+			//비밀번호 일치 여부 
 			var pass1 = $('#InputPassword1').val();
 			var pass2 = $('#InputPassword2').val();
 			if(pass1 == pass2){
 				flag = true;
 			}else{
+				$("#pwdSame").text("비밀번호 확인을 위해 다시한번 입력 해 주세요").css("color","#737373");
+				$("#password1").focus();
 				flag = false;
 				alert("비밀번호가 일치하지 않습니다.");
 			}
-
+			
+			//필요 부분 정규식 추가합니다.
+			//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
+			
+			
 			console.log("flag = " + flag);
 			if(flag == true && clickCheck == true){
 				return true;
@@ -436,13 +493,14 @@
 		 		<!-- 벼어어어어어어어어어어주누누누누누이이이 -->
 				<div class="login_form" >
 				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
+					<!-- 폼시작 -->
 					<form role="form" action="lbjUpdateMember.go" method="post" enctype="multipart/form-data" 
 					  onsubmit="return fnValidationCheck();">
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
 							<div style="width : 200px; height : 200px; margin: 0 auto; border:1px solid black;">
-							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height : 200px;"/>
+							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
 							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
@@ -467,7 +525,7 @@
 						<div class="form-group">
 							<label for="InputPassword2">비밀번호 확인</label> <input type="password"
 								class="form-control" id="InputPassword2" placeholder="비밀번호 확인" required="required">
-							<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+							<p id = "pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 						</div>
 						<div class="form-group">
 							<label for="username">주민등록번호</label><br> 
@@ -481,11 +539,21 @@
 							</tr>	
 							</table>
 						</div>
-						<div class="form-group">
-							<label for="username">주소</label><br> 
-							<input type="text" class="form-control" id="member_address" name="member_address" 
-							placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}">
-						</div>
+						
+						<!-- 주소 부분 수정합니다. -->
+				<div class="form-group">
+					<label for="username">주소</label>
+					<br>
+					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;">
+					<span class="input-group-btn">					
+					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
+					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
+					<br><br>
+					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly"><br><br>
+					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" >
+					<span id="guide" style="color:#999"></span>
+				</div>
+						<!-- 전화번호 영역 -->
 						<div class="form-group">
 							<label for="username">전화번호</label><br> 
 							<input type="text" class="form-control" id="member_phone" name="member_phone" 
@@ -515,6 +583,7 @@
 							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
 						</div>
 					</form>
+					<!-- 폼끝 -->
 						</div>
 					</div>
 			</div>
