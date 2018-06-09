@@ -21,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -185,6 +186,23 @@ public class MemberController {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
 			if(result > 0 && m.getMember_status() != 2) {
+				//login_statistics 테이블 갱신//////////////
+				System.out.println("login통계 테이블 갱신 시작");
+				//해당 아이디가 존재하는지 확인 (sysdate로 비교)
+				LoginStatistics idYNCheck = memberService.selectIdYNCheck(m.getMember_id());
+				if(idYNCheck == null) {
+					//존재하지 않으면 테이블에 insert
+					int insertResult = memberService.insertLoginStatistics(m.getMember_id());
+					if(insertResult > 0) {
+						System.out.println("통계 테이블 갱신 성공");
+					}else {
+						System.out.println("통계 테이블 갱신 실패");
+					}
+				}else {
+					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재");
+				}
+				System.out.println("login통계 테이블 갱신 끝");				
+				/////////////////////////////////////////
 				System.out.println("Update Last Login.. Success.. ");
 				out.write("로그인 성공");
 				model.addAttribute("loginUser", m);

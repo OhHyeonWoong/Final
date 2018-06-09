@@ -43,6 +43,8 @@ public class QNAController {
 	public ModelAndView qnaDetailGo(ModelAndView mv,QnaWrite q) {
 		//qna 디테일로 고고
 		//question and answer 테이블에서 값 꺼내오기
+		System.out.println("lbjqnadetail.go run...");
+		System.out.println("q = " + q);
 		QNA myDetailQna = qnaService.selectMyDetailQna(q);
 		QnaAnswer myDetailQnaAnswer = qnaService.selectMyDetailQnaAnswer(q.getQuestion_no());
 		////////////////////////////////////

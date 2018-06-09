@@ -445,7 +445,32 @@
 			                                <table class="table table-condensed table-responsive table-user-information">
 			                                    <tbody>
 			                                    <tr>
-			                    <td rowspan="7" width="200"><img src="/goodluck/resources/common/img/main/백종원.jpg" alt="이미지준비중" width="150" height="150"></td>
+			                    <td rowspan="7" width="200">
+			                    
+			                     
+			                    <c:choose>
+			                    
+			                    <c:when test="${writer.member_renamephoto ne null }">
+			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/${writer.member_renamephoto}" alt="이미지준비중" width="150" height="200">
+			                	</c:when>
+			                    <c:when test="${writer.member_renamephoto eq null && gender eq 1}">
+			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/3425dffawdsf.png" alt="이미지준비중" width="150" height="200">
+			                	</c:when>
+			                    <c:when test="${writer.member_renamephoto eq null && gender eq 0}">
+			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/36452465356743f.png" alt="이미지준비중" width="150" height="200">
+			                	</c:when>
+			                   
+			       
+			                    
+			                    </c:choose>
+			                   
+			                    
+			                    
+			                    </td>
+			                        
+			                        
+			                        
+			                        
 			                          </tr>			                                    
 			                                    <tr>
 			                                        <td>오너</td>
@@ -466,15 +491,13 @@
 
 			                                    <tr>
 			                                        <td>서비스기간 </td>
-			                                        <td>
-			                                        ${Board.agency_startdate}
-													~
+			                                        <td>${Board.agency_startdate}
+~
 			                                        ${Board.agency_enddate}
-			                                        
 			                                        
 			                                        </td>
 			                                    </tr>
-			                                    
+			                                 
 			                                    <tr>
 			                                        <td>누적경고 </td>
 			                                        <td>${writer.member_yellowcard}</td>
@@ -483,13 +506,7 @@
 			                                    </tbody>
 			                                </table>
 			                                
-			                                <div align="center">
-												<a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
-												<a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</a>
-												<a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
-												<!-- <a class="btn icon-btn btn-warning" href="#"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Remove</a>
-												<a class="btn icon-btn btn-danger" href="#"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>	 -->		                                
-			                                </div>
+			                              
 			                            </div>
 			                        </div>
 			                    </div>
@@ -510,6 +527,8 @@
 					            <li>두번째 : 서비스 제공자에게 폭언, 폭력을할시 <br>법적으로 처벌 받습니다. </li> <br>
 					            <li>세번째 : 서비스 이용시간을 준수합니다. </li> <br>
 					            <li>네번째 : 이용자는 제공서비스 이외에 불필요한<br>요구를 할수 없습니다. </li> <br>
+					            <li>다섯 번째 : 거래 종료 권한은 오너에게 있습니다.<br></li> <br>
+					            <li>여섯 번째 : 수행의 업무는 필히 증거 사진을 찍어주세요.<br></li> <br>
 					        </ul>
 					        </div>
 
@@ -558,14 +577,16 @@
 			<hr style="clear: both;">
 			
 			<div style="width: 100%;"  align="center"> <!-- 리뷰작성Area  -->
-				
-
-						<div class="row" style="margin-top:20px; width: 100%;">
+			<div class="row" style="margin-top:20px; width: 100%;">
 							<div class="col-md-6" style="width: 100%; padding: 0;">
 					    	<div class="well well-sm" style="padding: 26px; margin: 0;">
 					            <div class="text-right" align="center">
-					                <button style="background: red; color: white; width: 90px; height: 33px;" id="uk_cancelbtn">거래취소</button>
-					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">거래확정</a>
+					                <button style="background: red; color: white; width: 90px; height: 33px;" id="uk_cancelbtn">
+					                수행 포기
+					                </button>
+					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
+					        해당 유저 신고
+					                </a>
 					            </div>
 					        
 					            <div class="row" id="post-review-box" style="display:none;">

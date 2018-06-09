@@ -6,9 +6,27 @@
 
 	<select id="selectAdminStatistics" resultType="LoginStatistics">
 		<![CDATA[
-			select count(*) as "visitCount",ls_date
+			select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
 			from login_statistics
-			group by ls_date
+			where rownum <= 8
+			group by to_date(ls_date,'yy/mm/dd')
+			order by to_date(ls_date,'yy/mm/dd') desc
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaIng" resultType="Qna">
+		<![CDATA[
+			select *
+			from question
+			where QUESTION_ANSWER_STATE = '처리중'
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaEnd" resultType="Qna">
+		<![CDATA[
+			select *
+			from question
+			where QUESTION_ANSWER_STATE = '답변완료'
 		]]>
 	</select>
 	

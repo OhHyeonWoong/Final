@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.service.AdminService;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.qna.model.vo.QNA;
 
 @Controller
 public class lbjAdminController {
@@ -21,10 +22,17 @@ public class lbjAdminController {
 	}
 	
 	@RequestMapping(value="lbjStatisticsTest.go")
-	public ModelAndView movePayTest(ModelAndView mv) {
+	public ModelAndView moveStatisticsTest(ModelAndView mv) {
 		ArrayList<LoginStatistics> count = (ArrayList<LoginStatistics>)adminService.selectAdminStatistics();
 		if(count.size() > 0) {
 			System.out.println("관리자 통계 데이터 가져오기 성공!");
+			//한번 가져온 결과를 출력해보자
+			for(int z=0;z<count.size();z++) {
+				System.out.print(z + "번째 값 :  ");
+				System.out.print("count.get(z).getLs_date() = " + count.get(z).getLs_date() + " , ");
+				System.out.println("count.get(z).getVisitCount() = " + count.get(z).getVisitCount());
+			}
+			////////////////////
 		}else {
 			System.out.println("관리자 통계 데이터 가져오기 실패!");
 		}
@@ -35,11 +43,35 @@ public class lbjAdminController {
 			dateStr.add(count.get(i).getLs_date().toString());
 			countInt.add(count.get(i).getVisitCount());
 		}
+		
 		//////////////
 		mv.addObject("adminListCount", count.size());
 		mv.addObject("adminVisitCount", countInt);
 		mv.addObject("adminDate", dateStr);
-		mv.setViewName("A6.LBJ/adminStatistics/admin_loginStatistics");
+		mv.setViewName("A6.LBJ/admin/admin_loginStatistics");
+		return mv;
+	}
+	
+	@RequestMapping(value="lbjAdminQnaAnswer.go")
+	public ModelAndView moveAdminQnaAnswer(ModelAndView mv) {
+		//이 녀석은 페이지 로딩 될 때 부르는 메소드
+		
+		//페이징 처리 각
+		int page = 1;
+		//처리중 가져오기
+		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng();
+		
+		//답변완료 가져오기
+		ArrayList<QNA> qnaEnd = (ArrayList<QNA>)adminService.selectAdminQnaEnd();
+		
+		if(qnaIng.size() > 0 && qnaEnd.size() > 0) {
+			System.out.println("AdminQnaAnswer 가져오기 성공");
+		}else {
+			System.out.println("AdminQnaAnswer 가져오기 실패");
+		}
+		mv.addObject("qnaIng", qnaIng);
+		mv.addObject("qnaEnd", qnaEnd);
+		mv.setViewName("A6.LBJ/admin/admin_qnaAnswer");
 		return mv;
 	}
 }

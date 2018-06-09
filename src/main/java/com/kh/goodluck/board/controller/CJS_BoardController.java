@@ -26,6 +26,8 @@ import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 
+import oracle.sql.CHAR;
+
 @Controller
 @SessionAttributes("loginUser")
 public class CJS_BoardController {
@@ -214,6 +216,12 @@ public class CJS_BoardController {
 		mv.addObject("Cateinfo",gcfbd);
 		mv.addObject("Board",bo);
 		mv.addObject("writer",writer);
+		mv.addObject("gender",
+    
+	String.valueOf(writer.getMember_regident_number())
+	.charAt(String.valueOf(writer.getMember_regident_number()).length() - 1)%2
+	
+				);
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
 		mv.setViewName("A2.JUJ/dealingState");
