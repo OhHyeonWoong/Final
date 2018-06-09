@@ -94,4 +94,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.updateMemberCashMethod(m);
 	}
 	
+	@Override
+	public int insertLoginStatistics(String member_id) {
+		//로그인 통계 내는 용 메소드
+		return memberDao.insertLoginStatistics(member_id);
+	}
 }	

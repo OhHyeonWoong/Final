@@ -185,6 +185,16 @@ public class MemberController {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
 			if(result > 0 && m.getMember_status() != 2) {
+				//login_statistics 테이블 갱신//////////////
+				System.out.println("login통계 테이블 갱신 시작");
+				int insertResult = memberService.insertLoginStatistics(m.getMember_id());
+				if(insertResult > 0) {
+					System.out.println("통계 테이블 갱신 성공");
+				}else {
+					System.out.println("통계 테이블 갱신 실패");
+				}
+				System.out.println("login통계 테이블 갱신 끝");				
+				/////////////////////////////////////////
 				System.out.println("Update Last Login.. Success.. ");
 				out.write("로그인 성공");
 				model.addAttribute("loginUser", m);

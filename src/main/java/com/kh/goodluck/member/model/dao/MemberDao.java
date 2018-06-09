@@ -77,5 +77,8 @@ public class MemberDao {
 	public int updateMemberCashMethod(Member m) {
 		return sqlSession.update("updateMemberCash", m);
 	}
+	public int insertLoginStatistics(String member_id) {
+		return sqlSession.insert("insertLoginStatistics", member_id);
+	}
 
 }
