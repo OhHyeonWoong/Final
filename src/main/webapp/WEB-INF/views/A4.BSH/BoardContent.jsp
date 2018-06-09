@@ -131,7 +131,7 @@
 
 			<div class="board_div_search">
 				<!-- search<br> -->
-				<form>
+				<form action="" method="get">
 					<table>
 						<tr>
 							<td class="td_start"><label>카테고리별 검색</label></td>
@@ -180,7 +180,7 @@
 							<td class="td_mid" colspan="2"><input type="text" class="textbox_comm" name="searchdoc" id="검색단어" placeholder="검색단어">
 							<input type="hidden" name="page" value="1">
 							</td>
-							<td class="td_end"><button id="search"><i class="glyphicon glyphicon-search"></i>Search</button></td>					
+							<td class="td_end"><button><i class="glyphicon glyphicon-search"></i>Search</button></td>					
 						</tr>
 					</table>
 				</form>
@@ -188,7 +188,7 @@
 			<script type="text/javascript">
 			/* $("#search").click(function() {
 				console.log($("#search").val());
-				/* function boardsearch(){
+				function boardsearch(){
 					var searchstr = "?대카테고리="+$("#대카테고리").val()+"&중카테고리="+$("#중카테고리").val()
 							+"&소카테고리="+$("#소카테고리").val()+"&지역="+$("#지역").val()+"&글상태="+$("#글상태").val();
 							+"&group1="+$("#group1").val()+"&group2="+$("#group2").val()+"&group3="+$("#group3").val()
@@ -199,7 +199,7 @@
 			}) */
 			</script>
 			<div class="board_div_maincontent">
-				<%-- <%-- <h2>${link2name }</h2><br>
+				<%-- <h2>${link2name }</h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -329,7 +329,7 @@
 					</c:if>
 					
 					<button onclick="location.href='bshtest.go?link2_no=${link2name }&page=${agencycount }'">&gt;&gt;</button>
-				</span> --%> --%>
+				</span> --%>
 			</div>
 
 		</div>
