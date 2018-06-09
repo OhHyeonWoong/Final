@@ -54,6 +54,10 @@ public class lbjAdminController {
 	
 	@RequestMapping(value="lbjAdminQnaAnswer.go")
 	public ModelAndView moveAdminQnaAnswer(ModelAndView mv) {
+		//이 녀석은 페이지 로딩 될 때 부르는 메소드
+		
+		//페이징 처리 각
+		int page = 1;
 		//처리중 가져오기
 		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng();
 		
