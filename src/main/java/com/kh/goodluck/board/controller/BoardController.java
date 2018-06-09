@@ -300,7 +300,13 @@ public class BoardController {
 		mv.addObject("midcategorylist",midcategorylist);
 		mv.addObject("smallcategorylist",smallcategorylist);
 		
+<<<<<<< HEAD
+		int agencyCount = boardservice.getAgencyCount(request.getParameter("category").toString());
+		
+		
+=======
 		return mv;
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 	}
 	
 	
