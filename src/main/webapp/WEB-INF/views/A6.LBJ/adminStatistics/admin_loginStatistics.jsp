@@ -40,9 +40,9 @@
 				<div id="areachart"
 					style=""></div><!-- width: 70%; height: 300px; -->
 				<div>
-					${adminListCount} <br>
+					<%-- ${adminListCount} <br>
 					${adminDate} <br>
-					${adminVisitCount}
+					${adminVisitCount} --%>
 				</div>
 				<script>
 				var chart = c3.generate({
@@ -50,25 +50,24 @@
 					  data: {
 					    x: "date",
 					    columns: [
-					      /* ["date", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"], */
-					      ["date", 
-					    	  for(int i=0;i<${adminListCount};i++){
-					    		 if(i == ${adminListCount-1}){
-					    			 ${adminDate.get(i)}
-					    		 }else{
-					    			 ${adminDate.get(i)},
-					    		 }
-					    	  }
+					      /* ["date", "55세", "56세", "57세", "58세", "59세", "60세", "61세", "62세", "63세", "64세", "65세", "66세", "67세", "68세", "69세", "70세", "71세"],
+					       */["date", 
+					     	<c:forEach items="${adminDate}" var="date">
+					            ${date},
+					        </c:forEach>
 					      ],
-					      /* ["count", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270], */
-					      ["count", 
-					    	  for(int i=0;i<${adminListCount};i++){
+					      /* ["count", 2400, 2200, 2350, 2300, 2160, 2010, 1830, 1540, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270, 1270],
+					       */["count", 
+					    	   <c:forEach items="${adminVisitCount}" var="count">
+						            ${count},
+						        </c:forEach>
+					    	  /* for(int i=0;i<${adminListCount};i++){
 					    		  if(i == ${adminListCount-1}){
 						    		 ${adminVisitCount.get(i)}
 						    	  }else{
 						    		 ${adminVisitCount.get(i)},
 						    	  }
-					    	  }
+					    	  } */
 					      ],
 					    ],
 					    types: {

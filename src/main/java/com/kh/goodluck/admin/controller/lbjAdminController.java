@@ -35,6 +35,14 @@ public class lbjAdminController {
 			dateStr.add(count.get(i).getLs_date().toString());
 			countInt.add(count.get(i).getVisitCount());
 		}
+		
+		//한번 가져온 결과를 출력해보자
+		for(int z=0;z<count.size();z++) {
+			System.out.print(z + "번째 값 :  ");
+			System.out.print("count.get(z).getLs_date() = " + count.get(z).getLs_date() + " , ");
+			System.out.println("count.get(z).getVisitCount() = " + count.get(z).getVisitCount());
+		}
+		////////////////////
 		//////////////
 		mv.addObject("adminListCount", count.size());
 		mv.addObject("adminVisitCount", countInt);
