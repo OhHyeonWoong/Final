@@ -6,9 +6,9 @@
 
 	<select id="selectAdminStatistics" resultType="LoginStatistics">
 		<![CDATA[
-			select count(*) as "visitCount",ls_date
+			select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
 			from login_statistics
-			group by ls_date
+			group by to_date(ls_date,'yy/mm/dd')
 		]]>
 	</select>
 	
