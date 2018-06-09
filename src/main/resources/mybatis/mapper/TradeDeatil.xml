@@ -19,9 +19,8 @@ insert into TRADE_DETAIL values(
 </insert>
 
 <update id="UpdateTradeReserVation" parameterType="Trade_detail">
-update TRADE_DETAIL set TRADE_RESERVATION = #{TRADE_RESERVATION} and TRADE_RESERVATION_DATE = sysdate where AGENCY_NO=#{AGENCY_NO} 
+update TRADE_DETAIL set TRADE_RESERVATION = #{TRADE_RESERVATION} 
+, TRADE_RESERVATION_DATE = sysdate where AGENCY_NO=#{AGENCY_NO} 
 </update>
-
-
 
 </mapper>

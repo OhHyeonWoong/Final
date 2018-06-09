@@ -13,6 +13,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
@@ -202,6 +203,34 @@ public class BoardDao {
 	}
     public int insertchatroom(HashMap<Object, Object> map) {
 	return  sqlSession.insert("insertchatroom",map);
+	}
+
+
+
+	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getChatInfoByMap",map);
+	}
+
+
+
+	public int getrelation(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation",map);
+	}
+
+
+
+	public int getrelation1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation1",map);
+	}
+
+
+
+	public int getrelation2(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation2",map);
 	}
 
 

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
+import com.kh.goodluck.member.model.vo.Memberandscore;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -92,6 +93,12 @@ public class MemberServiceImpl implements MemberService{
 	public int updateMemberCashMethod(Member m) {
 		//멤버 캐시 결제
 		return memberDao.updateMemberCashMethod(m);
+	}
+
+	@Override
+	public Memberandscore searchmemberInfobyBoardNo(int pk) {
+		// 보드번호로 작성자 정보뽑기.
+		return  memberDao.searchmemberInfobyBoardNo(pk);
 	}
 	
 }	

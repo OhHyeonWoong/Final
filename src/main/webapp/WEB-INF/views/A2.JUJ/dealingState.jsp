@@ -426,14 +426,18 @@
 	</head>
 	<body>
 		<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-		
-		<div class="container">   
-				
-			        <div class="row-fluid user-infos cyruxx">
+		${Board}//
+		${Chat.CHATROOM_NO}//
+		${writer}//
+		${Cateinfo}
+	<div class="container">   
+		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
 			                <div class="panel panel-primary">
 			                    <div class="panel-heading" align="center">
-			                        <h3 class="panel-title">당신도 집에서 요리사가 될 수 있습니다. 실전의 기초부터 중수까지.</h3>
+			                        <h3 class="panel-title">
+			               ${Board.agency_title}         			                        
+			                        </h3>
 			                    </div>
 			                    <div class="panel-body">
 			                        <div class="row-fluid">
@@ -441,32 +445,39 @@
 			                                <table class="table table-condensed table-responsive table-user-information">
 			                                    <tbody>
 			                                    <tr>
-			                                        <td rowspan="7" width="200"><img src="/goodluck/resources/common/img/main/백종원.jpg" alt="이미지준비중" width="150" height="150"></td>
+			                    <td rowspan="7" width="200"><img src="/goodluck/resources/common/img/main/백종원.jpg" alt="이미지준비중" width="150" height="150"></td>
+			                          </tr>			                                    
+			                                    <tr>
+			                                        <td>오너</td>
+			                                        <td>${writer.member_id}</td>
 			                                    </tr>			                                    
 			                                    <tr>
-			                                        <td>제공자 </td>
-			                                        <td>백종원</td>
-			                                    </tr>			                                    
-			                                    <tr>
-			                                        <td>제공자레벨</td>
-			                                        <td class="uk_level">10(Master)</td>
+			                                        <td>제공자 구매점수</td>
+			                                        <td class="uk_level">
+			                                        
+			                                        ${writer.SCORE_BUY} 포인트 
+			                                        
+			                                        </td>
 			                                    </tr>
 			                                    <tr>
 			                                        <td>서비스내역 </td>
-			                                        <td>한식 요리교실(불고기/김치전/된장찌게/김치찌게 등..)</td>
+			                                        <td>${Cateinfo.CATEGORY_SMALL_NAME}</td>
 			                                    </tr>
 
 			                                    <tr>
 			                                        <td>서비스기간 </td>
-			                                        <td>오전09:00 ~ 오후 6:00시 (9Hour)</td>
+			                                        <td>
+			                                        ${Board.agency_startdate}
+													~
+			                                        ${Board.agency_enddate}
+			                                        
+			                                        
+			                                        </td>
 			                                    </tr>
-			                                    <tr>
-			                                        <td>거래일시 </td>
-			                                        <td>2018/05/18</td>
-			                                    </tr>
+			                                    
 			                                    <tr>
 			                                        <td>누적경고 </td>
-			                                        <td>0회</td>
+			                                        <td>${writer.member_yellowcard}</td>
 			                                    </tr>
 
 			                                    </tbody>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page autoFlush="true" buffer="1094kb"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <title>보더 타이틀</title>
 </head>
 <body>
+
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 
 <script type="text/javascript">
@@ -26,10 +28,29 @@
             $panelBody.slideToggle();
         });
     });
+	if('${loginUser}' != ''  && ('${Board.agency_status}' == '2' || '${Board.agency_status}' == '3') ){
+	$.ajax({
+		url:"chackboardStatusByuser.go",
+		data:{
+			memberid:'${loginUser.member_id}',
+			BoardNo:'${Board.agency_no}'
+		},
+		  success:function(data){
+			  console.log(data);
+			  if(data != 0)
+			  {
+				$("#ukapplybtn").removeAttr("data-target");
+				$("#ukapplybtn").text("해당 글에 이미 지원했습니다.");
+				$("#ukapplybtn").removeAttr("id");
+			  }
+		  }
+		
+	})
+	}
+	
     function draggableInit() {
         var sourceId;
-
-        $('[draggable=true]').bind('dragstart', function (event) {
+	 $('[draggable=true]').bind('dragstart', function (event) {
             sourceId = $(this).parent().attr('id');
             event.originalEvent.dataTransfer.setData("text/plain", event.target.getAttribute('id'));
         });
@@ -131,7 +152,7 @@ ${Cateinfo};
                        </c:choose>
                    
                         <h5>${Board.agency_title}</h5>
-                        
+                                                     오너 : ${Board.agency_writer}
                         <table  style="width: 100%"> 
                         <tr>
                         <td width="30%">
@@ -218,19 +239,37 @@ ${Cateinfo};
 
      <center>
      <c:choose>
-     <c:when test="${loginUser eq null}">    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
-					<i class="fa fa-sign-in"></i> 로그인하러가기   </c:when>
-     <c:when test="${loginUser ne null}">  <button id="ukapplybtn" data-target="#myModal2">신청하기</button> </c:when>
-     <c:when test=""></c:when>
+     <c:when test="${loginUser eq null}">   
+     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">
+	 <i class="fa fa-sign-in"></i> 로그인하러가기  
+	 </c:when>
+    
+     <c:when test="${loginUser ne null && Board.agency_status == 1}">  
+      <button id="ukapplybtn" data-target="#myModal2">신청하기</button> 
+     </c:when>
+     
+     <c:when test="${loginUser ne null && Board.agency_status == 2}">  
+        <button id="ukapplybtn" data-target="#myModal2">예비인력으로 신청하기!</button>
+     </c:when>
+     
+     <c:when test="${loginUser ne null && Board.agency_status == 3}">  
+        <button>예비인력이 가득찼습니다!</button>
+     </c:when>
+     
+     <c:when test="${loginUser ne null && Board.agency_status == 4}">  
+        <button>이미 종료된 작업입니다.</button>
+     </c:when>
+
      </c:choose>
-     <button>뒤로가기</button></center> 
+     <button>뒤로가기</button>
+     </center> 
 </th>
 
 
 
 
-<th style="width: 25%; "> 
-<div class="panel panel-primary kanban-col"  style="">
+<th style="width: 25%"> 
+<div class="panel panel-primary kanban-col">
                 <div class="panel-heading">
                     작성자의 다른 글 보기
                     <i class="fa fa-2x fa-plus-circle pull-right"></i>
@@ -401,7 +440,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 					      var bool = confirm('정말로 신청 하시겠습니까?');
 					      if(bool==true){
 					         alert("신청이 완료 되었습니다!");
-					         location.href="DealingState.go?BoardNo=${Board.agency_no}&memberid=${loginUser.MEMBER_ID}";
+					         location.href="DealingState.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
 					      }else {
 					         alert("신청이 취소 되었습니다.");            
 					      }

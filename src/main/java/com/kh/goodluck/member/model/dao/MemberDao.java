@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
+import com.kh.goodluck.member.model.vo.Memberandscore;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -76,6 +77,10 @@ public class MemberDao {
 	}
 	public int updateMemberCashMethod(Member m) {
 		return sqlSession.update("updateMemberCash", m);
+	}
+	public Memberandscore searchmemberInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("searchmemberInfobyBoardNo", pk);
 	}
 
 }

@@ -6,6 +6,7 @@
 	<typeAliases>		
 		<typeAlias type="com.kh.goodluck.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.goodluck.member.model.vo.MemberList" alias="MemberList"/>
+		<typeAlias type="com.kh.goodluck.member.model.vo.Memberandscore" alias="Memberandscore"/>
 		<typeAlias type="com.kh.goodluck.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ITEMLIST" alias="ITEMLIST"/>
