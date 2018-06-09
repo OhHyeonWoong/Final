@@ -189,6 +189,26 @@ public class BoardService {
 		return boardDao.getrelation2(map);
 	}
 
+	public int getAgencyStatus(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.getAgencyStatus(pk);
+	}
+
+	public int cancelagency1(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.cancelagency1(pk);
+	}
+
+	public int cancelagency2(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.cancelagency2(pk);
+	}
+
+	public int cancelagency3(int pk) {
+		// TODO Auto-generated method stub
+		return	boardDao.cancelagency3(pk);
+	}
+
 	
 	
 	
