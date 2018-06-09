@@ -30,7 +30,7 @@
 
 </head>
 <body>
-	<%-- <div class="container">
+	<div class="container">
 		<div class="bsh_sidebar">
 			<!-- 카테고리 -->
 			<!-- sidebar -->
@@ -193,7 +193,7 @@
 			})
 			</script>
 			<div class="board_div_maincontent">
-				<h2>${board.link2_no }</h2><br>
+				<%-- <h2>${board.link2_no }</h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -323,12 +323,11 @@
 					</c:if>
 					
 					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
-				</span>
+				</span> --%>
 			</div>
-
+	
 		</div>
 	</div>
- --%>
 
 </body>
 </html>

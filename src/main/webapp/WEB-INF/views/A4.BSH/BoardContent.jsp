@@ -19,7 +19,6 @@
 /* 여기에 스크립트 입력 */
 	
 
-
 </script>
 
 <link href="/goodluck/resources/A4.BSH/BSH.css" rel="stylesheet">
@@ -132,35 +131,40 @@
 
 			<div class="board_div_search">
 				<!-- search<br> -->
-				<form action="" method="get">
+				<form>
 					<table>
 						<tr>
 							<td class="td_start"><label>카테고리별 검색</label></td>
 							<td class="td_mid">
-								<select name="bcate">
-									<option value="선택하세요" selected="selected">선택하세요</option>
+								<select id="bcate" name="bcate">
+										<option value="" selected="selected">선택하세요</option>
 									<c:forEach var="bigcategory" items="${bigcategorylist }">
-										<option value="${bigcategory.category_big_name }">${bigcategory.category_big_name }</option>
+										<option value="${bigcategory.category_big_name}">${bigcategory.category_big_name}</option>
 									</c:forEach>
-								</select></td>
+								</select>
+							</td>
 							<td class="td_mid">
-								<select name="mcate">
-									 <option value="선택하세요" selected="selected">선택하세요</option>
-								</select></td>
+								<select id="mcate" name="mcate">
+									<option value="" selected="selected">선택하세요</option>
+								</select>
+							</td>
 							<td class="td_end">
-								<select name="scate">
-									<option value="선택하세요" selected="selected">선택하세요</option>
-								</select></td>
+								<select id="scate" name="scate">
+									<option value="" selected="selected">선택하세요</option>
+								</select>
+							</td>
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
-								<select name="loc">
+								<select id="loc" name="loc">
 									<option value="지역" selected="selected">지역</option>
-								</select></td>
+								</select>
+							</td>
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
-								<select name="status">
+								<select id="state" name="state">
 									<option value="글상태" selected="selected">글상태</option>
-								</select></td>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group1" value="시급">시급</label></td>
@@ -168,39 +172,36 @@
 							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group2" value="금액낮은순">금액낮은순</label></td>
 							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group2" value="금액높은순">금액높은순</label></td>
 							<td class="td_start"><label>최소금액</label></td>
-							<td class="td_end"><input type="text" class="textbox_comm" name="min" placeholder="최소금액"></td>
+							<td class="td_end"><input id="min" type="text" class="textbox_comm" value="" placeholder="최소금액"></td>
 							<td class="td_start"><label>최대금액</label></td>
-							<td class="td_end"><input type="text" class="textbox_comm" name="max" placeholder="최대금액"></td>
+							<td class="td_end"><input id="max" type="text" class="textbox_comm" value="" placeholder="최대금액"></td>
 						</tr>
 						<tr>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group3" id="group3-1" value="등록날짜순" checked="checked">등록날짜순</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group3" id="group3-2" value="시작날짜순">시작날짜순</label></td>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group4" id="group4-1" value="제공">제공</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group4" id="group4-2" value="구인">구인</label></td>
-							<td class="td_start"><label>검색단어</label></td>
-							<td class="td_mid" colspan="2"><input type="text" class="textbox_comm" name="searchdoc" id="검색단어" placeholder="검색단어">
-							<input type="hidden" name="page" value="1">
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group3" value="등록날짜순" checked="checked">등록날짜순</label>
 							</td>
-							<td class="td_end"><button><i class="glyphicon glyphicon-search"></i>Search</button></td>					
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group3" value="시작날짜순">시작날짜순</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group4" value="제공">제공</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group4" value="구인">구인</label></td>
+							<td class="td_start"><label>검색단어</label></td>
+							<td class="td_mid" colspan="2"><input type="text" class="textbox_comm" placeholder="검색단어"></td>
+							<td class="td_end">
+								<input id="bshsearch" type="button" value="Search">
+							</td>
 						</tr>
 					</table>
 				</form>
 			</div>
 			<script type="text/javascript">
-			/* $("#search").click(function() {
-				console.log($("#search").val());
-				function boardsearch(){
-					var searchstr = "?대카테고리="+$("#대카테고리").val()+"&중카테고리="+$("#중카테고리").val()
-							+"&소카테고리="+$("#소카테고리").val()+"&지역="+$("#지역").val()+"&글상태="+$("#글상태").val();
-							+"&group1="+$("#group1").val()+"&group2="+$("#group2").val()+"&group3="+$("#group3").val()
-							+"&group4="+$("#group4").val()+"&최소금액="+$("#최소금액").val()+"&최대금액="+$("#최대금액").val()
-							+"&검색단어="+$("#검색단어").val();
-					//location.href("bshsearch.go");  
-				} 
-			}) */
+				$("#bshsearch").click(function() {
+					var searchstr = 'bshsearch.go';
+					searchstr+='?bcate='+$('#bcate').val();
+					searchstr+='&mcate='+$('#mcate').val();
+					searchstr+='&scate='+$('#scate').val();
+					location.href=searchstr;
+				})
 			</script>
 			<div class="board_div_maincontent">
-				<%-- <h2>${link2name }</h2><br>
+				<h2>${board.link2_no }</h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -242,7 +243,7 @@
 							<c:if test="${tf eq '2' }">
 								시급
 							</c:if>
-							${board.agency_paytype }
+							<%-- ${board.agency_paytype } --%>
 							</td>
 							<td>
 							${board.agency_pay }
@@ -267,7 +268,7 @@
 							<c:if test="${tf eq '4' }">
 								숨김
 							</c:if>
-							${board.agency_status }
+							<%-- ${board.agency_status } --%>
 							</td>
 							</tr>
 						</c:forEach>
@@ -275,14 +276,14 @@
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button onclick="location.href='bshtest.go?link2_no=${link2name }&page=1'">&lt;&lt;</button>
+					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
 					<c:set var="currentpage" value="${pageNum }"/>
 					<c:if test="${currentpage eq '1'}">
 						<button>&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != '1'}">
-						<button onclick="location.href='bshtest.go?link2_no=${link2name }&page=${currentpage-1 }'">&lt;</button>
+						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage <=5}">
@@ -290,13 +291,13 @@
 						
 							<c:if test="${count eq currentpage}">
 								<c:if test="${count <= agencycount}">
-									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${link2name }&page=${count }">${count }</a>&nbsp;	
+									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>	
 									
 							<c:if test="${count != currentpage}">
 								<c:if test="${count <= agencycount}">
-									&nbsp;<a href="bshtest.go?link2_no=${link2name }&page=${count }">${count }</a>&nbsp;	
+									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>	
 											
@@ -308,13 +309,13 @@
 							
 							<c:if test="${count eq currentpage}">
 								<c:if test="${count <= agencycount}">
-									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${link2name }&page=${count }">${count }</a>&nbsp;	
+									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>
 							
 							<c:if test="${count != currentpage}">
 								<c:if test="${count <= agencycount}">
-									&nbsp;<a href="bshtest.go?link2_no=${link2name }&page=${count }">${count }</a>&nbsp;	
+									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>
 													
@@ -326,11 +327,11 @@
 					</c:if>
 					
 					<c:if test="${currentpage != agencycount}">
-						<button onclick="location.href='bshtest.go?link2_no=${link2name }&page=${currentpage+1 }'">&gt;</button>
+						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
 					
-					<button onclick="location.href='bshtest.go?link2_no=${link2name }&page=${agencycount }'">&gt;&gt;</button>
-				</span> --%>
+					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
+				</span>
 			</div>
 
 		</div>
