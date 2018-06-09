@@ -211,6 +211,7 @@ public class BoardController {
 		
 		int agencyCount = boardservice.getAgencyCount(request.getParameter("category").toString());
 		
+		
 	}
 	
 	
