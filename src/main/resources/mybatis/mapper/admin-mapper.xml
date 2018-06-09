@@ -8,7 +8,9 @@
 		<![CDATA[
 			select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
 			from login_statistics
+			where rownum <= 8
 			group by to_date(ls_date,'yy/mm/dd')
+			order by to_date(ls_date,'yy/mm/dd') desc
 		]]>
 	</select>
 	

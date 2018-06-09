@@ -21,10 +21,17 @@ public class lbjAdminController {
 	}
 	
 	@RequestMapping(value="lbjStatisticsTest.go")
-	public ModelAndView movePayTest(ModelAndView mv) {
+	public ModelAndView moveStatisticsTest(ModelAndView mv) {
 		ArrayList<LoginStatistics> count = (ArrayList<LoginStatistics>)adminService.selectAdminStatistics();
 		if(count.size() > 0) {
 			System.out.println("관리자 통계 데이터 가져오기 성공!");
+			//한번 가져온 결과를 출력해보자
+			for(int z=0;z<count.size();z++) {
+				System.out.print(z + "번째 값 :  ");
+				System.out.print("count.get(z).getLs_date() = " + count.get(z).getLs_date() + " , ");
+				System.out.println("count.get(z).getVisitCount() = " + count.get(z).getVisitCount());
+			}
+			////////////////////
 		}else {
 			System.out.println("관리자 통계 데이터 가져오기 실패!");
 		}
@@ -36,18 +43,11 @@ public class lbjAdminController {
 			countInt.add(count.get(i).getVisitCount());
 		}
 		
-		//한번 가져온 결과를 출력해보자
-		for(int z=0;z<count.size();z++) {
-			System.out.print(z + "번째 값 :  ");
-			System.out.print("count.get(z).getLs_date() = " + count.get(z).getLs_date() + " , ");
-			System.out.println("count.get(z).getVisitCount() = " + count.get(z).getVisitCount());
-		}
-		////////////////////
 		//////////////
 		mv.addObject("adminListCount", count.size());
 		mv.addObject("adminVisitCount", countInt);
 		mv.addObject("adminDate", dateStr);
-		mv.setViewName("A6.LBJ/adminStatistics/admin_loginStatistics");
+		mv.setViewName("A6.LBJ/admin/admin_loginStatistics");
 		return mv;
 	}
 }

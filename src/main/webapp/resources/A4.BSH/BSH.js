@@ -24,6 +24,7 @@ $(document).ready(function() {
 		$('input[type="checkbox"][name="group4"]').click(function() {
 		if ($(this).prop('checked')) {
 			$('input[type="checkbox"][name="group4"]').prop('checked', false);
+				$(this).prop('checked', true);
 		}
 	});
 		$(".cbtndropdown ").click(function() {

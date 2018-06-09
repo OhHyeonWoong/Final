@@ -38,7 +38,7 @@
 	
 	<select id="selectMyDetailQna" parameterType="QnaWrite" resultType="Qna">
 		<![CDATA[
-			select * from question where question_writer = #{member_id} 
+			select * from question where question_writer = #{question_writer} 
 			and question_no = #{question_no}
 		]]>
 	</select>
