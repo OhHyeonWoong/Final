@@ -217,5 +217,8 @@ select AGENCY_STATUS from AGENCY where AGENCY_NO = #{pk}
 <select id="getapplicant" parameterType="int" resultType="String" >
 select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
 </select>
+<select id="getAgencyDate" parameterType="int" resultType="Double" >
+select AGENCY_STARTDATE-sysdate from AGENCY where AGENCY_NO=#{pk}
+</select>
 
 </mapper>

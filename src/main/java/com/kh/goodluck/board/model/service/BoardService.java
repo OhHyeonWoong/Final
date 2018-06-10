@@ -214,6 +214,11 @@ public class BoardService {
 		return 	boardDao.getapplicant(pk);
 	}
 
+	public Double getAgencyDate(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.getAgencyDate(pk);
+	}
+
 
 
 

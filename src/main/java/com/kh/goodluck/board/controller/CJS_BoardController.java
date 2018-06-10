@@ -337,6 +337,64 @@ public class CJS_BoardController {
 		return null;	
 		
 	}
+	@RequestMapping("cancelagency1.go")
+	public void cancelagency1(@RequestParam("BoardNo") int pk,
+		@RequestParam("memberid") String memberid,HttpServletResponse response) {
+		//이 메소드는 작성자가 지원자를 교체할경우.
+		HashMap<Object,Object> map =new HashMap<Object,Object>();
+		PrintWriter out = null;
+ 		
+		try {
+ 				out = response.getWriter();
+ 			} catch (IOException e) {
+ 				// TODO Auto-generated catch block
+ 				e.printStackTrace();
+ 			}
+	    //1. 취소 신청날이 오늘일경우.
+		//boardservice.getAgencyDate <= 수행일과 오늘의 차이 구함.
+		if(boardservice.getAgencyDate(pk)<0) {
+		//이미 수행일이 지났음.
+			out.print(0);
+	 		out.flush();
+	 		out.close();
+		}else {
+		    //수행일이 이미 지나지않았으므로, 정상적으로 취소신청을한다.	
+		    //예비 후보자가 없을경우와 있을경우로 나뉜다.
+			if(boardservice.getAgencyStatus(pk)==2) {
+		 		//예비 후보가 없으므로  일반지원자를 뺴고, 스테이터스를 1로 바꾸면됨.
+		 		map=new HashMap<Object,Object>();
+				map.put("pk", pk);
+				map.put("Status",1);
+		 		boardservice.cancelagency1(pk);	
+		 		boardservice.updateAgencyStatus(map);
+		 		out.print(1);
+		 		out.flush();
+		 		out.close();	
+		 		}else if(boardservice.getAgencyStatus(pk)==3) {
+		 		//예비 후보가 있으므로, 일반지원자를이 빠지고, 예비 후보자를 일반후보자로 바꾸고 스테이터스를 2로 바꿈.
+		 		map=new HashMap<Object,Object>();
+				map.put("pk", pk);
+				map.put("Status",2);	
+				boardservice.cancelagency2(pk);
+				boardservice.updateAgencyStatus(map);
+				map=new HashMap<Object,Object>();
+				map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
+				map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
+				map.put("AGENCY_NO",pk);
+				boardservice.insertchatroom(map);
+				out.print(2);
+		 		out.flush();
+		 		out.close();
+		 		}
+		
+		}
+	
+ 		
+		
+	}
+
+			
+			
 }
 
 		

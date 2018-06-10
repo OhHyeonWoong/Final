@@ -28,7 +28,7 @@
             $panelBody.slideToggle();
         });
     });
-	if('${loginUser}' != ''  && ('${Board.agency_status}' == '2' || '${Board.agency_status}' == '3') ){
+	if('${loginUser}' != '' ){
 	$.ajax({
 		url:"chackboardStatusByuser.go",
 		data:{
@@ -248,7 +248,7 @@ ${Cateinfo};
 	 <i class="fa fa-sign-in"></i> 로그인하러가기  
 	 </c:when>
     
-     <c:when test="${loginUser ne null && Board.agency_status == 1}">  
+     <c:when test="${loginUser ne null && Board.agency_status == 1}"> 
       <button id="ukapplybtn" data-target="#myModal2">신청하기</button> 
      </c:when>
      
