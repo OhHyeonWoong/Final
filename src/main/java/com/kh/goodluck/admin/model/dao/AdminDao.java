@@ -35,5 +35,9 @@ public class AdminDao {
 	public int selectAdminQnaEndCount() {
 		return sqlSession.selectOne("selectAdminQnaEndCount");
 	}
+
+	public QNA selectAdminQnaDetail(int question_no) {
+		return sqlSession.selectOne("selectAdminQnaDetail", question_no);
+	}
 	
 }

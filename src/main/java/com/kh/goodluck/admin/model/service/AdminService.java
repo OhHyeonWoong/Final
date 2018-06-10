@@ -15,5 +15,6 @@ public interface AdminService {
 	public abstract List<QNA> selectAdminQnaEnd(HashMap<Object, Object> map2);
 	public abstract int selectAdminQnaIngCount();
 	public abstract int selectAdminQnaEndCount();
+	public abstract QNA selectAdminQnaDetail(int question_no);
 	
 }

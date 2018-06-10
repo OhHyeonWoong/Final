@@ -1,10 +1,18 @@
 package com.kh.goodluck.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.service.AdminService;
@@ -57,7 +65,7 @@ public class lbjAdminController {
 		//이 녀석은 페이지 로딩 될 때 부르는 메소드		
 		//페이징 처리 각
 		int page = 1;
-		int limit = 10;
+		int limit = 6;
 		//처리중 가져오기
 		//qnaIng 페이징 처리//////////////////////////////////////////
 		int ingListCount = adminService.selectAdminQnaIngCount();
@@ -118,6 +126,136 @@ public class lbjAdminController {
 		mv.addObject("endPage", endPage);
 		mv.addObject("qnaEnd", qnaEnd);
 		mv.setViewName("A6.LBJ/admin/admin_qnaAnswer");
+		return mv;
+	}
+	
+	@RequestMapping(value="lbjAdminQnaIng.go")
+	public void adminQnaIngReload(HttpServletRequest request,HttpServletResponse response) 
+								throws IOException{
+		//페이징 처리 각
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int limit = 6;
+		//처리중 가져오기
+		//qnaIng 페이징 처리//////////////////////////////////////////
+		int ingListCount = adminService.selectAdminQnaIngCount();
+		int ingMaxPage = (int)((double)ingListCount / limit + 0.9);
+		int ingStartPage = (((int) ((double) page / limit + 0.9)) - 1) * limit + 1;
+		int ingStartRow = (page-1)*limit+1; 
+		int ingEndRow = ingStartRow + limit - 1;
+			    
+	    HashMap<Object,Object> map1 = new HashMap<Object,Object>();
+		map1.put("startRow", ingStartRow);
+		map1.put("endRow", ingEndRow);
+		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng(map1);
+		System.out.println("qnaIng size = " + qnaIng.size());
+		if (ingMaxPage < ingEndRow)
+			ingEndRow = ingMaxPage;
+		
+		//출력용 JSON 오브젝트
+	    JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();		
+		
+		for(int i=0;i<qnaIng.size();i++) {
+			//저 위의 페이징 처리 데이터들을 vo에 넣자
+			JSONObject job2 = new JSONObject();
+			job2.put("question_no", qnaIng.get(i).getQuestion_no());
+			job2.put("question_category", qnaIng.get(i).getQuestion_category());
+			job2.put("question_answer_state", qnaIng.get(i).getQuestion_answer_state());
+			job2.put("question_content", qnaIng.get(i).getQuestion_content());
+			job2.put("question_title", qnaIng.get(i).getQuestion_title());
+			job2.put("question_writer", qnaIng.get(i).getQuestion_writer());
+			job2.put("question_date", qnaIng.get(i).getQuestion_date().toString());
+			if(i == 0) {
+				job2.put("ingMaxPage", ingMaxPage);
+				job2.put("ingStartPage", ingStartPage);
+				job2.put("ingEndRow", ingEndRow);
+				job2.put("page", page);
+				job2.put("ingListCount", ingListCount);
+			}
+			jarr.add(job2);
+		}
+		
+		jobj.put("ing", jarr);
+		
+		PrintWriter out = response.getWriter();
+		out.print(jobj.toJSONString());
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="lbjAdminQnaEnd.go")
+	public void adminQnaEndReload(HttpServletRequest request,HttpServletResponse response) 
+	 								throws IOException{
+		//페이징 처리 각
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		int limit = 6;
+		//처리중 가져오기
+		//qnaEnd 페이징 처리//////////////////////////////////////////
+		int endListCount = adminService.selectAdminQnaEndCount();
+		int endMaxPage = (int)((double)endListCount / limit + 0.9);
+		int endStartPage = (((int) ((double) page / limit + 0.9)) - 1) * limit + 1;
+		int endStartRow = (page-1)*limit+1; 
+	    int endEndRow = endStartRow + limit - 1;
+	    /*System.out.println("endListCount = " + endListCount);
+	    System.out.println("endMaxPage = " + endMaxPage);
+	    System.out.println("endStartPage = " + endStartPage);*/
+	    HashMap<Object,Object> map2 = new HashMap<Object,Object>();
+	    map2.put("startRow", endStartRow);
+	    map2.put("endRow", endEndRow);
+		ArrayList<QNA> qnaEnd = (ArrayList<QNA>)adminService.selectAdminQnaEnd(map2);
+		System.out.println("qnaEnd size = " + qnaEnd.size());
+		if (endMaxPage < endEndRow)
+			endEndRow = endMaxPage;
+				
+		//출력용 JSON 오브젝트
+		JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();		
+				
+		for(int i=0;i<qnaEnd.size();i++) {
+			//저 위의 페이징 처리 데이터들을 vo에 넣자
+			JSONObject job2 = new JSONObject();
+			job2.put("question_no", qnaEnd.get(i).getQuestion_no());
+			job2.put("question_category", qnaEnd.get(i).getQuestion_category());
+			job2.put("question_answer_state", qnaEnd.get(i).getQuestion_answer_state());
+			job2.put("question_content", qnaEnd.get(i).getQuestion_content());
+			job2.put("question_title", qnaEnd.get(i).getQuestion_title());
+			job2.put("question_writer", qnaEnd.get(i).getQuestion_writer());
+			job2.put("question_date", qnaEnd.get(i).getQuestion_date().toString());
+			if(i == 0) {
+				job2.put("endMaxPage", endMaxPage);
+				job2.put("endStartPage", endStartPage);
+				job2.put("endEndRow", endEndRow);
+				job2.put("page", page);
+				job2.put("endListCount", endListCount);
+			}
+			jarr.add(job2);
+		}
+				
+		jobj.put("end", jarr);
+				
+		PrintWriter out = response.getWriter();
+		out.print(jobj.toJSONString());
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="lbjAdminQnaWrite.go")
+	public ModelAndView moveAdminQnaWrite(ModelAndView mv,@RequestParam("question_no") int question_no) {
+		System.out.println("moveAdminQnaWrite question_no = " + question_no);
+		QNA q = adminService.selectAdminQnaDetail(question_no);
+		if(q != null) {
+			System.out.println("데이터 가져오기 성공!");
+		}else {
+			System.out.println("데이터 가져오기 실패!");
+		}
+		mv.addObject("qna", q);
+		mv.setViewName("A6.LBJ/admin/admin_qnaWrite");
 		return mv;
 	}
 }

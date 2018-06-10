@@ -40,4 +40,9 @@ public class AdminServiceImpl implements AdminService{
 	public int selectAdminQnaEndCount() {
 		return adminDao.selectAdminQnaEndCount();
 	}
+	
+	@Override
+	public QNA selectAdminQnaDetail(int question_no) {
+		return adminDao.selectAdminQnaDetail(question_no);
+	}
 }
