@@ -267,5 +267,12 @@ public class BoardDao {
 	}
 
 
+
+	public Double getAgencyDate(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getAgencyDate",pk);
+	}
+
+
 	
 }

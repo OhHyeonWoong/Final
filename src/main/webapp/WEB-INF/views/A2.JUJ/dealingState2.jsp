@@ -550,17 +550,17 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항  </h2><Br>
+					<h2> 주 의 사 항   </h2><Br>
 						<div class="row">
 					  
 					        <ul>
-					            <li> ※당신은 오너 입니다 ※  </li> <br>
 					            <li>첫번째 : 거래확정시 취소불가능합니다.  </li> <br>
 					            <li>두번째 : 서비스 제공자에게 폭언, 폭력을할시 <br>법적으로 처벌 받습니다. </li> <br>
 					            <li>세번째 : 서비스 이용시간을 준수합니다. </li> <br>
 					            <li>네번째 : 이용자는 제공서비스 이외에 불필요한<br>요구를 할수 없습니다. </li> <br>
 					            <li>다섯 번째 : 거래 종료 권한은 오너에게 있습니다.<br></li> <br>
 					            <li>여섯 번째 : 수행의 업무는 필히 증거 사진을 찍어주세요.<br></li> <br>
+					            <li>일곱 번째 : 서비스 수행 당일에는 지원자교체가 불가합니다.<br></li> <br>
 					        </ul>
 					        </div>
 
@@ -625,14 +625,14 @@
 					                <div class="col-md-12">
 					                    <form accept-charset="UTF-8" action="" method="post">
 					                        <input id="ratings-hidden" name="rating" type="hidden"> 
-					                        <textarea class="form-control animated"  cols="500" id="new-review" name="comment" placeholder="평가해주세요~^^" rows="100"></textarea>
+					                        <textarea class="form-control animated"  cols="500" id="new-review" name="review" placeholder="평가해주세요~^^" rows="100"></textarea>
 											<br>
 					                        <div class="text-right">
 					                            <div class="stars starrr" data-rating="0"></div>
 					                            <div align="center">
 					                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px; padding: 8px;">
-					                            <font size="4">Cancel</font></a>
-					                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+					                            <font size="4">닫기</font></a>
+					                            <button class="btn btn-success btn-lg" type="submit">작업마무리</button>
 					                            </div>
 					                        </div>
 					                    </form>
@@ -718,8 +718,28 @@
 					function test1(){
 					      var bool = confirm('정말로 포기하시겠습니까??');
 					      if(bool==true){
-					         alert("작업 수행이 취소되었습니다!");
-					         location.href="cancelagency.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
+			$.ajax({
+				url:"cancelagency1.go",
+				data:{BoardNo='${Board.agency_no}',
+					memberid='${loginUser.member_id}'
+				},
+				success:function(data){
+					if(data==0){
+						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
+					}else if(data==1){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}else if(data==2){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}
+				}
+			})		 
+	
+		
+		
+			}
+		
 					      }else {
 					            
 					      }
