@@ -113,4 +113,10 @@ public class MemberServiceImpl implements MemberService{
 		// loginStatistics 에 아이디 존재하는지 확인
 		return memberDao.selectIDYNCheck(member_id);
 	}
+
+	@Override
+	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
+		// TODO Auto-generated method stub
+		return memberDao.searchmemberInfobyBoardNo1(pk);
+	}
 }	

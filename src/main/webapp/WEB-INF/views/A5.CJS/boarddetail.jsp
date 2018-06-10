@@ -37,12 +37,16 @@
 		},
 		  success:function(data){
 			  console.log(data);
-			  if(data != 0)
+			  if(data == 1)
 			  {
 				$("#ukapplybtn").removeAttr("data-target");
 				$("#ukapplybtn").text("해당 글에 이미 지원했습니다.");
 				$("#ukapplybtn").removeAttr("id");
-			  }
+			  }else if(data == 2){
+				  $("#ukapplybtn").removeAttr("data-target");
+					$("#ukapplybtn").text("본인의 글입니다.");
+					$("#ukapplybtn").removeAttr("id");  
+				}
 		  }
 		
 	})

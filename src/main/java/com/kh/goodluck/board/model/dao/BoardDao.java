@@ -267,6 +267,5 @@ public class BoardDao {
 	}
 
 
-
 	
 }

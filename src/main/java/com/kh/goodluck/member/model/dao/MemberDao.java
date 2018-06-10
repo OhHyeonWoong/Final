@@ -90,5 +90,9 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("searchmemberInfobyBoardNo", pk);
 	}
+	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
+	}
 	
 }

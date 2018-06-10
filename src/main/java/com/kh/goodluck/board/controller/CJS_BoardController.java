@@ -187,6 +187,9 @@ public class CJS_BoardController {
 		
 		
 		int result=boardservice.getrelation(map);
+		if(boardservice.getrelation2(map)==1) {
+		result=2;
+		}
 		PrintWriter out = null;
  		try {
  				out = response.getWriter();
@@ -240,7 +243,8 @@ public class CJS_BoardController {
 		//해당인원이 작성자이므로, 현재 글을 신청한 일반신청자와 예비 신청자의 정보를 가져감.
 		//그후 새로 만들어진 페이지로 이동.
 		//추후 수정.
-			mv.setViewName("A2.JUJ/dealingState2");
+		writer=memberService.searchmemberInfobyBoardNo1(pk);
+		mv.setViewName("A2.JUJ/dealingState2");
 		}else {
 		//로그인후 다른 사람이 직접 주소를 치고 들어온것이므로 팅겨낸다.
 		mv.setViewName("A5.CJS/ErrorPage2");
@@ -252,7 +256,7 @@ public class CJS_BoardController {
 		mv.addObject("writer",writer);
 		mv.addObject("gender",
     String.valueOf(writer.getMember_regident_number())
-	.charAt(String.valueOf(writer.getMember_regident_number()).length() - 1)%2
+	.charAt(String.valueOf(writer.getMember_regident_number()).length()-1)%2
 	);
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));

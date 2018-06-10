@@ -58,6 +58,13 @@ member.member_id = (select AGENCY_WRITER from AGENCY where AGENCY_NO =#{pk}) and
 score.member_id= member.member_id
 </select>
 
+<select id="searchmemberInfobyBoardNo1" parameterType="int" resultType="Memberandscore">
+select * from member,score where 
+member.member_id = (select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO =#{pk}) and
+score.member_id= member.member_id
+</select>
+
+
 	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
 		<![CDATA[
 			select * from member where member_id = #{member_id} and

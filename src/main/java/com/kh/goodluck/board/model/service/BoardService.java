@@ -214,9 +214,7 @@ public class BoardService {
 		return 	boardDao.getapplicant(pk);
 	}
 
-	
-	
-	
-	
+
+
 
 }
