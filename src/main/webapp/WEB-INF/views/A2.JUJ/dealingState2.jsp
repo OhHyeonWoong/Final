@@ -720,12 +720,14 @@
 					      if(bool==true){
 			$.ajax({
 				url:"cancelagency1.go",
-				data:{BoardNo='${Board.agency_no}',
-					memberid='${loginUser.member_id}'
+				data:{
+					BoardNo:'${Board.agency_no}',
+					memberid:'${loginUser.member_id}'
 				},
 				success:function(data){
 					if(data==0){
 						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
+						$('#cjsModalLabel').modal('hide');		
 					}else if(data==1){
 						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
 						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
@@ -735,12 +737,7 @@
 					}
 				}
 			})		 
-	
-		
-		
-			}
-		
-					      }else {
+				}else {
 					            
 					      }
 					}			
