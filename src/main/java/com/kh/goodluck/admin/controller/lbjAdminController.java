@@ -54,22 +54,68 @@ public class lbjAdminController {
 	
 	@RequestMapping(value="lbjAdminQnaAnswer.go")
 	public ModelAndView moveAdminQnaAnswer(ModelAndView mv) {
-		//이 녀석은 페이지 로딩 될 때 부르는 메소드
-		
+		//이 녀석은 페이지 로딩 될 때 부르는 메소드		
 		//페이징 처리 각
 		int page = 1;
+		int limit = 10;
 		//처리중 가져오기
-		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng();
-		
+		//qnaIng 페이징 처리//////////////////////////////////////////
+		int ingListCount = adminService.selectAdminQnaIngCount();
+		int ingMaxPage = (int)((double)ingListCount / limit + 0.9);
+		int ingStartPage = (((int) ((double) page / limit + 0.9)) - 1) * limit + 1;
+		int ingStartRow = (page-1)*limit+1; 
+	    int ingEndRow = ingStartRow + limit - 1;
+	    /*System.out.println("ingListCount = " + ingListCount);
+	    System.out.println("ingMaxPage = " + ingMaxPage);
+	    System.out.println("ingStartPage = " + ingStartPage);*/
+	    HashMap<Object,Object> map1 = new HashMap<Object,Object>();
+	    map1.put("startRow", ingStartRow);
+	    map1.put("endRow", ingEndRow);
+		ArrayList<QNA> qnaIng = (ArrayList<QNA>)adminService.selectAdminQnaIng(map1);
+		System.out.println("qnaIng size = " + qnaIng.size());
+		if (ingMaxPage < ingEndRow)
+			ingEndRow = ingMaxPage;
+		//보내기용 HashMap생성
+		HashMap<String,Integer> ingPage = new HashMap<String,Integer>();
+		ingPage.put("ingMaxPage",ingMaxPage);
+		ingPage.put("ingStartPage",ingStartPage);
+		ingPage.put("ingEndRow",ingEndRow);
+		ingPage.put("page",page);
+		ingPage.put("ingListCount",ingListCount);
+		//////////////////////////////////////////////////////////
 		//답변완료 가져오기
-		ArrayList<QNA> qnaEnd = (ArrayList<QNA>)adminService.selectAdminQnaEnd();
-		
+		//qnaEnd 페이징 처리//////////////////////////////////////////
+		int endListCount = adminService.selectAdminQnaEndCount();
+		int endMaxPage = (int)((double)endListCount / limit + 0.9);
+		int endStartPage = (((int) ((double) page / limit + 0.9)) - 1) * limit + 1;
+		int endStartRow = (page-1)*limit+1; 
+	    int endEndRow = endStartRow + limit - 1;
+	    /*System.out.println("endListCount = " + endListCount);
+	    System.out.println("endMaxPage = " + endMaxPage);
+	    System.out.println("endStartPage = " + endStartPage);*/
+	    HashMap<Object,Object> map2 = new HashMap<Object,Object>();
+	    map2.put("startRow", endStartRow);
+	    map2.put("endRow", endEndRow);
+		ArrayList<QNA> qnaEnd = (ArrayList<QNA>)adminService.selectAdminQnaEnd(map2);
+		System.out.println("qnaEnd size = " + qnaEnd.size());
+		if (endMaxPage < endEndRow)
+			endEndRow = endMaxPage;
+		//보내기용 HashMap생성
+		HashMap<String,Integer> endPage = new HashMap<String,Integer>();
+		endPage.put("endMaxPage",endMaxPage);
+		endPage.put("endStartPage",endStartPage);
+		endPage.put("endEndRow",endEndRow);
+		endPage.put("page",page);
+		endPage.put("endListCount",endListCount);
+		//////////////////////////////////////////////////////////
 		if(qnaIng.size() > 0 && qnaEnd.size() > 0) {
 			System.out.println("AdminQnaAnswer 가져오기 성공");
 		}else {
 			System.out.println("AdminQnaAnswer 가져오기 실패");
 		}
+		mv.addObject("ingPage", ingPage);
 		mv.addObject("qnaIng", qnaIng);
+		mv.addObject("endPage", endPage);
 		mv.addObject("qnaEnd", qnaEnd);
 		mv.setViewName("A6.LBJ/admin/admin_qnaAnswer");
 		return mv;
