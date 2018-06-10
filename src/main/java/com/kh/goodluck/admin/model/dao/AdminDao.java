@@ -1,5 +1,6 @@
 package com.kh.goodluck.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,12 +20,20 @@ public class AdminDao {
 		return sqlSession.selectList("selectAdminStatistics");
 	}
 
-	public List<QNA> selectAdminQnaIng() {
-		return sqlSession.selectList("selectAdminQnaIng");
+	public List<QNA> selectAdminQnaIng(HashMap<Object, Object> map1) {
+		return sqlSession.selectList("selectAdminQnaIng",map1);
 	}
 
-	public List<QNA> selectAdminQnaEnd() {
-		return sqlSession.selectList("selectAdminQnaEnd");
+	public List<QNA> selectAdminQnaEnd(HashMap<Object, Object> map2) {
+		return sqlSession.selectList("selectAdminQnaEnd",map2);
+	}
+
+	public int selectAdminQnaIngCount() {
+		return sqlSession.selectOne("selectAdminQnaIngCount");
+	}
+
+	public int selectAdminQnaEndCount() {
+		return sqlSession.selectOne("selectAdminQnaEndCount");
 	}
 	
 }
