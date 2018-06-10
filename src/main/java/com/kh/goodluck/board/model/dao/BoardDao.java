@@ -262,7 +262,9 @@ public class BoardDao {
 	}
 
 
-
+	public String getapplicant(int pk) {
+		return sqlSession.selectOne("getapplicant",pk);
+	}
 
 
 

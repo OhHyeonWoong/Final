@@ -185,34 +185,37 @@ update AGENCY set AGENCY_VEIWS =
 (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
  where AGENCY_NO = #{pk}
 </update>
-<select id="updateAgencyStatus" parameterType="HashMap">
+<select id="updateAgencyStatus" parameterType="hashmap">
 update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
 </select>
 
 
-<insert id="insertchatroom" parameterType="HashMap">
+<insert id="insertchatroom" parameterType="hashmap">
 insert into CHATROOM values ((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2},#{AGENCY_NO})
 </insert>
 
-<select id="getChatInfoByMap" parameterType="HashMap" resultType="Chat">
+<select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
+select * from CHATROOM where CHATROOM_MEMBER2= #{memberid} and AGENCY_NO=#{AGENCY_NO} and rownum=1 order by CHATROOM_NO
 
-select * from CHATROOM where CHATROOM_MEMBER2= #{memberid} and AGENCY_NO=#{AGENCY_NO}
- and rownum=1 order by CHATROOM_NO
 </select>
-<select id="getrelation" parameterType="HashMap" resultType="int">
+<select id="getrelation" parameterType="hashmap" resultType="int">
 select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_APPLICANT = #{memberid}
 </select>
 
-<select id="getrelation1" parameterType="HashMap" resultType="int">
+<select id="getrelation1" parameterType="hashmap" resultType="int">
 select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_RESERVATION = #{memberid}
 </select>
 
-<select id="getrelation2" parameterType="HashMap" resultType="int">
+<select id="getrelation2" parameterType="hashmap" resultType="int">
 select count(*) from AGENCY where AGENCY_NO=#{AGENCY_NO} and AGENCY_WRITER = #{memberid}
 </select>
 
 <select id="getAgencyStatus" parameterType="int" resultType="int" >
 select AGENCY_STATUS from AGENCY where AGENCY_NO = #{pk}
+</select>
+
+<select id="getapplicant" parameterType="int" resultType="String" >
+select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
 </select>
 
 </mapper>

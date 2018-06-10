@@ -209,6 +209,11 @@ public class BoardService {
 		return	boardDao.cancelagency3(pk);
 	}
 
+	public String getAPPLICANT(int pk) {
+		// TODO Auto-generated method stub
+		return 	boardDao.getapplicant(pk);
+	}
+
 	
 	
 	

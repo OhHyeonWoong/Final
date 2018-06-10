@@ -122,6 +122,7 @@ public class CJS_BoardController {
 		map.put("AGENCY_NO",pk);
 		boardservice.insertchatroom(map);
 		System.out.println("신규최초 인원으로써 업데이트 result="+result);
+		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		break;
 		////////////////////////////////
 		
@@ -129,14 +130,12 @@ public class CJS_BoardController {
 		//스테이터스가 2일경우 신청후 또 신청할수도있다. 그 걸 방지홰야한다.
 	
 		HashMap<Object,Object> map1 =new HashMap<Object,Object>();
-		map.put("AGENCY_NO",pk);
-		map.put("memberid",memberid);
-		try {
-			
-		
+		map1.put("AGENCY_NO",pk);
+		map1.put("memberid",memberid);
+	
 		if(boardservice.getrelation(map1)==1) {
 	    //로그인 유저는 일반지원자 이므로, 
-			response.sendRedirect("lbjmypage.go?member_id="+memberid);
+		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		}
 		else
 	    {
@@ -146,17 +145,10 @@ public class CJS_BoardController {
     	td.setTRADE_RESERVATION(memberid);
     	//보드에 예비인력으로써 신청됨.
     	int result1=boardservice.UpdateTradeReserVation(td);
-    	map=new HashMap<Object,Object>();
-		map.put("CHATROOM_MEMBER1",bo.getAgency_writer());
-		map.put("CHATROOM_MEMBER2",memberid);
-		map.put("AGENCY_NO",pk);
-		boardservice.insertchatroom(map);
-		
+    	
     	System.out.println("예비인력으로써 업데이트 >result1="+result1);
 		}
-		} catch (Exception e) {
-			response.sendRedirect("lbjmypage.go?member_id="+memberid);
-		}
+		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		break;
 		
 		//////////////////////////////
@@ -178,15 +170,10 @@ public class CJS_BoardController {
 		//이제 해당 매칭룸으로 가져가야할 정보들을 추출 post작업. 채팅정보 ,보드번호.
 		//채팅방 정보추출은 board_no와 유저아이디로 추출.
 		
-		map=new HashMap<Object,Object>();
-		map.put("AGENCY_NO",pk);
-		map.put("memberid",memberid);
-	    view=request.getRequestDispatcher("DealingState1.go");
-		request.setAttribute("BoardNo",pk);
-		view.forward(request, response);	
-		//추후에 카카오톡 알람 설정까지 해야함.
+	    }
+
+	
 	}
-}
 	
 	@RequestMapping("chackboardStatusByuser.go")
 	public void chackboardStatusByuser(
@@ -219,7 +206,7 @@ public class CJS_BoardController {
 			@RequestParam("BoardNo") int pk, 
 			HttpSession session
 	) 
-	{  
+	{
 		//받는정보. 딱1개 > 보드번호
 		Member member=null;
 		if(session.getValue("loginUser") != null) {
@@ -242,16 +229,18 @@ public class CJS_BoardController {
 	    //상대방의 정보 가져가야함.
 	 	if(boardservice.getrelation(map)==1) {
 	    //로그인 유저는 일반지원자  >> 상대방 정보는 작성자의 정보를 가져가야함.
-	 	writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 		
+	 	writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+		mv.setViewName("A2.JUJ/dealingState");
 		}else if(boardservice.getrelation1(map)==1) {
 		//해당인원은 예비 지원자. >> 상대방 정보는 작성자의 정보를 가져가야함.
 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출
+		mv.setViewName("A2.JUJ/dealingState1");
 		}else if(boardservice.getrelation2(map)==1){
 		//해당인원은 작성자.
 		//해당인원이 작성자이므로, 현재 글을 신청한 일반신청자와 예비 신청자의 정보를 가져감.
 		//그후 새로 만들어진 페이지로 이동.
 		//추후 수정.
-		
+			mv.setViewName("A2.JUJ/dealingState2");
 		}else {
 		//로그인후 다른 사람이 직접 주소를 치고 들어온것이므로 팅겨낸다.
 		mv.setViewName("A5.CJS/ErrorPage2");
@@ -267,8 +256,10 @@ public class CJS_BoardController {
 	);
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
-		mv.setViewName("A2.JUJ/dealingState");
+	
 		return mv;
+		
+		
 	}
 	
 	
@@ -313,6 +304,12 @@ public class CJS_BoardController {
 			map.put("Status",2);	
 			boardservice.cancelagency2(pk);
 			boardservice.updateAgencyStatus(map);
+			
+			map=new HashMap<Object,Object>();
+			map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
+			map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
+			map.put("AGENCY_NO",pk);
+			boardservice.insertchatroom(map);
 	 		}
 	 	}else if(boardservice.getrelation1(map)==1) {
 		//해당인원은 단순 예비 지원자=> 예비후보자 명단에서 본인이빠지고 스테이터스를 2로 바꿈.
