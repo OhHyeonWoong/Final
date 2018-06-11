@@ -13,15 +13,29 @@
 		<result property="TRADE_RESERVATION_DATE" column="TRADE_RESERVATION_DATE"/>
 	</resultMap>
 
-<insert id="insertNewTradeDetail" parameterType="Trade_detail">
-insert into TRADE_DETAIL values(
-(select max(TRADE_NO)+1 from TRADE_DETAIL),#{AGENCY_NO},#{TRADE_APPLICANT},sysdate,'','')
-</insert>
-
-<update id="UpdateTradeReserVation" parameterType="Trade_detail">
-update TRADE_DETAIL set TRADE_RESERVATION = #{TRADE_RESERVATION} and TRADE_RESERVATION_DATE = sysdate where AGENCY_NO=#{AGENCY_NO} 
+<update id="insertNewTradeDetail" parameterType="Trade_detail">
+update TRADE_DETAIL set TRADE_APPLICANT = #{TRADE_APPLICANT} 
+, TRADE_DATE = sysdate where AGENCY_NO=#{AGENCY_NO} 
 </update>
 
+<update id="UpdateTradeReserVation" parameterType="Trade_detail">
+update TRADE_DETAIL set TRADE_RESERVATION = #{TRADE_RESERVATION} 
+, TRADE_RESERVATION_DATE = sysdate where AGENCY_NO=#{AGENCY_NO} 
+</update>
+
+<update id="cancelagency1" parameterType="int" >
+update TRADE_DETAIL set TRADE_APPLICANT = null , TRADE_DATE = null where AGENCY_NO=#{pk} 
+</update>
+<update id="cancelagency2" parameterType="int" >
+update TRADE_DETAIL set TRADE_APPLICANT = 
+(select TRADE_RESERVATION from TRADE_DETAIL where AGENCY_NO=#{pk}) , 
+TRADE_DATE = sysdate , TRADE_RESERVATION = null, TRADE_RESERVATION_DATE = null where AGENCY_NO=#{pk} 
+</update>
+<update id="cancelagency3" parameterType="int" >
+update TRADE_DETAIL set 
+TRADE_RESERVATION = null ,
+TRADE_RESERVATION_DATE = null where AGENCY_NO=#{pk} 
+</update>
 
 
 </mapper>

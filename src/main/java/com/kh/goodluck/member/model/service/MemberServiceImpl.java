@@ -11,6 +11,7 @@ import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
+import com.kh.goodluck.member.model.vo.Memberandscore;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -94,6 +95,12 @@ public class MemberServiceImpl implements MemberService{
 		//멤버 캐시 결제
 		return memberDao.updateMemberCashMethod(m);
 	}
+
+	@Override
+	public Memberandscore searchmemberInfobyBoardNo(int pk) {
+		// 보드번호로 작성자 정보뽑기.
+		return  memberDao.searchmemberInfobyBoardNo(pk);
+	}
 	
 	@Override
 	public int insertLoginStatistics(String member_id) {
@@ -105,5 +112,11 @@ public class MemberServiceImpl implements MemberService{
 	public LoginStatistics selectIdYNCheck(String member_id) {
 		// loginStatistics 에 아이디 존재하는지 확인
 		return memberDao.selectIDYNCheck(member_id);
+	}
+
+	@Override
+	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
+		// TODO Auto-generated method stub
+		return memberDao.searchmemberInfobyBoardNo1(pk);
 	}
 }	

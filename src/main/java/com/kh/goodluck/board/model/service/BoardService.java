@@ -12,6 +12,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
@@ -168,9 +169,57 @@ public class BoardService {
 		return  boardDao.insertchatroom(map);		
 	}
 
-	
-	
-	
-	
+	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return boardDao.getChatInfoByMap(map);
+	}
+
+	public int getrelation(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return boardDao.getrelation(map);
+	}
+
+	public int getrelation1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return  boardDao.getrelation1(map);
+	}
+
+	public int getrelation2(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return boardDao.getrelation2(map);
+	}
+
+	public int getAgencyStatus(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.getAgencyStatus(pk);
+	}
+
+	public int cancelagency1(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.cancelagency1(pk);
+	}
+
+	public int cancelagency2(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.cancelagency2(pk);
+	}
+
+	public int cancelagency3(int pk) {
+		// TODO Auto-generated method stub
+		return	boardDao.cancelagency3(pk);
+	}
+
+	public String getAPPLICANT(int pk) {
+		// TODO Auto-generated method stub
+		return 	boardDao.getapplicant(pk);
+	}
+
+	public Double getAgencyDate(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.getAgencyDate(pk);
+	}
+
+
+
 
 }

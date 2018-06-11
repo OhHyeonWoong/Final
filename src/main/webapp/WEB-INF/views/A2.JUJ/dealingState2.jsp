@@ -445,7 +445,7 @@
 			                                <table class="table table-condensed table-responsive table-user-information">
 			                                    <tbody>
 			                                    <tr>
-			                    <td rowspan="8" width="200">
+			                    <td rowspan="12" width="200">
 			                    
 			                     
 			                    <c:choose>
@@ -473,23 +473,36 @@
 			                        
 			                          </tr>			                                    
 			                                    <tr>
-			                                        <td>오너</td>
+			                                        <td>지원자</td>
 			                                        <td>${writer.member_id}</td>
 			                                    </tr>			                                    
 			                                    <tr>
-			                                        <td>오너의 구매점수</td>
+			                                    <tr>
+			                                        <td>지원자 이름</td>
+			                                        <td>${writer.member_name}</td>
+			                                    </tr>			                                    
+			                                    <tr>
+			                                        <td>지원자 연락처</td>
+			                                        <td>${writer.member_phone}</td>
+			                                    </tr>			                                    
+			                                    <tr>
+			                                        <td>지원자의 지원레벨</td>
 			                                        <td class="uk_level">
 			                                        
-			                                        ${writer.SCORE_BUY} 포인트 
+			                                        ${writer.SCORE_SELL_RATE} 단계
 			                                        
 			                                        </td>
 			                                    </tr>
 			                                    <tr>
-			                                        <td>서비스내역 </td>
+			                                    <td colspan="2"><center><strong>게시글 정보</strong></center><td>
+			                                    </tr>
+			                                    
+			                                    <tr>
+			                                        <td>서비스 내역 </td>
 			                                        <td>${Cateinfo.CATEGORY_SMALL_NAME}</td>
 			                                    </tr>
 			                                    <tr>
-			                                        <td>서비스지역 </td>
+			                                        <td>서비스 지역 </td>
 			                                        <td>${Board.agency_loc}</td>
 			                                    </tr>
 			                                    <tr>
@@ -517,7 +530,7 @@
 			                                    </tr>
 			                                 
 			                                    <tr>
-			                                        <td>누적경고 </td>
+			                                        <td>지원자의 누적경고 </td>
 			                                        <td>${writer.member_yellowcard}</td>
 			                                    </tr>
 
@@ -537,17 +550,17 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항  </h2><Br>
+					<h2> 주 의 사 항   </h2><Br>
 						<div class="row">
 					  
 					        <ul>
-					            <li> ※당신은 일반 서비스제공자입니다 ※  </li> <br>
 					            <li>첫번째 : 거래확정시 취소불가능합니다.  </li> <br>
 					            <li>두번째 : 서비스 제공자에게 폭언, 폭력을할시 <br>법적으로 처벌 받습니다. </li> <br>
 					            <li>세번째 : 서비스 이용시간을 준수합니다. </li> <br>
 					            <li>네번째 : 이용자는 제공서비스 이외에 불필요한<br>요구를 할수 없습니다. </li> <br>
 					            <li>다섯 번째 : 거래 종료 권한은 오너에게 있습니다.<br></li> <br>
 					            <li>여섯 번째 : 수행의 업무는 필히 증거 사진을 찍어주세요.<br></li> <br>
+					            <li>일곱 번째 : 서비스 수행 당일에는 지원자교체가 불가합니다.<br></li> <br>
 					        </ul>
 					        </div>
 
@@ -600,11 +613,11 @@
 							<div class="col-md-6" style="width: 100%; padding: 0;">
 					    	<div class="well well-sm" style="padding: 26px; margin: 0;">
 					            <div class="text-right" align="center">
-<button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
-		수행 포기
+<button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white;">
+지원자 교체
 		</button>
 					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
-					        해당 유저 신고
+					  작업 완료
 					                </a>
 					            </div>
 					        
@@ -612,14 +625,14 @@
 					                <div class="col-md-12">
 					                    <form accept-charset="UTF-8" action="" method="post">
 					                        <input id="ratings-hidden" name="rating" type="hidden"> 
-					                        <textarea class="form-control animated"  cols="500" id="new-review" name="comment" placeholder="평가해주세요~^^" rows="100"></textarea>
+					                        <textarea class="form-control animated"  cols="500" id="new-review" name="review" placeholder="평가해주세요~^^" rows="100"></textarea>
 											<br>
 					                        <div class="text-right">
 					                            <div class="stars starrr" data-rating="0"></div>
 					                            <div align="center">
 					                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px; padding: 8px;">
-					                            <font size="4">Cancel</font></a>
-					                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+					                            <font size="4">닫기</font></a>
+					                            <button class="btn btn-success btn-lg" type="submit">작업마무리</button>
 					                            </div>
 					                        </div>
 					                    </form>
@@ -689,15 +702,15 @@
 		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">작업 포기</h4>
+		        <h4 class="modal-title" id="myModalLabel">현재 지원자 교체</h4>
 		      </div>
 		      <div class="modal-body">
 		      	<center>
-			작업을 포기하시면 불이익이 생길수도 있습니다.
+		현재 지원자가 마음에 들지 않아서 다른 지원자를 받겠습니까?
 			<br>
-			정말로 강제로 작업을 취소하시겠습니까?
+	    현재 지원자를 포기합니다.
 			<br>
-			
+	예비 지원자가 존재할경우 바로 교체됩니다. my_page에서 확인가능합니다.
 				<button onclick="test1();">확인</button>
 				<button onclick="test2();">취소</button>
 				</center>
@@ -705,14 +718,31 @@
 					function test1(){
 					      var bool = confirm('정말로 포기하시겠습니까??');
 					      if(bool==true){
-					         alert("작업 수행이 취소되었습니다!");
-					         location.href="cancelagency.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
-					      }else {
+			$.ajax({
+				url:"cancelagency1.go",
+				data:{
+					BoardNo:'${Board.agency_no}',
+					memberid:'${loginUser.member_id}'
+				},
+				success:function(data){
+					if(data==0){
+						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
+						$('#cjsModalLabel').modal('hide');		
+					}else if(data==1){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}else if(data==2){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}
+				}
+			})		 
+				}else {
 					            
 					      }
 					}			
 					  function test2(){
-							$('#myModal').modal('hide');											
+							$('#cjsModalLabel').modal('hide');											
 					  }
 				</script>
 					<br />

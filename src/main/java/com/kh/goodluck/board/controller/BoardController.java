@@ -24,6 +24,13 @@ import com.kh.goodluck.board.model.vo.SmallCategory;
 @Controller
 public class BoardController {
 
+	List<BigCategory> bigcategorylist = null;
+	List<MidCategory> midcategorylist = null;
+	List<SmallCategory> smallcategorylist = null;
+	List<CategoryLink1> categorylink1list = null;
+	List<CategoryLink2> categorylink2list = null;
+	
+	
 	public BoardController() {
 		
 	}
@@ -47,11 +54,11 @@ public class BoardController {
 		//System.out.println(pageNum);
 		//System.out.println(board);
 
-		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
-		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
-		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
-		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
-		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
+		bigcategorylist = boardservice.selectBigCategoryAll();
+		midcategorylist = boardservice.selectMidCategoryAll();
+		smallcategorylist = boardservice.selectSmallCategoryAll();
+		categorylink1list = boardservice.selectCategoryLink1();
+		categorylink2list = boardservice.selectCategoryLink2();
 		ArrayList<String> strlist = new ArrayList<String>();
 		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
 		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
@@ -198,19 +205,78 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="bshgetpagecount.go")
-	public void getpagecount(HttpServletRequest request,HttpServletResponse response) {
-		int currentPagecount = 1;
-		if(request.getParameter("page") != null) {
-			currentPagecount = Integer.parseInt(request.getParameter("page"));
+	@RequestMapping(value="bshsearch.go")
+	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
+		
+		bigcategorylist = boardservice.selectBigCategoryAll();
+		midcategorylist = boardservice.selectMidCategoryAll();
+		smallcategorylist = boardservice.selectSmallCategoryAll();
+		categorylink1list = boardservice.selectCategoryLink1();
+		categorylink2list = boardservice.selectCategoryLink2();
+		ArrayList<String> strlist = new ArrayList<String>();
+		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
+		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
+		
+		int i=0;
+		for (CategoryLink1 categoryLink1 : categorylink1list) {
+			catelink1[i]=categoryLink1;
+			i++;
 		}
 		
-		System.out.println("currentPagecount = " + currentPagecount);
+		i=0;
+		for (CategoryLink2 categoryLink2 : categorylink2list) {
+			catelink2[i]=categoryLink2;
+			i++;
+		}
 		
-		int limit = 20;
+		for(i=0;i<catelink1.length;i++) {
+			
+			if(i>0) {
+				if(!catelink1[i].getCategory_big_code().equals(catelink1[i-1].getCategory_big_code())) {
+					//System.out.println(catelink1[i].getCategory_big_code());
+					strlist.add(catelink1[i].getCategory_big_code());
+					for(int j=0;j<catelink1.length;j++) {
+						if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
+							//System.out.println(catelink1[j].getCategory_mid_code());
+							strlist.add(catelink1[j].getCategory_mid_code());
+							for(int k=0;k<catelink2.length;k++) {
+								if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
+									//System.out.println(catelink2[k].getCategory_small_code());
+									strlist.add(catelink2[k].getCategory_small_code());
+								}
+							}
+						}
+					}
+					
+				}else {
+					
+				}
+			}else {
+				//System.out.println(catelink1[i].getCategory_big_code());
+				strlist.add(catelink1[i].getCategory_big_code());
+				for(int j=0;j<catelink1.length;j++) {
+					if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
+						//System.out.println(catelink1[j].getCategory_mid_code());
+						strlist.add(catelink1[j].getCategory_mid_code());
+						for(int k=0;k<catelink2.length;k++) {
+							if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
+								//System.out.println(catelink2[k].getCategory_small_code());
+								strlist.add(catelink2[k].getCategory_small_code());
+							}
+						}
+					}
+				}
+			}		
+		}
 		
-		int agencyCount = boardservice.getAgencyCount(request.getParameter("category").toString());
 		
+		mv.setViewName("A4.BSH/Search");
+		
+		mv.addObject("bigcategorylist",bigcategorylist);
+		mv.addObject("midcategorylist",midcategorylist);
+		mv.addObject("smallcategorylist",smallcategorylist);
+		mv.addObject("strlist",strlist);
+		return mv;
 	}
 	
 	

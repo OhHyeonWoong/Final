@@ -13,6 +13,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
+import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
@@ -195,7 +196,7 @@ public class BoardDao {
 	sqlSession.selectOne("updateAgencyStatus",map);
 	}
     public int insertNewTradeDetail(Trade_detail td) {
-	return sqlSession.insert("insertNewTradeDetail",td);
+	return sqlSession.update("insertNewTradeDetail",td);
 	}
     public int UpdateTradeReserVation(Trade_detail td) {
 	return sqlSession.update("UpdateTradeReserVation",td);
@@ -206,7 +207,71 @@ public class BoardDao {
 
 
 
+	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getChatInfoByMap",map);
+	}
 
+
+
+	public int getrelation(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation",map);
+	}
+
+
+
+	public int getrelation1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation1",map);
+	}
+
+
+
+	public int getrelation2(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getrelation2",map);
+	}
+
+
+
+	public int getAgencyStatus(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getAgencyStatus",pk);
+	}
+
+
+
+	public int cancelagency1(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cancelagency1",pk);
+	}
+
+
+
+	public int cancelagency2(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cancelagency2",pk);
+	}
+
+
+
+	public int cancelagency3(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cancelagency3",pk);
+	}
+
+
+	public String getapplicant(int pk) {
+		return sqlSession.selectOne("getapplicant",pk);
+	}
+
+
+
+	public Double getAgencyDate(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getAgencyDate",pk);
+	}
 
 
 	

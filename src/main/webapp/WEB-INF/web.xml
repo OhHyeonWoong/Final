@@ -39,6 +39,10 @@
     <error-code>404</error-code>
     <location>/WEB-INF/views/A5.CJS/ErrorPage.jsp</location>
   </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/views/A5.CJS/ErrorPage2.jsp</location>
+  </error-page>
   <servlet>
     <description></description>
     <display-name>vvg</display-name>

@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
+import com.kh.goodluck.member.model.vo.Memberandscore;
 
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
@@ -19,6 +20,8 @@ public interface MemberService {
 	//지석님 서비스 시작
 	public abstract int checkusercash(String memberid);
 	public abstract int decreaseCash(HashMap<Object,Object> map);
+	public abstract Memberandscore searchmemberInfobyBoardNo(int pk);
+	public abstract Memberandscore searchmemberInfobyBoardNo1(int pk);
 	//지석님 서비스 끝
 	
 	public abstract int updateMemberInfo(Member m);
@@ -26,6 +29,9 @@ public interface MemberService {
 	public abstract int deleteMemberOut(String member_id);
 	public abstract List<MemberList> adminMemberList();
 	public abstract int updateMemberCashMethod(Member m);
+
 	public abstract int insertLoginStatistics(String member_id);
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
+	
+
 }
