@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
 public interface AdminService {
 
@@ -16,5 +17,7 @@ public interface AdminService {
 	public abstract int selectAdminQnaIngCount();
 	public abstract int selectAdminQnaEndCount();
 	public abstract QNA selectAdminQnaDetail(int question_no);
+	public abstract int insertAdminQnaWrite(QnaAnswer qa);
+	public abstract int updateQuestion(int question_no);
 	
 }

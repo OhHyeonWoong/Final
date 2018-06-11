@@ -60,9 +60,18 @@
 		]]>
 	</select>
 	
-	<update id="b" parameterType="int" flushCache="true">
+	<insert id="insertAdminQnaWrite" parameterType="QnaAnswer" flushCache="true">
 		<![CDATA[
-			
+			insert into question_answer values ((select max(answer_no)+1 from question_answer),
+			#{answer_content},#{answer_writer},#{question_no},default,null)
+		]]>
+	</insert>
+	
+	<update id="updateQuestion" parameterType="int" flushCache="true">
+		<![CDATA[
+			update question
+			set question_answer_state = '답변완료'
+			where question_no = #{question_no}
 		]]>
 	</update>
 

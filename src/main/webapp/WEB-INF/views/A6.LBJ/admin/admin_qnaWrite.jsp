@@ -11,6 +11,11 @@
 <body>
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/A8.Common/Header.jsp"%>
+	<script type="text/javascript">
+		function fnWriteCancel(){
+			window.history.go(-1);
+		}
+	</script>
 	<!-- 전체 헤더 영역 푸터 영역 사이 컨테이너 영역 -->
 	<div class="container">
 		<!--사이드바 시작-->
@@ -37,13 +42,19 @@
 			<div>
 				<fieldset>
 					<legend>답변하기</legend>
-					<form action="" method="post">
+					<form action="lbjAdminQnaWriteMethod.go" method="post">
 						<input type="hidden" name="question_no" value="${qna.question_no}">
 						<table class="table table-striped">
-							<tr><td>작성자</td><td><input type="text" name="answer_writer" value="작성자 아이디가 들어갈 예정(세션)" style="width:100%;" readonly><%-- ${loginUser.member_id} --%></td></tr>
+							<tr><td>작성자</td><td><input type="text" name="answer_writer" value="${loginUser.member_id}" style="width:100%;" readonly><%-- ${loginUser.member_id} --%></td></tr>
 							<tr><td>답변내용</td>
 								<td>
 									<textarea name="answer_content" rows="10" cols="103"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:right;">
+									<input type="submit" class="btn btn-success" value="작성하기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="btn btn-default" onclick="fnWriteCancel();" value="취소하기">
 								</td>
 							</tr>
 						</table>

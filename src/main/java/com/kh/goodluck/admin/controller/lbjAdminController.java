@@ -12,12 +12,14 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.service.AdminService;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
 @Controller
 public class lbjAdminController {
@@ -257,5 +259,26 @@ public class lbjAdminController {
 		mv.addObject("qna", q);
 		mv.setViewName("A6.LBJ/admin/admin_qnaWrite");
 		return mv;
+	}
+	
+	@RequestMapping(value="lbjAdminQnaWriteMethod.go",method=RequestMethod.POST)
+	public void adminQnaWriteMethod(QnaAnswer qa,HttpServletResponse response) throws IOException{
+		//관리자 qna 답변작성 메소드
+		System.out.println("넘어온 QnaAnswer 값 = " + qa);
+		int insertResult = adminService.insertAdminQnaWrite(qa);
+		if(insertResult > 0) {
+			System.out.println("답글 달기 성공!");
+			int updateQuestion = adminService.updateQuestion(qa.getQuestion_no());
+			if(updateQuestion > 0) {
+				System.out.println("처리중 -> 답변완료 업데이트 성공!");
+			}else {
+				System.out.println("업데이트 실패...");
+			}
+		}else {
+			System.out.println("답글 달기 실패!");
+		}
+		
+		//adminMypage로 ㄱㄱ
+		response.sendRedirect("lbjAdminQnaAnswer.go");
 	}
 }
