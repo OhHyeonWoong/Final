@@ -8,6 +8,9 @@
 		<title>서비스 제공자의 글을 보고 사용자가 신청을하였을때 거래진행상황을 나타나는 페이지</title>
 		<style type="text/css">
 		/* *********** 최상단 정보표시영역 Area **********************/
+		.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+    padding: 5px;
+}
 		.uk_level{
 			color:red;
 			animation: masterlevel 2s infinite;
@@ -360,8 +363,13 @@
 			    color: #d17581;
 			}	
 		</style>
-		<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>	
-			
+		
+		
+	</head>
+	<body>
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+
+
 		<script type="text/javascript">
 			(function () {
 			    var Message;
@@ -421,11 +429,7 @@
 			        }, 2000);
 			    });
 			}.call(this));	
-		</script> <!-- 채팅화면 채팅실행 스크립트 -->
-		
-	</head>
-	<body>
-		<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+		</script> <!-- 채팅화면 채팅실행 스크립트 -->	
 		${Board}//
 		${Chat.CHATROOM_NO}//
 		${writer}//
@@ -442,14 +446,12 @@
 			                    <div class="panel-body">
 			                        <div class="row-fluid">
 							               <div class="span6">
+							              
 			                                <table class="table table-condensed table-responsive table-user-information">
 			                                    <tbody>
-			                                    <tr>
+			                    <tr>
 			                    <td rowspan="8" width="200">
-			                    
-			                     
-			                    <c:choose>
-			                    
+			                     <c:choose>
 			                    <c:when test="${writer.member_renamephoto ne null }">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/${writer.member_renamephoto}" alt="이미지준비중" width="150" height="200">
 			                	</c:when>
@@ -459,30 +461,50 @@
 			                    <c:when test="${writer.member_renamephoto eq null && gender eq 0}">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/36452465356743f.png" alt="이미지준비중" width="150" height="200">
 			                	</c:when>
-			                   
-			       
+			                   </c:choose>
+			                   </td>
+			                   <td style="width: 60%;">
+			                  <table class="table table-condensed table-responsive table-user-information">
+			                  <tbody>
+			                  <tr>
+			                     <tr>
 			                    
-			                    </c:choose>
-			                   
-			                    
-			                    
-			                    </td>
-			                        
-			                        
-			                        
-			                        
-			                          </tr>			                                    
-			                                    <tr>
-			                                        <td>오너</td>
+			                     <c:choose>
+			                     <c:when test="${Board.agency_type eq 1}">  
+			                     <td>오너</td>
 			                                        <td>${writer.member_id}</td>
-			                                    </tr>			                                    
-			                                    <tr>
+			                                    </tr>
+			                                   <tr>
 			                                        <td>오너의 구매점수</td>
 			                                        <td class="uk_level">
 			                                        
 			                                        ${writer.SCORE_BUY} 포인트 
+			                                       </td>
+			                     </c:when>
+			                     
+			                     <c:when test="${Board.agency_type eq 2}"> 
+			                     <td>서비스 제공자</td>
+			                                        <td>${writer.member_id}</td>
+			                                    </tr>
+			                                   <tr>
+			                                        <td>제공자의
+			                                         봉사단계</td>
+			                                        <td class="uk_level">
 			                                        
-			                                        </td>
+			                                        ${writer.SCORE_SELL_RATE} 단계
+			                                       </td>
+			                     </c:when>
+			                     </c:choose>    
+			                    
+			                    
+			                                        
+			                                        
+			                                        
+			                                        
+			                                        
+			                                        
+			                                        
+			                                        
 			                                    </tr>
 			                                    <tr>
 			                                        <td>서비스내역 </td>
@@ -493,8 +515,19 @@
 			                                        <td>${Board.agency_loc}</td>
 			                                    </tr>
 			                                    <tr>
-			                                        <td>페이지급방식 </td>
 			                                        <td>
+			                                 <c:choose>
+			                     <c:when test="${Board.agency_type eq 1}">페이지급방식 </c:when>
+			                     
+			                     <c:when test="${Board.agency_type eq 2}">희망 페이</c:when>
+			                     </c:choose>        
+			                                                        
+			                                                                     
+			                                        
+			                                        
+			                                        </td>
+			                                        <td>
+			                                        
 			                                        <c:choose>
 			                                        <c:when test="${Board.agency_paytype ==1}">
 			                                        일당
@@ -509,7 +542,8 @@
 
 			                                    <tr>
 			                                        <td>서비스기간 </td>
-			                                        <td>${Board.agency_startdate}
+			                                        <td>
+			                                        ${Board.agency_startdate}
 													~
 			                                        ${Board.agency_enddate}
 			                                        
@@ -519,9 +553,28 @@
 			                                    <tr>
 			                                        <td>누적경고 </td>
 			                                        <td>${writer.member_yellowcard}</td>
-			                                    </tr>
-
-			                                    </tbody>
+			                          </tr>
+			                          
+			                          
+			                          
+			                          
+			                  </tbody>
+			                  
+			                  </table>
+			                   
+			                   </td>
+			                   
+			                   <td>
+			                 <div id="map" style="width:300px; height:220px;"></div>
+			                   </td>
+			                   
+			                   	</tr>		
+			                   	
+			                   		                            
+			                      </tbody>
+			                       <tr>
+			                   		         <th>작업 내역</th><td colspan="2">${Board.agency_content}</td><td></td>
+			                   		          <tr>       
 			                                </table>
 			                                
 			                              
@@ -541,7 +594,13 @@
 						<div class="row">
 					  
 					        <ul>
-					            <li> ※당신은 일반 서비스제공자입니다 ※  </li> <br>
+					            <li> 
+					             <c:choose>
+			                     <c:when test="${Board.agency_type eq 1}">※당신은 일반 지원자입니다 ※</c:when>
+			                     
+			                     <c:when test="${Board.agency_type eq 2}">※당신은 오너입니다 ※ </c:when>
+			                     </c:choose>              
+					            </li> <br>
 					            <li>첫번째 : 거래확정시 취소불가능합니다.  </li> <br>
 					            <li>두번째 : 서비스 제공자에게 폭언, 폭력을할시 <br>법적으로 처벌 받습니다. </li> <br>
 					            <li>세번째 : 서비스 이용시간을 준수합니다. </li> <br>
@@ -600,30 +659,56 @@
 							<div class="col-md-6" style="width: 100%; padding: 0;">
 					    	<div class="well well-sm" style="padding: 26px; margin: 0;">
 					            <div class="text-right" align="center">
+					            
+			
+			   <c:choose>
+			   
+ <c:when test="${Board.agency_type eq 1}"> 
 <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
-		수행 포기
-		</button>
-					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
+수행 포기
+</button>
+<button  class="btn btn-success btn-green" id="report" data-target="#reportmodal">
+  해당 유저 신고
+</button>
+					     
+					     
+					</c:when>
+ <c:when test="${Board.agency_type eq 2}">  
+ <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white;">
+ 지원자 교체
+</button>
+		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
+			작업 완료
+		<a class="btn btn-success btn-green" id="report" data-target="#reportmodal">
 					        해당 유저 신고
-					                </a>
+	</a></c:when>
+			    </c:choose>	
+					            
+
 					            </div>
+					        
+					        
+					    
 					        
 					            <div class="row" id="post-review-box" style="display:none;">
 					                <div class="col-md-12">
-					                    <form accept-charset="UTF-8" action="" method="post">
-					                        <input id="ratings-hidden" name="rating" type="hidden"> 
-					                        <textarea class="form-control animated"  cols="500" id="new-review" name="comment" placeholder="평가해주세요~^^" rows="100"></textarea>
+					                    <form accept-charset="UTF-8" action="finishBoard.go" method="post">
+					                        <input id="ratings-hidden" name="rating" type="hidden" value="1"> 
+					                        <input id="sdfxx" name="BoardNo" type="hidden" value="${Board.agency_no}">
+					                        <input id="sdfxx" name="memberid" type="hidden" value="${Board.agency_writer}">
+					                        
+					                        <textarea class="form-control animated"  cols="500" id="new-review" name="review" placeholder="지원자를 평가해주세요~^^" rows="100"></textarea>
 											<br>
 					                        <div class="text-right">
 					                            <div class="stars starrr" data-rating="0"></div>
 					                            <div align="center">
 					                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px; padding: 8px;">
-					                            <font size="4">Cancel</font></a>
-					                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+					                            <font size="4">닫기</font></a>
+					                            <button class="btn btn-success btn-lg" type="submit">작업마무리</button>
 					                            </div>
 					                        </div>
 					                    </form>
-					                </div>
+					               </div>
 					            </div>
 					      	  </div> 
 							</div>
@@ -634,11 +719,17 @@
 						(function(e){var t,o={className:"autosizejs",append:"",callback:!1,resizeDelay:10},i='<textarea tabindex="-1" style="position:absolute; top:-999px; left:0; right:auto; bottom:auto; border:0; padding: 0; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden; transition:none; -webkit-transition:none; -moz-transition:none;"/>',n=["fontFamily","fontSize","fontWeight","fontStyle","letterSpacing","textTransform","wordSpacing","textIndent"],s=e(i).data("autosize",!0)[0];s.style.lineHeight="99px","99px"===e(s).css("lineHeight")&&n.push("lineHeight"),s.style.lineHeight="",e.fn.autosize=function(i){return this.length?(i=e.extend({},o,i||{}),s.parentNode!==document.body&&e(document.body).append(s),this.each(function(){function o(){var t,o;"getComputedStyle"in window?(t=window.getComputedStyle(u,null),o=u.getBoundingClientRect().width,e.each(["paddingLeft","paddingRight","borderLeftWidth","borderRightWidth"],function(e,i){o-=parseInt(t[i],10)}),s.style.width=o+"px"):s.style.width=Math.max(p.width(),0)+"px"}function a(){var a={};if(t=u,s.className=i.className,d=parseInt(p.css("maxHeight"),10),e.each(n,function(e,t){a[t]=p.css(t)}),e(s).css(a),o(),window.chrome){var r=u.style.width;u.style.width="0px",u.offsetWidth,u.style.width=r}}function r(){var e,n;t!==u?a():o(),s.value=u.value+i.append,s.style.overflowY=u.style.overflowY,n=parseInt(u.style.height,10),s.scrollTop=0,s.scrollTop=9e4,e=s.scrollTop,d&&e>d?(u.style.overflowY="scroll",e=d):(u.style.overflowY="hidden",c>e&&(e=c)),e+=w,n!==e&&(u.style.height=e+"px",f&&i.callback.call(u,u))}function l(){clearTimeout(h),h=setTimeout(function(){var e=p.width();e!==g&&(g=e,r())},parseInt(i.resizeDelay,10))}var d,c,h,u=this,p=e(u),w=0,f=e.isFunction(i.callback),z={height:u.style.height,overflow:u.style.overflow,overflowY:u.style.overflowY,wordWrap:u.style.wordWrap,resize:u.style.resize},g=p.width();p.data("autosize")||(p.data("autosize",!0),("border-box"===p.css("box-sizing")||"border-box"===p.css("-moz-box-sizing")||"border-box"===p.css("-webkit-box-sizing"))&&(w=p.outerHeight()-p.height()),c=Math.max(parseInt(p.css("minHeight"),10)-w||0,p.height()),p.css({overflow:"hidden",overflowY:"hidden",wordWrap:"break-word",resize:"none"===p.css("resize")||"vertical"===p.css("resize")?"none":"horizontal"}),"onpropertychange"in u?"oninput"in u?p.on("input.autosize keyup.autosize",r):p.on("propertychange.autosize",function(){"value"===event.propertyName&&r()}):p.on("input.autosize",r),i.resizeDelay!==!1&&e(window).on("resize.autosize",l),p.on("autosize.resize",r),p.on("autosize.resizeIncludeStyle",function(){t=null,r()}),p.on("autosize.destroy",function(){t=null,clearTimeout(h),e(window).off("resize",l),p.off("autosize").off(".autosize").css(z).removeData("autosize")}),r())})):this}})(window.jQuery||window.$);
 	
 						var __slice=[].slice;(function(e,t){var n;n=function(){function t(t,n){var r,i,s,o=this;this.options=e.extend({},this.defaults,n);this.$el=t;s=this.defaults;for(r in s){i=s[r];if(this.$el.data(r)!=null){this.options[r]=this.$el.data(r)}}this.createStars();this.syncRating();this.$el.on("mouseover.starrr","span",function(e){return o.syncRating(o.$el.find("span").index(e.currentTarget)+1)});this.$el.on("mouseout.starrr",function(){return o.syncRating()});this.$el.on("click.starrr","span",function(e){return o.setRating(o.$el.find("span").index(e.currentTarget)+1)});this.$el.on("starrr:change",this.options.change)}t.prototype.defaults={rating:void 0,numStars:5,change:function(e,t){}};t.prototype.createStars=function(){var e,t,n;n=[];for(e=1,t=this.options.numStars;1<=t?e<=t:e>=t;1<=t?e++:e--){n.push(this.$el.append("<span class='glyphicon .glyphicon-star-empty'></span>"))}return n};t.prototype.setRating=function(e){if(this.options.rating===e){e=void 0}this.options.rating=e;this.syncRating();return this.$el.trigger("starrr:change",e)};t.prototype.syncRating=function(e){var t,n,r,i;e||(e=this.options.rating);if(e){for(t=n=0,i=e-1;0<=i?n<=i:n>=i;t=0<=i?++n:--n){this.$el.find("span").eq(t).removeClass("glyphicon-star-empty").addClass("glyphicon-star")}}if(e&&e<5){for(t=r=e;e<=4?r<=4:r>=4;t=e<=4?++r:--r){this.$el.find("span").eq(t).removeClass("glyphicon-star").addClass("glyphicon-star-empty")}}if(!e){return this.$el.find("span").removeClass("glyphicon-star").addClass("glyphicon-star-empty")}};return t}();return e.fn.extend({starrr:function(){var t,r;r=arguments[0],t=2<=arguments.length?__slice.call(arguments,1):[];return this.each(function(){var i;i=e(this).data("star-rating");if(!i){e(this).data("star-rating",i=new n(e(this),r))}if(typeof r==="string"){return i[r].apply(i,t)}})}})})(window.jQuery,window);$(function(){return $(".starrr").starrr()})
-	
+						
 						$(function(){
 							$("#ukapplybtn").on("click",function(){		
 								$('#cjsModalLabel').modal('show');
 							});	
+							
+							$("#report").on("click",function(){		
+								$('#reportmodal').modal('show');
+							});	
+							
+							
 						  $('#new-review').autosize({append: "\n"});
 	
 						  var reviewBox = $('#post-review-box');
@@ -688,7 +779,8 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+		        </span></button>
 		        <h4 class="modal-title" id="myModalLabel">작업 포기</h4>
 		      </div>
 		      <div class="modal-body">
@@ -712,7 +804,7 @@
 					      }
 					}			
 					  function test2(){
-							$('#myModal').modal('hide');											
+							$('#cjsModalLabel').modal('hide');											
 					  }
 				</script>
 					<br />
@@ -724,5 +816,123 @@
 		    </div>
 		  </div>
 		</div>
+	<div class="modal fade"  id="reportmodal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+		        </span></button>
+		        <h4 class="modal-title" id="myModalLabel">해당 유저 신고</h4>
+		      </div>
+		      <div class="modal-body">
+		   신고사유: ㅇㅇㅇㅇ
+	
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+<script type="text/javascript" 
+src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services,clusterer,drawing"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level:5// 지도의 확대 레벨
+};  
+var geocoder = new daum.maps.services.Geocoder();
+var coords="";
+var coords1="";
+geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+    coords = new daum.maps.LatLng(result[0].y, result[0].x);
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+    console.log("coords="+coords)
+     var circle = new daum.maps.Circle({
+    	    center : coords,  // 원의 중심좌표 입니다 
+    	    radius: 50, // 미터 단위의 원의 반지름입니다 
+    	    strokeWeight: 2, // 선의 두께입니다 
+    	    strokeColor: '#75B8FA', // 선의 색깔입니다
+    	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    	    strokeStyle: 'dashed', // 선의 스타일 입니다
+    	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+    	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+    	}); 
+
+    	// 지도에 원을 표시합니다 
+    	circle.setMap(map); 
+});
+
+
+// 지도를 생성합니다    
+var map = new daum.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+
+
+
+// 제휴사들 가져와서 넣기@@@@@@@
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
+    // 정상적으로 검색이 완료됐으면 
+     if (status === daum.maps.services.Status.OK) {
+
+        coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+        console.log("coords1="+coords1);
+        var positions = [
+            {
+                content: '<div text-align:"center">카카오</div>', 
+                latlng: coords1
+            }
+        ];
+
+        for (var i = 0; i < positions.length; i ++) {
+            // 마커를 생성합니다
+            console.log(positions);
+            var marker = new daum.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng // 마커의 위치
+            });
+
+            // 마커에 표시할 인포윈도우를 생성합니다 
+            var infowindow = new daum.maps.InfoWindow({
+                content: positions[i].content // 인포윈도우에 표시할 내용
+            });
+
+            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            (function(marker, infowindow) {
+                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+                daum.maps.event.addListener(marker, 'mouseover', function() {
+                    infowindow.open(map, marker);
+                });
+
+                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+                daum.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close();
+                });
+            })(marker, infowindow);
+        }    
+        
+        
+    } 
+});
+
+
+
+
+
+
+
+
+</script>
+		
 	</body>
 </html>

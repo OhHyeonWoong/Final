@@ -23,6 +23,8 @@ import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
+
+import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
@@ -44,9 +46,10 @@ public class CJS_BoardController {
 	}
 	
 	@RequestMapping("BoardDetail.go")
-	public ModelAndView boarddetailmove( ModelAndView mv, @RequestParam("BoardNo") int pk) {
+	public ModelAndView boarddetailmove(ModelAndView mv, @RequestParam("BoardNo") int pk) {
 		//보드상세설명으로 가는 명령어.
 		//1:해당 보드 조회수+1
+		
 		int result=boardservice.IncreaseViewCount(pk);
 		//2: 해당 보드 객체를 가지고 가기.
 		Board bo=boardservice.getBoardInfoByNo(pk);
@@ -210,6 +213,12 @@ public class CJS_BoardController {
 			HttpSession session
 	) 
 	{
+		if(boardservice.getAgencyStatus(pk)==4) {
+			mv.setViewName("A5.CJS/ErrorPage2");
+			return mv;
+		}else {
+			
+	
 		//받는정보. 딱1개 > 보드번호
 		Member member=null;
 		if(session.getValue("loginUser") != null) {
@@ -262,10 +271,8 @@ public class CJS_BoardController {
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
 	
 		return mv;
-		
-		
 	}
-	
+	}
 	
 	
 	
@@ -392,8 +399,70 @@ public class CJS_BoardController {
  		
 		
 	}
+@RequestMapping("finishBoard.go")
+public void finishBoard(
+		@RequestParam("BoardNo") int pk,
+		@RequestParam("rating") int rating,
+		@RequestParam("review") String review , 
+		@RequestParam("memberid") String memberid,
+		HttpServletResponse response,
+		HttpSession session ) throws IOException {
+	response.setContentType("text/html charset=utf-8");
+	Member member=null;
+	if(session.getValue("loginUser") != null) {
+	//맴버 아이디에 아이콘을 같이 가져가기.
+	member=(Member)session.getAttribute("loginUser");
+	System.out.println("rating="+rating);
+	System.out.println("review="+review);
+	System.out.println("BoardNo="+pk);
 
+	if(boardservice.getBoardInfoByNo(pk).getAgency_writer().equals(memberid)) {
+	//마무리 작업으로 무엇을 해야하나?
+	//1.보드의 상태를 4로 바꾼다. 
+	HashMap<Object,Object> map=new HashMap<Object,Object>();
+	map.put("pk",pk);
+	map.put("Status",4);
+	int result1=boardservice.updateAgencyStatus(map);
+	//2.보드로그를 새로 인설트한다. 	
+	int result2=boardservice.insertBoardlog(pk);
+	//3.트레이드디테일의 예비후보자 null로 바꾸기. 
+	int result3=boardservice.changeRESERVATION(pk);
+	//4.리뷰를 작성한다.
+	Review re=new Review();
+	re.setREVIEW_CONTENT(review);
+	re.setREVIEW_RATE(rating);
+	re.setREVIEW_WRITER(memberid);
+	re.setAGENCYLOG_NO(pk);
+	int result4=boardservice.insertReview(re);
+	System.out.println("보드상태 4로 바꾸기="+result1);
+	System.out.println("보드로그 인설트="+result2);
+	System.out.println("트레이드 예비후보자 지우기="+result3);
+	System.out.println("리뷰 작성.="+result4);
+	}else {
+	response.sendRedirect("Error500.go");
 			
+	}
+	
+	response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
+	}else {
+		response.sendRedirect("home.go");	
+	}
+
+	
+	
+	
+	
+	
+	
+}
+			@RequestMapping("Error404.go")
+			public String Error404() {
+				return "A5.CJS/ErrorPage";
+			}
+			@RequestMapping("Error500.go")
+			public String Error500() {
+				return "A5.CJS/ErrorPage2";
+			}
 			
 }
 

@@ -185,9 +185,11 @@ update AGENCY set AGENCY_VEIWS =
 (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
  where AGENCY_NO = #{pk}
 </update>
-<select id="updateAgencyStatus" parameterType="hashmap">
+<update id="updateAgencyStatus" parameterType="hashmap">
 update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
-</select>
+</update>
+
+
 
 
 <insert id="insertchatroom" parameterType="hashmap">
@@ -220,5 +222,13 @@ select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
 <select id="getAgencyDate" parameterType="int" resultType="Double" >
 select AGENCY_STARTDATE-sysdate from AGENCY where AGENCY_NO=#{pk}
 </select>
-
+<insert id="insertBoardlog" parameterType="int">
+insert into AGENCYLOG values((select max(AGENCYLOG_NO)+1 from AGENCYLOG),#{pk},1,sysdate)
+</insert>
+<update id="changeRESERVATION">
+update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
+</update>
+<insert id="insertReview" parameterType="REVIEW">
+insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),#{REVIEW_RATE},#{REVIEW_WRITER},#{AGENCYLOG_NO},sysdate,#{REVIEW_CONTENT}) 
+</insert>
 </mapper>

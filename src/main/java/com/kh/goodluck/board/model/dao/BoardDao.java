@@ -16,6 +16,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 
@@ -192,8 +193,8 @@ public class BoardDao {
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
 	return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
 	}
-	public void updateAgencyStatus(HashMap<Object, Object> map) {
-	sqlSession.selectOne("updateAgencyStatus",map);
+	public int updateAgencyStatus(HashMap<Object, Object> map) {
+		return 	sqlSession.update("updateAgencyStatus",map);
 	}
     public int insertNewTradeDetail(Trade_detail td) {
 	return sqlSession.update("insertNewTradeDetail",td);
@@ -272,6 +273,30 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getAgencyDate",pk);
 	}
+
+
+
+	public int insertBoardlog(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertBoardlog",pk);
+	}
+
+
+
+	public int changeRESERVATION(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("changeRESERVATION",pk);
+	}
+
+
+
+	public int insertReview(Review re) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertReview",re);
+	}
+
+
+
 
 
 	
