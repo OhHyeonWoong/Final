@@ -990,7 +990,7 @@
 								<ul class="dropdown-menu">
 									<li><a href = "ohw-movePaymentPage.go">현웅</a></li>
 									<li><a href="ukWookTest.go">욱재</a></li>
-									<li><a href="jdkitemlist.go">동기</a></li>
+									<li><a href="lbjmypage.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
 									<li><a href="lbjStatisticsTest.go">뱅준</a></li>

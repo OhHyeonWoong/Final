@@ -35,7 +35,7 @@
             <i class="fa fa-clipboard"></i> 신고 문의 처리 <i class="fa fa fa-chevron-left pull-right" id="arow4"></i> </a>
           </li>
           <li class="panel">
-            <a id="panel5" href="javascript:;" data-toggle="collapse" data-target="#edit">
+            <a id="panel5" href="lbjAdminQnaAnswer.go" data-toggle="collapse" data-target="#edit">
              <i class="fa fa-edit"></i> 질문 문의 처리 <i class="fa fa fa-chevron-left pull-right" id="arow5"></i>
             </a>
           </li>

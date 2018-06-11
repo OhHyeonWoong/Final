@@ -95,7 +95,12 @@ function sample4_execDaumPostcode() {
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<script type="text/javascript" src="/goodluck/resources/A6.LBJ/js/lbj_sidebar.js"></script>
 	<script type="text/javascript">
-		$(function(){
+//////////////////////전역변수 부분/////////////////////////
+//정규식 목록
+//2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
+var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
+///////////////////////////////////////////////////////	
+	$(function(){
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
@@ -105,7 +110,6 @@ function sample4_execDaumPostcode() {
 				}
 			});
 		});
-		
 		function fnDeleteQna(){
 			var checkBox1 = $('input[name="chk1"]:checked');
 			var chkValue = new Array();
@@ -406,28 +410,38 @@ function sample4_execDaumPostcode() {
 				clickCheck = false;
 			}
 		}
-		//회원정보 수정 전(submit 전)에 값 체크해서 보냄+ 정규식 적용(동기)
-		function fnValidationCheck(){
-			/* 1. 비밀번호가 일치하는지 
-			 * 2. 인증번호가 일치하는지 */ 
+		//
+		
+		
+		function pwdValidation(){
 			//비밀번호 일치 여부 
 			var pass1 = $('#InputPassword1').val();
 			var pass2 = $('#InputPassword2').val();
+			if(pwpattern.test(pass1)==false){
+				alert("비밀번호 양식에 일치하지 않습니다. 다시 입력해주세요!!");
+				$('#InputPassword1').focus();
+			}
 			if(pass1 == pass2){
 				flag = true;
+				$("#pwdSame").text("비밀번호가 일치하는 번호 입니다.").css("color","green");
 			}else{
-				$("#pwdSame").text("비밀번호 확인을 위해 다시한번 입력 해 주세요").css("color","#737373");
+				$("#pwdSame").text("비밀번호가 일치하지 않습니다. 일치하는 비밀번호를 적어주세요").css("color","red");
 				$("#password1").focus();
 				flag = false;
-				alert("비밀번호가 일치하지 않습니다.");
-			}
+			}	
 			
-			//필요 부분 정규식 추가합니다.
-			//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
+		}
+		
+		//회원정보 수정 전(submit 전)에 값 체크해서 보냄+ 정규식 적용(동기)
+		function fnValidationCheck(){
+		//필요 부분 정규식 추가합니다.
+		//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
+		//console.log("flag = " + flag);
 			
-			
-			console.log("flag = " + flag);
-			if(flag == true && clickCheck == true){
+		
+		
+		
+		if(flag == true && clickCheck == true){
 				return true;
 			}else{
 				alert("누락된 정보가 없나 확인해보세요.");
@@ -461,15 +475,6 @@ function sample4_execDaumPostcode() {
 			}
 		}
 		
-		$(function(){
-			$('#InputPassword2').blur(function(){
-				if($(this).val() == $('#InputPassword1').val()){
-					alert("비밀번호가 일치합니다.");	
-				}else{
-					alert("비밀번호가 일치하지 않습니다.");
-				}
-			});
-		});
 	</script>
 	<c:choose>
 		<c:when test="${loginUser eq null}">
@@ -492,14 +497,15 @@ function sample4_execDaumPostcode() {
 		 		<h3 class="lbjh3" id="lbjMyPage" style="">내 정보보기</h3>
 		 		<!-- 벼어어어어어어어어어어주누누누누누이이이 -->
 				<div class="login_form" >
-				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
+				<!--   -->
+				<div class="col-md-6 col-md-offset-3" style="float:none; align:center;">
 					<!-- 폼시작 -->
 					<form role="form" action="lbjUpdateMember.go" method="post" enctype="multipart/form-data" 
 					  onsubmit="return fnValidationCheck();">
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
-							<div style="width : 200px; height : 200px; margin: 0 auto; border:1px solid black;">
+							<div style="width : 200px; height : 200px; margin: 0 auto;">
 							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
 							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
@@ -518,14 +524,16 @@ function sample4_execDaumPostcode() {
 								readonly="readonly" value="${loginUser.member_name}">
 						</div>
 						<div class="form-group">
-							<label for="InputPassword1">비밀번호</label> <input type="password"
-								class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호"
-								 required="required" value="${loginUser.member_pw}">
+							<label for="InputPassword1">비밀번호</label> 
+							<input type="password" class="form-control" 
+							id="InputPassword1" name="member_pw"  placeholder="6~16자리 영문/숫자/적어도 한자리의 특수문자"
+						required="required" value="${loginUser.member_pw}" onchange="pwdValidation();">
 						</div>
 						<div class="form-group">
 							<label for="InputPassword2">비밀번호 확인</label> <input type="password"
-								class="form-control" id="InputPassword2" placeholder="비밀번호 확인" required="required">
-							<p id = "pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+								class="form-control" id="InputPassword2" placeholder="6~16자리 영문/숫자/적어도 한자리의 특수문자" 
+								required="required" onchange="pwdValidation();">
+							<p id ="pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 						</div>
 						<div class="form-group">
 							<label for="username">주민등록번호</label><br> 
@@ -542,19 +550,26 @@ function sample4_execDaumPostcode() {
 						
 						<!-- 주소 부분 수정합니다. -->
 				<div class="form-group">
+                     <label for="username">본래 주소</label><br> 
+                     <input type="text" class="form-control" id="member_address" name="member_address" 
+                     placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}" readonly="readonly" >
+                  </div>
+				<div class="form-group">
 					<label for="username">주소</label>
 					<br>
-					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:400px;">
+					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:250px;" >
 					<span class="input-group-btn">					
 					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
 					<br><br>
-					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly"><br><br>
-					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" >
+					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" 
+					placeholder="도로명주소입니다" readonly="readonly" ><br><br>
+					<input type="text" class="form-control" id="address" name="member_address2" 
+					placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
 				</div>
-						<!-- 전화번호 영역 -->
-						<div class="form-group">
+				<!-- 전화번호 영역 -->
+				<div class="form-group">
 							<label for="username">전화번호</label><br> 
 							<input type="text" class="form-control" id="member_phone" name="member_phone" 
 							placeholder="전화번호를 입력해주세요." required="required" value="${loginUser.member_phone}">
@@ -563,21 +578,10 @@ function sample4_execDaumPostcode() {
 						<div class="form-group">
 							<label for="useremail">이메일</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
-								readonly="readonly" value="${loginUser.member_email}">
-								<!--email 인증 요청--> 
-                  				<span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnMemberGoEmail(); return false;"><i class="fa fa-envelope"></i>인증요청</a></span>
+							<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
+							readonly="readonly" value="${loginUser.member_email}" style="width: 400px">
 							</div>
 						</div>
-						 <div class="form-group">
-			               <label for="username">인증번호 입력</label>
-			               <div class="input-group">
-			               <input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
-			               <!-- 인증번호 요청시 번호 입력확인 -->
-			               <span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnConfirmNumCheck(); return false;"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
-			               <!-- <input type="button" class="btn btn-default" value="인증번호 입력"> -->
-			               </div>
-			            </div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
