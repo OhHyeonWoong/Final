@@ -39,5 +39,9 @@ public class QNADao {
 	public int deleteQna(HashMap<String,Object> map) {
 		return sqlSession.delete("deleteQna", map);
 	}
+
+	public int updateMyQnaSatisfaction(QnaAnswer qa) {
+		return sqlSession.update("updateMyQnaSatisfaction", qa);
+	}
 	
 }

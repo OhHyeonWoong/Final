@@ -45,4 +45,9 @@ public class QNAServiceImpl implements QNAService{
 	public int deleteQna(HashMap<String,Object> map) {
 		return qnaDao.deleteQna(map);
 	}
+	
+	@Override
+	public int updateMyQnaSatisfaction(QnaAnswer qa) {
+		return qnaDao.updateMyQnaSatisfaction(qa);
+	}
 }

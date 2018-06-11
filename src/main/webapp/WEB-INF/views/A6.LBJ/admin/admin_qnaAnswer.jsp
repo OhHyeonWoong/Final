@@ -38,7 +38,7 @@
 					for(var i in json.ing){
 						console.log("json.ing.question_no = " + json.ing[i].question_no);
 						htmlStr += '<tr><td class="lbj-td">'+json.ing[i].question_category+'</td>'+
-						'<td class="lbj-td"><a href="#">'+json.ing[i].question_title+'</a></td>'+
+						"<td class='lbj-td'><a href='lbjAdminQnaWrite.go?question_no="+json.ing[i].question_no+"'>"+json.ing[i].question_title+"</a></td>"+
 						'<td class="lbj-td">'+json.ing[i].question_writer+'</td>'+
 						'<td class="lbj-td">'+json.ing[i].question_date+'</td></tr>';
 					}
