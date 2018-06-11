@@ -35,13 +35,14 @@ public class SearchController {
 	    List<Search> list = searchService.searchKeyword(map);				
 		
 		System.out.println("ReturnList : " + list + " / To.SearchController");
-		mav.addObject("searchList", list);		
+		mav.addObject("searchList", list);
+		mav.addObject("searchKeyword", searchKeyword);
 		mav.setViewName("A1.OHW/SearchResult");		
 		return mav;
 	}	
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "headerSearchAjax.go")
+	@RequestMapping(value = "headerSearchAjax.go", method = RequestMethod.POST)
 	public void searchReload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("searchKeyword") String searchKeyword) throws IOException {
 		
@@ -61,9 +62,9 @@ public class SearchController {
 				job.put("link2_no", search.getLink2_no());
 				job.put("agency_type", search.getAgency_type());
 				job.put("agency_loc", search.getAgency_loc());
-				job.put("agency_startdate", search.getAgency_startdate());
-				job.put("agency_enddate", search.getAgency_enddate());
-				job.put("agency_enrolldate", search.getAgency_enrolldate());
+				job.put("agency_startdate", search.getAgency_startdate().toString());
+				job.put("agency_enddate", search.getAgency_enddate().toString());
+				job.put("agency_enrolldate", search.getAgency_enrolldate().toString());
 				job.put("agency_paytype", search.getAgency_paytype());
 				job.put("agency_pay", search.getAgency_pay());
 				job.put("agency_status", search.getAgency_status());
@@ -74,12 +75,11 @@ public class SearchController {
 				
 				jarr.add(job);
 			}
-			
-			response.setContentType("application/json; charset=UTF-8");
-			JSONObject sendJson = new JSONObject();
-			sendJson.put("searchList", jarr);
+			JSONObject json = new JSONObject();
+			json.put("searchList", jarr);
+			response.setContentType("application/json; charset=UTF-8");			
 			PrintWriter out = response.getWriter();
-			out.append(sendJson.toJSONString());
+			out.append(json.toJSONString());
 			out.flush();
 			out.close();		
 		}			

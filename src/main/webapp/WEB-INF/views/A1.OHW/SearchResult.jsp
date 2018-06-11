@@ -64,35 +64,42 @@
 	/* SideBar End */
 	
 	/* SearchResultAjax */
-	$.ajax({
-	   	url:"headerSearchAjax.go",
-	   	type:"POST",
-	   	data:
-	   	dataType:"json",
-	   	success:
-	   		function(data) {
-	   			var jsonStr = JSON.stringify(data);
-				var json = JSON.parse(jsonStr);
-				var searchList = "";											
-				
-				for(var i in json.searchList){				
-					searchList += '<tr><td class = ""><a id = "' + json.searchList[i].agency_no + '" onClick = "" >' + json.searchList[i].agency_title + '</a></td></tr>'
-				}
-				
-				$('.ohw-search-table').append(searchList);				
+	$(function(){
+		var searchKeyword = $(".ohw-hidden-get").val();		
+		$.ajax({
+		   	url:"headerSearchAjax.go",
+		   	type:"POST",
+		   	data:{searchKeyword : searchKeyword}, 
+		   	dataType:"json",
+		   	success:
+		   		function(data) {
+		   			var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					var searchList = "";											
 					
-			}, 
-		error : function(request, status, errorData) {
-					alert("Error Code : " + request.status + "\n"
-					+ "Message : " + request.responseText + "\n"
-					+ "Error : " + errorData);
-		}
+					for(var i in json.searchList){				
+						searchList += 
+									'<tr>' + 
+										'<td>' + json.searchList[i].agency_no + '</td>' + 
+										'<td>' + '<img src = "">' + '</td>' + 
+										'<td class = "">' + 
+											'<a onClick = "" >' + json.searchList[i].agency_title + '</a>' + 
+										'</td>' + 
+										'<td>' + '<img src = "">' + json.searchList[i].agency_writer + '</td>' + 
+										'<td>' + json.searchList[i].agency_enrolldate + '</td>' + 
+									'</tr>'
+					}
+					
+					$('.ohw-search-table').append(searchList);							
+				}, 
+			error : function(request, status, errorData) {
+						console.log("Error Code : " + request.status + "\n"
+						+ "Message : " + request.responseText + "\n"
+						+ "Error : " + errorData);
+			}
+		});
 	});	
 	/* SearchResultAjax End */
-
-	$(document).ready(function() {
-		$('.ohw-hidden-get').val(<%=  %>);
-	});
 	
 </script>
 
@@ -102,8 +109,8 @@
 			<td class = "ohw-search-maintd" valign = "top">
 				<table class="table table-hover ohw-search-table">
 					<tr>
-						<td><label></label></td>
-						<td><input type = "text" class = "ohw-hidden-get" value = "${ searchKeyword }" name = "searchKeyword"></td>
+						<td><label></label></td>						
+						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchKeyword }" name = "searchKeyword" readonly></td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
@@ -116,7 +123,7 @@
 							<td><img src = "">${ searchList.agency_writer }</td>
 							<td>${ searchList.agency_enrolldate }</td>
 						</tr>
-					</c:forEach> --%>													
+					</c:forEach> --%>												
 				</table>
 			</td>
 			<td valign = "top">				
