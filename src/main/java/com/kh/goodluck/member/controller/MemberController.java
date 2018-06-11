@@ -270,7 +270,7 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
-	
+	//회원정보 수정 메소드(병준느님 작성 전동기 일부 수정)
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
@@ -318,6 +318,10 @@ public class MemberController {
 				    member.setMember_pw(updateMem.getMember_pw());
 				    member.setMember_phone(updateMem.getMember_phone());
 				    member.setMember_renamephoto(updateMem.getMember_renamephoto());
+				    System.out.println();
+				    
+				    /*member.setMember_address();*/
+				    
 				}
 				/*if(m != null) {
 					//기존 세션 없앰
