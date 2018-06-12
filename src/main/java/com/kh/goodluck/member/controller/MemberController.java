@@ -288,7 +288,7 @@ public class MemberController {
 		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
 		String fileName = file.getOriginalFilename();
 		/////////////////////////////////////////////////////////
-		if((fileName != "") && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+		if((fileName != null) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
 				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
 				fileName.toLowerCase().endsWith(".bmp")) {
 			if((fileName != memberProfile)) {
@@ -306,14 +306,19 @@ public class MemberController {
 			}else {
 				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
 			}
-			String add =request.getParameter("member_address1")+" "+request.getParameter("member_address2");
-			if(request.getParameter("postCard")!=null) {
-				m.setMember_address(add);	
-			}
 			int result=0;
+			System.out.println("본래 주소: " + request.getParameter("former_member_address"));
+			System.out.println("수정 된 주소: " + request.getParameter("member_address1")+request.getParameter("member_address2"));
+			
+			
 			if(request.getParameter("postCard")==null) {
+			System.out.println("본래 주소 저장됨: " + request.getParameter("former_member_address"));
+			
+			m.setMember_address(request.getParameter("former_member_address"));
 			result = memberService.updateMemberInfo(m);
 			}else if(request.getParameter("postCard")!=null) {
+			System.out.println("수정 주소 저장됨: " + request.getParameter("former_member_address"));
+			
 			m.setMember_address(request.getParameter("member_address1")+request.getParameter("member_address2"));
 			result = memberService.updateMemberInfo(m);
 			}
