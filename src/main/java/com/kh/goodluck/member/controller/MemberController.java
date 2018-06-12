@@ -217,11 +217,7 @@ public class MemberController {
 		}else {
 			out.write("로그인 실패");
 		}
-<<<<<<< HEAD
-		///////  
-=======
-		////////////////////////////////////////////////
->>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
+
 		out.flush();
 		out.close();
 	}
