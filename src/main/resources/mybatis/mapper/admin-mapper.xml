@@ -6,11 +6,13 @@
 
 	<select id="selectAdminStatistics" resultType="LoginStatistics">
 		<![CDATA[
-			select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
-			from login_statistics
+			select *
+			from (
+				select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
+				from login_statistics
+				group by to_date(ls_date,'yy/mm/dd')
+				order by to_date(ls_date,'yy/mm/dd') desc)
 			where rownum <= 8
-			group by to_date(ls_date,'yy/mm/dd')
-			order by to_date(ls_date,'yy/mm/dd') desc
 		]]>
 	</select>
 	

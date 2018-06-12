@@ -190,7 +190,8 @@ public class MemberController {
 				System.out.println("login통계 테이블 갱신 시작");
 				//해당 아이디가 존재하는지 확인 (sysdate로 비교)
 				LoginStatistics idYNCheck = memberService.selectIdYNCheck(m.getMember_id());
-				if(idYNCheck == null) {
+				System.out.println("로그인 진행 중... m.getMemberStatus = " + m.getMember_status());
+				if(idYNCheck == null && m.getMember_status() != 3) {
 					//존재하지 않으면 테이블에 insert
 					int insertResult = memberService.insertLoginStatistics(m.getMember_id());
 					if(insertResult > 0) {
@@ -199,7 +200,7 @@ public class MemberController {
 						System.out.println("통계 테이블 갱신 실패");
 					}
 				}else {
-					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재");
+					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재하거나 관리자임");
 				}
 				System.out.println("login통계 테이블 갱신 끝");				
 				/////////////////////////////////////////
