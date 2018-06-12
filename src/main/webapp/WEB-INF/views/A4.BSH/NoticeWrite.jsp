@@ -7,7 +7,7 @@
 	<head>
 		<script src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 		<link href="/goodluck/resources/common/css/bootstrap.min.css" rel="stylesheet">
-		<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>
+		<script src="/goodluck/resources/common/js/bootstrap.min.js"></script>	
 		<title>공지사항 작성 페이지</title>
 		<style type="text/css">
 			.container {
@@ -68,6 +68,17 @@
 				
 			}
 			.uk_style{
+ 				background: navy; 
+ 				color: white; 
+ 				width: 300px; 
+ 				height: 200px;
+ 				padding-top: 3px;
+ 				padding-bottom: 3px;
+ 				border: 1px solid gray;				
+			}
+			.op{
+				font-size:13px;
+				margin: 8px;
 				
 			}
 		</style>	
@@ -80,37 +91,56 @@
 				<div class="padding"></div>
 				<span class="glyphicon glyphicon-user icon" style="float: left; margin-left: 23%;"></span> <h3  style="float: left;">Notice Write</h3>
 	
-					<table class="in_ContentTable">	
-						<tr align="center"> 
-							<td class="uk_td1 sec1"> Title </td> <td class="uk_td1"> <input type="text" class="n1" name="new_ntitle"></td>
-						</tr>
-						<tr align="center"> <td class="uk_td1 sec1"> Writer </td> <td class="uk_td1"> Admin </td> </tr>
-						<tr> 
-							<td class="uk_td2" colspan="2">
-								<textarea class="n2" rows="18" cols="48" style="resize: none;"></textarea>
-							</td>  
-						</tr>
-						<tr> 
-							<td colspan="2" align="center">
-								<input type="button" class="checkalram" value="글 작성완료" style="background: navy; color: white"> &nbsp; &nbsp;	
-								<a class="uk_style" href="javascript:abc();" id="AdminAlter"> 창닫기 </a>						
-								<script type="text/javascript">
-									$(function(){
-										$(".checkalram").on("click",function(){
-											location.href="addnotice.go=new_ntitle?"+$(".n1").val()+"&new_ncontents="+$(".n2").val();
-											alter("h i . . . ");
-											window.close();
-										});
-									});
-									function abc(){
-										window.close();
-									}	
-								</script>
-							</td>
-	
-						</tr>
-					</table>
+				  <form action="insertnewnotice.go" method="get">
+						<table class="in_ContentTable">	
+							<tr align="center"> 
+								<td class="uk_td1 sec1"> Title </td> <td class="uk_td1"> <input id="input_1" required="required" name="input_title"></td>
+							</tr>
+							<tr align="center"> <td class="uk_td1 sec1"> Writer </td> <td class="uk_td1"> Admin </td> </tr>
+							<tr> 
+								<td class="uk_td2" colspan="2"> 
+									<textarea rows="18" cols="48" style="resize: none;" required="required" name="input_content"></textarea>
+								</td>  
+							</tr>
+							<tr> 
+								<td colspan="2" align="center">
+									<input type="submit" value="글 작성완료" class="n4" onclick="click();" style="background: navy; color: white"> &nbsp;&nbsp;							
+									<a class="uk_style" href="javascript:closewindow();" id="AdminAlter"> <font class="op">창닫기</font> </a>						
+								</td>
+							</tr>
+						</table>	
+					</form>
+					<script type="text/javascript">
+						/* function click(){
+							alert("클릭");
+							var v1 = $("#input_1").val();
+							var v2 = $("#input_2").val();
+							console.log(v1);
+							console.log(v2);
+							
+			
+							$.ajax({
+								url : "insertnewnotice.go",
+								type : "get",
+								data : {
+									input_title : $("#input_1").val(),
+									input_content : $("#input_2").val() 
+								}
+							}); 
+							window.close();
+						}
 					
+						$(function(){
+							$('n4').on("click",function(){
+								alert("새로운 공지등록완료!");
+								window.close();
+							});
+						}); */
+						
+						function closewindow(){
+							window.close();
+						}	
+					</script> 						
 			</div>
 	    	
 	    </div>

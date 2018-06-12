@@ -19,7 +19,7 @@
 				color: black;
 				width: 75%;
 				height: 770px;			
-				opacity: 0.96;
+				opacity: 0.92;
 				
 			}
 			.padding{
@@ -81,37 +81,14 @@
 				<div class="padding"></div>
 				<span class="glyphicon glyphicon-user icon" style="float: left; margin-left: 28%;"></span> <h3  style="float: left;">공 지 글 상 세 보 기</h3>
 				
-				<c:if test="${ loginUser eq null }">
-				<table class="in_ContentTable">			
-					<tr align="center"> 
-						<td class="uk_td1 sec1"> 글제목</td> 
-						<td class="uk_td1"> 
-							<input type="text" width="400" class="this_ntitle" value="${notice_info.notice_title}" readonly="readonly"> 
-							<input type="hidden" class="this_no" value="${notice_info.notice_no}">	
-						</td>
-					</tr>
-					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
-					<tr> 
-						<td class="uk_td2" colspan="2">
-							<textarea class="this_ncontents" rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">${notice_info.notice_content}</textarea>
-						</td>  
-					</tr>
-					<tr> 
-						<td colspan="2" align="center"> 	
-							<a href="Notice.go" id="AdminAlter"> 전체 목록으로 </a>
-						</td>
-					</tr>
-				</table>
-				</c:if>
-				
-				<c:if test="${ loginUser!=null  }">
+
 				<table class="in_ContentTable">			
 					<tr align="center"> 
 						<td class="uk_td1 sec1"> 글제목</td> 
 						<td class="uk_td1"> 
 							<input type="text" class="this_ntitle" value="${notice_info.notice_title}"> 
-							<input type="hidden" class="this_no" value="${notice_info.notice_no}">	
-						</td>
+							<input type="hidden" class="this_no" value="${notice_info.notice_no}">
+						</td>	
 					</tr>
 					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
 					<tr> 
@@ -121,8 +98,10 @@
 					</tr>
 					<tr> 
 						<td colspan="2" align="center"> 	
-							<a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
-							
+							<c:if test="${loginUser.member_status eq 3}">
+							<span class="glyphicon glyphicon-user"></span><a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="glyphicon glyphicon-trash"></span><a href="javascript:delnotice();"> 삭제하기 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+							</c:if>
 							<script type="text/javascript">
 			
 							 	function alterNoticeContents(){
@@ -146,14 +125,20 @@
 										type : "get"
 							 		}); 
 								}
-	
+							 	
+							 	function delnotice(){
+							
+							 		alert("해당 공지글 삭제가 완료되었습니다.");
+									location.href="admin_ndelete.go?select_pk="+$(".this_no").val();
+							 	}
+							 	
 							</script>
 							
-							<a href="Notice.go" id="AdminAlter"> 전체 목록으로 </a>
+							<span class="glyphicon glyphicon-tags"></span><a href="Notice.go" id="AdminAlter"> 목록으로 </a>
 						</td>
 					</tr>
 				</table>
-				</c:if>
+
 				
 				
 			</div>

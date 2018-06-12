@@ -66,5 +66,10 @@ public class FaqServiceImpl implements FaqService {
 		return faqDao.reDefineFaq(reFaq);
 	}
 	
+	@Override //이용내역 리스트중 수정하기
+	public int changeUseingList(Faq alterFaq) {
+		return faqDao.alterUseing(alterFaq);
+	}
+	
 	
 }

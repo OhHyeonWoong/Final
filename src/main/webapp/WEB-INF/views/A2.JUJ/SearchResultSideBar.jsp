@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- I was motivated to create this after seeing BhaumikPatel's http://bootsnipp.com/snippets/featured/accordion-menu; I adapted it to a list format rather than a table so that it would be easy to create a nav toggle button when viewed on mobile devices -->
-<div class="col-md-3 float_sidebar" style="width: 220px;">
+<div class="col-md-3 float_sidebar" style="width: 215px; padding-left: 15px;">
 	<div id="sidenav1">
-		<div class="collapse navbar-collapse" id="sideNavbar" style="width: 220px; margin-right: 0;">
+		<div class="collapse navbar-collapse" id="sideNavbar" style="width: 185px; margin-right: 0;">
 			<div class="panel-group" id="accordion"> 
 				<div class="panel panel-default">
-					<div class="panel-heading" style="width: 220px; background: yellow;" align="center">
-						<img alt="여신수지" src="/goodluck/resources/common/img/main/이용자6.gif" style="width: 180px; height: 200px;">
-						<hr style="clear: both; margin-top: 0;">실 시 간 검 색 어 순 위         	
-						<ol>
-							<li>여행지</li>
-							<li>노래</li>
-							<li>여자</li>
-							<li>홈렌트</li>
-							<li>구해요</li>
+					<div class="panel-heading" style="width: 185px; background-color: white; border: 1px dotted gray;  background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/08/30/12087/3574f899daef41d2f145eba13ff7840f.jpg');      " align="center">
+						<H2 style="color: white">CONTENTS</H2>
+						<ol style="list-style: none; padding: 0;">
+							<li class="n1" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkOne();" class="na_1" style="color: black;"><font style="font-size: 20px; color: white;">생활</font></A></li>
+							<li class="n2" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkTwo();" class="na_2" style="color: black;"><font style="font-size: 20px; color: white;">반려동물</font></A></li>
+							<li class="n3" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkThree();" class="na_3" style="color: black;"><font style="font-size: 20px; color: white;">게임</font></A></li>
+							<li class="n4" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkFour();" class="na_4" style="color: black;"><font style="font-size: 20px;  color: white;">여행</font></A></li>
 						</ol>          	
 					</div> 
 				</div>

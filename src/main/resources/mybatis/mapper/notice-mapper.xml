@@ -19,10 +19,10 @@
    		<result property="notice_writer" column="notice_writer"/>
    		<result property="notice_date" column="notice_date"/>
 	</resultMap>
-	      
-	<select id="pickAllList" resultMap="NoticeResult"> 
-		<![CDATA[select * from notice]]>
-	</select>    
+
+	<select id="PageingSuccess" parameterType="Hashmap" resultMap="NoticeResult">
+		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice) where rnum <= #{endRow} and rnum >= #{startRow}]]>
+	</select> 
 	  
 	<select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
 		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
@@ -38,5 +38,25 @@
 		<![CDATA[update notice set notice_title=#{notice_title}, notice_content=#{notice_content} where notice_no=#{notice_no} ]]>
 	</update>
 	
+	<insert id="AdminInsertNotice" parameterType="Notice" flushCache="true" statementType="PREPARED">
+		<![CDATA[insert into notice values((select max(notice_no)+1 from notice), #{notice_title}, #{notice_content}, 'gkffhqnd', sysdate)]]>
+	</insert>
 	
+	<delete id="AdminDeleteNotice" parameterType="integer" flushCache="true">
+		<![CDATA[delete from notice where notice_no=#{notice_no}]]>
+	</delete>
+	
+	<select id="noticeCount" resultType="int">
+		<![CDATA[select count(*) from notice]]>
+	</select>
+	
+	<select id="noticeCatch1" resultMap="NoticeResult">
+		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice) where rnum <=6 and rnum >=1]]>	
+	</select>
+	
+	
+	<select id="noticeCatch2" resultMap="NoticeResult">
+		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice) where rnum <=12 and rnum >=7]]>	
+	</select>
+
 </mapper>

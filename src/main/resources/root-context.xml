@@ -13,8 +13,8 @@
 	<!-- DataSource 등록 : db연결 정보 -->
 	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
 		하라는 뜻임 -->
-
-	<bean id="dataSource"
+  
+    <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
@@ -22,6 +22,10 @@
 		<property name="username" value="final" />
 		<property name="password" value="final" />
 		<property name="defaultAutoCommit" value="false" />
+<<<<<<< HEAD
+	</bean> 
+	    
+=======
  	</bean> 
 
 	<!--<bean id="dataSource"
@@ -47,6 +51,7 @@
 		<property name="defaultAutoCommit" value="false" />
 	</bean> -->
 
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"
     	class="org.mybatis.spring.SqlSessionFactoryBean">
