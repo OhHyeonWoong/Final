@@ -207,7 +207,7 @@ public class BoardController {
 	
 	@RequestMapping(value="bshsearch.go")
 	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
-		
+				
 		bigcategorylist = boardservice.selectBigCategoryAll();
 		midcategorylist = boardservice.selectMidCategoryAll();
 		smallcategorylist = boardservice.selectSmallCategoryAll();
@@ -269,6 +269,70 @@ public class BoardController {
 			}		
 		}
 		
+		String bcate = request.getParameter("bcate");
+		String mcate = request.getParameter("mcate");
+		String scate = request.getParameter("scate");
+		String loc = request.getParameter("loc");
+		String state = request.getParameter("state");
+		String group1 = request.getParameter("group1");
+		String group2 = request.getParameter("group2");
+		String group3 = request.getParameter("group3");
+		String group4 = request.getParameter("group4");
+		String strmin = request.getParameter("min");
+		String strmax = request.getParameter("max");
+		String searchtext = request.getParameter("searchtext");
+		int page = Integer.parseInt(request.getParameter("page"));
+		int min = -1;
+		int max = -1;
+		
+		if(!strmin.equals("")) {
+			try {
+				min = Integer.parseInt(strmin);
+				if(min<0) {
+					min=-3;
+				}
+			}catch (Exception e) {
+				min = -2;
+			}
+		}else {
+			min = 0;
+		}
+		
+		if(!strmax.equals("")) {
+			try {
+				max = Integer.parseInt(strmax);
+				if(max<0) {
+					max=-3;
+				}
+			}catch (Exception e) {
+				max = -2;
+			}
+		}else {
+			max = 0;
+		}
+		
+		String query = "user01";
+		//(select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = '"+bcate+"' order by a.AGENCY_NO desc)) where rnum >= "+((page*20)-19)+" and rnum <= "+(page*20);
+		
+		List<Board> searchlist = null;
+		
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("strquery", query);
+		
+		//카테고리 종류 별로 검색 쿼리가 달라야함 ㅅㅂ....
+		
+		if(scate.equals("")) {
+			if(mcate.equals("")){
+				searchlist = boardservice.search(map);
+			}else {
+				
+			}
+		}
+		
+		System.out.println("bcate:"+bcate);
+		System.out.println("page:"+page);
+		System.out.println("사이즈:"+searchlist.size());
+		
 		
 		mv.setViewName("A4.BSH/Search");
 		
@@ -276,8 +340,13 @@ public class BoardController {
 		mv.addObject("midcategorylist",midcategorylist);
 		mv.addObject("smallcategorylist",smallcategorylist);
 		mv.addObject("strlist",strlist);
+		mv.addObject("searchlist",searchlist);
 		return mv;
 	}
+	
+	
+		
+	
 	
 	
 }

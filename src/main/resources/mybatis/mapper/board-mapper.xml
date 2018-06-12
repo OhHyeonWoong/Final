@@ -88,9 +88,9 @@
 		]]>
 	</select>
 	
-	<select id="search" parameterType="Board" resultMap="BoardResult">
+	<select id="search" parameterType="string" resultMap="BoardResult">
 		<![CDATA[
-			#{query}
+			select * from agency where agency_writer = #{strquery} 
 		]]>
 	</select>
 	
