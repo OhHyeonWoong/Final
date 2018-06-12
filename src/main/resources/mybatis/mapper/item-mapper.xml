@@ -89,6 +89,7 @@ select i.ITEMLIST_NO from ITEMLIST i , MY_ITEM m where i.ITEMLIST_NO=m.ITEMLIST_
 		where mi.ITEMLIST_NO = it.ITEMLIST_NO 
 		and mi.MYITEM_NO = ui.MYITEM_NO
 		and ui.USING_ITEM_NO = il.USING_ITEM_NO
+		and it.itemtype != 2 
 		and mi.MEMBER_ID = #{member_id} 	
 	]]>
 </select>
@@ -145,4 +146,17 @@ update ITEMLIST set ITEMSELLCOUNT = ((select ITEMSELLCOUNT from ITEMLIST where I
 where ITEMLIST_NO = #{pk}
 </update>
 
+<select id="getitemtype" parameterType="int" resultType="int">
+select ITEMTYPE from ITEMLIST where ITEMLIST_NO =#{itemlistno}
+</select>
+
+<select id="getmixicon" parameterType="Hashmap" resultType="itemlist">
+select * from( 
+select * from ITEMLIST 
+where  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO= #{pk1} ) 
+and  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO=#{pk2} ) 
+and  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO=#{pk3} ) 
+and ITEMTYPE = 2 order by DBMS_RANDOM.RANDOM 
+)where rownum = 1 
+</select>
 </mapper>

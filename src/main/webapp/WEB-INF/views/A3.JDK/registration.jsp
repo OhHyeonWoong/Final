@@ -82,7 +82,7 @@ var submition = false; //->true로 바뀔 시 form 전송
 var emailConfirmed = false;//->이메일 인증 받으면 true
 var idConfirmed = false;// -> 아이디 인증을 받아야 true
 var termsConfirmed = false// -> 약관 동의 했을 때 true
-var pwd1pwd2 = false;
+var pwd1pwd2 = false;//비밀 번호 재확인 일치여부
 var iden=$("#member_id").val(); // 아이디 밸류 값 전역변수
 var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
 var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
@@ -215,33 +215,38 @@ ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한
 if(idpattern.test(iden)==false){
 	alert("형식에 맞지 않는 아이디 입니다. 형식에 맞는 아이디 입력 및 중복검사를 다시 해 주세요!");
 	submition=false;
+	$("#member_id").focus();
 }else if(idConfirmed==false){
 	alert("아이디 중복검사를 다시 해주세요!");
+	$("#member_id").focus();
 	submition=false;
 }else if(pwpattern.test(pwd)==false){
 	alert("비밀번호가 양식에서 벗어났습니다. 다시 확인해주세요");
 	submition=false;
+	$("#password1").focus();
 }else if(pwd1pwd2==false){
 	alert("비밀번호 확인 값이 비밀번호와 일치하지 않습니다. 다시 확인해주세요");
 	submition=false;
+	$("#password1").focus();
 }else if(emailpattern.test(email)==false){
 	alert("이메일 형식에 맞지 않는 이메일입니다. 다시 확인해주세요");
 	submition=false;
+	$("#member_email").focus();
 }else if(emailConfirmed==false){
 	alert("인증 받은 이메일이 아닙니다. 이메일 인증을 다시 해주세요!");
+	$("#member_email").focus();
 }else if(termsConfrimed == false){
 	alert("약관에 동의해 주세요!!");
 	submition=false;
+}else if(ssidnumpattern.test(ssid)==false){
+	alert("올바른 형식의 주민등록번호가 아닙니다. 다시 입력해주세요");
+	$("#ssidFront").focus();
+	submition = false;
 }else{
 	submition=true;
 }
-
 return submition;
 }
-
-
-
-
 
 ////////////////기타사항/////////////////////////
 //아이디 입력 값이 바꼈을 때 다시 인증받게 하기 위해 전역변수 false 값으로 바꿈.
@@ -254,8 +259,24 @@ function emailChanged(){
 }
 //약관 띄우기
 $(function(){
-/* $("#termsOfService").css("display","block"); */	
+$("#termsClick").click();
 });
+/////////////////////////////////////////////////////////////////////////////////////
+/* $(function(){
+	$("#inputProfile").on('change', function(){
+		   readURL(this);
+		   });
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		    
+		    var reader = new FileReader();
+		   reader.onload = function (e) {
+		           $('#preview').attr("src", e.target.result);
+		       }
+		     reader.readAsDataURL(input.files[0]);
+		    } 
+		}	
+}); */
 </script>
 
 </head>
@@ -273,7 +294,7 @@ $(function(){
 					<img src="/goodluck/resources/A3.JDK/images/base_profile.png" name ="profile_img" style="width : 130px; height : auto;">
 					</div>
 					<br>
-					<input type="file" name="member_profile" class="form-control" id="inputProfile" style="width: 300px; margin: 0 auto;">
+					<input type="file" name="member_profile" class="form-control" id="inputProfile" style="width: 300px; margin: 0 auto;" accept="image/gif, image/jpeg, image/png">
 				</div>
 				
 				<div class="form-group">
@@ -308,7 +329,6 @@ $(function(){
 					</tr>	
 					</table>
 				</div>
-
 				<!-- 주소 입력 관련 코드들 -->
 				<div class="form-group">
 					<label for="username">주소</label>
@@ -318,7 +338,6 @@ $(function(){
 					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
 					<br><br>
-					
 					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly"><br><br>
 					<input type="text" class="form-control" id="address" name="member_address2" placeholder="상세주소" >
 					<span id="guide" style="color:#999"></span>
@@ -347,14 +366,14 @@ $(function(){
 				</div>
  				<div class="form-group text-center">
 					<div class="input-group">
-						 <input id="agree" type="checkbox" autocomplete="on"> 
-						<a href="" data-toggle="modal" data-target='#termsOfService'>이용약관</a> 에 동의 합니다.
+						 <input id="agree" type="checkbox" autocomplete="off" > 
+						<a href="#termsOfService" data-toggle="modal" id="termsClick" data-backdrop="static">이용약관</a> 에 동의 합니다.
 					</div>
 				</div>
 						<br><br>	
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-default" >회원가입</button>
-					<button type="button" class="btn btn-default">가입취소</button>
+					<button type="button" class="btn btn-default" onclick="disAgreed();">가입취소</button>
 				</div>
 			</form>
 <!-- 회원가입 폼 종료 -->

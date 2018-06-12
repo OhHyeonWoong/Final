@@ -82,4 +82,10 @@
 		where userid = #{userId}
 	</delete> -->
 
+<update id="IncreasesSMALLCATEGORYCOUNT" parameterType="int">
+update SMALLCATEGORY set CATEGORY_SMALL_COUNT = 
+(select CATEGORY_SMALL_COUNT+1 from SMALLCATEGORY where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})) 
+where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})
+</update>
+
 </mapper>

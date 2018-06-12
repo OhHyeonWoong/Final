@@ -1,7 +1,7 @@
 package com.kh.goodluck.board.controller;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +24,13 @@ import com.kh.goodluck.board.model.vo.SmallCategory;
 @Controller
 public class BoardController {
 
+	List<BigCategory> bigcategorylist = null;
+	List<MidCategory> midcategorylist = null;
+	List<SmallCategory> smallcategorylist = null;
+	List<CategoryLink1> categorylink1list = null;
+	List<CategoryLink2> categorylink2list = null;
+	
+	
 	public BoardController() {
 		
 	}
@@ -37,59 +44,75 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="bshtest.go", method=RequestMethod.GET)
-	public ModelAndView test(Board board, ModelAndView mv) {
+	public ModelAndView test(Board board,HttpServletRequest request,ModelAndView mv) {
 		
+		int pageNum = Integer.parseInt(request.getParameter("page"));
+		int agencycount = -1;
+		String link2name = board.getLink2_no();
+		String link2type = null;
 		
+		//System.out.println(pageNum);
 		//System.out.println(board);
-		List<BigCategory> bigcategorylist = boardservice.selectBigCategoryAll();
-		List<MidCategory> midcategorylist = boardservice.selectMidCategoryAll();
-		List<SmallCategory> smallcategorylist = boardservice.selectSmallCategoryAll();
-		List<CategoryLink1> categorylink1list = boardservice.selectCategoryLink1();
-		List<CategoryLink2> categorylink2list = boardservice.selectCategoryLink2();
+
+		bigcategorylist = boardservice.selectBigCategoryAll();
+		midcategorylist = boardservice.selectMidCategoryAll();
+		smallcategorylist = boardservice.selectSmallCategoryAll();
+		categorylink1list = boardservice.selectCategoryLink1();
+		categorylink2list = boardservice.selectCategoryLink2();
+		ArrayList<String> strlist = new ArrayList<String>();
+		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
+		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
 		
-		String mdname = board.getLink2_no();
 		
-		List<Board> boardlist = null;
-		boolean flag = true;
-		boolean search = false;
-		
-		while(flag) {
-			for(BigCategory b : bigcategorylist) {
-				if(b.getCategory_big_name().equals(mdname)) {
-					/*System.out.println(mdname);*/
-					boardlist = boardservice.selectCategoryBig(board);
-					flag =false;
-					search=true;
-					break;
-				}
-			}	
-			if(flag) {
-				for(MidCategory m : midcategorylist) {
-					if(m.getCategory_mid_name().equals(mdname)) {
-						/*System.out.println(mdname);*/
-						boardlist = boardservice.selectCategoryMid(board);
-						flag =false;
-						search=true;
-						break;
-					}
+		for(BigCategory b:bigcategorylist) {
+			if(b.getCategory_big_name().equals(link2name)) {
+				link2type ="bigcategory";
+				agencycount = boardservice.getAgencyCountBig(link2name);
+			}
+		}
+		if(link2type == null) {
+			for(MidCategory m:midcategorylist) {
+				if(m.getCategory_mid_name().equals(link2name)) {
+					link2type ="midcategory";
+					agencycount = boardservice.getAgencyCountMid(link2name);
 				}
 			}
-			
-			flag =false;
 		}
-		if(!search) {
-			boardlist = boardservice.selectCategory(board);
+		if(link2type == null) {
+			link2type ="smallcategory";
+			agencycount = boardservice.getAgencyCount(link2name);
 		}
 		
-		ArrayList<String> strlist = new ArrayList<String>();
+		System.out.println("link2type:"+link2type+",agencycount:"+agencycount);
+		
+		
+		List<Board> boardlist = null;
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("categoryname", board.getLink2_no());
+		map.put("startrow", (pageNum*20)-19);
+		map.put("endrow", (pageNum*20));
+		
+		if (link2type.equals("bigcategory")) {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategoryBig(map);
+		} else if (link2type.equals("midcategory")) {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategoryMid(map);
+		} else {
+			System.out.println(link2name);
+			boardlist = boardservice.selectCategory(map);
+		}
+			
+		
+		
+		
+		
 		
 		//System.out.println(boardlist);
 		
 		/*for(Board b:boardlist) {
 			System.out.println("글번호:"+b.getAgency_no());
 		}*/
-		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
-		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
 		
 		//int catelink1length = catelink1.length;
 		
@@ -168,13 +191,93 @@ public class BoardController {
 		//mv.addObject("catelink1",catelink1);
 		//mv.addObject("catelink2",catelink2);
 		//mv.addObject("catelink1length",catelink1length);
+		
+		
+		agencycount = (int)((double)(agencycount/20)+1.9);
+		System.out.println("re-agencycount:"+agencycount);
+		mv.addObject("agencycount", agencycount);
+		mv.addObject("link2name", link2name);
+		mv.addObject("link2type", link2type);
+		mv.addObject("pageNum", pageNum);
 		mv.addObject("strlistlegnth",strlistlegnth);
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="bshsearch.go")
+	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
+		
+		bigcategorylist = boardservice.selectBigCategoryAll();
+		midcategorylist = boardservice.selectMidCategoryAll();
+		smallcategorylist = boardservice.selectSmallCategoryAll();
+		categorylink1list = boardservice.selectCategoryLink1();
+		categorylink2list = boardservice.selectCategoryLink2();
+		ArrayList<String> strlist = new ArrayList<String>();
+		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
+		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
+		
+		int i=0;
+		for (CategoryLink1 categoryLink1 : categorylink1list) {
+			catelink1[i]=categoryLink1;
+			i++;
+		}
+		
+		i=0;
+		for (CategoryLink2 categoryLink2 : categorylink2list) {
+			catelink2[i]=categoryLink2;
+			i++;
+		}
+		
+		for(i=0;i<catelink1.length;i++) {
+			
+			if(i>0) {
+				if(!catelink1[i].getCategory_big_code().equals(catelink1[i-1].getCategory_big_code())) {
+					//System.out.println(catelink1[i].getCategory_big_code());
+					strlist.add(catelink1[i].getCategory_big_code());
+					for(int j=0;j<catelink1.length;j++) {
+						if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
+							//System.out.println(catelink1[j].getCategory_mid_code());
+							strlist.add(catelink1[j].getCategory_mid_code());
+							for(int k=0;k<catelink2.length;k++) {
+								if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
+									//System.out.println(catelink2[k].getCategory_small_code());
+									strlist.add(catelink2[k].getCategory_small_code());
+								}
+							}
+						}
+					}
+					
+				}else {
+					
+				}
+			}else {
+				//System.out.println(catelink1[i].getCategory_big_code());
+				strlist.add(catelink1[i].getCategory_big_code());
+				for(int j=0;j<catelink1.length;j++) {
+					if(catelink1[i].getCategory_big_code().equals(catelink1[j].getCategory_big_code())) {
+						//System.out.println(catelink1[j].getCategory_mid_code());
+						strlist.add(catelink1[j].getCategory_mid_code());
+						for(int k=0;k<catelink2.length;k++) {
+							if(catelink1[j].getCategory_mid_code().equals(catelink2[k].getCategory_mid_code())) {
+								//System.out.println(catelink2[k].getCategory_small_code());
+								strlist.add(catelink2[k].getCategory_small_code());
+							}
+						}
+					}
+				}
+			}		
+		}
+		
+		
+		mv.setViewName("A4.BSH/Search");
+		
+		mv.addObject("bigcategorylist",bigcategorylist);
+		mv.addObject("midcategorylist",midcategorylist);
+		mv.addObject("smallcategorylist",smallcategorylist);
+		mv.addObject("strlist",strlist);
+		return mv;
+	}
 	
 	
 }

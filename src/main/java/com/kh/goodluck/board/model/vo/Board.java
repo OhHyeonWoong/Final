@@ -11,6 +11,7 @@ public class Board implements Serializable{
 	private static final long serialVersionUID = 4000L;
 	
 	private int agency_no;
+	private int rnum;	
 	private String agency_writer;
 	private String agency_title;	
 	private String link2_no;
@@ -23,6 +24,7 @@ public class Board implements Serializable{
 	private int agency_pay;
 	private int agency_status;
 	private String agency_content;
+	private int AGENCY_VEIWS;
 	private int agency_views;
 	private String agency_keyword;
 	private String agency_option;
@@ -37,6 +39,14 @@ public class Board implements Serializable{
 
 	public void setAgency_no(int agency_no) {
 		this.agency_no = agency_no;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public String getAgency_writer() {
@@ -135,6 +145,14 @@ public class Board implements Serializable{
 		this.agency_content = agency_content;
 	}
 
+	public int getAGENCY_VEIWS() {
+		return AGENCY_VEIWS;
+	}
+
+	public void setAGENCY_VEIWS(int aGENCY_VEIWS) {
+		AGENCY_VEIWS = aGENCY_VEIWS;
+	}
+
 	public int getAgency_views() {
 		return agency_views;
 	}
@@ -159,12 +177,24 @@ public class Board implements Serializable{
 		this.agency_option = agency_option;
 	}
 
-	public Board(int agency_no, String agency_writer, String agency_title, String link2_no, int agency_type,
+	@Override
+	public String toString() {
+		return "Board [agency_no=" + agency_no + ", rnum=" + rnum + ", agency_writer=" + agency_writer
+				+ ", agency_title=" + agency_title + ", link2_no=" + link2_no + ", agency_type=" + agency_type
+				+ ", agency_loc=" + agency_loc + ", agency_startdate=" + agency_startdate + ", agency_enddate="
+				+ agency_enddate + ", agency_enrolldate=" + agency_enrolldate + ", agency_paytype=" + agency_paytype
+				+ ", agency_pay=" + agency_pay + ", agency_status=" + agency_status + ", agency_content="
+				+ agency_content + ", AGENCY_VEIWS=" + AGENCY_VEIWS + ", agency_views=" + agency_views
+				+ ", agency_keyword=" + agency_keyword + ", agency_option=" + agency_option + "]";
+	}
+
+	public Board(int agency_no, int rnum, String agency_writer, String agency_title, String link2_no, int agency_type,
 			String agency_loc, Date agency_startdate, Date agency_enddate, Date agency_enrolldate, int agency_paytype,
-			int agency_pay, int agency_status, String agency_content, int agency_views, String agency_keyword,
-			String agency_option) {
+			int agency_pay, int agency_status, String agency_content, int aGENCY_VEIWS, int agency_views,
+			String agency_keyword, String agency_option) {
 		super();
 		this.agency_no = agency_no;
+		this.rnum = rnum;
 		this.agency_writer = agency_writer;
 		this.agency_title = agency_title;
 		this.link2_no = link2_no;
@@ -177,20 +207,12 @@ public class Board implements Serializable{
 		this.agency_pay = agency_pay;
 		this.agency_status = agency_status;
 		this.agency_content = agency_content;
+		AGENCY_VEIWS = aGENCY_VEIWS;
 		this.agency_views = agency_views;
 		this.agency_keyword = agency_keyword;
 		this.agency_option = agency_option;
 	}
 
-	@Override
-	public String toString() {
-		return "Board [agency_no=" + agency_no + ", agency_writer=" + agency_writer + ", agency_title=" + agency_title
-				+ ", link2_no=" + link2_no + ", agency_type=" + agency_type + ", agency_loc=" + agency_loc
-				+ ", agency_startdate=" + agency_startdate + ", agency_enddate=" + agency_enddate
-				+ ", agency_enrolldate=" + agency_enrolldate + ", agency_paytype=" + agency_paytype + ", agency_pay="
-				+ agency_pay + ", agency_status=" + agency_status + ", agency_content=" + agency_content
-				+ ", agency_views=" + agency_views + ", agency_keyword=" + agency_keyword + ", agency_option=" + agency_option + "]";
-	}
 
 	
 }

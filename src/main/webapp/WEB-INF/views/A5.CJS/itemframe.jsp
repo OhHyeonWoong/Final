@@ -374,17 +374,14 @@ $(function(){
 		Array4[1]=new Array();
 		Array4[2]=new Array();
 		var value1="";
-	
+		
 		for(var i in json.havingitem){//보유중 아이템 삽입.
 		Array1.push(json.havingitem[i]);
-	
 		}
 		for(var i in json.havingimticon){
 		Array2.push(json.havingimticon[i]);
 		}
-		
 		var value3=$("#myusingitem").html("");
-		
 		for(var i in json.usingitem){
 		value3+="<tr style='height:70px'>";
 		value3+="<th><div><img src='/goodluck/resources/A5.CJS/itemimg/"+json.usingitem[i].ITEMFILENAME+"' style='width:50px; height:50px;'></div></th>"
@@ -403,10 +400,28 @@ $(function(){
 		if(json.havingimticon[0]!=null){
 		$("#itempage1").val(json.havingimticon[0].currentPage);
 		}
-		
-		
-		
-		
+    
+//아이템조합을 위한알고릐즘
+    value4="";
+    var count3=0;
+	for(var i in json.mixitem){
+	    if(count3==0){
+	    value4+="<tr>";
+	    }
+		$("#mixlist").html($("#mixlist").html()+json.mixitem);
+		value4+="<th></th>";
+		if(json.mixitem[i].ITEMFILENAME!=null)
+		value4+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+json.mixitem[i].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='pickicon(this); return false;'><img class='"+json.mixitem[i].MYITEM_NO+"' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+json.mixitem[i].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+json.mixitem[i].ITEMNAME+"</div></a></th></div>";
+		else
+		value4+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
+		count3++;
+		if(count3==3){
+		value4+="</tr>";
+		count3=0;	
+		}
+	}
+	$("#mixlist").html(value4);
+			
 //각 배열을 직렬화
 		for(var i=Array1.length; i<16; i++ ){
 			Array1.push("");
@@ -434,10 +449,7 @@ $(function(){
 		
 
 //2차원배열을 이제 인벤토리에 넣을 value밸류에 넣어줘야한다. 
-
-
-
-		for(var i=0; i<4; i++){//소모성 아이템부터 
+for(var i=0; i<4; i++){//소모성 아이템부터 
 			value1+="<tr>";
 			for(var j=0; j<4; j++){
 		if(Array3[i][j].ITEMFILENAME!=null)
@@ -446,7 +458,6 @@ $(function(){
 			value1+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value1+="</th>"; 
-		
 		}
 		
 		
@@ -481,7 +492,6 @@ $(function(){
 			value2+="<th class='itemth'><div style='width:100%; height:100%;'><img style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/itemempty.ico'</div></th>";
 			}
 			value2+="</th>";
-
 		}
 		
 		//페이징처리
@@ -552,7 +562,9 @@ function useitem(itempk){
 		 				Array4[1]=new Array();
 		 				Array4[2]=new Array();
 		 				var value1="";
-		 			
+		 			if(json.cjsmessage !=null){
+		 				alert(json.cjsmessage+"가 나왔습니다!");
+		 			}
 		 				for(var i in json.havingitem){//보유중 아이템 삽입.
 		 				Array1.push(json.havingitem[i]);
 		 			
@@ -909,6 +921,8 @@ height: 78px;
 		 	
 		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
 		<button>충전</button>
+		<br>
+		  <%@ include file = "/WEB-INF/views/A5.CJS/test.jsp" %>
 	</div>
 </th>
 <th style="width:100%">
@@ -1004,6 +1018,7 @@ height: 78px;
      
      
       </table>
+    
     </div>
 
 <input type="hidden" id='itempage' value="1">
@@ -1020,4 +1035,6 @@ height: 78px;
 </script>
 
 </div>
+
 </div>
+

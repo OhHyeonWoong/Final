@@ -23,11 +23,12 @@
 		<result property="agency_option" column="AGENCY_OPTION"/>		
 	</resultMap>	
 	
-	<select id="headerSearchKeyword" resultMap="HeaderSearchKeywordResult">	
+	<!-- resultMap="HeaderSearchKeywordResult" -->
+	<select id="headerSearchKeyword" parameterType="java.util.HashMap" resultType="Search">	
 		<![CDATA[
 			select * 
 			from AGENCY 
-			where AGENCY_TITLE like '%'||#{agency_title}||'%'
+			where AGENCY_TITLE like '%'||#{agency_title}||'%'			
 		]]>
 	</select>
 	

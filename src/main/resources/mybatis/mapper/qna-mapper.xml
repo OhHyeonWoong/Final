@@ -4,27 +4,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna-mapper">
 
-	<!-- <resultMap id="MemberResult" type="Member">
-		<id property="member_id" column="member_id"/>
-		<result property="member_pw" column="member_pw"/>
-		<result property="member_name" column="member_name"/>
-		<result property="member_email" column="member_email"/>
-		<result property="member_address" column="member_address"/>
-		<result property="member_phone" column="member_phone"/>
-		<result property="member_regident_number" column="member_regident_number"/>
-		<result property="member_write_count" column="member_write_count"/>
-		<result property="member_enroll_date" column="member_enroll_date"/>
-		<result property="member_lastlogin" column="member_lastlogin"/>
-		<result property="member_lastpassword" column="member_lastpassword"/>		
-		<result property="member_yellowcard" column="member_yellowcard"/>		
-		<result property="member_status" column="member_status"/>		
-		<result property="member_renamephoto" column="member_renamephoto"/>		
-		<result property="member_cash" column="member_cash"/>		
-		<result property="member_accesstoken" column="member_accesstoken" />
-		<result property="member_refreshtoken" column="member_refreshtoken" />
-		<result property="member_keyword_count" column="member_keyword_count" />	
-	</resultMap> -->
-
 	<select id="selectMyQna" parameterType="Hashmap" resultType="Qna">
 		<![CDATA[
 			select * 
@@ -38,7 +17,7 @@
 	
 	<select id="selectMyDetailQna" parameterType="QnaWrite" resultType="Qna">
 		<![CDATA[
-			select * from question where question_writer = #{member_id} 
+			select * from question where question_writer = #{question_writer} 
 			and question_no = #{question_no}
 		]]>
 	</select>
@@ -51,8 +30,7 @@
 	
 	<select id="qnaListCount" parameterType="string" resultType="int">
 		<![CDATA[
-			select count(*) from question where question_writer = 
-			(select member_name from member where member_id = #{member_id})
+			select count(*) from question where question_writer = #{member_id}
 		]]>
 	</select>
 	
@@ -77,6 +55,14 @@
 			question_no = #{item}
 		</foreach>
 	</delete>
+	
+	<update id="updateMyQnaSatisfaction" parameterType="QnaAnswer" flushCache="true">
+		<![CDATA[
+			update question_answer
+			set answer_good = #{answer_good}
+			where question_no = #{question_no}
+		]]>
+	</update>
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

@@ -24,10 +24,51 @@
 		<result property="member_refreshtoken" column="member_refreshtoken" />
 		<result property="member_keyword_count" column="member_keyword_count" />	
 	</resultMap>
+	
+	<resultMap id="Memberandscore" type="Memberandscore">
+		<id property="member_id" column="member_id"/>
+		<result property="member_pw" column="member_pw"/>
+		<result property="member_name" column="member_name"/>
+		<result property="member_email" column="member_email"/>
+		<result property="member_address" column="member_address"/>
+		<result property="member_phone" column="member_phone"/>
+		<result property="member_regident_number" column="member_regident_number"/>
+		<result property="member_write_count" column="member_write_count"/>
+		<result property="member_enroll_date" column="member_enroll_date"/>
+		<result property="member_lastlogin" column="member_lastlogin"/>
+		<result property="member_lastpassword" column="member_lastpassword"/>		
+		<result property="member_yellowcard" column="member_yellowcard"/>		
+		<result property="member_status" column="member_status"/>		
+		<result property="member_renamephoto" column="member_renamephoto"/>		
+		<result property="member_cash" column="member_cash"/>		
+		<result property="member_accesstoken" column="member_accesstoken" />
+		<result property="member_refreshtoken" column="member_refreshtoken" />
+		<result property="SCORE_BUY" column="SCORE_BUY" />	
+		<result property="SCORE_BUY_COUNT" column="SCORE_BUY_COUNT" />	
+		<result property="SCORE_SELL" column="SCORE_SELL" />	
+		<result property="SCORE_SELL_COUNT" column="SCORE_SELL_COUNT" />	
+		<result property="SCORE_SELL_RATE" column="SCORE_SELL_RATE" />	
+	</resultMap>
+	
+	
+	
+<select id="searchmemberInfobyBoardNo" parameterType="int" resultType="Memberandscore">
+select * from member,score where 
+member.member_id = (select AGENCY_WRITER from AGENCY where AGENCY_NO =#{pk}) and
+score.member_id= member.member_id
+</select>
+
+<select id="searchmemberInfobyBoardNo1" parameterType="int" resultType="Memberandscore">
+select * from member,score where 
+member.member_id = (select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO =#{pk}) and
+score.member_id= member.member_id
+</select>
+
 
 	<select id="loginCheck" parameterType="Member" resultMap="MemberResult">
 		<![CDATA[
-			select * from member where member_id = #{member_id}
+			select * from member where member_id = #{member_id} and
+			member_pw = #{member_pw}
 		]]>
 	</select>
 	
@@ -43,6 +84,29 @@
 			and member_pw = #{member_pw}
 		]]>
 	</select>
+	
+	<select id="selectIDYNCheck" parameterType="string" resultType="LoginStatistics">
+		<![CDATA[
+			select *
+			from login_statistics
+			where member_id = #{member_id} and to_char(ls_date,'yy/mm/dd') = to_char(sysdate,'yy/mm/dd')
+		]]>
+	</select>
+	
+	<insert id="insertLoginStatistics" parameterType="string" flushCache="true">
+		<!-- <selectKey keyProperty="memberId" resultType="string" order="BEFORE">
+		   <![CDATA[
+		   		select member_id from login_statistics 
+		   		where member_id = #{member_id}
+		   ]]>
+		</selectKey>
+		<if test="#{memberId} != null"> -->
+			<![CDATA[
+				insert into login_statistics 
+				values (sysdate,#{member_id})
+			]]>
+		<!-- </if> -->
+	</insert>
 	
 	<update id="fwdChange" parameterType="Member" flushCache="true" statementType="PREPARED">
 		<![CDATA[
@@ -77,38 +141,14 @@
 		]]>
 	</delete>
 	
-	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
-		insert into member 
-		values 
-		(#{userId}, 
-		#{userPwd}, 
-		#{userName}, 
-		#{gender}, 
-		#{age}, 
-		#{phone}, 
-		#{email}, 
-		#{hobby}, 
-		#{etc}, 
-		sysdate, 
-		sysdate)		
-	</insert>
-	
-	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
-		update member 
-		set userpwd = #{userPwd}, 
-		age = #{age}, 
-		phone = #{phone}, 
-		email = #{email}, 
-		hobby = #{hobby}, 
-		etc = #{etc}, 
-		lastmodified = sysdate 
-		where userid = #{userId}
+	<update id="updateMemberCash" parameterType="Member" flushCache="true">
+		<![CDATA[
+			update member
+			set member_cash = #{member_cash}
+			where member_id = #{member_id}
+		]]>
 	</update>
 	
-	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
-		delete from member 
-		where userid = #{userId}
-	</delete> -->
 <update id="upgradeboardcount" parameterType="String">
 update MEMBER set MEMBER_WRITE_COUNT = (MEMBER_WRITE_COUNT+1) where MEMBER_ID = #{memberid}
 </update>
@@ -165,4 +205,13 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	MEMBER_CASH = ((select MEMBER_CASH from member where MEMBER_ID =#{memberid})-#{price})
 	where MEMBER_ID =#{memberid}
 	</update>
+	<select id="adminMemberList"  resultType="MemberList">
+	<![CDATA[
+	select MEMBER_ID,
+	MEMBER_NAME,
+	MEMBER_EMAIL,
+	MEMBER_REGIDENT_NUMBER from (select rownum as a, list.* from (select * from MEMBER order by MEMBER_NAME) list)
+	where  a>=1 and a<= 10 
+	]]>
+	</select>
 	</mapper>

@@ -21,5 +21,17 @@ public class ReportDao {
 	public List<Report> selectMyPageReport(HashMap<Object, Object> map2) {
 		return sqlSession.selectList("myPageList", map2);
 	}
+
+	public Report selectReportDetail(int report_no) {
+		return sqlSession.selectOne("seletReportDetail", report_no);
+	}
+
+	public int insertMyReport(Report report) {
+		return sqlSession.insert("insertMyReport", report);
+	}
+
+	public int deleteMyReport(int report_no) {
+		return sqlSession.delete("deleteMyReport", report_no);
+	}
 	
 }

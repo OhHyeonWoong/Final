@@ -21,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -50,6 +51,7 @@ public class MemberController {
 	public String homeGo() {
 		return "home";
 	}
+	
 	//병준 마이페이지 테스트용 메소드
 	@RequestMapping(value="lbjmypage.go")
 	public ModelAndView mypageGo(ModelAndView mv,HttpServletRequest request) {
@@ -96,7 +98,7 @@ public class MemberController {
 		//보내기용 arraylist생성
 		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
 		qnaPage.put("qnaMaxPage",qnaMaxPage);
-		qnaPage.put("qnaStartPage",qnaStartRow);
+		qnaPage.put("qnaStartPage",qnaStartPage);
 		qnaPage.put("qnaEndRow",qnaEndRow);
 		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
 		qnaPage.put("qnaListCount",qnaListCount);
@@ -126,6 +128,9 @@ public class MemberController {
 		itemPage.put("itemEndRow",itemEndRow);
 		itemPage.put("itemListCount",itemListCount);
 		
+		System.out.println("itemEndRow = " + itemEndRow);
+		System.out.println("itemListCount = " + itemListCount);
+		
 		mv.addObject("lbjMyItem", myItem);
 		mv.addObject("itemPage",itemPage);
 		//item 세팅 끝-----------------------------------------------------------
@@ -147,14 +152,15 @@ public class MemberController {
 	    if (reportMaxPage < reportEndRow)
 			reportEndRow = reportMaxPage;
 		
-	    /*HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
-		itemPage.put("itemMaxPage",itemMaxPage);
-		itemPage.put("itemEndRow",itemEndRow);
-		itemPage.put("itemListCount",itemListCount);
+	    HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
+		reportPage.put("reportMaxPage",reportMaxPage);
+		reportPage.put("reportEndRow",reportEndRow);
+		reportPage.put("reportListCount",reportListCount);
 		
-		mv.addObject("lbjMyItem", myItem);
-		mv.addObject("itemPage",itemPage);*/
-		//Report 세팅 끝---------------------------------------------------------
+		mv.addObject("lbjMyReport", myReport);
+		mv.addObject("reportPage",reportPage);
+		//Report 세팅 끝
+		//---------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
@@ -173,28 +179,49 @@ public class MemberController {
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
 	public void loginCheck(Member member,Model model,HttpServletResponse response,HttpSession session) throws IOException{
 		System.out.println("member : " + member);
-		
 		//로그인 작업을 합니다 세션에 넣어요
 		Member m = memberService.loginCheck(member);
-		
 		PrintWriter out = response.getWriter();
 		if(m != null) {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
-			if(result > 0) {
+			if(result > 0 && m.getMember_status() != 2) {
+				//login_statistics 테이블 갱신//////////////
+				System.out.println("login통계 테이블 갱신 시작");
+				//해당 아이디가 존재하는지 확인 (sysdate로 비교)
+				LoginStatistics idYNCheck = memberService.selectIdYNCheck(m.getMember_id());
+				System.out.println("로그인 진행 중... m.getMemberStatus = " + m.getMember_status());
+				if(idYNCheck == null && m.getMember_status() != 3) {
+					//존재하지 않으면 테이블에 insert
+					int insertResult = memberService.insertLoginStatistics(m.getMember_id());
+					if(insertResult > 0) {
+						System.out.println("통계 테이블 갱신 성공");
+					}else {
+						System.out.println("통계 테이블 갱신 실패");
+					}
+				}else {
+					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재하거나 관리자임");
+				}
+				System.out.println("login통계 테이블 갱신 끝");				
+				/////////////////////////////////////////
 				System.out.println("Update Last Login.. Success.. ");
+				out.write("로그인 성공");
+				model.addAttribute("loginUser", m);
 			}else {
 				System.out.println("Update Last Login.. Fail.. ");
+				out.write("로그인 제제된 유저입니다.");
 			}
-			/////////////////////////
-			out.write("로그인 성공");
-			model.addAttribute("loginUser", m);
+			//////////////////////////////////////////////////////////
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
 		}else {
 			out.write("로그인 실패");
 		}
+<<<<<<< HEAD
 		///////  
+=======
+		////////////////////////////////////////////////
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 		out.flush();
 		out.close();
 	}
@@ -248,11 +275,14 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
-	
+	//회원정보 수정 메소드(전동기 일부 수정)
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
-			Member m,SessionStatus status) throws IOException {
+			Member m,SessionStatus status,HttpSession session) throws IOException {
+		//세션 정보 가져오기용 객체
+		Member member = null;
+		///
 		System.out.println("updateMemberInfo 넘어온 멤버정보 : " + m.toString());
 		
 		String path = request.getSession().getServletContext().getRealPath("resources/uploadProfiles");
@@ -262,8 +292,10 @@ public class MemberController {
 		System.out.println("path : " + path);
 		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
 		String fileName = file.getOriginalFilename();
+		System.out.println("fileName = " + fileName);
+		System.out.println("file = " + file);
 		/////////////////////////////////////////////////////////
-		if((fileName != "") && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+		if((!fileName.equals(null)) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
 				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
 				fileName.toLowerCase().endsWith(".bmp")) {
 			if((fileName != memberProfile)) {
@@ -281,16 +313,39 @@ public class MemberController {
 			}else {
 				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
 			}
-			int result = memberService.updateMemberInfo(m);
+			int result=0;
+			System.out.println("본래 주소: " + request.getParameter("former_member_address"));
+			System.out.println("수정 된 주소: " + request.getParameter("member_address1")+request.getParameter("member_address2"));
+			
+			
+			if(request.getParameter("postCard")==null) {
+			System.out.println("본래 주소 저장됨: " + request.getParameter("former_member_address"));
+			
+			m.setMember_address(request.getParameter("former_member_address"));
+			result = memberService.updateMemberInfo(m);
+			}else if(request.getParameter("postCard")!=null) {
+			System.out.println("수정 주소 저장됨: " + request.getParameter("former_member_address"));
+			
+			m.setMember_address(request.getParameter("member_address1")+request.getParameter("member_address2"));
+			result = memberService.updateMemberInfo(m);
+			}
 			if(result > 0) {
 				System.out.println("멤버 정보 수정 성공!");
 				//세션 정보 갱신을 해줘야됨
 				Member updateMem = memberService.loginCheck(m);
 				
-				if(m != null) {
+				if(session.getValue("loginUser") != null) {
+				    //맴버 아이디에 아이콘을 같이 가져가기.
+				    member=(Member)session.getAttribute("loginUser");
+				    member.setMember_pw(updateMem.getMember_pw());
+				    member.setMember_phone(updateMem.getMember_phone());
+				    member.setMember_renamephoto(updateMem.getMember_renamephoto());
+				    member.setMember_address(updateMem.getMember_address());
+				}
+				/*if(m != null) {
 					//기존 세션 없앰
 					status.setComplete();
-				}
+				}*/
 				//////////////////
 			}else {
 				System.out.println("멤버 정보 수정 실패!");
@@ -298,18 +353,23 @@ public class MemberController {
 		}else {
 			System.out.println("올바른 확장자가 아닙니다.");
 		}
-		response.sendRedirect("home.go");
+		if(member != null) {
+			response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
+		}else {
+			response.sendRedirect("lbjmypage.go?member_id="+m.getMember_id());
+		}
 	}
 	
 	@RequestMapping(value="lbjMemberOut.go",method=RequestMethod.POST)
 	public void memberOutMethod(@RequestParam(name="member_id",required=false) String member_id,
-			HttpServletResponse response) throws IOException{
+			HttpServletResponse response,SessionStatus status) throws IOException{
 		//회원 탈퇴 처리용 메소드
 		//System.out.println("deleteMember member_id = " + member_id);
 		int result = memberService.deleteMemberOut(member_id);
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.print("회원 탈퇴 성공");
+			status.setComplete();
 		}else {
 			out.print("회원 탈퇴 실패");
 		}
@@ -317,9 +377,35 @@ public class MemberController {
 		out.close();
 	}
 	
+
+	@RequestMapping(value="lbjUpdateMemberCash.go")
+	public void updateMemberCashMethod(Member m,HttpServletResponse response,
+			  					HttpSession session) throws IOException{
+		//멤버 캐시 정보 업데이트
+		//세션정보 업데이트용 객체
+		Member member = null;
+		///////////////////////
+		System.out.println("updateMemberCashMethod run...");
+		int result = memberService.updateMemberCashMethod(m);
+		if(result > 0) {
+			//세션 정보 갱신
+			System.out.println("결제 성공...");
+			if(session.getValue("loginUser") != null) {
+				//업데이트된 캐시정보로 정보 바꿔줌
+			    member=(Member)session.getAttribute("loginUser");
+			    member.setMember_cash(m.getMember_cash());
+			}
+		}else {
+			//결제 실패
+			System.out.println("결제 실패...");
+		}
+
+		response.sendRedirect("home.go");
+	}
+	
 	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
 	public void signIn() {
 		
 	}
-	
+
 }

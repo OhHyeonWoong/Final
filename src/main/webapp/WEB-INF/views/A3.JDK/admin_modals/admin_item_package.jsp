@@ -23,7 +23,6 @@
 <!-- Modal -->
 <div class="modal fade" id="item_package" role="dialog">
     <div class="modal-dialog">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -31,14 +30,32 @@
           <h4 class="modal-title">아이템 수정</h4>
         </div>
         <div class="modal-body">
-          
+          <table>
+			<tr>
+			<th>아이템 No.</th>
+			<td>
+			
+			</td>
+			</tr>          
+          	<tr>
+			<th>패키지 명</th>
+			<td>
+			
+			</td>
+			</tr>
+			<tr>
+			<th>패키지 내용</th>
+			<td>
+				
+			</td>
+			</tr>
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         </div>
       </div>
-      
     </div>
   </div>
 </body>

@@ -24,6 +24,7 @@ $(document).ready(function() {
 		$('input[type="checkbox"][name="group4"]').click(function() {
 		if ($(this).prop('checked')) {
 			$('input[type="checkbox"][name="group4"]').prop('checked', false);
+				$(this).prop('checked', true);
 		}
 	});
 		$(".cbtndropdown ").click(function() {
@@ -104,7 +105,78 @@ $(document).ready(function() {
 			}
 		}
 	});
-	*/
-	
+	*/	
+		
+		$("#bshsearch").click(function() {
+			var searchstr = 'bshsearch.go';
+			searchstr+='?bcate='+$('#bcate').val();
+			searchstr+='&mcate='+$('#mcate').val();
+			searchstr+='&scate='+$('#scate').val();
+			searchstr+='&loc='+$('#loc').val();
+			searchstr+='&state='+$('#state').val();
+			
+			searchstr+='&group1=';
+			if($('#group1-1').prop('checked')){
+				searchstr+=$('#group1-1').val();
+			}else if($('#group1-2').prop('checked')){
+				searchstr+=$('#group1-2').val();
+			}
+			
+			searchstr+='&group2=';
+			if($('#group2-1').prop('checked')){
+				searchstr+=$('#group2-1').val();
+			}else if($('#group2-2').prop('checked')){
+				searchstr+=$('#group2-2').val();
+			}
+			
+			searchstr+='&group3=';
+			if($('#group3-1').prop('checked')){
+				searchstr+=$('#group3-1').val();
+			}else if($('#group3-2').prop('checked')){
+				searchstr+=$('#group3-2').val();
+			}
+			
+			searchstr+='&group4=';
+			if($('#group4-1').prop('checked')){
+				searchstr+=$('#group4-1').val();
+			}else if($('#group4-2').prop('checked')){
+				searchstr+=$('#group4-2').val();
+			}
+
+			searchstr+='&min='+$('#min').val();
+			searchstr+='&max='+$('#max').val();
+			searchstr+='&searchtext='+$('#searchtext').val();
+			searchstr+='&page='+$('#page').val();
+			
+			if($('#bcate').val() == ""){
+				if($('#mcate').val() == ""){
+					if($('#scate').val() == ""){
+						alert("카테고리를 선택해주세요");
+						if($('#min').val()>$('#max').val()){
+							alert('최대,최소 금액을 확인해주세요');
+						}
+					}else{
+						if($('#min').val()>$('#max').val()){
+							alert('최대,최소 금액을 확인해주세요');
+						}else{
+							location.href=searchstr;
+						}
+					}
+				}else{
+					if($('#min').val()>$('#max').val()){
+						alert('최대,최소 금액을 확인해주세요');
+					}else{
+						location.href=searchstr;
+					}
+				}
+			}else{
+				if($('#min').val()>$('#max').val()){
+					alert('최대,최소 금액을 확인해주세요');
+				}else{
+					location.href=searchstr;
+				}
+			}
+			
+		})
 	
 });

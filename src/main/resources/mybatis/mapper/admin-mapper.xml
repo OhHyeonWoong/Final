@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin-mapper">
+
+	<select id="selectAdminStatistics" resultType="LoginStatistics">
+		<![CDATA[
+			select *
+			from (
+				select count(*) as "visitCount",to_date(ls_date,'yy/mm/dd') as "ls_date"
+				from login_statistics
+				group by to_date(ls_date,'yy/mm/dd')
+				order by to_date(ls_date,'yy/mm/dd') desc)
+			where rownum <= 8
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaIng" parameterType="java.util.HashMap" resultType="Qna">
+		<![CDATA[			
+			select * 
+			from 
+			(select rownum rnum, question_no,question_title,question_content,question_writer,question_category,question_date,question_answer_state 
+			 from question 
+			 where QUESTION_ANSWER_STATE = '처리중')
+			 where rnum <= #{endRow} and rnum >= #{startRow}
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaEnd" parameterType="java.util.HashMap" resultType="Qna">
+		<![CDATA[
+			select * 
+			from 
+			(select rownum rnum, question_no,question_title,question_content,question_writer,question_category,question_date,question_answer_state 
+			 from question 
+			 where QUESTION_ANSWER_STATE = '답변완료')
+			 where rnum <= #{endRow} and rnum >= #{startRow}
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaIngCount" resultType="int">
+		<![CDATA[
+			select count(*)
+			from question
+			where QUESTION_ANSWER_STATE = '처리중'
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaEndCount" resultType="int">
+		<![CDATA[
+			select count(*)
+			from question
+			where QUESTION_ANSWER_STATE = '답변완료'
+		]]>
+	</select>
+	
+	<select id="selectAdminQnaDetail" parameterType="int" resultType="Qna">
+		<![CDATA[
+			select * from question where question_no = #{question_no}
+		]]>
+	</select>
+	
+	<insert id="insertAdminQnaWrite" parameterType="QnaAnswer" flushCache="true">
+		<![CDATA[
+			insert into question_answer values ((select max(answer_no)+1 from question_answer),
+			#{answer_content},#{answer_writer},#{question_no},default,null)
+		]]>
+	</insert>
+	
+	<update id="updateQuestion" parameterType="int" flushCache="true">
+		<![CDATA[
+			update question
+			set question_answer_state = '답변완료'
+			where question_no = #{question_no}
+		]]>
+	</update>
+
+</mapper>

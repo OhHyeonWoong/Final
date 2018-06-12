@@ -12,6 +12,14 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+function agreed(){
+	$("#agree").attr("checked","true");
+}
+
+function disAgreed(){
+	location.href = "home.go";
+}
+
 
 </script>
 </head>
@@ -23,8 +31,10 @@
       <div class="modal-header">
         <h4 class="modal-title" style="text-align:center;">회원약관</h4>
       </div>
-      <div class="modal-body">
-<pre>
+<div class="modal-body" >
+<div>
+<pre class="pre-scrollable">
+
 1. 개인정보의 처리 목적 <독신사>(‘www.doksinsa.com’이하 ‘독신사’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 
 다음의 목적 이외의 용도로는 이용하지 않습니다.
 - 고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 
@@ -194,9 +204,10 @@
 개인정보를 처리하는 데이터베이스시스템에 대한 접근권한의 부여,변경,말소를 통하여 개인정보에 대한 접근통제를 위하여 
 필요한 조치를 하고 있으며 침입차단시스템을 이용하여 외부로부터의 무단 접근을 통제하고 있습니다.</p>
       </pre>
+</div>      
       <div class="modal-footer" style="text-align:center;">
-        <button type="button" class="btn btn-default" data-dismiss="modal">수락</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">거절</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="termAgree" onclick="agreed();">수락</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="termDisagree" onclick="disAgreed()">거절</button>
       </div>
     </div>
 

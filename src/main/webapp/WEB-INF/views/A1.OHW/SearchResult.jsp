@@ -61,7 +61,45 @@
 			$(this).scrollTop() > -100 ? $(".ohw-search-sidebar").fadeIn() : $(".ohw-search-sidebar").fadeOut();
 		});
 	});
-	/* SideBar End */	
+	/* SideBar End */
+	
+	/* SearchResultAjax */
+	$(function(){
+		var searchKeyword = $(".ohw-hidden-get").val();		
+		$.ajax({
+		   	url:"headerSearchAjax.go",
+		   	type:"POST",
+		   	data:{searchKeyword : searchKeyword}, 
+		   	dataType:"json",
+		   	success:
+		   		function(data) {
+		   			var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					var searchList = "";											
+					
+					for(var i in json.searchList){				
+						searchList += 
+									'<tr>' + 
+										'<td>' + json.searchList[i].agency_no + '</td>' + 
+										'<td>' + '<img src = "">' + '</td>' + 
+										'<td class = "">' + 
+											'<a onClick = "" >' + json.searchList[i].agency_title + '</a>' + 
+										'</td>' + 
+										'<td>' + '<img src = "">' + json.searchList[i].agency_writer + '</td>' + 
+										'<td>' + json.searchList[i].agency_enrolldate + '</td>' + 
+									'</tr>'
+					}
+					
+					$('.ohw-search-table').append(searchList);							
+				}, 
+			error : function(request, status, errorData) {
+						console.log("Error Code : " + request.status + "\n"
+						+ "Message : " + request.responseText + "\n"
+						+ "Error : " + errorData);
+			}
+		});
+	});	
+	/* SearchResultAjax End */
 	
 </script>
 
@@ -71,13 +109,13 @@
 			<td class = "ohw-search-maintd" valign = "top">
 				<table class="table table-hover ohw-search-table">
 					<tr>
-						<td><label></label></td>
-						<td></td>
+						<td><label></label></td>						
+						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchKeyword }" name = "searchKeyword" readonly></td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
 					</tr>
-					<c:forEach var="searchList" items="${ searchList }">
+					<%-- <c:forEach var="searchList" items="${ searchList }">
 						<tr>
 							<td>${ searchList.agency_no }</td>
 							<td><img src = ""></td>
@@ -85,64 +123,10 @@
 							<td><img src = "">${ searchList.agency_writer }</td>
 							<td>${ searchList.agency_enrolldate }</td>
 						</tr>
-					</c:forEach>
-					<!-- QnA 페이징 처리를 해봅시다. -->
-					<c:if test="${qnaPage.qnaListCount > 6}">
-						<!-- 페이징 처리를 합니다 -->
-						<tr>
-						<td colspan="5">
-						<div style="text-align:center;">
-							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
-								<< &nbsp;
-							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>
-							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
-							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
-								< &nbsp;
-							</c:if>
-							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.qnaEndRow}" step="1">
-								<c:if test="${i eq qnaPage.qnaCurrentPage}">
-									<font color="red" size="4"><b>${i}</b></font>&nbsp;
-								</c:if>
-								<c:if test="${i != qnaPage.qnaCurrentPage}">
-									<a href="javascript:void(0);" onclick="fnQnaReload(${i}); return false;">${i}</a>&nbsp;
-								</c:if>
-							</c:forEach>
-							
-							<c:if test="${qnaPage.qnaCurrentPage != qnaPage.qnaEndRow}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
-							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage eq qnaPage.qnaEndRow}">
-								> &nbsp;
-							</c:if>
-							
-							<c:if test="${qnaPage.qnaCurrentPage >= qnaPage.qnaMaxPage}">
-								>> &nbsp;
-							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage < qnaPage.qnaMaxPage}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaMaxPage}); return false;">>></a>
-							</c:if>
-						</div>
-						</td>
-						</tr>
-					</c:if>
-					<c:if test="${qnaPage.qnaListCount <= 6}">
-						<tr>
-							<td colspan="5">
-								<font color="red" size="4"><b>1</b></font>&nbsp;
-							</td>
-						</tr>
-					</c:if>
-					<!-- QnA 페이징 처리 End -->
-					<!-- 페이징 처리 -->										
+					</c:forEach> --%>												
 				</table>
 			</td>
-			<td>				
+			<td valign = "top">				
 				<div class="ohw-search-sidebar">
 					<table>
 						<tr>

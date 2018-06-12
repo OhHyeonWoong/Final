@@ -1,12 +1,16 @@
 package com.kh.goodluck.member.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.member.model.vo.MemberList;
+import com.kh.goodluck.member.model.vo.Memberandscore;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -56,7 +60,6 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("checkusercash", memberid);
 	}
-	
 	public int updateMemberInfo(Member m) {
 		return sqlSession.update("updateMember", m);
 	}
@@ -70,5 +73,26 @@ public class MemberDao {
 	public int deleteMemberOut(String member_id) {
 		return sqlSession.delete("deleteMemberOut", member_id);
 	}
+	public List<MemberList> adMemberList() {
+		return sqlSession.selectList("adminMemberList");
+	}
+	public int updateMemberCashMethod(Member m) {
+		return sqlSession.update("updateMemberCash", m);
+	}
 
+	public int insertLoginStatistics(String member_id) {
+		return sqlSession.insert("insertLoginStatistics", member_id);
+	}
+	public LoginStatistics selectIDYNCheck(String member_id) {
+		return sqlSession.selectOne("selectIDYNCheck", member_id);
+	}
+	public Memberandscore searchmemberInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("searchmemberInfobyBoardNo", pk);
+	}
+	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
+	}
+	
 }

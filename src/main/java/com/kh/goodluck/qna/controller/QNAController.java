@@ -43,6 +43,8 @@ public class QNAController {
 	public ModelAndView qnaDetailGo(ModelAndView mv,QnaWrite q) {
 		//qna 디테일로 고고
 		//question and answer 테이블에서 값 꺼내오기
+		System.out.println("lbjqnadetail.go run...");
+		System.out.println("q = " + q);
 		QNA myDetailQna = qnaService.selectMyDetailQna(q);
 		QnaAnswer myDetailQnaAnswer = qnaService.selectMyDetailQnaAnswer(q.getQuestion_no());
 		////////////////////////////////////
@@ -173,4 +175,18 @@ public class QNAController {
 		out.close();
 	}
 	
+	@RequestMapping(value="lbjMyQnaSatisfactionCheck.go")
+	public void myQnaSatisfactionCheck(QnaAnswer qa,
+									HttpServletResponse response) throws IOException{
+		System.out.println("myQnaSatisfactionCheck qa = " + qa);
+		int updateResult = qnaService.updateMyQnaSatisfaction(qa);
+		PrintWriter out = response.getWriter();
+		if(updateResult > 0) {
+			out.print("만족도 적용 성공");
+		}else {
+			out.print("만족도 적용 실패");
+		}
+		out.flush();
+		out.close();
+	}
 }

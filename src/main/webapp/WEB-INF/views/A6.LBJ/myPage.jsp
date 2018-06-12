@@ -18,6 +18,59 @@
 <!-- 부트스트랩용 자바스크립트 파일 공용 폴더 내부  js 파일 사용-->
 <!-- <script src="/rs/resources/common/bootstrap.min.js"></script> -->
 <!---------------------------------- Jeon Dong Gi-------------------------------->
+<!-- 주소 입력을 위한 스크립트 로딩 영역입니다. -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+            
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+            } else {
+                document.getElementById('guide').innerHTML = '';
+            }
+        }
+    }).open();
+}
+</script>
+
 <!-- byungjun -->
 <link href="/goodluck/resources/A6.LBJ/css/lbj_sidebar.css" rel="stylesheet">
 <!-- byungjun -->
@@ -42,7 +95,12 @@
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<script type="text/javascript" src="/goodluck/resources/A6.LBJ/js/lbj_sidebar.js"></script>
 	<script type="text/javascript">
-		$(function(){
+//////////////////////전역변수 부분/////////////////////////
+//정규식 목록
+//2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
+var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
+///////////////////////////////////////////////////////	
+	$(function(){
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
@@ -52,7 +110,6 @@
 				}
 			});
 		});
-		
 		function fnDeleteQna(){
 			var checkBox1 = $('input[name="chk1"]:checked');
 			var chkValue = new Array();
@@ -179,15 +236,16 @@
 					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
 					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
 					
+					console.log("qna 페이징 처리");
 					for(var i in json.item){
-						console.log("qna 페이징 처리");
 						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
 						'<td>'+json.item[i].buy_date+'</td>'+
 						'<td>'+json.item[i].start_date+'</td>'+
 						'<td>'+json.item[i].end_date+'</td>'+
 						'<td>'+json.item[i].final_status+'</td></tr>';
 					}
-					
+					console.log("qna 페이징 처리");
+					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
 					//페이징 처리//
 					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
 					if(json.item[0].itemListCount > 6){
@@ -231,6 +289,83 @@
 			});
 		}
 		
+		//여기 수정해야됨
+		function fnReportReload(page){
+			console.log("fnReportReload(page) = " + page);
+			$.ajax({
+				url:"lbjMyReport.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					member_id: $('#InputId').val(),
+					page: page
+				},
+				success:function(data){
+					var jstr = JSON.stringify(data);
+					var json = JSON.parse(jstr);
+					
+					$('#lbjReportTable').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjReportTable">'+
+					'<tr><th colspan="4" class="lbjth" style="text-align:right;">'+
+					'<a class="btn btn-info btn-xs" href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>'+
+					'</th></tr><tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">카테고리</th><th class="lbjth">작성일</th></tr>';
+					
+					console.log("report 페이징 처리 시작");
+					for(var i in json.report){
+						htmlStr += '<tr><td>'+json.report[i].report_no+'</td>'+
+						"<td><a href='javascript:location.href='lbjGoReportDetail.go?report_no="+json.report[i].report_no+'">'+json.report[i].report_title+'</a></td>"';
+						if(json.report[i].report_category == 1){
+							htmlStr += "<td>불량이용객 신고</td>";
+						}else if(json.report[i].report_category == 2){
+							htmlStr += "<td>게시물신고</td>";
+						}
+						htmlStr += '<td>'+json.report[i].report_date+'</td></tr>';
+					}
+					console.log("report 페이징 처리 끝");
+					//페이징 처리//
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.report[0].reportListCount > 6){
+						if(json.report[0].qnaCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload(1);"> << </a>&nbsp;';
+						}
+						if(json.report[0].qnaCurrentPage > json.report[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+(json.report[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.report[0].qnaStartPage;i<=json.report[0].reportEndRow;i++){
+							if(i == json.report[0].qnaCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						//기모리 ///////////////
+						if(json.report[0].qnaCurrentPage != json.report[0].reportEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+(json.report[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.report[0].qnaCurrentPage >= json.report[0].reportMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+json.report[0].reportMaxPage+'); return false;">>></a>';
+						}
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 끝//
+					$('#lbjReportDiv').html(htmlStr);
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+				}
+			});
+		}
+		
 		//검사 결과가 모두 일치하면 true로 리턴
 		var flag = false;
 		//이메일 인증번호 저장용 변수
@@ -241,7 +376,7 @@
 		function fnMemberGoEmail(){
 			var email = $('#member_email').val();
 			$.ajax({
-				url:"lbjConfirmMailSending.go",
+				url:"updateEmailSending.go",
 				type:"post",
 				data:{
 					//이메일 날리기
@@ -275,24 +410,32 @@
 				clickCheck = false;
 			}
 		}
-		//회원정보 수정 전(submit 전)에 값 체크해서 보냄
-		function fnValidationCheck(){
-			/*
-			 * 1. 비밀번호가 일치하는지 
-			 * 2. 인증번호가 일치하는지
-			 */ 
-			// 1
+		//
+		function pwdValidation(){
+			//비밀번호 일치 여부 
 			var pass1 = $('#InputPassword1').val();
 			var pass2 = $('#InputPassword2').val();
+			if(pwpattern.test(pass1)==false){
+				alert("비밀번호 양식에 일치하지 않습니다. 다시 입력해주세요!!");
+				$('#InputPassword1').focus();
+			}
 			if(pass1 == pass2){
 				flag = true;
+				$("#pwdSame").text("비밀번호가 일치하는 번호 입니다.").css("color","green");
 			}else{
+				$("#pwdSame").text("비밀번호가 일치하지 않습니다. 일치하는 비밀번호를 적어주세요").css("color","red");
+				$("#password1").focus();
 				flag = false;
-				alert("비밀번호가 일치하지 않습니다.");
-			}
-
-			console.log("flag = " + flag);
-			if(flag == true && clickCheck == true){
+			}	
+			
+		}
+		
+		//회원정보 수정 전(submit 전)에 값 체크해서 보냄+ 정규식 적용(동기)
+		function fnValidationCheck(){
+		//필요 부분 정규식 추가합니다.
+		//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
+		//console.log("flag = " + flag);
+		if(flag == true){
 				return true;
 			}else{
 				alert("누락된 정보가 없나 확인해보세요.");
@@ -325,6 +468,7 @@
 				alert("취소되었습니다.");
 			}
 		}
+		
 	</script>
 	<c:choose>
 		<c:when test="${loginUser eq null}">
@@ -347,16 +491,18 @@
 		 		<h3 class="lbjh3" id="lbjMyPage" style="">내 정보보기</h3>
 		 		<!-- 벼어어어어어어어어어어주누누누누누이이이 -->
 				<div class="login_form" >
-				<div class="col-md-6 col-md-offset-3" style="float:none; align:center; margin-left:150px;">
+				<!--   -->
+				<div class="col-md-6 col-md-offset-3" style="float:none; align:center;">
+					<!-- 폼시작 -->
 					<form role="form" action="lbjUpdateMember.go" method="post" enctype="multipart/form-data" 
 					  onsubmit="return fnValidationCheck();">
 					  	<input type="hidden" name="member_regident_number" value="${loginUser.member_regident_number}">
 						<div class="form-group">
 							<label for="userid">프로필 사진</label>
-							<div style="width : 200px; height : 200px; margin: 0 auto; border:1px solid black;">
-							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height : 200px;"/>
+							<div style="width : 200px; height : 200px; margin: 0 auto;">
+							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">
@@ -372,14 +518,16 @@
 								readonly="readonly" value="${loginUser.member_name}">
 						</div>
 						<div class="form-group">
-							<label for="InputPassword1">비밀번호</label> <input type="password"
-								class="form-control" id="InputPassword1" name="member_pw"  placeholder="비밀번호"
-								 required="required" value="${loginUser.member_pw}">
+							<label for="InputPassword1">비밀번호</label> 
+							<input type="password" class="form-control" 
+							id="InputPassword1" name="member_pw"  placeholder="6~16자리 영문/숫자/적어도 한자리의 특수문자"
+						required="required" value="${loginUser.member_pw}" onchange="pwdValidation();">
 						</div>
 						<div class="form-group">
 							<label for="InputPassword2">비밀번호 확인</label> <input type="password"
-								class="form-control" id="InputPassword2" placeholder="비밀번호 확인" required="required">
-							<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+								class="form-control" id="InputPassword2" placeholder="6~16자리 영문/숫자/적어도 한자리의 특수문자" 
+								required="required" onchange="pwdValidation();">
+							<p id ="pwdSame" class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 						</div>
 						<div class="form-group">
 							<label for="username">주민등록번호</label><br> 
@@ -393,12 +541,28 @@
 							</tr>	
 							</table>
 						</div>
-						<div class="form-group">
-							<label for="username">주소</label><br> 
-							<input type="text" class="form-control" id="member_address" name="member_address" 
-							placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}">
-						</div>
-						<div class="form-group">
+						<!-- 주소 부분 수정합니다. -->
+				<div class="form-group">
+                     <label for="username">본래 주소</label><br> 
+                     <input type="text" class="form-control" id="member_address" name="former_member_address" 
+                     placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}" readonly="readonly" >
+                  </div>
+				<div class="form-group">
+					<label for="username">주소</label>
+					<br>
+					<input type="text" class="form-control" name="postCard" id="sample4_postcode" placeholder="우편번호" style="float:left; width:250px;" readonly="readonly">
+					<span class="input-group-btn">					
+					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
+					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
+					<br><br>
+					<input type="text" class="form-control" id="sample4_roadAddress" name="member_address1" 
+					placeholder="도로명주소입니다" readonly="readonly" ><br><br>
+					<input type="text" class="form-control" id="address" name="member_address2" 
+					placeholder="상세주소" >
+					<span id="guide" style="color:#999"></span>
+				</div>
+				<!-- 전화번호 영역 -->
+				<div class="form-group">
 							<label for="username">전화번호</label><br> 
 							<input type="text" class="form-control" id="member_phone" name="member_phone" 
 							placeholder="전화번호를 입력해주세요." required="required" value="${loginUser.member_phone}">
@@ -407,28 +571,18 @@
 						<div class="form-group">
 							<label for="useremail">이메일</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
-								readonly="readonly" value="${loginUser.member_email}">
-								<!--email 인증 요청--> 
-                  				<span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnMemberGoEmail(); return false;"><i class="fa fa-envelope"></i>인증요청</a></span>
+							<input type="text" class="form-control" id="member_email" name="member_email" placeholder="이메일" 
+							readonly="readonly" value="${loginUser.member_email}" style="width: 400px">
 							</div>
 						</div>
-						 <div class="form-group">
-			               <label for="username">인증번호 입력</label>
-			               <div class="input-group">
-			               <input type="text" class="form-control" id="certify" placeholder="인증번호" required="required">
-			               <!-- 인증번호 요청시 번호 입력확인 -->
-			               <span class="input-group-btn"><a href="javascript:void(0);" class="btn btn-default" onclick="fnConfirmNumCheck(); return false;"><i class="fa fa-envelope"></i>인증번호 확인</a></span>
-			               <!-- <input type="button" class="btn btn-default" value="인증번호 입력"> -->
-			               </div>
-			            </div>
 						<div class="form-group text-center">
 							<button type="submit" class="btn btn-info">수정</button>&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
 						</div>
 					</form>
-						</div>
+					<!--폼끝 -->
 					</div>
+				</div>
 			</div>
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
 			<hr>
@@ -485,7 +639,7 @@
 						</tr>
 					</c:forEach>
 					<!-- QnA 페이징 처리를 해봅시다. -->
-					<c:if test="${qnaPage.qnaListCount > 10}">
+					<c:if test="${qnaPage.qnaListCount > 6}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">
@@ -543,23 +697,83 @@
 			<hr>
 			<h3 class="lbjh3" id="lbjmyReport">내가 쓴 신고글 보기</h3>
 			<div class="lbjdiv" id="lbjReportDiv">
-				<table class="table table-striped lbjtable">
+				<table class="table table-striped lbjtable" id="lbjReportTable">
 					<tr>
 						<th colspan="4" class="lbjth" style="text-align:right;">
 							<a class='btn btn-info btn-xs' href="lbjGoReportWrite.go"><span class="glyphicon glyphicon-edit"></span>작성하기</a>
 						</th>
 					</tr>
-					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">신고대상</th><th class="lbjth">작성일</th></tr>
+					<tr><th class="lbjth">글번호</th><th class="lbjth">제목</th><th class="lbjth">카테고리</th><th class="lbjth">작성일</th></tr>
+					<c:forEach var="report" items="${lbjMyReport}">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${report.report_no}</td>
+						<td><a href="javascript:location.href='lbjGoReportDetail.go?report_no=${report.report_no}'">${report.report_title}</a></td>
+						<td>
+							<c:if test="${report.report_category eq 1}">
+								불량이용객 신고
+							</c:if>
+							<c:if test="${report.report_category eq 2}">
+								게시물 신고
+							</c:if>
+						</td>
+						<td>${report.report_date}</td>
 					</tr>
-					<tr><td>101</td><td><a href="javascript:location.href='lbjGoReportDetail.go'">약속 장소에 나오지 않았습니다</a></td><td>루키루키</td><td>2018/02/10</td></tr>
-					<tr><td>199</td><td><a href="#">3시간 요청했는대 1시간반만 하고 갔습니다..하..</a></td><td>날라리다</td><td>2018/03/29</td></tr>
-					<tr><td>608</td><td><a href="#">듀오 요청했더니 트롤짓 하네요ㅡㅡ</a></td><td>킹스오</td><td>2018/04/21</td></tr>
-				</table>
+					</c:forEach>
+					<!-- Report 페이징 처리를 해봅시다. -->
+					<c:if test="${reportPage.reportListCount > 6}">
+						<!-- 페이징 처리를 합니다 -->
+						<tr>
+						<td colspan="5">
+						<div style="text-align:center;">
+							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+								<< &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+								<a href="javascript:void(0);" onclick="fnReportReload(1); return false;"> << </a>
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+								< &nbsp;
+							</c:if>
+							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${reportPage.reportEndRow}" step="1">
+								<c:if test="${i eq qnaPage.qnaCurrentPage}">
+									<font color="red" size="4"><b>${i}</b></font>&nbsp;
+								</c:if>
+								<c:if test="${i != qnaPage.qnaCurrentPage}">
+									<a href="javascript:void(0);" onclick="fnReportReload(${i}); return false;">${i}</a>&nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${qnaPage.qnaCurrentPage != reportPage.reportEndRow}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage eq reportPage.reportEndRow}">
+								> &nbsp;
+							</c:if>
+							
+							<c:if test="${qnaPage.qnaCurrentPage >= reportPage.reportMaxPage}">
+								>> &nbsp;
+							</c:if>
+							<c:if test="${qnaPage.qnaCurrentPage < reportPage.reportMaxPage}">
+								<a href="javascript:void(0);" onclick="fnReportReload(${reportPage.reportMaxPage}); return false;">>></a>
+							</c:if>
+						</div>
+						</td>
+						</tr>
+					</c:if>
+					<c:if test="${reportPage.reportListCount <= 6}">
+						<tr>
+							<td colspan="5">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<!-- Report 페이징 처리 End -->
+					<!-- 페이징 처리 -->
+					</table>
 			</div>
 			<hr>
 			<h3 class="lbjh3" id="lbjmyItem">내가 사용한 아이템 내역 보기</h3>
@@ -580,7 +794,7 @@
 					<tr><td>폰트바꾸기</td><td>2017/02/10</td><td>2017/04/01</td><td>2018/06/30</td><td>1</td></tr>
 				 -->
 				 <!-- item 페이징 처리 -->
-					 <c:if test="${itemPage.qnaListCount > 6}">
+					 <c:if test="${itemPage.itemListCount > 6}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">
@@ -618,7 +832,7 @@
 								>> &nbsp;
 							</c:if>
 							<c:if test="${qnaPage.qnaCurrentPage < itemPage.itemMaxPage}">
-								<a href="javascript:void(0);" onclick="fnItemReload(${qnaPage.itemMaxPage});">>></a>
+								<a href="javascript:void(0);" onclick="fnItemReload(${itemPage.itemMaxPage});">>></a>
 							</c:if>
 						</div>
 						</td>

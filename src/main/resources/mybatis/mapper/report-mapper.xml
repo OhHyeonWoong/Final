@@ -3,7 +3,6 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="report-mapper">
-
 	<select id="myReportListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) from report where report_writer = #{member_id}
@@ -20,37 +19,21 @@
 			 where rnum <= #{endRow} and rnum >= #{startRow}
 		]]>
 	</select>
-	
-	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
-		insert into member 
-		values 
-		(#{userId}, 
-		#{userPwd}, 
-		#{userName}, 
-		#{gender}, 
-		#{age}, 
-		#{phone}, 
-		#{email}, 
-		#{hobby}, 
-		#{etc}, 
-		sysdate, 
-		sysdate)		
+	<select id="seletReportDetail" parameterType="int" resultType="Report">
+		<![CDATA[
+			select * from report where report_no = #{report_no}
+		]]>
+	</select>
+	<insert id="insertMyReport" parameterType="Report" flushCache="true">
+		<![CDATA[
+			insert into report values ((select max(report_no)+1 from report),#{report_title},
+			#{report_content},#{report_writer},#{report_category},default,#{report_rename_filename})
+		]]>
 	</insert>
-	
-	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
-		update member 
-		set userpwd = #{userPwd}, 
-		age = #{age}, 
-		phone = #{phone}, 
-		email = #{email}, 
-		hobby = #{hobby}, 
-		etc = #{etc}, 
-		lastmodified = sysdate 
-		where userid = #{userId}
-	</update>
-	
-	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
-		delete from member 
-		where userid = #{userId}
-	</delete> -->
+	<delete id="deleteMyReport" parameterType="int" flushCache="true">
+		<![CDATA[
+			delete from report 
+			where report_no = #{report_no}
+		]]>
+	</delete>
 </mapper>

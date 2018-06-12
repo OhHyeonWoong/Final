@@ -13,13 +13,13 @@
 	</resultMap>
 	
 <select id="getRanDomBoxChance1" resultMap="RanDomBoxChance">
-select itemname,chance,ITEMFILENAME from  RANDOMBOX_ALL , itemlist where RANDOMBOX_ALL.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+select * from  RANDOMBOX_ALL , itemlist where RANDOMBOX_ALL.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
 </select>
 <select id="getRanDomBoxChance2" resultMap="RanDomBoxChance">
-select itemname,chance,ITEMFILENAME from  RANDOMBOX_EMO, itemlist where RANDOMBOX_EMO.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+select * from  RANDOMBOX_EMO, itemlist where RANDOMBOX_EMO.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
 </select>
 <select id="getRanDomBoxChance3" resultMap="RanDomBoxChance">
-select itemname,chance,ITEMFILENAME from  RANDOMBOX_TIME , itemlist where RANDOMBOX_TIME.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
+select * from  RANDOMBOX_TIME , itemlist where RANDOMBOX_TIME.ITEMLIST_NO=itemlist.ITEMLIST_NO order by ITEMPRICE desc
 </select>
 
 </mapper>

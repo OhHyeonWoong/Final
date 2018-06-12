@@ -5,6 +5,8 @@
 <configuration>  
 	<typeAliases>		
 		<typeAlias type="com.kh.goodluck.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.goodluck.member.model.vo.MemberList" alias="MemberList"/>
+		<typeAlias type="com.kh.goodluck.member.model.vo.Memberandscore" alias="Memberandscore"/>
 		<typeAlias type="com.kh.goodluck.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ITEMLIST" alias="ITEMLIST"/>
@@ -15,6 +17,7 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.SmallCategory" alias="SmallCategory"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink1" alias="CategoryLink1"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink2" alias="CategoryLink2"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.kh.goodluck.category.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.UsingItem" alias="UsingItem"/>
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QNA" alias="Qna" />
@@ -27,10 +30,18 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.RanDomBoxChance" alias="RanDomBoxChance"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>
+<<<<<<< HEAD
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews" alias="PetNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.LifeNews" alias="LifeNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.GameNews" alias="GameNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.TravelNews" alias="TravelNews"/>
+=======
+		<typeAlias type="com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail" alias="GetCategoryForBoardDetail"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.Trade_detail" alias="Trade_detail"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.Chat" alias="Chat"/>
+		<typeAlias type="com.kh.goodluck.admin.model.vo.LoginStatistics" alias="LoginStatistics"/>
+		<!-- <typeAlias type="notice.model.vo.Notice" alias="Notice"/> -->
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 	</typeAliases>
 	<mappers>    
 		<mapper resource="mybatis/mapper/member-mapper.xml"/>
@@ -48,9 +59,16 @@
 		<mapper resource="mybatis/mapper/randomitemchance.xml" />
 		<mapper resource="mybatis/mapper/itemdetail.xml" />
 		<mapper resource="mybatis/mapper/report-mapper.xml" />
+<<<<<<< HEAD
 		<mapper resource="mybatis/mapper/outsidedata-mapper_life.xml" />
 		<mapper resource="mybatis/mapper/outsidedata-mapper.xml" />
 		<mapper resource="mybatis/mapper/outsidedata-mapper_game.xml" />
 		<mapper resource="mybatis/mapper/outsidedata-mapper_travel.xml" />
+=======
+		<mapper resource="mybatis/mapper/BoardAndCate.xml" />
+		<mapper resource="mybatis/mapper/TradeDeatil.xml" />
+		<mapper resource="mybatis/mapper/admin-mapper.xml" />
+		<!-- <mapper resource="notice/model/mapper/notice-mapper.xml"/> -->
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 	</mappers>
 </configuration>

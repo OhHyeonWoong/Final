@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board-mapper">
+<mapper namespace="BoardandDetail">
 	
 	<resultMap type="Board" id="BoardResult">
 		<id property="agency_no" column="agency_no"/>
+		<result property="rnum" column="rnum"/>
 		<result property="agency_writer" column="agency_writer"/>
 		<result property="agency_title" column="agency_title"/>
 		<result property="link2_no" column="link2_no"/>
@@ -18,6 +19,7 @@
 		<result property="agency_pay" column="agency_pay"/>
 		<result property="agency_status" column="agency_status"/>
 		<result property="agency_content" column="agency_content"/>
+		<result property="AGENCY_VEIWS" column="AGENCY_VEIWS"/>
 		<result property="agency_views" column="agency_views"/>
 		<result property="agency_keyword" column="agency_keyword"/>
 		<result property="agency_option" column="agency_option"/>
@@ -54,21 +56,41 @@
 		<result property="category_small_code" column="category_small_code"/>
 	</resultMap>
 		
+		
+	<resultMap type="Chat" id="Chat">
+		<id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
+		<result property="CHATROOM_NO" column="CHATROOM_NO"/>
+		<result property="CHATDEATIL_CONTENT" column="CHATDEATIL_CONTENT"/>
+		<result property="AGENCY_NO" column="AGENCY_NO"/>
+		<result property="CHATDEATIL_MEMBER" column="CHATDEATIL_MEMBER"/>
+		<result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
+		<result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
+		<result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
+
+	</resultMap>
+	
+		
 	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
-			select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,s.CATEGORY_SMALL_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{link2_no}
+			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,s.CATEGORY_SMALL_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}		
 		]]>
 	</select>
 	
 	<select id="selectCategoryMid" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
-			select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,m.CATEGORY_MID_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{link2_no} order by a.AGENCY_NO
+			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,m.CATEGORY_MID_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
 		]]>
 	</select>
 	
 	<select id="selectCategoryBig" parameterType="Board" resultMap="BoardResult">
 		<![CDATA[
-			select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{link2_no} order by a.AGENCY_NO
+			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
+		]]>
+	</select>
+	
+	<select id="search" parameterType="Board" resultMap="BoardResult">
+		<![CDATA[
+			#{query}
 		]]>
 	</select>
 	
@@ -102,12 +124,35 @@
 		]]>
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 -->
 	<select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
 		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
 			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
 			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 1 and 20)) 
 			where rnum>=1 and rnum<=6]]> 
+=======
+	<select id="getAgencyCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(s.CATEGORY_SMALL_NAME) from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{link2_no}
+		]]>
+	</select>
+	
+	<select id="getAgencyCountMid" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(m.CATEGORY_MID_NAME) from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{link2_no} order by a.AGENCY_NO
+		]]>
+	</select>
+	
+	<select id="getAgencyCountBig" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(b.CATEGORY_BIG_NAME) from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{link2_no} order by a.AGENCY_NO
+		]]>
+	</select>
+	
+	<select id="mainPageShowLifeListPic" resultMap="BoardResult">
+		<![CDATA[ ]]> <!-- 서비스영역이 생활인 부분에서 현재 거래가 가능한 사람의 목록샘플을 추출 -->
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
 	</select>
 	
 	<select id="mainPageShowPetListPic" resultMap="BoardResult"> <!-- 반려동물영역(Data 6EA)  -->
@@ -264,5 +309,56 @@
 		delete from member 
 		where userid = #{userId}
 	</delete> -->
+<select id="getBoardInfoByNo" parameterType="int" resultType="Board">
+select * from AGENCY where AGENCY_NO = #{pk}
+</select>
+<update id="IncreaseViewCount">
+update AGENCY set AGENCY_VEIWS = 
+(select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
+ where AGENCY_NO = #{pk}
+</update>
+<select id="updateAgencyStatus" parameterType="hashmap">
+update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
+</select>
 
+
+<insert id="insertchatroom" parameterType="hashmap">
+insert into CHATROOM values ((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2},#{AGENCY_NO})
+</insert>
+
+<select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
+select * from CHATROOM where CHATROOM_MEMBER2= #{memberid} and AGENCY_NO=#{AGENCY_NO} and rownum=1 order by CHATROOM_NO
+
+</select>
+<select id="getrelation" parameterType="hashmap" resultType="int">
+select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_APPLICANT = #{memberid}
+</select>
+
+<select id="getrelation1" parameterType="hashmap" resultType="int">
+select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_RESERVATION = #{memberid}
+</select>
+
+<select id="getrelation2" parameterType="hashmap" resultType="int">
+select count(*) from AGENCY where AGENCY_NO=#{AGENCY_NO} and AGENCY_WRITER = #{memberid}
+</select>
+
+<select id="getAgencyStatus" parameterType="int" resultType="int" >
+select AGENCY_STATUS from AGENCY where AGENCY_NO = #{pk}
+</select>
+
+<select id="getapplicant" parameterType="int" resultType="String" >
+select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
+</select>
+<select id="getAgencyDate" parameterType="int" resultType="Double" >
+select AGENCY_STARTDATE-sysdate from AGENCY where AGENCY_NO=#{pk}
+</select>
+<insert id="insertBoardlog" parameterType="int">
+insert into AGENCYLOG values((select max(AGENCYLOG_NO)+1 from AGENCYLOG),#{pk},1,sysdate)
+</insert>
+<update id="changeRESERVATION">
+update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
+</update>
+<insert id="insertReview" parameterType="REVIEW">
+insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),#{REVIEW_RATE},#{REVIEW_WRITER},#{AGENCYLOG_NO},sysdate,#{REVIEW_CONTENT}) 
+</insert>
 </mapper>
