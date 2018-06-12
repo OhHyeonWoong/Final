@@ -66,21 +66,16 @@
 			success : function(data){
 				console.log(data);
 				var jstr = JSON.stringify(data);
-				var json = JSON.parse(jstr);
-				
+				var json = JSON.parse(jstr);				
 				$('.ukjae_table').empty();				
 				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th>번호</th>'+
-				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';
-				
+				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';				
 				for(var i in json.oneone_list){
 					htmlStr += '<tr><td>'+json.oneone_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.oneone_list[i].notice_no+'">'+json.oneone_list[i].notice_title+'</td><td>'+json.oneone_list[i].notice_writer+'</td><td>'+json.oneone_list[i].notice_date+'</td></tr>';
-				}
-				
+				}			
 				htmlStr += '</table>';
 				$('.Notice_div').html(htmlStr);						
-				
-				
-			},error:function(a,b,c){
+				},error:function(a,b,c){
 				   alert("a = " + a + " ,b = " + b + " ,c = " + c);
 			} 
 		});				
@@ -97,12 +92,9 @@
 				$('.ukjae_table').empty();				
 				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th>번호</th>'+
 				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';
-
-
 				for(var i in json.twotwo_list){
 					htmlStr += '<tr><td>'+json.twotwo_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.twotwo_list[i].notice_no+'">'+json.twotwo_list[i].notice_title+'</td><td>'+json.twotwo_list[i].notice_writer+'</td><td>'+json.twotwo_list[i].notice_date+'</td></tr>';
-				}
-				
+				}			
 				htmlStr += '</table>';
 				$('.Notice_div').html(htmlStr);			
 				
@@ -200,6 +192,9 @@
 			<div class="Notice_div" style="width: 100%; height: 435px; padding: 10px;">
 			<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span>	
 			
+			
+		
+			<!-- 로그인 하지 않았거나 / 로그인한 유저가 운영자가 아니면 글쓰기 버튼을 감추기 -->
 			<table class="ukjae_table">
 					<thead style="border: 1px solid #d6d6d6;">
 						<tr>
@@ -219,13 +214,12 @@
 						</tr>
 						</c:forEach>	
 				</table>
+			
 				<Br>
 			</div>
 			<div align="right">
-				<A href="javascript:movewritePage();" style="background: yellow;">글 작성(Admin)</A>
+				<c:if test="${loginUser.member_status eq 3}"><A href="javascript:movewritePage();" style="background: yellow;">글 작성(Admin)</A></c:if>	
 				<br><Br>
-
-
 				<Div style="width: 100%; float: left;" align="center" id="paging">
 					<!-- 페이징 처리 -->
 					<table class="pageingtable">
@@ -240,6 +234,11 @@
 					</table>	
 				</Div>
 			</div>			
+
+			
+			
+			
+			
 		</div>
 	</div>
 	<br>

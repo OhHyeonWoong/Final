@@ -102,14 +102,135 @@
 		]]>
 	</select>
 	
-	<select id="mainPageShowLifeListPic" resultMap="BoardResult">
-		<![CDATA[ ]]> <!-- 서비스영역이 생활인 부분에서 현재 거래가 가능한 사람의 목록샘플을 추출 -->
+	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 -->
+	<select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 1 and 20)) 
+			where rnum>=1 and rnum<=6]]> 
 	</select>
 	
-	<select id="mainPageShowPetListPic" resultMap="BoardResult">
-		<![CDATA[ ]]> <!-- 서비스영역이 생활인 부분에서 현재 거래가 가능한 사람의 목록샘플을 추출 -->
+	<select id="mainPageShowPetListPic" resultMap="BoardResult"> <!-- 반려동물영역(Data 6EA)  -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 119 and 130)) 
+			where rnum>=1 and rnum<=6]]> 
 	</select>
-	   
+
+
+	<select id="mainPageShowGameListPic" resultMap="BoardResult"> <!-- 게임영역(Data 6EA) -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 53 and 88)) 
+			where rnum>=1 and rnum<=6]]> 
+	</select>
+	
+		
+	<select id="mainPageShowMusicListPic1" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+			where rnum>=1 and rnum<=5]]> 
+	</select>
+	<select id="mainPageShowMusicListPic2" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+			where rnum>=1 and rnum<=4]]> 
+	</select>
+	<select id="mainPageShowMusicListPic3" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+			where rnum>=10 and rnum<=14]]> 
+	</select>
+	<select id="mainPageShowMusicListPic4" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+			where rnum>=15 and rnum<=18]]> 
+	</select>
+
+	<!-- 여기서부터 손봐야될 것 -->
+	<select id="mainPageShowRentListPic" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+			where rnum>=1 and rnum<=6]]> 
+	</select>
+	<select id="mainPageShowRentListPic2" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+			where rnum>=7 and rnum<=12]]> 
+	</select>
+	<select id="mainPageShowRentListPic3" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+			where rnum>=13 and rnum<=18]]> 
+	</select>
+	<select id="mainPageShowRentListPic4" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+			where rnum>=19 and rnum<=24]]> 
+	</select>
+	
+	<select id="mainPageShowTravelListPic" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
+			where rnum>=1 and rnum<=5]]> 
+	</select>
+	<select id="mainPageShowTravelListPic2" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
+			where rnum>=6 and rnum<=10]]> 
+	</select>
+	
+	<select id="mainPageShowFreeListPic" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+			where rnum>=1 and rnum<=5]]> 
+	</select>
+	<select id="mainPageShowFreeListPic2" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+			where rnum>=7 and rnum<=11]]> 
+	</select>
+	<select id="mainPageShowFreeListPic3" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+			where rnum>=12 and rnum<=16]]> 
+	</select>
+	<select id="mainPageShowFreeListPic4" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+			where rnum>=17 and rnum<=21]]> 
+	</select>
+	<select id="mainPageShowFreeListPic5" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+			where rnum>=22 and rnum<=26]]> 
+	</select>
+	
+	<select id="mainPageShowRequireListPic" resultMap="BoardResult"> <!-- 구인영역(Data 18EA) 6/6/6 Tablex3개가 필요함 -->
+		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
+			where rnum>=1 and rnum<=6]]> 
+	</select>
+
+	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
+	
+	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 

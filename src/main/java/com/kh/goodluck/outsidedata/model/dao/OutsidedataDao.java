@@ -75,21 +75,45 @@ public class OutsidedataDao {
 	public List<TravelNews> userSearchTitle4(TravelNews p4) {
 		return sqlSession.selectList("userSearchTitle4", p4);
 	}
-
-
 	
-	
-	
-	public List<PetNews> userSearchWriter(String keyword) {
-		//뉴스검색(작성자 기준)
-		return sqlSession.selectList("userSearchWriter", keyword);
+	//뉴스검색(내용 기준)
+	public List<PetNews> userSearchContents(PetNews p05) {
+		return sqlSession.selectList("userSearchContents", p05);
 	}
 
-	public List<PetNews> userSearchDate(String keyword) {
-		//뉴스검색(작성일 기준)
-		return sqlSession.selectList("userSearchDate", keyword);
+	public List<LifeNews> userSearchContents2(LifeNews p06) {
+		return sqlSession.selectList("userSearchContents2", p06);
 	}
+
+	public List<GameNews> userSearchContents3(GameNews p07) {
+		return sqlSession.selectList("userSearchContents3", p07);
+	}
+
+	public List<TravelNews> userSearchContents4(TravelNews p08) {
+		return sqlSession.selectList("userSearchContents4", p08);
+	}
+
 	
+	//뉴스검색(출처 기준)
+	public List<PetNews> userSearchOrign(PetNews p01) {
+		return sqlSession.selectList("userSearchOrign", p01);
+	}
+
+	public List<LifeNews> userSearchOrign2(LifeNews p02) {
+		return sqlSession.selectList("userSearchOrign2", p02);
+	}
+
+	public List<GameNews> userSearchOrign3(GameNews p03) {
+		return sqlSession.selectList("userSearchOrign3", p03);
+	}
+
+	public List<TravelNews> userSearchOrign4(TravelNews p04) {
+		return sqlSession.selectList("userSearchOrign4", p04);
+	}
+	////////////////////////////////	
+	
+	
+
 	public PetNews petNewsDetail(int petpk) {
 		// PetNew에 대하여 상세조회를 하는 메소드
 		return sqlSession.selectOne("petnewsOne", petpk);
@@ -108,14 +132,7 @@ public class OutsidedataDao {
 	public TravelNews travelNewsDetail(int travelpk) {
 		// TravelNews에 대하여 상세조회를 하는 메소드
 		return sqlSession.selectOne("travelnewsOne", travelpk);
-	}
-
-
-
-
-
-
-	
+	}	
 }
 
 

@@ -105,15 +105,18 @@ public class BoardDao {
 		return sqlSession.selectList("mainPageShowGameListPic");
 	}
 
-
 	public List<Board> mainShowMusicListPickUp() {
-		//메인페이지에 보여질 음악영역_제공해요 리스트추출		
-		return sqlSession.selectList("mainPageShowMusicListPic");
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출 5개	
+		return sqlSession.selectList("mainPageShowMusicListPic1");
+	}
+
+	public List<Board> mainShowMusicListPickUp2() {
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출 4개			
+		return sqlSession.selectList("mainPageShowMusicListPic2");
 	}
 
 	public List<Board> mainShowRentListPickUp() {
 		//메인페이지에 보여질 렌트영역_제공해요 리스트추출		
-
 		return sqlSession.selectList("mainPageShowRentListPic");
 	}
 	
@@ -131,5 +134,9 @@ public class BoardDao {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowRequireListPic");
 	}
+
+
+
+
 	
 }

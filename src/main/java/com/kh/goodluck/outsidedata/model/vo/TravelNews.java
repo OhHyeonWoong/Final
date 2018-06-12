@@ -43,6 +43,15 @@ public class TravelNews implements java.io.Serializable {
 		this.osp_news_origin = osp_news_origin;
 	}
 
+	public TravelNews(String osp_news_content1, String osp_news_content2, String osp_news_content3,
+			String osp_news_content4) {
+		super();
+		this.osp_news_content1 = osp_news_content1;
+		this.osp_news_content2 = osp_news_content2;
+		this.osp_news_content3 = osp_news_content3;
+		this.osp_news_content4 = osp_news_content4;
+	}
+
 	public TravelNews(String osp_news_datatitle) {
 		super();
 		this.osp_news_datatitle = osp_news_datatitle;

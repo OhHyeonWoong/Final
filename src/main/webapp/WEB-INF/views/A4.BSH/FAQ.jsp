@@ -16,12 +16,6 @@
 	<%@ include file = "/WEB-INF/views/A4.BSH/FAQContent.jsp" %>
 	
 	
-	
-	
-	
-	
-	
-				
 	<hr style="clear: both;"> 
 		
 	

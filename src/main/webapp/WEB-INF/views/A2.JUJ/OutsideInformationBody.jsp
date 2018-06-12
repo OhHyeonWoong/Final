@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -165,15 +166,43 @@
 		/* font-weight: bold; */
 	}
  	</style>
+ 	<script type="text/javascript">
+ 		$(function(){
+ 			"<c:set var='checkpart2' value='${selectNews.osp_news_data.substring(0,2)}'/>";
+				//alert("${checkpart2}");
+				
+			"<c:if test='${checkpart2 eq "반려"}'>";
+			/* $("body").css("background-size","cover");
+			$("body").css("background-image","url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed"); */
+			
+			"</c:if>";
+			 
+			"<c:if test='${checkpart2 eq "여행"}'>";
+				$("body").css("background-image","url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg)");
+			"</c:if>";
+			
+			"<c:if test='${checkpart2 eq "게임"}'>";
+				$("body").css("background-position","50% 50%");
+				$("body").css("background-size","cover");
+				$("body").css("background-image","url(https://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg)");
+			"</c:if>";
+			
+			"<c:if test='${checkpart2 eq "생활"}'>";
+					
+			$("body").css("background-size","100%");
+			$("body").css("background-image","url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG)");
+			"</c:if>";
+ 		});
+ 	</script>
+ 	
 </head>
 	<body>
 		<div class="container" align="center">
-		
 		        <div class="col-md-6 col-md-offset-3">
-		            <div class="panel panel-danger coupon">
+		            <div class="panel panel-primary coupon">
 		              <div class="panel-heading" id="head">
 		                <div class="panel-title" id="title" align="center">
-		                    <i class="fa fa-github fa-2x"></i>${selectNews.osp_news_datatitle}	 <!-- 글제목 -->	
+		                   <i class="fa fa-github fa-2x" style="font-size: 48px;"></i>&nbsp;<font size="5"> ${selectNews.osp_news_datatitle}	</font> <!-- 글제목 -->	
 		                </div>
 		              </div>
 		              <div class="panel-body">

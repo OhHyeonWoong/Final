@@ -2,6 +2,7 @@ package com.kh.goodluck.outsidedata.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,22 +43,23 @@ public class OutsidedataController {
 
 	@RequestMapping(value="fowordingkeyword.go", method=RequestMethod.GET) //검색기능
 	public void  searchListFeedback(@RequestParam("seloption")String useroption , @RequestParam("keyword")String keyword,HttpServletRequest request,HttpServletResponse response) throws IOException {		
-		System.out.println("유저가 선택한 select문 : "+useroption);
-		System.out.println("유저가 입력한 검색어 : "+keyword);
+		/*System.out.println("유저가 선택한 select문 : "+useroption);
+		System.out.println("유저가 입력한 검색어 : "+keyword);*/
 		
-		
+		// 1 : 제목기준 키워드검색 , 2 : 기사내용기준 키워드검색 , 3 : 출처기준 키워드검색
 		switch (useroption) { //유저가 선택한 것에 따라 검색옵션이 3가지로 나뉨
 		case "1" : 
 			PetNews p1 = new PetNews(keyword);
 			LifeNews p2 = new LifeNews(keyword);
 			GameNews p3 = new GameNews(keyword);
 			TravelNews p4 = new TravelNews(keyword);
+			PrintWriter out = response.getWriter();
 			
 			ArrayList<PetNews> searchList = (ArrayList<PetNews>) outsidedataService.userSearchTitle(p1);
 			ArrayList<LifeNews> searchList2 = (ArrayList<LifeNews>) outsidedataService.userSearchTitle2(p2);
 			ArrayList<GameNews> searchList3 = (ArrayList<GameNews>) outsidedataService.userSearchTitle3(p3);
 			ArrayList<TravelNews> searchList4 = (ArrayList<TravelNews>) outsidedataService.userSearchTitle4(p4);
-				
+			
 			JSONObject json = new JSONObject();
 			JSONArray jarr = new JSONArray();
 			
@@ -134,21 +136,204 @@ public class OutsidedataController {
 			}
 			
 			json.put("SearchResult", jarr);	
-			PrintWriter out = response.getWriter();
 			response.setContentType("application/json; charset=utf-8");
-			out.print(json.toJSONString());
+			out.print(json.toJSONString());	
 			out.flush();
 			out.close();	
 			
 			break;
-		case "2": 
+		case "2":  /*2 : 기사내용기준 키워드검색 */
+			PetNews p05 = new PetNews(keyword, keyword, keyword, keyword);
+			LifeNews p06 = new LifeNews(keyword, keyword, keyword, keyword);
+			GameNews p07 = new GameNews(keyword, keyword, keyword, keyword);
+			TravelNews p08 = new TravelNews(keyword, keyword, keyword, keyword);
+			PrintWriter out3 = response.getWriter();			
 			
+			ArrayList<PetNews> searchList05 =  (ArrayList<PetNews>) outsidedataService.userSearchContents(p05);
+			ArrayList<LifeNews> searchList06 = (ArrayList<LifeNews>) outsidedataService.userSearchContents2(p06);
+			ArrayList<GameNews>	searchList07 = (ArrayList<GameNews>) outsidedataService.userSearchContents3(p07);
+			ArrayList<TravelNews> searchList08 = (ArrayList<TravelNews>) outsidedataService.userSearchContents4(p08);
+
+			JSONObject json3 = new JSONObject();
+			JSONArray jarr3 = new JSONArray();
 			
+			for(int i=0; i<searchList05.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList05.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList05.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList05.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList05.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList05.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList05.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList05.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList05.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList05.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList05.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList05.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList05.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList05.get(i).getOsp_news_origin());
+				jarr3.add(js);
+			}
 			
+			for(int i=0; i<searchList06.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList06.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList06.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList06.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList06.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList06.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList06.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList06.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList06.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList06.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList06.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList06.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList06.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList06.get(i).getOsp_news_origin());
+				jarr3.add(js);
+			}			
+			
+			for(int i=0; i<searchList07.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList07.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList07.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList07.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList07.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList07.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList07.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList07.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList07.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList07.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList07.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList07.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList07.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList07.get(i).getOsp_news_origin());
+				jarr3.add(js);
+			}
+			
+			for(int i=0; i<searchList08.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList08.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList08.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList08.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList08.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList08.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList08.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList08.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList08.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList08.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList08.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList08.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList08.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList08.get(i).getOsp_news_origin());
+				jarr3.add(js);
+			}
+			json3.put("SearchResult", jarr3);	
+			response.setContentType("application/json; charset=utf-8");
+			out3.print(json3.toJSONString());
+			out3.flush();
+			out3.close();
 			break;
 			
 		case "3": 
+
+			PetNews p01 = new PetNews();
+			LifeNews p02 = new LifeNews();
+			GameNews p03 = new GameNews();
+			TravelNews p04 = new TravelNews();
+			PrintWriter out2 = response.getWriter();
 			
+			p01.setOsp_news_origin(keyword);
+			p02.setOsp_news_origin(keyword);
+			p03.setOsp_news_origin(keyword);
+			p04.setOsp_news_origin(keyword);
+			
+			ArrayList<PetNews> searchList01 = (ArrayList<PetNews>) outsidedataService.userSearchOrign(p01);
+			ArrayList<LifeNews> searchList02 = (ArrayList<LifeNews>) outsidedataService.userSearchOrign2(p02);
+			ArrayList<GameNews> searchList03 = (ArrayList<GameNews>) outsidedataService.userSearchOrign3(p03);
+			ArrayList<TravelNews> searchList04 = (ArrayList<TravelNews>) outsidedataService.userSearchOrign4(p04);
+			
+			
+			JSONObject json2 = new JSONObject();
+			JSONArray jarr2 = new JSONArray();
+			
+			for(int i=0; i<searchList01.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList01.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList01.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList01.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList01.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList01.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList01.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList01.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList01.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList01.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList01.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList01.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList01.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList01.get(i).getOsp_news_origin());
+				jarr2.add(js);
+			}
+			
+			for(int i=0; i<searchList02.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList02.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList02.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList02.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList02.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList02.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList02.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList02.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList02.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList02.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList02.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList02.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList02.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList02.get(i).getOsp_news_origin());
+				jarr2.add(js);
+			}			
+			
+			for(int i=0; i<searchList03.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList03.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList03.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList03.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList03.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList03.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList03.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList03.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList03.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList03.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList03.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList03.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList03.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList03.get(i).getOsp_news_origin());
+				jarr2.add(js);
+			}
+			
+			for(int i=0; i<searchList04.size(); i++) {
+				JSONObject js = new JSONObject();		
+				js.put("osp_news_datano", searchList04.get(i).getOsp_news_datano());
+				js.put("osp_news_data", searchList04.get(i).getOsp_news_data());
+				js.put("osp_news_datatitle", searchList04.get(i).getOsp_news_datatitle());
+				js.put("osp_news_content1", searchList04.get(i).getOsp_news_content1());
+				js.put("osp_news_content2", searchList04.get(i).getOsp_news_content2());
+				js.put("osp_news_content3", searchList04.get(i).getOsp_news_content3());
+				js.put("osp_news_content4", searchList04.get(i).getOsp_news_content4());
+				js.put("osp_news_pic1", searchList04.get(i).getOsp_news_pic1());
+				js.put("osp_news_pic2", searchList04.get(i).getOsp_news_pic2());
+				js.put("osp_news_pic3", searchList04.get(i).getOsp_news_pic3());
+				js.put("osp_news_pic4", searchList04.get(i).getOsp_news_pic4());
+				js.put("osp_news_date", searchList04.get(i).getOsp_news_date().toString());
+				js.put("osp_news_origin", searchList04.get(i).getOsp_news_origin());
+				jarr2.add(js);
+			}
+			
+			json2.put("SearchResult", jarr2);	
+			response.setContentType("application/json; charset=utf-8");
+			out2.print(json2.toJSONString());
+			out2.flush();
+			out2.close();				
 			break;
 		}
 		
@@ -482,7 +667,6 @@ public class OutsidedataController {
 	/* ************여행영역* ************/	
 
 	@RequestMapping(value="travelnewslist.go",method=RequestMethod.GET)
-	//메인페이지 동물영역에 표기되는 6개 뉴스리스트 
 	public void travelNewsDataThrows(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TravelNews에 관한 정보를 받아오는 메소드 
 		//ArrayList<PetNews> pnewslist = (ArrayList<PetNews>) outsidedataService.petNewsDataThrows();

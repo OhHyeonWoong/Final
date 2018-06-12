@@ -23,11 +23,6 @@ public class LifeNews implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public LifeNews(String osp_news_datatitle) {
-		super();
-		this.osp_news_datatitle = osp_news_datatitle;
-	}
-
 	public LifeNews(int osp_news_datano, String osp_news_data, String osp_news_datatitle, String osp_news_content1,
 			String osp_news_content2, String osp_news_content3, String osp_news_content4, String osp_news_pic1,
 			String osp_news_pic2, String osp_news_pic3, String osp_news_pic4, Date osp_news_date,
@@ -46,6 +41,20 @@ public class LifeNews implements java.io.Serializable{
 		this.osp_news_pic4 = osp_news_pic4;
 		this.osp_news_date = osp_news_date;
 		this.osp_news_origin = osp_news_origin;
+	}
+	
+	public LifeNews(String osp_news_content1, String osp_news_content2, String osp_news_content3,
+			String osp_news_content4) {
+		super();
+		this.osp_news_content1 = osp_news_content1;
+		this.osp_news_content2 = osp_news_content2;
+		this.osp_news_content3 = osp_news_content3;
+		this.osp_news_content4 = osp_news_content4;
+	}
+
+	public LifeNews(String osp_news_datatitle) {
+		super();
+		this.osp_news_datatitle = osp_news_datatitle;
 	}
 
 	public int getOsp_news_datano() {

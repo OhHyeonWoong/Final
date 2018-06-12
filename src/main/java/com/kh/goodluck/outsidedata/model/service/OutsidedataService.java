@@ -37,11 +37,18 @@ public interface OutsidedataService {
 	List<GameNews> userSearchTitle3(GameNews p3);
 	List<TravelNews> userSearchTitle4(TravelNews p4);
 	
-	//뉴스검색(작성자 기준)
-	List<PetNews> userSearchWriter(String keyword);
+	//뉴스검색(내용 기준) - 모든 영역에 접근함	
+	List<PetNews> userSearchContents(PetNews p05);
+	List<LifeNews> userSearchContents2(LifeNews p06);
+	List<GameNews> userSearchContents3(GameNews p07);
+	List<TravelNews> userSearchContents4(TravelNews p08);
 	
-	//뉴스검색(작성일 기준)	
-	List<PetNews> userSearchDate(String keyword);
+	//뉴스검색(출처 기준) - 모든 영역에 접근함
+	List<PetNews> userSearchOrign(PetNews p01);
+	List<LifeNews> userSearchOrign2(LifeNews p02);
+	List<GameNews> userSearchOrign3(GameNews p03);
+	List<TravelNews> userSearchOrign4(TravelNews p04);
+
 
 	
 	//뉴스 상세보기(동물)
@@ -55,6 +62,8 @@ public interface OutsidedataService {
 
 	//뉴스 상세보기(여행)
 	TravelNews travelNewsDetail(int travelpk);
+
+
 
 	
 	

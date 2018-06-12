@@ -66,36 +66,28 @@
 				alert(a + ", " + b + ", " + c);
 			}		
 		}); /* FAQ top5 Ajax끝 */
-		 
-		/* $.ajax({
-			url :"lifeareasample.go",
+		
+		$.ajax({
+			url : "lifeareamainsample.go",
 			type : "get",
 			datatype : "json",
 			success : function(data){
-
+				//console.log(data);				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'><td style='width: 20px;'>번호</td><td style='width: 120px;'>제목</td><td style='width: 30px;'>작성자</td><td style='width: 30px;'>등록일</td><td style='width: 20px;'>조회수</td></tr>";
 				
+			 	for(var i in json.lifearea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td style='width: 20px;'>"+json.lifearea_mainshowlist[i].agency_no+"</td><td style='width: 120px;'><a href='BoardDetail.go?BoardNo="+json.lifearea_mainshowlist[i].agency_no+"'>"+json.lifearea_mainshowlist[i].agency_title+"</a></td><td style='width: 30px;'>"+json.lifearea_mainshowlist[i].agency_writer+
+				 	"</td><td style='width: 30px;'>"+json.lifearea_mainshowlist[i].agency_enrolldate+"</td><td style='width: 20px;'>"+json.lifearea_mainshowlist[i].agency_veiws+"</td></tr>";
+				}
+				$('.supply_lifetable').append(tablevalue);  
 			},
-			error : function(a,b,c){
-				alert(a+","+b+","+c);
-			}
-		});  */  
+			error:function(a,b,c){
+				alert(a + ", " + b + ", " + c);
+			} 
+		}); /* 생활영역 제공해요! */   
 		
-		
-		/* 생활영역 제공해요! */
-		
-		/* $.ajax({
-			url :"petareasample.go",
-			type : "get",
-			datatype : "json",
-			success : function(data){
-				
-			},
-			error : function(a,b,c){
-				alert(a+","+b+","+c);
-			}
-		}); */
-
-		/* 생활영역 뉴스 제공해요(1~3) */
 		$.ajax({
 			url : "lifenewslist1.go", 
 			type : "get",
@@ -107,7 +99,7 @@
 			   var htmlStr ="<tr align='center'>";			  		   
 
 			   for(var i in json.LifeNewsOne){
-					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.LifeNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsOne[i].osp_news_origin+"</font></td>";
+					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'>"+json.LifeNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsOne[i].osp_news_origin+"</td>";
 				   }	
 			   		  htmlStr += "</tr>";
 				   	  $('.ukjae_LifeTable1').append(htmlStr);
@@ -115,9 +107,8 @@
 				error : function(a,b,c){
 					alert(a+","+b+","+c);
 				}	
-			});  
+			});  /* 생활영역 뉴스(1~3) */
 
-		/* 생활영역 뉴스 제공해요(4~6) */
 		$.ajax({
 			url : "lifenewslist2.go", 
 			type : "get",
@@ -129,7 +120,7 @@
 			   var htmlStr ="<tr align='center'>";			  		   
 
 			   for(var i in json.LifeNewsTwo){
-					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsTwo[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsTwo[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.LifeNewsTwo[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsTwo[i].osp_news_origin+"</font></td>";
+					  htmlStr += "<td><a href='lifenewsdetail.go?newspk="+json.LifeNewsTwo[i].osp_news_datano+"'><img id='low_image3' src='"+json.LifeNewsTwo[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'>"+json.LifeNewsTwo[i].osp_news_datatitle+"<br>출처 : "+json.LifeNewsTwo[i].osp_news_origin+"</td>";
 				   }	
 			   		  htmlStr += "</tr>";
 				   	  $('.ukjae_LifeTable2').append(htmlStr);
@@ -138,11 +129,9 @@
 				error : function(a,b,c){
 					alert(a+","+b+","+c);
 				}	
-			});  
+			}); /* 생활영역 뉴스(4~6) */
+		
 
-		
-		
-		/* 반려동물영역 뉴스 제공해요(1~6) */
 		$.ajax({
 			url : "petnewslist.go", 
 			type : "get",
@@ -157,33 +146,57 @@
 			   for(var i in json.petNewsAll){
 				  /* htmlStr += '<td style="width:5px; border:none;"></td><td style="height:270px; padding:0;"><img id="low_image3" src="'+json.petNewsAll[i].osp_news_pic1+'"><div style="width:161px; height:55px;"><font id="ukjaeTitle_effect">'+json.petNewsAll[i].osp_news_datatitle+'<br>출처 : '+json.petNewsAll[i].osp_news_origin+'</font></div></td>';   */
 				  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsAll[i].osp_news_datano+"'>"+
-						  "<img id='low_image3' src='"+json.petNewsAll[i].osp_news_pic1+"'></a><div style='width:161px; height:55px;'><font id='ukjaeTitle_effect'>"+json.petNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.petNewsAll[i].osp_news_origin+"</font></div></td>";
+						  "<img id='low_image3' src='"+json.petNewsAll[i].osp_news_pic1+"'></a><div style='width:161px; height:55px;'>"+json.petNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.petNewsAll[i].osp_news_origin+"</div></td>";
 			   }	
 			   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
-			   	  $('.ukjae_PetTable').append(htmlStr);
+			   	  $(".ukjae_PetTable").append(htmlStr);
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}			
-		}); 
-
+		}); /* 반려동물영역 뉴스(1~6) */
 		
-	    /* $.ajax({
-			url :"gameareasample.go",
+		
+	    $.ajax({
+			url :"petareasample.go",
 			type : "get",
 			datatype : "json",
 			success : function(data){
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'><td>번호</td><td>제목</td><td>작성자</td><td>등록일</td><td>조회수</td></tr>";
 				
+				for(var i in json.petarea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td>"+json.petarea_mainshowlist[i].agency_no+"</td><td><a href='BoardDetail.go?BoardNo="+json.petarea_mainshowlist[i].agency_no+"'>"+json.petarea_mainshowlist[i].agency_title+"</a></td><td>"+json.petarea_mainshowlist[i].agency_writer+
+				 	"</td><td>"+json.petarea_mainshowlist[i].agency_enrolldate+"</td><td>"+json.petarea_mainshowlist[i].agency_veiws+"</td></tr>";
+					}
+				$(".petarea_table").append(tablevalue);
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); */
-		/* 게임영역 제공해요! */		
+		}); /* 반려동물영역 제공해요! */  
 		
-
-
-		/* 게임영역 뉴스 제공해요(1~3) */	
+	    $.ajax({
+			url :"gameareasample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'><td style='width: 20px;'>번호</td><td style='width: 120px;'>제목</td><td style='width: 30px;'>작성자</td><td style='width: 30px;'>등록일</td><td style='width: 20px;'>조회수</td></tr>";
+				
+				for(var i in json.gamearea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td style='width: 20px;'>"+json.gamearea_mainshowlist[i].agency_no+"</td><td style='width: 120px;'><a href='BoardDetail.go?BoardNo="+json.gamearea_mainshowlist[i].agency_no+"'>"+json.gamearea_mainshowlist[i].agency_title+"</td><td style='width: 30px;'>"+json.gamearea_mainshowlist[i].agency_writer+
+				 	"</td><td style='width: 30px;'>"+json.gamearea_mainshowlist[i].agency_enrolldate+"</td><td style='width: 20px;'>"+json.gamearea_mainshowlist[i].agency_veiws+"</td></tr>";
+					}
+				$(".gamearea_table").append(tablevalue);
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 게임영역 제공해요! */  
+			
 		$.ajax({
 			url : "gamenewslist.go", 
 			type : "get",
@@ -195,7 +208,7 @@
 			   var htmlStr ="<tr align='center'>";			  		   
 
 			   for(var i in json.GameNewsOne){
-					  htmlStr += "<td><a href='gamenewsdetail.go?newspk="+json.GameNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.GameNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'><font id='ukjaeTitle_effect'>"+json.GameNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.GameNewsOne[i].osp_news_origin+"</font></td>";
+					  htmlStr += "<td><a href='gamenewsdetail.go?newspk="+json.GameNewsOne[i].osp_news_datano+"'><img id='low_image3' src='"+json.GameNewsOne[i].osp_news_pic1+"'></a><td style='border : 1px solid gray;'>"+json.GameNewsOne[i].osp_news_datatitle+"<br>출처 : "+json.GameNewsOne[i].osp_news_origin+"</td>";
 				   }	
 			   		  htmlStr += "</tr>";
 				   	  $('.ukjae_GameTable').append(htmlStr);
@@ -203,50 +216,186 @@
 				error : function(a,b,c){
 					alert(a+","+b+","+c);
 				}	
-			});  		
+			}); /* 게임영역 뉴스 제공해요(1~3) */			
 		
-			/* $.ajax({
-			url :"musicsample.go",
-			type : "get",
-			datatype : "json",
-			success : function(data){
+		    $.ajax({
+				url :"musicsample.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+				 	var tablevalue="<tr align='center'>";
+					var imagelist = [ 
+						  "/goodluck/resources/common/img/music/음악컨텐츠1.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠12.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠6.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠11.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠14.jpg" ];				 	
+					
+					for(var i in json.musicarea_mainshowlist1){
+						tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+						"<td><a href='BoardDetail.go?BoardNo="+json.musicarea_mainshowlist1[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.musicarea_mainshowlist1[i].agency_title+"</a></td>";
+						}
+					tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+					$('.musicarea_style1').append(tablevalue); 
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}
+			}); /* 음악영역 제공해요! 1 */
+			
+		    $.ajax({
+				url :"musicsample2.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+				 	var tablevalue="<tr align='center'>";
+					var imagelist = [ 
+						  "/goodluck/resources/common/img/music/음악컨텐츠10.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠5.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠2.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠8.jpg", 
+					 ];
+					
+					for(var i in json.musicarea_mainshowlist2){
+						tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+						"<td><a href='BoardDetail.go?BoardNo="+json.musicarea_mainshowlist2[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.musicarea_mainshowlist2[i].agency_title+"</td>";
+						}
+					tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+					$('.musicarea_style2').append(tablevalue);  
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}
+			}); /* 음악영역 제공해요! 2 */
+			
+		    $.ajax({
+				url :"musicsample.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+				 	var tablevalue="<tr align='center'>";
+					var imagelist = [ 
+						  "/goodluck/resources/common/img/music/음악컨텐츠13.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠3.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠15.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠17.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠9.jpg" ];				 	
+					/* 	         16    */
+					for(var i in json.musicarea_mainshowlist1){
+						tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+						"<td><a href='BoardDetail.go?BoardNo="+json.musicarea_mainshowlist1[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.musicarea_mainshowlist1[i].agency_title+"</a></td>";
+						}
+					tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+					$('.musicarea_style3').append(tablevalue); 
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}
+			}); /* 음악영역 제공해요! 3 */
+			
+		    $.ajax({
+				url :"musicsample2.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+				 	var tablevalue="<tr align='center'>";
+					var imagelist = [ 
+						  "/goodluck/resources/common/img/music/음악컨텐츠7.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠18.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠16.jpg", 
+						  "/goodluck/resources/common/img/music/음악컨텐츠4.jpg", 
+					 ];
+					
+					for(var i in json.musicarea_mainshowlist2){
+						tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+						"<td><a href='BoardDetail.go?BoardNo="+json.musicarea_mainshowlist2[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.musicarea_mainshowlist2[i].agency_title+"</td>";
+						}
+					tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+					$('.musicarea_style4').append(tablevalue);  
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}
+			}); /* 음악영역 제공해요! 4 */
+			
+			$.ajax({
+				url :"rentalsample.go",
+				type : "get",
+				datatype : "json",
+				success : function(data){
+					var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+				 	var tablevalue="<tr align='center'><td style='width: 20px;'>번호</td><td style='width: 120px;'>제목</td><td style='width: 30px;'>작성자</td><td style='width: 30px;'>등록일</td><td style='width: 20px;'>조회수</td></tr>";	
+					for(var i in json.rentarea_mainshowlist){
+					 	tablevalue += "<tr align='center'><td style='width: 20px;'>"+json.rentarea_mainshowlist[i].agency_no+"</td><td style='width: 120px;'><a href='BoardDetail.go?BoardNo="+json.rentarea_mainshowlist[i].agency_no+"'>"+json.rentarea_mainshowlist[i].agency_title+"</td><td style='width: 30px;'>"+json.rentarea_mainshowlist[i].agency_writer+
+					 	"</td><td style='width: 30px;'>"+json.rentarea_mainshowlist[i].agency_enrolldate+"</td><td style='width: 20px;'>"+json.rentarea_mainshowlist[i].agency_veiws+"</td></tr>";
+						}
 				
-			},
-			error : function(a,b,c){
-				alert(a+","+b+","+c);
-			}
-		}); */	
-
+					$('.rentalarea').append(tablevalue);
+					$('.rentalarea2').append(tablevalue);
+					$('.rentalarea3').append(tablevalue);
+					$('.rentalarea4').append(tablevalue);
+					
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}
+			});  
+			/* 렌탈영역 제공해요 */		
 		
-		/* 음악영역 제공해요! */
-		
-		/* $.ajax({
-			url :"rentalsample.go",
-			type : "get",
-			datatype : "json",
-			success : function(data){
-				
-			},
-			error : function(a,b,c){
-				alert(a+","+b+","+c);
-			}
-		});  */
-		/* 렌탈영역 제공해요! */
-		
-		/* 여행영역 제공해요! */
-		/* $.ajax({
+		$.ajax({
 			url :"travelsample.go",
 			type : "get",
 			datatype : "json",
 			success : function(data){
-				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'>";
+				var imagelist = [ "/goodluck/resources/common/img/main/여행1.jpg", 
+								  "/goodluck/resources/common/img/main/여행2.jpg", 
+								  "/goodluck/resources/common/img/main/여행3.jpg", 
+								  "/goodluck/resources/common/img/main/여행4.jpg", 
+								  "/goodluck/resources/common/img/main/여행5.jpg" ];
+
+				for(var i in json.travelarea_mainshowlist){
+					tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+					"<td><a href='BoardDetail.go?BoardNo="+json.travelarea_mainshowlist[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.travelarea_mainshowlist[i].agency_title+"</a></td>";
+					}
+				tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+				$('.travel_area1').append(tablevalue); 
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		});  */
+		});  /* 여행영역 제공해요! (추천 가이더 부분) */ 
 		
-		/* 여행영역 뉴스 제공해요(1~6) */	
+		$.ajax({
+			url :"travelsample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){
+				var jsonStr = JSON.stringify(data);
+				var json = JSON.parse(jsonStr);
+			 	var tablevalue="<tr align='center'><td>번호</td><td>제목</td><td>작성자</td><td>등록일</td><td>조회수</td></tr>";	
+				for(var i in json.travelarea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td>"+json.travelarea_mainshowlist[i].agency_no+"</td><td><a href='BoardDetail.go?BoardNo="+json.travelarea_mainshowlist[i].agency_no+"'>"+json.travelarea_mainshowlist[i].agency_title+"</td><td>"+json.travelarea_mainshowlist[i].agency_writer+
+				 	"</td><td>"+json.travelarea_mainshowlist[i].agency_enrolldate+"</td><td>"+json.travelarea_mainshowlist[i].agency_veiws+"</td></tr>";
+					}
+				$('#travel_area2').append(tablevalue);
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		});  /* 여행영역 제공해요! (제공해요부분) */ 
+			
 		$.ajax({
 			url : "travelnewslist.go",
 			type : "get",
@@ -266,38 +415,79 @@
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}			
-		});  
+		});  /* 여행영역 뉴스 제공해요(1~6) */
 		
-
-		
-
-
-		
-		/* $.ajax({
+		$.ajax({
 			url :"freesample.go",
 			type : "get",
 			datatype : "json",
 			success : function(data){
-				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'>";
+				var imagelist = [ "/goodluck/resources/common/img/main/추천프리2.jpg", 
+								  "/goodluck/resources/common/img/main/추천프리3.jpg", 
+								  "/goodluck/resources/common/img/main/추천프리5.jpg", 
+								  "/goodluck/resources/common/img/main/추천프리7.jpg", 
+								  "/goodluck/resources/common/img/main/추천프리8.jpg" ];
+
+				for(var i in json.freearea_mainshowlist){
+					tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
+					"<td><a href='BoardDetail.go?BoardNo="+json.freearea_mainshowlist[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.freearea_mainshowlist[i].agency_title+"</a></td>";
+					}
+				tablevalue+="<td style='width: 5px; border: none;'></td></tr>";
+				$('.recommend_free').append(tablevalue); 
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		});  */
-		/* 프리랜서영역 제공해요! */
+		});  /* 프리랜서영역 (추천프리랜서 부분) */  
 		
-		/* $.ajax({
-			url :"requiresample.go",
+		$.ajax({
+			url :"freesample.go",
 			type : "get",
 			datatype : "json",
 			success : function(data){
-				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'><td>번호</td><td>제목</td><td>작성자</td><td>등록일</td><td>조회수</td></tr>";	
+				for(var i in json.freearea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td>"+json.freearea_mainshowlist[i].agency_no+"</td><td><a href='BoardDetail.go?BoardNo="+json.freearea_mainshowlist[i].agency_no+"'>"+json.freearea_mainshowlist[i].agency_title+"</td><td>"+json.freearea_mainshowlist[i].agency_writer+
+				 	"</td><td>"+json.freearea_mainshowlist[i].agency_enrolldate+"</td><td>"+json.freearea_mainshowlist[i].agency_veiws+"</td></tr>";
+					}
+				$('#freearea').append(tablevalue); 
+				$('#freearea2').append(tablevalue); 
+				$('#freearea3').append(tablevalue); 
+				$('#freearea4').append(tablevalue); 
+
 			},
 			error : function(a,b,c){
 				alert(a+","+b+","+c);
 			}
-		}); */
-		/* 구인영역 제공해요! */
+		});  /* 프리랜서 제공해요! */  
+
+		
+		$.ajax({
+			url :"requiresample.go",
+			type : "get",
+			datatype : "json",
+			success : function(data){				
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환			
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+			 	var tablevalue="<tr align='center'><td style='width: 20px;'>번호</td><td style='width: 120px;'>제목</td><td style='width: 30px;'>작성자</td><td style='width: 30px;'>등록일</td><td style='width: 20px;'>조회수</td></tr>";
+				
+			 	for(var i in json.requirearea_mainshowlist){
+				 	tablevalue += "<tr align='center'><td style='width: 20px;'>"+json.requirearea_mainshowlist[i].agency_no+"</td><td style='width: 120px;'><a href='BoardDetail.go?BoardNo="+json.requirearea_mainshowlist[i].agency_no+"'>"+json.requirearea_mainshowlist[i].agency_title+"</a></td><td style='width: 30px;'>"+json.requirearea_mainshowlist[i].agency_writer+
+				 	"</td><td style='width: 30px;'>"+json.requirearea_mainshowlist[i].agency_enrolldate+"</td><td style='width: 20px;'>"+json.requirearea_mainshowlist[i].agency_veiws+"</td></tr>";
+				}
+				$('.requirearea1').append(tablevalue);  
+				$('.requirearea2').append(tablevalue);  
+				$('.requirearea3').append(tablevalue);  
+			},
+			error : function(a,b,c){
+				alert(a+","+b+","+c);
+			}
+		}); /* 구인영역 제공해요! */
 		
 	});
 
@@ -781,7 +971,6 @@
 	<!-- -------------------------------------------------------------------------------------------------------------------  -->
   
  <hr>
- 	
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide"  data-ride="carousel" data-interval="false" >
 		<!-- Indicators -->
 		<ol class="carousel-indicators" hidden="true">
@@ -1094,14 +1283,9 @@
 							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
 								<!-- width: 40px;  -->
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								
+								<table id="ukjaetypical_table" class="supply_lifetable">
+
 								</table>		
 							</div>
 						</td>					 
@@ -1121,6 +1305,7 @@
 				<br>
 		    </div>			
 		    <div class="item"> 
+		    
  						<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="이미지준비중.." />
 					    <div class="row user-menu-container square">
 					        <div class="col-md-7 user-details">
@@ -1177,16 +1362,10 @@
 					        <div class="col-md-4 user-menu user-pad" align="center">
 					            <div class="user-menu-content active">
 					                <h3 style="margin-top: 10px;">
-					                    서비스 제공해요
+					                    제공합니다
 					                </h3>
-									<table id="ukjaetypical_table" border="1" style="width: 100%;">
-										<tr align="center"><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-										<tr align="center"><td>01</td><td>제공합니다1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-										<tr align="center"><td>02</td><td>제공합니다2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr align="center"><td>03</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr align="center"><td>04</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr align="center"><td>05</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-										<tr align="center"><td>06</td><td>제공합니다3</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
+									<table id="ukjaetypical_table" class="petarea_table" border="1" style="width: 100%;">
+									
 									</table>	
 					            </div>  
 					            <div class="user-menu-content">
@@ -1210,7 +1389,7 @@
 					            </div>
 					            <div class="user-menu-content">
 					                <h3>
-					                    반려동물 News
+					                    HOT ISSUE
 					                </h3>
 					                <div class="row">
 					                    <div class="col-md-6">
@@ -1295,14 +1474,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="gamearea_table">
+
 								</table>		
 							</div>	
 						</td>					
@@ -1328,102 +1501,28 @@
 			<div class="item"> <!-- 음악영역 -->
 			
 				<div style="height:800px; overflow: scroll;">
-					<table id="ukjae_TableAreaFiveth">					
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg"><br>
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>					
-							</td>
-							<td style="width: 5px; border: none;"></td>
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>
-							<td style="width: 5px; border: none;"></td> 			
-						</tr>
+					<table id="ukjae_TableAreaFiveth" class="musicarea_style1">					
+
 					</table>
+					
+					<div id="ukjae_Areaspace"></div>			
+						
+					<table id="ukjae_TableAreaFiveth" class="musicarea_style2">			
+							
+					</table>
+					
+					<div id="ukjae_Areaspace"></div>	
+								
+					<table id="ukjae_TableAreaFiveth" class="musicarea_style3">					
+
+					</table>
+					
+					<div id="ukjae_Areaspace"></div>		
+							
+					<table id="ukjae_TableAreaFiveth"  class="musicarea_style4">					
+					</table>
+					
 					<div id="ukjae_Areaspace"></div>				
-					<table id="ukjae_TableAreaFiveth">					
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td>
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>						
-						</tr>
-					</table>
-					<div id="ukjae_Areaspace"></div>				
-					<table id="ukjae_TableAreaFiveth">					
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td>
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>
-							<td style="width: 5px; border: none;"></td>			
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td> 	
-							<td style="width: 5px; border: none;"></td>	
-						</tr>
-					</table>
-					<div id="ukjae_Areaspace"></div>				
-					<table id="ukjae_TableAreaFiveth">					
-						<tr align="center">					
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>
-							<td style="width: 5px; border: none;"></td> 					
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠8.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠6.jpg">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td> 			
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠7.jpg" style="border:1px solid black;">
-							<font id="ukjaeTitle_effect">(보컬)발성의 기초~중급 <br>(제 공 자 : 정 욱 재) </font>						
-							</td>	
-							<td style="width: 5px; border: none;"></td>									
-						</tr>
-					</table>
-				<div id="ukjae_Areaspace"></div>				
 				
 				</div>
 				
@@ -1437,14 +1536,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(홈) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="rentalarea">
+
 								</table>	
 							</div>	
 						</td>					
@@ -1458,14 +1551,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(스포츠용품) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="rentalarea2">
+								
 								</table>	
 							</div>	
 						</td>					
@@ -1479,14 +1566,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(생활용품) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="rentalarea3">
+
 								</table>	
 							</div>	
 						</td>					
@@ -1500,14 +1581,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> 
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="rentalarea4">
+
 								</table>	
 							</div>	
 						</td>					
@@ -1521,30 +1596,8 @@
 			
 				<div align="center">
 				<h3> 추 천 여 행 가 이 더 </h3>
-				<table id="ukjae_TableAreaFiveth">					
-					<tr align="center">
-						<td style="width: 5px; border: none;"></td>	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠1.jpg"><br>
-						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>
-						</td> 	
-						<td style="width: 5px; border: none;"></td>	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠2.jpg">
-						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
-						</td>
-						<td style="width: 5px; border: none;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠3.jpg">
-						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
-						</td>	
-						<td style="width: 5px; border: none;"></td>	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠4.jpg">
-						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>						
-						</td>	
-						<td style="width: 5px; border: none;"></td> 	
-						<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/music/음악컨텐츠5.jpg">
-						<font id="ukjaeTitle_effect"> "가이드 해드립니다^^<br>(제 공 자 : 나 천 재)" </font>					
-						</td>
-						<td style="width: 5px; border: none;"></td> 			
-					</tr>
+				<table id="ukjae_TableAreaFiveth" class="travel_area1">					
+
 				</table>
 				</div>
 				<br>		
@@ -1554,32 +1607,24 @@
 						        <div class="container container-pad" id="property-listings" style="width: auto;">
 						            
 						              <div class="col-md-12" style="width: 100%;" align="center">
-						                <h2 id="ukjaeTitle_effect">여행 정보</h2>
+						                <h2>여행 정보</h2>
 						              </div>
 						              <hr style="clear: both;">
 						            
 						            <div class="row" style="width: auto;">
 						                <div class="col-sm-6" id="mainTravelTable" style="width: auto;"> 
-						                
-
-	
-									                	
 
 
 						                </div>
+									<div align="right" style="padding-right: 17px;"><a href="news_total.go"><font style="font-size: 25px;">뉴스전체보기</font></a></div>										                
 						            </div><!-- End row -->
 						        </div><!-- End container -->
 						    </div>				
 						</div>
 						<div style="width: 44%; height:40%; float: right; border: 1px solid gray; padding-bottom: 44px; padding-top: 44px;" align="center" > <!-- 오른쪽 영역1  -->
 							<font size="6" face="굴림" style="font-weight: bold;">여행가이드 제공해요</font>
-							<table class="jwj-innertable" border="1">
-								<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-								<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-								<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-								<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-								<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-								<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+							<table class="jwj-innertable" border="1" id="travel_area2">
+
 							</table>										
 						</div>
 				
@@ -1718,41 +1763,17 @@
 									        </section>
 								       </div>
 								    </div>
-								    <div style="width:100%; height: 10px; float: left;"> &nbsp; </div>
 								    
+				<div style="width:100%; height: 10px; float: left;"> &nbsp; </div>
+								    
+
 								    
 			</div>	
 			<div class="item" align="center">  <!-- 프리랜서 -->
 				<div>
 					<h2> 추 천 프 리 랜 서 </h2>
-					<table id="ukjae_TableAreaFiveth">					
-						<tr align="center">
-							<td style="width: 5px; border: none;"></td> 		
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리1.jpg"><br>
-							<font id="ukjaeTitle_effect"> "요리사 백종원" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리2.jpg"><br>
-							<font id="ukjaeTitle_effect"> "웹 디자이너" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리3.jpg"><br>
-							<font id="ukjaeTitle_effect"> "JAVA 프로그래머" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리2.jpg"><br>
-							<font id="ukjaeTitle_effect"> "웹 디자이너" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td> 	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리1.jpg"><br>
-							<font id="ukjaeTitle_effect"> "요리사 백종원" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td>  	
-							<td><img id="low_image4" alt="이미지 준비중" src="/goodluck/resources/common/img/free/프리랜서1.jpg"><br>
-							<font id="ukjaeTitle_effect"> "JAVA 프로그래머" </font>
-							</td> 	
-							<td style="width: 5px; border: none;"></td> 		
-						</tr>
+					<table id="ukjae_TableAreaFiveth" class="recommend_free">					
+
 					</table>			
 				</div>
 
@@ -1763,13 +1784,8 @@
 										<tr>
 											<td style="padding: 0;">
 												<font size="6" face="굴림" style="font-weight: bold;">프로그래머 서비스 제공합니다.</font>
-												<table class="jwj-innertable" border="1">
-													<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-													<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-													<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-													<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-													<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-													<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+												<table class="jwj-innertable" border="1" id="freearea">
+
 												</table>						
 											</td>
 										</tr>
@@ -1781,13 +1797,8 @@
 										<tr>
 											<td style="padding: 0;">
 												<font size="6" face="굴림" style="font-weight: bold;">홈페이지 디자인해드립니다.</font>
-												<table class="jwj-innertable" border="1">
-													<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-													<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-													<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-													<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-													<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-													<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+												<table class="jwj-innertable" border="1" id="freearea2">
+
 												</table>						
 											</td>
 										</tr>
@@ -1800,13 +1811,8 @@
 										<tr>
 											<td style="padding: 0;">
 												<font size="6" face="굴림" style="font-weight: bold;">작가 서비스 제공합니다.</font>
-												<table class="jwj-innertable" border="1">
-													<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-													<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-													<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-													<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-													<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-													<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+												<table class="jwj-innertable" border="1" id="freearea3">
+
 												</table>							
 											</td>
 										</tr>
@@ -1817,13 +1823,8 @@
 										<tr>
 											<td style="padding: 0;">
 												<font size="6" face="굴림" style="font-weight: bold;">번역 서비스 제공합니다.</font>								
-												<table class="jwj-innertable" border="1">
-													<tr><td>번호</td><td>제목</td><td>작성자</td><td>작성일</td><td>조회수</td></tr>
-													<tr><td>01</td><td>독신사 홈페이지 안내1</td><td>정욱재</td><td>2018-05-05</td><td>97</td></tr>
-													<tr><td>02</td><td>독신사 홈페이지 안내2</td><td>정욱재</td><td>2018-05-06</td><td>97</td></tr>
-													<tr><td>03</td><td>독신사 홈페이지 안내3</td><td>정욱재</td><td>2018-05-07</td><td>97</td></tr>
-													<tr><td>04</td><td>독신사 홈페이지 안내4</td><td>정욱재</td><td>2018-05-08</td><td>97</td></tr>
-													<tr><td>05</td><td>독신사 홈페이지 안내5</td><td>정욱재</td><td>2018-05-09</td><td>97</td></tr>
+												<table class="jwj-innertable" border="1" id="freearea4">
+
 												</table>								
 											</td>
 										</tr>
@@ -1839,14 +1840,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(1인대역) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="requirearea1">
+
 								</table>			
 							</div>
 						</td>					
@@ -1859,14 +1854,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(多,2인이상) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="requirearea2">
+
 								</table>		
 							</div>
 						</td>					
@@ -1879,14 +1868,8 @@
 						<td colspan="3" align="center"> 
 							<h4 style="margin-top: 0;"> 제공합니다(기타) </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->
-								<table id="ukjaetypical_table">
-									<tr align="center"><td style="width: 20px;">번호</td><td style="width: 120px;">제목</td><td style="width: 30px;">작성자</td><td style="width: 30px;">작성일</td><td style="width: 20px;">조회수</td></tr>
-									<tr align="center"><td style="width: 20px;">01</td><td style="width: 120px;">독신사 홈페이지 안내사항1</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">02</td><td style="width: 120px;">독신사 홈페이지 안내사항2</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">03</td><td style="width: 120px;">독신사 홈페이지 안내사항3</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">04</td><td style="width: 120px;">독신사 홈페이지 안내사항4</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">05</td><td style="width: 120px;">독신사 홈페이지 안내사항5</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
-									<tr align="center"><td style="width: 20px;">06</td><td style="width: 120px;">독신사 홈페이지 안내사항6</td><td style="width: 30px;">정욱재</td><td style="width: 30px;">2018-05-05</td><td style="width: 20px;">58</td></tr>
+								<table id="ukjaetypical_table" class="requirearea3">
+
 								</table>			
 							</div>
 						</td>					

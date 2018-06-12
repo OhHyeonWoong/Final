@@ -22,7 +22,7 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 	public OutsidedataServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
-	  
+	    
 	@Override
 	public List<LifeNews> lifeNewsDataThrows1() { 
 		//Ajax뉴스 리스트 뿌리기(생활영역 3개 1~3번)
@@ -106,18 +106,45 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 	public List<TravelNews> userSearchTitle4(TravelNews p4) {
 		return outsidedataDao.userSearchTitle4(p4);
 	}
-	
-	
-	@Override
-	public List<PetNews> userSearchWriter(String keyword) {
-		//뉴스검색(작성자 기준)
-		return outsidedataDao.userSearchWriter(keyword);
-	}
 
+	//뉴스검색(내용 기준) - 모든 영역에 접근함
 	@Override
-	public List<PetNews> userSearchDate(String keyword) {
-		//뉴스검색(작성일 기준)
-		return outsidedataDao.userSearchDate(keyword);
+	public List<PetNews> userSearchContents(PetNews p05) {
+		return outsidedataDao.userSearchContents(p05);
 	}
+	@Override
+	public List<LifeNews> userSearchContents2(LifeNews p06) {
+		return outsidedataDao.userSearchContents2(p06);
+	}
+	@Override
+	public List<GameNews> userSearchContents3(GameNews p07) {
+		return outsidedataDao.userSearchContents3(p07);
+	}
+	@Override
+	public List<TravelNews> userSearchContents4(TravelNews p08) {
+		return outsidedataDao.userSearchContents4(p08);
+	}
+	
+	//뉴스검색(출처 기준) - 모든 영역에 접근함
+	@Override
+	public List<PetNews> userSearchOrign(PetNews p01) {		
+		return outsidedataDao.userSearchOrign(p01);
+	}
+	
+	@Override
+	public List<LifeNews> userSearchOrign2(LifeNews p02) {		
+		return outsidedataDao.userSearchOrign2(p02);
+	}
+	
+	@Override
+	public List<GameNews> userSearchOrign3(GameNews p03) {		
+		return outsidedataDao.userSearchOrign3(p03);
+	}
+	
+	@Override
+	public List<TravelNews> userSearchOrign4(TravelNews p04) {		
+		return outsidedataDao.userSearchOrign4(p04);
+	}
+	
 
 }

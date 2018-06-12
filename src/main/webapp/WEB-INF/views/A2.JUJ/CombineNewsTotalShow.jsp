@@ -21,7 +21,7 @@
 				   
 				   for(var i in json.petNewsList){
 					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsList[i].osp_news_datano+"'>"+
-							  "<img id='low_image3' src='"+json.petNewsList[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.petNewsList[i].osp_news_datatitle+"<br>출처 : "+json.petNewsList[i].osp_news_origin+"</font></div></td>";
+							  "<img id='low_image3' src='"+json.petNewsList[i].osp_news_pic1+"'></a><div>"+json.petNewsList[i].osp_news_datatitle+"<br>출처 : "+json.petNewsList[i].osp_news_origin+"</div></td>";
 				   }	
 				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
 				   	  $('#ukjae_TableAreaFiveth').append(htmlStr);
@@ -41,7 +41,7 @@
 				   
 				   for(var i in json.lifeNewsList){
 					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='lifenewsdetail.go?newspk="+json.lifeNewsList[i].osp_news_datano+"'>"+
-							  "<img id='low_image3' src='"+json.lifeNewsList[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.lifeNewsList[i].osp_news_datatitle+"<br>출처 : "+json.lifeNewsList[i].osp_news_origin+"</font></div></td>";
+							  "<img id='low_image3' src='"+json.lifeNewsList[i].osp_news_pic1+"'></a><div>"+json.lifeNewsList[i].osp_news_datatitle+"<br>출처 : "+json.lifeNewsList[i].osp_news_origin+"</div></td>";
 				   }	
 				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
 				   	  $('#ukjae_TableAreaSixeth').append(htmlStr);
@@ -61,7 +61,7 @@
 				   
 				   for(var i in json.gameNewsBasic){
 					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='gamenewsdetail.go?newspk="+json.gameNewsBasic[i].osp_news_datano+"'>"+
-							  "<img id='low_image3' src='"+json.gameNewsBasic[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.gameNewsBasic[i].osp_news_datatitle+"<br>출처 : "+json.gameNewsBasic[i].osp_news_origin+"</font></div></td>";
+							  "<img id='low_image3' src='"+json.gameNewsBasic[i].osp_news_pic1+"'></a><div>"+json.gameNewsBasic[i].osp_news_datatitle+"<br>출처 : "+json.gameNewsBasic[i].osp_news_origin+"</div></td>";
 				   }	
 				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
 				   	  $('#ukjae_TableAreaSeventh').append(htmlStr);
@@ -81,7 +81,7 @@
 				   
 				   for(var i in json.travelNewsAll){
 					  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='travelnewsdetail.go?newspk="+json.travelNewsAll[i].osp_news_datano+"'>"+
-							  "<img id='low_image3' src='"+json.travelNewsAll[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.travelNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.travelNewsAll[i].osp_news_origin+"</font></div></td>";
+							  "<img id='low_image3' src='"+json.travelNewsAll[i].osp_news_pic1+"'></a><div>"+json.travelNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.travelNewsAll[i].osp_news_origin+"</div></td>";
 				   }	
 				   	  htmlStr +="<td style='width:5px; border:none;'></tr>";
 				   	  $('#ukjae_TableAreaNineth').append(htmlStr);
@@ -166,28 +166,24 @@
 			width: 153px;
 			height: 59px;
 		}
-		ol .n1:hover{
+		/* ol .n1:hover{
 			background:green;
-			color: white;
 		}
-		
-		ol .n1 .na_1:hover {
-			background-color: orange;
+		ol .n2:hover{
+			background:silver;
 		}
-		ol .n2 .na_2:hover {
-			background-color: olive;
+		ol .n3:hover{
+			background:aqua;
 		}
-		ol .n3 .na_3:hover {
-			background-color: silver;
-		}
-		ol .n4 .na_4:hover {
-			background-color: aqua;
-		}
+		ol .n4:hover{
+			background:olive;
+		} */
+
 		.C_title{
-		  background: #3a6186; /* fallback for old browsers */
-		  background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
-		  background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */		
-	  	  color : #fff;  
+/* 		  background: #3a6186; 
+		  background: -webkit-linear-gradient(to left, #3a6186 , #89253e); 
+		  background: linear-gradient(to left, #3a6186 , #89253e); 		
+*/	  	  
 	  	  border-radius: 10px;  
 		}
 		#low_image3 {
@@ -221,21 +217,21 @@
 	<body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp"%>
 
-	<div class="container" style="border: 1px dotted gray; border-radius: 42px;">
-		<div align="center" class="C_title" style="width: 34%; padding-left: 7px; background-color: yellow; margin-left: 34%; margin-top: 10px;">
-			<font style="font-size: 35px;"> News Information </font> <i class="fa fa-paper-plane" aria-hidden="true"></i> 
+	<div class="container" style="border: 1px dotted gray; border-radius: 80px;">
+		<div align="center" class="C_title" style="width: 34%; padding-left: 7px;  margin-left: 34%; margin-top: 20px;">
+			<font style="font-size: 38px;"> News Information </font> <i class="fa fa-paper-plane" aria-hidden="true" style="font-size: 35px;"></i> 
 		</div>
 		<div align="right">
 			<table style="margin-right: 3%;">
 				<tr>
 					<td>
 						<select class="optionValue">
-							<option value="1">제목</option>
-							<option value="2">작성자</option>
-							<option value="3">작성일</option>
+							<option value="1">제 목</option>
+							<option value="2">내 용</option>
+							<option value="3">출 처</option>
 						</select>		
 						<input type="text" class="keyword_input"> 	
-						<a href="javascript:abc();">검색</a>
+						<a href="javascript:abc();"><i class="glyphicon glyphicon-search"></i></a>
 						<!-- <button onclick="TotalSearch();">Search</button> -->		
 					</td>
 				</tr>
@@ -244,7 +240,7 @@
 		</div>
 		<br>
 		<script type="text/javascript">
-			function abc(){
+			function abc(){ /* 검색에대한 결과물을 뿌려주는 Ajax */
 				alert("유저께서 통합검색을 시도하셨습니다.");
 				$.ajax({
 					url : "fowordingkeyword.go",
@@ -262,7 +258,7 @@
 						   
 						   for(var i in json.SearchResult){
 							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='searchdetail.go?newspk="+json.SearchResult[i].osp_news_datano+"&newscategory="+json.SearchResult[i].osp_news_data+"'>"+
-									  "<img id='low_image3' src='"+json.SearchResult[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.SearchResult[i].osp_news_datatitle+"<br>출처 : "+json.SearchResult[i].osp_news_origin+"</font></div></td>";
+									  "<img id='low_image3' src='"+json.SearchResult[i].osp_news_pic1+"'></a><div>"+json.SearchResult[i].osp_news_datatitle+"<br>출처 : "+json.SearchResult[i].osp_news_origin+"</div></td>";
 						   }	
 						   	  htmlStr +="</table>";
 						   	  $('.center').html(htmlStr);
@@ -304,8 +300,109 @@
                </li>	                
            </ul>  --> 			
 		</div>
+		<script type="text/javascript"> /* 영역별 리스트 가져오기 */
+			function checkOne(){
+				alert("LifeArea List Loading..");	
+				$.ajax({
+					url : "lifeNews.go",
+					type : "get",
+					datatype : "json",
+					success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   
+						   $('.center').empty();
+						   var htmlStr ="<table id='SerchResultList'>";
+						   
+						   for(var i in json.lifeNewsList){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='lifenewsdetail.go?newspk="+json.lifeNewsList[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.lifeNewsList[i].osp_news_pic1+"'></a><div>"+json.lifeNewsList[i].osp_news_datatitle+"<br>출처 : "+json.lifeNewsList[i].osp_news_origin+"</div></td>";
+						   }	
+						   	  htmlStr +="</table>";
+						   	  $('.center').html(htmlStr);
+					},						
+					error : function(a,b,c){  
+						alert(a+","+b+","+c);
+					}			
+				}); 	
+			}
+			function checkTwo(){
+				alert("PetArea List Loading..");	
+				$.ajax({
+					url : "petnewslist.go", 
+					type : "get",
+					datatype : "json",
+					success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   
+						   $('.center').empty();
+						   var htmlStr ="<table id='SerchResultList'>";
+						   
+						   for(var i in json.petNewsAll){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsAll[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.petNewsAll[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.petNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.petNewsAll[i].osp_news_origin+"</font></div></td>";
+						   }	
+					   	   htmlStr +="</table>";
+					   	   $('.center').html(htmlStr);
+					},error : function(a,b,c){
+						alert(a+","+b+","+c);
+					}
+				}); 
+			}
+			function checkThree(){
+				alert("GameArea List Loading..");
+				$.ajax({
+					url : "gameNews.go",
+					type : "get",
+					datatype : "json",
+					success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   
+						   $('.center').empty();
+						   var htmlStr ="<table id='SerchResultList'>";
+						   
+						   for(var i in json.gameNewsBasic){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='gamenewsdetail.go?newspk="+json.gameNewsBasic[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.gameNewsBasic[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.gameNewsBasic[i].osp_news_datatitle+"<br>출처 : "+json.gameNewsBasic[i].osp_news_origin+"</font></div></td>";
+						   }	
+						   	  htmlStr +="</table>";
+						   	  $('.center').html(htmlStr);
+					},	
+					error : function(a,b,c){
+						alert(a+","+b+","+c);
+					}			
+				}); 				
+			}
+			function checkFour(){
+				alert("TravelArea List Loading..");	
+				$.ajax({
+					url : "travelnewslist.go",
+					type : "get",
+					datatype : "json",
+					success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   
+						   $('.center').empty();
+						   var htmlStr ="<table id='SerchResultList'>";
+						   
+						   for(var i in json.travelNewsAll){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='travelnewsdetail.go?newspk="+json.travelNewsAll[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.travelNewsAll[i].osp_news_pic1+"'></a><div><font id='ukjaeTitle_effect'>"+json.travelNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.travelNewsAll[i].osp_news_origin+"</font></div></td>";
+						   }	
+						   	  htmlStr +="</table>";
+						   	  $('.center').html(htmlStr);
+					},	
+					error : function(a,b,c){
+						alert(a+","+b+","+c);
+					}			
+				}); 				
+			}
+		</script>
 		
-		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 15px;">
+		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 15px;" align="left">
 			<table id="SerchResultList">
 			
 			</table>	

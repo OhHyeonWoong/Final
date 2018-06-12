@@ -219,7 +219,7 @@ public class FaqController {
 	}
 	
 	@RequestMapping(value="changeFaqContents5.go",method=RequestMethod.GET) //여럿 리스트에서 수정하는 것(신고영역)
-	public ModelAndView reDefineFaq5(@RequestParam("f_pk_r")String userselectPk, @RequestParam("f_title_r")String f_title,@RequestParam("f_category_r")String f_category, @RequestParam("f_contents_r")String f_contents,ModelAndView mv) {
+	public ModelAndView reDefineFaq5(@RequestParam("f_pk_g")String userselectPk, @RequestParam("f_title_g")String f_title,@RequestParam("f_category_g")String f_category, @RequestParam("f_contents_g")String f_contents,ModelAndView mv) {
 		
 		int parsingPk = Integer.parseInt(userselectPk);
 		System.out.println("수정 pk번호 : "+parsingPk);
