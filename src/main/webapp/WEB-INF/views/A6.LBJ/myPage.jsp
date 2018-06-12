@@ -502,7 +502,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<div style="width : 200px; height : 200px; margin: 0 auto;">
 							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">

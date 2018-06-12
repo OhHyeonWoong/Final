@@ -288,8 +288,10 @@ public class MemberController {
 		System.out.println("path : " + path);
 		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
 		String fileName = file.getOriginalFilename();
+		System.out.println("fileName = " + fileName);
+		System.out.println("file = " + file);
 		/////////////////////////////////////////////////////////
-		if((fileName != null) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+		if((!fileName.equals(null)) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
 				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
 				fileName.toLowerCase().endsWith(".bmp")) {
 			if((fileName != memberProfile)) {
