@@ -190,7 +190,8 @@ public class MemberController {
 				System.out.println("login통계 테이블 갱신 시작");
 				//해당 아이디가 존재하는지 확인 (sysdate로 비교)
 				LoginStatistics idYNCheck = memberService.selectIdYNCheck(m.getMember_id());
-				if(idYNCheck == null) {
+				System.out.println("로그인 진행 중... m.getMemberStatus = " + m.getMember_status());
+				if(idYNCheck == null && m.getMember_status() != 3) {
 					//존재하지 않으면 테이블에 insert
 					int insertResult = memberService.insertLoginStatistics(m.getMember_id());
 					if(insertResult > 0) {
@@ -199,7 +200,7 @@ public class MemberController {
 						System.out.println("통계 테이블 갱신 실패");
 					}
 				}else {
-					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재");
+					System.out.println("loginStatistics 테이블에 해당 일자 ID 이미 존재하거나 관리자임");
 				}
 				System.out.println("login통계 테이블 갱신 끝");				
 				/////////////////////////////////////////
@@ -270,7 +271,7 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
-	//회원정보 수정 메소드(병준느님 작성 전동기 일부 수정)
+	//회원정보 수정 메소드(전동기 일부 수정)
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
@@ -288,7 +289,7 @@ public class MemberController {
 		//////////////확장자 체크를 위해 미리 빼놓음////////////////////////
 		String fileName = file.getOriginalFilename();
 		/////////////////////////////////////////////////////////
-		if((fileName != "") && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+		if((fileName != null) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
 				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
 				fileName.toLowerCase().endsWith(".bmp")) {
 			if((fileName != memberProfile)) {
@@ -306,7 +307,22 @@ public class MemberController {
 			}else {
 				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
 			}
-			int result = memberService.updateMemberInfo(m);
+			int result=0;
+			System.out.println("본래 주소: " + request.getParameter("former_member_address"));
+			System.out.println("수정 된 주소: " + request.getParameter("member_address1")+request.getParameter("member_address2"));
+			
+			
+			if(request.getParameter("postCard")==null) {
+			System.out.println("본래 주소 저장됨: " + request.getParameter("former_member_address"));
+			
+			m.setMember_address(request.getParameter("former_member_address"));
+			result = memberService.updateMemberInfo(m);
+			}else if(request.getParameter("postCard")!=null) {
+			System.out.println("수정 주소 저장됨: " + request.getParameter("former_member_address"));
+			
+			m.setMember_address(request.getParameter("member_address1")+request.getParameter("member_address2"));
+			result = memberService.updateMemberInfo(m);
+			}
 			if(result > 0) {
 				System.out.println("멤버 정보 수정 성공!");
 				//세션 정보 갱신을 해줘야됨
@@ -318,10 +334,7 @@ public class MemberController {
 				    member.setMember_pw(updateMem.getMember_pw());
 				    member.setMember_phone(updateMem.getMember_phone());
 				    member.setMember_renamephoto(updateMem.getMember_renamephoto());
-				    System.out.println();
-				    
-				    /*member.setMember_address();*/
-				    
+				    member.setMember_address(updateMem.getMember_address());
 				}
 				/*if(m != null) {
 					//기존 세션 없앰

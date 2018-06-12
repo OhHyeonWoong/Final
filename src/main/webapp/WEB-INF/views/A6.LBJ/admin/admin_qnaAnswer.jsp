@@ -109,7 +109,7 @@
 					for(var i in json.end){
 						console.log("json.end.question_no = " + json.end[i].question_no);
 						htmlStr += '<tr><td class="lbj-td">'+json.end[i].question_category+'</td>'+
-						'<td class="lbj-td"><a href="#">'+json.end[i].question_title+'</a></td>'+
+						'<td class="lbj-td">'+json.end[i].question_title+'</td>'+
 						'<td class="lbj-td">'+json.end[i].question_writer+'</td>'+
 						'<td class="lbj-td">'+json.end[i].question_date+'</td></tr>';
 					}
@@ -250,7 +250,7 @@
 						<c:forEach items="${qnaEnd}" var="end">
 							<tr>
 								<td class="lbj-td">${end.question_category}</td>
-								<td class="lbj-td"><a href="#">${end.question_title}</a></td>
+								<td class="lbj-td">${end.question_title}</td>
 								<td class="lbj-td">${end.question_writer}</td>
 								<td class="lbj-td">${end.question_date}</td>
 							</tr>
