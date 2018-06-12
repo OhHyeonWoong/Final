@@ -88,7 +88,25 @@
 								      // 로그인 창을 띄웁니다.
 								      Kakao.Auth.login({
 								        success: function(authObj) {
-								          alert(JSON.stringify(authObj));
+								          console.log(authObj); 
+								          console.log("access_token="+authObj.access_token);
+								          console.log("refresh_token="+authObj.refresh_token);
+								          Kakao.API.request({
+								              url: '/v1/user/me',
+								              success: function(res) {
+								              
+								              var json = JSON.parse(JSON.stringify(res));
+								              var nickname=json.properties.nickname;
+								              var email=json.kaccount_email;
+								              console.log(json);
+								              console.log(json.kaccount_email);
+								              console.log(json.properties.nickname);
+								              
+								              },
+								              fail: function(error) {
+								                alert(JSON.stringify(error));
+								              }
+								            });
 								        },
 								        fail: function(err) {
 								          alert(JSON.stringify(err));
