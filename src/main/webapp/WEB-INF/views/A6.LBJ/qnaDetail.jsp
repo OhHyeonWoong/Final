@@ -46,10 +46,18 @@
 								<input type="radio" id="r4" name="satisfaction" value="불만족" disabled>불만족&nbsp;&nbsp;&nbsp;
 								<input type="radio" id="r5" name="satisfaction" value="불만족" disabled>매우불만족&nbsp;&nbsp;&nbsp;
 							</c:if>
+							<c:if test="${myDetailQnaAnswer.answer_good eq null}">
+								<input type="radio" id="r1" name="satisfaction" value="매우 만족">매우 만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r2" name="satisfaction" value="만족">만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r3" name="satisfaction" value="보통">보통&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r4" name="satisfaction" value="불만족">불만족&nbsp;&nbsp;&nbsp;
+								<input type="radio" id="r5" name="satisfaction" value="불만족">매우불만족&nbsp;&nbsp;&nbsp;
+							</c:if>
 							<script type="text/javascript">
 								$(function(){
-									var radioVar = $('input[type="radio"][name="satisfaction"]').val(); 
-									switch(radioVar){
+									/* var radioVar = $('input[type="radio"][name="satisfaction"]').val(); */
+									var satisfaction = "${myDetailQnaAnswer.answer_good}";
+									switch(satisfaction){/* radioVar */
 									case "매우 만족":
 										$('#r1').attr('checked',true);
 										break;
@@ -67,11 +75,35 @@
 										break;
 									}
 								});
+								
+								function fnSatisfactionCheck(){
+									var radioVar = $('input[type="radio"][name="satisfaction"]:checked').val(); 
+									console.log("만족도체크 선택된 val = " + radioVar);
+									
+									//location.href="lbjMyQnaSatisfactionCheck.go?answer_good="+radioVar+"&question_no=${myDetailQna.question_no}";
+									$.ajax({
+										url:"lbjMyQnaSatisfactionCheck.go",
+										type:"get",
+										data:{
+											answer_good: radioVar,
+											question_no: "${myDetailQna.question_no}"
+										},
+										success:function(data){
+											alert(data);
+											if(data == '만족도 적용 성공'){
+												location.href="lbjmypage.go?member_id=${loginUser.member_id}"	
+											}
+										},
+										error:function(a,b,c){
+											alert("a = " + a + " , b = " + b + " , c = " + c);
+										}
+									});
+								}
 							</script>
 						</td>
 						<td>
 							<c:if test="${empty myDetailQnaAnswer.answer_good}">
-								<button onclick="">만족도 체크</button>
+								<button class="btn btn-default" onclick="fnSatisfactionCheck();">만족도 체크</button>
 							</c:if>
 							<c:if test="${myDetailQnaAnswer.answer_good != null}">
 								<button onclick="" disabled>만족도 체크</button>
@@ -80,6 +112,8 @@
 					</tr>
 				</table>
 			</fieldset>
+			<br>
+			<button class="btn btn-success" onclick="javascript:history.go(-1);" style="margin-left:500px;">돌아가기</button>
 		</div>
 	</div>
 	<br><br>

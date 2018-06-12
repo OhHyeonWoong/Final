@@ -15,6 +15,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 
@@ -83,6 +84,12 @@ public class BoardService {
 
 		return boardDao.getAgencyCountBig(string);
 	}
+	
+	public List<Board> search(HashMap<Object, Object> map) {
+		
+		return boardDao.search(map);
+	}
+
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
@@ -149,9 +156,9 @@ public class BoardService {
 
 
 
-	public void updateAgencyStatus(HashMap<Object,Object> map) {
+	public int updateAgencyStatus(HashMap<Object,Object> map) {
 		// TODO Auto-generated method stub
-		boardDao.updateAgencyStatus(map);
+		return 	boardDao.updateAgencyStatus(map);
 	}
 
 	public int insertNewTradeDetail(Trade_detail td) {
@@ -220,6 +227,20 @@ public class BoardService {
 	}
 
 
+	public int insertBoardlog(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.insertBoardlog(pk);
+	}
+
+	public int changeRESERVATION(int pk) {
+		// TODO Auto-generated method stub
+		return boardDao.changeRESERVATION(pk);
+	}
+
+	public int insertReview(Review re) {
+		// TODO Auto-generated method stub
+		return boardDao.insertReview(re);
+	}
 
 
 }

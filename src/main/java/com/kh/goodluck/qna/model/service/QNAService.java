@@ -19,4 +19,5 @@ public interface QNAService {
 	public abstract int selectMyQnaCount(String member_id);
 	//qna 삭제 버튼 누르면 동작
 	public abstract int deleteQna(HashMap<String,Object> map);
+	public abstract int updateMyQnaSatisfaction(QnaAnswer qa);
 }

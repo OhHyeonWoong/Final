@@ -175,4 +175,18 @@ public class QNAController {
 		out.close();
 	}
 	
+	@RequestMapping(value="lbjMyQnaSatisfactionCheck.go")
+	public void myQnaSatisfactionCheck(QnaAnswer qa,
+									HttpServletResponse response) throws IOException{
+		System.out.println("myQnaSatisfactionCheck qa = " + qa);
+		int updateResult = qnaService.updateMyQnaSatisfaction(qa);
+		PrintWriter out = response.getWriter();
+		if(updateResult > 0) {
+			out.print("만족도 적용 성공");
+		}else {
+			out.print("만족도 적용 실패");
+		}
+		out.flush();
+		out.close();
+	}
 }

@@ -55,6 +55,14 @@
 			question_no = #{item}
 		</foreach>
 	</delete>
+	
+	<update id="updateMyQnaSatisfaction" parameterType="QnaAnswer" flushCache="true">
+		<![CDATA[
+			update question_answer
+			set answer_good = #{answer_good}
+			where question_no = #{question_no}
+		]]>
+	</update>
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
 		values 

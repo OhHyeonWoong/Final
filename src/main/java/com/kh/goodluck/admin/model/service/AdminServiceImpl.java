@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.goodluck.admin.model.dao.AdminDao;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -44,5 +45,15 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public QNA selectAdminQnaDetail(int question_no) {
 		return adminDao.selectAdminQnaDetail(question_no);
+	}
+	
+	@Override
+	public int insertAdminQnaWrite(QnaAnswer qa) {
+		return adminDao.insertAdminQnaWrite(qa);
+	}
+	
+	@Override
+	public int updateQuestion(int question_no) {
+		return adminDao.updateQuestion(question_no);
 	}
 }
