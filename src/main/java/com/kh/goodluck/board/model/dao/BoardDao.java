@@ -123,60 +123,6 @@ public class BoardDao {
 		return sqlSession.selectList("search", map);
 	}
 	
-	
-	public List<Board> mainShowLifeListPickUp() {
-		//메인페이지에 보여질 생활영역_제공해요 리스트추출
-		return sqlSession.selectList("mainPageShowLifeListPic");
-	}
-
-  
-
-	public List<Board> mainShowPetListPickUp() {
-		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
-		return sqlSession.selectList("mainPageShowPetListPic");
-	}
-
-
-
-	public List<Board> mainShowGameListPickUp() {
-		//메인페이지에 보여질 게임영역_제공해요 리스트추출
-		return sqlSession.selectList("mainPageShowGameListPic");
-	}
-
-	public List<Board> mainShowMusicListPickUp() {
-		//메인페이지에 보여질 음악영역_제공해요 리스트추출 5개	
-		return sqlSession.selectList("mainPageShowMusicListPic1");
-	}
-
-	public List<Board> mainShowMusicListPickUp2() {
-		//메인페이지에 보여질 음악영역_제공해요 리스트추출 4개			
-		return sqlSession.selectList("mainPageShowMusicListPic2");
-	}
-
-	public List<Board> mainShowRentListPickUp() {
-		//메인페이지에 보여질 렌트영역_제공해요 리스트추출		
-		return sqlSession.selectList("mainPageShowRentListPic");
-	}
-	
-	public List<Board> mainShowTravelListPickUp() {
-		//메인페이지에 보여질 여행영역_제공해요 리스트추출		
-		return sqlSession.selectList("mainPageShowTravelListPic");
-	}
-	
-	public List<Board> mainShowFreeListPickUp() {
-		//메인페이지에 보여질 프리랜서영역_제공해요 리스트추출				
-		return sqlSession.selectList("mainPageShowFreeListPic");
-	}
-
-	public List<Board> mainShowRequireListPickUp() {
-		//메인페이지에 보여질 구인영역_제공해요 리스트추출
-		return sqlSession.selectList("mainPageShowRequireListPic");
-	}
-
-
-
-<<<<<<< HEAD
-=======
 	public Board getBoardInfoByNo(int pk) {
 		// 보드pk로 보드 정보구하기.
 		return sqlSession.selectOne("getBoardInfoByNo",pk);
@@ -306,7 +252,55 @@ public class BoardDao {
 	}
 
 
->>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
+	//메인영역에 보여지는 데이터 Ajax
+	public List<Board> mainShowLifeListPickUp() {
+		//메인페이지에 보여질 생활영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowLifeListPic");
+	}
+
+  
+
+	public List<Board> mainShowPetListPickUp() {
+		//메인페이지에 보여질 반려동물영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowPetListPic");
+	}
+
+
+
+	public List<Board> mainShowGameListPickUp() {
+		//메인페이지에 보여질 게임영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowGameListPic");
+	}
+
+	public List<Board> mainShowMusicListPickUp() {
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출 5개	
+		return sqlSession.selectList("mainPageShowMusicListPic1");
+	}
+
+	public List<Board> mainShowMusicListPickUp2() {
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출 4개			
+		return sqlSession.selectList("mainPageShowMusicListPic2");
+	}
+
+	public List<Board> mainShowRentListPickUp() {
+		//메인페이지에 보여질 렌트영역_제공해요 리스트추출		
+		return sqlSession.selectList("mainPageShowRentListPic");
+	}
+	
+	public List<Board> mainShowTravelListPickUp() {
+		//메인페이지에 보여질 여행영역_제공해요 리스트추출		
+		return sqlSession.selectList("mainPageShowTravelListPic");
+	}
+	
+	public List<Board> mainShowFreeListPickUp() {
+		//메인페이지에 보여질 프리랜서영역_제공해요 리스트추출				
+		return sqlSession.selectList("mainPageShowFreeListPic");
+	}
+
+	public List<Board> mainShowRequireListPickUp() {
+		//메인페이지에 보여질 구인영역_제공해요 리스트추출
+		return sqlSession.selectList("mainPageShowRequireListPic");
+	}
 
 	
 }
