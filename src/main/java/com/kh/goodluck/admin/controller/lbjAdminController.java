@@ -55,7 +55,7 @@ public class lbjAdminController {
 		}
 		
 		//////////////
-		mv.addObject("adminListCount", count.size());
+		mv.addObject("adminCount", count);
 		mv.addObject("adminVisitCount", countInt);
 		mv.addObject("adminDate", dateStr);
 		mv.setViewName("A6.LBJ/admin/admin_loginStatistics");
