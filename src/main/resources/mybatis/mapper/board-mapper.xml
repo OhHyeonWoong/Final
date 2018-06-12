@@ -88,6 +88,12 @@
 		]]>
 	</select>
 	
+	<select id="search" parameterType="Board" resultMap="BoardResult">
+		<![CDATA[
+			#{query}
+		]]>
+	</select>
+	
 	<select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
 		<![CDATA[
 			select * from bigcategory
@@ -185,11 +191,9 @@ update AGENCY set AGENCY_VEIWS =
 (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
  where AGENCY_NO = #{pk}
 </update>
-<update id="updateAgencyStatus" parameterType="hashmap">
+<select id="updateAgencyStatus" parameterType="hashmap">
 update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
-</update>
-
-
+</select>
 
 
 <insert id="insertchatroom" parameterType="hashmap">
