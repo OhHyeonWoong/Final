@@ -46,9 +46,11 @@ public class OutsidedataController {
 		/*System.out.println("유저가 선택한 select문 : "+useroption);
 		System.out.println("유저가 입력한 검색어 : "+keyword);*/
 		
+		int useroption_parse = Integer.parseInt(useroption);
+		
 		// 1 : 제목기준 키워드검색 , 2 : 기사내용기준 키워드검색 , 3 : 출처기준 키워드검색
-		switch (useroption) { //유저가 선택한 것에 따라 검색옵션이 3가지로 나뉨
-		case "1" : 
+		switch (useroption_parse) { //유저가 선택한 것에 따라 검색옵션이 3가지로 나뉨
+		case 1 : 
 			PetNews p1 = new PetNews(keyword);
 			LifeNews p2 = new LifeNews(keyword);
 			GameNews p3 = new GameNews(keyword);
@@ -142,7 +144,7 @@ public class OutsidedataController {
 			out.close();	
 			
 			break;
-		case "2":  /*2 : 기사내용기준 키워드검색 */
+		case 2 :  /*2 : 기사내용기준 키워드검색 */
 			PetNews p05 = new PetNews(keyword, keyword, keyword, keyword);
 			LifeNews p06 = new LifeNews(keyword, keyword, keyword, keyword);
 			GameNews p07 = new GameNews(keyword, keyword, keyword, keyword);
@@ -235,7 +237,7 @@ public class OutsidedataController {
 			out3.close();
 			break;
 			
-		case "3": 
+		case 3 : 
 
 			PetNews p01 = new PetNews();
 			LifeNews p02 = new LifeNews();
