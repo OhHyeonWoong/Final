@@ -22,8 +22,8 @@
 		                    <a href="faqPage.go" class="list-group-item">작업 4: FAQ게시판작업 </a>
 		                    <a href="RearchResult.go" class="list-group-item">작업 5 : 포털싸이트 비슷하게 검색결과 페이지View</a>
 		                    <a href="NoticeDetail.go" class="list-group-item">작업 6 : 공지사항 상세보기페이지 구현 </a>
-		                    <a href="Chatting.go" class="list-group-item"> - </a>
-		                    <a href="Chatting.go" class="list-group-item"> - </a>
+		                    <a href="Notice.go" class="list-group-item"> 작업7 : 공지사항 전체리스트로이동 </a>
+		                    <a href="petnewslist.go" class="list-group-item"> 작업8 : 펫News 꺼내오기 </a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>
 		                    <a href="Chatting.go" class="list-group-item"> - </a>

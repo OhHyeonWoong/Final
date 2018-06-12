@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="outside_life_news">
+	
+	<resultMap type="LifeNews" id="LifeNewsList">
+   		<result property="osp_news_datano" column="osp_news_datano"/>
+   		<result property="osp_news_data" column="osp_news_data"/>
+   		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
+   		<result property="osp_news_content1" column="osp_news_content1"/>
+   		<result property="osp_news_content2" column="osp_news_content2"/>
+   		<result property="osp_news_content3" column="osp_news_content3"/>
+   		<result property="osp_news_content4" column="osp_news_content4"/>
+   		<result property="osp_news_pic1" column="osp_news_pic1"/>
+   		<result property="osp_news_pic2" column="osp_news_pic2"/>
+   		<result property="osp_news_pic3" column="osp_news_pic3"/>
+   		<result property="osp_news_pic4" column="osp_news_pic4"/>
+   		<result property="osp_news_date" column="osp_news_date"/>
+   		<result property="osp_news_origin" column="osp_news_origin"/>
+	</resultMap> 
+	
+	<resultMap type="LifeNews" id="LifeNewsOne">
+   		<id property="osp_news_datano" column="osp_news_datano"/>
+   		<result property="osp_news_data" column="osp_news_data"/>
+   		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
+   		<result property="osp_news_content1" column="osp_news_content1"/>
+   		<result property="osp_news_content2" column="osp_news_content2"/>
+   		<result property="osp_news_content3" column="osp_news_content3"/>
+   		<result property="osp_news_content4" column="osp_news_content4"/>
+   		<result property="osp_news_pic1" column="osp_news_pic1"/>
+   		<result property="osp_news_pic2" column="osp_news_pic2"/>
+   		<result property="osp_news_pic3" column="osp_news_pic3"/>
+   		<result property="osp_news_pic4" column="osp_news_pic4"/>
+   		<result property="osp_news_date" column="osp_news_date"/>
+   		<result property="osp_news_origin" column="osp_news_origin"/>
+	</resultMap> 
+	
+	
+	
+	<select id="lifeNewsList" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where rnum>=1 and rnum<=6]]>			
+	</select>
+	
+	<select id="lifeNewsList1" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where rnum>=1 and rnum<=3]]>			
+	</select>
+	
+	<select id="lifeNewsList2" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where rnum>=4 and rnum<=6]]>	
+	</select>
+	
+	<select id="lifenewsOne" parameterType="integer" resultMap="LifeNewsOne">
+		<![CDATA[select * from outside_life_news where osp_news_datano=#{osp_news_datano}]]>		
+	</select>
+	
+	<select id="userSearchTitle2" parameterType="LifeNews" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where osp_news_datatitle like '%'||#{osp_news_datatitle}||'%']]>	
+	</select>	
+	
+	<select id="userSearchContents2" parameterType="LifeNews" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where (osp_news_content1 like '%'||#{osp_news_content1}||'%' 
+		or osp_news_content2 like '%'||#{osp_news_content2}||'%' or osp_news_content3 like '%'||#{osp_news_content3}||'%' or osp_news_content4 like '%'||#{osp_news_content4}||'%')]]>	
+	</select>	
+	
+	<select id="userSearchOrign2" parameterType="LifeNews" resultMap="LifeNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_life_news) where osp_news_origin like '%'||#{osp_news_origin}||'%']]>	
+	</select>	
+	
+	<!-- <select id="petNewsList" resultMap="PetNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where rnum>=1 and rnum<=6]]>	
+	</select>
+
+	<select id="petnewsOne" parameterType="integer" resultMap="PetNewsOne">
+		<![CDATA[select * from outside_pet_news where osp_news_datano=#{osp_news_datano}]]>
+	</select>
+	
+	<select id="userSearchTitle" parameterType="PetNews" resultMap="PetNewsList">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where osp_news_datatitle like '%'||#{osp_news_datatitle}||'%']]>	
+	</select>																															
+	
+	<select id="userSearchDate">
+		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
+		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
+		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where osp_news_date like '%'||#{osp_news_date}||'%']]>	
+	</select> -->
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

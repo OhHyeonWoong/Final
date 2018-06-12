@@ -14,5 +14,6 @@ public interface FaqService {
 	public abstract List<Faq> faqTop5(); //main화면 faq Top5
 	public abstract Faq faqDetail(int faq_no);
 	public abstract int reDefineFaq(Faq reFaq);
+	public abstract int changeUseingList(Faq alterFaq);
 
 }

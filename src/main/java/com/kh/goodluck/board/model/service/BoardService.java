@@ -84,12 +84,17 @@ public class BoardService {
 
 		return boardDao.getAgencyCountBig(string);
 	}
+	
+	public List<Board> search(HashMap<Object, Object> map) {
+		
+		return boardDao.search(map);
+	}
+
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
 	public List<Board> mainShowLifeListPickUp() { 
 		//메인페이지에 보여질 생활영역_제공해요 리스트추출
-		
 		return boardDao.mainShowLifeListPickUp();
 	}
   
@@ -103,9 +108,14 @@ public class BoardService {
 		return boardDao.mainShowGameListPickUp();
 	}
 	
-	public List<Board> mainShowMusicListPickUp(){
+	public List<Board> mainShowMusicListPickUp(){ 		//5개추출
 		//메인페이지에 보여질 음악영역_제공해요 리스트추출		
 		return boardDao.mainShowMusicListPickUp();
+	}
+	
+	public List<Board> mainShowMusicListPickUp2(){ 		//4개추출
+		//메인페이지에 보여질 음악영역_제공해요 리스트추출		
+		return boardDao.mainShowMusicListPickUp2();
 	}
 	
 	public List<Board> mainShowRentListPickUp(){
@@ -220,6 +230,7 @@ public class BoardService {
 		return boardDao.getAgencyDate(pk);
 	}
 
+
 	public int insertBoardlog(int pk) {
 		// TODO Auto-generated method stub
 		return boardDao.insertBoardlog(pk);
@@ -234,8 +245,6 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.insertReview(re);
 	}
-
-
 
 
 }

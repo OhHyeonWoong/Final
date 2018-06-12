@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
 @Repository("adminDao")
 public class AdminDao {
@@ -38,6 +39,14 @@ public class AdminDao {
 
 	public QNA selectAdminQnaDetail(int question_no) {
 		return sqlSession.selectOne("selectAdminQnaDetail", question_no);
+	}
+
+	public int insertAdminQnaWrite(QnaAnswer qa) {
+		return sqlSession.insert("insertAdminQnaWrite", qa);
+	}
+
+	public int updateQuestion(int question_no) {
+		return sqlSession.update("updateQuestion", question_no);
 	}
 	
 }

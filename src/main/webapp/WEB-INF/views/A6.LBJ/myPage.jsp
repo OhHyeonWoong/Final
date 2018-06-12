@@ -411,8 +411,6 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			}
 		}
 		//
-		
-		
 		function pwdValidation(){
 			//비밀번호 일치 여부 
 			var pass1 = $('#InputPassword1').val();
@@ -437,11 +435,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		//필요 부분 정규식 추가합니다.
 		//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
 		//console.log("flag = " + flag);
-			
-		
-		
-		
-		if(flag == true && clickCheck == true){
+		if(flag == true){
 				return true;
 			}else{
 				alert("누락된 정보가 없나 확인해보세요.");
@@ -508,7 +502,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<div style="width : 200px; height : 200px; margin: 0 auto;">
 							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" value="${loginUser.member_renamephoto}" style="width: 100%; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">
@@ -547,17 +541,16 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							</tr>	
 							</table>
 						</div>
-						
 						<!-- 주소 부분 수정합니다. -->
 				<div class="form-group">
                      <label for="username">본래 주소</label><br> 
-                     <input type="text" class="form-control" id="member_address" name="member_address" 
+                     <input type="text" class="form-control" id="member_address" name="former_member_address" 
                      placeholder="주소를 입력해 주세요." required="required" value="${loginUser.member_address}" readonly="readonly" >
                   </div>
 				<div class="form-group">
 					<label for="username">주소</label>
 					<br>
-					<input type="text" class="form-control" id="sample4_postcode" placeholder="우편번호" style="float:left; width:250px;" >
+					<input type="text" class="form-control" name="postCard" id="sample4_postcode" placeholder="우편번호" style="float:left; width:250px;" readonly="readonly">
 					<span class="input-group-btn">					
 					<a class="btn btn-default" onclick="sample4_execDaumPostcode()" style="float:right;">
 					<i class = "fa fa-search"></i> 우편번호 검색</a></span>
@@ -587,9 +580,9 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<input type="button" class="btn btn-danger" value="탈퇴" onclick="fnMemberOut();">
 						</div>
 					</form>
-					<!-- 폼끝 -->
-						</div>
+					<!--폼끝 -->
 					</div>
+				</div>
 			</div>
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
 			<hr>

@@ -136,62 +136,64 @@
 						<tr>
 							<td class="td_start"><label>카테고리별 검색</label></td>
 							<td class="td_mid">
-								<select id="대카테고리" name="대카테고리">
-									<option value="대카테고리" selected="selected">대카테고리</option>
-								</select></td>
+								<select id="bcate" name="bcate">
+										<option value="" selected="selected">선택하세요</option>
+									<c:forEach var="bigcategory" items="${bigcategorylist }">
+										<option value="${bigcategory.category_big_name}">${bigcategory.category_big_name}</option>
+									</c:forEach>
+								</select>
+							</td>
 							<td class="td_mid">
-								<select name="중카테고리">
-									<option value="중카테고리" selected="selected">중카테고리</option>
-								</select></td>
+								<select id="mcate" name="mcate">
+									<option value="" selected="selected">선택하세요</option>
+								</select>
+							</td>
 							<td class="td_end">
-								<select name="소카테고리">
-									<option value="소카테고리" selected="selected">소카테고리</option>
-								</select></td>
+								<select id="scate" name="scate">
+									<option value="" selected="selected">선택하세요</option>
+								</select>
+							</td>
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
-								<select name="지역">
-									<option value="지역" selected="selected">지역</option>
-								</select></td>
+								<select id="loc" name="loc">
+									<option value="" selected="selected">지역</option>
+								</select>
+							</td>
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
-								<select name="글상태">
-									<option value="글상태" selected="selected">글상태</option>
-								</select></td>
+								<select id="state" name="state">
+									<option value="정상" selected="selected">정상</option>
+									<option value="예약가능">예약가능</option>
+									<option value="예약불가">예약불가</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group1" value="시급">시급</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group1" value="일급">일급</label></td>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group2" value="금액낮은순">금액낮은순</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group2" value="금액높은순">금액높은순</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group1-1" name="group1" value="시급">시급</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group1-2" name="group1" value="일급">일급</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group2-1" name="group2" value="금액낮은순">금액낮은순</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group2-2" name="group2" value="금액높은순">금액높은순</label></td>
 							<td class="td_start"><label>최소금액</label></td>
-							<td class="td_end"><input type="text" class="textbox_comm" name="최소금액" placeholder="최소금액"></td>
+							<td class="td_end"><input id="min" type="text" class="textbox_comm" value="" placeholder="최소금액"></td>
 							<td class="td_start"><label>최대금액</label></td>
-							<td class="td_end"><input type="text" class="textbox_comm" name="최대금액" placeholder="최대금액"></td>
+							<td class="td_end"><input id="max" type="text" class="textbox_comm" value="" placeholder="최대금액"></td>
 						</tr>
 						<tr>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group3" value="등록날짜순" checked="checked">등록날짜순</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group3" value="시작날짜순">시작날짜순</label></td>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" name="group4" value="제공">제공</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" name="group4" value="구인">구인</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group3-1" name="group3" value="등록날짜순" checked="checked">등록날짜순</label>
+							</td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group3-2" name="group3" value="시작날짜순">시작날짜순</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group4-1" name="group4" value="제공">제공</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group4-2" name="group4" value="구인">구인</label></td>
 							<td class="td_start"><label>검색단어</label></td>
-							<td class="td_mid" colspan="2"><input type="text" class="textbox_comm" name="검색단어" placeholder="검색단어"></td>
-							<td class="td_end"><button onclick="boardsearch();" ><i class="glyphicon glyphicon-search"></i>Search</button></td>					
+							<td class="td_mid" colspan="2"><input type="text" id="searchtext" class="textbox_comm" placeholder="검색단어"></td>
+							<td class="td_end">
+								<input type="hidden" id="page" name="page" value="1">
+								<input id="bshsearch" type="button" value="Search">
+							</td>
 						</tr>
 					</table>
 				</form>
 			</div>
-			<script type="text/javascript">
-			$(document).ready(function() {
-				function boardsearch(){
-					var searchstr = "?대카테고리="+$("#대카테고리").val()+"&중카테고리="+$("#중카테고리").val()
-							+"&소카테고리="+$("#소카테고리").val()+"&지역="+$("#지역").val()+"&글상태="+$("#글상태").val()
-							+"&group1="+$("#group1").val()+"&group2="+$("#group2").val()+"&group3="+$("#group3").val()
-							+"&group4="+$("#group4").val()+"&최소금액="+$("#최소금액").val()+"&최대금액="+$("#최대금액").val()
-							+"&검색단어="+$("#검색단어").val();
-					location.href("bshsearch.go"+searchstr);  
-				}
-			})
-			</script>
 			<div class="board_div_maincontent">
 				<%-- <h2>${board.link2_no }</h2><br>
 				

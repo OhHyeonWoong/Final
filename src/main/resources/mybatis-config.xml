@@ -30,6 +30,10 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.RanDomBoxChance" alias="RanDomBoxChance"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews" alias="PetNews"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.LifeNews" alias="LifeNews"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.GameNews" alias="GameNews"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.TravelNews" alias="TravelNews"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail" alias="GetCategoryForBoardDetail"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Trade_detail" alias="Trade_detail"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Chat" alias="Chat"/>
@@ -52,6 +56,10 @@
 		<mapper resource="mybatis/mapper/randomitemchance.xml" />
 		<mapper resource="mybatis/mapper/itemdetail.xml" />
 		<mapper resource="mybatis/mapper/report-mapper.xml" />
+		<mapper resource="mybatis/mapper/outsidedata-mapper_life.xml" />
+		<mapper resource="mybatis/mapper/outsidedata-mapper.xml" />
+		<mapper resource="mybatis/mapper/outsidedata-mapper_game.xml" />
+		<mapper resource="mybatis/mapper/outsidedata-mapper_travel.xml" />
 		<mapper resource="mybatis/mapper/BoardAndCate.xml" />
 		<mapper resource="mybatis/mapper/TradeDeatil.xml" />
 		<mapper resource="mybatis/mapper/admin-mapper.xml" />
