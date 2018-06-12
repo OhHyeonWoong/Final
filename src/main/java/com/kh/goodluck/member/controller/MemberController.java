@@ -271,7 +271,7 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
-	//회원정보 수정 메소드(병준느님 작성 전동기 일부 수정)
+	//회원정보 수정 메소드(전동기 일부 수정)
 	@RequestMapping(value="lbjUpdateMember.go",method=RequestMethod.POST)
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
@@ -307,7 +307,17 @@ public class MemberController {
 			}else {
 				System.out.println("기존과 동일한 파일을 보냈거나 아무 파일도 보내지 않았습니다.");
 			}
-			int result = memberService.updateMemberInfo(m);
+			String add =request.getParameter("member_address1")+" "+request.getParameter("member_address2");
+			if(request.getParameter("postCard")!=null) {
+				m.setMember_address(add);	
+			}
+			int result=0;
+			if(request.getParameter("postCard")==null) {
+			result = memberService.updateMemberInfo(m);
+			}else if(request.getParameter("postCard")!=null) {
+			m.setMember_address(request.getParameter("member_address1")+request.getParameter("member_address2"));
+			result = memberService.updateMemberInfo(m);
+			}
 			if(result > 0) {
 				System.out.println("멤버 정보 수정 성공!");
 				//세션 정보 갱신을 해줘야됨
@@ -319,10 +329,7 @@ public class MemberController {
 				    member.setMember_pw(updateMem.getMember_pw());
 				    member.setMember_phone(updateMem.getMember_phone());
 				    member.setMember_renamephoto(updateMem.getMember_renamephoto());
-				    System.out.println();
-				    
-				    /*member.setMember_address();*/
-				    
+				    member.setMember_address(updateMem.getMember_address());
 				}
 				/*if(m != null) {
 					//기존 세션 없앰

@@ -84,6 +84,12 @@ public class BoardService {
 
 		return boardDao.getAgencyCountBig(string);
 	}
+	
+	public List<Board> search(HashMap<Object, Object> map) {
+		
+		return boardDao.search(map);
+	}
+
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
@@ -220,6 +226,7 @@ public class BoardService {
 		return boardDao.getAgencyDate(pk);
 	}
 
+
 	public int insertBoardlog(int pk) {
 		// TODO Auto-generated method stub
 		return boardDao.insertBoardlog(pk);
@@ -234,8 +241,6 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.insertReview(re);
 	}
-
-
 
 
 }

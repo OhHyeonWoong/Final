@@ -118,7 +118,10 @@ public class BoardDao {
 		return sqlSession.selectOne("getAgencyCountBig",string);
 	}
 	
-	
+	public List<Board> search(HashMap<Object, Object> map) {
+		
+		return sqlSession.selectList("search", map);
+	}
 	
 	
 	public List<Board> mainShowLifeListPickUp() {
@@ -193,6 +196,7 @@ public class BoardDao {
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
 	return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
 	}
+
 	public int updateAgencyStatus(HashMap<Object, Object> map) {
 		return 	sqlSession.update("updateAgencyStatus",map);
 	}
@@ -276,6 +280,7 @@ public class BoardDao {
 
 
 
+
 	public int insertBoardlog(int pk) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("insertBoardlog",pk);
@@ -294,8 +299,6 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("insertReview",re);
 	}
-
-
 
 
 
