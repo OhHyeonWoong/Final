@@ -16,7 +16,7 @@
 			.list-links li a { color: #e2e2e2; }
 			.list-links li a:hover {text-decoration:none; color: #d6a111; }
 			.list-links li:hover {background: #030942; color: #d6a111;}	
-			.content-box {background :none; height:822px; border: 1px solid #d8d8d8; padding-top: 5px;}
+			.content-box {background :none; height:822px; overflow:scroll; border: 1px solid #d8d8d8; padding-top: 5px;}
 			  
 			.request_area { /* FAQ질문 div */
 			    background: #0a3466;
@@ -57,13 +57,15 @@
 	<div class="container"> <!-- 1170x1966px  -->
 		<div class="sidebar-section">
 			<div class="row">
-			    <div class="col-md-3 sidebar-box">
+			    <div class="col-md-3 sidebar-box" style="max-height: 822px;">
 			       	<h3 style="padding-left: 18px;">FAQ CONTENTSLIST</h3>
 			        <ul class="list-links">
+		              <li><i class="glyphicon glyphicon-comment"></i> <a class="select6">전체보기</a></li>
 		              <li><i class="glyphicon glyphicon-comment"></i> <a class="select1">이용관련</a></li>
 		              <li><i class="glyphicon glyphicon-comment"></i> <a class="select2">결제관련</a></li>
 		              <li><i class="glyphicon glyphicon-comment"></i> <a class="select3">신고관련</a></li>
 		              <li><i class="glyphicon glyphicon-comment"></i> <a class="select4">로그인관련</a></li>
+		              <li><i class="glyphicon glyphicon-user icon"></i> <a class="select5">관리자글쓰기</a></li>		              
 					</ul>
 			    </div>
 			    <script type="text/javascript">
@@ -74,6 +76,7 @@
 			    			$(".section3").hide();
 			    			$(".section4").hide();
 			    			$(".section5").hide();
+			    			$(".section6").hide();
 			    			
 			    			$(".section2").show();
 			    		});
@@ -84,6 +87,7 @@
 			    			$(".section2").hide();
 			    			$(".section4").hide();
 			    			$(".section5").hide();
+			    			$(".section6").hide();			    			
 			    			
 			    			$(".section3").show();			    			
 			    		});
@@ -94,6 +98,7 @@
 			    			$(".section2").hide();
 			    			$(".section3").hide();
 			    			$(".section5").hide();
+			    			$(".section6").hide();
 			    			
 			    			$(".section4").show();
 			    		});
@@ -104,8 +109,20 @@
 			    			$(".section2").hide();
 			    			$(".section3").hide();
 			    			$(".section4").hide();
+			    			$(".section6").hide();
 			    			
 			    			$(".section5").show();
+			    		});
+			    		
+			    		$(".select6").on("click",function(){
+			    			alert("전체 FAQ");
+			    			$(".section1").hide();
+			    			$(".section2").hide();
+			    			$(".section3").hide();
+			    			$(".section4").hide();
+			    			$(".section5").hide();
+			    			
+			    			$(".section6").show();
 			    		});
 
 			    	});
@@ -115,120 +132,198 @@
 			    	<i class="fa fa-comments-o" style="float:left; font-size:70px; margin-right: 0;"></i>
 			        <h3>FAQ게시판(유저의 자주묻는 질문)</h3><br>
 						
-					<div class="section1"> <!-- 유저가 이름을 클릭하였을 때 기본적으로보여지는 화면  -->
+					<div class="section1"> <!-- 제목을 클릭하였을 때 상세보기화면  -->
 						<div class="request_area" align="left">
-							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faq_info.faq_title }">			
-							<br><br>		
-							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faq_info.faq_content }</textarea>				
-								
+
+							<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title" value="Q.${ faq_info.faq_title}"></c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${ faq_info.faq_title}</c:if>
+							<br><br>	
+							<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82" class="ukstyle_text2" id="f_contents" style="resize: none;">A.${ faq_info.faq_content }</textarea>	</c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${ faq_info.faq_content } </c:if>
 							<input type="hidden" id="f_number" value="${ faq_info.faq_no }">	
 							<input type="hidden" id="f_category" value="${ faq_info.faq_category }">	
 						</div>
-						<P align="right"> <button class="ukstyle_btn" onclick="changeFaq();">수정</button> &nbsp; <button class="ukstyle_btn" onclick="deleteFaq();">삭제</button></P>																	
-						<script type="text/javascript">
-							function changeFaq(){
-								alert("수정이 완료되었습니다.");
-								$.ajax({
-									url : "changeFaqContents.go",
-									type : "get",
-									data : {
-										select_fno : $("#f_number").val(),
-										select_ftitle : $("#f_title").val(),
-										select_fcontent : $("#f_contents").val(),
-										select_fcategory : $("#f_category").val()
-									}
-								});
-							}
-							function deleteFaq(){
-								location.href="delFaq.go?selectFaqNo="+$("#f_number").val();
-							}
-						</script>
+							<c:if test="${loginUser.member_status eq 3}">
+							<P align="right"> 
+								<button class="ukstyle_btn" onclick="changeFaq();">수정</button> &nbsp; 
+								<button class="ukstyle_btn" onclick="deleteFaq();">삭제</button>
+							</P>
+							</c:if>																							
 					</div>
-		
-			         
-					<c:forEach var="faquseinglist" items="${useinglist}">
-			        <div class="section2" hidden="true"> 
+					
+					<script type="text/javascript">
+						function changeFaq(){
+							alert("수정이 완료되었습니다.");
+							$.ajax({
+								url : "changeFaqContents.go",
+								type : "get",
+								data : {
+									select_fno : $("#f_number").val(),
+									select_ftitle : $("#f_title").val(),
+									select_fcontent : $("#f_contents").val(),
+									select_fcategory : $("#f_category").val()
+								}
+							});
+						}
+						function deleteFaq(){
+							location.href="delFaq.go?selectFaqNo="+$("#f_number").val();
+						}
+					</script>
+			
+			        <c:forEach var="faqalllist" items="${alllist}">
+			        <div class="section6" hidden="true"> 
+			        	<form action="changeFaqContents1.go" method="get">
 						<div class="request_area" align="left">
-							<input type="text" class="ukstyle_text" id="f_title" value="Q.${faquseinglist.faq_title}"> 
+							<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title_a" name="f_title_a" value="Q.${faqalllist.faq_title}"> </c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${faqalllist.faq_title}</c:if>
+							<input type="hidden" >
 							<!-- 관리자가 수정한 타이틀로 보내야됨 -->
 							<br><br>
-							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${faquseinglist.faq_content }</textarea>	
-							<!-- 관리자가 수정한 내용으로 보내야됨 -->			
-							<input type="hidden" id="sam_no" value="${faquseinglist.faq_no}"> 
-							<!-- forEach에 따른 고유PK -->
-							<input type="hidden" value="${ faquseinglist.faq_category }"> 
-							<!-- 그냥 넘기면됨 -->				 							
+							<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_a" name="f_contents_a">A.${faqalllist.faq_content }</textarea></c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${faqalllist.faq_content } </c:if>
+							<!-- 관리자가 수정한 내용으로 보내야됨 -->	
+							<input type="hidden" id="f_category_a" name="f_category_a" value="${ faqalllist.faq_category }"> 
+							<input type="hidden" name="f_pk_a" value="${faqalllist.faq_no}">			
 						</div>
-						<P align="right"> <a href="#" onclick="faqfaq_change();"> 수정시도 </a>
-						<%-- "changeFaqContents2.go?f_pk=${faquseinglist.faq_no}&f_title=${faquseinglist.faq_title}&f_contents=${faquseinglist.faq_content}">수정</a> &nbsp; --%> 
-						<button class="ukstyle_btn">삭제</button></P>		
-										
-						<script type="text/javascript">
-							function faqfaq_change(){
-								alert("onclick버튼 클릭!");
-								var faqpk=$(this).prev().
-								
-								location.href="changeFaqContents2.go?f_pk="+${faquseinglist.faq_no};
-							}
-						
-							function deleteFaq(){
-								location.href="delFaq.go?selectFaqNo="+$("#f_number").val();
-							}
-						</script>
+						<P align="right">
+							<c:if test="${loginUser.member_status eq 3}">	
+							<input type="submit" value="수정">&nbsp;
+							<button class="ukstyle_btn" id="d${faqalllist.faq_no}" onclick="deletefaq5(this);">삭제</button>
+							</c:if>
+						</P>
+						</form>	
 						<br><br>
 			        </div>
-			        </c:forEach> 					
-					
+			        </c:forEach> 	
+					<script type="text/javascript">
+					function deletefaq5(jung){
+						var pk = jung.id;
+						
+					}
+					</script>							
 			        
+					<c:forEach var="faquseinglist" items="${useinglist}">
+				        <div class="section2" hidden="true"> 
+							<form action="changeFaqContents2.go" method="get">
+								<div class="request_area" align="left">
+									<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title_u" name="f_title_u" value="Q.${faquseinglist.faq_title}"> </c:if>
+									<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${faquseinglist.faq_title}</c:if>								
+									<input type="hidden" >
+									<!-- 관리자가 수정한 타이틀로 보내야됨 -->
+									<br><br>
+									<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_u" name="f_contents_u">A.${faquseinglist.faq_content }</textarea></c:if>
+									<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${faquseinglist.faq_content } </c:if>
+									<!-- 관리자가 수정한 내용으로 보내야됨 -->			
+									<input type="hidden" name="f_pk_u" value="${faquseinglist.faq_no}">
+									<input type="hidden" id="f_category_u" name="f_category_u" value="${ faquseinglist.faq_category }"> 
+									<!-- 그냥 넘기면됨 -->				 							
+								</div>
+								<P align="right"> 
+								<c:if test="${loginUser.member_status eq 3}">	
+								<input type="submit" value="수정">&nbsp;
+								<button class="ukstyle_btn" id="d${faquseinglist.faq_no}" onclick="deletefaq(this);">삭제</button>
+								</c:if>			
+								</P>	
+							<br><br>
+							</form>
+				        </div>
+			        </c:forEach> 
+					<script type="text/javascript">
+						function deletefaq(jung){
+							var pk = jung.id;
+						}
+					</script>			        
 			        
 					<c:forEach var="faqpaymentlist" items="${paymentlist}">
 				        <div class="section3" hidden="true"> 
+							<form action="changeFaqContents3.go" method="get">				        
 							<div class="request_area" align="left">
-								<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqpaymentlist.faq_title }"> 
+								<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title_p" name="f_title_p" value="Q.${faqpaymentlist.faq_title}"> </c:if>
+								<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${faqpaymentlist.faq_title}</c:if>									
 								<br><br>
-								<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqpaymentlist.faq_content }</textarea>				
-	
-								<input type="hidden" id="f_number" value="${ faqpaymentlist.faq_no }">	
-								<input type="hidden" id="f_category" value="${ faqpaymentlist.faq_category }">						
+								<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_p" name="f_contents_p">A.${faqpaymentlist.faq_content }</textarea></c:if>
+								<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${faqpaymentlist.faq_content } </c:if>
+								<input type="hidden" id="f_category_p" name="f_category_p" value="${ faqpaymentlist.faq_category }">														
+								<input type="hidden" name="f_pk_p" value="${ faqpaymentlist.faq_no }">
 							</div>
-							<P align="right"> <button class="ukstyle_paybtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>						
+							<P align="right"> 
+							<c:if test="${loginUser.member_status eq 3}">	
+							<input type="submit" value="수정">&nbsp;
+							<button class="ukstyle_btn" id="d${faqpaymentlist.faq_no}" onclick="deletefaq2(this);">삭제</button>
+							</c:if>			
+							</P>								
+							</form>						
 							<br><br>
 				        </div>
 			        </c:forEach> 
-			        
-			        
+					<script type="text/javascript">
+						function deletefaq2(jung){
+							var pk = jung.id;	
+						}
+					</script>			        
+
 			        			        
 					<c:forEach var="faqreportlist" items="${reportlist}">
-			        <div class="section4" hidden="true"> 
-						<div class="request_area" align="left">
-							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqreportlist.faq_title }"> 
+			        <div class="section4" hidden="true">
+						<form action="changeFaqContents4.go" method="get">			         
+						<div class="request_area" align="left">			
+							<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title_r" name="f_title_r" value="Q.${faqreportlist.faq_title}"> </c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${faqreportlist.faq_title}</c:if>																			
 							<br><br>
-							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqreportlist.faq_content }</textarea>				
-							
-							<input type="hidden" id="f_number" value="${ faqreportlist.faq_no }">	
-							<input type="hidden" id="f_category" value="${ faqreportlist.faq_category }">		
+							<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_r" name="f_contents_r">A.${faqreportlist.faq_content }</textarea></c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${faqreportlist.faq_content } </c:if>			
+							<input type="hidden" id="f_category_r" name="f_category_r" value="${ faqreportlist.faq_category }">		
+							<input type="hidden" name="f_pk_r" value="${ faqreportlist.faq_no }">
 						</div>
-						<P align="right"> <button class="ukstyle_reportbtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>												
+							<P align="right"> 
+							<c:if test="${loginUser.member_status eq 3}">	
+							<input type="submit" value="수정">&nbsp;
+							<button class="ukstyle_btn" id="d${faqreportlist.faq_no}" onclick="deletefaq3(this);">삭제</button>
+							</c:if>			
+							</P>						
+						</form>						
 						<br><br>
 			        </div>
 			        </c:forEach> 
-			        
+						<script type="text/javascript">
+							function deletefaq3(jung){
+								var pk = jung.id;
+								
+							}
+						</script>			        
 			        
 
 					<c:forEach var="faqloginlist" items="${loginlist}">
 			        <div class="section5" hidden="true"> 
+						<form action="changeFaqContents5.go" method="get">			         
 						<div class="request_area" align="left">
-							<input type="text" class="ukstyle_text" id="f_title" value="Q.${ faqloginlist.faq_title }"> 
+							<c:if test="${loginUser.member_status eq 3}"><input type="text" class="ukstyle_text" id="f_title_g" name="f_title_g" value="Q.${faqloginlist.faq_title}"> </c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }">Q.${faqloginlist.faq_title}</c:if>																			
 							<br><br>
-							<textarea rows="2" cols="84" class="ukstyle_text2" id="f_contents">A.${ faqloginlist.faq_content }</textarea>				
-							
-							<input type="hidden" id="f_number" value="${ faqloginlist.faq_no }">	
-							<input type="hidden" id="f_category" value="${ faqloginlist.faq_category }">
+
+							<c:if test="${loginUser.member_status eq 3}"><textarea rows="2" cols="82"  style="resize: none;" class="ukstyle_text2" id="f_contents_g" name="f_contents_g">A.${faqloginlist.faq_content }</textarea></c:if>
+							<c:if test="${(loginUser eq null) or (loginUser.member_status!=3) }"> A.${faqloginlist.faq_content } </c:if>										
+							<input type="hidden" id="f_category_g" name="f_category_g" value="${ faqloginlist.faq_category }">
+							<input type="hidden" name="f_pk_g" value="${ faqloginlist.faq_no }">
 						</div>
-						<P align="right"> <button class="ukstyle_useringbtn">수정</button> &nbsp; <button class="ukstyle_btn">삭제</button></P>												
+						<P align="right"> 
+							<c:if test="${loginUser.member_status eq 3}">	
+							<input type="submit" value="수정">&nbsp;
+							<button class="ukstyle_btn" id="d${faqloginlist.faq_no}" onclick="deletefaq4(this);">삭제</button>
+							</c:if>			
+						</P>															
+						</form>
 						<br><br>
 			        </div>
 			        </c:forEach> 		
+					<script type="text/javascript">
+						function deletefaq4(jung){
+							var pk = jung.id;
+							
+						}
+					</script>			 
+        
+
 			        	        
 			   </div> <!-- col-md-9 content-box -->
 			</div> <!-- row -->

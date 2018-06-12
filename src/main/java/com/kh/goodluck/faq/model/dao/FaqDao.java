@@ -60,6 +60,11 @@ public class FaqDao {
 		return sqlSession.update("faqReDefine", reFaq);
 	}
 
+	//이용내역 리스트중 수정하기
+	public int alterUseing(Faq alterFaq) {
+		return sqlSession.update("inUserListDefine",alterFaq);
+	}
+
 }  
 
 
