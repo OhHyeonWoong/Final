@@ -101,6 +101,7 @@ function sample4_execDaumPostcode() {
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 ///////////////////////////////////////////////////////	
 	$(function(){
+			alert("되니?");
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
@@ -109,6 +110,30 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('input[type="checkbox"][name="chk1"]').attr('checked',true);
 				}
 			});
+			
+			//파일 확장자 검사하는 부분
+			
+			$("#InputProfile").change(function(){
+				var e= $("#InputProfile").val();
+				
+				var fileType = e.slice(e.lastIndexOf("."),e.length).toLowerCase();
+		
+				if(fileType ==".jpg"){
+					fc=true;
+				}else if(fileType ==".png"){
+					fc=true;
+				}else if(fileType ==".jpeg"){
+					fc=true;
+				}else if(fileType==null){
+					fc=true;
+				}else{
+					fc=false;
+					alert("jpg, png, jpeg 파일만 등록 가능합니다.");
+				}
+			});
+			
+			
+			
 		});
 		function fnDeleteQna(){
 			var checkBox1 = $('input[name="chk1"]:checked');
@@ -426,20 +451,28 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 				$("#pwdSame").text("비밀번호가 일치하지 않습니다. 일치하는 비밀번호를 적어주세요").css("color","red");
 				$("#password1").focus();
 				flag = false;
-			}	
-			
 		}
+		
+		/* var fc=true;//파일 이름 체크 부분 전역변수(바뀌지 않았다는 말은 파일을 첨부하지 않았다는 말이 되므로 기본값은 true로 잡아두어야 함.)
+		function fileTypeCheck(files){
+			
+		
+		} */
 		
 		//회원정보 수정 전(submit 전)에 값 체크해서 보냄+ 정규식 적용(동기)
 		function fnValidationCheck(){
 		//필요 부분 정규식 추가합니다.
 		//1. 마이페이지에서 수정 가능한 부분은 비밀번호 이메일 주소 전화번호 정규식이 필요한 부분은 이메일 비밀번호 2개 입니다.
 		//console.log("flag = " + flag);
-		if(flag == true){
-				return true;
-			}else{
-				alert("누락된 정보가 없나 확인해보세요.");
+		//2. 파일 확장자 명을 검사하는 부분 추가합니다.
+		if(flag != true){
+			alert("누락된 정보가 없나 확인해보세요.");
+			return false;
+			}else if(fc=false){
+				alert("파일 확장자가 올바르지 않습니다. 확인해주세요");
 				return false;
+			}else{
+				return true;
 			}
 		}
 		
@@ -467,6 +500,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			}else{
 				alert("취소되었습니다.");
 			}
+		}
 		}
 		
 	</script>
@@ -502,7 +536,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<div style="width : 200px; height : 200px; margin: 0 auto;">
 							<img src="/goodluck/resources/uploadProfiles/${loginUser.member_renamephoto}" name ="profile_img" alt="profile_img" style="width:200px; height :200px;"/>
 							</div><br>
-							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;">
+							<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 100%; margin: 0 auto;" accept="image/gif, image/jpeg, image/png, image/jpg" >
 							<input type="hidden" name="member_profile1" value="${loginUser.member_renamephoto}">
 						</div>
 						<div class="form-group">
@@ -794,7 +828,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					<tr><td>폰트바꾸기</td><td>2017/02/10</td><td>2017/04/01</td><td>2018/06/30</td><td>1</td></tr>
 				 -->
 				 <!-- item 페이징 처리 -->
-					 <c:if test="${itemPage.itemListCount > 6}">
+				<c:if test="${itemPage.itemListCount > 6}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">

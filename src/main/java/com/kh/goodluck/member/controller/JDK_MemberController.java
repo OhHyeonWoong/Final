@@ -188,6 +188,7 @@ public class JDK_MemberController {
 				String fileSavePath= "/goodluck/resources/A3.JDK/images/userprofile";
 				//파일 크기 제한
 				int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
+				
 				//encType = "multiPartForm"으로 왔는지 확인
 				String encType="UTF-8"; // 파일 인코딩 방식????
 				

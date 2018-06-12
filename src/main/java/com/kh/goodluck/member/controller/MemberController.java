@@ -276,6 +276,8 @@ public class MemberController {
 	public void updateMemberInfo(@RequestParam(name="member_profile",required=false) MultipartFile file,
 			HttpServletRequest request,HttpServletResponse response,
 			Member m,SessionStatus status,HttpSession session) throws IOException {
+		
+		PrintWriter out;
 		//세션 정보 가져오기용 객체
 		Member member = null;
 		///
@@ -291,7 +293,7 @@ public class MemberController {
 		System.out.println("fileName = " + fileName);
 		System.out.println("file = " + file);
 		/////////////////////////////////////////////////////////
-		if((!fileName.equals(null)) && fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
+		if(fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg") || 
 				fileName.toLowerCase().endsWith(".png") || fileName.toLowerCase().endsWith(".gif") || 
 				fileName.toLowerCase().endsWith(".bmp")) {
 			if((fileName != memberProfile)) {
@@ -314,12 +316,11 @@ public class MemberController {
 			System.out.println("수정 된 주소: " + request.getParameter("member_address1")+request.getParameter("member_address2"));
 			
 			
-			if(request.getParameter("postCard")==null) {
+			if(request.getParameter("member_address1")==null) {
 			System.out.println("본래 주소 저장됨: " + request.getParameter("former_member_address"));
-			
 			m.setMember_address(request.getParameter("former_member_address"));
 			result = memberService.updateMemberInfo(m);
-			}else if(request.getParameter("postCard")!=null) {
+			}else if(request.getParameter("member_address1")!=null) {
 			System.out.println("수정 주소 저장됨: " + request.getParameter("former_member_address"));
 			
 			m.setMember_address(request.getParameter("member_address1")+request.getParameter("member_address2"));
@@ -348,7 +349,12 @@ public class MemberController {
 			}
 		}else {
 			System.out.println("올바른 확장자가 아닙니다.");
-		}
+			String fileInputError= "파일 입력 형식이 맞지 않습니다. jpg,png,jpeg 형식만 올려주세요.";
+			ModelAndView mv = null;
+			mv.setViewName("MyPage");
+			mv.addObject("fileTypeError", fileInputError);
+			}
+		///////////////////////////////////
 		if(member != null) {
 			response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}else {
