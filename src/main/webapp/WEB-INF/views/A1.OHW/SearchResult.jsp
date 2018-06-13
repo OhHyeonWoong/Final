@@ -123,7 +123,7 @@
 							<td><img src = "">${ searchList.agency_writer }</td>
 							<td>${ searchList.agency_enrolldate }</td>
 						</tr>
-					</c:forEach> --%>												
+					</c:forEach> --%>
 				</table>
 			</td>
 			<td valign = "top">				

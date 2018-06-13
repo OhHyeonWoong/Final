@@ -7,8 +7,8 @@ import com.kh.goodluck.search.model.vo.Search;
 
 public interface SearchService {
 	
-	List<Search> searchKeyword(HashMap<Object, Object> map);
+	public List<Search> searchKeyword(String searchKeyword, int pageStart, int pageEnd);
 
-	int selectSearchListCount(String searchKeyword);
+	public int searchListCount(String searchKeyword);
 
 }

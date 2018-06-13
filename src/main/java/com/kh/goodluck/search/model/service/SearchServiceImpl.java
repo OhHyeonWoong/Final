@@ -19,12 +19,12 @@ public class SearchServiceImpl implements SearchService {
 		
 	}
 	
-	public List<Search> searchKeyword(HashMap<Object, Object> map) {
-		return searchDao.searchKeyword(map);		
+	public List<Search> searchKeyword(String searchKeyword, int pageStart, int pageEnd) {
+		return searchDao.searchKeyword(searchKeyword, pageStart, pageEnd);		
 	}
 	
-	public int selectSearchListCount(String searchKeyword) {
-		return searchDao.selectSearchListCount(searchKeyword);
-	}
+	public int searchListCount(String searchKeyword) {
+		return searchDao.searchListCount(searchKeyword);
+	}	
 	
 }

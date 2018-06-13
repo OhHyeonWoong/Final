@@ -26,17 +26,26 @@
 	<!-- resultMap="HeaderSearchKeywordResult" -->
 	<select id="headerSearchKeyword" parameterType="java.util.HashMap" resultType="Search">	
 		<![CDATA[
-			select * 
-			from AGENCY 
-			where AGENCY_TITLE like '%'||#{agency_title}||'%'			
+			select *
+			from (
+				select AGENCY_NO, AGENCY_WRITER, AGENCY_TITLE, LINK2_NO, 
+						AGENCY_TYPE, AGENCY_LOC, AGENCY_STARTDATE, 
+						AGENCY_ENDDATE, AGENCY_ENROLLDATE, AGENCY_PAYTYPE, 
+						AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
+						AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION
+				from AGENCY 
+				where AGENCY_TITLE like '%'||#{ agency_title }||'%'
+				and rownum between #{ start } and #{ end }
+			)
+			order by AGENCY_NO desc	
 		]]>
 	</select>
 	
 	<select id="headerSearchListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) 
-			from AGENCY 
-			where AGENCY_TITLE like '%'||#{agency_title}||'%' 				
+			from agency 
+			where agency_title = #{agency_title}		
 		]]>
 	</select>
 	
@@ -72,5 +81,11 @@
 		delete from member 
 		where userid = #{userId}
 	</delete> -->
+	
+	<select id="">
+	
+	
+	
+	</select>
 
 </mapper>

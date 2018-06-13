@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.search.model.service.SearchService;
+import com.kh.goodluck.search.model.vo.Pager;
 import com.kh.goodluck.search.model.vo.Search;
 
 import javafx.scene.control.Pagination;
@@ -24,7 +25,30 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	@RequestMapping(value = "headerSearch.go")
+	@RequestMapping("headerSearch.go") /* 세부적인 URL Pattern */
+	public ModelAndView list(HttpServletResponse response, HttpServletRequest request, ModelAndView mav, 
+			@RequestParam("searchKeyword") String searchKeyword,
+			@RequestParam(defaultValue = "1") int curPage) throws Exception {
+		
+		/* 레코드 갯수 계산 */
+		int count = searchService.searchListCount(searchKeyword);
+		
+		Pager pager = new Pager(count, curPage);
+		int pageStart = pager.getPageBegin();
+		int pageEnd = pager.getPageEnd();
+		
+		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */
+		
+		HashMap<Object,Object> map = new HashMap<Object,Object>();	   
+		map.put("searchResult", list); /* 맵에 자료 저장 */
+		map.put("pageCount", list.size());
+		mav.setViewName("A1.OHW/SearchResult"); /* 포워딩할 뷰의 이름 */
+		mav.addObject("searchList", map); /* ModelAndView에 map을 저장 */
+		
+		return mav; /* 지정한 뷰로 이동 */
+	}
+	
+	/*@RequestMapping(value = "headerSearch.go")
 	public ModelAndView moveSearch(HttpServletResponse response, HttpServletRequest request, ModelAndView mav, 
 			@RequestParam("searchKeyword") String searchKeyword) {		
 		
@@ -32,7 +56,7 @@ public class SearchController {
 	    
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();	   
 	    map.put("agency_title", searchKeyword);
-	    List<Search> list = searchService.searchKeyword(map);				
+	    List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd);				
 		
 		System.out.println("ReturnList : " + list + " / To.SearchController");
 		mav.addObject("searchList", list);
@@ -50,11 +74,11 @@ public class SearchController {
 		
 		HashMap<Object,Object> map = new HashMap<Object,Object>();	   
 			map.put("agency_title", searchKeyword);
-			List<Search> list = searchService.searchKeyword(map);
+			List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd);
 			JSONArray jarr = new JSONArray();			
 			
 			for(Search search : list) {
-				/* 추출한 test를 json 객체에 담기 */
+				 추출한 test를 json 객체에 담기 
 				JSONObject job = new JSONObject();
 				job.put("agency_no", search.getAgency_no());
 				job.put("agency_writer", search.getAgency_writer());
@@ -82,5 +106,5 @@ public class SearchController {
 			out.append(json.toJSONString());
 			out.flush();
 			out.close();		
-		}			
+		}*/			
 	}
