@@ -89,26 +89,27 @@
 								      Kakao.Auth.login({
 								        success: function(authObj) {
 								          console.log(authObj); 
-								          console.log("access_token="+authObj.access_token);
-								          console.log("refresh_token="+authObj.refresh_token);
+								        var access_token=authObj.access_token;
+								        var refresh_token=authObj.refresh_token;
 								          Kakao.API.request({
 								              url: '/v1/user/me',
 								              success: function(res) {
-								              
-								              var json = JSON.parse(JSON.stringify(res));
+								           	var json = JSON.parse(JSON.stringify(res));
 								              var nickname=json.properties.nickname;
 								              var email=json.kaccount_email;
-								              console.log(json);
-								              console.log(json.kaccount_email);
-								              console.log(json.properties.nickname);
+								              var pk=json.id;
+								           
 								              $.ajax({
 								            	  url:"cjskakaologin.go",
 								            	  data:
 								            	  {name:nickname,
-								            	   email:email
+								            	   email:email,
+								            	   access_token:access_token,
+								              refresh_token:refresh_token,
+								              pk:pk
 								            	   },success:function(data){
-								            		   console.log("카카오 넣는데 성공함.");
-								            		   location.href="windon.histroy.go(0)";
+								            		
+								            		   window.history.go(0);
 								            		   
 								            	   }
 								              })
