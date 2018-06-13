@@ -84,9 +84,12 @@
 								  //<![CDATA[
 								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
 								    Kakao.init('bd5a6122e0874d4c2859d1b0192adfb0');
+								   
+								    
 								    function loginWithKakao() {
 								      // 로그인 창을 띄웁니다.
-								      Kakao.Auth.login({
+								
+								      Kakao.Auth.loginForm({
 								        success: function(authObj) {
 								          console.log(authObj); 
 								        var access_token=authObj.access_token;

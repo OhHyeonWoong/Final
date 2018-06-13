@@ -339,6 +339,7 @@
 				url:"lbjlogout1.go",
 				success:function(data){
 					alert(data);
+					Kakao.Auth.logout();
 					window.history.go(0);
 				},
 				error:function(a,b,c){
@@ -431,7 +432,7 @@
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
-							<i class = "fa fa-sign-out"></i> LogOut
+						<i class = "fa fa-sign-out"></i> LogOut
 						</button>						
 					</td>
 				</tr>			

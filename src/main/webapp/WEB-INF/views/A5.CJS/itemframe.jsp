@@ -906,7 +906,7 @@ height: 78px;
  <th style=" width: 30%;">
 	<div class="11" style="margin-left:10px;">
 		<center>
-		<c:if test="${loginUser ne null}">
+		<c:if test="${loginUser ne null && loginUser.member_id ne 'guest'}">
 		<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
 		</c:if>
 		</center>
