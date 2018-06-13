@@ -124,7 +124,7 @@
 		]]>
 	</select>
 	
-		<select id="getAgencyCount" parameterType="string" resultType="int">
+	<select id="getAgencyCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(s.CATEGORY_SMALL_NAME) from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{link2_no}
 		]]>
@@ -151,7 +151,7 @@
 			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
 			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 1 and 20)) 
 			where rnum>=1 and rnum<=6]]> 
-	
+	</select>
 	<select id="mainPageShowPetListPic" resultMap="BoardResult"> <!-- 반려동물영역(Data 6EA)  -->
 		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
 			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status

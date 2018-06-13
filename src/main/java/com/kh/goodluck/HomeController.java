@@ -51,6 +51,12 @@ public class HomeController {
 		
 		return "A2.JUJ/OutSideInFormation";
 	}
+	
+	@RequestMapping("adminViewManagement.go")
+	public String managementpage() {
+		
+		return "A2.JUJ/AdaminViewManagement";
+	}
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
 	public void CatchNoticeData(HttpServletRequest request , HttpServletResponse response) throws IOException {

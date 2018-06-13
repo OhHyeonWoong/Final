@@ -286,7 +286,6 @@
 						  "/goodluck/resources/common/img/music/음악컨텐츠15.jpg", 
 						  "/goodluck/resources/common/img/music/음악컨텐츠17.jpg", 
 						  "/goodluck/resources/common/img/music/음악컨텐츠9.jpg" ];				 	
-					/* 	         16    */
 					for(var i in json.musicarea_mainshowlist1){
 						tablevalue+="<td style='width: 5px; border: none;'></td><td style='width: 5px; border: none;'></td>"+
 						"<td><a href='BoardDetail.go?BoardNo="+json.musicarea_mainshowlist1[i].agency_no+"'><img id='low_image4' src='"+imagelist[i]+"'><br>"+json.musicarea_mainshowlist1[i].agency_title+"</a></td>";

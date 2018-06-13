@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="outside_m">
+	
+	<resultMap type="Outside_Main" id="MainList">
+   		<result property="osm_datano" column="osm_datano"/>
+   		<result property="osm_data" column="osm_data"/>
+   		<result property="osm_datatitle" column="osm_datatitle"/>
+   		<result property="osm_datavalue" column="osm_datavalue"/>
+	</resultMap> 
+	
+	<resultMap type="Outside_Main" id="MainOne">
+		<id property="osm_datano" column="osm_datano"/>
+   		<result property="osm_data" column="osm_data"/>
+   		<result property="osm_datatitle" column="osm_datatitle"/>
+   		<result property="osm_datavalue" column="osm_datavalue"/>
+	</resultMap> 
+	
+	
+	<select id="allCarousel" resultMap="MainList">
+		<![CDATA[select * from (select rownum rnum, osm_datano, osm_data, osm_datatitle, osm_datavalue
+		from (select * from outside_m order by osm_datano)) where rnum>=1 and rnum<=8 ]]>	
+	</select>
+
+	<select id="allYoutube" resultMap="MainList">
+		<![CDATA[select * from (select rownum rnum, osm_datano, osm_data, osm_datatitle, osm_datavalue
+		from (select * from outside_m order by osm_datano)) where rnum>=1 and rnum<=8 ]]>
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
