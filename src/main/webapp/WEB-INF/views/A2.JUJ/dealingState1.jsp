@@ -411,14 +411,12 @@
 			                return sendMessage(getMessageText());
 			            }
 			        });
-			        sendMessage('안녕하세요 신청합니다.');
+			    
 			        setTimeout(function () {
-			            return sendMessage('네 반갑습니다.');
+			            return sendMessage('일반 지원자가 되시면 채팅이 가능해집니다.');
 			        }, 1000);
 			        		        
-			        return setTimeout(function () {
-			            return sendMessage('불고기 레시피에 대하여 자세하게 배우고싶습니다');
-			        }, 2000);
+			        
 			    });
 			}.call(this));	
 		</script> <!-- 채팅화면 채팅실행 스크립트 -->
@@ -558,8 +556,7 @@
 
 			
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
-
-			<div class="chat_window">
+<div class="chat_window">
 				<div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>
@@ -572,7 +569,7 @@
 				<ul class="messages"></ul>
 				<div class="bottom_wrapper clearfix">
 					<div class="message_input_wrapper">
-						<input class="message_input" placeholder="메세지를 입력해주세요." />
+						<input class="message_input" placeholder="일반 지원자가 되시면 채팅을 할수있습니다." />
 					</div>
 					
 					<div class="send_message">

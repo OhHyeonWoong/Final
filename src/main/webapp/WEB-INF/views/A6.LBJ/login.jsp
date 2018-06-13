@@ -101,6 +101,17 @@
 								              console.log(json);
 								              console.log(json.kaccount_email);
 								              console.log(json.properties.nickname);
+								              $.ajax({
+								            	  url:"cjskakaologin.go",
+								            	  data:
+								            	  {name:nickname,
+								            	   email:email
+								            	   },success:function(data){
+								            		   console.log("카카오 넣는데 성공함.");
+								            		   location.href="windon.histroy.go(0)";
+								            		   
+								            	   }
+								              })
 								              
 								              },
 								              fail: function(error) {
