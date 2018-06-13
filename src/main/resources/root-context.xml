@@ -35,7 +35,7 @@
     <bean class="org.mybatis.spring.SqlSessionTemplate">
     	<constructor-arg ref="sqlSession" />
     </bean>
-    
+      
     <!-- 메일 전용 bean -->
     <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
