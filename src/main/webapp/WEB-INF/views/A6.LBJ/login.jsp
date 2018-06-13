@@ -106,7 +106,7 @@
 								            	   email:email,
 								            	   access_token:access_token,
 								              refresh_token:refresh_token,
-								              pk:pk
+								              kakaopk:pk
 								            	   },success:function(data){
 								            		
 								            		   window.history.go(0);

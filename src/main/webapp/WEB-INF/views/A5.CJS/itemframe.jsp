@@ -3,7 +3,7 @@
 
 <script>
 function paging1(page){
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" != "guest"){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
 	
@@ -172,7 +172,7 @@ function paging1(page){
 				}
 	})}}
 function paging(page){
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" !="guest"){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
 	
@@ -344,7 +344,7 @@ function paging(page){
 
 $(function(){
 	
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" != "guest"){
 	//로그인 했을경우에만 발동함.
 	var id = "${loginUser.member_id}";
 	$.ajax({

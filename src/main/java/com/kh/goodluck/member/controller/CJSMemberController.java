@@ -91,7 +91,7 @@ public class CJSMemberController {
 	     member.setMember_email(request.getParameter("email"));
 	     member.setMember_refreshtoken(request.getParameter("refresh_token"));
 	     member.setMember_accesstoken(request.getParameter("access_token"));
-	     member.setMEMBER_KAKAOIDPK(Integer.parseInt(request.getParameter("access_token")));
+	     member.setMEMBER_KAKAOIDPK(Integer.parseInt(request.getParameter("kakaopk")));
 		 PrintWriter out = response.getWriter();
 		 out.write("로그인 성공");
 		 model.addAttribute("loginUser", member);
