@@ -53,7 +53,7 @@ public class OutsidedataController {
 		case 1 : 
 			PetNews p1 = new PetNews(keyword);
 			LifeNews p2 = new LifeNews(keyword);
-			GameNews p3 = new GameNews(keyword);
+			GameNews p3 = new GameNews(keyword); 
 			TravelNews p4 = new TravelNews(keyword);
 			PrintWriter out = response.getWriter();
 			

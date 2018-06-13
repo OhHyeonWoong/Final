@@ -50,7 +50,7 @@ public class Outside_MainController {
 		out.close();
 	}
 	
-	@RequestMapping(value="alllist.go",method=RequestMethod.POST) 
+	@RequestMapping(value="alllist2.go",method=RequestMethod.POST) 
 	public void alllist2(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		ArrayList<Outside_Main> alllist2 = (ArrayList<Outside_Main>) outside_MainService.alllist2();
