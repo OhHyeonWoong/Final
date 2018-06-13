@@ -21,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -29,6 +30,7 @@ import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
 /*import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;*/
+//import com.sun.deploy.net.HttpRequest;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -67,4 +69,22 @@ public class CJSMemberController {
 		
 		return "A5.CJS/maptest";
 	}
+	
+	@RequestMapping(value="cjskakaologin.go",method= {RequestMethod.POST,RequestMethod.GET})
+	public void loginCheck(Member member,
+			Model model,
+			HttpServletResponse response,
+			HttpSession session,
+			HttpServletRequest request) throws IOException{
+		System.out.println("member : " + member);
+		//로그인 작업을 합니다 세션에 넣어요
+	     member.setMember_id("guest");
+	     member.setMember_name("(카카오로그인)"+request.getParameter("name"));
+	     member.setMember_email(request.getParameter("email"));
+		 PrintWriter out = response.getWriter();
+		 out.write("로그인 성공");
+		 model.addAttribute("loginUser", member);
+		 out.flush();
+		 out.close();
+	} 
 }

@@ -194,18 +194,6 @@
 					</table>
 				</form>
 			</div>
-			<script type="text/javascript">
-			$(document).ready(function() {
-				function boardsearch(){
-					var searchstr = "?대카테고리="+$("#대카테고리").val()+"&중카테고리="+$("#중카테고리").val()
-							+"&소카테고리="+$("#소카테고리").val()+"&지역="+$("#지역").val()+"&글상태="+$("#글상태").val()
-							+"&group1="+$("#group1").val()+"&group2="+$("#group2").val()+"&group3="+$("#group3").val()
-							+"&group4="+$("#group4").val()+"&최소금액="+$("#최소금액").val()+"&최대금액="+$("#최대금액").val()
-							+"&검색단어="+$("#검색단어").val();
-					location.href("bshsearch.go"+searchstr);  
-				}
-			})
-			</script>
 			<div class="board_div_maincontent">
 				<%-- <h2>${board.link2_no }</h2><br>
 				

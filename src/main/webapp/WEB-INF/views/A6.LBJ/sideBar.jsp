@@ -15,12 +15,17 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjnowreservationInfo"><span class="glyphicon glyphicon-book"> </span>현재예약정보</a> </h4>
+            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjnowreservationInfo"><span class="glyphicon glyphicon-book"> </span>내가 올린 글</a> </h4>
           </div>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjpreservationInfo"><span class="glyphicon glyphicon-book"></span>지난이용정보</a> </h4>
+            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjpreservationInfo"><span class="glyphicon glyphicon-book"></span>내 신청내역</a> </h4>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjSiteUserHistory"><span class="glyphicon glyphicon-book"></span>내 이용내역</a> </h4>
           </div>
         </div>
         <div class="panel panel-default">

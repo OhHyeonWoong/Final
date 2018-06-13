@@ -40,6 +40,7 @@
 		<typeAlias type="com.kh.goodluck.admin.model.vo.LoginStatistics" alias="LoginStatistics"/>
 		<typeAlias type="com.kh.goodluck.outside_m.model.vo.Outside_Main" alias="Outside_Main"/>
 	</typeAliases>
+	
 	<mappers>    
 		<mapper resource="mybatis/mapper/member-mapper.xml"/>
 		<mapper resource="mybatis/mapper/notice-mapper.xml"/>
@@ -64,6 +65,5 @@
 		<mapper resource="mybatis/mapper/TradeDeatil.xml" />
 		<mapper resource="mybatis/mapper/admin-mapper.xml" />
 		<mapper resource="mybatis/mapper/outside_main-mapper.xml" />
-
 	</mappers>
 </configuration>
