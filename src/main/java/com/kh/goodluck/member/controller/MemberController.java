@@ -1,10 +1,7 @@
 package com.kh.goodluck.member.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.*;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -47,6 +46,9 @@ public class MemberController {
 	
 	@Autowired
 	private ReportService reportService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	public String homeGo() {
 		return "home";
@@ -160,7 +162,32 @@ public class MemberController {
 		mv.addObject("lbjMyReport", myReport);
 		mv.addObject("reportPage",reportPage);
 		//Report 세팅 끝
-		//---------------------------------------------------------
+		//내가 올린 글 세팅 ----------------------------------------------------------
+		int myBoardListCount = boardService.selectMyBoardListCount(member_id);
+		int myBoardMaxPage = (int)((double)myBoardListCount / qnaLimit + 0.9);
+		int myBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myBoardListCount = " + myBoardListCount);
+		
+		HashMap<Object,Object> map3 = new HashMap<Object,Object>();
+	    map3.put("startRow", qnaStartRow);
+	    map3.put("endRow", myBoardEndRow);
+	    map3.put("member_id", member_id);
+	    List<Board> myBoard = boardService.selectMyBoard(map3);
+	    
+	    System.out.println("myBoard size = " + myBoard.size());
+		
+	    if (myBoardMaxPage < myBoardEndRow)
+			myBoardEndRow = myBoardMaxPage;
+		
+	    /*HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
+		reportPage.put("reportMaxPage",reportMaxPage);
+		reportPage.put("reportEndRow",reportEndRow);
+		reportPage.put("reportListCount",reportListCount);
+		
+		mv.addObject("lbjMyReport", myReport);
+		mv.addObject("reportPage",reportPage);*/
+		//내가 올린 글 세팅 끝--------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}

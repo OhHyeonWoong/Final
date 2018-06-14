@@ -302,5 +302,13 @@ public class BoardDao {
 		return sqlSession.selectList("mainPageShowRequireListPic");
 	}
 
-	
+
+	//made by lbj
+	public int selectMyBoardListCount(String member_id) {
+		return sqlSession.selectOne("selectMyBoardListCount", member_id);
+	}
+	public List<Board> selectMyBoard(HashMap<Object, Object> map3) {
+		return sqlSession.selectList("selectMyBoard", map3);
+	}
+
 }

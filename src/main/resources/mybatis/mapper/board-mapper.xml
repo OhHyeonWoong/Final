@@ -270,6 +270,26 @@
 			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
 			where rnum>=1 and rnum<=6]]> 
 	</select>
+	
+	<select id="selectMyBoardListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from agency where agency_writer = #{member_id}
+		]]>
+	</select>
+	
+	<select id="selectMyBoard" parameterType="java.util.HashMap" resultType="Board">
+		<![CDATA[
+			select * from agency
+		]]>
+		<!-- select * 
+from (
+  select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+  agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+  ,agency_content,agency_veiws,agency_keyword,agency_option 
+  from agency 
+  where link2_no) 
+where rnum>=1 and rnum<=6 -->
+	</select>
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	
 	

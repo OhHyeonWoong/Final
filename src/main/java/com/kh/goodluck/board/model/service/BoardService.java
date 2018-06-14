@@ -246,5 +246,15 @@ public class BoardService {
 		return boardDao.insertReview(re);
 	}
 
+	public int selectMyBoardListCount(String member_id) {
+		//병준이 본인 게시물 갯수 세오는 메소드
+		return boardDao.selectMyBoardListCount(member_id);
+	}
+
+	public List<Board> selectMyBoard(HashMap<Object, Object> map3) {
+		//병준이 본인 게시물 가져오는 메소드
+		return boardDao.selectMyBoard(map3);
+	}
+
 
 }
