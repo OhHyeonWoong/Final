@@ -176,12 +176,19 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
 	public void loginCheck(Member member,Model model,HttpServletResponse response,HttpSession session) throws IOException{
+		//카카오 관련 작업 해야할것.
+		// 고객이 카카오로그인이후에, 이미 이 메소드가 실행이 되었다면, 카카오pk를 가진 회원이 없다는것, 새로 만들어야한다는것이다.
+		
+		
+		Member m = new Member();
+		PrintWriter out = response.getWriter();
 		System.out.println("member : " + member);
 		//로그인 작업을 합니다 세션에 넣어요
-		Member m = memberService.loginCheck(member);
-		PrintWriter out = response.getWriter();
+		m = memberService.loginCheck(member);
 		if(m != null) {
 			//lastlogin 갱신
 			int result = memberService.updateLastLogin(m.getMember_id());
@@ -214,6 +221,7 @@ public class MemberController {
 			//////////////////////////////////////////////////////////
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
+		  
 		}else {
 			out.write("로그인 실패");
 		}

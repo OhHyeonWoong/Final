@@ -22,6 +22,8 @@ public interface MemberService {
 	public abstract int decreaseCash(HashMap<Object,Object> map);
 	public abstract Memberandscore searchmemberInfobyBoardNo(int pk);
 	public abstract Memberandscore searchmemberInfobyBoardNo1(int pk);
+	public abstract Member getmemberinfobykakaopk(int parseInt);
+	public abstract int updatetoken(HashMap<Object, Object> map);
 	//지석님 서비스 끝
 	
 	public abstract int updateMemberInfo(Member m);
@@ -32,6 +34,8 @@ public interface MemberService {
 
 	public abstract int insertLoginStatistics(String member_id);
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
+	
+
 	
 
 }

@@ -383,6 +383,8 @@
 				</button>				
 			</div>
 		</c:if>
+		
+	
 		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>					
@@ -417,8 +419,43 @@
 								</div>
 							</div>
 						</div>
-					</td>								
+					</td>			
+						<c:if test="${loginUser.member_id eq 'guest'}">
+						<td>
+		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
+			
+				<button type = "button" class = "btn btn-default" data-toggle="modal" onclick="kakaologintest();">
+					<i class = "fa fa-sign-in"></i>LogIn
+				</button>				
+		<script type="text/javascript">
+		function kakaologintest(){
+			$.ajax({
+				url:"kakaologinbymy.go",
+				success:function(data){
+				console.log(data)
+				if(data == "카카오로그인함"){
+				window.history.go(0);	
+				}else{
+					$("#login-modal").modal("show");	
+				}
+			},
+				error:function(a,b,c){
+					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+				}
+				
+			})
+			
+			
+			
+			
+			
+		}
+		</script>
+			</td>
+		</c:if>
+							
 					<td> 
+					
 						<c:if test="${ loginUser.member_id ne 'guest'}">
 						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
 						</c:if>

@@ -23,6 +23,7 @@
 		<result property="member_accesstoken" column="member_accesstoken" />
 		<result property="member_refreshtoken" column="member_refreshtoken" />
 		<result property="member_keyword_count" column="member_keyword_count" />	
+		<result property="MEMBER_KAKAOIDPK" column="MEMBER_KAKAOIDPK" />	
 	</resultMap>
 	
 	<resultMap id="Memberandscore" type="Memberandscore">
@@ -48,6 +49,7 @@
 		<result property="SCORE_SELL" column="SCORE_SELL" />	
 		<result property="SCORE_SELL_COUNT" column="SCORE_SELL_COUNT" />	
 		<result property="SCORE_SELL_RATE" column="SCORE_SELL_RATE" />	
+		<result property="MEMBER_KAKAOIDPK" column="MEMBER_KAKAOIDPK" />	
 	</resultMap>
 	
 	
@@ -214,4 +216,14 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	where  a>=1 and a<= 10 
 	]]>
 	</select>
+	<select id="getmemberinfobykakaopk" parameterType="int" resultType="Member">
+	select * from member where MEMBER_KAKAOIDPK=#{parseInt}
+	</select>
+	<update id="updatetoken" parameterType="Hashmap">
+	update member set
+	MEMBER_REFRESHTOKEN=#{refresh_token},
+	MEMBER_ACCESSTOKEN=#{access_token}
+	where MEMBER_KAKAOIDPK = #{kakaopk}
+	</update>
+	
 	</mapper>
