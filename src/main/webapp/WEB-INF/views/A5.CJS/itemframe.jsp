@@ -3,7 +3,7 @@
 
 <script>
 function paging1(page){
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" != "guest"){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
 	
@@ -172,7 +172,7 @@ function paging1(page){
 				}
 	})}}
 function paging(page){
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" !="guest"){
 		//로그인 했을경우에만 발동함.
 		var id = "${loginUser.member_id}";
 	
@@ -344,7 +344,7 @@ function paging(page){
 
 $(function(){
 	
-	if("${loginUser}" != ""){
+	if("${loginUser}" != "" && "${loginUser.member_id}" != "guest"){
 	//로그인 했을경우에만 발동함.
 	var id = "${loginUser.member_id}";
 	$.ajax({
@@ -906,7 +906,7 @@ height: 78px;
  <th style=" width: 30%;">
 	<div class="11" style="margin-left:10px;">
 		<center>
-		<c:if test="${loginUser ne null}">
+		<c:if test="${loginUser ne null && loginUser.member_id ne 'guest'}">
 		<img alt="회원이미지" src="/goodluck/resources/A5.CJS/usertitleimg/${loginUser.member_renamephoto}" style="width: 100px; height: 100px; border-radius: 100% 100% 100% 100% ">
 		</c:if>
 		</center>

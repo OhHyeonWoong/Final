@@ -15,11 +15,16 @@ public class SearchDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public List<Search> searchKeyword(HashMap<Object, Object> map) {		
-		return sqlSession.selectList("headerSearchKeyword", map);
+	public List<Search> searchKeyword(String searchKeyword, int pageStart, int pageEnd) {
+		HashMap<String, Object> sendValue = new HashMap<String, Object>();
+		sendValue.put("searchKeyword", searchKeyword);
+		sendValue.put("pageStart", pageStart);
+		sendValue.put("pageEnd", pageEnd);
+		return sqlSession.selectList("headerSearchKeyword", sendValue);
 	}
 
-	public int selectSearchListCount(String searchKeyword) {		
+	public int searchListCount(String searchKeyword) {
+		
 		return sqlSession.selectOne("headerSearchListCount", searchKeyword);
 	}
 

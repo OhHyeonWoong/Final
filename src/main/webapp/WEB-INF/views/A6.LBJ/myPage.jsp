@@ -620,27 +620,40 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			</div>
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
 			<hr>
-			<h3 class="lbjh3" id="lbjnowreservationInfo">현재 예약 정보보기</h3>
-			<div class="lbjdiv">
-			
+			<h3 class="lbjh3" id="lbjnowreservationInfo">내가 올린 글</h3>
+			<div class="lbjdiv">		
 				<table class="table table-striped lbjtable">
-					<tr><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">상태</th></tr>
-					<tr><td>게임</td><td><a href="#">롤 자크 배우실분 구합니다 現마스터</a></td><td>예약중</td></tr>
-					<tr><td>여행</td><td><a href="#">파리 가이드 해주실 분 구합니다</a></td><td>거래중</td></tr>
-					<tr><td>게임</td><td><a href="#">롤 원딜학개론 오픈합니다 前챌린저 </a></td><td>거래중</td></tr>
-					<tr><td>음악</td><td><a href="#">드럼 배우실 분 구합니다 신청하세요</a></td><td>예약중</td></tr>
-					<tr><td>음악</td><td><a href="#">방송댄스 배우실분?</a></td><td>거래중</td></tr>
+					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th></tr>
+					<tr><td>구합니다</td><td>여행</td><td><a href="#">abc</a></td><td>2018/05/30</td></tr>
+					<tr><td>구합니다</td><td>취미</td><td><a href="#">qwe</a></td><td>2018/06/02</td></tr>
+					<tr><td>해드립니다</td><td>노래</td><td><a href="#">poi</a></td><td>2018/06/01</td></tr>
+					<tr><td>해드립니다</td><td>기타</td><td><a href="#">ghj</a></td><td>2018/06/06</td></tr>
+					<tr><td>구합니다</td><td>게임</td><td><a href="#">xcv</a></td><td>2018/06/11</td></tr>
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3" id="lbjpreservationInfo">지난 이용정보 보기</h3>
+			<h3 class="lbjh3" id="lbjpreservationInfo">내 신청내역</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
-					<tr><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">상태</th></tr>
-					<tr><td>반려동물</td><td><a href="#">강아지 출장미용 합니다 연락주세요</a></td><td>완료</td></tr>
-					<tr><td>생활</td><td><a href="#">인테리어 합니다</a></td><td>완료</td></tr>
+					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">신청일</th></tr>
+					<tr><td>구합니다</td><td>여행</td><td><a href="#">abc</a></td><td>2018/05/30</td></tr>
+					<tr><td>구합니다</td><td>취미</td><td><a href="#">qwe</a></td><td>2018/06/02</td></tr>
+					<tr><td>해드립니다</td><td>노래</td><td><a href="#">poi</a></td><td>2018/06/01</td></tr>
+					<tr><td>해드립니다</td><td>기타</td><td><a href="#">ghj</a></td><td>2018/06/06</td></tr>
+					<tr><td>구합니다</td><td>게임</td><td><a href="#">xcv</a></td><td>2018/06/11</td></tr>
 				</table>
 			</div>
+			<hr>
+			<!-- 새로 추가 -->
+			<h3 class="lbjh3" id="lbjSiteUserHistory">내 이용내역</h3>
+			<div class="lbjdiv">
+				<table class="table table-striped lbjtable">
+					<tr><th class="lbjth">상태</th><th class="lbjth">글제목</th><th class="lbjth">종료일</th></tr>
+					<tr><td>매칭완료</td><td>강아지 출장미용 합니다 연락주세요</td><td>2018/04/12</td></tr>
+					<tr><td>거절</td><td>인테리어 합니다</td><td>2018/05/15</td></tr>
+				</table>
+			</div>
+			<!-- 새로 추가  끝 -->
 			<hr>
 			<h3 class="lbjh3" id="lbjQnA">나의 QnA</h3>
 			<div class="lbjdiv" id="lbjqnaDiv">

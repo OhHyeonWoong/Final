@@ -84,11 +84,44 @@
 								  //<![CDATA[
 								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
 								    Kakao.init('bd5a6122e0874d4c2859d1b0192adfb0');
+								   
+								    
 								    function loginWithKakao() {
 								      // 로그인 창을 띄웁니다.
-								      Kakao.Auth.login({
+								
+								      Kakao.Auth.loginForm({
 								        success: function(authObj) {
-								          alert(JSON.stringify(authObj));
+								          console.log(authObj); 
+								        var access_token=authObj.access_token;
+								        var refresh_token=authObj.refresh_token;
+								          Kakao.API.request({
+								              url: '/v1/user/me',
+								              success: function(res) {
+								           	var json = JSON.parse(JSON.stringify(res));
+								              var nickname=json.properties.nickname;
+								              var email=json.kaccount_email;
+								              var pk=json.id;
+								           
+								              $.ajax({
+								            	  url:"cjskakaologin.go",
+								            	  data:
+								            	  {name:nickname,
+								            	   email:email,
+								            	   access_token:access_token,
+								              refresh_token:refresh_token,
+								              kakaopk:pk
+								            	   },success:function(data){
+								            		
+								            		   window.history.go(0);
+								            		   
+								            	   }
+								              })
+								              
+								              },
+								              fail: function(error) {
+								                alert(JSON.stringify(error));
+								              }
+								            });
 								        },
 								        fail: function(err) {
 								          alert(JSON.stringify(err));

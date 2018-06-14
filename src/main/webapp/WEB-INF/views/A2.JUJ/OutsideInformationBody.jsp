@@ -241,6 +241,6 @@
 		    <br>
 		    <p class="text-center" style="margin-bottom: 0;"><a href="#" class="btn btn-default"> TOP <i class="fa fa-chevron-up"></i></a> &nbsp;&nbsp;  <a href="news_total.go" class="btn btn-default"> 뉴스전체 <i class="fa fa-chevron-up"></i></a></p>
 		
-
+			
 	</body>
 </html>

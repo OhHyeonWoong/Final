@@ -39,6 +39,7 @@ public class HomeController {
 	@Autowired
 	private BoardService boardService;
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
 	public String home() { 	//메인화면 이동용 메소드
@@ -46,10 +47,21 @@ public class HomeController {
 		return "home";
 	}		
 	
+	@RequestMapping("ukjaeServiceForm.go")
+	public String ServiceForm() {
+		return "A2.JUJ/UkjaeServiceForm";
+	}
+	
 	@RequestMapping("outsideInfo.go")
 	public String outsideInformationShow() {
 		
 		return "A2.JUJ/OutSideInFormation";
+	}
+	
+	@RequestMapping("adminViewManagement.go")
+	public String managementpage() {
+		
+		return "A2.JUJ/AdaminViewManagement";
 	}
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
