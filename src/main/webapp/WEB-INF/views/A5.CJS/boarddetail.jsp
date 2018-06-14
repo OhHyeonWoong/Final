@@ -15,6 +15,10 @@
 
 <script type="text/javascript">
 	$(function () {
+	if("${loginUser}" == "" || "${loginUser.member_id}" =="guest" )	
+		{console.log("fdsa");
+		location.href="Error500.go";
+		}
 		$("#ukapplybtn").on("click",function(){		
 			$('#myModal').modal('show');
 		});	

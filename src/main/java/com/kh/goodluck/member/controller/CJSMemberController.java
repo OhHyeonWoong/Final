@@ -104,10 +104,6 @@ public class CJSMemberController {
 		 model.addAttribute("loginUser", member);
 		 out.flush();
 		 out.close();
-	    
-	    
-	    
-	
 	}else {
 		 member.setMember_id("guest");
 	     member.setMember_name("(카카오로그인)"+request.getParameter("name"));
