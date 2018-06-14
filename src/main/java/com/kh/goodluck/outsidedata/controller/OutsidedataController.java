@@ -45,7 +45,6 @@ public class OutsidedataController {
 	public void  searchListFeedback(@RequestParam("seloption")String useroption , @RequestParam("keyword")String keyword,HttpServletRequest request,HttpServletResponse response) throws IOException {		
 		/*System.out.println("유저가 선택한 select문 : "+useroption);
 		System.out.println("유저가 입력한 검색어 : "+keyword);*/
-		
 		// 1 : 제목기준 키워드검색 , 2 : 기사내용기준 키워드검색 , 3 : 출처기준 키워드검색
 		switch (useroption) { //유저가 선택한 것에 따라 검색옵션이 3가지로 나뉨
 		case "1" : 

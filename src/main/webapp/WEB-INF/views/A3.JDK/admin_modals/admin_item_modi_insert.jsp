@@ -24,6 +24,13 @@ $(function(){
 	
 	
 });
+
+function insertNewItem(){
+	var itemName = ;
+	
+}
+
+
 </script>
 </head>
 <body>
@@ -90,7 +97,7 @@ $(function(){
 
 				</div>
 				<div class="modal-footer" style="text-align:center;">
-					<button type="button" class="btn btn-default" data-dismiss="modal">입력</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="insertNewItem();">입력</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
