@@ -112,7 +112,7 @@
 				<table class="table table-hover ohw-search-table">
 					<tr>
 						<td><label></label></td>						
-						<td><input type = "text" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly></td>
+						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly></td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
@@ -129,38 +129,52 @@
 					<tr>
 						<td colspan = "5" align = "center">
 							<ul class = "pagination">
-								<%-- <c:if test="${ searchResult.pagingView.curBlock > 1 }">
+								<c:if test="${ searchResult.pagingView.curBlock > 1 }">
 									<li>
 										<a href = "#" onClick = "pageCount('1', '${ searchResult.searchKeyword }')">
-											1
+											처음
 										</a>
 									</li>
 								</c:if>
 								<c:if test="${ searchResult.pagingView.curBlock > 1 }">
 									<li>
-										<a href = "#" onClick = "pageCount('${ searchResult.pagingView }', '${ searchResult.searchKeyword }')">
+										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.prevPage }', '${ searchResult.searchKeyword }')">
 											이전
 										</a>
 									</li>
-								</c:if> --%>
+								</c:if>
 								<c:forEach var="pagingView" 
 									begin="${ searchResult.pagingView.blockBegin }" 
 									end="${ searchResult.pagingView.blockEnd }">
 									<c:choose>
-										<c:when test="${ searchResult.pagingView == searchResult.pagingView.curPage }">
+										<c:when test="${ pagingView == searchResult.pagingView.curPage }">
 											<li class = "active">
 												<span style = "color:white;">
-													${ searchResult.pagingView }
+													${ pagingView }
 												</span>
 											</li>
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href = "#" onClick = "pageCount('${ searchResult.pagingView }', '${ searchResult.searchKeyword }')">${ pagingView }</a>
+												<a href = "#" onClick = "pageCount('${ pagingView }', '${ searchResult.searchKeyword }')">${ pagingView }</a>
 											</li>
 										</c:otherwise>
 									</c:choose>								
-								</c:forEach>								
+								</c:forEach>
+								<c:if test="${ searchResult.pagingView.curBlock <= searchResult.pagingView.totBlock }">
+									<li>
+										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.nextPage }', '${ searchResult.searchKeyword }')">
+											다음
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${ searchResult.pagingView.curBlock <= searchResult.pagingView.totBlock }">
+									<li>
+										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.totPage }', '${ searchResult.searchKeyword }')">
+											끝
+										</a>
+									</li>
+								</c:if>							
 							</ul>
 						</td>
 					</tr>

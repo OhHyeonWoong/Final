@@ -237,9 +237,9 @@ public class Search {
 	
 	public void setBlockRange() {
 		/* 원하는 페이지가 몇번째 블록에 속하는지 계산 */
-		curBlock = (int)Math.ceil((curPage - 1) / blockScale);
+		curBlock = (int)Math.ceil((curPage - 1) / blockScale) + 1;
 		/* 블록의 히작페이지, 끝페이지 번호 계산 */
-		blockBegin = (curBlock - 1) * blockScale + 1;
+		blockBegin = ((curBlock - 1) * blockScale) + 1;
 		blockEnd = blockBegin + blockScale - 1;
 		/* 마지막 페이지 번호가 블록 범위를 초과하지 않도록 처리 */
 		if(blockEnd > totPage) {

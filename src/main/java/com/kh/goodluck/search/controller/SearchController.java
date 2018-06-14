@@ -37,17 +37,18 @@ public class SearchController {
 		int pageStart = pager.getPageBegin();
 		int pageEnd = pager.getPageEnd();
 		
-		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */
+		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */		
 		
-		
-		System.out.println("SearchList : " + list + " / To.SearchController");
+		/*System.out.println("SearchList : " + list + " / To.SearchController");
 		System.out.println("PageStart : " + pageStart + " / To.SearchController");
 		System.out.println("PageEnd : " + pageEnd + " / To.SearchController");
+		System.out.println("BlockStart : " + pager.getBlockBegin() + " / To.SearchController");
+		System.out.println("BlockEnd : " + pager.getBlockEnd() + " / To.SearchController");*/
 		
 		HashMap<Object,Object> map = new HashMap<Object,Object>(); 
 		map.put("searchList", list); /* 맵에 자료 저장 */
 		map.put("pageCount", list.size());
-		map.put("searchKeyword", searchKeyword);
+		map.put("searchKeyword", searchKeyword); /* 페이지 이동시 검색어 유지할 검색 키워드 */
 		map.put("pagingView", pager); /* 페이지 네비게이션을 위한 변수 */
 		mav.setViewName("A1.OHW/SearchResult"); /* 포워딩할 뷰의 이름 */
 		mav.addObject("searchResult", map); /* ModelAndView에 map을 저장 */
@@ -55,24 +56,7 @@ public class SearchController {
 		return mav; /* 지정한 뷰로 이동 */
 	}
 	
-	/*@RequestMapping(value = "headerSearch.go")
-	public ModelAndView moveSearch(HttpServletResponse response, HttpServletRequest request, ModelAndView mav, 
-			@RequestParam("searchKeyword") String searchKeyword) {		
-		
-		System.out.println("SendKeyword : " + searchKeyword + " / To.SearchController");			
-	    
-	    HashMap<Object,Object> map = new HashMap<Object,Object>();	   
-	    map.put("agency_title", searchKeyword);
-	    List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd);				
-		
-		System.out.println("ReturnList : " + list + " / To.SearchController");
-		mav.addObject("searchList", list);
-		mav.addObject("searchKeyword", searchKeyword);
-		mav.setViewName("A1.OHW/SearchResult");		
-		return mav;
-	}	
-	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value = "headerSearchAjax.go", method = RequestMethod.POST)
 	public void searchReload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("searchKeyword") String searchKeyword) throws IOException {
@@ -113,5 +97,5 @@ public class SearchController {
 			out.append(json.toJSONString());
 			out.flush();
 			out.close();		
-		}*/			
+		}*/		
 	}
