@@ -131,4 +131,10 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.updatetoken(map);
 	}
+
+	@Override
+	public int updatekakaoinfo(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDao.updatekakaoinfo(map);
+	}
 }	

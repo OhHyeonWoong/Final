@@ -102,5 +102,9 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updatetoken", map);
 	}
+	public int updatekakaoinfo(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("updatekakaoinfo", map);
+	}
 	
 }

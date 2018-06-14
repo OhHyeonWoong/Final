@@ -99,13 +99,23 @@ public class CJSMemberController {
 		 member=memberService.getmemberinfobykakaopk(Integer.parseInt(request.getParameter("kakaopk")));
 	    member.setMember_refreshtoken(request.getParameter("refresh_token"));
 	    member.setMember_accesstoken(request.getParameter("access_token"));
-	     }else {
+	    PrintWriter out = response.getWriter();
+		 out.write("로그인 성공");
+		 model.addAttribute("loginUser", member);
+		 out.flush();
+		 out.close();
+	    
+	    
+	    
+	
+	}else {
 		 member.setMember_id("guest");
 	     member.setMember_name("(카카오로그인)"+request.getParameter("name"));
 	     member.setMember_email(request.getParameter("email"));
 	     member.setMember_refreshtoken(request.getParameter("refresh_token"));
 	     member.setMember_accesstoken(request.getParameter("access_token"));
 	     member.setMEMBER_KAKAOIDPK(Integer.parseInt(request.getParameter("kakaopk")));
+	     member.setMember_status(1);
 		 PrintWriter out = response.getWriter();
 		 out.write("로그인 성공");
 		 model.addAttribute("loginUser", member);
