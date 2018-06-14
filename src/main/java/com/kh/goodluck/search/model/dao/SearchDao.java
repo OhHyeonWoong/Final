@@ -17,14 +17,13 @@ public class SearchDao {
 
 	public List<Search> searchKeyword(String searchKeyword, int pageStart, int pageEnd) {
 		HashMap<String, Object> sendValue = new HashMap<String, Object>();
-		sendValue.put("searchKeyword", searchKeyword);
-		sendValue.put("pageStart", pageStart);
+		sendValue.put("agency_title", searchKeyword);
+		sendValue.put("pageBegin", pageStart);
 		sendValue.put("pageEnd", pageEnd);
 		return sqlSession.selectList("headerSearchKeyword", sendValue);
 	}
 
-	public int searchListCount(String searchKeyword) {
-		
+	public int searchListCount(String searchKeyword) {		
 		return sqlSession.selectOne("headerSearchListCount", searchKeyword);
 	}
 

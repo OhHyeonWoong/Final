@@ -1,23 +1,17 @@
 package com.kh.goodluck.search.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.*;
 
-import org.json.simple.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.search.model.service.SearchService;
-import com.kh.goodluck.search.model.vo.Pager;
-import com.kh.goodluck.search.model.vo.Search;
 
-import javafx.scene.control.Pagination;
+import com.kh.goodluck.search.model.vo.Search;
 
 @Controller
 public class SearchController {	
@@ -33,39 +27,30 @@ public class SearchController {
 		/* 레코드 갯수 계산 */
 		int count = searchService.searchListCount(searchKeyword);
 		
-		Pager pager = new Pager(count, curPage);
+		Search pager = new Search(count, curPage);
 		int pageStart = pager.getPageBegin();
 		int pageEnd = pager.getPageEnd();
 		
-		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */
+		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */		
 		
-		HashMap<Object,Object> map = new HashMap<Object,Object>();	   
-		map.put("searchResult", list); /* 맵에 자료 저장 */
+		/*System.out.println("SearchList : " + list + " / To.SearchController");
+		System.out.println("PageStart : " + pageStart + " / To.SearchController");
+		System.out.println("PageEnd : " + pageEnd + " / To.SearchController");
+		System.out.println("BlockStart : " + pager.getBlockBegin() + " / To.SearchController");
+		System.out.println("BlockEnd : " + pager.getBlockEnd() + " / To.SearchController");*/
+		
+		HashMap<Object,Object> map = new HashMap<Object,Object>(); 
+		map.put("searchList", list); /* 맵에 자료 저장 */
 		map.put("pageCount", list.size());
+		map.put("searchKeyword", searchKeyword); /* 페이지 이동시 검색어 유지할 검색 키워드 */
+		map.put("pagingView", pager); /* 페이지 네비게이션을 위한 변수 */
 		mav.setViewName("A1.OHW/SearchResult"); /* 포워딩할 뷰의 이름 */
-		mav.addObject("searchList", map); /* ModelAndView에 map을 저장 */
+		mav.addObject("searchResult", map); /* ModelAndView에 map을 저장 */
 		
 		return mav; /* 지정한 뷰로 이동 */
 	}
 	
-	/*@RequestMapping(value = "headerSearch.go")
-	public ModelAndView moveSearch(HttpServletResponse response, HttpServletRequest request, ModelAndView mav, 
-			@RequestParam("searchKeyword") String searchKeyword) {		
-		
-		System.out.println("SendKeyword : " + searchKeyword + " / To.SearchController");			
-	    
-	    HashMap<Object,Object> map = new HashMap<Object,Object>();	   
-	    map.put("agency_title", searchKeyword);
-	    List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd);				
-		
-		System.out.println("ReturnList : " + list + " / To.SearchController");
-		mav.addObject("searchList", list);
-		mav.addObject("searchKeyword", searchKeyword);
-		mav.setViewName("A1.OHW/SearchResult");		
-		return mav;
-	}	
-	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value = "headerSearchAjax.go", method = RequestMethod.POST)
 	public void searchReload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("searchKeyword") String searchKeyword) throws IOException {
@@ -106,5 +91,5 @@ public class SearchController {
 			out.append(json.toJSONString());
 			out.flush();
 			out.close();		
-		}*/			
+		}*/		
 	}
