@@ -136,12 +136,12 @@ $(document).ready(function() {
 				searchstr+=$('#group3-2').val();
 			}
 			
-			searchstr+='&group4=';
+			/*searchstr+='&group4=';
 			if($('#group4-1').prop('checked')){
 				searchstr+=$('#group4-1').val();
 			}else if($('#group4-2').prop('checked')){
 				searchstr+=$('#group4-2').val();
-			}
+			}*/
 
 			searchstr+='&min='+$('#min').val();
 			searchstr+='&max='+$('#max').val();
