@@ -37,8 +37,6 @@ import com.kh.goodluck.qna.model.vo.QnaAnswer;
 //import com.sun.deploy.net.HttpRequest;
 import com.sun.xml.internal.ws.addressing.v200408.MemberSubmissionWsaServerTube;
 
-import jdk.incubator.http.HttpHeaders;
-
 @Controller
 @SessionAttributes("loginUser")
 public class CJSMemberController {
