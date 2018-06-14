@@ -23,19 +23,22 @@ import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
-
+import com.kh.goodluck.board.model.vo.KaKaoMessage;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.Memberandscore;
-
+import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import oracle.sql.CHAR;
 
 @Controller
 @SessionAttributes("loginUser")
 public class CJS_BoardController {
 
+	private KakaoMessageAPI thread;
+	
 	@Autowired
 	private MemberService memberService;
 	
@@ -46,54 +49,65 @@ public class CJS_BoardController {
 	}
 	
 	@RequestMapping("BoardDetail.go")
-	public ModelAndView boarddetailmove(ModelAndView mv, @RequestParam("BoardNo") int pk) {
+	public ModelAndView boarddetailmove(ModelAndView mv,HttpSession session,@RequestParam("BoardNo") int pk) {
 		//보드상세설명으로 가는 명령어.
 		//1:해당 보드 조회수+1
 		
-		int result=boardservice.IncreaseViewCount(pk);
-		//2: 해당 보드 객체를 가지고 가기.
-		Board bo=boardservice.getBoardInfoByNo(pk);
-		System.out.println(bo.toString());
-		//2.1 lonk2의pk로 보드의 최하위 스몰카테고리 조회수+1 
-		boardservice.IncreasesSMALLCATEGORYCOUNT(Integer.parseInt(bo.getLink2_no()));
-		//3: lonk2의pk로 해당 카테고리 상위목록들 가져가기
-		GetCategoryForBoardDetail gcfbd=boardservice.gcfbd(Integer.parseInt(bo.getLink2_no()));
-		//4: 보드의 키워드를 ,단위로 파싱하고 보낸다.
-		String[] mobNum = bo.getAgency_keyword().split(",");
-		ArrayList<String> keywords =new  ArrayList<String>();
-		for (int i = 0; i < mobNum.length; i++){
-		    keywords.add(mobNum[i]);		
-		}
-		
-		/* GetCategoryForBoardDetail 
-		 * [CATEGORY_BIG_CODE=A, CATEGORY_MID_CODE=AA, 
-		 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 
-		 * CATEGORY_MID_NAME=홈, CATEGORY_SMALL_NAME=파티, 
-		 * LINK1_NO=1, LINK2_NO=1]
-		 * */
-	
-	    mv.addObject("keywords",keywords);
-		mv.addObject("Cateinfo",gcfbd);
-		mv.addObject("Board",bo);
-		mv.setViewName("A5.CJS/boarddetail");
-		return mv;
-		
-	}	
+		if(session.getValue("loginUser") == null) {
+			//맴버 아이디에 아이콘을 같이 가져가기.
+		mv.setViewName("A5.CJS/login2");
+		return mv;	
+		}else{
+			
+			Member member=(Member)session.getAttribute("loginUser");
+			if(member.getMember_id().equals("guest"))
+			{
+			mv.setViewName("A5.CJS/login2");
+			return mv;	
+				
+			}else {
+				int result=boardservice.IncreaseViewCount(pk);
+				//2: 해당 보드 객체를 가지고 가기.
+				Board bo=boardservice.getBoardInfoByNo(pk);
+				System.out.println(bo.toString());
+				//2.1 lonk2의pk로 보드의 최하위 스몰카테고리 조회수+1 
+				boardservice.IncreasesSMALLCATEGORYCOUNT(Integer.parseInt(bo.getLink2_no()));
+				//3: lonk2의pk로 해당 카테고리 상위목록들 가져가기
+				GetCategoryForBoardDetail gcfbd=boardservice.gcfbd(Integer.parseInt(bo.getLink2_no()));
+				//4: 보드의 키워드를 ,단위로 파싱하고 보낸다.
+				String[] mobNum = bo.getAgency_keyword().split(",");
+				ArrayList<String> keywords =new  ArrayList<String>();
+				for (int i = 0; i < mobNum.length; i++){
+				    keywords.add(mobNum[i]);		
+				}
+				
+				/* GetCategoryForBoardDetail 
+				 * [CATEGORY_BIG_CODE=A, CATEGORY_MID_CODE=AA, 
+				 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 
+				 * CATEGORY_MID_NAME=홈, CATEGORY_SMALL_NAME=파티, 
+				 * LINK1_NO=1, LINK2_NO=1]
+				 * */
+			    mv.addObject("keywords",keywords);
+				mv.addObject("Cateinfo",gcfbd);
+				mv.addObject("Board",bo);
+				mv.setViewName("A5.CJS/boarddetail");
+				return mv;	
+			}
+	  }		
+}	
 	
 ///////////////////////////////////////////////////////////////////////////////////	
 	
 	@RequestMapping("DealingState.go") //욱재작업 - 신청후 거래중페이지 이동
-	public void DealingStatemove(ModelAndView mv,
+	public void DealingStatemove(ModelAndView mv, KaKaoMessage KaKaoMessage,
 			@RequestParam("BoardNo") int pk, 
 			@RequestParam("memberid") String memberid,
 			HttpServletResponse response,
 			HttpServletRequest request) throws ServletException, IOException 
 	{
-		
-		
 		//본인의 글은 본인이 신청못하게, 같은사람이 여러번 신청못하게하기.\
 	     
-	    
+		
 		RequestDispatcher view=null;
 		response.setContentType("text/html charset=utf-8");
 		//이 메소드는 오직 "신청하기" 버튼을 눌렀을경우에만 발동된다.
@@ -126,6 +140,16 @@ public class CJS_BoardController {
 		boardservice.insertchatroom(map);
 		System.out.println("신규최초 인원으로써 업데이트 result="+result);
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
+	    Memberandscore writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+		
+	    
+	    KaKaoMessage.setBoardtitle("신규 지원자가 나타났습니다.");
+		KaKaoMessage.setToken(writer.getMember_accesstoken());
+		KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 새로운 지원자가 나타났습니다.");
+	    KaKaoMessage.setBoardno(bo.getAgency_no());
+		thread=new KakaoMessageAPI(KaKaoMessage);
+		thread.start();
+		
 		break;
 		////////////////////////////////
 		
@@ -217,7 +241,7 @@ public class CJS_BoardController {
 			mv.setViewName("A5.CJS/ErrorPage2");
 			return mv;
 		}else {
-			
+	
 	
 		//받는정보. 딱1개 > 보드번호
 		Member member=null;

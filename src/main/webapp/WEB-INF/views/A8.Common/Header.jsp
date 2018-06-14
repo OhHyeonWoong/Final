@@ -444,6 +444,7 @@
 		}
 		</script>
 			</td>
+		
 		</c:if>
 							
 					<td> 
@@ -1067,6 +1068,7 @@
 		</nav>
 	</div>
 </div>
+			
 <%@ include file="/WEB-INF/views/A6.LBJ/login.jsp" %>
 <%@ include file="/WEB-INF/views/A5.CJS/itemframe.jsp" %>
 </body>

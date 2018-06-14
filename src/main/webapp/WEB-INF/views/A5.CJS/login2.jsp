@@ -1,30 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>	
-	<!-- BEGIN # MODAL LOGIN -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none;">
-		<div class="modal-dialog">
-			<div class="modal-content" style="width:100%;">
-				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo"
-						src="/goodluck/resources/A6.LBJ/images/Logo.png"><!-- http://bootsnipp.com/img/logo.jpg -->
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</div>
-
-				<!-- Begin # DIV Form -->
-				<div id="div-forms">
-					
-					<!-- Begin # Login Form -->
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>서비스 이용을 위해 로그인해주세요.</title>
+</head>
+<body>
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+<div id="div-forms">
+				<div class="container" style="height: 550px">
+				<center>
+				<div class="row" style="width: 330px;">
+					 <!-- Begin # Login Form -->
 					<form id="login-form" class="loginForm1" action="lbjlogin.go" method="post">
 						<div class="modal-body">
 							<div id="div-login-msg">
 								<div id="icon-login-msg"
 									class="glyphicon glyphicon-chevron-right"></div>
-								<span id="text-login-msg">아이디와 비밀번호를 입력하세요</span>
+								<span id="text-login-msg">서비스 이용을 위해 로그인을 해주세요!</span>
 							</div>
 							<input id="login_id" name="member_id" class="form-control" type="text"
 								placeholder="아이디" required><!-- login_username -->
@@ -231,8 +225,11 @@
                     </form>
                     <!-- End | Lost Id Form -->
 				</div>
-				<!-- End # DIV Form -->
-			</div>
-		</div>
-	</div>
-	<!-- END # MODAL LOGIN -->
+				</center></div>
+</div>	
+
+
+<%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
+
+</body>
+</html>

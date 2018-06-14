@@ -12,36 +12,49 @@ import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
-@Controller
-public class KakaoMessageAPI {
-public KakaoMessageAPI() {
-	// TODO Auto-generated constructor stub
-}
+import com.kh.goodluck.board.model.vo.KaKaoMessage;
 
-@RequestMapping("kakaoMessage.go")
-public void reree() {
+
+
+public class KakaoMessageAPI extends Thread{
+	private String boardtitle;
+	private String message;
+	private String token;
+	private int boardno;
+	public KakaoMessageAPI() {
+		// TODO Auto-generated constructor stub
+	}
+    public KakaoMessageAPI(KaKaoMessage kakaomessage) {
+		// TODO Auto-generated constructor stub
+    this.boardtitle=kakaomessage.getBoardtitle();
+    this.message=kakaomessage.getMessage();
+    this.token=kakaomessage.getToken();
+    this.boardno=kakaomessage.getBoardno();
+	}
+	
+  private void sendmessage() {
 	//엑세스토큰을 값으로 가져와야한다.@RequestParam("token") String access
-   System.out.println("메세지보내기");
+    System.out.println("카카오 메세지보내기");
 	String result =null;
 	String BASE_URL="https://kapi.kakao.com";
 	try{
+		System.out.println(boardtitle);
+		System.out.println(message);
+		System.out.println(token);
+		System.out.println(boardno);
 	    JSONObject linkObject =new JSONObject();
-	    
-	    linkObject.put("web_url","http://www.daum.net");
-	    linkObject.put("mobile_web_url","http://m.daum.net");
+	    linkObject.put("web_url","http://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
+	    linkObject.put("mobile_web_url","http://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
 	    linkObject.put("android_execution_params","contentId=100");
 	    linkObject.put("ios_execution_params","contentId=100");
-		
 	    JSONObject contentObject =new JSONObject();
-	    contentObject.put("title", "타이틀");
-	    contentObject.put("description","메세즤");
-	    contentObject.put("image_url","http://cfile2.uf.tistory.com/image/2121463B523B254B090323");
+	    contentObject.put("title",boardtitle);
+	    contentObject.put("description",message);
+	    contentObject.put("image_url","http://drive.google.com/uc?export=view&id=1lMJigz3gVm0Y-UB2ZGGoKzmEBMt0yUc_");
 	    contentObject.put("image_width",640);
 	    contentObject.put("image_height",640);
 	    contentObject.put("link",linkObject);
@@ -58,8 +71,7 @@ public void reree() {
 	    RestTemplate restTemplate = new RestTemplate(); //tlqkf...
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    headers.add("Authorization", "Bearer 6tOOr42VZBzvA8FSCDc97JiWo-jDfQLAYq0yiQopdtYAAAFjis334A");
-
+	    headers.add("Authorization", "Bearer "+token);
 	    List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
 	    converters.add(new FormHttpMessageConverter());
 	    converters.add(new StringHttpMessageConverter());
@@ -75,5 +87,12 @@ public void reree() {
 			System.out.println(e.getMessage());
 		}
 	
-}
+    } 
+  
+	@Override
+	public void run() {
+		sendmessage();
+		super.run();
+	}
+		
 }
