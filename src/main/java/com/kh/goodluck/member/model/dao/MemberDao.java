@@ -94,5 +94,17 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
 	}
+	public Member getmemberinfobykakaopk(int parseInt) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmemberinfobykakaopk", parseInt);
+	}
+	public int updatetoken(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("updatetoken", map);
+	}
+	public int updatekakaoinfo(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("updatekakaoinfo", map);
+	}
 	
 }

@@ -383,6 +383,8 @@
 				</button>				
 			</div>
 		</c:if>
+		
+	
 		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>					
@@ -394,17 +396,9 @@
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td> ${ loginUser.member_name } 님 </td>
-											
-										
-											<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button>
-											
-											
-											
-											
-											
-											
-											</td>
-									
+											<td>									
+												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button>
+											</td>									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
 											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
@@ -417,18 +411,53 @@
 								</div>
 							</div>
 						</div>
-					</td>								
+					</td>			
+						<c:if test="${loginUser.member_id eq 'guest'}">
+						<td>
+		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
+			
+				<button type = "button" class = "btn btn-default" data-toggle="modal" onclick="kakaologintest();">
+					<i class = "fa fa-sign-in"></i>LogIn
+				</button>				
+		<script type="text/javascript">
+		function kakaologintest(){
+			$.ajax({
+				url:"kakaologinbymy.go",
+				success:function(data){
+				console.log(data)
+				if(data == "카카오로그인함"){
+				window.history.go(0);	
+				}else{
+					$("#login-modal").modal("show");	
+				}
+			},
+				error:function(a,b,c){
+					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+				}
+				
+			})
+			
+			
+			
+			
+			
+		}
+		</script>
+			</td>
+		</c:if>
+							
 					<td> 
+					
 						<c:if test="${ loginUser.member_id ne 'guest'}">
-						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
+							<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
+								<i class = "fa fa-address-card"></i> MyItem
+							</button>
 						</c:if>
 						<c:if test="${ loginUser.member_id eq 'guest'}">
-						<button type = "button" class = "btn btn-default" onclick="javasrcipt:alert('아이템을 확인하기 위해선 독신사사이트에 로그인해주세요!');">
-						</c:if>
-						
-						
-							<i class = "fa fa-address-card"></i> MyItem
-						</button>
+							<button type = "button" class = "btn btn-default" onclick="javasrcipt:alert('아이템을 확인하기 위해선 독신사사이트에 로그인해주세요!');">
+								<i class = "fa fa-address-card"></i> MyItem
+							</button>
+						</c:if>					
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
@@ -676,7 +705,7 @@
 	
 	<div class = "ohw-menu-body">
 		<nav class="navbar navbar-default">		
-			<d iv class="collapse navbar-collapse js-navbar-collapse">
+			<div class="collapse navbar-collapse js-navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="dropdown mega-dropdown">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
@@ -933,10 +962,27 @@
 								var realTimeBar = "";							
 								
 								for(var i in json.headerCategoryBig){				
-									bigCategory += '<td class = "ohw-menu-col-td"><a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)" >' + json.headerCategoryBig[i].headerCategoryBigName + '</a></td>'
-									realTimeBar += '<li class = "ohw-menu-realtimebar-li"><a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)">' + json.headerCategoryBig[i].headerCategoryBigName + '</a></li>'
+									bigCategory += '<td class = "ohw-menu-col-td">' + 
+														'<a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)" >' + json.headerCategoryBig[i].headerCategoryBigName + '</a>' + 
+													'</td>'
+									realTimeBar += '<li class = "ohw-menu-realtimebar-li">' + 
+														'<a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)">' + json.headerCategoryBig[i].headerCategoryBigName + '</a>' + 
+													'</li>'
 								}
-								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar"><div class = "ohw-menu-realtimebar-content"><dl class = "ohw-menu-realtimebar-dl"><dd class = "ohw-menu-realtimebar-dd"><ol class = "ohw-menu-realtimebar-ol"></ol></dd></dl></div></td><td class = "ohw-menu-realtimebar-dropdown"><a><i class = "fa fa-chevron-down"></i></a></td>'
+								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar">' + 
+											'<div class = "ohw-menu-realtimebar-content">' + 
+												'<dl class = "ohw-menu-realtimebar-dl">' + 
+													'<dd class = "ohw-menu-realtimebar-dd">' + 
+														'<ol class = "ohw-menu-realtimebar-ol"></ol>' + 
+													'</dd>' + 
+												'</dl>' + 
+											'</div>' + 
+										'</td>' + 
+										'<td class = "ohw-menu-realtimebar-dropdown">' + 
+											'<a>' + 
+												'<i class = "fa fa-chevron-down"></i>' + 
+											'</a>' + 
+										'</td>'
 								$('.ohw-menu-tr-category').append(bigCategory);
 								$('.ohw-menu-tr-category').append(menuTd);
 								$('.ohw-menu-realtimebar-ol').append(realTimeBar);
@@ -1012,8 +1058,7 @@
 									<li><a href="#">지석</a></li>
 									<li><a href="lbjAdminQnaAnswer.go">뱅준</a></li>
 								</ul>								
-							</td>
-							
+							</td>							
 						</tr>
 					</table>					
 				</div>				
