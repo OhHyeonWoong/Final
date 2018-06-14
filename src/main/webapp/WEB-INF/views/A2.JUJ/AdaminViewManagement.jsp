@@ -42,7 +42,7 @@
 	<script type="text/javascript" src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>	
 	<script type="text/javascript">
 		$(function(){
-			$.ajax({
+			/* $.ajax({
 				url : "alllist.go",
 				type : "post",
 				datatype : "json",
@@ -78,7 +78,7 @@
 				error:function(a,b,c){
 					alert(a + ", " + b + ", " + c);
 				}	
-			});			
+			});	 */		
 			
 			
 		});	

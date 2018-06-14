@@ -44,8 +44,7 @@ public class OutsidedataController {
 	@RequestMapping(value="fowordingkeyword.go", method=RequestMethod.GET) //검색기능
 	public void  searchListFeedback(@RequestParam("seloption")String useroption , @RequestParam("keyword")String keyword,HttpServletRequest request,HttpServletResponse response) throws IOException {		
 		/*System.out.println("유저가 선택한 select문 : "+useroption);
-		System.out.println("유저가 입력한 검색어 : "+keyword);*/
-		
+		System.out.println("유저가 입력한 검색어 : "+keyword);*/		
 		int useroption_parse = Integer.parseInt(useroption);
 		
 		// 1 : 제목기준 키워드검색 , 2 : 기사내용기준 키워드검색 , 3 : 출처기준 키워드검색
@@ -53,7 +52,7 @@ public class OutsidedataController {
 		case 1 : 
 			PetNews p1 = new PetNews(keyword);
 			LifeNews p2 = new LifeNews(keyword);
-			GameNews p3 = new GameNews(keyword);
+			GameNews p3 = new GameNews(keyword); 
 			TravelNews p4 = new TravelNews(keyword);
 			PrintWriter out = response.getWriter();
 			

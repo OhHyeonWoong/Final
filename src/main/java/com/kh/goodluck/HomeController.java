@@ -39,12 +39,18 @@ public class HomeController {
 	@Autowired
 	private BoardService boardService;
 	
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
 	@RequestMapping(value = "home.go", method = RequestMethod.GET)
 	public String home() { 	//메인화면 이동용 메소드
 		logger.info("HomeController Run");		
 		return "home";
 	}		
+	
+	@RequestMapping("ukjaeServiceForm.go")
+	public String ServiceForm() {
+		return "A2.JUJ/UkjaeServiceForm";
+	}
 	
 	@RequestMapping("outsideInfo.go")
 	public String outsideInformationShow() {

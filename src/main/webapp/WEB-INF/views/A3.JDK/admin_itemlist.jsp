@@ -40,6 +40,9 @@
 	            <th>이미지</th>
 	            <th class="text-center">수정</th>
 	        </tr>
+	        <tr>
+	        <!-- 페이징처리 -->
+	        </tr>
 	    </thead>
 	    <!-- 실제 리스트 부분 -->
 	            <tr>

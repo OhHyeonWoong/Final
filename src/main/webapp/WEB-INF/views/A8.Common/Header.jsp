@@ -339,6 +339,7 @@
 				url:"lbjlogout1.go",
 				success:function(data){
 					alert(data);
+					Kakao.Auth.logout();
 					window.history.go(0);
 				},
 				error:function(a,b,c){
@@ -393,7 +394,17 @@
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td> ${ loginUser.member_name } 님 </td>
-											<td align="right"><button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button></td>
+											
+										
+											<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button>
+											
+											
+											
+											
+											
+											
+											</td>
+									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
 											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
@@ -408,14 +419,20 @@
 						</div>
 					</td>								
 					<td> 
+						<c:if test="${ loginUser.member_id ne 'guest'}">
 						<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
-
+						</c:if>
+						<c:if test="${ loginUser.member_id eq 'guest'}">
+						<button type = "button" class = "btn btn-default" onclick="javasrcipt:alert('아이템을 확인하기 위해선 독신사사이트에 로그인해주세요!');">
+						</c:if>
+						
+						
 							<i class = "fa fa-address-card"></i> MyItem
 						</button>
 					</td>
 					<td>
 						<button type = "button" class = "btn btn-default" onclick="fnLogout();">
-							<i class = "fa fa-sign-out"></i> LogOut
+						<i class = "fa fa-sign-out"></i> LogOut
 						</button>						
 					</td>
 				</tr>			

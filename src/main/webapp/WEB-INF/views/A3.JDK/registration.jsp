@@ -88,6 +88,7 @@ var pwd=$("#password1").val(); // 비밀번호 밸류 값 전역변수
 var email=$("#member_email").val(); // 이메일 밸류값 전역 변수
 var ssid=$("#ssidFront").val()+$("#ssidEnd").val(); //주민등록번호 앞 뒤 한자리 다 이어붙인 값;
 var emailReg="";//컨트롤러에서 임의 난수로 생성된 이메일 인증 번호를 받아주는 변수
+var fc=true;// 파일 확장자 검수용 변수
 //정규식 목록
 //1.아이디 정규식 : 4 ~ 20 자리 영(대, 소), 숫자 / 첫글자는 숫자 사용 불가
 var idpattern = /^[A-Za-z]{1}[A-Za-z0-9]{3,19}$/;
@@ -242,8 +243,9 @@ if(idpattern.test(iden)==false){
 	alert("올바른 형식의 주민등록번호가 아닙니다. 다시 입력해주세요");
 	$("#ssidFront").focus();
 	submition = false;
-}else{
-	submition=true;
+}else if(fc==false){
+	alert("올바른 파일 확장자가 아닙니다. 다시 확인해주세요.");
+	submition=false;
 }
 return submition;
 }
@@ -260,23 +262,25 @@ function emailChanged(){
 //약관 띄우기
 $(function(){
 $("#termsClick").click();
+//파일 확장자 검사
+$("#InputProfile").on('change',function(){
+	var e= $("#InputProfile").val();
+	var fileType = e.slice(e.lastIndexOf("."),e.length).toLowerCase();
+	if(fileType==".jpg"){
+		fc=true;
+	}else if(fileType==".png"){
+		fc=true;
+	}else if(fileType==".jpeg"){
+		fc=true;
+	}else if(fileType==null){
+		fc=true;
+	}else{
+		fc=false;
+		alert("jpg, png, jpeg 파일만 등록 가능합니다.");
+		}
+	});
 });
-/////////////////////////////////////////////////////////////////////////////////////
-/* $(function(){
-	$("#inputProfile").on('change', function(){
-		   readURL(this);
-		   });
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		    
-		    var reader = new FileReader();
-		   reader.onload = function (e) {
-		           $('#preview').attr("src", e.target.result);
-		       }
-		     reader.readAsDataURL(input.files[0]);
-		    } 
-		}	
-}); */
+
 </script>
 
 </head>
@@ -294,7 +298,7 @@ $("#termsClick").click();
 					<img src="/goodluck/resources/A3.JDK/images/base_profile.png" name ="profile_img" style="width : 130px; height : auto;">
 					</div>
 					<br>
-					<input type="file" name="member_profile" class="form-control" id="inputProfile" style="width: 300px; margin: 0 auto;" accept="image/gif, image/jpeg, image/png">
+					<input type="file" name="member_profile" class="form-control" id="InputProfile" style="width: 300px; margin: 0 auto;" accept="image/gif, image/jpeg, image/png">
 				</div>
 				
 				<div class="form-group">

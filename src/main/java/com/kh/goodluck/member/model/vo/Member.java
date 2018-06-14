@@ -28,6 +28,7 @@ public class Member implements Serializable{
 	private String member_accesstoken;
 	private String member_refreshtoken;
 	private int member_keyword_count;
+	private int MEMBER_KAKAOIDPK;
 	private String emoticonfile;
 	public Member() {
 	}
@@ -182,6 +183,12 @@ public class Member implements Serializable{
 		this.member_refreshtoken = member_refreshtoken;
 		this.member_keyword_count = member_keyword_count;
 		this.emoticonfile = emoticonfile;
+	}
+	public int getMEMBER_KAKAOIDPK() {
+		return MEMBER_KAKAOIDPK;
+	}
+	public void setMEMBER_KAKAOIDPK(int mEMBER_KAKAOIDPK) {
+		MEMBER_KAKAOIDPK = mEMBER_KAKAOIDPK;
 	}
 
 	

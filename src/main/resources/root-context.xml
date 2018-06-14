@@ -13,7 +13,7 @@
 	<!-- DataSource 등록 : db연결 정보 -->
 	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
 		하라는 뜻임 -->
-  
+    
     <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
 		<property name="driverClassName"
@@ -35,7 +35,7 @@
     <bean class="org.mybatis.spring.SqlSessionTemplate">
     	<constructor-arg ref="sqlSession" />
     </bean>
-    
+      
     <!-- 메일 전용 bean -->
     <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />
