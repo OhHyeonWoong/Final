@@ -33,17 +33,24 @@ public class SearchController {
 		/* 레코드 갯수 계산 */
 		int count = searchService.searchListCount(searchKeyword);
 		
-		Pager pager = new Pager(count, curPage);
+		Search pager = new Search(count, curPage);
 		int pageStart = pager.getPageBegin();
 		int pageEnd = pager.getPageEnd();
 		
 		List<Search> list = searchService.searchKeyword(searchKeyword, pageStart, pageEnd); /* 게시물 목록 */
 		
-		HashMap<Object,Object> map = new HashMap<Object,Object>();	   
-		map.put("searchResult", list); /* 맵에 자료 저장 */
+		
+		System.out.println("SearchList : " + list + " / To.SearchController");
+		System.out.println("PageStart : " + pageStart + " / To.SearchController");
+		System.out.println("PageEnd : " + pageEnd + " / To.SearchController");
+		
+		HashMap<Object,Object> map = new HashMap<Object,Object>(); 
+		map.put("searchList", list); /* 맵에 자료 저장 */
 		map.put("pageCount", list.size());
+		map.put("searchKeyword", searchKeyword);
+		map.put("pagingView", pager); /* 페이지 네비게이션을 위한 변수 */
 		mav.setViewName("A1.OHW/SearchResult"); /* 포워딩할 뷰의 이름 */
-		mav.addObject("searchList", map); /* ModelAndView에 map을 저장 */
+		mav.addObject("searchResult", map); /* ModelAndView에 map을 저장 */
 		
 		return mav; /* 지정한 뷰로 이동 */
 	}

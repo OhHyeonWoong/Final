@@ -64,7 +64,7 @@
 	/* SideBar End */
 	
 	/* SearchResultAjax */
-	$(function(){
+	/* $(function(){
 		var searchKeyword = $(".ohw-hidden-get").val();		
 		$.ajax({
 		   	url:"headerSearchAjax.go",
@@ -98,9 +98,11 @@
 						+ "Error : " + errorData);
 			}
 		});
-	});	
+	}); */
 	/* SearchResultAjax End */
-	
+	function pageCount(page, searchKeyword) {
+		location.href="headerSearch.go?searchKeyword="+searchKeyword+"&curPage="+page;
+	}
 </script>
 
 <div class="container">	            
@@ -110,20 +112,58 @@
 				<table class="table table-hover ohw-search-table">
 					<tr>
 						<td><label></label></td>						
-						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchKeyword }" name = "searchKeyword" readonly></td>
+						<td><input type = "text" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly></td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
 					</tr>
-					<%-- <c:forEach var="searchList" items="${ searchList }">
+					<c:forEach var="searchResult" items="${ searchResult.searchList }">
 						<tr>
-							<td>${ searchList.agency_no }</td>
+							<td>${ searchResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td><a href = "">${ searchList.agency_title }</a></td>
-							<td><img src = "">${ searchList.agency_writer }</td>
-							<td>${ searchList.agency_enrolldate }</td>
+							<td><a href = "">${ searchResult.agency_title }</a></td>
+							<td><img src = "">${ searchResult.agency_writer }</td>
+							<td>${ searchResult.agency_enrolldate }</td>
 						</tr>
-					</c:forEach> --%>
+					</c:forEach>
+					<tr>
+						<td colspan = "5" align = "center">
+							<ul class = "pagination">
+								<%-- <c:if test="${ searchResult.pagingView.curBlock > 1 }">
+									<li>
+										<a href = "#" onClick = "pageCount('1', '${ searchResult.searchKeyword }')">
+											1
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${ searchResult.pagingView.curBlock > 1 }">
+									<li>
+										<a href = "#" onClick = "pageCount('${ searchResult.pagingView }', '${ searchResult.searchKeyword }')">
+											이전
+										</a>
+									</li>
+								</c:if> --%>
+								<c:forEach var="pagingView" 
+									begin="${ searchResult.pagingView.blockBegin }" 
+									end="${ searchResult.pagingView.blockEnd }">
+									<c:choose>
+										<c:when test="${ searchResult.pagingView == searchResult.pagingView.curPage }">
+											<li class = "active">
+												<span style = "color:white;">
+													${ searchResult.pagingView }
+												</span>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<a href = "#" onClick = "pageCount('${ searchResult.pagingView }', '${ searchResult.searchKeyword }')">${ pagingView }</a>
+											</li>
+										</c:otherwise>
+									</c:choose>								
+								</c:forEach>								
+							</ul>
+						</td>
+					</tr>
 				</table>
 			</td>
 			<td valign = "top">				
