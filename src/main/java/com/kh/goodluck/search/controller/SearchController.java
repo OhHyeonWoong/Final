@@ -1,23 +1,17 @@
 package com.kh.goodluck.search.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.http.*;
 
-import org.json.simple.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.search.model.service.SearchService;
-import com.kh.goodluck.search.model.vo.Pager;
-import com.kh.goodluck.search.model.vo.Search;
 
-import javafx.scene.control.Pagination;
+import com.kh.goodluck.search.model.vo.Search;
 
 @Controller
 public class SearchController {	
