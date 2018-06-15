@@ -15,8 +15,14 @@ private String boardtitle;
 private String message;
 private String token;
 private int boardno;
+private String MEMBER_PHONE;
 
-
+public String getMEMBER_PHONE() {
+	return MEMBER_PHONE;
+}
+public void setMEMBER_PHONE(String mEMBER_PHONE) {
+	MEMBER_PHONE = mEMBER_PHONE;
+}
 public int getBoardno() {
 	return boardno;
 }
