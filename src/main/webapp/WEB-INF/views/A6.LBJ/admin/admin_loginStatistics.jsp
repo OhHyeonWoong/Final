@@ -84,6 +84,10 @@
 							"category": '${adminDate.get(5)}',
 							"column-1": ${adminVisitCount.get(5)}
 						},
+						{
+							"category": '${adminDate.get(6)}',
+							"column-1": ${adminVisitCount.get(6)}
+						},
 					]
 				}
 			);
