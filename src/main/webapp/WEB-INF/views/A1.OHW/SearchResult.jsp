@@ -26,6 +26,16 @@
 		padding:0px;
 		background:gray;
 	}
+	
+	.ohw-agency-title > a {
+		text-decoration:none;
+		color:black;
+	}
+	
+	.ohw-agency-title > a:hover {
+		text-decoration:none;
+		color:purple;
+	}
 		
 </style>	
  
@@ -103,8 +113,8 @@
 						<tr>
 							<td>${ searchMasterResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td><a href = "">${ searchMasterResult.agency_title }</a></td>
-							<td><img src = "">${ searchMasterResult.agency_writer }</td>
+							<td class = "ohw-agency-title"><a href = "">${ searchMasterResult.agency_title }</a></td>
+							<td><img src = ""> ${ searchMasterResult.agency_writer }</td>
 							<td>${ searchMasterResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
@@ -206,8 +216,8 @@
 						<tr>
 							<td>${ searchSlaveResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td><a href = "">${ searchSlaveResult.agency_title }</a></td>
-							<td><img src = "/goodluck/resources/common/img/level/lv${ searchResult.scoreSellRate }.gif">${ searchSlaveResult.agency_writer }</td>
+							<td class = "ohw-agency-title"><a href = "">${ searchSlaveResult.agency_title }</a></td>
+							<td><img src = "/goodluck/resources/common/img/level/lv${ searchResult.scoreSellRate }.gif"> ${ searchSlaveResult.agency_writer }</td>
 							<td>${ searchSlaveResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
