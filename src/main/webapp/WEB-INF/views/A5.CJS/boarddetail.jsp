@@ -15,8 +15,8 @@
 
 <script type="text/javascript">
 	$(function () {
-	if("${loginUser}" == "" || "${loginUser.member_id}" =="guest" )	
-		{console.log("fdsa");
+	if("${loginUser}" == "")	
+		{
 		location.href="Error500.go";
 		}
 		$("#ukapplybtn").on("click",function(){		
@@ -47,10 +47,17 @@
 				$("#ukapplybtn").text("해당 글에 이미 지원했습니다.");
 				$("#ukapplybtn").removeAttr("id");
 			  }else if(data == 2){
-				  $("#ukapplybtn").removeAttr("data-target");
-					$("#ukapplybtn").text("본인의 글입니다.");
-					$("#ukapplybtn").removeAttr("id");  
+				$("#ukapplybtn").removeAttr("data-target");
+				$("#ukapplybtn").text("본인의 글입니다.");
+				$("#ukapplybtn").removeAttr("id");  
 				}
+			  
+			  if("${loginUser.member_id}" == 'guest'){
+				$("#ukapplybtn").removeAttr("data-target");
+				$("#ukapplybtn").text("글을 신청하기 위해선 본사이트에 로그인해주세요!");
+				$("#ukapplybtn").removeAttr("id");  
+			  }
+			  
 		  }
 		
 	})
@@ -70,7 +77,6 @@
         $('.panel-body1').bind('drop', function (event) {
             var children = $(this).children();
             var targetId = children.attr('id');
-
             if (sourceId != targetId) {
                 var elementId = event.originalEvent.dataTransfer.getData("text/plain");
 
