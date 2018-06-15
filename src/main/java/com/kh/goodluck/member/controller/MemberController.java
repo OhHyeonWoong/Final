@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.board.model.service.BoardService;
-import com.kh.goodluck.board.model.vo.Board;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -173,20 +173,20 @@ public class MemberController {
 	    map3.put("startRow", qnaStartRow);
 	    map3.put("endRow", myBoardEndRow);
 	    map3.put("member_id", member_id);
-	    List<Board> myBoard = boardService.selectMyBoard(map3);
+	    ArrayList<MyPageBoard> myBoard = (ArrayList<MyPageBoard>)boardService.selectMyBoard(map3);
 	    
 	    System.out.println("myBoard size = " + myBoard.size());
 		
 	    if (myBoardMaxPage < myBoardEndRow)
 			myBoardEndRow = myBoardMaxPage;
 		
-	    /*HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
-		reportPage.put("reportMaxPage",reportMaxPage);
-		reportPage.put("reportEndRow",reportEndRow);
-		reportPage.put("reportListCount",reportListCount);
+	    HashMap<String,Integer> boardPage = new HashMap<String,Integer>();
+		boardPage.put("myBoardMaxPage",myBoardMaxPage);
+		boardPage.put("myBoardEndRow",myBoardEndRow);
+		boardPage.put("myBoardListCount",myBoardListCount);
 		
-		mv.addObject("lbjMyReport", myReport);
-		mv.addObject("reportPage",reportPage);*/
+		mv.addObject("lbjMyBoard", myBoard);
+		mv.addObject("boardPage",boardPage);
 		//내가 올린 글 세팅 끝--------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;

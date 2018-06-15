@@ -277,18 +277,20 @@
 		]]>
 	</select>
 	
-	<select id="selectMyBoard" parameterType="java.util.HashMap" resultType="Board">
+	<select id="selectMyBoard" parameterType="java.util.HashMap" resultType="MyPageBoard">
 		<![CDATA[
-			select * from agency
+			select * 
+			from (
+			  select rownum rnum,ac.agency_no, ac.agency_writer,
+			  ac.agency_title,ac.link2_no,ac.agency_type, 
+			  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+			  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+			  sc.category_small_name
+			  from agency ac,categorylink2 cl,smallcategory sc
+			  where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+			  and ac.agency_writer = #{member_id}) 
+			where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
-		<!-- select * 
-from (
-  select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-  agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-  ,agency_content,agency_veiws,agency_keyword,agency_option 
-  from agency 
-  where link2_no) 
-where rnum>=1 and rnum<=6 -->
 	</select>
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	

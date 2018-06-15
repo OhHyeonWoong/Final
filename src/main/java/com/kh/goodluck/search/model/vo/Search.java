@@ -20,6 +20,7 @@ public class Search {
 	private int agency_views;
 	private String agency_keyword;
 	private String agency_option;
+	private long score_rate;
 	
 	public static final int pageScale = 10; /* 페이지당 게시물 수 */
 	public static final int blockScale = 10; /* 화면당 페이지 수 */

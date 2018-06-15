@@ -16,6 +16,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
@@ -307,7 +308,7 @@ public class BoardDao {
 	public int selectMyBoardListCount(String member_id) {
 		return sqlSession.selectOne("selectMyBoardListCount", member_id);
 	}
-	public List<Board> selectMyBoard(HashMap<Object, Object> map3) {
+	public List<MyPageBoard> selectMyBoard(HashMap<Object, Object> map3) {
 		return sqlSession.selectList("selectMyBoard", map3);
 	}
 
