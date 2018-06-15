@@ -475,9 +475,8 @@
 			                                        <td>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
-			                                        <td>오너의 구매점수</td>
+			                                        <td>오너의 활동 점수</td>
 			                                        <td class="uk_level">
-			                                        
 			                                        ${writer.SCORE_BUY} 포인트 
 			                                       </td>
 			                     </c:when>
@@ -487,8 +486,7 @@
 			                                        <td>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
-			                                        <td>제공자의
-			                                         봉사단계</td>
+			                                        <td>노예의  봉사단계</td>
 			                                        <td class="uk_level">
 			                                        
 			                                        ${writer.SCORE_SELL_RATE} 단계
@@ -596,7 +594,7 @@
 					        <ul>
 					            <li> 
 					             <c:choose>
-			                     <c:when test="${Board.agency_type eq 1}">※당신은 일반 지원자입니다 ※</c:when>
+			                     <c:when test="${Board.agency_type eq 1}">※당신은 일반 노예입니다 ※</c:when>
 			                     
 			                     <c:when test="${Board.agency_type eq 2}">※당신은 오너입니다 ※ </c:when>
 			                     </c:choose>              

@@ -18,6 +18,7 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink1" alias="CategoryLink1"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink2" alias="CategoryLink2"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageBoard" alias="MyPageBoard"/>
 		<typeAlias type="com.kh.goodluck.category.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.UsingItem" alias="UsingItem"/>
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QNA" alias="Qna" />
