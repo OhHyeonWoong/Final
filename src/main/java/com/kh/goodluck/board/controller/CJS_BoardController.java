@@ -134,15 +134,17 @@ public class CJS_BoardController {
 		boardservice.insertchatroom(map);
 		System.out.println("신규최초 인원으로써 업데이트 result="+result);
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
-	    Memberandscore writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 		
-	    
-	    KaKaoMessage.setBoardtitle("신규 지원자가 나타났습니다.");
+	    Memberandscore writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+		KaKaoMessage.setBoardtitle("신규 지원자가 나타났습니다.");
 		KaKaoMessage.setToken(writer.getMember_accesstoken());
 		KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 새로운 지원자가 나타났습니다.");
 	    KaKaoMessage.setBoardno(bo.getAgency_no());
+	    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
 		thread=new KakaoMessageAPI(KaKaoMessage);
 		thread.start();
+		
+		
 		
 		break;
 		////////////////////////////////
@@ -170,6 +172,7 @@ public class CJS_BoardController {
     	System.out.println("예비인력으로써 업데이트 >result1="+result1);
 		}
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
+		
 		break;
 		
 		//////////////////////////////

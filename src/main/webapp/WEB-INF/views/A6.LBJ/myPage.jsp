@@ -101,7 +101,7 @@ function sample4_execDaumPostcode() {
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 ///////////////////////////////////////////////////////	
 	$(function(){
-			alert("되니?");
+			//alert("되니?");
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){

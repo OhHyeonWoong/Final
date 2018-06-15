@@ -312,4 +312,12 @@ public class BoardDao {
 		return sqlSession.selectList("selectMyBoard", map3);
 	}
 
+	public int selectMyApplyBoardListCount(String member_id) {
+		return sqlSession.selectOne("selectMyApplyBoardListCount", member_id);
+	}
+
+	public List<MyPageBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+		return sqlSession.selectList("selectMyApplyBoard", map4);
+	}
+
 }

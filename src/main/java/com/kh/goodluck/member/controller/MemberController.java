@@ -188,6 +188,32 @@ public class MemberController {
 		mv.addObject("lbjMyBoard", myBoard);
 		mv.addObject("boardPage",boardPage);
 		//내가 올린 글 세팅 끝--------------------------------------------------------
+		//내가 신청한 글 세팅 시작-----------------------------------------------------
+		int myApplyBoardListCount = boardService.selectMyApplyBoardListCount(member_id);
+		int myApplyBoardMaxPage = (int)((double)myApplyBoardListCount / qnaLimit + 0.9);
+		int myApplyBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myApplyBoardListCount = " + myApplyBoardListCount);
+		
+		HashMap<Object,Object> map4 = new HashMap<Object,Object>();
+	    map4.put("startRow", qnaStartRow);
+	    map4.put("endRow", myApplyBoardEndRow);
+	    map4.put("member_id", member_id);
+	    List<MyPageBoard> myApplyBoard = boardService.selectMyApplyBoard(map4);
+	    
+	    System.out.println("myApplyBoard size = " + myApplyBoard.size());
+		
+	    if (myApplyBoardMaxPage < myApplyBoardEndRow)
+			myApplyBoardEndRow = myApplyBoardMaxPage;
+		
+	    HashMap<String,Integer> applyBoardPage = new HashMap<String,Integer>();
+		boardPage.put("myApplyBoardMaxPage",myApplyBoardMaxPage);
+		boardPage.put("myApplyBoardEndRow",myApplyBoardEndRow);
+		boardPage.put("myApplyBoardListCount",myApplyBoardListCount);
+		
+		mv.addObject("lbjMyApplyBoard", myApplyBoard);
+		mv.addObject("applyBoardPage",applyBoardPage);
+		//내가 신청한 글 세팅 끝------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
