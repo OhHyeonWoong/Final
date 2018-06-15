@@ -19,12 +19,20 @@ public class SearchServiceImpl implements SearchService {
 		
 	}
 	
-	public List<Search> searchKeyword(String searchKeyword, int pageStart, int pageEnd) {
-		return searchDao.searchKeyword(searchKeyword, pageStart, pageEnd);		
+	public List<Search> searchMasterKeyword(String searchKeyword, int masterPageBegin, int masterPageEnd) {
+		return searchDao.searchMasterKeyword(searchKeyword, masterPageBegin, masterPageEnd);		
 	}
 	
-	public int searchListCount(String searchKeyword) {
-		return searchDao.searchListCount(searchKeyword);
+	public List<Search> searchSlaveKeyword(String searchKeyword, int slavePageBegin, int slavePageEnd) {
+		return searchDao.searchSlaveKeyword(searchKeyword, slavePageBegin, slavePageEnd);		
+	}
+	
+	public int searchMasterListCount(String searchKeyword) {
+		return searchDao.searchMasterListCount(searchKeyword);
+	}
+	
+	public int searchSlaveListCount(String searchKeyword) {
+		return searchDao.searchSlaveListCount(searchKeyword);
 	}	
 	
 }

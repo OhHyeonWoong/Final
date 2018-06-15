@@ -23,8 +23,7 @@
 		<result property="agency_option" column="AGENCY_OPTION"/>		
 	</resultMap>	
 	
-	<!-- resultMap="HeaderSearchKeywordResult" -->
-	<select id="headerSearchKeyword" parameterType="java.util.HashMap" resultType="Search">	
+	<select id="headerSearchMasterKeyword" parameterType="java.util.HashMap" resultType="Search">	
 		<![CDATA[
 			select *
 			from (
@@ -36,19 +35,51 @@
 							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
 							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION
 					from AGENCY 
-					where AGENCY_TITLE like '%'||#{agency_title}||'%'
+					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
+					and agency_type = 1 
 					order by AGENCY_NO desc
 				) AG 
 			)
-			where rn between #{pageBegin} and #{pageEnd}
+			where rn between #{masterPageBegin} and #{masterPageEnd}
 		]]>
 	</select>
 	
-	<select id="headerSearchListCount" parameterType="string" resultType="int">
+	<select id="headerSearchSlaveKeyword" parameterType="java.util.HashMap" resultType="Search">	
+		<![CDATA[
+			select *
+			from (
+				select rownum as rn, AG.*
+				from (
+					select AGENCY_NO, AGENCY_WRITER, AGENCY_TITLE, LINK2_NO, 
+							AGENCY_TYPE, AGENCY_LOC, AGENCY_STARTDATE, 
+							AGENCY_ENDDATE, AGENCY_ENROLLDATE, AGENCY_PAYTYPE, 
+							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
+							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION
+					from AGENCY 
+					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
+					and agency_type = 2 
+					order by AGENCY_NO desc
+				) AG 
+			)
+			where rn between #{slavePageBegin} and #{slavePageEnd}
+		]]>
+	</select>
+	
+	<select id="headerSearchMasterListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) 
 			from agency 
-			where agency_title like '%'||#{ agency_title }||'%'
+			where agency_title like '%'||#{ agency_title }||'%' 
+			and agency_type = 1 
+		]]>
+	</select>
+	
+	<select id="headerSearchSlaveListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) 
+			from agency 
+			where agency_title like '%'||#{ agency_title }||'%' 
+			and agency_type = 2 
 		]]>
 	</select>
 	
