@@ -20,7 +20,7 @@ public class Search {
 	private int agency_views;
 	private String agency_keyword;
 	private String agency_option;
-	private long score_rate;
+	private long score_sell_rate;
 	
 	public static final int pageScale = 10; /* 페이지당 게시물 수 */
 	public static final int blockScale = 10; /* 화면당 페이지 수 */
@@ -40,12 +40,13 @@ public class Search {
 	
 	public Search() {
 		
-	}
+	}	
 
 	public Search(int agency_no, String agency_writer, String agency_title, int link2_no, int agency_type,
 			String agency_loc, Date agency_startdate, Date agency_enddate, Date agency_enrolldate, int agency_paytype,
 			int agency_pay, int agency_status, String agency_content, int agency_views, String agency_keyword,
-			String agency_option) {
+			String agency_option, long score_sell_rate, int totPage, int prevPage, int curPage, int nextPage, int totBlock,
+			int prevBlock, int curBlock, int nextBlock, int pageBegin, int pageEnd, int blockBegin, int blockEnd) {
 		super();
 		this.agency_no = agency_no;
 		this.agency_writer = agency_writer;
@@ -63,6 +64,19 @@ public class Search {
 		this.agency_views = agency_views;
 		this.agency_keyword = agency_keyword;
 		this.agency_option = agency_option;
+		this.score_sell_rate = score_sell_rate;
+		this.totPage = totPage;
+		this.prevPage = prevPage;
+		this.curPage = curPage;
+		this.nextPage = nextPage;
+		this.totBlock = totBlock;
+		this.prevBlock = prevBlock;
+		this.curBlock = curBlock;
+		this.nextBlock = nextBlock;
+		this.pageBegin = pageBegin;
+		this.pageEnd = pageEnd;
+		this.blockBegin = blockBegin;
+		this.blockEnd = blockEnd;
 	}
 
 	public int getAgency_no() {
@@ -191,28 +205,49 @@ public class Search {
 
 	public void setAgency_option(String agency_option) {
 		this.agency_option = agency_option;
+	}	
+	
+	public long getScore_sell_rate() {
+		return score_sell_rate;
 	}
+
+	public void setScore_sell_rate(long score_sell_rate) {
+		this.score_sell_rate = score_sell_rate;
+	}	
 
 	@Override
 	public String toString() {
 		return "Search [agency_no=" + agency_no + 
 				", agency_writer=" + agency_writer + 
-				", agency_title=" + agency_title + 
-				", link2_no=" + link2_no + 
+				", agency_title=" + agency_title
+				+ ", link2_no=" + link2_no + 
 				", agency_type=" + agency_type + 
-				", agency_loc=" + agency_loc + 
-				", agency_startdate=" + agency_startdate + 
-				", agency_enddate=" + agency_enddate + 
-				", agency_enrolldate=" + agency_enrolldate + 
+				", agency_loc=" + agency_loc
+				+ ", agency_startdate=" + agency_startdate + 
+				", agency_enddate=" + agency_enddate
+				+ ", agency_enrolldate=" + agency_enrolldate + 
 				", agency_paytype=" + agency_paytype + 
 				", agency_pay="	+ agency_pay + 
 				", agency_status=" + agency_status + 
-				", agency_content=" + agency_content + 
-				", agency_views=" + agency_views + 
+				", agency_content=" + agency_content
+				+ ", agency_views=" + agency_views + 
 				", agency_keyword=" + agency_keyword + 
-				", agency_option=" + agency_option + "]";
+				", agency_option=" + agency_option + 
+				", score_sell_rate=" + score_sell_rate + 
+				", totPage=" + totPage + 
+				", prevPage=" + prevPage
+				+ ", curPage=" + curPage + 
+				", nextPage=" + nextPage + 
+				", totBlock=" + totBlock + 
+				", prevBlock=" + prevBlock + 
+				", curBlock=" + curBlock + 
+				", nextBlock=" + nextBlock + 
+				", pageBegin=" + pageBegin
+				+ ", pageEnd=" + pageEnd + 
+				", blockBegin=" + blockBegin + 
+				", blockEnd=" + blockEnd + "]";
 	}
-	
+
 	/* Pager(레코드 갯수, 출력할 페이지 번호) */
 	public Search(int count, int curPage) {
 		curBlock = 1; /* 현재 블록 번호 */
