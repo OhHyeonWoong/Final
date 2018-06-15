@@ -120,10 +120,27 @@ public class MemberServiceImpl implements MemberService{
 		// 
 		return memberDao.searchmemberInfobyBoardNo1(pk);
 	}
+
+	@Override
+	public Member getmemberinfobykakaopk(int parseInt) {
+		// TODO Auto-generated method stub
+		return memberDao.getmemberinfobykakaopk(parseInt);
+	}
+
+	@Override
+	public int updatetoken(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDao.updatetoken(map);
+	}
+
+	@Override
+	public int updatekakaoinfo(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return memberDao.updatekakaoinfo(map);
+	}
 	
 	@Override
 	public int insertNewItem(ITEMLIST item) {
-		
 		return memberDao.insertItem(item);
 	}
 	

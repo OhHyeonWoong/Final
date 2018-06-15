@@ -1,8 +1,6 @@
 package com.kh.goodluck.board.model.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +16,7 @@ import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
 
 @Service("boardService")
 public class BoardService {
@@ -244,6 +243,26 @@ public class BoardService {
 	public int insertReview(Review re) {
 		// TODO Auto-generated method stub
 		return boardDao.insertReview(re);
+	}
+
+	public int selectMyBoardListCount(String member_id) {
+		//병준이 본인 게시물 갯수 세오는 메소드
+		return boardDao.selectMyBoardListCount(member_id);
+	}
+
+	public List<MyPageBoard> selectMyBoard(HashMap<Object, Object> map3) {
+		//병준이 본인 게시물 가져오는 메소드
+		return boardDao.selectMyBoard(map3);
+	}
+
+	public int selectMyApplyBoardListCount(String member_id) {
+		//병준이 내가 신청한 게시글 갯수 가져오는 메소드
+		return boardDao.selectMyApplyBoardListCount(member_id);
+	}
+
+	public List<MyPageBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+		//병준이 내가 신청한 게시글 가져오는 메소드
+		return boardDao.selectMyApplyBoard(map4);
 	}
 
 

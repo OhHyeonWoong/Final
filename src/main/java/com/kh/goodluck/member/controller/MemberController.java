@@ -1,10 +1,7 @@
 package com.kh.goodluck.member.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.*;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -47,6 +46,9 @@ public class MemberController {
 	
 	@Autowired
 	private ReportService reportService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	public String homeGo() {
 		return "home";
@@ -160,7 +162,58 @@ public class MemberController {
 		mv.addObject("lbjMyReport", myReport);
 		mv.addObject("reportPage",reportPage);
 		//Report 세팅 끝
-		//---------------------------------------------------------
+		//내가 올린 글 세팅 ----------------------------------------------------------
+		int myBoardListCount = boardService.selectMyBoardListCount(member_id);
+		int myBoardMaxPage = (int)((double)myBoardListCount / qnaLimit + 0.9);
+		int myBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myBoardListCount = " + myBoardListCount);
+		
+		HashMap<Object,Object> map3 = new HashMap<Object,Object>();
+	    map3.put("startRow", qnaStartRow);
+	    map3.put("endRow", myBoardEndRow);
+	    map3.put("member_id", member_id);
+	    ArrayList<MyPageBoard> myBoard = (ArrayList<MyPageBoard>)boardService.selectMyBoard(map3);
+	    
+	    System.out.println("myBoard size = " + myBoard.size());
+		
+	    if (myBoardMaxPage < myBoardEndRow)
+			myBoardEndRow = myBoardMaxPage;
+		
+	    HashMap<String,Integer> boardPage = new HashMap<String,Integer>();
+		boardPage.put("myBoardMaxPage",myBoardMaxPage);
+		boardPage.put("myBoardEndRow",myBoardEndRow);
+		boardPage.put("myBoardListCount",myBoardListCount);
+		
+		mv.addObject("lbjMyBoard", myBoard);
+		mv.addObject("boardPage",boardPage);
+		//내가 올린 글 세팅 끝--------------------------------------------------------
+		//내가 신청한 글 세팅 시작-----------------------------------------------------
+		int myApplyBoardListCount = boardService.selectMyApplyBoardListCount(member_id);
+		int myApplyBoardMaxPage = (int)((double)myApplyBoardListCount / qnaLimit + 0.9);
+		int myApplyBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myApplyBoardListCount = " + myApplyBoardListCount);
+		
+		HashMap<Object,Object> map4 = new HashMap<Object,Object>();
+	    map4.put("startRow", qnaStartRow);
+	    map4.put("endRow", myApplyBoardEndRow);
+	    map4.put("member_id", member_id);
+	    List<MyPageBoard> myApplyBoard = boardService.selectMyApplyBoard(map4);
+	    
+	    System.out.println("myApplyBoard size = " + myApplyBoard.size());
+		
+	    if (myApplyBoardMaxPage < myApplyBoardEndRow)
+			myApplyBoardEndRow = myApplyBoardMaxPage;
+		
+	    HashMap<String,Integer> applyBoardPage = new HashMap<String,Integer>();
+		boardPage.put("myApplyBoardMaxPage",myApplyBoardMaxPage);
+		boardPage.put("myApplyBoardEndRow",myApplyBoardEndRow);
+		boardPage.put("myApplyBoardListCount",myApplyBoardListCount);
+		
+		mv.addObject("lbjMyApplyBoard", myApplyBoard);
+		mv.addObject("applyBoardPage",applyBoardPage);
+		//내가 신청한 글 세팅 끝------------------------------------------------------
 		mv.setViewName("A6.LBJ/myPage");
 		return mv;
 	}
@@ -176,14 +229,35 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	
 	@RequestMapping(value="lbjlogin.go",method=RequestMethod.POST)
 	public void loginCheck(Member member,Model model,HttpServletResponse response,HttpSession session) throws IOException{
+		//카카오 관련 작업 해야할것.
+		//고객이 카카오로그인이후에, 
+		//이미 이 메소드가 실행이 되었다면, 카카오pk를 가진 회원이 없다는것, 새로 만들어야한다는것이다.
+		Member m = new Member();
+		PrintWriter out = response.getWriter();
 		System.out.println("member : " + member);
 		//로그인 작업을 합니다 세션에 넣어요
-		Member m = memberService.loginCheck(member);
-		PrintWriter out = response.getWriter();
+		m = memberService.loginCheck(member);
 		if(m != null) {
-			//lastlogin 갱신
+			if(session.getValue("loginUser") != null) {
+			//세션이 이미 존재하는데 로그인을 시도한다?? ==> 카카오 추가로그인임.
+			//카카오 정보와, 독신사 정보를 합쳐야함.
+			Member mem=(Member)session.getValue("loginUser");
+			HashMap<Object,Object> map =new HashMap<Object,Object>();
+			map.put("refresh_token",mem.getMember_refreshtoken());
+			map.put("access_token",mem.getMember_accesstoken());
+			map.put("kakaopk",mem.getMEMBER_KAKAOIDPK());
+			map.put("memberid",m.getMember_id());
+			int reus=memberService.updatekakaoinfo(map);
+			if(reus==1)
+				System.out.println("카카오 정보업데이트 성공");
+			else
+				System.out.println("카카오 정보 업데이트 실패");
+			}
+			//lastlogin 갱신 //일반로그인.
 			int result = memberService.updateLastLogin(m.getMember_id());
 			if(result > 0 && m.getMember_status() != 2) {
 				//login_statistics 테이블 갱신//////////////
@@ -214,8 +288,10 @@ public class MemberController {
 			//////////////////////////////////////////////////////////
 			/*System.out.println("session id = " + session.getId());
 			System.out.println("session = " + session.getServletContext());*/
+			
 		}else {
 			out.write("로그인 실패");
+		
 		}
 
 		out.flush();

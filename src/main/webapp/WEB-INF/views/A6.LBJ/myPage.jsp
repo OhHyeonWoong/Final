@@ -101,7 +101,7 @@ function sample4_execDaumPostcode() {
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 ///////////////////////////////////////////////////////	
 	$(function(){
-			alert("되니?");
+			//alert("되니?");
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
@@ -391,6 +391,82 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			});
 		}
 		
+		//myBoard 페이징 처리
+		function fnMyBoardReload(page){
+			console.log("fnMyBoardReload(page) = " + page);
+			$.ajax({
+				url:"lbjMyBoard.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					member_id: $('#InputId').val(),
+					page: page
+				},
+				success:function(data){
+					var jstr = JSON.stringify(data);
+					var json = JSON.parse(jstr);
+					
+					$('#lbjMyBoardTable').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjMyBoardTable">'+
+						'<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th>'+
+						'<th class="lbjth">작성일</th></tr>';
+					
+					console.log("myBoard 리로딩 처리 시작");
+					for(var i in json.myBoard){
+						if(json.myBoard[i].agency_type == 1){
+							htmlStr += '<tr><td>구합니다</td>';
+						}else{
+							htmlStr += '<tr><td>해드립니다</td>'
+						}
+						htmlStr += '<td>'+json.myBoard[i].category_small_name+'</td>';
+						htmlStr += '<td><a href="#">'+json.myBoard[i].agency_title+'</a></td>';
+						htmlStr += '<td>'+json.myBoard[i].agency_enrolldate+'</td></tr>';
+					}
+					console.log("myBoard 리로딩 처리 끝");
+					//페이징 처리 시작//
+					console.log("myBoard 페이징 처리 시작");
+					htmlStr += '<tr><td colspan="4"><div style="text-align:center;">'
+					if(json.myBoard[0].myBoardListCount > 6){
+						if(json.myBoard[0].myBoardCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload(1);"> << </a>&nbsp;';
+						}
+						if(json.myBoard[0].myBoardCurrentPage > json.myBoard[0].myBoardStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+(json.myBoard[0].myBoardCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.myBoard[0].myBoardStartPage;i<=json.myBoard[0].myBoardEndRow;i++){
+							if(i == json.myBoard[0].myBoardCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						if(json.myBoard[0].myBoardCurrentPage != json.myBoard[0].myBoardEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+(json.myBoard[0].myBoardCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.myBoard[0].myBoardCurrentPage >= json.myBoard[0].myBoardMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+json.myBoard[0].myBoardMaxPage+'); return false;">>></a>';
+						}
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 the end//
+					$('#lbjMyBoardDiv').html(htmlStr);
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});		
+		}
+		
 		//검사 결과가 모두 일치하면 true로 리턴
 		var flag = false;
 		//이메일 인증번호 저장용 변수
@@ -621,14 +697,76 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 	<!-----------------------------------전동기 수정 부분 ------------------------------------------------->
 			<hr>
 			<h3 class="lbjh3" id="lbjnowreservationInfo">내가 올린 글</h3>
-			<div class="lbjdiv">		
-				<table class="table table-striped lbjtable">
+			<div class="lbjdiv" id="lbjMyBoardDiv">		
+				<table class="table table-striped lbjtable" id="lbjMyBoardTable">
 					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th></tr>
-					<tr><td>구합니다</td><td>여행</td><td><a href="#">abc</a></td><td>2018/05/30</td></tr>
-					<tr><td>구합니다</td><td>취미</td><td><a href="#">qwe</a></td><td>2018/06/02</td></tr>
-					<tr><td>해드립니다</td><td>노래</td><td><a href="#">poi</a></td><td>2018/06/01</td></tr>
-					<tr><td>해드립니다</td><td>기타</td><td><a href="#">ghj</a></td><td>2018/06/06</td></tr>
-					<tr><td>구합니다</td><td>게임</td><td><a href="#">xcv</a></td><td>2018/06/11</td></tr>
+					<c:forEach items="${lbjMyBoard}" var="board">
+						<tr>
+							<td>
+								<c:if test="${board.agency_type eq 1}">
+									구합니다
+								</c:if>
+								<c:if test="${board.agency_type eq 2}">
+									해드립니다
+								</c:if>
+							</td>
+							<td>${board.category_small_name}</td>
+							<td><a href="#">${board.agency_title}</a></td>
+							<td>${board.agency_enrolldate}</td>
+						</tr>
+					</c:forEach>
+					<!-- 페이징 처리 가즈아 -->
+					<c:if test="${boardPage.myBoardListCount <= 6}">
+						<tr>
+							<td colspan="4">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${boardPage.myBoardListCount > 6}">
+						<tr>
+							<td colspan="4">
+							<div style="text-align:center;">
+								<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+									<< &nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(1); return false;"> << </a>
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+									< &nbsp;
+								</c:if>
+								<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+								<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${boardPage.myBoardEndRow}" step="1">
+									<c:if test="${i eq qnaPage.qnaCurrentPage}">
+										<font color="red" size="4"><b>${i}</b></font>&nbsp;
+									</c:if>
+									<c:if test="${i != qnaPage.qnaCurrentPage}">
+										<a href="javascript:void(0);" onclick="fnMyBoardReload(${i}); return false;">${i}</a>&nbsp;
+									</c:if>
+								</c:forEach>
+								
+								<c:if test="${qnaPage.qnaCurrentPage != boardPage.myBoardEndRow}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage eq boardPage.myBoardEndRow}">
+									> &nbsp;
+								</c:if>
+								
+								<c:if test="${qnaPage.qnaCurrentPage >= boardPage.myBoardMaxPage}">
+									>> &nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage < boardPage.myBoardMaxPage}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${boardPage.myBoardMaxPage}); return false;">>></a>
+								</c:if>
+							</div>
+							</td>
+						</tr>
+					</c:if>
+					<!-- 페이징 처리 끝내즈아 -->
 				</table>
 			</div>
 			<hr>

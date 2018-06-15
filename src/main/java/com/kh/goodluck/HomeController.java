@@ -474,7 +474,7 @@ public class HomeController {
 		
 		//구인영역 서비스 제공해요
 		ArrayList<Board> requireSupply = (ArrayList<Board>) boardService.mainShowRequireListPickUp();
-		System.out.println("메인에 보여질 구인영역 제공해요 목록 : "+ requireSupply.toString());
+		/*System.out.println("메인에 보여질 구인영역 제공해요 목록 : "+ requireSupply.toString());*/
 
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
