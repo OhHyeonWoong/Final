@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
@@ -93,6 +94,10 @@ public class MemberDao {
 	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
+	}
+	public int insertItem(ITEMLIST item) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertNewItem", item);
 	}
 	
 }

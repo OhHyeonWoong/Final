@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
@@ -32,6 +33,7 @@ public interface MemberService {
 
 	public abstract int insertLoginStatistics(String member_id);
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
+	public abstract int insertNewItem(ITEMLIST item);
 	
 
 }

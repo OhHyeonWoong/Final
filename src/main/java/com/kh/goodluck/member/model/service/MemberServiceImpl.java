@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
@@ -116,7 +117,15 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
-		// TODO Auto-generated method stub
+		// 
 		return memberDao.searchmemberInfobyBoardNo1(pk);
 	}
+	
+	@Override
+	public int insertNewItem(ITEMLIST item) {
+		
+		return memberDao.insertItem(item);
+	}
+	
 }	
+

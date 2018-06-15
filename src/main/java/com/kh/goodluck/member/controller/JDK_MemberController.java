@@ -19,6 +19,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.DefaultNamingPolicy;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -27,12 +28,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.resource.HttpResource;
+
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sun.org.apache.xml.internal.utils.MutableAttrListImpl;
 
 import oracle.net.aso.b;
 import oracle.net.aso.d;
@@ -144,7 +150,7 @@ public class JDK_MemberController {
 			
 			//주민등록번호 가지고 오기
 			int memberSocialNum=Integer.parseInt(request.getParameter("member_social_front")+request.getParameter("member_social_end"));
-////////////////////프로필 사진 가지고 오는 메소드(추후 이름 값을 현재 시간단위로 바꾸고 변수로 올리는 방식으로 수정 : 파일 업로드 처리)////////////
+			//////////프로필 사진 가지고 오는 메소드(추후 이름 값을 현재 시간단위로 바꾸고 변수로 올리는 방식으로 수정 : 파일 업로드 처리)////////////
 				/*
 				 * 
 				 우선 필요한 값을 정리해보자
@@ -188,10 +194,8 @@ public class JDK_MemberController {
 				String fileSavePath= "/goodluck/resources/A3.JDK/images/userprofile";
 				//파일 크기 제한
 				int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
-				
 				//encType = "multiPartForm"으로 왔는지 확인
 				String encType="UTF-8"; // 파일 인코딩 방식????
-				
 				if(!ServletFileUpload.isMultipartContent(request)) {
 					System.out.println("if 안");
 					response.sendRedirect("A5.CJS/ErrorPage");
@@ -245,7 +249,7 @@ public class JDK_MemberController {
 			}
 		return mv;
 		}
-		//어드민 페이지 관련 메소드
+		/////////////////어드민 페이지 관련 메소드//////////////////////////////////////////////
 		//어드민 페이지 이동용 메소드
 		@RequestMapping(value="jdkadminpage.go")
 		public String adminpage() {
@@ -260,6 +264,64 @@ public class JDK_MemberController {
 		//어드민 페이지 아이템 창 이동용 메소드
 		@RequestMapping(value="jdkadminitemlist.go")
 		public String adminItemManagement() {
-			return "A3.JDK/admin_itemlist";
+			//개별 아이템 리스트
+			int maxPage=0;
+			int minPage=0;
+
+			//패키지 아이템 리스트
+			//랜덤박스 아이템 리스트
+		return "A3.JDK/admin_itemlist";
 		}
+
+		//어드민 페이지 개별 아이템 추가 메소드: 전동기
+		@RequestMapping(value="jdkinsertNewItem.go", method= {RequestMethod.POST, RequestMethod.GET})
+		public ModelAndView adminItemInsert(MultipartRequest mr, ITEMLIST item, HttpServletResponse response, HttpServletRequest request, MultipartFile file, ModelAndView mv ) throws Exception {
+			System.out.println("어드민 페이지 개별 아이템 추가 메소드: 전동기 실행중");
+			//아이템 객체 직접 생성
+			item.setITEMNAME(request.getParameter("ITEMNAME"));
+			item.setITEMPRICE(Integer.parseInt(request.getParameter("ITEMPRICE")));
+			item.setITEMTYPE(Integer.parseInt(request.getParameter("ITEMTYPE")));
+			item.setITEMPERIOD(Integer.parseInt(request.getParameter("ITEMTYPE")));
+			item.setITEMFILENAME("");//파일 저장 작업 후에 다시 지정
+			try {
+			file = mr.getFile(request.getParameter("ITEMFILENAME"));
+			String whak = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'), file.getOriginalFilename().length()).toLowerCase();
+			System.out.println(whak);
+			Date currentMillsec= new Date();
+			String file_rename=Long.toString(currentMillsec.getTime());
+			String fileName = file_rename + whak;
+			String fileSavePath= "/goodluck/resources/A5.CJS/itemimg";
+			int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
+			String encType="UTF-8"; // 파일 인코딩 방식????
+			if(!ServletFileUpload.isMultipartContent(request)) {
+				response.sendRedirect("A5.CJS/ErrorPage");
+			}
+			System.out.println("path = " + fileSavePath);
+			file.transferTo(new File(fileSavePath+"\\"+fileName));
+			item.setITEMFILENAME(fileName);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			//입력 처리
+			int success = memberService.insertNewItem(item);
+			
+			if(success==1) {
+				String insItemSuccess = "아이템 입력을 성공하였습니다.";
+				System.out.println(insItemSuccess);
+				mv.addObject("indItemInsSuc", insItemSuccess);
+			}
+			mv.setViewName("admin_itemlist");
+			return mv;
+		}
+		
+		//어드민 페이지 개별 아이템 추가 메소드: 전동기
+		@RequestMapping(value="jdkinsertNewPackageItem.go")
+		public ModelAndView insertNewPackageItem() {
+			
+			return null;
+		}
+				
+		
+		
+		
 }

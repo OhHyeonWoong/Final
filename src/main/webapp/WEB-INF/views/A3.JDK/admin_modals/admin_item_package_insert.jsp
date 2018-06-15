@@ -25,18 +25,44 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">모달 제목</h4>
-        </div>
-        <div class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+      	<form enctype="multipart/form-data" method="POST" action="jdkinsertNewPackageItem.go">
+			<div class="modal-content" class="modal-content" style="width:70%;">
+				<div class="modal-header" style="text-align: center;">
+					<h4 class="modal-title">패키지 등록</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table">
+						<tr>
+							<th style="width:30%;">패키지 명</th>
+							<td style="width:70%; text-align:center;">
+							<input type="text" id="item_modi_name" name="PACKAGE_NAME">
+							</td>
+						</tr>
+						<tr>
+							<th style="width:30%;">가격</th>
+							<td style="width:70%; text-align:center;">
+							<input type="number" id="item_modi_price" name="PACKAGE_PRICE">
+							</td>
+						</tr>
+						<tr>
+							<th style="width:30%;">포함하는 아이템 목록</th>
+							<td style="width:70%; text-align:center;">
+							<input type="checkbox" val="">
+							<input type="checkbox" val="">
+							<input type="checkbox" val="">
+							<input type="checkbox" val="">
+							<input type="checkbox" val="">
+							<input type="checkbox" val="">
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer" style="text-align:center;">
+					<input type="submit" class="btn btn-default">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="닫기">
+				</div>
+			</div>
+		</form>
       
     </div>
   </div>

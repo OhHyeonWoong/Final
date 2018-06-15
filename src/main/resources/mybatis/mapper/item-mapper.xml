@@ -159,4 +159,25 @@ and  ITEMLIST_NO != (select ITEMLIST_NO from MY_ITEM where MYITEM_NO=#{pk3} )
 and ITEMTYPE = 2 order by DBMS_RANDOM.RANDOM 
 )where rownum = 1 
 </select>
+
+<insert id="insertNewItem" parameterType="ITEMLIST">
+<![CDATA[
+insert into itemlist values (
+(select max(ITEMLIST_NO)+1 from ITEMLIST),
+#{ITEMNAME},
+#{ITEMPRICE},
+#{ITEMPERIOD},
+#{ITEMTYPE},
+#{ITEMFILENAME},
+DEFAULT
+) 
+]]>
+</insert>
+
+
+
+
 </mapper>
+
+
+
