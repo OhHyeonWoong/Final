@@ -255,5 +255,15 @@ public class BoardService {
 		return boardDao.selectMyBoard(map3);
 	}
 
+	public int selectMyApplyBoardListCount(String member_id) {
+		//병준이 내가 신청한 게시글 갯수 가져오는 메소드
+		return boardDao.selectMyApplyBoardListCount(member_id);
+	}
+
+	public List<MyPageBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+		//병준이 내가 신청한 게시글 가져오는 메소드
+		return boardDao.selectMyApplyBoard(map4);
+	}
+
 
 }
