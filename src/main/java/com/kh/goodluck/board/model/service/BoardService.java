@@ -13,6 +13,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
@@ -260,7 +261,7 @@ public class BoardService {
 		return boardDao.selectMyApplyBoardListCount(member_id);
 	}
 
-	public List<MyPageBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
 		//병준이 내가 신청한 게시글 가져오는 메소드
 		return boardDao.selectMyApplyBoard(map4);
 	}

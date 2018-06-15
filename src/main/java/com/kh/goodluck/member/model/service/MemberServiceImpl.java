@@ -138,11 +138,24 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.updatekakaoinfo(map);
 	}
+
 	
 	@Override
 	public int insertNewItem(ITEMLIST item) {
 		return memberDao.insertItem(item);
 	}
 	
-}	
 
+
+	@Override
+	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return memberDao.searchAPPLICANTInfobyBoardNo(pk);
+	}
+
+	@Override
+	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return memberDao.searchRESERVATIONInfobyBoardNo(pk);
+	}
+}	

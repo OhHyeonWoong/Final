@@ -99,5 +99,13 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("insertNewItem", item);
 	}
+	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo", pk);
+	}
+	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchRESERVATIONInfobyBoardNo", pk);
+	}
 	
 }

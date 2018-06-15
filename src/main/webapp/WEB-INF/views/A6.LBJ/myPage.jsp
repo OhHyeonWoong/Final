@@ -774,11 +774,45 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">신청일</th></tr>
-					<tr><td>구합니다</td><td>여행</td><td><a href="#">abc</a></td><td>2018/05/30</td></tr>
+					<c:forEach items="${lbjMyApplyBoard}" var="applyBoard">
+						<tr>
+							<td>
+								<c:if test="${applyBoard.agency_type eq 1}">
+									구합니다
+								</c:if>
+								<c:if test="${applyBoard.agency_type eq 2}">
+									해드립니다
+								</c:if>
+							</td>
+							<td>${applyBoard.category_small_name}</td>
+							<td><a href="#">${applyBoard.agency_title}</a></td>
+							<td>
+								<c:if test="${applyBoard.trade_applicant eq loginUser.member_id && applyBoard.trade_reservation != loginUser.member_id}">
+									${applyBoard.trade_date}
+								</c:if>
+								<c:if test="${applyBoard.trade_applicant != loginUser.member_id && applyBoard.trade_reservation eq loginUser.member_id}">
+									${applyBoard.trade_reservation_date}
+								</c:if>
+							</td>
+						</tr>
+					</c:forEach>
+					<!-- 페이징 처리 시작 -->
+					<c:if test="${applyBoardPage.myApplyBoardListCount <= 6}">
+						<tr>
+							<td colspan="4">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${applyBoardPage.myApplyBoardListCount > 6}">
+						페이지잉
+					</c:if>
+					<!-- 페이징 처리 끝 -->
+					<!-- <tr><td>구합니다</td><td>여행</td><td><a href="#">abc</a></td><td>2018/05/30</td></tr>
 					<tr><td>구합니다</td><td>취미</td><td><a href="#">qwe</a></td><td>2018/06/02</td></tr>
 					<tr><td>해드립니다</td><td>노래</td><td><a href="#">poi</a></td><td>2018/06/01</td></tr>
 					<tr><td>해드립니다</td><td>기타</td><td><a href="#">ghj</a></td><td>2018/06/06</td></tr>
-					<tr><td>구합니다</td><td>게임</td><td><a href="#">xcv</a></td><td>2018/06/11</td></tr>
+					<tr><td>구합니다</td><td>게임</td><td><a href="#">xcv</a></td><td>2018/06/11</td></tr> -->
 				</table>
 			</div>
 			<hr>

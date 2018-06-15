@@ -151,7 +151,6 @@ public class CJS_BoardController {
 		
 		case 2:
 		//스테이터스가 2일경우 신청후 또 신청할수도있다. 그 걸 방지홰야한다.
-	
 		HashMap<Object,Object> map1 =new HashMap<Object,Object>();
 		map1.put("AGENCY_NO",pk);
 		map1.put("memberid",memberid);
@@ -172,7 +171,14 @@ public class CJS_BoardController {
     	System.out.println("예비인력으로써 업데이트 >result1="+result1);
 		}
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
-		
+		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
+			KaKaoMessage.setToken(writer.getMember_accesstoken());
+			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 새로운 예비 지원자가 나타났습니다.");
+		    KaKaoMessage.setBoardno(bo.getAgency_no());
+		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
+			thread=new KakaoMessageAPI(KaKaoMessage);
+			thread.start();
 		break;
 		
 		//////////////////////////////
@@ -301,17 +307,17 @@ public class CJS_BoardController {
 	public String cancelagency(@RequestParam("BoardNo") int pk, 
 			HttpSession session,
 			HttpServletResponse response,
-			HttpServletRequest request
+			HttpServletRequest request,
+			Memberandscore writer,KaKaoMessage KaKaoMessage
 			) throws ServletException, IOException {
 	    //사용자가 현재 이 게시판에 신청했는지 안했는지 확인. 안했다면 정상적인 경로를 이용하라고 유도
 	Member member=null;
+	Board bo=boardservice.getBoardInfoByNo(pk);
 		if(session.getValue("loginUser") != null) {
 		member=(Member)session.getAttribute("loginUser");
 		}else {
-			
 		//로그인이 되어있지 않은상태에서 이 주소를 친다면 배드리퀘스트를 리턴.
 		return "A5.CJS/ErrorPage2";
-		
 		}
 		//로그인한 사람이 현재 게시판의 일반지원자인지, 예비 지원자인이 확인해야함.
 		HashMap<Object,Object> map =new HashMap<Object,Object>();
@@ -319,8 +325,7 @@ public class CJS_BoardController {
 		map.put("memberid",member.getMember_id());
 		RequestDispatcher view=null;
 		response.setContentType("text/html charset=utf-8");
-	
-	 	if(boardservice.getrelation(map)==1) {
+		if(boardservice.getrelation(map)==1) {
 	    //로그인 유저는 일반지원자 이므로, 
 	 		if(boardservice.getAgencyStatus(pk)==2) {
 	 		//예비 후보가 없으므로 단순히 본인이 빠지고, 스테이터스를 1로 바꾸면됨.
@@ -329,6 +334,14 @@ public class CJS_BoardController {
 			map.put("Status",1);
 	 		boardservice.cancelagency1(pk);	
 	 		boardservice.updateAgencyStatus(map);
+	 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
+			KaKaoMessage.setToken(writer.getMember_accesstoken());
+			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 일반 지원자가 자진사퇴하였습니다.");
+		    KaKaoMessage.setBoardno(bo.getAgency_no());
+		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
+			thread=new KakaoMessageAPI(KaKaoMessage);
+			thread.start();
 	 		}else if(boardservice.getAgencyStatus(pk)==3) {
 	 		//예비 후보가 있으므로, 본인이 빠지고, 예비 후보자를 일반후보자로 바꾸고 스테이터스를 2로 바꿈.
 	 		map=new HashMap<Object,Object>();
@@ -342,6 +355,14 @@ public class CJS_BoardController {
 			map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
 			map.put("AGENCY_NO",pk);
 			boardservice.insertchatroom(map);
+			writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
+			KaKaoMessage.setToken(writer.getMember_accesstoken());
+			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"가의 지원자가 예비후보자로 교체됬습니다.");
+		    KaKaoMessage.setBoardno(bo.getAgency_no());
+		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
+			thread=new KakaoMessageAPI(KaKaoMessage);
+			thread.start();
 	 		}
 	 	}else if(boardservice.getrelation1(map)==1) {
 		//해당인원은 단순 예비 지원자=> 예비후보자 명단에서 본인이빠지고 스테이터스를 2로 바꿈.
@@ -353,22 +374,16 @@ public class CJS_BoardController {
 	 	}else {
 		return "A5.CJS/ErrorPage2";
 		}
-	
-	 	
-	 
-		view=request.getRequestDispatcher("lbjmypage.go?member_id="+member.getMember_id());
-		
-	
-		
+	    view=request.getRequestDispatcher("lbjmypage.go?member_id="+member.getMember_id());
 		view.forward(request, response);
-		
 		return null;	
 		
 	}
 	@RequestMapping("cancelagency1.go")
 	public void cancelagency1(@RequestParam("BoardNo") int pk,
-		@RequestParam("memberid") String memberid,HttpServletResponse response) {
+		@RequestParam("memberid") String memberid,Memberandscore APPLICANT,Memberandscore RESERVATION, KaKaoMessage KaKaoMessage, HttpServletResponse response) {
 		//이 메소드는 작성자가 지원자를 교체할경우.
+		Board bo=boardservice.getBoardInfoByNo(pk);
 		HashMap<Object,Object> map =new HashMap<Object,Object>();
 		PrintWriter out = null;
  		
@@ -395,6 +410,15 @@ public class CJS_BoardController {
 				map.put("Status",1);
 		 		boardservice.cancelagency1(pk);	
 		 		boardservice.updateAgencyStatus(map);
+		 		
+		 		APPLICANT=memberService.searchAPPLICANTInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+				KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
+				KaKaoMessage.setToken(APPLICANT.getMember_accesstoken());
+				KaKaoMessage.setMessage(APPLICANT.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 오너가 님을 탈퇴시켰습니다.");
+			    KaKaoMessage.setBoardno(bo.getAgency_no());
+			    KaKaoMessage.setMEMBER_PHONE(APPLICANT.getMember_phone());
+				thread=new KakaoMessageAPI(KaKaoMessage);
+				thread.start();
 		 		out.print(1);
 		 		out.flush();
 		 		out.close();	
@@ -410,6 +434,23 @@ public class CJS_BoardController {
 				map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
 				map.put("AGENCY_NO",pk);
 				boardservice.insertchatroom(map);
+				APPLICANT=memberService.searchAPPLICANTInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+				KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
+				KaKaoMessage.setToken(APPLICANT.getMember_accesstoken());
+				KaKaoMessage.setMessage(APPLICANT.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 오너가 님을 탈퇴시켰습니다.");
+			    KaKaoMessage.setBoardno(bo.getAgency_no());
+			    KaKaoMessage.setMEMBER_PHONE(APPLICANT.getMember_phone());
+				thread=new KakaoMessageAPI(KaKaoMessage);
+				thread.start();
+				
+				RESERVATION=memberService.searchRESERVATIONInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+				KaKaoMessage.setBoardtitle("일반지원자가 되었습니다.");
+				KaKaoMessage.setToken(RESERVATION.getMember_accesstoken());
+				KaKaoMessage.setMessage(RESERVATION.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 일반지원자가 되었습니다.");
+			    KaKaoMessage.setBoardno(bo.getAgency_no());
+			    KaKaoMessage.setMEMBER_PHONE(RESERVATION.getMember_phone());
+				thread=new KakaoMessageAPI(KaKaoMessage);
+				thread.start();
 				out.print(2);
 		 		out.flush();
 		 		out.close();

@@ -16,6 +16,7 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
@@ -316,7 +317,7 @@ public class BoardDao {
 		return sqlSession.selectOne("selectMyApplyBoardListCount", member_id);
 	}
 
-	public List<MyPageBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
 		return sqlSession.selectList("selectMyApplyBoard", map4);
 	}
 
