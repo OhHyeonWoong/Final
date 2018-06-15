@@ -173,11 +173,11 @@ ${Cateinfo};
                         <small><cite title="San Francisco, USA">지역 : ${Board.agency_loc}<i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
                         </td>
-                        <td><i class="glyphicon glyphicon-envelope"></i>email@example.com
+                        <td>
                         </td>
                         </tr>
                         <tr>
-                        <td>수행 예정일: ${Board.agency_startdate} </td>
+                        <td>수행 시작 예정일: ${Board.agency_startdate} </td>
                         <td>마감 예정일: ${Board.agency_enddate} </td>
                         </tr>
              
@@ -442,13 +442,43 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">신청하기</h4>
+		        <h4 class="modal-title" id="myModalLabel">제대로 확인하셨나요??</h4>
 		      </div>
 		      <div class="modal-body">
-
-				
+    			<table>
+    			<tr>
+    			<td>예상   
+    			<c:choose>
+    			<c:when test="${Board.agency_paytype eq 1}">시급</c:when>
+    			<c:when test="${Board.agency_paytype eq 2}">일급</c:when>
+    			</c:choose>
+    			:${Board.agency_pay}원</td>
+    			<td><td>
+    			
+    			</tr>
+    			<tr>
+    			<td colspan="2">  수행 예정일: ${Board.agency_startdate}
+                       ~ ${Board.agency_enddate}</td><td></td>
+    			</tr>
+    			<tr>
+    			<td>관련 작업:${Cateinfo.CATEGORY_SMALL_NAME}</td>
+    			</tr>
+    			<tr>
+    		
+    			<td></td>
+    			</tr>
+    			
+    			
+    			</table>
+    			
+             	<center>
+    				<th colspan="2">   <small>※제대로 확인하셨나요? ※</small></th>
+    			</center>
+    			<br>
+				<center>
 				<button onclick="test1();">확인</button>
 				<button onclick="test2();">취소</button>
+				</center>
 				<script type="text/javascript">
 					function test1(){
 					      var bool = confirm('정말로 신청 하시겠습니까?');

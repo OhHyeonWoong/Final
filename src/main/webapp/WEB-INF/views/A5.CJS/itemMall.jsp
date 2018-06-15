@@ -76,8 +76,7 @@ $(document).ready( function() {
       <span class="glyphicon glyphicon-pencil text-primary"></span><a href="cjsnewitem.go">아이템 검색</a>
                                     </td>
                                 </tr>
-                               
-                                  <tr>
+                               <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-comment text-success"></span><a href="cjsrandom.go">랜덤박스 보기</a>
                                         
@@ -208,7 +207,7 @@ $(document).ready( function() {
            <tr><th height="10">여름의 시작 새로운 랜덤박스와 다시</th></tr>
            <tr><th>한정판 아이콘 포함</th></tr>
            <tr><th> </th></tr>
-           <tr><th>2018-06 한정      <button>바로가기</button></th></tr>
+           <tr><th>2018-06 한정      <button onclick="location.href='/goodluck/cjsrandomdetail.go?pk=74'">바로가기</button></th></tr>
            </table>
            </th>
           </tr>
@@ -230,7 +229,8 @@ $(document).ready( function() {
            <tr><th><h2>6월의 최신</h2></th></tr>
            <tr><th height="10">무더운 여름의 시작 새로운 아이템과!</th></tr>
            <tr><th>${newitemthismonth.ITEMNAME}</th></tr>
-           <tr><th>${newitemthismonth.ITEMPRICE}원    <button>바로가기</button></th></tr>
+           <tr><th>${newitemthismonth.ITEMPRICE}원   
+           <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${newitemthismonth.ITEMLIST_NO}'">바로가기</button></th></tr>
            </table>
            </th>
            <th width="50"></th>
@@ -262,7 +262,7 @@ $(document).ready( function() {
            <tr><th height="10">연령별 패키지와함께!</th></tr>
            <tr><th>${itemsName}</th></tr>
            <tr><th><del>${orimoney}</del>-> </th></tr>
-           <tr><th>${pack.PACKAGE_PRICE} <button>바로가기</button></th></tr>
+           <tr><th>${pack.PACKAGE_PRICE} <button onclick="location.href='/goodluck/cjspackitemdetail.go?pk=3'">바로가기</button></th></tr>
            </table>
            </th>
           </tr>
@@ -286,7 +286,8 @@ $(document).ready( function() {
            <tr><th><h2>6월의 인기템!</h2></th></tr>
            <tr><th height="10">무더운 여름의 시작 새로운 아이템과!</th></tr>
            <tr><th>${popitemthismonth.ITEMNAME}과 함께</th></tr>
-           <tr><th>${popitemthismonth.ITEMPRICE}원   <button>바로가기</button></th></tr>
+           <tr><th>${popitemthismonth.ITEMPRICE}원  
+            <button onclick="location.href='/goodluck/cjsitemDetail.go?itemno=${popitemthismonth.ITEMLIST_NO}'">바로가기</button></th></tr>
            </table>	</th>
            <th width="50"></th>
            <th>

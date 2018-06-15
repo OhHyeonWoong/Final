@@ -20,9 +20,9 @@
 									class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-login-msg">서비스 이용을 위해 로그인을 해주세요!</span>
 							</div>
-							<input id="login_id" name="member_id" class="form-control" type="text"
+							<input id="login_id1" name="member_id" class="form-control" type="text"
 								placeholder="아이디" required><!-- login_username -->
-							<input id="login_password" name="member_pw" class="form-control" type="password"
+							<input id="login_password1" name="member_pw" class="form-control" type="password"
 								placeholder="패스워드" required>
 							<div class="checkbox">
 								<label> <input type="checkbox" id="idSave">아이디 기억</label>
@@ -35,8 +35,10 @@
 									value="로그인" onclick="fnLogin();">
 								<script type="text/javascript">
 									function fnLogin(){
-										var id = $('#login_id').val();
-										var pwd = $('#login_password').val();
+										var id = $('#login_id1').val();
+										var pwd = $('#login_password1').val();
+										console.log(id);
+										console.log(pwd);
 										$.ajax({
 											url:"lbjlogin.go",
 											type:"post",
