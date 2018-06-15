@@ -16,7 +16,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
 import com.kh.goodluck.board.model.vo.KaKaoMessage;
 
 import net.nurigo.java_sdk.api.Message;
@@ -82,11 +81,11 @@ public class KakaoMessageAPI extends Thread{
 
 		HttpEntity<MultiValueMap<String, String>> requestEntity=  new HttpEntity<MultiValueMap<String, String>>(map, headers);
 		result =  restTemplate.exchange(BASE_URL + URL , HttpMethod.POST, requestEntity, String.class).toString();
-	     System.out.println(result);
+	    System.out.println(result);
 	    }catch (Exception e) {
 	    System.out.println(e.getMessage());
 		System.out.println("카카오톡 토큰이 없어서 핸드폰 문자로 보냄.");
-		SendMessage();
+     	SendMessage1();
 	    }
     } 
   
@@ -95,7 +94,8 @@ public class KakaoMessageAPI extends Thread{
 		sendmessage();
 		super.run();
 	}
-	private void SendMessage() {
+	
+	 private void SendMessage1() {
 	    String api_key = "NCS87FQQLCV70DUR";
 	    String api_secret = "9V3IPM7KEGWYLQJCYMGE3L9WEQ0JZCRG";
 	    Message coolsms = new Message(api_key, api_secret);

@@ -233,5 +233,13 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	 MEMBER_KAKAOIDPK = #{kakaopk}
 	 where MEMBER_ID =#{memberid}
 	</update>
+	<select id="searchAPPLICANTInfobyBoardNo" parameterType="int" resultType="Memberandscore">
+	
+	select member.* from member , TRADE_DETAIL where TRADE_DETAIL.AGENCY_NO=#{pk} and TRADE_DETAIL.TRADE_APPLICANT=member.MEMBER_ID
+	</select>
+	<select id="searchRESERVATIONInfobyBoardNo" parameterType="int" resultType="Memberandscore">
+	
+	select member.* from member , TRADE_DETAIL where TRADE_DETAIL.AGENCY_NO=#{pk} and TRADE_DETAIL.TRADE_RESERVATION=member.MEMBER_ID
+	</select>
 	
 	</mapper>

@@ -106,5 +106,13 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("updatekakaoinfo", map);
 	}
+	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo", pk);
+	}
+	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("searchRESERVATIONInfobyBoardNo", pk);
+	}
 	
 }

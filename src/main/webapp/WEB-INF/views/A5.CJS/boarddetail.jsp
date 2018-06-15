@@ -320,7 +320,6 @@ ${Cateinfo};
                                 </div>
                             </div>
                         </article>
-
                         <article class="kanban-entry grab" id="item4" draggable="true">
                             <div class="kanban-entry-inner">
                                 <div class="kanban-label">
@@ -356,7 +355,7 @@ mapOption = {
 var geocoder = new daum.maps.services.Geocoder();
 var coords="";
 var coords1="";
-geocoder.addressSearch('경기도 도덕공원로', function(result, status) {
+geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
@@ -472,7 +471,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
     			</table>
     			
              	<center>
-    				<th colspan="2">   <small>※제대로 확인하셨나요? ※</small></th>
+    				<th colspan="2">  <small>※제대로 확인하셨나요? ※</small></th>
     			</center>
     			<br>
 				<center>
@@ -495,14 +494,12 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 				</script>
 					<br />
 					<br />
-		 
 		      </div>
 		      <div class="modal-footer">
 		      </div>
 		    </div>
 		  </div>
 		</div>
-
 </body>
 </html>
 
