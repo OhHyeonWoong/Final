@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
@@ -199,7 +200,7 @@ public class MemberController {
 	    map4.put("startRow", qnaStartRow);
 	    map4.put("endRow", myApplyBoardEndRow);
 	    map4.put("member_id", member_id);
-	    List<MyPageBoard> myApplyBoard = boardService.selectMyApplyBoard(map4);
+	    ArrayList<MyPageApplyBoard> myApplyBoard = (ArrayList<MyPageApplyBoard>)boardService.selectMyApplyBoard(map4);
 	    
 	    System.out.println("myApplyBoard size = " + myApplyBoard.size());
 		
@@ -207,9 +208,9 @@ public class MemberController {
 			myApplyBoardEndRow = myApplyBoardMaxPage;
 		
 	    HashMap<String,Integer> applyBoardPage = new HashMap<String,Integer>();
-		boardPage.put("myApplyBoardMaxPage",myApplyBoardMaxPage);
-		boardPage.put("myApplyBoardEndRow",myApplyBoardEndRow);
-		boardPage.put("myApplyBoardListCount",myApplyBoardListCount);
+		applyBoardPage.put("myApplyBoardMaxPage",myApplyBoardMaxPage);
+		applyBoardPage.put("myApplyBoardEndRow",myApplyBoardEndRow);
+		applyBoardPage.put("myApplyBoardListCount",myApplyBoardListCount);
 		
 		mv.addObject("lbjMyApplyBoard", myApplyBoard);
 		mv.addObject("applyBoardPage",applyBoardPage);
