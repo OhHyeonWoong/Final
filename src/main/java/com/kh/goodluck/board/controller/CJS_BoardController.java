@@ -59,13 +59,7 @@ public class CJS_BoardController {
 		return mv;	
 		}else{
 			
-			Member member=(Member)session.getAttribute("loginUser");
-			if(member.getMember_id().equals("guest"))
-			{
-			mv.setViewName("A5.CJS/login2");
-			return mv;	
-				
-			}else {
+			
 				int result=boardservice.IncreaseViewCount(pk);
 				//2: 해당 보드 객체를 가지고 가기.
 				Board bo=boardservice.getBoardInfoByNo(pk);
@@ -94,7 +88,7 @@ public class CJS_BoardController {
 				return mv;	
 			}
 	  }		
-}	
+
 	
 ///////////////////////////////////////////////////////////////////////////////////	
 	

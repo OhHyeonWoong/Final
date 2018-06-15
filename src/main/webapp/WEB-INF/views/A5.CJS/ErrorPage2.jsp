@@ -14,13 +14,14 @@
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<div class="container" style="height: 550px;">
   <div class="row">
+    <br><br><br><br>
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <div class="panel panel-danger">
         <div class="panel-heading">
           <h3 class="text-center">
           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 오류
-          <small>가벼운 오류 발생 <br>(잘못된 접근을 하셨습니다.) <b> </b></small>
+          <small>잘못된 요청 발생 <br>(잘못된 접근을 하셨습니다. 정상적인 경로를 이용해주세요.) <b> </b></small>
           </h3>
         </div>
         <div class="panel-body">
