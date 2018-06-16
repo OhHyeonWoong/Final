@@ -320,6 +320,7 @@ public class CJS_BoardController {
 		try {
 		mv.addObject("gender",String.valueOf(writer.getMember_regident_number()).charAt(String.valueOf(writer.getMember_regident_number()).length()-1)%2);
 		}catch (Exception e) {
+		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
@@ -361,7 +362,7 @@ public class CJS_BoardController {
 			map.put("pk", pk);
 			map.put("Status",1);
 	 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
-			KaKaoMessage.setBoardtitle("모든지원자가 사퇴했습니다.");
+			KaKaoMessage.setBoardtitle("모든지원자가 사퇴했습니다");
 			try 
 			{
 				writer.getMember_accesstoken();
