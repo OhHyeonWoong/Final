@@ -27,6 +27,7 @@ import com.kh.goodluck.board.model.vo.KaKaoMessage;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
+import com.kh.goodluck.kakaoAPI.renew;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.Memberandscore;
@@ -38,6 +39,8 @@ import oracle.sql.CHAR;
 public class CJS_BoardController {
 
 	private KakaoMessageAPI thread;
+	
+	private renew Retoken = new renew();
 	
 	@Autowired
 	private MemberService memberService;
@@ -100,7 +103,7 @@ public class CJS_BoardController {
 			HttpServletRequest request) throws ServletException, IOException 
 	{
 		//본인의 글은 본인이 신청못하게, 같은사람이 여러번 신청못하게하기.\
-	     
+		KaKaoMessage=new KaKaoMessage();
 		
 		RequestDispatcher view=null;
 		response.setContentType("text/html charset=utf-8");
@@ -134,18 +137,27 @@ public class CJS_BoardController {
 		boardservice.insertchatroom(map);
 		System.out.println("신규최초 인원으로써 업데이트 result="+result);
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
-		
-	    Memberandscore writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+		Memberandscore writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 		KaKaoMessage.setBoardtitle("신규 지원자가 나타났습니다.");
-		KaKaoMessage.setToken(writer.getMember_accesstoken());
+		try {
+			writer.getMember_accesstoken();
+			} catch (Exception e) {
+			writer.setMember_accesstoken("22");
+			writer.setMember_refreshtoken("22");
+	       }
+		  KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
+			if(!writer.getMember_accesstoken().equals("22")) {
+			HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+			map2.put("key",KaKaoMessage.getToken());
+			map2.put("memberid",writer.getMember_id());
+			memberService.updateaccessToken(map2);
+		  }
+		
 		KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 새로운 지원자가 나타났습니다.");
 	    KaKaoMessage.setBoardno(bo.getAgency_no());
 	    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
 		thread=new KakaoMessageAPI(KaKaoMessage);
 		thread.start();
-		
-		
-		
 		break;
 		////////////////////////////////
 		
@@ -173,7 +185,20 @@ public class CJS_BoardController {
 		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
-			KaKaoMessage.setToken(writer.getMember_accesstoken());
+		   try {
+				writer.getMember_accesstoken();
+				} catch (Exception e) {
+				writer.setMember_accesstoken("22");
+				writer.setMember_refreshtoken("22");
+		        }
+				KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
+				if(!writer.getMember_accesstoken().equals("22")) {
+				HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+				map2.put("key",KaKaoMessage.getToken());
+				map2.put("memberid",writer.getMember_id());
+				memberService.updateaccessToken(map2);
+	        }
+			
 			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 새로운 예비 지원자가 나타났습니다.");
 		    KaKaoMessage.setBoardno(bo.getAgency_no());
 		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
@@ -313,6 +338,7 @@ public class CJS_BoardController {
 	    //사용자가 현재 이 게시판에 신청했는지 안했는지 확인. 안했다면 정상적인 경로를 이용하라고 유도
 	Member member=null;
 	Board bo=boardservice.getBoardInfoByNo(pk);
+	KaKaoMessage=new KaKaoMessage();
 		if(session.getValue("loginUser") != null) {
 		member=(Member)session.getAttribute("loginUser");
 		}else {
@@ -332,37 +358,77 @@ public class CJS_BoardController {
 	 		map=new HashMap<Object,Object>();
 			map.put("pk", pk);
 			map.put("Status",1);
-	 		boardservice.cancelagency1(pk);	
-	 		boardservice.updateAgencyStatus(map);
 	 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
-			KaKaoMessage.setToken(writer.getMember_accesstoken());
+			try 
+			{
+				writer.getMember_accesstoken();
+				} catch (Exception e) {
+				writer.setMember_accesstoken("22");
+				writer.setMember_refreshtoken("22");
+		        }
+				KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
+				if(!writer.getMember_accesstoken().equals("22")) {
+				HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+				map2.put("key",KaKaoMessage.getToken());
+				map2.put("memberid",writer.getMember_id());
+				memberService.updateaccessToken(map2);
+			}
+			
+			
+			map=new HashMap<Object,Object>(); 
+			map.put("key",KaKaoMessage.getToken());
+			map.put("memberid",writer.getMember_id());
+			memberService.updateaccessToken(map);
 			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 일반 지원자가 자진사퇴하였습니다.");
 		    KaKaoMessage.setBoardno(bo.getAgency_no());
 		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
 			thread=new KakaoMessageAPI(KaKaoMessage);
 			thread.start();
+			boardservice.cancelagency1(pk);	
+	 		boardservice.updateAgencyStatus(map);
+	 		
 	 		}else if(boardservice.getAgencyStatus(pk)==3) {
 	 		//예비 후보가 있으므로, 본인이 빠지고, 예비 후보자를 일반후보자로 바꾸고 스테이터스를 2로 바꿈.
 	 		map=new HashMap<Object,Object>();
 			map.put("pk", pk);
 			map.put("Status",2);	
-			boardservice.cancelagency2(pk);
-			boardservice.updateAgencyStatus(map);
 			
 			map=new HashMap<Object,Object>();
 			map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
 			map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
 			map.put("AGENCY_NO",pk);
 			boardservice.insertchatroom(map);
+			
 			writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
-			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
-			KaKaoMessage.setToken(writer.getMember_accesstoken());
+			KaKaoMessage.setBoardtitle("지원자가 교체되었습니다.");
+			KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
+			map=new HashMap<Object,Object>(); 
+			map.put("key",KaKaoMessage.getToken());
+			map.put("memberid",writer.getMember_id());
+			try {
+				writer.getMember_accesstoken();
+				} catch (Exception e) {
+				writer.setMember_accesstoken("22");
+				writer.setMember_refreshtoken("22");
+		        }
+				KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
+				if(!writer.getMember_accesstoken().equals("22")) {
+				HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+				map2.put("key",KaKaoMessage.getToken());
+				map2.put("memberid",writer.getMember_id());
+				memberService.updateaccessToken(map2);
+			    }
+			
+			
 			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"가의 지원자가 예비후보자로 교체됬습니다.");
 		    KaKaoMessage.setBoardno(bo.getAgency_no());
 		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
 			thread=new KakaoMessageAPI(KaKaoMessage);
 			thread.start();
+			boardservice.cancelagency2(pk);
+			boardservice.updateAgencyStatus(map);
+			
 	 		}
 	 	}else if(boardservice.getrelation1(map)==1) {
 		//해당인원은 단순 예비 지원자=> 예비후보자 명단에서 본인이빠지고 스테이터스를 2로 바꿈.
@@ -386,13 +452,13 @@ public class CJS_BoardController {
 		Board bo=boardservice.getBoardInfoByNo(pk);
 		HashMap<Object,Object> map =new HashMap<Object,Object>();
 		PrintWriter out = null;
- 		
-		try {
+		KaKaoMessage=new KaKaoMessage();
+ 		try {
  				out = response.getWriter();
- 			} catch (IOException e) {
+ 		} catch (IOException e) {
  				// TODO Auto-generated catch block
  				e.printStackTrace();
- 			}
+ 		}
 	    //1. 취소 신청날이 오늘일경우.
 		//boardservice.getAgencyDate <= 수행일과 오늘의 차이 구함.
 		if(boardservice.getAgencyDate(pk)<0) {
@@ -408,27 +474,43 @@ public class CJS_BoardController {
 		 		map=new HashMap<Object,Object>();
 				map.put("pk", pk);
 				map.put("Status",1);
-		 		boardservice.cancelagency1(pk);	
-		 		boardservice.updateAgencyStatus(map);
 		 		
 		 		APPLICANT=memberService.searchAPPLICANTInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
-				KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
-				KaKaoMessage.setToken(APPLICANT.getMember_accesstoken());
+			    if(APPLICANT!=null) {
+		 		System.out.println(APPLICANT.getMember_id());
+		 		KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
+		 		System.out.println("문제보냄");
+				try {
+				APPLICANT.getMember_accesstoken();
+				} catch (Exception e) {
+				APPLICANT.setMember_accesstoken("22");
+				APPLICANT.setMember_refreshtoken("22");
+		        }
+				KaKaoMessage.setToken(Retoken.renewaccessToken(APPLICANT.getMember_refreshtoken()));
+				
+				if(!APPLICANT.getMember_accesstoken().equals("22")) {
+				HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+				map2.put("key",KaKaoMessage.getToken());
+				map2.put("memberid",APPLICANT.getMember_id());
+				memberService.updateaccessToken(map2);
+				}
 				KaKaoMessage.setMessage(APPLICANT.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 오너가 님을 탈퇴시켰습니다.");
 			    KaKaoMessage.setBoardno(bo.getAgency_no());
 			    KaKaoMessage.setMEMBER_PHONE(APPLICANT.getMember_phone());
 				thread=new KakaoMessageAPI(KaKaoMessage);
 				thread.start();
-		 		out.print(1);
+			    }
+			    boardservice.cancelagency1(pk);	
+		 		boardservice.updateAgencyStatus(map);
+				out.print(1);
 		 		out.flush();
 		 		out.close();	
-		 		}else if(boardservice.getAgencyStatus(pk)==3) {
+		 
+			}else if(boardservice.getAgencyStatus(pk)==3) {
 		 		//예비 후보가 있으므로, 일반지원자를이 빠지고, 예비 후보자를 일반후보자로 바꾸고 스테이터스를 2로 바꿈.
 		 		map=new HashMap<Object,Object>();
 				map.put("pk", pk);
 				map.put("Status",2);	
-				boardservice.cancelagency2(pk);
-				boardservice.updateAgencyStatus(map);
 				map=new HashMap<Object,Object>();
 				map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
 				map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
@@ -436,7 +518,19 @@ public class CJS_BoardController {
 				boardservice.insertchatroom(map);
 				APPLICANT=memberService.searchAPPLICANTInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 				KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
-				KaKaoMessage.setToken(APPLICANT.getMember_accesstoken());
+				try {
+				APPLICANT.getMember_accesstoken();
+				} catch (Exception e) {
+					APPLICANT.setMember_accesstoken("22");
+					APPLICANT.setMember_refreshtoken("22");
+				}
+				KaKaoMessage.setToken(Retoken.renewaccessToken(APPLICANT.getMember_refreshtoken()));
+				if(!APPLICANT.getMember_accesstoken().equals("22")) {
+					HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+					map2.put("key",KaKaoMessage.getToken());
+					map2.put("memberid",APPLICANT.getMember_id());
+					memberService.updateaccessToken(map2);
+					}
 				KaKaoMessage.setMessage(APPLICANT.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 오너가 님을 탈퇴시켰습니다.");
 			    KaKaoMessage.setBoardno(bo.getAgency_no());
 			    KaKaoMessage.setMEMBER_PHONE(APPLICANT.getMember_phone());
@@ -445,12 +539,28 @@ public class CJS_BoardController {
 				
 				RESERVATION=memberService.searchRESERVATIONInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 				KaKaoMessage.setBoardtitle("일반지원자가 되었습니다.");
-				KaKaoMessage.setToken(RESERVATION.getMember_accesstoken());
+				try {
+				RESERVATION.getMember_accesstoken();
+				} catch (Exception e) {
+				RESERVATION.setMember_accesstoken("22");
+				RESERVATION.setMember_refreshtoken("22");
+				}
+				KaKaoMessage.setToken(Retoken.renewaccessToken(RESERVATION.getMember_refreshtoken()));
+				if(!APPLICANT.getMember_accesstoken().equals("22")) {
+					HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
+					map2.put("key",KaKaoMessage.getToken());
+					map2.put("memberid",RESERVATION.getMember_id());
+					memberService.updateaccessToken(map2);
+				}
 				KaKaoMessage.setMessage(RESERVATION.getMember_name()+"님이 신청하신 "+bo.getAgency_title()+"에서 일반지원자가 되었습니다.");
 			    KaKaoMessage.setBoardno(bo.getAgency_no());
 			    KaKaoMessage.setMEMBER_PHONE(RESERVATION.getMember_phone());
 				thread=new KakaoMessageAPI(KaKaoMessage);
 				thread.start();
+				
+				boardservice.cancelagency2(pk);
+				boardservice.updateAgencyStatus(map);
+				
 				out.print(2);
 		 		out.flush();
 		 		out.close();

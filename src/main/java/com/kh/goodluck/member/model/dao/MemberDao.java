@@ -100,24 +100,27 @@ public class MemberDao {
 		return sqlSession.insert("insertNewItem", item);
 	}
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo", pk);
+	  return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo",pk);
 	}
 	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("searchRESERVATIONInfobyBoardNo", pk);
+		return sqlSession.selectOne("searchRESERVATIONInfobyBoardNo",pk);
 	}
 	public Member getmemberinfobykakaopk(int parseInt) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getmemberinfobykakaopk", parseInt);
+		return sqlSession.selectOne("getmemberinfobykakaopk",parseInt);
 	}
 	public int updatetoken(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("updatetoken", map);
+		return sqlSession.update("updatetoken",map);
 	}
 	public int updatekakaoinfo(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("updatekakaoinfo", map);
+		return sqlSession.update("updatekakaoinfo",map);
+	}
+	public void updateaccessToken(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.update("updateaccessToken",map);
 	}
 	
 }

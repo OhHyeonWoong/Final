@@ -43,10 +43,13 @@
 			  console.log(data);
 			  if(data == 1)
 			  {
+				 console.log("이글에 이미 지원함");
 				$("#ukapplybtn").removeAttr("data-target");
 				$("#ukapplybtn").text("해당 글에 이미 지원했습니다.");
 				$("#ukapplybtn").removeAttr("id");
+			 
 			  }else if(data == 2){
+				  console.log("본인의 글임");
 				$("#ukapplybtn").removeAttr("data-target");
 				$("#ukapplybtn").text("본인의 글입니다.");
 				$("#ukapplybtn").removeAttr("id");  
