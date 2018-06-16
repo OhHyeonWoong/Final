@@ -82,7 +82,7 @@ public class KakaoMessageAPI extends Thread{
 		HttpEntity<MultiValueMap<String, String>> requestEntity=  new HttpEntity<MultiValueMap<String, String>>(map, headers);
 		result =  restTemplate.exchange(BASE_URL + URL , HttpMethod.POST, requestEntity, String.class).toString();
 	    System.out.println(result);
-	    }catch (Exception e) {
+	}catch (Exception e) {
 	    System.out.println(e.getMessage());
 		System.out.println("카카오톡 토큰이 없어서 핸드폰 문자로 보냄.");
      	SendMessage1();

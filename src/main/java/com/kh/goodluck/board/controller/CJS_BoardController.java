@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -262,9 +263,10 @@ public class CJS_BoardController {
 	public ModelAndView DealingStatemove1(
 			ModelAndView mv,
 			@RequestParam("BoardNo") int pk, 
-			HttpSession session
-	) 
-	{
+			HttpSession session,
+			HttpServletResponse response
+	) throws IOException  
+	    {
 		if(boardservice.getAgencyStatus(pk)==4) {
 			mv.setViewName("A5.CJS/ErrorPage2");
 			return mv;
@@ -315,10 +317,10 @@ public class CJS_BoardController {
 		mv.addObject("Cateinfo",gcfbd);
 		mv.addObject("Board",bo);
 		mv.addObject("writer",writer);
-		mv.addObject("gender",
-    String.valueOf(writer.getMember_regident_number())
-	.charAt(String.valueOf(writer.getMember_regident_number()).length()-1)%2
-	);
+		try {
+		mv.addObject("gender",String.valueOf(writer.getMember_regident_number()).charAt(String.valueOf(writer.getMember_regident_number()).length()-1)%2);
+		}catch (Exception e) {
+		}
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
 	
@@ -359,7 +361,7 @@ public class CJS_BoardController {
 			map.put("pk", pk);
 			map.put("Status",1);
 	 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
-			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
+			KaKaoMessage.setBoardtitle("모든지원자가 사퇴했습니다.");
 			try 
 			{
 				writer.getMember_accesstoken();
@@ -374,12 +376,6 @@ public class CJS_BoardController {
 				map2.put("memberid",writer.getMember_id());
 				memberService.updateaccessToken(map2);
 			}
-			
-			
-			map=new HashMap<Object,Object>(); 
-			map.put("key",KaKaoMessage.getToken());
-			map.put("memberid",writer.getMember_id());
-			memberService.updateaccessToken(map);
 			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"에 일반 지원자가 자진사퇴하였습니다.");
 		    KaKaoMessage.setBoardno(bo.getAgency_no());
 		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
@@ -393,8 +389,6 @@ public class CJS_BoardController {
 	 		map=new HashMap<Object,Object>();
 			map.put("pk", pk);
 			map.put("Status",2);	
-			
-			map=new HashMap<Object,Object>();
 			map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
 			map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
 			map.put("AGENCY_NO",pk);
@@ -403,9 +397,6 @@ public class CJS_BoardController {
 			writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 			KaKaoMessage.setBoardtitle("지원자가 교체되었습니다.");
 			KaKaoMessage.setToken(Retoken.renewaccessToken(writer.getMember_refreshtoken()));
-			map=new HashMap<Object,Object>(); 
-			map.put("key",KaKaoMessage.getToken());
-			map.put("memberid",writer.getMember_id());
 			try {
 				writer.getMember_accesstoken();
 				} catch (Exception e) {
@@ -419,8 +410,6 @@ public class CJS_BoardController {
 				map2.put("memberid",writer.getMember_id());
 				memberService.updateaccessToken(map2);
 			    }
-			
-			
 			KaKaoMessage.setMessage(writer.getMember_name()+"님의 게시글 "+bo.getAgency_title()+"가의 지원자가 예비후보자로 교체됬습니다.");
 		    KaKaoMessage.setBoardno(bo.getAgency_no());
 		    KaKaoMessage.setMEMBER_PHONE(writer.getMember_phone());
@@ -487,7 +476,6 @@ public class CJS_BoardController {
 				APPLICANT.setMember_refreshtoken("22");
 		        }
 				KaKaoMessage.setToken(Retoken.renewaccessToken(APPLICANT.getMember_refreshtoken()));
-				
 				if(!APPLICANT.getMember_accesstoken().equals("22")) {
 				HashMap<Object,Object> map2=new HashMap<Object,Object>(); 
 				map2.put("key",KaKaoMessage.getToken());
@@ -500,6 +488,8 @@ public class CJS_BoardController {
 				thread=new KakaoMessageAPI(KaKaoMessage);
 				thread.start();
 			    }
+			    
+			    
 			    boardservice.cancelagency1(pk);	
 		 		boardservice.updateAgencyStatus(map);
 				out.print(1);
@@ -511,13 +501,13 @@ public class CJS_BoardController {
 		 		map=new HashMap<Object,Object>();
 				map.put("pk", pk);
 				map.put("Status",2);	
-				map=new HashMap<Object,Object>();
 				map.put("CHATROOM_MEMBER1",boardservice.getBoardInfoByNo(pk).getAgency_writer());
 				map.put("CHATROOM_MEMBER2",boardservice.getAPPLICANT(pk));
 				map.put("AGENCY_NO",pk);
 				boardservice.insertchatroom(map);
 				APPLICANT=memberService.searchAPPLICANTInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 				KaKaoMessage.setBoardtitle("오너가 님을 탈퇴시켰습니다.");
+				if(APPLICANT!=null) {
 				try {
 				APPLICANT.getMember_accesstoken();
 				} catch (Exception e) {
@@ -536,8 +526,10 @@ public class CJS_BoardController {
 			    KaKaoMessage.setMEMBER_PHONE(APPLICANT.getMember_phone());
 				thread=new KakaoMessageAPI(KaKaoMessage);
 				thread.start();
+				}
 				
 				RESERVATION=memberService.searchRESERVATIONInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
+				if(RESERVATION!=null) {
 				KaKaoMessage.setBoardtitle("일반지원자가 되었습니다.");
 				try {
 				RESERVATION.getMember_accesstoken();
@@ -557,10 +549,9 @@ public class CJS_BoardController {
 			    KaKaoMessage.setMEMBER_PHONE(RESERVATION.getMember_phone());
 				thread=new KakaoMessageAPI(KaKaoMessage);
 				thread.start();
-				
+				}
 				boardservice.cancelagency2(pk);
 				boardservice.updateAgencyStatus(map);
-				
 				out.print(2);
 		 		out.flush();
 		 		out.close();
