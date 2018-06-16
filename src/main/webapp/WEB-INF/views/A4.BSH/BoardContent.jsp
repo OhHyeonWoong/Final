@@ -156,7 +156,7 @@
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
 								<select id="loc" name="loc">
-									<option value="" selected="selected">지역</option>
+									<option value="%" selected="selected">전체</option>
 								</select>
 							</td>
 							<td class="td_start"><label>글상태</label></td>
