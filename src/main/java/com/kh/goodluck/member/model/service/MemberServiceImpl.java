@@ -148,6 +148,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
 		// TODO Auto-generated method stub
+		
 		return memberDao.searchAPPLICANTInfobyBoardNo(pk);
 	}
 
@@ -155,5 +156,11 @@ public class MemberServiceImpl implements MemberService{
 	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
 		// TODO Auto-generated method stub
 		return memberDao.searchRESERVATIONInfobyBoardNo(pk);
+	}
+
+	@Override
+	public void updateaccessToken(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		memberDao.updateaccessToken(map);
 	}
 }	

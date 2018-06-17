@@ -14,6 +14,14 @@ public KaKaoMessage() {
 private String boardtitle;
 private String message;
 private String token;
+private String retken;
+public String getRetken() {
+	return retken;
+}
+public void setRetken(String retken) {
+	this.retken = retken;
+}
+
 private int boardno;
 private String MEMBER_PHONE;
 

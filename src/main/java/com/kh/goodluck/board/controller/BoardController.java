@@ -317,11 +317,181 @@ public class BoardController {
 		List<Board> searchlist = null;
 		
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("scate", scate);
+		map.put("mcate", mcate);
+		map.put("bcate", bcate);
+		map.put("loc", loc);
+		map.put("state", state);
+		map.put("group1", group1);
+		map.put("group2", group2);
+		map.put("group3", group3);
+		map.put("min", min);
+		map.put("max", max);
+		map.put("searchtext", searchtext);
+		map.put("page", page);
+		
 		//map.put("strquery", query);
 		
-		
+		int mode = 0;
 		//카테고리 종류 별로 검색 쿼리가 달라야함 ㅅㅂ....
 		
+		if(scate.equals("")) { 
+			if(mcate.equals("")) { // bcate 일때
+				mode = 10;
+				if(group1.equals("")) {
+					mode = 11;
+				}else if(group1.equals("시급")){
+					if(group2.equals("제공")) {
+						mode = 21;
+					}else if(group2.equals("구인")){
+						mode = 22;
+					}else {
+						mode = 12;
+					}
+				}else if(group1.equals("일급")){
+					if(group2.equals("제공")) {
+						mode = 23;
+					}else if(group2.equals("구인")){
+						mode = 24;
+					}else {
+						mode = 13;
+					}
+				}else if(group2.equals("")){
+					mode = 14;
+				}else if(group2.equals("제공")){
+					mode = 15;
+				}else if(group2.equals("구인")){
+					mode = 16;
+				}else if(group3.equals("등록날짜순")){
+					mode = 17;
+				}else if(group3.equals("시작날짜순")){
+					mode = 18;
+				}else if(group3.equals("금액낮은순")){
+					mode = 19;
+				}else if(group3.equals("금액높은순")){
+					mode = 20;
+				}
+			}else { // mcate 일때
+				mode = 30;
+				if(group1.equals("")) {
+					mode = 31;
+				}else if(group1.equals("시급")){
+					if(group2.equals("제공")) {
+						mode = 41;
+					}else if(group2.equals("구인")){
+						mode = 42;
+					}else {
+						mode = 32;
+					}
+				}else if(group1.equals("일급")){
+					if(group2.equals("제공")) {
+						mode = 43;
+					}else if(group2.equals("구인")){
+						mode = 44;
+					}else {
+						mode = 33;
+					}
+				}else if(group2.equals("")){
+					mode = 34;
+				}else if(group2.equals("제공")){
+					mode = 35;
+				}else if(group2.equals("구인")){
+					mode = 36;
+				}else if(group3.equals("등록날짜순")){
+					mode = 37;
+				}else if(group3.equals("시작날짜순")){
+					mode = 38;
+				}else if(group3.equals("금액낮은순")){
+					mode = 39;
+				}else if(group3.equals("금액높은순")){
+					mode = 40;
+				}
+			}
+		}else { // scate 일때
+			mode = 50;
+			if(group1.equals("")) {
+				mode = 51;
+			}else if(group1.equals("시급")){
+				if(group2.equals("제공")) {
+					mode = 61;
+				}else if(group2.equals("구인")){
+					mode = 62;
+				}else {
+					mode = 62;
+				}
+			}else if(group1.equals("일급")){
+				if(group2.equals("제공")) {
+					mode = 63;
+				}else if(group2.equals("구인")){
+					mode = 64;
+				}else {
+					mode = 53;
+				}
+			}else if(group2.equals("")){
+				mode = 54;
+			}else if(group2.equals("제공")){
+				mode = 55;
+			}else if(group2.equals("구인")){
+				mode = 56;
+			}else if(group3.equals("등록날짜순")){
+				mode = 57;
+			}else if(group3.equals("시작날짜순")){
+				mode = 58;
+			}else if(group3.equals("금액낮은순")){
+				mode = 59;
+			}else if(group3.equals("금액높은순")){
+				mode = 60;
+			}
+		}
+		// 10 - bcate
+		// 11 - 시급 체크안됨
+		// 12 - 시급 체크
+		// 13 - 일급 체크
+		// 14 - 제공 체크안됨
+		// 15 - 제공 체크
+		// 16 - 구인 체크
+		// 17 - 등록날짜순
+		// 18 - 시작날짜순
+		// 19 - 금액낮은순
+		// 20 - 금액높은순
+		// 21 - 시급,제공 둘다 체크됨
+		// 22 - 시급,구인 둘다 체크됨
+		// 23 - 일급,제공 둘다 체크됨
+		// 24 - 일급,구인 둘다 체크됨
+
+		
+		// 30 - mcate
+		// 31 - 시급 체크안됨
+		// 32 - 시급 체크
+		// 33 - 일급 체크
+		// 34 - 제공 체크안됨
+		// 35 - 제공 체크
+		// 36 - 구인 체크
+		// 37 - 등록날짜순
+		// 38 - 시작날짜순
+		// 39 - 금액낮은순
+		// 40 - 금액높은순
+		// 41 - 시급,제공 둘다 체크됨
+		// 42 - 시급,구인 둘다 체크됨
+		// 43 - 일급,제공 둘다 체크됨
+		// 44 - 일급,구인 둘다 체크됨
+		
+		// 50 - scate
+		// 51 - 시급 체크안됨
+		// 52 - 시급 체크
+		// 53 - 일급 체크
+		// 54 - 제공 체크안됨
+		// 55 - 제공 체크
+		// 56 - 구인 체크
+		// 57 - 등록날짜순
+		// 58 - 시작날짜순
+		// 59 - 금액낮은순
+		// 60 - 금액높은순 
+		// 61 - 시급,제공 둘다 체크됨
+		// 62 - 시급,구인 둘다 체크됨
+		// 63 - 일급,제공 둘다 체크됨
+		// 64 - 일급,구인 둘다 체크됨
+	
 		if(scate.equals("")) {
 			if(mcate.equals("")){
 				searchlist = boardservice.search(map);
