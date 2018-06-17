@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component("Memberandscore")
 public class Memberandscore implements Serializable{
 
-	private static final long serialVersionUID = 74542L;
+	private static final long serialVersionUID = 7654L;
 	
 	private String member_id;
 	private String member_pw;
@@ -27,6 +27,7 @@ public class Memberandscore implements Serializable{
 	private int member_cash;
 	private String member_accesstoken;
 	private String member_refreshtoken;
+	private int MEMBER_KAKAOIDPK;
 	private int member_keyword_count;
 	private String emoticonfile;
 	private int SCORE_BUY;
@@ -34,8 +35,18 @@ public class Memberandscore implements Serializable{
 	private int SCORE_SELL;
 	private int SCORE_SELL_COUNT;
 	private Double SCORE_SELL_RATE;
+	
 	public Memberandscore() {
 	}
+	
+	public int getMEMBER_KAKAOIDPK() {
+		return MEMBER_KAKAOIDPK;
+	}
+
+	public void setMEMBER_KAKAOIDPK(int mEMBER_KAKAOIDPK) {
+		MEMBER_KAKAOIDPK = mEMBER_KAKAOIDPK;
+	}
+
 	public String getMember_id() {
 		return member_id;
 	}

@@ -406,6 +406,21 @@
 	update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
 	</update>
 	<insert id="insertReview" parameterType="REVIEW">
-	insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),#{REVIEW_RATE},#{REVIEW_WRITER},#{AGENCYLOG_NO},sysdate,#{REVIEW_CONTENT}) 
+	insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),
+	#{REVIEW_RATE},#{REVIEW_WRITER},
+	(select AGENCYLOG_NO from AGENCYLOG where AGENCYLOG_TRADE = (select TRADE_NO from TRADE_DETAIL where AGENCY_NO=#{AGENCYLOG_NO})),sysdate,
+	#{REVIEW_CONTENT}) 
 	</insert>
+	<update id="SCOREupdatetype1" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_BUY_COUNT=(select SCORE_BUY_COUNT from SCORE where MEMBER_ID=#{order})+1
+	where MEMBER_ID=#{order}
+	</update>
+	<update id="SCOREupdatetype11" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_SELL_COUNT=(select SCORE_SELL_COUNT from SCORE where MEMBER_ID=#{APPLICANT})+1,
+	SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
+	where MEMBER_ID=#{APPLICANT}
+	</update>
+
 </mapper>

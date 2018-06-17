@@ -277,5 +277,10 @@ public class BoardService {
 		return boardDao.selectMyBoardHistory(map5);
 	}
 
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return boardDao.SCOREupdatetype1(map2);
+	}
+
 
 }

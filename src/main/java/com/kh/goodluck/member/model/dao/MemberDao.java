@@ -78,26 +78,27 @@ public class MemberDao {
 		return sqlSession.selectList("adminMemberList");
 	}
 	public int updateMemberCashMethod(Member m) {
-		return sqlSession.update("updateMemberCash", m);
+		return sqlSession.update("updateMemberCash",m);
 	}
 
 	public int insertLoginStatistics(String member_id) {
-		return sqlSession.insert("insertLoginStatistics", member_id);
+		return sqlSession.insert("insertLoginStatistics",member_id);
 	}
 	public LoginStatistics selectIDYNCheck(String member_id) {
 		return sqlSession.selectOne("selectIDYNCheck", member_id);
 	}
 	public Memberandscore searchmemberInfobyBoardNo(int pk) {
 		// TODO Auto-generated method stub
-		return  sqlSession.selectOne("searchmemberInfobyBoardNo", pk);
+		System.out.println(" searchmemberInfobyBoardNo 번호글:"+pk);
+		return  sqlSession.selectOne("searchmemberInfobyBoardNo",pk);
 	}
 	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
+		return sqlSession.selectOne("searchmemberInfobyBoardNo1",pk);
 	}
 	public int insertItem(ITEMLIST item) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("insertNewItem", item);
+		return sqlSession.insert("insertNewItem",item);
 	}
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
 	  return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo",pk);

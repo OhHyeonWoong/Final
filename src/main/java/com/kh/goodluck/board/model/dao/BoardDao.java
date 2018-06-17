@@ -330,4 +330,12 @@ public class BoardDao {
 		return sqlSession.selectList("selectMyBoardHistory", map5);
 	}
 
+
+
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		sqlSession.update("SCOREupdatetype11", map2);
+		return sqlSession.update("SCOREupdatetype1", map2);
+	}
+
 }
