@@ -23,11 +23,11 @@
             <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjpreservationInfo"><span class="glyphicon glyphicon-book"></span>내 신청내역</a> </h4>
           </div>
         </div>
-        <div class="panel panel-default">
+        <!-- <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjSiteUserHistory"><span class="glyphicon glyphicon-book"></span>내 이용내역</a> </h4>
           </div>
-        </div>
+        </div> -->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjQnA"><span class="glyphicon glyphicon-question-sign"> </span>나의QnA</a> </h4>
