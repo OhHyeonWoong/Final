@@ -956,9 +956,44 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<h3 class="lbjh3" id="lbjSiteUserHistory">내 이용 History</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
-					<tr><th class="lbjth">상태</th><th class="lbjth">글제목</th><th class="lbjth">종료일</th></tr>
-					<tr><td>매칭완료</td><td>강아지 출장미용 합니다 연락주세요</td><td>2018/04/12</td></tr>
-					<tr><td>거절</td><td>인테리어 합니다</td><td>2018/05/15</td></tr>
+					<tr><th class="lbjth">상태</th><th class="lbjth">분류</th><th class="lbjth">글제목</th><th class="lbjth">거래대상</th><th class="lbjth">지급방식: 금액</th><th class="lbjth">종료일</th></tr>
+					<c:forEach items="${lbjMyBoardHistory}" var="myBoardHistory">
+						<tr>
+							<td>
+								<c:if test="${myBoardHistory.agencylog_finalstatus eq 1}">
+									정상완료
+								</c:if>
+								<c:if test="${myBoardHistory.agencylog_finalstatus eq 2}">
+									거래불발
+								</c:if>
+								<c:if test="${myBoardHistory.agencylog_finalstatus eq 3}">
+									대기상태로 종료
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${myBoardHistory.agency_type eq 1}">
+									구합니다<font style="color:red;">(오너)</font>
+								</c:if>
+								<c:if test="${myBoardHistory.agency_type eq 2}">
+									해드립니다<font style="color:black;">(일반 지원자)</font>
+								</c:if>
+							</td>
+							<td>${myBoardHistory.agency_title}</td>
+							<td>${myBoardHistory.trade_applicant}</td>
+							<td>
+								<c:if test="${myBoardHistory.agency_paytype eq 1}">
+									일급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								</c:if>
+								<c:if test="${myBoardHistory.agency_paytype eq 2}">
+									시급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								</c:if>
+							</td>
+							<td>${myBoardHistory.agencylog_date}</td>
+						</tr>
+					</c:forEach>
+					<!-- 컬럼6개 -->
+					<!-- <tr><td>매칭완료</td><td>강아지 출장미용 합니다 연락주세요</td><td>2018/04/12</td></tr>
+					<tr><td>거절</td><td>인테리어 합니다</td><td>2018/05/15</td></tr> -->
 				</table>
 			</div>
 			<!-- 새로 추가  끝 -->

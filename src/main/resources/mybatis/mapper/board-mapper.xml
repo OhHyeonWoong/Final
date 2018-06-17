@@ -314,6 +314,22 @@
 			where rnum>=#{startRow} and rnum<=#{endRow}
 		]]>
 	</select>
+	<select id="selectMyBoardHistoryListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from agency ac,agencylog al,trade_detail td
+			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+		]]>
+	</select>
+	<select id="selectMyBoardHistory" parameterType="java.util.HashMap" resultType="MyPageBoardHistory">
+		<![CDATA[
+			select al.agencylog_finalstatus,ac.agency_type,ac.agency_title,td.TRADE_APPLICANT,al.agencylog_date,ac.agency_pay,ac.agency_paytype
+			from agency ac,agencylog al,trade_detail td
+			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+		]]>
+	</select>
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		

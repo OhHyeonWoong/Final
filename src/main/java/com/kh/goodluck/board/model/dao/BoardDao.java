@@ -18,6 +18,7 @@ import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
@@ -319,6 +320,14 @@ public class BoardDao {
 
 	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
 		return sqlSession.selectList("selectMyApplyBoard", map4);
+	}
+
+	public int selectMyBoardHistoryListCount(String member_id) {
+		return sqlSession.selectOne("selectMyBoardHistoryListCount", member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		return sqlSession.selectList("selectMyBoardHistory", map5);
 	}
 
 }

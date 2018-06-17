@@ -22,6 +22,7 @@ import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -232,6 +233,32 @@ public class MemberController {
 			mv.addObject("lbjMyApplyBoard", myApplyBoard);
 			mv.addObject("applyBoardPage",applyBoardPage);
 			//내가 신청한 글 세팅 끝------------------------------------------------------
+			//내가 이용한 History 세팅 시작----------------------------------------------
+			int myBoardHistoryListCount = boardService.selectMyBoardHistoryListCount(member_id);
+			int myBoardHistoryMaxPage = (int)((double)myBoardHistoryListCount / qnaLimit + 0.9);
+			int myBoardHistoryEndRow = qnaStartRow + qnaLimit - 1;		
+			
+			System.out.println("myBoardHistoryListCount = " + myBoardHistoryListCount);
+			
+			HashMap<Object,Object> map5 = new HashMap<Object,Object>();
+		    map5.put("startRow", qnaStartRow);
+		    map5.put("endRow", myBoardHistoryEndRow);
+		    map5.put("member_id", member_id);
+		    ArrayList<MyPageBoardHistory> myBoardHistory = (ArrayList<MyPageBoardHistory>)boardService.selectMyBoardHistory(map5);
+		    
+		    System.out.println("myBoardHistory size = " + myBoardHistory.size());
+			
+		    if (myBoardHistoryMaxPage < myBoardHistoryEndRow)
+		    	myBoardHistoryEndRow = myBoardHistoryMaxPage;
+			
+		    HashMap<String,Integer> boardHistoryPage = new HashMap<String,Integer>();
+		    boardHistoryPage.put("myBoardHistoryMaxPage",myBoardHistoryMaxPage);
+		    boardHistoryPage.put("myBoardHistoryEndRow",myBoardHistoryEndRow);
+		    boardHistoryPage.put("myBoardHistoryListCount",myBoardHistoryListCount);
+			
+			mv.addObject("lbjMyBoardHistory", myBoardHistory);
+			mv.addObject("boardHistoryPage",boardHistoryPage);
+			//내가 이용한 History 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
 		return mv;

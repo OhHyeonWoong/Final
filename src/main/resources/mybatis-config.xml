@@ -20,6 +20,7 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageBoard" alias="MyPageBoard"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageApplyBoard" alias="MyPageApplyBoard"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageBoardHistory" alias="MyPageBoardHistory"/>
 		<typeAlias type="com.kh.goodluck.category.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.UsingItem" alias="UsingItem"/>
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QNA" alias="Qna" />

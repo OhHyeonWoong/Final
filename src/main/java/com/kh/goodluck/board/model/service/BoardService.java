@@ -18,6 +18,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
 @Service("boardService")
 public class BoardService {
@@ -264,6 +265,16 @@ public class BoardService {
 	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
 		//병준이 내가 신청한 게시글 가져오는 메소드
 		return boardDao.selectMyApplyBoard(map4);
+	}
+
+	public int selectMyBoardHistoryListCount(String member_id) {
+		//내 이용 내역 갯수 가져오는 메소드
+		return boardDao.selectMyBoardHistoryListCount(member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		//내 이용 내역 가져오는 메소드
+		return boardDao.selectMyBoardHistory(map5);
 	}
 
 
