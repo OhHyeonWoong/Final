@@ -140,12 +140,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	
-	@Override
+	@Override//신규 아이템 등록
 	public int insertNewItem(ITEMLIST item) {
 		return memberDao.insertItem(item);
 	}
-	
-
 
 	@Override
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {

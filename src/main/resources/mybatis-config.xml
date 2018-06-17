@@ -41,6 +41,10 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.Chat" alias="Chat"/>
 		<typeAlias type="com.kh.goodluck.admin.model.vo.LoginStatistics" alias="LoginStatistics"/>
 		<typeAlias type="com.kh.goodluck.outside_m.model.vo.Outside_Main" alias="Outside_Main"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_all" alias="RandomBox_all"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_emo" alias="RandomBox_emo"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_time" alias="RandomBox_time"/>
+		
 	</typeAliases>
 	
 	<mappers>    

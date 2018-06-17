@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.kh.goodluck.admin.model.dao.AdminDao;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemPackage;
+import com.kh.goodluck.item.model.vo.RandomBox_all;
+import com.kh.goodluck.item.model.vo.RandomBox_emo;
+import com.kh.goodluck.item.model.vo.RandomBox_time;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
@@ -55,5 +60,29 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int updateQuestion(int question_no) {
 		return adminDao.updateQuestion(question_no);
+	}
+	
+	
+	@Override
+	public List<ITEMLIST> allItemList() {
+		return adminDao.listOfallItems();
+	}
+	
+	//패키지 가지고 오는 리스트
+	@Override
+	public List<ItemPackage> packageItemList() {
+		return adminDao.listOfPackage();
+	}
+	@Override
+	public List<RandomBox_all> randomBoxAllList() {
+		return adminDao.listOfRandomAll();
+	}
+	@Override
+	public List<RandomBox_emo> randomBoxEmoList() {
+		return adminDao.listOfRandomEmo();
+	}
+	@Override
+	public List<RandomBox_time> randomBoxTimeList() {
+		return adminDao.listOfRandomTime();
 	}
 }

@@ -75,4 +75,54 @@
 		]]>
 	</update>
 
+	<!-- 전체 아이템 리스트 행의 갯수를 가지고 오는 메소드  -->
+	<select id = "ad_getAllItemCount" resultType="int">
+	<![CDATA[
+	select count(*) from itemlist
+	]]>
+	</select>
+	
+	<!-- 개별 아이템 리스트 가지고 오는 메소드 -->
+	<select id = "ad_selectAllItemList" resultType="ITEMLIST">
+	<![CDATA[
+	select * from itemlist
+	where itemtype in (1,2,3,4,5,6,7) 
+	order by itemtype asc
+	]]>
+	</select>
+	
+	<select id = "ad_selectPackageItemList" resultType="ItemPackage">
+	<![CDATA[
+	select * from itempackage 
+	order by packagepk asc
+	]]>
+	</select>
+	
+	<select id = "ad_selectRandomAllList" resultType="RandomBox_all">
+	<![CDATA[
+	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_ALL ra, ITEMLIST it
+	where ra.itemlist_no=it.ITEMLIST_NO
+	order by RANDOMBOX_PK asc;
+	]]>
+	</select>
+	
+	<select id = "ad_selectRandomEmoList" resultType="RandomBox_emo">
+	<![CDATA[
+	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_EMO ra, ITEMLIST it
+	where ra.itemlist_no=it.ITEMLIST_NO
+	order by RANDOMBOX_PK asc;
+	]]>
+	</select>
+		
+	<select id = "ad_selectRandomTimeList" resultType="RandomBox_time">
+	<![CDATA[
+	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_TIME ra, ITEMLIST it
+	where ra.itemlist_no=it.ITEMLIST_NO
+	order by RANDOMBOX_PK asc;
+	]]>
+	</select>
+	
+	
+	
+	
 </mapper>

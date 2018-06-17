@@ -125,8 +125,6 @@ public class JDK_MemberController {
 		         out.close();
 		      }
 		}
-		
-		
 		//회원가입 메소드
 		@Autowired(required = false)
 		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
@@ -264,10 +262,21 @@ public class JDK_MemberController {
 		//어드민 페이지 아이템 창 이동용 메소드
 		@RequestMapping(value="jdkadminitemlist.go")
 		public String adminItemManagement() {
+			// 메소드 설계 :
+			// 최초로 다른 페이지에서 해당 페이지를 로딩할 때,
+			// 3개의 테이블에 DB 에 있는 정보가 페이징 처리가 된 상태에서 로드가 되어야 하므로 해당 메소드 내부에서는 
+			// 개별, 패키지, 랜덤박스 의 리스트 처리된 객체가 다 와있는 상태에서  
+			
+			
+			
+			
 			//개별 아이템 리스트
 			int maxPage=0;
 			int minPage=0;
-
+			
+			
+			
+			
 			//패키지 아이템 리스트
 			//랜덤박스 아이템 리스트
 		return "A3.JDK/admin_itemlist";
@@ -314,12 +323,7 @@ public class JDK_MemberController {
 			return mv;
 		}
 		
-		//어드민 페이지 개별 아이템 추가 메소드: 전동기
-		@RequestMapping(value="jdkinsertNewPackageItem.go")
-		public ModelAndView insertNewPackageItem() {
-			
-			return null;
-		}
+	
 				
 		
 		
