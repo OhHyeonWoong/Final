@@ -795,7 +795,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 								</c:if>
 							</td>
 							<td>${board.category_small_name}</td>
-							<td><a href="#">${board.agency_title}</a></td>
+							<td><a href="DealingState1.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_enrolldate}</td>
 						</tr>
 					</c:forEach>
@@ -869,7 +869,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 								</c:if>
 							</td>
 							<td>${applyBoard.category_small_name}</td>
-							<td><a href="#">${applyBoard.agency_title}</a></td>
+							<td><a href="DealingState1.go?BoardNo=${applyBoard.agency_no}">${applyBoard.agency_title}</a></td>
 							<td>
 								<c:if test="${applyBoard.trade_applicant eq loginUser.member_id && applyBoard.trade_reservation != loginUser.member_id}">
 									${applyBoard.trade_date}

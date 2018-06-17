@@ -364,6 +364,16 @@
 			fcmHtml += sumMoney;
 			$('#afterChargeMoney').html(fcmHtml);
 		})
+		
+		//병준이 추가
+		$('#lbjmypagebtn1').on('click',function(){
+			console.log('${loginUser.member_id}');
+			if('${loginUser.member_id}' == 'guest'){
+				alert("카카오톡 로그인 이용자분은 회원가입을 하고 이용해주세요.");
+			}else{
+				location.href = 'lbjmypage.go?member_id=${loginUser.member_id}';
+			}
+		});
 	});
 	
 	/////
@@ -390,22 +400,28 @@
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<c:if test="${loginUser.MEMBER_KAKAOIDPK != 0}">
+								${ loginUser.member_name } 님 <img alt="" src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:25px; height:25px;"> &nbsp; <b class="caret"></b> &nbsp;</a>
+							</c:if>
+							<c:if test="${ loginUser.MEMBER_KAKAOIDPK eq 0}">
+								${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							</c:if> 
 							<div class="dropdown-menu lbj-div">
 								<div style="margin-left:10px; margin-right:10px;">
 									<table style="width:100%; height:100%;">
 										<tr>
-											<td> ${ loginUser.member_name } 님 </td>
-											<td>									
-												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button>
-											</td>									
+											<td align="center" style="padding-top:8px;"> ${ loginUser.member_name } 님 </td>
+											<td align="right">									
+												<button id="lbjmypagebtn1" class="btn btn-default" style="width:90px;">MyPage</button>
+											</td><%-- onclick="fnLBJMyPageGo(${loginUser.member_id});" --%>	
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
-											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
+											<td colspan="2"><hr></td>
 										</tr>
 										<tr>
-											<td>내 마일리지 : ${loginUser.member_cash}</td>
-											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
+											<td align="center">내 마일리지 : <font style="color: red;">${loginUser.member_cash}</font></td>
+											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash" style="width:90px;">충전</button></td>
 										</tr>
 									</table>
 								</div>
@@ -501,7 +517,7 @@
 		        						<td><button id="lbjbtnKakao" onclick="fnKindOfPay(this);">카카오페이</button></td>
 		        						<!-- <td><button id="lbjbtnCredit" onclick="fnCreditMethod(this);">신용카드</button></td> -->
 		        						<td><button id="lbjbtnnobank" onclick="fnNoBankBook(this);">무통장입금</button></td>
-		        					</tr>
+		        					 	</tr>
 		        					<tr>
 		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
 		        					</tr>
@@ -631,9 +647,9 @@
 		        				
 		        				function fnNoBankBook(a){
 		        					fnKindOfPay(a);
-		        					var z = $('#lbjNoBankBook-div');
+		        					/* var z = $('#lbjNoBankBook-div');
 		        					$('#lbjcreditcard-div').hide();
-		        					z.show();
+		        					z.show(); */
 		        					//z.toggle(".5");
 		        				}
 		        				
