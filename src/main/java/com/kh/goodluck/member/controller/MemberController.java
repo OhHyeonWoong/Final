@@ -107,6 +107,13 @@ public class MemberController {
 				qnaEndRow = qnaMaxPage;
 			
 			////qna 처리용 오브젝트
+			//6,12,18,24
+			int endFor = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 6;
+			/*if(qnaCurrentPage < 7) {
+				endFor = 6;
+			}else if(qnaCurrentPage >= 7 && qnaCurrentPage <= 12){
+				endFor = 12;
+			}*/
 			//보내기용 arraylist생성
 			HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
 			qnaPage.put("qnaMaxPage",qnaMaxPage);
@@ -114,6 +121,7 @@ public class MemberController {
 			qnaPage.put("qnaEndRow",qnaEndRow);
 			qnaPage.put("qnaCurrentPage",qnaCurrentPage);
 			qnaPage.put("qnaListCount",qnaListCount);
+			qnaPage.put("endFor", endFor);
 			
 			mv.addObject("lbjMyQna", myQna);
 			mv.addObject("qnaPage",qnaPage);

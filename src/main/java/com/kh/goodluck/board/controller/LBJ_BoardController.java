@@ -52,6 +52,10 @@ public class LBJ_BoardController {
 		int myBoardListCount = boardService.selectMyBoardListCount(member_id);
 		int myBoardMaxPage = (int)((double)myBoardListCount / myBoardLimit + 0.9);
 		int myBoardEndRow = myBoardStartRow + myBoardLimit - 1;
+		int myBoardEndFor = (((int) ((double) myBoardCurrentPage / myBoardLimit + 0.9)) - 1) * myBoardLimit + 6;
+		if(myBoardEndFor > myBoardMaxPage) {
+			myBoardEndFor = myBoardMaxPage;
+		}
 		/*
 		 * 4. dao로 보낼 hashmap 생성
 		 */
@@ -68,6 +72,7 @@ public class LBJ_BoardController {
 	    System.out.println("lbjMyBoardSelectMethod myBoardStartRow = " + myBoardStartRow);
 	    System.out.println("lbjMyBoardSelectMethod myBoardEndRow = " + myBoardEndRow);
 	    System.out.println("lbjMyBoardSelectMethod myBoardMaxPage = " + myBoardMaxPage);
+	    
 	    ////myBoard 처리용 오브젝트
 		//보내기용 arraylist생성
 		//출력용 JSON 오브젝트
@@ -100,6 +105,7 @@ public class LBJ_BoardController {
 				job2.put("myBoardEndRow", myBoardEndRow);
 				job2.put("myBoardCurrentPage", myBoardCurrentPage);
 				job2.put("myBoardListCount", myBoardListCount);
+				job2.put("myBoardEndFor", myBoardEndFor);
 			}
 			jarr.add(job2);
 		}
@@ -135,6 +141,10 @@ public class LBJ_BoardController {
 		int myApplyBoardListCount = boardService.selectMyApplyBoardListCount(member_id);
 		int myApplyBoardMaxPage = (int)((double)myApplyBoardListCount / myApplyBoardLimit + 0.9);
 		int myApplyBoardEndRow = myApplyBoardStartRow + myApplyBoardLimit - 1;
+		int myApplyBoardEndFor = (((int) ((double) myApplyBoardCurrentPage / myApplyBoardLimit + 0.9)) - 1) * myApplyBoardLimit + 6;
+		if(myApplyBoardEndFor > myApplyBoardMaxPage) {
+			myApplyBoardEndFor = myApplyBoardMaxPage;
+		}
 		/*
 		 * 4. dao로 보낼 hashmap 생성
 		 */
@@ -188,6 +198,7 @@ public class LBJ_BoardController {
 				job2.put("myApplyBoardEndRow", myApplyBoardEndRow);
 				job2.put("myApplyBoardCurrentPage", myApplyBoardCurrentPage);
 				job2.put("myApplyBoardListCount", myApplyBoardListCount);
+				job2.put("myApplyBoardEndFor", myApplyBoardEndFor);
 			}
 			jarr.add(job2);
 		}

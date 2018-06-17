@@ -212,7 +212,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
 						console.log("json.qna[0].qnaStartPage = " + json.qna[0].qnaStartPage);
 						console.log("json.qna[0].qnaEndRow = " + json.qna[0].qnaEndRow);
-						for(var i=json.qna[0].qnaStartPage;i<=json.qna[0].qnaEndRow;i++){
+						for(var i=json.qna[0].qnaStartPage;i<=json.qna[0].qnaEndFor;i++){
 							if(i == json.qna[0].qnaCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -230,6 +230,8 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}else{
 							htmlStr += '<a href="javascript:void(0);" onclick="fnQnaReload('+json.qna[0].qnaMaxPage+'); return false;">>></a>';
 						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
@@ -285,7 +287,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndRow;i++){
+						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndFor;i++){
 							if(i == json.item[0].qnaCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -303,6 +305,8 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}else{
 							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
 						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
@@ -362,7 +366,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.report[0].qnaStartPage;i<=json.report[0].reportEndRow;i++){
+						for(var i=json.report[0].qnaStartPage;i<=json.report[0].reportEndFor;i++){
 							if(i == json.report[0].qnaCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -380,6 +384,8 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}else{
 							htmlStr += '<a href="javascript:void(0);" onclick="fnReportReload('+json.report[0].reportMaxPage+'); return false;">>></a>';
 						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
 					}
 					htmlStr += '</div></td></tr></table>';
 					//페이징처리 끝//
@@ -415,12 +421,12 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					console.log("myBoard 리로딩 처리 시작");
 					for(var i in json.myBoard){
 						if(json.myBoard[i].agency_type == 1){
-							htmlStr += '<tr><td>구합니다</td>';
+							htmlStr += '<tr><td>구합니다<font style="color:red;">(오너)</font></td>';
 						}else{
-							htmlStr += '<tr><td>해드립니다</td>'
+							htmlStr += '<tr><td>해드립니다(일반 지원자)</td>'
 						}
 						htmlStr += '<td>'+json.myBoard[i].category_small_name+'</td>';
-						htmlStr += '<td><a href="#">'+json.myBoard[i].agency_title+'</a></td>';
+						htmlStr += '<td><a href="BoardDetail.go?BoardNo='+json.myBoard[i].agency_no+'">'+json.myBoard[i].agency_title+'</a></td>';
 						htmlStr += '<td>'+json.myBoard[i].agency_enrolldate+'</td></tr>';
 					}
 					console.log("myBoard 리로딩 처리 끝");
@@ -439,7 +445,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.myBoard[0].myBoardStartPage;i<=json.myBoard[0].myBoardEndRow;i++){
+						for(var i=json.myBoard[0].myBoardStartPage;i<=json.myBoard[0].myBoardEndFor;i++){
 							if(i == json.myBoard[0].myBoardCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -493,12 +499,17 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					console.log("myApplyBoard 리로딩 처리 시작");
 					for(var i in json.myApplyBoard){
 						if(json.myApplyBoard[i].agency_type == 1){
-							htmlStr += '<tr><td>구합니다</td>';
+							htmlStr += '<tr><td>구합니다';
+							if(json.myApplyBoard[i].trade_applicant == $('#InputId').val() && json.myApplyBoard[i].trade_reservation != $('#InputId').val()){
+								htmlStr += '<font style="color:black;">(일반 지원자)</font></td>';
+							}else if(json.myApplyBoard[i].trade_applicant != $('#InputId').val() && json.myApplyBoard[i].trade_reservation == $('#InputId').val()){
+								htmlStr += '<font style="color:blue;">(예비 지원자)</font></td>';
+							}
 						}else{
-							htmlStr += '<tr><td>해드립니다</td>'
+							htmlStr += '<tr><td>해드립니다<font style="color:red;">(오너)</font></td>'
 						}
 						htmlStr += '<td>'+json.myApplyBoard[i].category_small_name+'</td>';
-						htmlStr += '<td><a href="#">'+json.myApplyBoard[i].agency_title+'</a></td>';
+						htmlStr += '<td><a href="DealingState1.go?BoardNo='+json.myApplyBoard[i].agency_no+'">'+json.myApplyBoard[i].agency_title+'</a></td>';
 						if(json.myApplyBoard[i].trade_applicant == $('#InputId').val() && json.myApplyBoard[i].trade_reservation != $('#InputId').val()){
 							htmlStr += '<td>'+json.myApplyBoard[i].trade_date+'</td></tr>';	
 						}else if(json.myApplyBoard[i].trade_applicant != $('#InputId').val() && json.myApplyBoard[i].trade_reservation == $('#InputId').val()){
@@ -521,7 +532,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.myApplyBoard[0].myApplyBoardStartPage;i<=json.myApplyBoard[0].myApplyBoardEndRow;i++){
+						for(var i=json.myApplyBoard[0].myApplyBoardStartPage;i<=json.myApplyBoard[0].myApplyBoardEndFor;i++){
 							if(i == json.myApplyBoard[0].myApplyBoardCurrentPage){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -788,14 +799,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						<tr>
 							<td>
 								<c:if test="${board.agency_type eq 1}">
-									구합니다
+									구합니다<font style="color:red;">(오너)</font>
 								</c:if>
 								<c:if test="${board.agency_type eq 2}">
-									해드립니다
+									해드립니다(일반 지원자)
 								</c:if>
 							</td>
 							<td>${board.category_small_name}</td>
-							<td><a href="DealingState1.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
+							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_enrolldate}</td>
 						</tr>
 					</c:forEach>
@@ -824,7 +835,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 									< &nbsp;
 								</c:if>
 								<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-								<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${boardPage.myBoardEndRow}" step="1">
+								<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.endFor}" step="1">
 									<c:if test="${i eq qnaPage.qnaCurrentPage}">
 										<font color="red" size="4"><b>${i}</b></font>&nbsp;
 									</c:if>
@@ -863,9 +874,15 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td>
 								<c:if test="${applyBoard.agency_type eq 1}">
 									구합니다
+									<c:if test="${applyBoard.trade_applicant eq loginUser.member_id && applyBoard.trade_reservation != loginUser.member_id}">
+										<font style="color:black;">(일반 지원자)</font>
+									</c:if>
+									<c:if test="${applyBoard.trade_applicant != loginUser.member_id && applyBoard.trade_reservation eq loginUser.member_id}">
+										<font style="color:blue;">(예비 지원자)</font>
+									</c:if>
 								</c:if>
 								<c:if test="${applyBoard.agency_type eq 2}">
-									해드립니다
+									해드립니다<font style="color:red;">(오너)</font>
 								</c:if>
 							</td>
 							<td>${applyBoard.category_small_name}</td>
@@ -936,14 +953,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			</div>
 			<hr>
 			<!-- 새로 추가 -->
-			<!-- <h3 class="lbjh3" id="lbjSiteUserHistory">내 이용내역</h3>
+			<h3 class="lbjh3" id="lbjSiteUserHistory">내 이용 History</h3>
 			<div class="lbjdiv">
 				<table class="table table-striped lbjtable">
 					<tr><th class="lbjth">상태</th><th class="lbjth">글제목</th><th class="lbjth">종료일</th></tr>
 					<tr><td>매칭완료</td><td>강아지 출장미용 합니다 연락주세요</td><td>2018/04/12</td></tr>
 					<tr><td>거절</td><td>인테리어 합니다</td><td>2018/05/15</td></tr>
 				</table>
-			</div> -->
+			</div>
 			<!-- 새로 추가  끝 -->
 			<hr>
 			<h3 class="lbjh3" id="lbjQnA">나의 QnA</h3>
