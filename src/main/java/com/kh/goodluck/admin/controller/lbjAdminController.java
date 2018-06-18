@@ -367,10 +367,6 @@ public class lbjAdminController {
 		    map.put("endRow", boardEndRow);
 			ArrayList<MyPageBoard> board = (ArrayList<MyPageBoard>)boardService.selectBoardList(map);
 			
-			/*for(MyPageBoard mpb : board) {
-				System.out.println("mpb = " + mpb);
-			}*/
-			
 			if (boardMaxPage < boardEndRow)
 			  boardEndRow = boardMaxPage;
 		
@@ -389,5 +385,104 @@ public class lbjAdminController {
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="lbjDeleteBoard.go",method=RequestMethod.POST)
+	public void lbjDeleteBoardMethod(@RequestParam(value="agency_no[]") List<String> agency_no,HttpServletResponse response) 
+																	throws IOException{
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("agency_no", agency_no);
+		
+		int result = boardService.deleteBoard(map);
+		
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("게시글 삭제 성공!");
+		}else {
+			out.print("게시글 삭제 실패!");
+		}
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="lbjSearchBoard.go")
+	public void lbjSearchBoardMethod(HttpServletRequest request,HttpServletResponse response,
+							HttpSession session) throws IOException{
+		if(session.getValue("loginUser") == null) {
+			System.out.println("어드민 게시글 검색 세션없어서 fail");
+			response.sendRedirect("home.go");
+		}else {
+			String keyword = request.getParameter("keyword");
+			int boardCurrentPage = 1;
+			if(request.getParameter("page") != null) {
+				boardCurrentPage = Integer.parseInt(request.getParameter("page"));
+			}
+			System.out.println("boardCurrentPage = " + boardCurrentPage);
+			
+			int boardLimit = 15;
+			 
+			int boardStartPage = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 1;
+			int boardStartRow = (boardCurrentPage-1)*boardLimit+1; 
+			int boardListCount = boardService.selectKeywordBoardListCount(keyword);
+			int boardMaxPage = (int)((double)boardListCount / boardLimit + 0.9);
+			int boardEndRow = boardStartRow + boardLimit - 1;
+			int boardEndFor = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 15;
+			
+			System.out.println("lbjSearchBoardMethod boardListcount = " + boardListCount);
+		    System.out.println("lbjSearchBoardMethod boardStartRow = " + boardStartRow);
+		    System.out.println("lbjSearchBoardMethod boardEndRow = " + boardEndRow);
+		    System.out.println("lbjSearchBoardMethod boardStartPage = " + boardStartPage);
+		    System.out.println("lbjSearchBoardMethod boardMaxPage = " + boardMaxPage);
+		    System.out.println("lbjSearchBoardMethod boardEndFor = " + boardEndFor);
+		    
+		    if(boardEndFor > boardMaxPage) {
+				boardEndFor = boardMaxPage;
+			}
+				 
+		    HashMap<Object,Object> map = new HashMap<Object,Object>();
+		    map.put("startRow", boardStartRow);
+		    map.put("endRow", boardEndRow);
+		    map.put("keyword", keyword);
+			ArrayList<MyPageBoard> board = (ArrayList<MyPageBoard>)boardService.selectKeywordBoardList(map);
+			
+			System.out.println("board size = " + board.size());
+			
+			if (boardMaxPage < boardEndRow)
+			  boardEndRow = boardMaxPage;
+			
+			//출력용 JSON 오브젝트
+		    JSONObject jobj = new JSONObject();
+			JSONArray jarr = new JSONArray();		
+			
+			for(int i=0;i<board.size();i++) {
+				//저 위의 페이징 처리 데이터들을 vo에 넣자
+				JSONObject job2 = new JSONObject();
+				/*job2.put("question_no", myQna.get(i).getQuestion_no());
+				job2.put("question_category", myQna.get(i).getQuestion_category());
+				job2.put("question_answer_state", myQna.get(i).getQuestion_answer_state());
+				job2.put("question_content", myQna.get(i).getQuestion_content());
+				job2.put("question_title", myQna.get(i).getQuestion_title());
+				job2.put("question_writer", myQna.get(i).getQuestion_writer());
+				job2.put("question_date", myQna.get(i).getQuestion_date().toString());*/
+				if(i == 0) {
+					job2.put("boardMaxPage", boardMaxPage);
+					job2.put("boardStartPage", boardStartPage);
+					job2.put("boardEndRow", boardEndRow);
+					job2.put("boardCurrentPage", boardCurrentPage);
+					job2.put("boardListCount", boardListCount);
+					job2.put("boardEndFor", boardEndFor);
+				}
+				jarr.add(job2);
+			}
+			
+			jobj.put("board", jarr);
+			
+			PrintWriter out = response.getWriter();
+			out.print(jobj.toJSONString());
+			out.flush();
+			out.close();
+		
+		}
 	}
 }

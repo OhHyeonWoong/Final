@@ -22,54 +22,76 @@
 		text-align:center;
 	}
 </style>
-<script type="text/javascript">
-	function fnDeleteAgency(){
-		var checkBox1 = $('input[name="chk1"]:checked');
-		var chkValue = new Array();
-		for(var i=0;i<checkBox1.length;i++){
-			chkValue[i] = checkBox1[i].value;
-			console.log(chkValue[i]);
-		}
-		console.log("length = " + chkValue.length);
-		
-		/* $.ajax({
-			url:"lbjDeleteQna.go",
-			type:"post",
-			data:{
-				question_no: chkValue
-			},
-			success:function(data){
-				alert(data);
-				if(data == '게시글 삭제 성공!'){
-					window.history.go(0);
-				}
-			},
-			error:function(a,b,c){
-				alert("a = " + a + " , b = " + b + " , c = " + c);
-			}
-		}); */
-	}
-	
-	function fnBoardReload(page){
-		console.log("fnBoardReload(page) page = " + page);
-		location.href="lbjMoveManagingNewArticles.go?page=" + page;
-	}
-	
-	$(function(){
-		$('#allCheckBox').on('click',function(){
-			//모든 체크박스를 체크
-			if($('input[type="checkbox"][name="chk1"]').prop('checked')){
-				$('input[type="checkbox"][name="chk1"]').attr('checked',false);
-			}else{
-				$('input[type="checkbox"][name="chk1"]').attr('checked',true);
-			}
-		});
-	});
-</script>
 </head>
 <body>
 	<!-- 헤더 -->
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+	<script type="text/javascript">
+		function fnDeleteAgency(){
+			var checkBox1 = $('input[name="chk1"]:checked');
+			var chkValue = new Array();
+			for(var i=0;i<checkBox1.length;i++){
+				chkValue[i] = checkBox1[i].value;
+				console.log(chkValue[i]);
+			}
+			console.log("length = " + chkValue.length);
+			
+			$.ajax({
+				url:"lbjDeleteBoard.go",
+				type:"post",
+				data:{
+					agency_no: chkValue
+				},
+				success:function(data){
+					alert(data);
+					if(data == '게시글 삭제 성공!'){
+						window.history.go(0);
+					}
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
+		}
+		
+		function fnBoardReload(page){
+			console.log("fnBoardReload(page) page = " + page);
+			location.href="lbjMoveManagingNewArticles.go?page=" + page;
+		}
+		
+		function fnBoardSearch(){
+			var keyword = $('#searchKeyword').val();
+			
+			$.ajax({
+				url:"lbjSearchBoard.go",
+				type:"get",
+				data:{
+					keyword: keyword
+				},
+				dataType:"json",
+				success:function(data){
+					var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
+		}
+		
+		$(function(){
+			$('#allCheckBox').on('click',function(){
+				//모든 체크박스를 체크
+				if($(this).prop("checked")){
+					$('input[type="checkbox"][name="chk1"]').prop('checked',true);
+					$(this).prop("checked",true)
+				}else{
+					$('input[type="checkbox"][name="chk1"]').prop('checked',false);
+					$(this).prop("checked",false)
+				}
+			});
+		});
+	</script>
 	<!-- 전체 헤더 영역 푸터 영역 사이 컨테이너 영역 -->
 	<div class="container">
 		 <!--사이드바 시작-->
@@ -85,8 +107,11 @@
 						<td class="lbjth">
 							<input type="checkbox" id="allCheckBox" value="">전체선택
 						</td>
-						<td class="lbjth" colspan="4" style="text-align:left;">
+						<td class="lbjth" colspan="2" style="text-align:left;">
 							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteAgency(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>
+						</td>
+						<td colspan="2">
+						키워드로 검색 : <input type="text" id="searchKeyword">&nbsp;&nbsp;<button class="btn btn-default" onclick="fnBoardSearch();">검색</button>
 						</td>
 					</tr>
 					<tr>
@@ -100,7 +125,7 @@
 						<tr>
 							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value="${board.agency_no}"></td>
 							<td>${board.category_small_name}</td>
-							<td><a href="#">${board.agency_title}</a></td>
+							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_writer}</td>
 							<td>${board.agency_enrolldate}</td>
 						</tr>
