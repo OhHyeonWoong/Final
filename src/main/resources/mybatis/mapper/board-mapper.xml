@@ -413,6 +413,7 @@
 	</insert>
 	<update id="SCOREupdatetype1" parameterType="hashmap">
 	update SCORE  set 
+	SCORE_BUY = (select SCORE_BUY from SCORE where MEMBER_ID=#{order} )+#{orderrate},
 	SCORE_BUY_COUNT=(select SCORE_BUY_COUNT from SCORE where MEMBER_ID=#{order})+1
 	where MEMBER_ID=#{order}
 	</update>

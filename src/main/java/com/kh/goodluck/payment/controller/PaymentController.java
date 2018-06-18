@@ -1,5 +1,7 @@
 package com.kh.goodluck.payment.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,9 +17,27 @@ public class PaymentController {
 		
 	}
 	
-	@RequestMapping(value = "ohw-movePaymentPage.go", method = RequestMethod.GET)
-	public String movePaymentPage() {
-		return "A1.OHW/payment";		
+	@RequestMapping("ohw-movePaymentPage.go")
+	public ModelAndView movePaymentPage(ModelAndView mv,HttpSession session) {
+    //보드디테일-> '현재 메소드'  ->거래페이지.
+	//결제 페이지로 가져가야 하는 정보는?
+	//보드인포 가져간다.
+	//또한 결제는 오너가 하는것임.  
+    //세션이 없거나, 해당 '게시글'의 오너가 아닌경우 500에러로 보낸다.
+	
+	//비로그인상태(무세션)은 팅겨낸다.
+	if(session.getValue("loginUser") == null) {
+	mv.setViewName("A5.CJS/ErrorPage2");
+	}else {
+	//로그인 상태라면?
+    //보드 디테일에서 받은 보드 pk를 기준으로 정보를 끌어온다.
+		
+	mv.setViewName("A1.OHW/payment");
+	
+	}
+	
+	return mv;
+	
 	}
 	
 	//병준 컨트롤러///////

@@ -631,8 +631,10 @@ public void finishBoard(
 	HashMap<Object,Object> map2=new HashMap<Object,Object>();
 	map2.put("order",memberid);
 	map2.put("APPLICANT",boardservice.getAPPLICANT(pk));
-	map2.put("rate",rating);
+	map2.put("rate",bo.getAgency_pay()*rating/10000);
+	map2.put("orderrate", bo.getAgency_pay());
 	int result5=boardservice.SCOREupdatetype1(map2);
+	//6.돈계산+paylog인설트.
 	System.out.println("보드상태 4로 바꾸기="+result1);
 	System.out.println("보드로그 인설트="+result2);
 	System.out.println("트레이드 예비후보자 지우기="+result3);
@@ -661,7 +663,8 @@ public void finishBoard(
 		HashMap<Object,Object> map2=new HashMap<Object,Object>();
 		map2.put("order",memberid);
 		map2.put("APPLICANT",boardservice.getAPPLICANT(pk));
-		map2.put("rate",rating);
+		map2.put("rate",bo.getAgency_pay()*rating/10000);
+		map2.put("orderrate", bo.getAgency_pay());
 		int result5=boardservice.SCOREupdatetype1(map2);
 		System.out.println("보드상태 4로 바꾸기="+result1);
 		System.out.println("보드로그 인설트="+result2);
