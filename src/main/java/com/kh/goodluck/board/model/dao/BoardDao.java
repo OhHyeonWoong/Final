@@ -301,6 +301,55 @@ public class BoardDao {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowRequireListPic");
 	}
+	
+	public int checkBoardNo(Board inputBoard) {
+		//등록된 게시글의 PK를 가져오는 메소드
+		return sqlSession.selectOne("ukjaepickupBoard", inputBoard);
+	}
+	
+	public Board ukjaegetServiceWriting(int agency_no) {
+		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
+		return sqlSession.selectOne("Alter_Before_Agecnycheck", agency_no);
+	}
 
+	public CategoryLink2 pickupSmallCategory(String smallcategory) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ukjae_pic_link2_no", smallcategory);
+	}
+
+	public int serviceSupplyRegist(Board board) {
+		//제공해요 새로운 글 등록하는 메소드 
+		return sqlSession.insert("newServiceRegist", board);
+	}
+
+	public int registTrade(Board inputBoard) {
+		//TradeDeatil에 현재상황을 등록하기 
+		return sqlSession.insert("RegistTradeInfo", inputBoard);
+	}
+
+
+
+
+
+
+
+	
+	/*
+	AGENCY_NO	NUMBER
+	AGENCY_WRITER	VARCHAR2(45 BYTE)
+	AGENCY_TITLE	VARCHAR2(60 BYTE)
+	LINK2_NO	NUMBER
+	AGENCY_TYPE	NUMBER
+	AGENCY_LOC	VARCHAR2(60 BYTE)
+	AGENCY_STARTDATE	DATE
+	AGENCY_ENDDATE	DATE
+	AGENCY_ENROLLDATE	DATE
+	AGENCY_PAYTYPE	NUMBER
+	AGENCY_PAY	NUMBER
+	AGENCY_STATUS	NUMBER
+	AGENCY_CONTENT	VARCHAR2(1000 BYTE)
+	AGENCY_VEIWS	NUMBER
+	AGENCY_KEYWORD	VARCHAR2(200 BYTE)
+	AGENCY_OPTION	VARCHAR2(60 BYTE)*/
 	
 }

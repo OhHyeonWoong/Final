@@ -21,6 +21,11 @@ public class Outside_Main implements java.io.Serializable{
 		this.osm_datavalue = osm_datavalue;
 	}
 
+	public Outside_Main(String osm_datatitle) {
+		super();
+		this.osm_datatitle = osm_datatitle;
+	}
+
 	public int getOsm_datano() {
 		return osm_datano;
 	}

@@ -11,6 +11,19 @@
 		<result property="category_big_count" column="category_big_count"/>			
 	</resultMap>	
 	
+	<resultMap id="MCategorylist" type="MidCategory">
+		<result property="category_mid_code" column="category_mid_code"/>
+		<result property="category_mid_name" column="category_mid_name"/>
+		<result property="category_mid_views" column="category_mid_views"/>		
+	</resultMap>	
+	
+	<resultMap id="SCategorylist" type="SmallCategory">
+		<result property="category_small_code" column="category_small_code"/>
+		<result property="category_small_name" column="category_small_name"/>
+		<result property="category_small_views" column="category_small_views"/>			
+	</resultMap>
+	
+	
 	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
 		<![CDATA[
 			select category_big_code, category_big_name, category_big_views, category_big_count 
@@ -82,10 +95,123 @@
 		where userid = #{userId}
 	</delete> -->
 
-<update id="IncreasesSMALLCATEGORYCOUNT" parameterType="int">
-update SMALLCATEGORY set CATEGORY_SMALL_COUNT = 
-(select CATEGORY_SMALL_COUNT+1 from SMALLCATEGORY where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})) 
-where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})
-</update>
+	<update id="IncreasesSMALLCATEGORYCOUNT" parameterType="int">
+	update SMALLCATEGORY set CATEGORY_SMALL_COUNT = 
+	(select CATEGORY_SMALL_COUNT+1 from SMALLCATEGORY where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})) 
+	where CATEGORY_SMALL_CODE = (select CATEGORY_SMALL_CODE from CATEGORYLINK2 where LINK2_NO = #{parseInt})
+	</update>
+	
+	<!-- 서비스 글 작성페이지에서 select~option에 표시될 mid카테고리 리스트 가져오기 -->
+	<select id="midlistlife" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='A']]>
+	</select>
+	
+	<select id="midlisttravel" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='B']]>
+	</select>
+	
+	<select id="midlistmusic" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='C']]>
+	</select>
+	
+	<select id="midlistgame" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='D']]>
+	</select>
+	
+	<select id="midlistrent" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='E']]>
+	</select>
+	
+	<select id="midlistsupply" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='F']]>
+	</select>
+	
+	<select id="midlistfree" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='G']]>
+	</select>
+	
+	<select id="midlistpet" resultMap="MCategorylist">
+		<![CDATA[select category_mid_code,category_mid_name from midcategory where substr(category_mid_code,0,1)='H']]>
+	</select>
+
+	<!-- 서비스 글 작성페이지에서 select~option에 표시될 small카테고리 리스트 가져오기 -->
+	<select id="samllcategoryAA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='AA']]>	
+	</select>
+	<select id="samllcategoryAB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='AB']]>	
+	</select>
+	<select id="samllcategoryAC" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='AC']]>	
+	</select>
+	<select id="samllcategoryAD" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='AD']]>	
+	</select>
+	<select id="samllcategoryBA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='BA']]>	
+	</select>
+	<select id="samllcategoryBB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='BB']]>	
+	</select>
+	<select id="samllcategoryCA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='CA']]>	
+	</select>
+	<select id="samllcategoryCB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='CB']]>	
+	</select>
+	<select id="samllcategoryCC" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='CC']]>	
+	</select>
+	<select id="samllcategoryCD" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='CD']]>	
+	</select>
+	<select id="samllcategoryDA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='DA']]>	
+	</select>
+	<select id="samllcategoryDB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='DB']]>	
+	</select>
+	<select id="samllcategoryDC" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='DC']]>	
+	</select>
+	<select id="samllcategoryDD" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='DD']]>	
+	</select>
+	<select id="samllcategoryEA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='EA']]>	
+	</select>
+	<select id="samllcategoryFA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='FA']]>	
+	</select>
+	<select id="samllcategoryFB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='FB']]>	
+	</select>
+	<select id="samllcategoryGA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='GA']]>	
+	</select>
+	<select id="samllcategoryGB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='GB']]>	
+	</select>
+	<select id="samllcategoryGC" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='GC']]>	
+	</select>
+	<select id="samllcategoryGD" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='GD']]>	
+	</select>
+	<select id="samllcategoryHA" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='HA']]>	
+	</select>
+	<select id="samllcategoryHB" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='HB']]>	
+	</select>
+	<select id="samllcategoryHC" resultMap="SCategorylist">
+		<![CDATA[select category_small_code,category_small_name from smallcategory where substr(category_small_code,0,2)='HC']]>	
+	</select>
 
 </mapper>
+
+
+
+
+
+

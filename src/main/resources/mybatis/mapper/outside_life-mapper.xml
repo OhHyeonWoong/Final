@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="outside_li">
+	
+	<resultMap type="Outside_Life" id="LifeList">
+   		<result property="osli_datano" column="osli_datano"/>
+   		<result property="osli_data" column="osli_data"/>
+   		<result property="osli_datavalue" column="osli_datavalue"/>
+	</resultMap> 
+	
+	<resultMap type="Outside_Life" id="LifeOne">
+		<id property="osli_datano" column="osli_datano"/>
+   		<result property="osli_data" column="osli_data"/>
+   		<result property="osli_datavalue" column="osli_datavalue"/>
+	</resultMap> 
+	
+
+	<select id="wookLifeAreaImageList" resultMap="LifeList">
+		<![CDATA[select * from (select rownum rnum, osli_datano, osli_data, osli_datavalue from (select * from outside_li order by osli_datano asc))where rnum>=1 and rnum<=4]]>
+	</select>
+	
+	<select id="wookLifeAreaImageList2" resultMap="LifeList">
+		<![CDATA[select * from (select rownum rnum, osli_datano, osli_data, osli_datavalue from (select * from outside_li order by osli_datano asc))where rnum>=5 and rnum<=8]]>
+	</select>
+	
+	<select id="wookLifeAreaImageList3" resultMap="LifeList">
+		<![CDATA[select * from (select rownum rnum, osli_datano, osli_data, osli_datavalue from (select * from outside_li order by osli_datano desc))where rnum>=1 and rnum<=4]]>
+	</select>
+	
+	<select id="wookLifeAreaImageList4" resultMap="LifeList">
+		<![CDATA[select * from (select rownum rnum, osli_datano, osli_data, osli_datavalue from (select * from outside_li order by osli_datano desc))where rnum>=5 and rnum<=8]]>
+	</select>
+
+	<select id="basiclifecarousel" resultMap="LifeOne">
+		<![CDATA[select * from outside_li where osli_datano=2]]>		
+	</select>
+	
+	<select id="basicrepresentimage" resultMap="LifeOne">
+		<![CDATA[select * from outside_li where osli_datano=5]]>			
+	</select>
+	
+	<select id="lifecarouselcheck" parameterType="String" resultMap="LifeOne">
+		<![CDATA[select * from outside_li where osli_data = #{carouselcheck}]]>
+	</select>
+	
+	<select id="representimagecheck" parameterType="String" resultMap="LifeOne">
+		<![CDATA[select * from outside_li where osli_data = #{representimagecheck}]]>
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
