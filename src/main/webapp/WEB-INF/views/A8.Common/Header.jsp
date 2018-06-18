@@ -1048,7 +1048,7 @@
 									<li><a href="lbjmypage.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
-									<li><a href="lbjAdminQnaAnswer.go">뱅준</a></li>
+									<li><a href="lbjMoveManagingNewArticles.go">뱅준</a></li>
 								</ul>								
 							</td>							
 						</tr>
