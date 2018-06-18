@@ -338,12 +338,22 @@ public class BoardDao {
 		return sqlSession.update("SCOREupdatetype1", map2);
 	}
 
-	//관리자용 메소드 2개/////////////
+	//관리자용 메소드 5개/////////////
 	public int selectBoardListCount() {
 		return sqlSession.selectOne("selectBoardListCount");
 	}
 	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
 		return sqlSession.selectList("selectBoardList", map);
 	}
+	public int deleteBoard(HashMap<String, Object> map) {
+		return sqlSession.delete("deleteBoard", map);
+	}
+	public int selectKeywordBoardListCount(String keyword) {
+		return sqlSession.selectOne("selectKeywordBoardListCount", keyword);
+	}
+	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
+		return sqlSession.selectList("selectKeywordBoardList", map);
+	}
 	////////////////////////////
+
 }

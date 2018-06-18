@@ -367,10 +367,6 @@ public class lbjAdminController {
 		    map.put("endRow", boardEndRow);
 			ArrayList<MyPageBoard> board = (ArrayList<MyPageBoard>)boardService.selectBoardList(map);
 			
-			/*for(MyPageBoard mpb : board) {
-				System.out.println("mpb = " + mpb);
-			}*/
-			
 			if (boardMaxPage < boardEndRow)
 			  boardEndRow = boardMaxPage;
 		
@@ -389,5 +385,114 @@ public class lbjAdminController {
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="lbjDeleteBoard.go",method=RequestMethod.POST)
+	public void lbjDeleteBoardMethod(@RequestParam(value="agency_no[]") List<String> agency_no,HttpServletResponse response) 
+																	throws IOException{
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("agency_no", agency_no);
+		
+		int result = boardService.deleteBoard(map);
+		
+		PrintWriter out = response.getWriter();
+		if(result > 0) {
+			out.print("게시글 삭제 성공!");
+		}else {
+			out.print("게시글 삭제 실패!");
+		}
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="lbjSearchBoard.go")
+	public void lbjSearchBoardMethod(HttpServletRequest request,HttpServletResponse response,
+							HttpSession session) throws IOException{
+		if(session.getValue("loginUser") == null) {
+			System.out.println("어드민 게시글 검색 세션없어서 fail");
+			response.sendRedirect("home.go");
+		}else {
+			String keyword = request.getParameter("keyword");
+			int boardCurrentPage = 1;
+			if(request.getParameter("page") != null) {
+				boardCurrentPage = Integer.parseInt(request.getParameter("page"));
+			}
+			System.out.println("boardCurrentPage = " + boardCurrentPage);
+			
+			int boardLimit = 15;
+			 
+			int boardStartPage = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 1;
+			int boardStartRow = (boardCurrentPage-1)*boardLimit+1; 
+			int boardListCount = boardService.selectKeywordBoardListCount(keyword);
+			int boardMaxPage = (int)((double)boardListCount / boardLimit + 0.9);
+			int boardEndRow = boardStartRow + boardLimit - 1;
+			int boardEndFor = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 15;
+			
+			System.out.println("lbjSearchBoardMethod boardListcount = " + boardListCount);
+		    System.out.println("lbjSearchBoardMethod boardStartRow = " + boardStartRow);
+		    System.out.println("lbjSearchBoardMethod boardEndRow = " + boardEndRow);
+		    System.out.println("lbjSearchBoardMethod boardStartPage = " + boardStartPage);
+		    System.out.println("lbjSearchBoardMethod boardMaxPage = " + boardMaxPage);
+		    System.out.println("lbjSearchBoardMethod boardEndFor = " + boardEndFor);
+		    
+		    if(boardEndFor > boardMaxPage) {
+				boardEndFor = boardMaxPage;
+			}
+				 
+		    HashMap<Object,Object> map = new HashMap<Object,Object>();
+		    map.put("startRow", boardStartRow);
+		    map.put("endRow", boardEndRow);
+		    map.put("keyword", keyword);
+			ArrayList<MyPageBoard> board = (ArrayList<MyPageBoard>)boardService.selectKeywordBoardList(map);
+			
+			System.out.println("board size = " + board.size());
+			
+			if (boardMaxPage < boardEndRow)
+			  boardEndRow = boardMaxPage;
+			
+			//출력용 JSON 오브젝트
+		    JSONObject jobj = new JSONObject();
+			JSONArray jarr = new JSONArray();		
+			
+			for(int i=0;i<board.size();i++) {
+				//저 위의 페이징 처리 데이터들을 vo에 넣자
+				JSONObject job2 = new JSONObject();
+				job2.put("agency_no", board.get(i).getAgency_no());
+				job2.put("agency_writer", board.get(i).getAgency_writer());
+				job2.put("agency_title", board.get(i).getAgency_title());
+				job2.put("link2_no", board.get(i).getLink2_no());
+				job2.put("agency_type", board.get(i).getAgency_type());
+				job2.put("agency_loc", board.get(i).getAgency_loc());
+				job2.put("agency_startdate", board.get(i).getAgency_startdate().toString());
+				job2.put("agency_enddate", board.get(i).getAgency_enddate().toString());
+				job2.put("agency_enrolldate", board.get(i).getAgency_enrolldate().toString());
+				job2.put("agency_paytype", board.get(i).getAgency_paytype());
+				job2.put("agency_pay", board.get(i).getAgency_pay());
+				job2.put("agency_status", board.get(i).getAgency_status());			
+				job2.put("agency_content", board.get(i).getAgency_content());
+				job2.put("agency_views", board.get(i).getAgency_views());
+				job2.put("agency_keyword", board.get(i).getAgency_keyword());
+				job2.put("agency_option", board.get(i).getAgency_option());
+				job2.put("category_small_name", board.get(i).getCategory_small_name());
+				if(i == 0) {
+					job2.put("boardMaxPage", boardMaxPage);
+					job2.put("boardStartPage", boardStartPage);
+					job2.put("boardEndRow", boardEndRow);
+					job2.put("boardCurrentPage", boardCurrentPage);
+					job2.put("boardListCount", boardListCount);
+					job2.put("boardEndFor", boardEndFor);
+				}
+				jarr.add(job2);
+			}
+			
+			jobj.put("board", jarr);
+			
+			PrintWriter out = response.getWriter();
+			out.print(jobj.toJSONString());
+			out.flush();
+			out.close();
+		
+		}
 	}
 }

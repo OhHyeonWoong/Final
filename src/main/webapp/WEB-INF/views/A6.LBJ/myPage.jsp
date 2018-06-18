@@ -100,25 +100,17 @@ function sample4_execDaumPostcode() {
 //2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 ///////////////////////////////////////////////////////	
-	function fnAllCheck(){
-		alert("제발 좀");
-		if($('input[type="checkbox"][name="chk1"]').prop('checked')){
-			$('input[type="checkbox"][name="chk1"]').prop('checked',true);
-		}else{
-			$('input[type="checkbox"][name="chk1"]').prop('checked',false);
-		}
-	}
 	$(function(){
-			//alert("되니?");
-			/* $('#allCheckBox').on('click',function(){
-				//모든 체크박스를 체크
-				alert("제발 좀");
-				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
+			$('#allCheckBox1').on('click',function(){
+				//모든 체크박스 체크
+				if($(this).prop("checked")){
 					$('input[type="checkbox"][name="chk1"]').prop('checked',true);
+					$(this).prop("checked",true)
 				}else{
 					$('input[type="checkbox"][name="chk1"]').prop('checked',false);
+					$(this).prop("checked",false)
 				}
-			}); */
+			});
 			//파일 확장자 검사하는 부분
 			
 			$("#InputProfile").change(function(){
@@ -191,16 +183,19 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					/* $('#lbjQnaTable').removeClass("table table-striped lbjtable");
 					$('#lbjQnaTable').addClass("table table-striped lbjtable"); */
 					
-					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox" onclick="fnAllCheck();">전체선택</td>'+
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox1">전체선택</td>'+
 				'<td class="lbjth" colspan="3" style="text-align:left;"><a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>'+
 				'<td class="lbjth" style="text-align:right;"><a class="btn btn-info btn-xs" href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a></td>'+
 				'</tr><tr><th class="lbjth">선택</th><th class="lbjth">분야</th>'+
 				'<th class="lbjth">제목</th><th class="lbjth">처리상황</th><th class="lbjth">등록일시</th></tr>';
-					
+				
 					for(var i in json.qna){
-						console.log("json.qna.question_no = " + json.qna[i].question_no);
-						htmlStr += "<tr><td><input type='checkbox' name='chk1' id='chkBox"+i
-						+"' value="+json.qna[i].question_no+"></td><td>"+ json.qna[i].question_category
+						if(json.qna[i].question_answer_state == '답변완료'){
+							html += "<tr><td><input type='checkbox' name='chk1' id='chkBox"+i+"' value="+json.qna[i].question_no+"></td>";
+						}else{
+							html += '<tr><td>X</td>';
+						}
+						htmlStr += "<td>"+ json.qna[i].question_category
 						+"</td><td><a href='lbjqnadetail.go?question_writer="+json.qna[i].question_writer+"&question_no="+json.qna[i].question_no+"'>"+json.qna[i].question_title
 					    +"</a></td><td>"+json.qna[i].question_answer_state+"</td><td>"+json.qna[i].question_date+"</td></tr>";
 					}
@@ -424,7 +419,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					
 					var htmlStr = '<table class="table table-striped lbjtable" id="lbjMyBoardTable">'+
 						'<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th>'+
-						'<th class="lbjth">작성일</th></tr>';
+						'<th class="lbjth">작성일</th><th class="lbjth" colspan="2">버튼</th></tr>';
 					
 					console.log("myBoard 리로딩 처리 시작");
 					for(var i in json.myBoard){
@@ -435,12 +430,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}
 						htmlStr += '<td>'+json.myBoard[i].category_small_name+'</td>';
 						htmlStr += '<td><a href="BoardDetail.go?BoardNo='+json.myBoard[i].agency_no+'">'+json.myBoard[i].agency_title+'</a></td>';
-						htmlStr += '<td>'+json.myBoard[i].agency_enrolldate+'</td></tr>';
+						htmlStr += '<td>'+json.myBoard[i].agency_enrolldate+'</td>';
+						htmlStr += '<td><button class="btn btn-default" onclick="">수정</button></td>';
+						htmlStr += '<td><button class="btn btn-danger" onclick="">삭제</button></td></tr>';
 					}
 					console.log("myBoard 리로딩 처리 끝");
 					//페이징 처리 시작//
 					console.log("myBoard 페이징 처리 시작");
-					htmlStr += '<tr><td colspan="4"><div style="text-align:center;">'
+					htmlStr += '<tr><td colspan="6"><div style="text-align:center;">'
 					if(json.myBoard[0].myBoardListCount > 6){
 						if(json.myBoard[0].myBoardCurrentPage <= 1){
 							htmlStr += "<< &nbsp";
@@ -604,14 +601,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}else if(json.myBoardHistory[i].agency_type == 2){
 							htmlStr += '<td>해드립니다<font style="color:black;">(일반 지원자)</font></td>';
 						}
-						htmlStr += '<td>'+${json.myBoardHistory[i].agency_title}+'</td>';
-						htmlStr += '<td>'+${json.myBoardHistory[i].trade_applicant}+'</td>';
+						htmlStr += '<td>'+json.myBoardHistory[i].agency_title+'</td>';
+						htmlStr += '<td>'+json.myBoardHistory[i].trade_applicant+'</td>';
 						if(json.myBoardHistory[i].agency_paytype == 1){
-							htmlStr += '<td>일급: <font style="color:red;">'+${json.myBoardHistory[i].agency_pay}+'</font></td>';
+							htmlStr += '<td>일급: <font style="color:red;">'+json.myBoardHistory[i].agency_pay+'</font></td>';
 						}else if(json.myBoardHistory[i].agency_paytype == 2){
-							htmlStr += '<td>시급: <font style="color:red;">'+${json.myBoardHistory[i].agency_pay}+'</font></td>';
+							htmlStr += '<td>시급: <font style="color:red;">'+json.myBoardHistory[i].agency_pay+'</font></td>';
 						}
-						htmlStr += '<td>'+${json.myBoardHistory[i].agencylog_date}+'</td></tr>';
+						htmlStr += '<td>'+json.myBoardHistory[i].agencylog_date+'</td></tr>';
 					}
 					console.log("myBoardHistory 리로딩 처리 끝");
 					//페이징 처리 시작//
@@ -771,6 +768,10 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		}
 		}
 		
+		function fnMyBoardUpdate(no){
+			location.href='wookServiceAlter.go?agency_no='+no;
+		}
+		
 	</script>
 	<c:choose>
 		<c:when test="${loginUser eq null}">
@@ -891,7 +892,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<h3 class="lbjh3" id="lbjnowreservationInfo">내가 올린 글</h3>
 			<div class="lbjdiv" id="lbjMyBoardDiv">		
 				<table class="table table-striped lbjtable" id="lbjMyBoardTable">
-					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th></tr>
+					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th><th class="lbjth" colspan="2">버튼</th></tr>
 					<c:forEach items="${lbjMyBoard}" var="board">
 						<tr>
 							<td>
@@ -905,19 +906,21 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td>${board.category_small_name}</td>
 							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_enrolldate}</td>
+							<td><button class="btn btn-default" onclick="fnMyBoardUpdate(${board.agency_no});">수정</button></td>
+							<td><button class="btn btn-danger" onclick="">삭제</button></td>
 						</tr>
 					</c:forEach>
 					<!-- 페이징 처리 가즈아 -->
 					<c:if test="${boardPage.myBoardListCount <= 6}">
 						<tr>
-							<td colspan="4">
+							<td colspan="6">
 								<font color="red" size="4"><b>1</b></font>&nbsp;
 							</td>
 						</tr>
 					</c:if>
 					<c:if test="${boardPage.myBoardListCount > 6}">
 						<tr>
-							<td colspan="4">
+							<td colspan="6">
 							<div style="text-align:center;">
 								<c:if test="${qnaPage.qnaCurrentPage <= 1}">
 									<< &nbsp;
@@ -1148,7 +1151,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 				<table class="table table-striped lbjtable" id="lbjQnaTable">
 					<tr>
 						<td class="lbjth">
-							<input type="checkbox" id="allCheckBox" onclick="fnAllCheck();">전체선택
+							<input type="checkbox" id="allCheckBox1">전체선택
 						</td>
 						<td class="lbjth" colspan="3" style="text-align:left;">
 							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>
@@ -1166,7 +1169,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					</tr>
 					<c:forEach var="qna" items="${lbjMyQna}" varStatus="status">
 						<tr>
-							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value="${qna.question_no}"></td>
+							<td>
+								<c:if test="${qna.question_answer_state == '답변완료'}">
+									<input type="checkbox" name="chk1" id="chkBox${status.count}" value="${qna.question_no}">
+								</c:if>
+								<c:if test="${qna.question_answer_state != '답변완료'}">
+									X
+								</c:if>
+							</td>
 							<td>${qna.question_category}</td>
 							<td><a href="lbjqnadetail.go?question_writer=${qna.question_writer}&question_no=${qna.question_no}">${qna.question_title}</a></td>
 							<td>${qna.question_answer_state}</td>

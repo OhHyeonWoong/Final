@@ -282,12 +282,21 @@ public class BoardService {
 		return boardDao.SCOREupdatetype1(map2);
 	}
 	
-	//LBJ 관리자 게시글 관리 용 메소드 2개
+	//LBJ 관리자 게시글 관리 용 메소드 5개
 	public int selectBoardListCount() {
 		return boardDao.selectBoardListCount();
 	}
 	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
 		return boardDao.selectBoardList(map);
+	}
+	public int deleteBoard(HashMap<String, Object> map) {
+		return boardDao.deleteBoard(map);
+	}
+	public int selectKeywordBoardListCount(String keyword) {
+		return boardDao.selectKeywordBoardListCount(keyword);
+	}
+	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectKeywordBoardList(map);
 	}
 	/////////////////////////////
 
