@@ -557,7 +557,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star-empty">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==2}"> 
@@ -565,7 +564,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==3}"> 
@@ -573,7 +571,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
+
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==4}"> 
@@ -581,7 +579,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
+
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==5}"> 
@@ -589,7 +587,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star">
 </span></span>
 </c:if>
 
@@ -633,7 +630,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star-empty">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==2}"> 
@@ -641,7 +637,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==3}"> 
@@ -649,7 +644,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==4}"> 
@@ -657,7 +651,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==5}"> 
@@ -665,7 +658,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star">
 </span></span>
 </c:if>
 
@@ -707,7 +699,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star-empty">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==2}"> 
@@ -715,7 +706,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star-empty">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==3}"> 
@@ -723,7 +713,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star-empty">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==4}"> 
@@ -731,7 +720,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star-empty">
 </span></span>
 </c:if>
 <c:if test="${review.REVIEW_RATE==5}"> 
@@ -739,7 +727,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 </span><span data-value="2" class="glyphicon glyphicon-star">
 </span><span data-value="3" class="glyphicon glyphicon-star">
 </span><span data-value="4" class="glyphicon glyphicon-star">
-</span><span data-value="5" class="glyphicon glyphicon-star">
 </span></span>
 </c:if>
 </div>
