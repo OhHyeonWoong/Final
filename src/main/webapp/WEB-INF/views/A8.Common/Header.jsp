@@ -497,43 +497,7 @@
 		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
 		        					</tr>
 		        				</table>
-		        			</div>
-		        			<!-- <div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
-		        				<table style="width:100%;">
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="신한">신한</td>
-		        						<td><input type="radio" name="credit" value="삼성">삼성</td>
-		        						<td><input type="radio" name="credit" value="국민">국민</td>
-		        						<td><input type="radio" name="credit" value="현대">현대</td>
-		        					</tr>
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="NH농협">NH농협</td>
-		        						<td><input type="radio" name="credit" value="BC">BC</td>
-		        						<td><input type="radio" name="credit" value="우리">우리</td>
-		        						<td><input type="radio" name="credit" value="하나">하나</td>
-		        					</tr>
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="롯데">롯데</td>
-		        						<td><input type="radio" name="credit" value="씨티">씨티</td>
-		        						<td><input type="radio" name="credit" value="카카오뱅크">카카오뱅크</td>
-		        						<td><input type="radio" name="credit" value="기타">기타</td>
-		        					</tr>
-		        					<tr>
-		        						<td><label> </label></td>
-		        					</tr>
-		        					<tr>
-		        						<td colspan="2">할부기간</td>
-		        						<td colspan="2">
-		        							<select>
-		        								<option>일시불</option>
-		        								<option>1개월</option>
-		        								<option>2개월</option>
-		        								<option>3개월</option>
-		        							</select>
-		        						</td>
-		        					</tr>
-		        				</table>
-		        			</div> -->
+		        			</div>		        		
 		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
 		        				<table style="width:100%; background:ivory;">
 		        					<tr>
