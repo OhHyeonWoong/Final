@@ -15,6 +15,7 @@ import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.Review;
+import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
@@ -299,5 +300,10 @@ public class BoardService {
 		return boardDao.selectKeywordBoardList(map);
 	}
 	/////////////////////////////
+
+	public List<ReviewForBoard> getreviewforboard(String agency_writer) {
+		// TODO Auto-generated method stub
+		return boardDao.getreviewforboard(agency_writer);
+	}
 
 }

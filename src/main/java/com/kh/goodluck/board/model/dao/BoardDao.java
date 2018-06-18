@@ -20,6 +20,7 @@ import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.board.model.vo.Review;
+import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 
@@ -355,5 +356,12 @@ public class BoardDao {
 		return sqlSession.selectList("selectKeywordBoardList", map);
 	}
 	////////////////////////////
+
+
+
+	public List<ReviewForBoard> getreviewforboard(String agency_writer) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getreviewforboard", agency_writer);
+	}
 
 }
