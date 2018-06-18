@@ -458,13 +458,23 @@ public class lbjAdminController {
 			for(int i=0;i<board.size();i++) {
 				//저 위의 페이징 처리 데이터들을 vo에 넣자
 				JSONObject job2 = new JSONObject();
-				/*job2.put("question_no", myQna.get(i).getQuestion_no());
-				job2.put("question_category", myQna.get(i).getQuestion_category());
-				job2.put("question_answer_state", myQna.get(i).getQuestion_answer_state());
-				job2.put("question_content", myQna.get(i).getQuestion_content());
-				job2.put("question_title", myQna.get(i).getQuestion_title());
-				job2.put("question_writer", myQna.get(i).getQuestion_writer());
-				job2.put("question_date", myQna.get(i).getQuestion_date().toString());*/
+				job2.put("agency_no", board.get(i).getAgency_no());
+				job2.put("agency_writer", board.get(i).getAgency_writer());
+				job2.put("agency_title", board.get(i).getAgency_title());
+				job2.put("link2_no", board.get(i).getLink2_no());
+				job2.put("agency_type", board.get(i).getAgency_type());
+				job2.put("agency_loc", board.get(i).getAgency_loc());
+				job2.put("agency_startdate", board.get(i).getAgency_startdate().toString());
+				job2.put("agency_enddate", board.get(i).getAgency_enddate().toString());
+				job2.put("agency_enrolldate", board.get(i).getAgency_enrolldate().toString());
+				job2.put("agency_paytype", board.get(i).getAgency_paytype());
+				job2.put("agency_pay", board.get(i).getAgency_pay());
+				job2.put("agency_status", board.get(i).getAgency_status());			
+				job2.put("agency_content", board.get(i).getAgency_content());
+				job2.put("agency_views", board.get(i).getAgency_views());
+				job2.put("agency_keyword", board.get(i).getAgency_keyword());
+				job2.put("agency_option", board.get(i).getAgency_option());
+				job2.put("category_small_name", board.get(i).getCategory_small_name());
 				if(i == 0) {
 					job2.put("boardMaxPage", boardMaxPage);
 					job2.put("boardStartPage", boardStartPage);
