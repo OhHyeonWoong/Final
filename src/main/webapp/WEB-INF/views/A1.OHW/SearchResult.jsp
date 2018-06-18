@@ -102,8 +102,7 @@
 					<tr>
 						<td><label></label></td>						
 						<td>
-							<input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly>
-							<input type = "text" class = "ohw-hidden-get-score" value = "${ searchResult.scoreSellRate }" name = "level" readonly>						
+							<input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly>						
 						</td>
 						<td>제목</td>
 						<td>글쓴이</td>
@@ -217,7 +216,7 @@
 							<td>${ searchSlaveResult.agency_no }</td>
 							<td><img src = ""></td>
 							<td class = "ohw-agency-title"><a href = "">${ searchSlaveResult.agency_title }</a></td>
-							<td><img src = "/goodluck/resources/common/img/level/lv${ searchResult.scoreSellRate }.gif"> ${ searchSlaveResult.agency_writer }</td>
+							<td><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
 							<td>${ searchSlaveResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
