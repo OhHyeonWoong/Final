@@ -92,7 +92,7 @@ public class JUJ_BoardController {
 		
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
-		
+		 
 		System.out.println("글번호 : 쿼리문으로 등록");
 		System.out.println("글작성자 : "+loginUser);
 		

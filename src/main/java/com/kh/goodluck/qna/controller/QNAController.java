@@ -108,6 +108,10 @@ public class QNAController {
 		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
 		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int qnaEndRow = qnaStartRow + qnaLimit - 1;
+	    int qnaEndFor = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 6;
+	    if(qnaEndFor > qnaMaxPage) {
+	    	qnaEndFor = qnaMaxPage;
+	    }
 	    
 	    HashMap<Object,Object> map = new HashMap<Object,Object>();
 	    map.put("startRow", qnaStartRow);
@@ -145,6 +149,7 @@ public class QNAController {
 				job2.put("qnaEndRow", qnaEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
 				job2.put("qnaListCount", qnaListCount);
+				job2.put("qnaEndFor", qnaEndFor);
 			}
 			jarr.add(job2);
 		}

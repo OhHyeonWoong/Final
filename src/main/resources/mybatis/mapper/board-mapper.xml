@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="BoardandDetail">
 	
 	<resultMap type="Board" id="BoardResult">
@@ -289,7 +290,7 @@
 			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
 			where rnum>=1 and rnum<=6]]> 
 	</select>
-	
+
 	<select id="ukjae_pic_link2_no" parameterType="String" resultMap="CategoryLink2All">
 		<![CDATA[select * from categorylink2 where category_small_code=#{smallcategory}]]>
 	</select>
@@ -306,7 +307,7 @@
 		#{agency_enddate},
 		default,
 		#{agency_paytype},
-		#{agency_pay},
+		#{agency_pay}, 
 		default,
 		#{agency_content},
 		default,
@@ -322,9 +323,125 @@
 		<![CDATA[select * from agency where agency_no=#{agency_no}]]>
 	</select>
 	
+	<select id="selectMyBoardListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from agency where agency_writer = #{member_id}
+		]]>
+	</select>
+	
+	<select id="selectMyBoard" parameterType="java.util.HashMap" resultType="MyPageBoard">
+		<![CDATA[
+			select * 
+			from (
+			  select rownum rnum,ac.agency_no, ac.agency_writer,
+			  ac.agency_title,ac.link2_no,ac.agency_type, 
+			  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+			  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+			  sc.category_small_name
+			  from agency ac,categorylink2 cl,smallcategory sc
+			  where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+			  and ac.agency_writer = #{member_id}) 
+			where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+	
+	<select id="selectMyApplyBoardListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from trade_detail where (TRADE_APPLICANT = #{member_id} or TRADE_RESERVATION = #{member_id})
+		]]>
+	</select>
+	
+	<select id="selectMyApplyBoard" parameterType="java.util.HashMap" resultType="MyPageApplyBoard">
+		<![CDATA[
+			select * 
+			from (
+			  select rownum rnum,ac.agency_no, ac.agency_writer,
+			  ac.agency_title,ac.link2_no,ac.agency_type, 
+			  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+			  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+			  sc.category_small_name,td.trade_applicant,td.trade_date,td.trade_reservation,td.trade_reservation_date
+			  from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+			  where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+			  and (td.trade_reservation = #{member_id} or td.trade_applicant = #{member_id})) 
+			where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+	<select id="selectMyBoardHistoryListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from agency ac,agencylog al,trade_detail td
+			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+		]]>
+	</select>
+	<select id="selectMyBoardHistory" parameterType="java.util.HashMap" resultType="MyPageBoardHistory">
+		<![CDATA[
+			select al.agencylog_finalstatus,ac.agency_type,ac.agency_title,td.TRADE_APPLICANT,al.agencylog_date,ac.agency_pay,ac.agency_paytype
+			from agency ac,agencylog al,trade_detail td
+			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+		]]>
+	</select>
+	<select id="selectBoardListCount" resultType="int">
+		<![CDATA[
+			select count(*) from agency
+		]]>
+	</select>
+	<select id="selectBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
+		<![CDATA[
+			  select *
+		      from (
+		        select rownum rn, AG.*
+		        from (
+		          select ac.agency_no, ac.agency_writer,
+					    ac.agency_title,ac.link2_no,ac.agency_type, 
+					    ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+					    sc.category_small_name
+					    from agency ac,categorylink2 cl,smallcategory sc
+					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+		          order by agency_enrolldate desc
+		        ) AG
+		      )
+		      where rn between #{startRow} and #{endRow}
+		]]>
+	</select>
+	<delete id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
+		<![CDATA[
+			delete from agency 
+			where
+		]]>
+		<foreach collection="agency_no" item="item" index="index" open="(" close=")" separator="or">
+			agency_no = #{item}
+		</foreach>
+	</delete>
+	<select id="selectKeywordBoardListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*) from agency
+      		where (agency_title like '%'||#{keyword}||'%' or agency_content like '%'||#{keyword}||'%')
+		]]>
+	</select>
+	<select id="selectKeywordBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
+		<![CDATA[
+			select *
+		      from (
+		        select rownum rn, AG.*
+		        from (
+		          select ac.agency_no, ac.agency_writer,
+					    ac.agency_title,ac.link2_no,ac.agency_type, 
+					    ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+					    sc.category_small_name
+					    from agency ac,categorylink2 cl,smallcategory sc
+					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+		       			and (ac.agency_title like '%'||#{keyword}||'%' or ac.agency_content like '%'||#{keyword}||'%')
+		        ) AG
+		      )
+		      where rn between #{startRow} and #{endRow}
+		]]>
+	</select>
+
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
-	
-	
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
 		insert into member 
@@ -400,6 +517,22 @@
 	update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
 	</update>
 	<insert id="insertReview" parameterType="REVIEW">
-	insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),#{REVIEW_RATE},#{REVIEW_WRITER},#{AGENCYLOG_NO},sysdate,#{REVIEW_CONTENT}) 
+	insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),
+	#{REVIEW_RATE},#{REVIEW_WRITER},
+	(select AGENCYLOG_NO from AGENCYLOG where AGENCYLOG_TRADE = (select TRADE_NO from TRADE_DETAIL where AGENCY_NO=#{AGENCYLOG_NO})),sysdate,
+	#{REVIEW_CONTENT}) 
 	</insert>
+	<update id="SCOREupdatetype1" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_BUY = (select SCORE_BUY from SCORE where MEMBER_ID=#{order} )+#{orderrate},
+	SCORE_BUY_COUNT=(select SCORE_BUY_COUNT from SCORE where MEMBER_ID=#{order})+1
+	where MEMBER_ID=#{order}
+	</update>
+	<update id="SCOREupdatetype11" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_SELL_COUNT=(select SCORE_SELL_COUNT from SCORE where MEMBER_ID=#{APPLICANT})+1,
+	SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
+	where MEMBER_ID=#{APPLICANT}
+	</update>
+
 </mapper>

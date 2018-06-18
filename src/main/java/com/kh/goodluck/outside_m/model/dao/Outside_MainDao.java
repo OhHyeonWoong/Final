@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.outside_m.model.vo.Outside_Main;
-
+ 
 @Repository("outside_MainDao")
 public class Outside_MainDao {
 

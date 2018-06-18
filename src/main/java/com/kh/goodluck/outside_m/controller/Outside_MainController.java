@@ -20,7 +20,7 @@ import com.kh.goodluck.outside_m.model.vo.Outside_Main;
 
 @Controller
 public class Outside_MainController {
-
+ 
 	@Autowired
 	private Outside_MainService outside_MainService;
 	

@@ -27,10 +27,12 @@ public class CategoryController {
 	public void headerCategoryBig(HttpServletResponse response) throws Exception {
 		System.out.println("CategoryController Run!");
 		List<Category> headerCategoryBig = categoryService.headerCategoryBig();
+		List<Category> headerCategorySmall = categoryService.headerCategorySmall();
 		/*System.out.println("HeaderCategoryBig : " + headerCategoryBig + " / To.CategoryController");*/
 		
 		JSONObject json = new JSONObject();		
-		JSONArray jarr = new JSONArray();
+		JSONArray jarrBig = new JSONArray();
+		JSONArray jarrSmall = new JSONArray();
 					
 		for(Category category : headerCategoryBig) {
 			
@@ -40,10 +42,22 @@ public class CategoryController {
 			job.put("headerCategoryBigViews",category.getCategory_big_views());
 			job.put("headerCategoryBigCount",category.getCategory_big_count());
 			
-			jarr.add(job);			
-		}					
+			jarrBig.add(job);			
+		}
+		
+		for(Category category : headerCategorySmall) {
 			
-			json.put("headerCategoryBig", jarr);
+			JSONObject job = new JSONObject();			
+			job.put("headerCategorySmallCode",category.getCategory_small_code());
+			job.put("headerCategorySmallName",category.getCategory_small_name());
+			job.put("headerCategorySmallViews",category.getCategory_small_views());
+			job.put("headerCategorySmallCount",category.getCategory_small_count());
+			
+			jarrSmall.add(job);			
+		}
+			
+			json.put("headerCategoryBig", jarrBig);
+			json.put("headerCategorySmall", jarrSmall);
 			/*System.out.println("HeaderCategoryBigJson : " + json.toJSONString() + " / To.CategoryController");*/			
 			
 			PrintWriter out = response.getWriter();

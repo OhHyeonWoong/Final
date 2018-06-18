@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component("Memberandscore")
 public class Memberandscore implements Serializable{
 
-	private static final long serialVersionUID = 74542L;
+	private static final long serialVersionUID = 7654L;
 	
 	private String member_id;
 	private String member_pw;
@@ -27,6 +27,7 @@ public class Memberandscore implements Serializable{
 	private int member_cash;
 	private String member_accesstoken;
 	private String member_refreshtoken;
+	private int MEMBER_KAKAOIDPK;
 	private int member_keyword_count;
 	private String emoticonfile;
 	private int SCORE_BUY;
@@ -34,8 +35,18 @@ public class Memberandscore implements Serializable{
 	private int SCORE_SELL;
 	private int SCORE_SELL_COUNT;
 	private Double SCORE_SELL_RATE;
+	
 	public Memberandscore() {
 	}
+	
+	public int getMEMBER_KAKAOIDPK() {
+		return MEMBER_KAKAOIDPK;
+	}
+
+	public void setMEMBER_KAKAOIDPK(int mEMBER_KAKAOIDPK) {
+		MEMBER_KAKAOIDPK = mEMBER_KAKAOIDPK;
+	}
+
 	public String getMember_id() {
 		return member_id;
 	}
@@ -211,6 +222,21 @@ public class Memberandscore implements Serializable{
 		SCORE_SELL = sCORE_SELL;
 		SCORE_SELL_COUNT = sCORE_SELL_COUNT;
 		SCORE_SELL_RATE = sCORE_SELL_RATE;
+	}
+
+	@Override
+	public String toString() {
+		return "Memberandscore [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
+				+ ", member_email=" + member_email + ", member_address=" + member_address + ", member_phone="
+				+ member_phone + ", member_regident_number=" + member_regident_number + ", member_write_count="
+				+ member_write_count + ", member_enroll_date=" + member_enroll_date + ", member_lastlogin="
+				+ member_lastlogin + ", member_lastpassword=" + member_lastpassword + ", member_yellowcard="
+				+ member_yellowcard + ", member_status=" + member_status + ", member_renamephoto=" + member_renamephoto
+				+ ", member_cash=" + member_cash + ", member_accesstoken=" + member_accesstoken
+				+ ", member_refreshtoken=" + member_refreshtoken + ", MEMBER_KAKAOIDPK=" + MEMBER_KAKAOIDPK
+				+ ", member_keyword_count=" + member_keyword_count + ", emoticonfile=" + emoticonfile + ", SCORE_BUY="
+				+ SCORE_BUY + ", SCORE_BUY_COUNT=" + SCORE_BUY_COUNT + ", SCORE_SELL=" + SCORE_SELL
+				+ ", SCORE_SELL_COUNT=" + SCORE_SELL_COUNT + ", SCORE_SELL_RATE=" + SCORE_SELL_RATE + "]";
 	}
 	
 	

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.goodluck.outside_li.model.service.Outside_LifeService;
 import com.kh.goodluck.outside_li.model.vo.Outside_Life;
-
+ 
 @Controller
 public class Outside_LifeController {
 

@@ -22,8 +22,8 @@ m.member_id=#{memberid} and
 i.ITEMTYPE != 2 and
 i.ITEMTYPE != 8
 group by ITEMFILENAME,substr(ITEMNAME,1,8)
+having max(END_DATE)- sysdate >0
 ]]>
-
 </select>
 
 <select id="getmyimticon" resultType="int" parameterType="String">

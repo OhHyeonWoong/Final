@@ -475,9 +475,8 @@
 			                                        <td>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
-			                                        <td>오너의 구매점수</td>
+			                                        <td>오너의 활동 점수</td>
 			                                        <td class="uk_level">
-			                                        
 			                                        ${writer.SCORE_BUY} 포인트 
 			                                       </td>
 			                     </c:when>
@@ -487,8 +486,7 @@
 			                                        <td>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
-			                                        <td>제공자의
-			                                         봉사단계</td>
+			                                        <td>노예의  봉사단계</td>
 			                                        <td class="uk_level">
 			                                        
 			                                        ${writer.SCORE_SELL_RATE} 단계
@@ -596,7 +594,7 @@
 					        <ul>
 					            <li> 
 					             <c:choose>
-			                     <c:when test="${Board.agency_type eq 1}">※당신은 일반 지원자입니다 ※</c:when>
+			                     <c:when test="${Board.agency_type eq 1}">※당신은 일반 노예입니다 ※</c:when>
 			                     
 			                     <c:when test="${Board.agency_type eq 2}">※당신은 오너입니다 ※ </c:when>
 			                     </c:choose>              
@@ -781,16 +779,38 @@
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
 		        </span></button>
-		        <h4 class="modal-title" id="myModalLabel">작업 포기</h4>
+		        <h4 class="modal-title" id="myModalLabel">
+<c:choose>
+<c:when test="${Board.agency_type eq 1}">작업 포기</c:when>
+<c:when test="${Board.agency_type eq 2}">지원자 교체 </c:when>
+</c:choose>
+</h4>
 		      </div>
 		      <div class="modal-body">
 		      	<center>
-			작업을 포기하시면 불이익이 생길수도 있습니다.
+		      	
+		
+<c:choose>
+<c:when test="${Board.agency_type eq 1}">	
+                         작업을 포기하시면 불이익이 생길수도 있습니다.
 			<br>
 			정말로 강제로 작업을 취소하시겠습니까?
+			<br></c:when>
+<c:when test="${Board.agency_type eq 2}">	지원자를 교체하시겠습니까?
 			<br>
+			후보 지원자가 있을경우 자동으로 교체됩니다.
+			<br> </c:when>
+</c:choose>
 			
-				<button onclick="test1();">확인</button>
+			
+			
+			<c:choose>
+<c:when test="${Board.agency_type eq 1}"><button onclick="test1();">확인</button></c:when>
+<c:when test="${Board.agency_type eq 2}"><button onclick="test3();">확인</button></c:when>
+</c:choose>
+				
+				
+				
 				<button onclick="test2();">취소</button>
 				</center>
 				<script type="text/javascript">
@@ -798,14 +818,42 @@
 					      var bool = confirm('정말로 포기하시겠습니까??');
 					      if(bool==true){
 					         alert("작업 수행이 취소되었습니다!");
-					         location.href="cancelagency.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
-					      }else {
+			location.href="cancelagency.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
+			}else {
 					            
-					      }
+					  }
 					}			
 					  function test2(){
 							$('#cjsModalLabel').modal('hide');											
 					  }
+					  function test3(){
+					      var bool = confirm('정말로 포기하시겠습니까??');
+					      if(bool==true){
+			$.ajax({
+				url:"cancelagency1.go",
+				data:{
+					BoardNo:'${Board.agency_no}',
+					memberid:'${loginUser.member_id}'
+				},
+				success:function(data){
+					if(data==0){
+						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
+						$('#cjsModalLabel').modal('hide');		
+					}else if(data==1){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}else if(data==2){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}
+				}
+			})		 
+				}else {
+					            
+					      }
+					}	  
+					  
+					  
 				</script>
 					<br />
 					<br />

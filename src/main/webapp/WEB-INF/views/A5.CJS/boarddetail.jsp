@@ -15,6 +15,13 @@
 
 <script type="text/javascript">
 	$(function () {
+	if("${loginUser}" == "")	
+		{
+		$("#loginModalCancel").hide();
+		$("#text-login-msg").text("서비스 이용을 위해 로그인해주세요");
+		$('#login-modal').modal({backdrop: 'static', keyboard: false});
+		//location.href="Error500.go";
+		}
 		$("#ukapplybtn").on("click",function(){		
 			$('#myModal').modal('show');
 		});	
@@ -39,14 +46,24 @@
 			  console.log(data);
 			  if(data == 1)
 			  {
+				 console.log("이글에 이미 지원함");
 				$("#ukapplybtn").removeAttr("data-target");
 				$("#ukapplybtn").text("해당 글에 이미 지원했습니다.");
 				$("#ukapplybtn").removeAttr("id");
+			 
 			  }else if(data == 2){
-				  $("#ukapplybtn").removeAttr("data-target");
-					$("#ukapplybtn").text("본인의 글입니다.");
-					$("#ukapplybtn").removeAttr("id");  
+				  console.log("본인의 글임");
+				$("#ukapplybtn").removeAttr("data-target");
+				$("#ukapplybtn").text("본인의 글입니다.");
+				$("#ukapplybtn").removeAttr("id");  
 				}
+			  
+			  if("${loginUser.member_id}" == 'guest'){
+				$("#ukapplybtn").removeAttr("data-target");
+				$("#ukapplybtn").text("글을 신청하기 위해선 본사이트에 로그인해주세요!");
+				$("#ukapplybtn").removeAttr("id");  
+			  }
+			  
 		  }
 		
 	})
@@ -66,7 +83,6 @@
         $('.panel-body1').bind('drop', function (event) {
             var children = $(this).children();
             var targetId = children.attr('id');
-
             if (sourceId != targetId) {
                 var elementId = event.originalEvent.dataTransfer.getData("text/plain");
 
@@ -163,11 +179,11 @@ ${Cateinfo};
                         <small><cite title="San Francisco, USA">지역 : ${Board.agency_loc}<i class="glyphicon glyphicon-map-marker">
                         </i></cite></small>
                         </td>
-                        <td><i class="glyphicon glyphicon-envelope"></i>email@example.com
+                        <td>
                         </td>
                         </tr>
                         <tr>
-                        <td>수행 예정일: ${Board.agency_startdate} </td>
+                        <td>수행 시작 예정일: ${Board.agency_startdate} </td>
                         <td>마감 예정일: ${Board.agency_enddate} </td>
                         </tr>
              
@@ -184,7 +200,7 @@ ${Cateinfo};
                         <c:when test="${Board.agency_paytype == 1}">일급</c:when>
                         
                         </c:choose></td>
-                        <td>방식당 페이:${Board.agency_pay}원  </td>
+                        <td>최종페이 : ${Board.agency_pay}원  </td>
                         </tr>
                   
                   <tr>
@@ -310,7 +326,6 @@ ${Cateinfo};
                                 </div>
                             </div>
                         </article>
-
                         <article class="kanban-entry grab" id="item4" draggable="true">
                             <div class="kanban-entry-inner">
                                 <div class="kanban-label">
@@ -346,7 +361,7 @@ mapOption = {
 var geocoder = new daum.maps.services.Geocoder();
 var coords="";
 var coords1="";
-geocoder.addressSearch('경기도 도덕공원로', function(result, status) {
+geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
 
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
@@ -432,13 +447,43 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 		    <div class="modal-content" style="width:500px; height: 200px; margin-top: 200px;">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">신청하기</h4>
+		        <h4 class="modal-title" id="myModalLabel">제대로 확인하셨나요??</h4>
 		      </div>
 		      <div class="modal-body">
-
-				
+    			<table>
+    			<tr>
+    			<td>예상   
+    			<c:choose>
+    			<c:when test="${Board.agency_paytype eq 1}">시급</c:when>
+    			<c:when test="${Board.agency_paytype eq 2}">일급</c:when>
+    			</c:choose>
+    			:${Board.agency_pay}원</td>
+    			<td><td>
+    			
+    			</tr>
+    			<tr>
+    			<td colspan="2">  수행 예정일: ${Board.agency_startdate}
+                       ~ ${Board.agency_enddate}</td><td></td>
+    			</tr>
+    			<tr>
+    			<td>관련 작업:${Cateinfo.CATEGORY_SMALL_NAME}</td>
+    			</tr>
+    			<tr>
+    		
+    			<td></td>
+    			</tr>
+    			
+    			
+    			</table>
+    			
+             	<center>
+    				<th colspan="2">  <small>※제대로 확인하셨나요? ※</small></th>
+    			</center>
+    			<br>
+				<center>
 				<button onclick="test1();">확인</button>
 				<button onclick="test2();">취소</button>
+				</center>
 				<script type="text/javascript">
 					function test1(){
 					      var bool = confirm('정말로 신청 하시겠습니까?');
@@ -455,14 +500,12 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 				</script>
 					<br />
 					<br />
-		 
 		      </div>
 		      <div class="modal-footer">
 		      </div>
 		    </div>
 		  </div>
 		</div>
-
 </body>
 </html>
 

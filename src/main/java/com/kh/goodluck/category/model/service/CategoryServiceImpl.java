@@ -24,6 +24,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.headerCategoryBig();		
 	}
 	
+	public List<Category> headerCategorySmall() {		
+		return categoryDao.headerCategorySmall();		
+	}
+	
 	public int bigCategoryCount(String bigCategoryCode) {
 		/*System.out.println("SendBigCode : " + bigCategoryCode + " / To.CategoryServiceImpl");*/
 		return categoryDao.bigCategoryCount(bigCategoryCode);	

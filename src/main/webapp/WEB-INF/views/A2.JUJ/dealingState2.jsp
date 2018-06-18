@@ -661,18 +661,15 @@
 					            <div class="text-right" align="center">
 					            
 			
-			   <c:choose>
-			   
- <c:when test="${Board.agency_type eq 2}"> 
+<c:choose>
+<c:when test="${Board.agency_type eq 2}"> 
 <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
 수행 포기
 </button>
 <button  class="btn btn-success btn-green" id="report" data-target="#reportmodal">
   해당 유저 신고
 </button>
-					     
-					     
-					</c:when>
+</c:when>
  <c:when test="${Board.agency_type eq 1}">  
  <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white;">
  지원자 교체
@@ -680,9 +677,10 @@
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
 			작업 완료
 		<a class="btn btn-success btn-green" id="report" data-target="#reportmodal">
-					        해당 유저 신고
-	</a></c:when>
-			    </c:choose>	
+		 해당 유저 신고</a></c:when>
+</c:choose>	
+					          
+
 					            
 
 					            </div>
@@ -781,16 +779,33 @@
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
 		        </span></button>
-		        <h4 class="modal-title" id="myModalLabel">작업 포기</h4>
+		        <h4 class="modal-title" id="myModalLabel">
+<c:choose>
+<c:when test="${Board.agency_type eq 2}">수행 포기</c:when>
+<c:when test="${Board.agency_type eq 1}">지원자 교체</c:when>
+</c:choose></h4>
 		      </div>
 		      <div class="modal-body">
+		      
 		      	<center>
-			작업을 포기하시면 불이익이 생길수도 있습니다.
-			<br>
-			정말로 강제로 작업을 취소하시겠습니까?
-			<br>
 			
-				<button onclick="test1();">확인</button>
+<c:choose>
+<c:when test="${Board.agency_type eq 2}">수행을 포기하시겠습니까? <br> 무단으로 포기시 불익이 생길수있습니다. </c:when>
+<c:when test="${Board.agency_type eq 1}">
+                          정말로 지원자를 교체하시겠습니까??
+			<br>
+			예비 지원자가 있을경우 자동으로 교체됩니다.
+			<br></c:when>
+</c:choose>			         
+ 	
+ 	
+ 	
+ 	
+<c:choose>
+<c:when test="${Board.agency_type eq 2}"><button onclick="test1();">확인</button></c:when>
+<c:when test="${Board.agency_type eq 1}"><button onclick="test3();">확인</button></c:when>
+</c:choose>			          	
+			    
 				<button onclick="test2();">취소</button>
 				</center>
 				<script type="text/javascript">
@@ -798,7 +813,7 @@
 					      var bool = confirm('정말로 포기하시겠습니까??');
 					      if(bool==true){
 					         alert("작업 수행이 취소되었습니다!");
-					         location.href="cancelagency.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
+					         location.href="cancelagency1.go?BoardNo=${Board.agency_no}&memberid=${loginUser.member_id}";
 					      }else {
 					            
 					      }
@@ -806,6 +821,33 @@
 					  function test2(){
 							$('#cjsModalLabel').modal('hide');											
 					  }
+					  function test3(){
+					      var bool = confirm('정말로 지원자를 교체하시겠습니까?');
+					      if(bool==true){
+			$.ajax({
+				url:"cancelagency1.go",
+				data:{
+					BoardNo:'${Board.agency_no}',
+					memberid:'${loginUser.member_id}'
+				},
+				success:function(data){
+					if(data==0){
+						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
+						$('#cjsModalLabel').modal('hide');		
+					}else if(data==1){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}else if(data==2){
+						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
+						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					}
+				}
+			})		 
+				}else {
+					            
+					      }
+					}	
+					  
 				</script>
 					<br />
 					<br />

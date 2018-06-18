@@ -1,8 +1,6 @@
 package com.kh.goodluck.board.model.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +13,12 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
 @Service("boardService")
 public class BoardService {
@@ -256,6 +257,7 @@ public class BoardService {
 		return boardDao.insertReview(re);
 	}
 
+
 	public int serviceSupplyRegist(Board board) {
 		//제공해요 새로운 글 등록하는 메소드 
 		return boardDao.serviceSupplyRegist(board);
@@ -273,9 +275,57 @@ public class BoardService {
 	}
 
 
+	public int selectMyBoardListCount(String member_id) {
+		//병준이 본인 게시물 갯수 세오는 메소드
+		return boardDao.selectMyBoardListCount(member_id);
+	}
 
+	public List<MyPageBoard> selectMyBoard(HashMap<Object, Object> map3) {
+		//병준이 본인 게시물 가져오는 메소드
+		return boardDao.selectMyBoard(map3);
+	}
 
+	public int selectMyApplyBoardListCount(String member_id) {
+		//병준이 내가 신청한 게시글 갯수 가져오는 메소드
+		return boardDao.selectMyApplyBoardListCount(member_id);
+	}
 
+	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+		//병준이 내가 신청한 게시글 가져오는 메소드
+		return boardDao.selectMyApplyBoard(map4);
+	}
+
+	public int selectMyBoardHistoryListCount(String member_id) {
+		//내 이용 내역 갯수 가져오는 메소드
+		return boardDao.selectMyBoardHistoryListCount(member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		//내 이용 내역 가져오는 메소드
+		return boardDao.selectMyBoardHistory(map5);
+	}
+
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return boardDao.SCOREupdatetype1(map2);
+	}
+	
+	//LBJ 관리자 게시글 관리 용 메소드 5개
+	public int selectBoardListCount() {
+		return boardDao.selectBoardListCount();
+	}
+	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectBoardList(map);
+	}
+	public int deleteBoard(HashMap<String, Object> map) {
+		return boardDao.deleteBoard(map);
+	}
+	public int selectKeywordBoardListCount(String keyword) {
+		return boardDao.selectKeywordBoardListCount(keyword);
+	}
+	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectKeywordBoardList(map);
+	}
 
 
 }

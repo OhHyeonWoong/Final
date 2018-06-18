@@ -1,7 +1,7 @@
 package com.kh.goodluck.outside_m.model.vo;
 
 public class Outside_Main implements java.io.Serializable{
-
+ 
 	public static final long serialVersionUID = 7789L;
 	
 	private int osm_datano;

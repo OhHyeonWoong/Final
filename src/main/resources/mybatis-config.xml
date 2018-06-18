@@ -18,6 +18,9 @@
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink1" alias="CategoryLink1"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.CategoryLink2" alias="CategoryLink2"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageBoard" alias="MyPageBoard"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageApplyBoard" alias="MyPageApplyBoard"/>
+		<typeAlias type="com.kh.goodluck.board.model.vo.MyPageBoardHistory" alias="MyPageBoardHistory"/>
 		<typeAlias type="com.kh.goodluck.category.model.vo.Category" alias="Category"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.UsingItem" alias="UsingItem"/>
 		<typeAlias type="com.kh.goodluck.qna.model.vo.QNA" alias="Qna" />
@@ -40,7 +43,11 @@
 		<typeAlias type="com.kh.goodluck.admin.model.vo.LoginStatistics" alias="LoginStatistics"/>
 		<typeAlias type="com.kh.goodluck.outside_m.model.vo.Outside_Main" alias="Outside_Main"/>
 		<typeAlias type="com.kh.goodluck.outside_li.model.vo.Outside_Life" alias="Outside_Life"/>
-	</typeAliases>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_all" alias="RandomBox_all"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_emo" alias="RandomBox_emo"/>
+		<typeAlias type="com.kh.goodluck.item.model.vo.RandomBox_time" alias="RandomBox_time"/>
+
+	</typeAliases> 
 	
 	<mappers>    
 		<mapper resource="mybatis/mapper/member-mapper.xml"/>

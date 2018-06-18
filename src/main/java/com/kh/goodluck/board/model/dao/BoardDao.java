@@ -16,6 +16,9 @@ import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
@@ -333,23 +336,55 @@ public class BoardDao {
 
 
 
-	
-	/*
-	AGENCY_NO	NUMBER
-	AGENCY_WRITER	VARCHAR2(45 BYTE)
-	AGENCY_TITLE	VARCHAR2(60 BYTE)
-	LINK2_NO	NUMBER
-	AGENCY_TYPE	NUMBER
-	AGENCY_LOC	VARCHAR2(60 BYTE)
-	AGENCY_STARTDATE	DATE
-	AGENCY_ENDDATE	DATE
-	AGENCY_ENROLLDATE	DATE
-	AGENCY_PAYTYPE	NUMBER
-	AGENCY_PAY	NUMBER
-	AGENCY_STATUS	NUMBER
-	AGENCY_CONTENT	VARCHAR2(1000 BYTE)
-	AGENCY_VEIWS	NUMBER
-	AGENCY_KEYWORD	VARCHAR2(200 BYTE)
-	AGENCY_OPTION	VARCHAR2(60 BYTE)*/
-	
+
+
+	//made by lbj
+	public int selectMyBoardListCount(String member_id) {
+		return sqlSession.selectOne("selectMyBoardListCount", member_id);
+	}
+	public List<MyPageBoard> selectMyBoard(HashMap<Object, Object> map3) {
+		return sqlSession.selectList("selectMyBoard", map3);
+	}
+
+	public int selectMyApplyBoardListCount(String member_id) {
+		return sqlSession.selectOne("selectMyApplyBoardListCount", member_id);
+	}
+
+	public List<MyPageApplyBoard> selectMyApplyBoard(HashMap<Object, Object> map4) {
+		return sqlSession.selectList("selectMyApplyBoard", map4);
+	}
+
+	public int selectMyBoardHistoryListCount(String member_id) {
+		return sqlSession.selectOne("selectMyBoardHistoryListCount", member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		return sqlSession.selectList("selectMyBoardHistory", map5);
+	}
+
+
+
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		sqlSession.update("SCOREupdatetype11", map2);
+		return sqlSession.update("SCOREupdatetype1", map2);
+	}
+
+	//관리자용 메소드 5개/////////////
+	public int selectBoardListCount() {
+		return sqlSession.selectOne("selectBoardListCount");
+	}
+	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
+		return sqlSession.selectList("selectBoardList", map);
+	}
+	public int deleteBoard(HashMap<String, Object> map) {
+		return sqlSession.delete("deleteBoard", map);
+	}
+	public int selectKeywordBoardListCount(String keyword) {
+		return sqlSession.selectOne("selectKeywordBoardListCount", keyword);
+	}
+	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
+		return sqlSession.selectList("selectKeywordBoardList", map);
+	}
+
 }

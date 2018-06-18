@@ -2,7 +2,7 @@ package com.kh.goodluck.outside_li.model.vo;
 
 
 public class Outside_Life implements java.io.Serializable{
-
+ 
 	public static final long serialVersionUID = 3869L;	
 	private int osli_datano;
 	private String osli_data;

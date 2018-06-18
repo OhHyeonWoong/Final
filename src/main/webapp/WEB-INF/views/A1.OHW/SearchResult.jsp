@@ -15,12 +15,26 @@
 		text-align:center;
 	}
 	
+	.pagination > li > a {
+		cursor:pointer;
+	}
+	
 	.ohw-search-sidebar {		
 		width:220px;
 		height:300px;
 		margin:0px;
 		padding:0px;
 		background:gray;
+	}
+	
+	.ohw-agency-title > a {
+		text-decoration:none;
+		color:black;
+	}
+	
+	.ohw-agency-title > a:hover {
+		text-decoration:none;
+		color:purple;
 	}
 		
 </style>	
@@ -48,7 +62,7 @@
 	        $win.scrollTop(0);
 	     //스크롤이벤트가 발생하면
 	    $(window).scroll(function(){
-	        yPosition = $win.scrollTop() - 200; //이부분을 조정해서 화면에 보이도록 맞추세요
+	        yPosition = $win.scrollTop() - 104; //이부분을 조정해서 화면에 보이도록 맞추세요
 	        if (yPosition < 0)
 	    { 
 	            yPosition = 0;
@@ -62,46 +76,15 @@
 		});
 	});
 	/* SideBar End */
-	
-	/* SearchResultAjax */
-	/* $(function(){
-		var searchKeyword = $(".ohw-hidden-get").val();		
-		$.ajax({
-		   	url:"headerSearchAjax.go",
-		   	type:"POST",
-		   	data:{searchKeyword : searchKeyword}, 
-		   	dataType:"json",
-		   	success:
-		   		function(data) {
-		   			var jsonStr = JSON.stringify(data);
-					var json = JSON.parse(jsonStr);
-					var searchList = "";											
-					
-					for(var i in json.searchList){				
-						searchList += 
-									'<tr>' + 
-										'<td>' + json.searchList[i].agency_no + '</td>' + 
-										'<td>' + '<img src = "">' + '</td>' + 
-										'<td class = "">' + 
-											'<a onClick = "" >' + json.searchList[i].agency_title + '</a>' + 
-										'</td>' + 
-										'<td>' + '<img src = "">' + json.searchList[i].agency_writer + '</td>' + 
-										'<td>' + json.searchList[i].agency_enrolldate + '</td>' + 
-									'</tr>'
-					}
-					
-					$('.ohw-search-table').append(searchList);							
-				}, 
-			error : function(request, status, errorData) {
-						console.log("Error Code : " + request.status + "\n"
-						+ "Message : " + request.responseText + "\n"
-						+ "Error : " + errorData);
-			}
-		});
-	}); */
-	/* SearchResultAjax End */
-	function pageCount(page, searchKeyword) {
-		location.href="headerSearch.go?searchKeyword="+searchKeyword+"&curPage="+page;
+		
+	function pageCount(searchKeyword, masterPage, slavePage) {
+		console.log("searchKeyword : " + searchKeyword + 
+				" / masterPage : " + masterPage + 
+				" / slavePage : " + slavePage);
+		var sk = "headerSearch.go?searchKeyword="+searchKeyword+"&curMasterPage="+masterPage+"&curSlavePage="+slavePage;
+		console.log(sk);
+		location.href="headerSearch.go?searchKeyword="+searchKeyword+"&curMasterPage="+masterPage+"&curSlavePage="+slavePage;
+		return true;
 	}
 </script>
 
@@ -109,68 +92,79 @@
 	<table>
 		<tr>
 			<td class = "ohw-search-maintd" valign = "top">
-				<table class="table table-hover ohw-search-table">
+				<h6>현재 검색어 : ${ searchResult.searchKeyword }</h6>
+				<table class="table table-hover ohw-search-table">					
+					<tr>
+						<td colspan = "5" align = "left">
+							<h2>주인님들의 글</h2>
+						</td>
+					</tr>
 					<tr>
 						<td><label></label></td>						
-						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly></td>
+						<td>
+							<input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly>						
+						</td>
 						<td>제목</td>
 						<td>글쓴이</td>
 						<td>날짜</td>				
 					</tr>
-					<c:forEach var="searchResult" items="${ searchResult.searchList }">
+					<c:forEach var="searchMasterResult" items="${ searchResult.searchMasterList }">						
 						<tr>
-							<td>${ searchResult.agency_no }</td>
+							<td>${ searchMasterResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td><a href = "">${ searchResult.agency_title }</a></td>
-							<td><img src = "">${ searchResult.agency_writer }</td>
-							<td>${ searchResult.agency_enrolldate }</td>
+							<td class = "ohw-agency-title"><a href = "">${ searchMasterResult.agency_title }</a></td>							
+							<td>
+								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif"> 
+								${ searchMasterResult.agency_writer }
+							</td>
+	         				<td>${ searchMasterResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
 					<tr>
 						<td colspan = "5" align = "center">
 							<ul class = "pagination">
-								<c:if test="${ searchResult.pagingView.curBlock > 1 }">
+								<c:if test="${ searchResult.pagingMasterView.curBlock > 1 }">
 									<li>
-										<a href = "#" onClick = "pageCount('1', '${ searchResult.searchKeyword }')">
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '1', '${ searchResult.pagingSlaveView.curPage }')">
 											처음
 										</a>
 									</li>
 								</c:if>
-								<c:if test="${ searchResult.pagingView.curBlock > 1 }">
+								<c:if test="${ searchResult.pagingMasterView.curBlock > 1 }">
 									<li>
-										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.prevPage }', '${ searchResult.searchKeyword }')">
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.prevPage }', '${ searchResult.pagingSlaveView.curPage }')">
 											이전
 										</a>
 									</li>
 								</c:if>
-								<c:forEach var="pagingView" 
-									begin="${ searchResult.pagingView.blockBegin }" 
-									end="${ searchResult.pagingView.blockEnd }">
+								<c:forEach var="pagingMasterView" 
+									begin="${ searchResult.pagingMasterView.blockBegin }" 
+									end="${ searchResult.pagingMasterView.blockEnd }">
 									<c:choose>
-										<c:when test="${ pagingView == searchResult.pagingView.curPage }">
+										<c:when test="${ pagingMasterView == searchResult.pagingMasterView.curPage }">
 											<li class = "active">
 												<span style = "color:white;">
-													${ pagingView }
+													${ pagingMasterView }
 												</span>
 											</li>
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href = "#" onClick = "pageCount('${ pagingView }', '${ searchResult.searchKeyword }')">${ pagingView }</a>
+												<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ pagingMasterView }', '${ searchResult.pagingSlaveView.curPage }')">${ pagingMasterView }</a>
 											</li>
 										</c:otherwise>
 									</c:choose>								
 								</c:forEach>
-								<c:if test="${ searchResult.pagingView.curBlock <= searchResult.pagingView.totBlock }">
+								<c:if test="${ searchResult.pagingMasterView.curBlock <= searchResult.pagingMasterView.totBlock }">
 									<li>
-										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.nextPage }', '${ searchResult.searchKeyword }')">
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.nextPage }', '${ searchResult.pagingSlaveView.curPage }')">
 											다음
 										</a>
 									</li>
 								</c:if>
-								<c:if test="${ searchResult.pagingView.curBlock <= searchResult.pagingView.totBlock }">
+								<c:if test="${ searchResult.pagingMasterView.curBlock <= searchResult.pagingMasterView.totBlock }">
 									<li>
-										<a href = "#" onClick = "pageCount('${ searchResult.pagingView.totPage }', '${ searchResult.searchKeyword }')">
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.totPage }', '${ searchResult.pagingSlaveView.curPage }')">
 											끝
 										</a>
 									</li>
@@ -180,7 +174,7 @@
 					</tr>
 				</table>
 			</td>
-			<td valign = "top">				
+			<td valign = "top" rowspan = "5">				
 				<div class="ohw-search-sidebar">
 					<table>
 						<tr>
@@ -203,8 +197,87 @@
 						</tr>
 					</table>
 				</div>				
-			</td>
-		</tr>						
+			</td>			
+		</tr>
+		<tr>
+			<td class = "ohw-search-maintd" valign = "top">
+				<table class="table table-hover ohw-search-table">
+					<tr>
+						<td colspan = "5" align = "left">
+							<h2>노예들의 글</h2>
+						</td>
+					</tr>
+					<tr>
+						<td><label></label></td>						
+						<td><input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly></td>
+						<td>제목</td>
+						<td>글쓴이</td>
+						<td>날짜</td>				
+					</tr>
+					<c:forEach var="searchSlaveResult" items="${ searchResult.searchSlaveList }">
+						<tr>
+							<td>${ searchSlaveResult.agency_no }</td>
+							<td><img src = ""></td>
+							<td class = "ohw-agency-title"><a href = "">${ searchSlaveResult.agency_title }</a></td>
+							<td><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
+							<td>${ searchSlaveResult.agency_enrolldate }</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td colspan = "5" align = "center">
+							<ul class = "pagination">
+								<c:if test="${ searchResult.pagingSlaveView.curBlock > 1 }">
+									<li>
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.curPage }', '1')">
+											처음
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${ searchResult.pagingSlaveView.curBlock > 1 }">
+									<li>
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.curPage }', '${ searchResult.pagingSlaveView.prevPage }')">
+											이전
+										</a>
+									</li>
+								</c:if>
+								<c:forEach var="pagingSlaveView" 
+									begin="${ searchResult.pagingSlaveView.blockBegin }" 
+									end="${ searchResult.pagingSlaveView.blockEnd }">
+									<c:choose>
+										<c:when test="${ pagingSlaveView == searchResult.pagingSlaveView.curPage }">
+											<li class = "active">
+												<span style = "color:white;">
+													${ pagingSlaveView }
+												</span>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li>
+												<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.curPage }', '${ pagingSlaveView }')">${ pagingSlaveView }</a>
+											</li>
+										</c:otherwise>
+									</c:choose>								
+								</c:forEach>
+								<c:if test="${ searchResult.pagingSlaveView.curBlock <= searchResult.pagingSlaveView.totBlock }">
+									<li>
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.curPage }', '${ searchResult.pagingSlaveView.nextPage }')">
+											다음
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${ searchResult.pagingSlaveView.curBlock <= searchResult.pagingSlaveView.totBlock }">
+									<li>
+										<a onClick = "pageCount('${ searchResult.searchKeyword }', '${ searchResult.pagingMasterView.curPage }', '${ searchResult.pagingSlaveView.totPage }')">
+											끝
+										</a>
+									</li>
+								</c:if>							
+							</ul>
+						</td>
+					</tr>
+				</table>
+			</td>						
+		</tr>					
 	</table>
 </div>
 

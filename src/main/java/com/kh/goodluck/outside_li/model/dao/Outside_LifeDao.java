@@ -10,7 +10,7 @@ import com.kh.goodluck.outside_li.model.vo.Outside_Life;
 
 @Repository("outside_LifeDao")
 public class Outside_LifeDao {
-
+ 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	

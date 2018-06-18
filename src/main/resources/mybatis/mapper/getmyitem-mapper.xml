@@ -62,7 +62,7 @@ update my_item set MYITEM_STATUS = 2 where MYITEM_NO = #{useritempk}
 
 
 <select id="GetMyItem2" parameterType="GetMyItem" resultMap="GetmyitemResult">
-select * from my_item m,itemlist i where m.member_id = 'user02' and  m.myitem_status = 1 and 
+select * from my_item m,itemlist i where m.member_id = #{MEMBER_ID} and  m.myitem_status = 1 and 
 m.itemlist_no=i.itemlist_no and i.ITEMtype=2 and myitem_no != #{MYITEM_NO}
 </select>
 

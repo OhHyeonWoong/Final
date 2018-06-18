@@ -11,7 +11,7 @@ import com.kh.goodluck.outside_li.model.vo.Outside_Life;
 
 @Service
 public class Outside_LifeService {
-	
+	 
 	@Autowired
 	private Outside_LifeDao outside_LifeDao;
 	

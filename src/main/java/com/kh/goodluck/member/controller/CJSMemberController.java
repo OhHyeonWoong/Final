@@ -33,9 +33,6 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
-/*import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;*/
-//import com.sun.deploy.net.HttpRequest;
-import com.sun.xml.internal.ws.addressing.v200408.MemberSubmissionWsaServerTube;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -102,10 +99,6 @@ public class CJSMemberController {
 		 model.addAttribute("loginUser", member);
 		 out.flush();
 		 out.close();
-	    
-	    
-	    
-	
 	}else {
 		 member.setMember_id("guest");
 	     member.setMember_name("(카카오로그인)"+request.getParameter("name"));

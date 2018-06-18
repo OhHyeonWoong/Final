@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
@@ -116,7 +117,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
-		// TODO Auto-generated method stub
+		// 
 		return memberDao.searchmemberInfobyBoardNo1(pk);
 	}
 
@@ -136,5 +137,46 @@ public class MemberServiceImpl implements MemberService{
 	public int updatekakaoinfo(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
 		return memberDao.updatekakaoinfo(map);
+	}
+
+	
+	@Override//신규 아이템 등록
+	public int insertNewItem(ITEMLIST item) {
+		return memberDao.insertItem(item);
+	}
+
+	@Override
+	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.searchAPPLICANTInfobyBoardNo(pk);
+	}
+
+	@Override
+	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
+		// TODO Auto-generated method stub
+		return memberDao.searchRESERVATIONInfobyBoardNo(pk);
+	}
+
+	@Override
+	public void updateaccessToken(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		memberDao.updateaccessToken(map);
+	}
+	
+	@Override
+	public int scoreInput(Member member) {
+		return memberDao.insertScore(member);
+	}
+	@Override
+	public int paycash(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.paycash(map2);
+	}
+
+	@Override
+	public int insertpaylog(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.insertpaylog(map2);
 	}
 }	
