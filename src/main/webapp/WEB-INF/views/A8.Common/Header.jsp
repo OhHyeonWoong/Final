@@ -394,17 +394,17 @@
 								<div style="margin-left:10px; margin-right:10px;">
 									<table style="width:100%; height:100%;">
 										<tr>
-											<td> ${ loginUser.member_name } 님 </td>
-											<td>									
-												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">MyPage</button>
+											<td align="center"> ${ loginUser.member_name } 님 </td>
+											<td align="right">									
+												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
 											</td>									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
-											<td colspan="2">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</td>
+											<td colspan="2"><hr></td>
 										</tr>
 										<tr>
-											<td>내 마일리지 : ${loginUser.member_cash}</td>
-											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash">충전</button></td>
+											<td align="center">내 마일리지 : <font style="color:red;">${loginUser.member_cash}</font></td>
+											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash" style="width:90px;">충전</button></td>
 										</tr>
 									</table>
 								</div>
