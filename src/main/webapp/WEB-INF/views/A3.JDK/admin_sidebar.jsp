@@ -27,10 +27,6 @@
             <i class="fa fa-bar-chart-o"></i> 아이템 관리 <i class="fa fa-chevron-left pull-right" id="arow2"></i> </a>
           </li>
           <li class="panel">
-            <a id="panel3" href="javascript:;" data-toggle="collapse" data-target="#calendar"> 
-            <i class="fa fa-calendar"></i> 메인 페이지 관리 <i class="fa fa-chevron-left pull-right" id="arow3"></i> </a>
-          </li>
-          <li class="panel">
             <a id="panel4" href="javascript:;" data-toggle="collapse" data-target="#clipboard"> 
             <i class="fa fa-clipboard"></i> 신고 문의 처리 <i class="fa fa fa-chevron-left pull-right" id="arow4"></i> </a>
           </li>
@@ -46,15 +42,6 @@
           <li class="panel">
             <a id="panel7" href="javascript:;" data-toggle="collapse" data-target="#cogs"> 
             <i class="fa fa-cogs"></i> 채팅 기록 조회 <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel8" href="javascript:;" data-toggle="collapse" data-target="#paper">
-             <i class="fa fa-paper-plane"></i> N/A <i class="fa fa fa-chevron-left pull-right" id="arow8"></i> </a>
-          </li>
-          <li class="panel">
-            <a id="panel9" href="javascript:;" data-toggle="collapse" data-target="#trash">
-             <i class="fa fa-trash"></i> N/A <i class="fa fa fa-chevron-left pull-right" id="arow9"></i>
-            </a>
           </li>
         </ul>
       </div>

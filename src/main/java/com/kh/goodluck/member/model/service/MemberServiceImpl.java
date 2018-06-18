@@ -140,12 +140,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	
-	@Override
+	@Override//신규 아이템 등록
 	public int insertNewItem(ITEMLIST item) {
 		return memberDao.insertItem(item);
 	}
-	
-
 
 	@Override
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
@@ -164,5 +162,21 @@ public class MemberServiceImpl implements MemberService{
 	public void updateaccessToken(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
 		memberDao.updateaccessToken(map);
+	}
+	
+	@Override
+	public int scoreInput(Member member) {
+		return memberDao.insertScore(member);
+	}
+	@Override
+	public int paycash(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.paycash(map2);
+	}
+
+	@Override
+	public int insertpaylog(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.insertpaylog(map2);
 	}
 }	

@@ -281,6 +281,14 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.SCOREupdatetype1(map2);
 	}
-
+	
+	//LBJ 관리자 게시글 관리 용 메소드 2개
+	public int selectBoardListCount() {
+		return boardDao.selectBoardListCount();
+	}
+	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectBoardList(map);
+	}
+	/////////////////////////////
 
 }

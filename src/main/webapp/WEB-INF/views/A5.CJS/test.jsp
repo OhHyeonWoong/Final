@@ -315,6 +315,7 @@ $(function(){
 
 function reflash(){
 	var id = "${loginUser.member_id}";
+	console.log("${loginUser.member_id}");
 	$.ajax({
 		url:"cjsgetmyitem.go",
 		type:"post",

@@ -100,17 +100,25 @@ function sample4_execDaumPostcode() {
 //2. 비밀번호 정규식 : 6~16자리 영문/숫자/특수문자 포함
 var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 ///////////////////////////////////////////////////////	
+	function fnAllCheck(){
+		alert("제발 좀");
+		if($('input[type="checkbox"][name="chk1"]').prop('checked')){
+			$('input[type="checkbox"][name="chk1"]').prop('checked',true);
+		}else{
+			$('input[type="checkbox"][name="chk1"]').prop('checked',false);
+		}
+	}
 	$(function(){
 			//alert("되니?");
-			$('#allCheckBox').on('click',function(){
+			/* $('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
+				alert("제발 좀");
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
-					$('input[type="checkbox"][name="chk1"]').attr('checked',false);
+					$('input[type="checkbox"][name="chk1"]').prop('checked',true);
 				}else{
-					$('input[type="checkbox"][name="chk1"]').attr('checked',true);
+					$('input[type="checkbox"][name="chk1"]').prop('checked',false);
 				}
-			});
-			
+			}); */
 			//파일 확장자 검사하는 부분
 			
 			$("#InputProfile").change(function(){
@@ -183,7 +191,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					/* $('#lbjQnaTable').removeClass("table table-striped lbjtable");
 					$('#lbjQnaTable').addClass("table table-striped lbjtable"); */
 					
-					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox" value="">전체선택</td>'+
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjQnaTable"><tr><td class="lbjth"><input type="checkbox" id="allCheckBox" onclick="fnAllCheck();">전체선택</td>'+
 				'<td class="lbjth" colspan="3" style="text-align:left;"><a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>'+
 				'<td class="lbjth" style="text-align:right;"><a class="btn btn-info btn-xs" href="lbjqnawrite.go"><span class="glyphicon glyphicon-edit"></span>1:1 상담하기 > </a></td>'+
 				'</tr><tr><th class="lbjth">선택</th><th class="lbjth">분야</th>'+
@@ -1140,7 +1148,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 				<table class="table table-striped lbjtable" id="lbjQnaTable">
 					<tr>
 						<td class="lbjth">
-							<input type="checkbox" id="allCheckBox" value="">전체선택
+							<input type="checkbox" id="allCheckBox" onclick="fnAllCheck();">전체선택
 						</td>
 						<td class="lbjth" colspan="3" style="text-align:left;">
 							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>

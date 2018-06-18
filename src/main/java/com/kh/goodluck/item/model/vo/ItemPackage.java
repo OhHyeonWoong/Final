@@ -2,6 +2,11 @@ package com.kh.goodluck.item.model.vo;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
+
+
+@Component("itemPackage")
 public class ItemPackage implements  Serializable{
 
 	private static final long serialVersionUID =93674L;

@@ -200,7 +200,7 @@ ${Cateinfo};
                         <c:when test="${Board.agency_paytype == 1}">일급</c:when>
                         
                         </c:choose></td>
-                        <td>방식당 페이:${Board.agency_pay}원  </td>
+                        <td>최종페이 : ${Board.agency_pay}원  </td>
                         </tr>
                   
                   <tr>

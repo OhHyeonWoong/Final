@@ -49,6 +49,22 @@
 			}
 		}); */
 	}
+	
+	function fnBoardReload(page){
+		console.log("fnBoardReload(page) page = " + page);
+		location.href="lbjMoveManagingNewArticles.go?page=" + page;
+	}
+	
+	$(function(){
+		$('#allCheckBox').on('click',function(){
+			//모든 체크박스를 체크
+			if($('input[type="checkbox"][name="chk1"]').prop('checked')){
+				$('input[type="checkbox"][name="chk1"]').attr('checked',false);
+			}else{
+				$('input[type="checkbox"][name="chk1"]').attr('checked',true);
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -75,73 +91,78 @@
 					</tr>
 					<tr>
 						<th class="lbjth">선택</th>
-						<th class="lbjth">분야</th>
+						<th class="lbjth">카테고리</th>
 						<th class="lbjth">제목</th>
-						<th class="lbjth">처리상황</th>
-						<th class="lbjth">등록일시</th>
+						<th class="lbjth">글쓴이</th>
+						<th class="lbjth">작성일자</th>
 					</tr>
-					<%-- <c:forEach var="qna" items="${lbjMyQna}" varStatus="status">
+					<c:forEach items="${board}" var="board" varStatus="status">
 						<tr>
-							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value="${qna.question_no}"></td>
-							<td>${qna.question_category}</td>
-							<td><a href="lbjqnadetail.go?question_writer=${qna.question_writer}&question_no=${qna.question_no}">${qna.question_title}</a></td>
-							<td>${qna.question_answer_state}</td>
-							<td>${qna.question_date}</td>
+							<td><input type="checkbox" name="chk1" id="chkBox${status.count}" value="${board.agency_no}"></td>
+							<td>${board.category_small_name}</td>
+							<td><a href="#">${board.agency_title}</a></td>
+							<td>${board.agency_writer}</td>
+							<td>${board.agency_enrolldate}</td>
 						</tr>
-					</c:forEach> --%>
-					<!-- QnA 페이징 처리를 해봅시다. -->
-					<%-- <c:if test="${qnaPage.qnaListCount > 6}">
+					</c:forEach>
+					<%-- <tr>
+						<td colspan="5">
+							리스트카운트: ${boardPage.boardListCount},현재페이지: ${boardPage.boardCurrentPage},시작: ${boardPage.boardStartPage}
+						</td>
+					</tr> --%>
+					<!-- Board 페이징 처리를 해봅시다. -->
+					<c:if test="${boardPage.boardListCount > 15}">
 						<!-- 페이징 처리를 합니다 -->
 						<tr>
 						<td colspan="5">
 						<div style="text-align:center;">
-							<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+							<c:if test="${boardPage.boardCurrentPage <= 1}">
 								<< &nbsp;
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage >= 2}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(1); return false;"> << </a>
+							<c:if test="${boardPage.boardCurrentPage >= 2}">
+								<a href="javascript:void(0);" onclick="fnBoardReload(1); return false;"> << </a>
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+							<c:if test="${boardPage.boardCurrentPage > boardPage.boardStartPage}">
+								<a href="javascript:void(0);" onclick="fnBoardReload(${boardPage.boardCurrentPage-1}); return false;"> < </a>&nbsp;
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+							<c:if test="${boardPage.boardCurrentPage <= boardPage.boardStartPage}">
 								< &nbsp;
 							</c:if>
 							<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-							<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.qnaEndRow}" step="1">
-								<c:if test="${i eq qnaPage.qnaCurrentPage}">
+							<c:forEach var="i" begin="${boardPage.boardStartPage}" end="${boardPage.boardEndFor}" step="1">
+								<c:if test="${i eq boardPage.boardCurrentPage}">
 									<font color="red" size="4"><b>${i}</b></font>&nbsp;
 								</c:if>
-								<c:if test="${i != qnaPage.qnaCurrentPage}">
-									<a href="javascript:void(0);" onclick="fnQnaReload(${i}); return false;">${i}</a>&nbsp;
+								<c:if test="${i != boardPage.boardCurrentPage}">
+									<a href="javascript:void(0);" onclick="fnBoardReload(${i}); return false;">${i}</a>&nbsp;
 								</c:if>
 							</c:forEach>
 							
-							<c:if test="${qnaPage.qnaCurrentPage != qnaPage.qnaEndRow}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+							<c:if test="${boardPage.boardCurrentPage != boardPage.boardEndRow}">
+								<a href="javascript:void(0);" onclick="fnBoardReload(${boardPage.boardCurrentPage+1}); return false;">></a>&nbsp;
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage eq qnaPage.qnaEndRow}">
+							<c:if test="${boardPage.boardCurrentPage eq boardPage.boardEndRow}">
 								> &nbsp;
 							</c:if>
 							
-							<c:if test="${qnaPage.qnaCurrentPage >= qnaPage.qnaMaxPage}">
+							<c:if test="${boardPage.boardCurrentPage >= boardPage.boardMaxPage}">
 								>> &nbsp;
 							</c:if>
-							<c:if test="${qnaPage.qnaCurrentPage < qnaPage.qnaMaxPage}">
-								<a href="javascript:void(0);" onclick="fnQnaReload(${qnaPage.qnaMaxPage}); return false;">>></a>
+							<c:if test="${boardPage.boardCurrentPage < boardPage.boardMaxPage}">
+								<a href="javascript:void(0);" onclick="fnBoardReload(${boardPage.boardMaxPage}); return false;">>></a>
 							</c:if>
 						</div>
 						</td>
 						</tr>
 					</c:if>
-					<c:if test="${qnaPage.qnaListCount <= 6}">
+					<c:if test="${boardPage.boardListCount <= 15}">
 						<tr>
 							<td colspan="5">
 								<font color="red" size="4"><b>1</b></font>&nbsp;
 							</td>
 						</tr>
-					</c:if> --%>
-					<!-- QnA 페이징 처리 End -->
+					</c:if>
+					<!-- Board 페이징 처리 End -->
 					<!-- 페이징 처리 -->
 				</table>
 			</div>
