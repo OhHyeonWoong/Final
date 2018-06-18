@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.service.AdminService;
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
@@ -27,6 +29,9 @@ public class lbjAdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	public lbjAdminController() {
 		
@@ -318,8 +323,71 @@ public class lbjAdminController {
 	}
 	
 	@RequestMapping(value="lbjMoveManagingNewArticles.go")
-	public ModelAndView moveManagingNewArticles(ModelAndView mv) {
-		mv.setViewName("A6.LBJ/admin/admin_managingNewArticles");
+	public ModelAndView moveManagingNewArticles(ModelAndView mv,HttpServletRequest request,HttpServletResponse response,
+				HttpSession session) throws IOException{
+		if(session.getValue("loginUser") == null) {
+			System.out.println("어드민 게시글 관리 세션없어서 fail");
+			response.sendRedirect("home.go");
+			return null;
+		}else {
+			int boardCurrentPage = 1;
+			if(request.getParameter("page") != null) {
+				boardCurrentPage = Integer.parseInt(request.getParameter("page"));
+			}
+			System.out.println("boardCurrentPage = " + boardCurrentPage);
+			/*
+			 * 2. 한 페이지 당 데이터 갯수 셋팅
+			 */
+			int boardLimit = 15;
+			/*
+			 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
+			 */
+			int boardStartPage = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 1;
+			int boardStartRow = (boardCurrentPage-1)*boardLimit+1; 
+			int boardListCount = boardService.selectBoardListCount();
+			int boardMaxPage = (int)((double)boardListCount / boardLimit + 0.9);
+			int boardEndRow = boardStartRow + boardLimit - 1;
+			int boardEndFor = (((int) ((double) boardCurrentPage / boardLimit + 0.999999)) - 1) * boardLimit + 15;
+			
+			System.out.println("moveManagingNewArticles boardListcount = " + boardListCount);
+		    System.out.println("moveManagingNewArticles boardStartRow = " + boardStartRow);
+		    System.out.println("moveManagingNewArticles boardEndRow = " + boardEndRow);
+		    System.out.println("moveManagingNewArticles boardStartPage = " + boardStartPage);
+		    System.out.println("moveManagingNewArticles boardMaxPage = " + boardMaxPage);
+		    System.out.println("moveManagingNewArticles boardEndFor = " + boardEndFor);
+		    
+			if(boardEndFor > boardMaxPage) {
+				boardEndFor = boardMaxPage;
+			}
+			/*
+			 * 4. dao로 보낼 hashmap 생성
+			 */
+		    HashMap<Object,Object> map = new HashMap<Object,Object>();
+		    map.put("startRow", boardStartRow);
+		    map.put("endRow", boardEndRow);
+			ArrayList<MyPageBoard> board = (ArrayList<MyPageBoard>)boardService.selectBoardList(map);
+			
+			/*for(MyPageBoard mpb : board) {
+				System.out.println("mpb = " + mpb);
+			}*/
+			
+			if (boardMaxPage < boardEndRow)
+			  boardEndRow = boardMaxPage;
+		
+		    //페이징 처리용 해쉬맵 생성
+		    HashMap<String,Integer> boardPage = new HashMap<String,Integer>();
+		    boardPage.put("boardMaxPage", boardMaxPage);
+		    boardPage.put("boardStartPage", boardStartPage);
+		    boardPage.put("boardEndRow", boardEndRow);
+		    boardPage.put("boardCurrentPage", boardCurrentPage);
+		    boardPage.put("boardListCount", boardListCount);
+		    boardPage.put("boardEndFor", boardEndFor);
+			
+		    mv.addObject("board", board);
+		    mv.addObject("boardPage", boardPage);
+			mv.setViewName("A6.LBJ/admin/admin_managingNewArticles");
+		}
+		
 		return mv;
 	}
 }
