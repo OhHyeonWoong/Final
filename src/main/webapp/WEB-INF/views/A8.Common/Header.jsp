@@ -375,16 +375,14 @@
 <body>
 <div class = "container">
 	<div align = "right">
-		<c:if test="${empty loginUser}">
-		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
+		<c:if test="${empty loginUser}">		
 			<div class = "ohw-div-login">
 				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal" 
 				data-backdrop="static" data-keyboard="false">
 					<i class = "fa fa-sign-in"></i> LogIn
 				</button>				
 			</div>
-		</c:if>
-		
+		</c:if>		
 	
 		<c:if test="${!empty loginUser}">
 			<table>
