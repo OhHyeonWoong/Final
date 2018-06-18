@@ -404,7 +404,7 @@
 										</tr>
 										<tr>
 											<td align="center">내 마일리지 : <font style="color:red;">${loginUser.member_cash}</font></td>
-											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash" style="width:90px;">충전</button></td>
+											<td align="right"><button id=" lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash" style="width:90px;">충전</button></td>
 										</tr>
 									</table>
 								</div>
@@ -750,154 +750,154 @@
 							<li class="col-sm-3 ohw-midcategory-music ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "댄스" onClick = "MidCategoryCount(this.id)">댄스</a></li>
-									<li><a id = "CCA" onClick = "SmallCategoryCount(this.id)">현대무용</a></li>
-									<li><a id = "CCB" onClick = "SmallCategoryCount(this.id)">고전무용</a></li>
-									<li><a id = "CCC" onClick = "SmallCategoryCount(this.id)">한국무용</a></li>
-									<li><a id = "CCD" onClick = "SmallCategoryCount(this.id)">발레</a></li>
-									<li><a id = "CCE" onClick = "SmallCategoryCount(this.id)">방송댄스</a></li>
-									<li><a id = "CCF" onClick = "SmallCategoryCount(this.id)">기타댄스</a></li>
+									<li><a id = "현대무용" onClick = "SmallCategoryCount(this.id)">현대무용</a></li>
+									<li><a id = "고전무용" onClick = "SmallCategoryCount(this.id)">고전무용</a></li>
+									<li><a id = "한국무용" onClick = "SmallCategoryCount(this.id)">한국무용</a></li>
+									<li><a id = "발레" onClick = "SmallCategoryCount(this.id)">발레</a></li>
+									<li><a id = "방송댄스" onClick = "SmallCategoryCount(this.id)">방송댄스</a></li>
+									<li><a id = "댄스-기타" onClick = "SmallCategoryCount(this.id)">기타댄스</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "작곡" onClick = "MidCategoryCount(this.id)">작곡</a></li>
-									<li><a id = "CDA" onClick = "SmallCategoryCount(this.id)">발라드</a></li>
-									<li><a id = "CDB" onClick = "SmallCategoryCount(this.id)">RnB</a></li>
-									<li><a id = "CDC" onClick = "SmallCategoryCount(this.id)">댄스가요</a></li>
-									<li><a id = "CDD" onClick = "SmallCategoryCount(this.id)">트로트</a></li>
-									<li><a id = "CDE" onClick = "SmallCategoryCount(this.id)">ROCK</a></li>
-									<li><a id = "CDF" onClick = "SmallCategoryCount(this.id)">HipHop</a></li>
-									<li><a id = "CDG" onClick = "SmallCategoryCount(this.id)">기타작곡</a></li>
+									<li><a id = "작곡-발라드" onClick = "SmallCategoryCount(this.id)">발라드</a></li>
+									<li><a id = "작곡-RnB" onClick = "SmallCategoryCount(this.id)">RnB</a></li>
+									<li><a id = "작곡-댄스가요" onClick = "SmallCategoryCount(this.id)">댄스가요</a></li>
+									<li><a id = "작곡-트로트" onClick = "SmallCategoryCount(this.id)">트로트</a></li>
+									<li><a id = "작곡-록" onClick = "SmallCategoryCount(this.id)">ROCK</a></li>
+									<li><a id = "작곡-힙합" onClick = "SmallCategoryCount(this.id)">HipHop</a></li>
+									<li><a id = "작곡-기타" onClick = "SmallCategoryCount(this.id)">기타작곡</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-game ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "PC" onClick = "MidCategoryCount(this.id)">PC</a></li>
-									<li><a id = "DAA" onClick = "SmallCategoryCount(this.id)">액션</a></li>
-									<li><a id = "DAB" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
-									<li><a id = "DAC" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
-									<li><a id = "DAD" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
-									<li><a id = "DAE" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
-									<li><a id = "DAF" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
-									<li><a id = "DAG" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
-									<li><a id = "DAH" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
-									<li><a id = "DAI" onClick = "SmallCategoryCount(this.id)">기타 PC 게임</a></li>
+									<li><a id = "PC-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
+									<li><a id = "PC-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
+									<li><a id = "PC-FPS" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
+									<li><a id = "PC-AOS" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
+									<li><a id = "PC-아케이드" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
+									<li><a id = "PC-레이싱" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
+									<li><a id = "PC-스포츠" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
+									<li><a id = "PC-시뮬레이션" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
+									<li><a id = "PC-기타" onClick = "SmallCategoryCount(this.id)">기타 PC 게임</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "콘솔" onClick = "MidCategoryCount(this.id)">콘솔</a></li>
-									<li><a id = "DBA" onClick = "SmallCategoryCount(this.id)">액션</a></li>
-									<li><a id = "DBB" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
-									<li><a id = "DBC" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
-									<li><a id = "DBD" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
-									<li><a id = "DBE" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
-									<li><a id = "DBF" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
-									<li><a id = "DBG" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
-									<li><a id = "DBH" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
-									<li><a id = "DBI" onClick = "SmallCategoryCount(this.id)">기타 콘솔 게임</a></li>
+									<li><a id = "콘솔-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
+									<li><a id = "콘솔-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
+									<li><a id = "콘솔-FPS" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
+									<li><a id = "콘솔-AOS" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
+									<li><a id = "콘솔-아케이드" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
+									<li><a id = "콘솔-레이싱" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
+									<li><a id = "콘솔-스포츠" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
+									<li><a id = "콘솔-시뮬레이션" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
+									<li><a id = "콘솔-기타" onClick = "SmallCategoryCount(this.id)">기타 콘솔 게임</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-game ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "모바일" onClick = "MidCategoryCount(this.id)">모바일</a></li>									
-									<li><a id = "DCA" onClick = "SmallCategoryCount(this.id)">액션</a></li>
-									<li><a id = "DCB" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
-									<li><a id = "DCC" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
-									<li><a id = "DCD" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
-									<li><a id = "DCE" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
-									<li><a id = "DCF" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
-									<li><a id = "DCG" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
-									<li><a id = "DCH" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
-									<li><a id = "DCI" onClick = "SmallCategoryCount(this.id)">기타 모바일 게임</a></li>
+									<li><a id = "모바일-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
+									<li><a id = "모바일-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
+									<li><a id = "모바일-FPS" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
+									<li><a id = "모바일-AOS" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
+									<li><a id = "모바일-아케이드" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
+									<li><a id = "모바일-레이싱" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
+									<li><a id = "모바일-스포츠" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
+									<li><a id = "모바일-시뮬레이션" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
+									<li><a id = "모바일-기타" onClick = "SmallCategoryCount(this.id)">기타 모바일 게임</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "게임기타" onClick = "MidCategoryCount(this.id)">그 외 게임</a></li>
-									<li><a id = "DDA" onClick = "SmallCategoryCount(this.id)">액션</a></li>
-									<li><a id = "DDB" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
-									<li><a id = "DDC" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
-									<li><a id = "DDD" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
-									<li><a id = "DDE" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
-									<li><a id = "DDF" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
-									<li><a id = "DDG" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
-									<li><a id = "DDH" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
-									<li><a id = "DDI" onClick = "SmallCategoryCount(this.id)">기타 그 외 게임</a></li>
+									<li><a id = "기타-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
+									<li><a id = "기타-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
+									<li><a id = "기타-FPS" onClick = "SmallCategoryCount(this.id)">FPS</a></li>
+									<li><a id = "기타-AOS" onClick = "SmallCategoryCount(this.id)">AOS</a></li>
+									<li><a id = "기타-아케이드" onClick = "SmallCategoryCount(this.id)">아케이드</a></li>
+									<li><a id = "기타-레이싱" onClick = "SmallCategoryCount(this.id)">레이싱</a></li>
+									<li><a id = "기타-스포츠" onClick = "SmallCategoryCount(this.id)">스포츠</a></li>
+									<li><a id = "기타-시뮬레이션" onClick = "SmallCategoryCount(this.id)">시뮬레이션</a></li>
+									<li><a id = "기타장르" onClick = "SmallCategoryCount(this.id)">기타 그 외 게임</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-rental ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "렌트" onClick = "MidCategoryCount(this.id)">렌탈</a></li>
-									<li><a id = "EAA" onClick = "SmallCategoryCount(this.id)">홈</a></li>
-									<li><a id = "EAB" onClick = "SmallCategoryCount(this.id)">생활 용품</a></li>
-									<li><a id = "EAC" onClick = "SmallCategoryCount(this.id)">스포츠 용품</a></li>									
+									<li><a id = "주거용품" onClick = "SmallCategoryCount(this.id)">주거용품</a></li>
+									<li><a id = "생활용품" onClick = "SmallCategoryCount(this.id)">생활 용품</a></li>
+									<li><a id = "스포츠용품" onClick = "SmallCategoryCount(this.id)">스포츠 용품</a></li>									
 									<li class="divider"></li>									
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-agency ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "1인" onClick = "MidCategoryCount(this.id)">1인</a></li>
-									<li><a id = "FAA" onClick = "SmallCategoryCount(this.id)">애인 대행</a></li>
-									<li><a id = "FAB" onClick = "SmallCategoryCount(this.id)">친구 대행</a></li>									
+									<li><a id = "애인대행" onClick = "SmallCategoryCount(this.id)">애인 대행</a></li>
+									<li><a id = "친구대행" onClick = "SmallCategoryCount(this.id)">친구 대행</a></li>									
 									<li class="divider"></li>
 									<li class="dropdown-header"><a  id = "다인" onClick = "MidCategoryCount(this.id)">다인</a></li>
-									<li><a id = "FBA" onClick = "SmallCategoryCount(this.id)">하객 대행</a></li>
-									<li><a id = "FBB" onClick = "SmallCategoryCount(this.id)">방청객 대행</a></li>
-									<li><a id = "FBC" onClick = "SmallCategoryCount(this.id)">엑스트라 대행</a></li>									
+									<li><a id = "하객대행" onClick = "SmallCategoryCount(this.id)">하객 대행</a></li>
+									<li><a id = "방청객대행" onClick = "SmallCategoryCount(this.id)">방청객 대행</a></li>
+									<li><a id = "덱스트라대행" onClick = "SmallCategoryCount(this.id)">엑스트라 대행</a></li>									
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "프로그래머" onClick = "MidCategoryCount(this.id)">프로그래머</a></li>
-									<li><a id = "GAA" onClick = "SmallCategoryCount(this.id)">C</a></li>
-									<li><a id = "GAB" onClick = "SmallCategoryCount(this.id)">C++</a></li>
-									<li><a id = "GAC" onClick = "SmallCategoryCount(this.id)">C#</a></li>
-									<li><a id = "GAD" onClick = "SmallCategoryCount(this.id)">Java</a></li>
-									<li><a id = "GAE" onClick = "SmallCategoryCount(this.id)">PHP</a></li>
-									<li><a id = "GAF" onClick = "SmallCategoryCount(this.id)">Node</a></li>
-									<li><a id = "GAG" onClick = "SmallCategoryCount(this.id)">기타 프로그래머</a></li>
+									<li><a id = "C" onClick = "SmallCategoryCount(this.id)">C</a></li>
+									<li><a id = "C++" onClick = "SmallCategoryCount(this.id)">C++</a></li>
+									<li><a id = "C#" onClick = "SmallCategoryCount(this.id)">C#</a></li>
+									<li><a id = "Java" onClick = "SmallCategoryCount(this.id)">Java</a></li>
+									<li><a id = "PHP" onClick = "SmallCategoryCount(this.id)">PHP</a></li>
+									<li><a id = "Node" onClick = "SmallCategoryCount(this.id)">Node</a></li>
+									<li><a id = "프로그램-기타" onClick = "SmallCategoryCount(this.id)">기타 프로그래머</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "디자이너" onClick = "MidCategoryCount(this.id)">디자이너</a></li>
-									<li><a id = "GBA" onClick = "SmallCategoryCount(this.id)">포토샵</a></li>
-									<li><a id = "GBB" onClick = "SmallCategoryCount(this.id)">일러스트레이터</a></li>
-									<li><a id = "GBC" onClick = "SmallCategoryCount(this.id)">디자인</a></li>
-									<li><a id = "GBD" onClick = "SmallCategoryCount(this.id)">기타 디자이너</a></li>
+									<li><a id = "포토샾" onClick = "SmallCategoryCount(this.id)">포토샵</a></li>
+									<li><a id = "일러스트레이터" onClick = "SmallCategoryCount(this.id)">일러스트레이터</a></li>
+									<li><a id = "디자인" onClick = "SmallCategoryCount(this.id)">디자인</a></li>
+									<li><a id = "디자이너-기타" onClick = "SmallCategoryCount(this.id)">기타 디자이너</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "작가" onClick = "MidCategoryCount(this.id)">작가</a></li>
-									<li><a id = "GCA" onClick = "SmallCategoryCount(this.id)">소설가</a></li>
-									<li><a id = "GCB" onClick = "SmallCategoryCount(this.id)">만화가</a></li>
-									<li><a id = "GCC" onClick = "SmallCategoryCount(this.id)">스토리 작가</a></li>
-									<li><a id = "GCD" onClick = "SmallCategoryCount(this.id)">방송 작가</a></li>
-									<li><a id = "GCE" onClick = "SmallCategoryCount(this.id)">각본가</a></li>
-									<li><a id = "GCF" onClick = "SmallCategoryCount(this.id)">시나리오 라이터</a></li>
+									<li><a id = "소설가" onClick = "SmallCategoryCount(this.id)">소설가</a></li>
+									<li><a id = "만화가" onClick = "SmallCategoryCount(this.id)">만화가</a></li>
+									<li><a id = "스토리작가" onClick = "SmallCategoryCount(this.id)">스토리 작가</a></li>
+									<li><a id = "방송작가" onClick = "SmallCategoryCount(this.id)">방송 작가</a></li>
+									<li><a id = "각본가" onClick = "SmallCategoryCount(this.id)">각본가</a></li>
+									<li><a id = "시나리오라이터" onClick = "SmallCategoryCount(this.id)">시나리오 라이터</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "번역" onClick = "MidCategoryCount(this.id)">번역</a></li>
-									<li><a id = "GDA" onClick = "SmallCategoryCount(this.id)">영어</a></li>
-									<li><a id = "GDB" onClick = "SmallCategoryCount(this.id)">중국어</a></li>
-									<li><a id = "GDC" onClick = "SmallCategoryCount(this.id)">일본어</a></li>
-									<li><a id = "GDD" onClick = "SmallCategoryCount(this.id)">러시아어</a></li>
-									<li><a id = "GDE" onClick = "SmallCategoryCount(this.id)">프랑스어</a></li>
-									<li><a id = "GDF" onClick = "SmallCategoryCount(this.id)">독일어</a></li>
-									<li><a id = "GDG" onClick = "SmallCategoryCount(this.id)">기타 외국어</a></li>
+									<li><a id = "영어" onClick = "SmallCategoryCount(this.id)">영어</a></li>
+									<li><a id = "중국어" onClick = "SmallCategoryCount(this.id)">중국어</a></li>
+									<li><a id = "일본어" onClick = "SmallCategoryCount(this.id)">일본어</a></li>
+									<li><a id = "러시아어" onClick = "SmallCategoryCount(this.id)">러시아어</a></li>
+									<li><a id = "프랑스어" onClick = "SmallCategoryCount(this.id)">프랑스어</a></li>
+									<li><a id = "독일어" onClick = "SmallCategoryCount(this.id)">독일어</a></li>
+									<li><a id = "외국어-기타" onClick = "SmallCategoryCount(this.id)">기타 외국어</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "강아지" onClick = "MidCategoryCount(this.id)">강아지</a></li>
-									<li><a id = "HAA" onClick = "SmallCategoryCount(this.id)">미용</a></li>
-									<li><a id = "HAB" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
-									<li><a id = "HAC" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
-									<li><a id = "HAD" onClick = "SmallCategoryCount(this.id)">진료</a></li>
+									<li><a id = "강아지-미용" onClick = "SmallCategoryCount(this.id)">미용</a></li>
+									<li><a id = "강아지-펫시터" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
+									<li><a id = "강아지-행동교정" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
+									<li><a id = "강아지-진료" onClick = "SmallCategoryCount(this.id)">진료</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "고양이" onClick = "MidCategoryCount(this.id)">고양이</a></li>
-									<li><a id = "HBA" onClick = "SmallCategoryCount(this.id)">미용</a></li>
-									<li><a id = "HBB" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
-									<li><a id = "HBC" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
-									<li><a id = "HBD" onClick = "SmallCategoryCount(this.id)">진료</a></li>
+									<li><a id = "고양이-미용" onClick = "SmallCategoryCount(this.id)">미용</a></li>
+									<li><a id = "고양이-펫시터" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
+									<li><a id = "고양이-행동교정" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
+									<li><a id = "고양이-진료" onClick = "SmallCategoryCount(this.id)">진료</a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "반려동물기타" onClick = "MidCategoryCount(this.id)">기타 동물</a></li>
-									<li><a id = "HCA" onClick = "SmallCategoryCount(this.id)">미용</a></li>
-									<li><a id = "HCB" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
-									<li><a id = "HCC" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
-									<li><a id = "HCD" onClick = "SmallCategoryCount(this.id)">진료</a></li>									
+									<li><a id = "기타동물-미용" onClick = "SmallCategoryCount(this.id)">미용</a></li>
+									<li><a id = "기타동물-펫시터" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
+									<li><a id = "기타동물-행동교정" onClick = "SmallCategoryCount(this.id)">행동 교정</a></li>
+									<li><a id = "기타동물-진료" onClick = "SmallCategoryCount(this.id)">진료</a></li>									
 								</ul>
 							</li>			
 						</ul>
@@ -914,17 +914,20 @@
 					   			var jsonStr = JSON.stringify(data);
 								var json = JSON.parse(jsonStr);
 								var bigCategory = "";
-								var menuTd = ""
-								var realTimeBar = "";							
+								var realTimeBar = "";
 								
 								for(var i in json.headerCategoryBig){				
 									bigCategory += '<td class = "ohw-menu-col-td">' + 
 														'<a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)" >' + json.headerCategoryBig[i].headerCategoryBigName + '</a>' + 
-													'</td>'
-									realTimeBar += '<li class = "ohw-menu-realtimebar-li">' + 
-														'<a id = "' + json.headerCategoryBig[i].headerCategoryBigName + '" onClick = "BigCategoryCount(this.id)">' + json.headerCategoryBig[i].headerCategoryBigName + '</a>' + 
-													'</li>'
+													'</td>'									
 								}
+								
+								for(var i in json.headerCategorySmall){				
+									realTimeBar += '<li class = "ohw-menu-realtimebar-li">' + 
+														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+													'</li>'								
+								}
+								
 								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar">' + 
 											'<div class = "ohw-menu-realtimebar-content">' + 
 												'<dl class = "ohw-menu-realtimebar-dl">' + 
@@ -939,6 +942,7 @@
 												'<i class = "fa fa-chevron-down"></i>' + 
 											'</a>' + 
 										'</td>'
+								
 								$('.ohw-menu-tr-category').append(bigCategory);
 								$('.ohw-menu-tr-category').append(menuTd);
 								$('.ohw-menu-realtimebar-ol').append(realTimeBar);
@@ -950,7 +954,7 @@
 									+ "Error : " + errorData);
 						}
 					});				
-					/* Menu Big Category End */
+					/* Menu Big Category End */					
 					
 					/* Category Click Count */					
 					function BigCategoryCount(id){
@@ -1012,7 +1016,7 @@
 									<li><a href="lbjmypage.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
-									<li><a href="lbjAdminQnaAnswer.go">뱅준</a></li>
+									<li><a href="lbjMoveManagingNewArticles.go">뱅준</a></li>
 								</ul>								
 							</td>							
 						</tr>

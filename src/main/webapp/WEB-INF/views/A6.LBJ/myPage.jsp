@@ -104,10 +104,11 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			//alert("되니?");
 			$('#allCheckBox').on('click',function(){
 				//모든 체크박스를 체크
+				alert("제발 좀");
 				if($('input[type="checkbox"][name="chk1"]').prop('checked')){
-					$('input[type="checkbox"][name="chk1"]').attr('checked',false);
+					$('input[type="checkbox"][name="chk1"]').prop('checked',true);
 				}else{
-					$('input[type="checkbox"][name="chk1"]').attr('checked',true);
+					$('input[type="checkbox"][name="chk1"]').prop('checked',false);
 				}
 			});
 			
@@ -1140,7 +1141,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 				<table class="table table-striped lbjtable" id="lbjQnaTable">
 					<tr>
 						<td class="lbjth">
-							<input type="checkbox" id="allCheckBox" value="">전체선택
+							<input type="checkbox" id="allCheckBox">전체선택
 						</td>
 						<td class="lbjth" colspan="3" style="text-align:left;">
 							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteQna(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>
