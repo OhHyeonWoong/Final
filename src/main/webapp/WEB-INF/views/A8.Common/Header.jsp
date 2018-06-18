@@ -923,15 +923,17 @@
 													'</td>'									
 								}
 								
-								for(var i in json.headerCategorySmall){				
+								for(var i in json.headerCategorySmall){
+									var num = (i * 1 + 1 * 1) * 1;
 									realTimeBar += '<li class = "ohw-menu-realtimebar-li">' + 
-														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + num * 1 + ". " + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
 													'</li>'												
 								}
 								
-								for(var i in json.headerCategorySmall){				
+								for(var i in json.headerCategorySmall){
+									var num = (i * 1 + 1 * 1) * 1;
 									realTimeBarDrop += '<li class = "ohw-menu-realtimebar-drop">' + 
-															'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+															'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + num * 1 + ". " + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
 														'</li>'												
 								}
 								

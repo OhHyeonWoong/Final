@@ -15,7 +15,7 @@
 							AGENCY_ENDDATE, AGENCY_ENROLLDATE, AGENCY_PAYTYPE, 
 							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
 							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION, 
-							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, 
+							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, SCORE_BUY_RATE, 
 							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE 
 					from AGENCY, SCORE
 					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
@@ -39,7 +39,7 @@
 							AGENCY_ENDDATE, AGENCY_ENROLLDATE, AGENCY_PAYTYPE, 
 							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
 							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION, 
-							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, 
+							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, SCORE_BUY_RATE, 
 							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE 
 					from AGENCY, SCORE
 					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
@@ -68,45 +68,6 @@
 			where agency_title like '%'||#{ agency_title }||'%' 
 			and agency_type = 2 
 		]]>
-	</select>
-	
-	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
-		insert into member 
-		values 
-		(#{userId}, 
-		#{userPwd}, 
-		#{userName}, 
-		#{gender}, 
-		#{age}, 
-		#{phone}, 
-		#{email}, 
-		#{hobby}, 
-		#{etc}, 
-		sysdate, 
-		sysdate)		
-	</insert>
-	
-	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
-		update member 
-		set userpwd = #{userPwd}, 
-		age = #{age}, 
-		phone = #{phone}, 
-		email = #{email}, 
-		hobby = #{hobby}, 
-		etc = #{etc}, 
-		lastmodified = sysdate 
-		where userid = #{userId}
-	</update>
-	
-	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
-		delete from member 
-		where userid = #{userId}
-	</delete> -->
-	
-	<select id="">
-	
-	
-	
-	</select>
+	</select>	
 
 </mapper>
