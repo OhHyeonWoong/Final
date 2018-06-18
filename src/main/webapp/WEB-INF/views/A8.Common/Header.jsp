@@ -364,16 +364,6 @@
 			fcmHtml += sumMoney;
 			$('#afterChargeMoney').html(fcmHtml);
 		})
-		
-		//병준이 추가
-		$('#lbjmypagebtn1').on('click',function(){
-			console.log('${loginUser.member_id}');
-			if('${loginUser.member_id}' == 'guest'){
-				alert("카카오톡 로그인 이용자분은 회원가입을 하고 이용해주세요.");
-			}else{
-				location.href = 'lbjmypage.go?member_id=${loginUser.member_id}';
-			}
-		});
 	});
 	
 	/////
@@ -385,42 +375,35 @@
 <body>
 <div class = "container">
 	<div align = "right">
-		<c:if test="${empty loginUser}">
-		<%-- <c:out value="${ sessionScope.loginUser }" /> --%>
+		<c:if test="${empty loginUser}">		
 			<div class = "ohw-div-login">
-				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal">
+				<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#login-modal" 
+				data-backdrop="static" data-keyboard="false">
 					<i class = "fa fa-sign-in"></i> LogIn
 				</button>				
 			</div>
-		</c:if>
-		
+		</c:if>		
 	
 		<c:if test="${!empty loginUser}">
 			<table>
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<c:if test="${loginUser.MEMBER_KAKAOIDPK != 0}">
-								${ loginUser.member_name } 님 <img alt="" src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:25px; height:25px;"> &nbsp; <b class="caret"></b> &nbsp;</a>
-							</c:if>
-							<c:if test="${ loginUser.MEMBER_KAKAOIDPK eq 0}">
-								${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
-							</c:if> 
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
 							<div class="dropdown-menu lbj-div">
 								<div style="margin-left:10px; margin-right:10px;">
 									<table style="width:100%; height:100%;">
 										<tr>
-											<td align="center" style="padding-top:8px;"> ${ loginUser.member_name } 님 </td>
+											<td align="center"> ${ loginUser.member_name } 님 </td>
 											<td align="right">									
-												<button id="lbjmypagebtn1" class="btn btn-default" style="width:90px;">MyPage</button>
-											</td><%-- onclick="fnLBJMyPageGo(${loginUser.member_id});" --%>	
+												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
+											</td>									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
 											<td colspan="2"><hr></td>
 										</tr>
 										<tr>
-											<td align="center">내 마일리지 : <font style="color: red;">${loginUser.member_cash}</font></td>
+											<td align="center">내 마일리지 : <font style="color:red;">${loginUser.member_cash}</font></td>
 											<td align="right"><button id="lbjmypagebtn2" class="btn btn-default" data-toggle="modal" data-target="#chargeCash" style="width:90px;">충전</button></td>
 										</tr>
 									</table>
@@ -451,20 +434,12 @@
 					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
 				}
 				
-			})
-			
-			
-			
-			
-			
+			})			
 		}
 		</script>
-			</td>
-		
-		</c:if>
-							
-					<td> 
-					
+			</td>		
+				</c:if>							
+					<td>					
 						<c:if test="${ loginUser.member_id ne 'guest'}">
 							<button type = "button" class = "btn btn-default" data-toggle="modal" data-target="#myitem">
 								<i class = "fa fa-address-card"></i> MyItem
@@ -517,48 +492,12 @@
 		        						<td><button id="lbjbtnKakao" onclick="fnKindOfPay(this);">카카오페이</button></td>
 		        						<!-- <td><button id="lbjbtnCredit" onclick="fnCreditMethod(this);">신용카드</button></td> -->
 		        						<td><button id="lbjbtnnobank" onclick="fnNoBankBook(this);">무통장입금</button></td>
-		        					 	</tr>
+		        					</tr>
 		        					<tr>
 		        						<td colspan="4">결제한도 &nbsp;&nbsp;&nbsp;&nbsp;월 결제한도: 500,000</td>
 		        					</tr>
 		        				</table>
-		        			</div>
-		        			<!-- <div id="lbjcreditcard-div" class="lbjspan" style="display:none; background:ivory;">
-		        				<table style="width:100%;">
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="신한">신한</td>
-		        						<td><input type="radio" name="credit" value="삼성">삼성</td>
-		        						<td><input type="radio" name="credit" value="국민">국민</td>
-		        						<td><input type="radio" name="credit" value="현대">현대</td>
-		        					</tr>
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="NH농협">NH농협</td>
-		        						<td><input type="radio" name="credit" value="BC">BC</td>
-		        						<td><input type="radio" name="credit" value="우리">우리</td>
-		        						<td><input type="radio" name="credit" value="하나">하나</td>
-		        					</tr>
-		        					<tr>
-		        						<td><input type="radio" name="credit" value="롯데">롯데</td>
-		        						<td><input type="radio" name="credit" value="씨티">씨티</td>
-		        						<td><input type="radio" name="credit" value="카카오뱅크">카카오뱅크</td>
-		        						<td><input type="radio" name="credit" value="기타">기타</td>
-		        					</tr>
-		        					<tr>
-		        						<td><label> </label></td>
-		        					</tr>
-		        					<tr>
-		        						<td colspan="2">할부기간</td>
-		        						<td colspan="2">
-		        							<select>
-		        								<option>일시불</option>
-		        								<option>1개월</option>
-		        								<option>2개월</option>
-		        								<option>3개월</option>
-		        							</select>
-		        						</td>
-		        					</tr>
-		        				</table>
-		        			</div> -->
+		        			</div>		        		
 		        			<div id="lbjNoBankBook-div" class="lbjspan" style="display:none;">
 		        				<table style="width:100%; background:ivory;">
 		        					<tr>
@@ -647,9 +586,9 @@
 		        				
 		        				function fnNoBankBook(a){
 		        					fnKindOfPay(a);
-		        					/* var z = $('#lbjNoBankBook-div');
+		        					var z = $('#lbjNoBankBook-div');
 		        					$('#lbjcreditcard-div').hide();
-		        					z.show(); */
+		        					z.show();
 		        					//z.toggle(".5");
 		        				}
 		        				
@@ -778,34 +717,34 @@
 							<li class="col-sm-3 ohw-midcategory-travel ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "국내" onClick = "MidCategoryCount(this.id)">국내</a></li>
-									<li><a id = "BAA" onClick = "SmallCategoryCount(this.id)">가이드</a></li>
-									<li><a id = "BAB" onClick = "SmallCategoryCount(this.id)">운전기사</a></li>
-									<li><a id = "BAC" onClick = "SmallCategoryCount(this.id)">플래너</a></li>									
+									<li><a id = "국내-가이드" onClick = "SmallCategoryCount(this.id)">가이드</a></li>
+									<li><a id = "국내-운전기사" onClick = "SmallCategoryCount(this.id)">운전기사</a></li>
+									<li><a id = "국내-플래너" onClick = "SmallCategoryCount(this.id)">플래너</a></li>									
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "해외" onClick = "MidCategoryCount(this.id)">해외</a></li>
-									<li><a id = "BBA" onClick = "SmallCategoryCount(this.id)">가이드</a></li>
-									<li><a id = "BBB" onClick = "SmallCategoryCount(this.id)">운전기사</a></li>
-									<li><a id = "BBC" onClick = "SmallCategoryCount(this.id)">통역</a></li>
-									<li><a id = "BBD" onClick = "SmallCategoryCount(this.id)">플래너</a></li>									
+									<li><a id = "해외-가이드" onClick = "SmallCategoryCount(this.id)">가이드</a></li>
+									<li><a id = "해외-운전기사" onClick = "SmallCategoryCount(this.id)">운전기사</a></li>
+									<li><a id = "해외-통역" onClick = "SmallCategoryCount(this.id)">통역</a></li>
+									<li><a id = "해외-플래너" onClick = "SmallCategoryCount(this.id)">플래너</a></li>									
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-music ohw-midcategory-all">
 								<ul>
 									<li class="dropdown-header"><a id = "악기" onClick = "MidCategoryCount(this.id)">악기</a></li>
-									<li><a id = "CAA" onClick = "SmallCategoryCount(this.id)">현악기</a></li>
-									<li><a id = "CAB" onClick = "SmallCategoryCount(this.id)">관악기</a></li>
-									<li><a id = "CAC" onClick = "SmallCategoryCount(this.id)">타악기</a></li>
-									<li><a id = "CAD" onClick = "SmallCategoryCount(this.id)">디제잉</a></li>
-									<li><a id = "CAE" onClick = "SmallCategoryCount(this.id)">기타 악기</a></li>
+									<li><a id = "현악기" onClick = "SmallCategoryCount(this.id)">현악기</a></li>
+									<li><a id = "관악기" onClick = "SmallCategoryCount(this.id)">관악기</a></li>
+									<li><a id = "타악기" onClick = "SmallCategoryCount(this.id)">타악기</a></li>
+									<li><a id = "디제잉" onClick = "SmallCategoryCount(this.id)">디제잉</a></li>
+									<li><a id = "악기-기타" onClick = "SmallCategoryCount(this.id)">기타 악기</a></li>
 									<li class="divider"></li>
 									<li class="dropdown-header"><a id = "보컬" onClick = "MidCategoryCount(this.id)">보컬</a></li>
-									<li><a id = "CBA" onClick = "SmallCategoryCount(this.id)">오페라</a></li>
-									<li><a id = "CBB" onClick = "SmallCategoryCount(this.id)">뮤지컬</a></li>
-									<li><a id = "CBC" onClick = "SmallCategoryCount(this.id)">판소리</a></li>
-									<li><a id = "CBD" onClick = "SmallCategoryCount(this.id)">ROCK</a></li>
-									<li><a id = "CBE" onClick = "SmallCategoryCount(this.id)">RnB</a></li>
-									<li><a id = "CBF" onClick = "SmallCategoryCount(this.id)">HipHop</a></li>
-									<li><a id = "CBG" onClick = "SmallCategoryCount(this.id)">기타 보컬 </a></li>
+									<li><a id = "보컬-오페라" onClick = "SmallCategoryCount(this.id)">오페라</a></li>
+									<li><a id = "보컬-뮤지컬" onClick = "SmallCategoryCount(this.id)">뮤지컬</a></li>
+									<li><a id = "보컬-판소리" onClick = "SmallCategoryCount(this.id)">판소리</a></li>
+									<li><a id = "보컬-ROCK" onClick = "SmallCategoryCount(this.id)">ROCK</a></li>
+									<li><a id = "보컬-RnB" onClick = "SmallCategoryCount(this.id)">RnB</a></li>
+									<li><a id = "보컬-힙합" onClick = "SmallCategoryCount(this.id)">HipHop</a></li>
+									<li><a id = "보컬-기타" onClick = "SmallCategoryCount(this.id)">기타 보컬 </a></li>
 								</ul>
 							</li>			
 							<li class="col-sm-3 ohw-midcategory-music ohw-midcategory-all">

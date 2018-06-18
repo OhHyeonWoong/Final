@@ -57,11 +57,11 @@ public class CJS_BoardController {
 		//보드상세설명으로 가는 명령어.
 		//1:해당 보드 조회수+1
 		
-		if(session.getValue("loginUser") == null) {
+		/*if(session.getValue("loginUser") == null) {
 			//맴버 아이디에 아이콘을 같이 가져가기.
 		mv.setViewName("A5.CJS/login2");
 		return mv;	
-		}else{
+		}else{*/
 			
 			
 				int result=boardservice.IncreaseViewCount(pk);
@@ -90,7 +90,7 @@ public class CJS_BoardController {
 				mv.addObject("Board",bo);
 				mv.setViewName("A5.CJS/boarddetail");
 				return mv;	
-			}
+			//}
 	  }		
 
 	
