@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.item.model.vo.ITEMLIST;
+import com.kh.goodluck.item.model.vo.ItemPackage;
+import com.kh.goodluck.item.model.vo.RandomBox_all;
+import com.kh.goodluck.item.model.vo.RandomBox_emo;
+import com.kh.goodluck.item.model.vo.RandomBox_time;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
@@ -19,5 +24,14 @@ public interface AdminService {
 	public abstract QNA selectAdminQnaDetail(int question_no);
 	public abstract int insertAdminQnaWrite(QnaAnswer qa);
 	public abstract int updateQuestion(int question_no);
-	
+	public abstract List<ITEMLIST> allItemList();
+	public abstract List<ItemPackage> packageItemList();
+	public abstract List<RandomBox_all> randomBoxAllList();
+	public abstract List<RandomBox_emo> randomBoxEmoList();
+	public abstract List<RandomBox_time> randomBoxTimeList();
+	public abstract Boolean checkItemExistence(int indiItem);
+	public abstract int extractPackageItem(ItemPackage itemPackage);
+	public abstract int addExessNum(RandomBox_all randomBox_all);
+	public abstract int addExessNumEmo(RandomBox_emo randomBox_emo);
+	public abstract int addExessNumTime(RandomBox_time randomBox_time);
 }

@@ -29,6 +29,8 @@ public interface MemberService {
 	public abstract Memberandscore searchAPPLICANTInfobyBoardNo(int pk);
 	public abstract Memberandscore searchRESERVATIONInfobyBoardNo(int pk);
 	public abstract void updateaccessToken(HashMap<Object, Object> map);
+	public abstract int paycash(HashMap<Object, Object> map2);
+	public abstract int insertpaylog(HashMap<Object, Object> map2);
 	//지석님 서비스 끝
 	
 	public abstract int updateMemberInfo(Member m);
@@ -40,6 +42,9 @@ public interface MemberService {
 	public abstract int insertLoginStatistics(String member_id);
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
 	public abstract int insertNewItem(ITEMLIST item);
+	public abstract int scoreInput(Member member);
+
+
 
 
 }
