@@ -14,6 +14,7 @@
 		            <div class="panel panel-info" align="left">
 		                <div class="panel-heading" align="center">
 		                    <h3 class="panel-title"> 욱재 작업리스트</h3>
+							<input type="hidden" class="usermember_id" value="${loginUser.member_id}">
 		                </div>
 		                <ul class="list-group">
 		                    <a href="DealingState.go" class="list-group-item">작업 1 : 거래신청 후 대기화면</a>
@@ -25,13 +26,11 @@
 		                    <a href="Notice.go" class="list-group-item"> 작업7 : 공지사항 전체리스트로이동 </a>
 		                    <a href="petnewslist.go" class="list-group-item"> 작업8 : 펫News 꺼내오기 </a>
 		                    <a href="adminViewManagement.go" class="list-group-item"> 작업9 : 뷰쪽을 담당하는 관리자구축 </a>
-		                    <a href="ukjaeServiceForm.go" class="list-group-item"> 작업10 : 서비스 제공해요 글을 올리는 글쓰기페이지이동 </a>
-		                    <a href="Chatting.go" class="list-group-item"> - </a>
+		                    <a href="adminViewManagement_life.go" class="list-group-item"> 작업10 : 뷰쪽을 담당하는 관리자구축2 </a>
+		                    <a href="ukjaeServiceForm.go?memberid=${loginUser.member_id}" class="list-group-item"> 작업11 : 서비스 제공해요 글을 올리는 글쓰기페이지이동 </a>
 		                </ul>
 		                
-		                <Table border="1" id="jsontest1">
-		                	<Tr><Td>글번호</Td><Td>제목</Td><Td>작성자</Td><Td>작성일</Td></Tr>
-		                </Table>
+
 		            </div>
 		        </div>
 		    </div>

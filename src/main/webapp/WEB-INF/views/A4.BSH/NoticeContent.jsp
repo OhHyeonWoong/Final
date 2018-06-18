@@ -19,7 +19,6 @@
 	    height: 50px;
 	}
 	
-	.ukjae_table tr:nth-child(even) {background-color: #f2f2f2;}
 	.abs, #abs {
 		color:white;
 		text-align: center;
@@ -68,7 +67,7 @@
 				var jstr = JSON.stringify(data);
 				var json = JSON.parse(jstr);				
 				$('.ukjae_table').empty();				
-				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th>번호</th>'+
+				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th></th>'+
 				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';				
 				for(var i in json.oneone_list){
 					htmlStr += '<tr><td>'+json.oneone_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.oneone_list[i].notice_no+'">'+json.oneone_list[i].notice_title+'</td><td>'+json.oneone_list[i].notice_writer+'</td><td>'+json.oneone_list[i].notice_date+'</td></tr>';
@@ -90,7 +89,7 @@
 				var jstr = JSON.stringify(data);
 				var json = JSON.parse(jstr);
 				$('.ukjae_table').empty();				
-				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th>번호</th>'+
+				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th></th>'+
 				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';
 				for(var i in json.twotwo_list){
 					htmlStr += '<tr><td>'+json.twotwo_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.twotwo_list[i].notice_no+'">'+json.twotwo_list[i].notice_title+'</td><td>'+json.twotwo_list[i].notice_writer+'</td><td>'+json.twotwo_list[i].notice_date+'</td></tr>';
@@ -198,7 +197,7 @@
 			<table class="ukjae_table">
 					<thead style="border: 1px solid #d6d6d6;">
 						<tr>
-							<th>번호</th>
+							<th></th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일자</th>
@@ -206,7 +205,7 @@
 					</thead>	
 								
 						<c:forEach var="noticeall" items="${basiclist}">
-						<tr>
+						<tr style="border:1px solid #dfdfdf;">
 							<td> ${ noticeall.notice_no } </td>
 			 				<td> <a href="ndetail.go?notice_checkno=${ noticeall.notice_no }">${ noticeall.notice_title }</a></td>
 			 				<td> ${ noticeall.notice_writer } </td>

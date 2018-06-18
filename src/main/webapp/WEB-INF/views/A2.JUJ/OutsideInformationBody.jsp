@@ -235,12 +235,52 @@
 		                <div class="exp">출처 : ${selectNews.osp_news_origin} <!-- 출처 --> </div>
 		              </div>
 		            </div>
+     
+		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
+		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>
+		        	<br>
+		    		<table id="DatGulwrite" style="padding: 0;">
+		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><TextArea cols="80" rows="2"></TextArea></td>
+		    			<td style="padding: 10px;"><input type="button" value="등록"></td></tr>
+		    		</table>
+		    		
+		    		<hr style="clear: both;">
+		    		<table class="DatGulOriginTabel">
+		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
+		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
+						<tr><td style="height: 8px;"></td></tr>
+
+		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
+		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
+						<tr><td style="height: 8px;"></td></tr>
+
+		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
+		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
+						<tr><td style="height: 8px;"></td></tr>
+
+		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
+		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
+						<tr><td style="height: 8px;"></td></tr>
+		    		</table>
+		        </div>    
+		            
 		    	</div>
+
+		    	<script type="text/javascript">
+		    		$(function(){
+		    			$("#showDatGul").on("click",function(){
+		    				$("#DatGulwrite").show();	
+		    			});
+		    		});
+		    	</script>
+		    	
+		    	
 		    </div>
 		    
 		    <br>
 		    <p class="text-center" style="margin-bottom: 0;"><a href="#" class="btn btn-default"> TOP <i class="fa fa-chevron-up"></i></a> &nbsp;&nbsp;  <a href="news_total.go" class="btn btn-default"> 뉴스전체 <i class="fa fa-chevron-up"></i></a></p>
-		
+		</div>
+		</div>
 			
 	</body>
 </html>

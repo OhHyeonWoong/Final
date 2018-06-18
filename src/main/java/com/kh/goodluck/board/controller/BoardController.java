@@ -62,7 +62,7 @@ public class BoardController {
 		ArrayList<String> strlist = new ArrayList<String>();
 		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
 		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
-		
+		 
 		
 		for(BigCategory b:bigcategorylist) {
 			if(b.getCategory_big_name().equals(link2name)) {

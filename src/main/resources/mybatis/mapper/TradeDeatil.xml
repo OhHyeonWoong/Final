@@ -37,5 +37,10 @@ TRADE_RESERVATION = null ,
 TRADE_RESERVATION_DATE = null where AGENCY_NO=#{pk} 
 </update>
 
+<insert id="RegistTradeInfo" parameterType="Board" flushCache="true">
+<![CDATA[insert into trade_detail values((select max(trade_no)+1 from trade_detail),#{agency_no},null,null,null,null)]]>
+</insert>
+
+
 
 </mapper>

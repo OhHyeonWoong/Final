@@ -305,6 +305,38 @@ public class BoardDao {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출
 		return sqlSession.selectList("mainPageShowRequireListPic");
 	}
+	
+	public int checkBoardNo(Board inputBoard) {
+		//등록된 게시글의 PK를 가져오는 메소드
+		return sqlSession.selectOne("ukjaepickupBoard", inputBoard);
+	}
+	
+	public Board ukjaegetServiceWriting(int agency_no) {
+		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
+		return sqlSession.selectOne("Alter_Before_Agecnycheck", agency_no);
+	}
+
+	public CategoryLink2 pickupSmallCategory(String smallcategory) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("ukjae_pic_link2_no", smallcategory);
+	}
+
+	public int serviceSupplyRegist(Board board) {
+		//제공해요 새로운 글 등록하는 메소드 
+		return sqlSession.insert("newServiceRegist", board);
+	}
+
+	public int registTrade(Board inputBoard) {
+		//TradeDeatil에 현재상황을 등록하기 
+		return sqlSession.insert("RegistTradeInfo", inputBoard);
+	}
+
+
+
+
+
+
+
 
 
 	//made by lbj
@@ -355,13 +387,13 @@ public class BoardDao {
 	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
 		return sqlSession.selectList("selectKeywordBoardList", map);
 	}
-	////////////////////////////
 
 
-
+////
 	public List<ReviewForBoard> getreviewforboard(String agency_writer) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getreviewforboard", agency_writer);
 	}
+
 
 }

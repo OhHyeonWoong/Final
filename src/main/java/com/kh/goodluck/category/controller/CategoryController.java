@@ -92,4 +92,8 @@ public class CategoryController {
 		
 		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(smallCategoryCode, "UTF-8"));
 	}
+	
+	
+	
+	
 }
