@@ -163,4 +163,9 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		memberDao.updateaccessToken(map);
 	}
+	
+	@Override
+	public int scoreInput(Member member) {
+		return memberDao.insertScore(member);
+	}
 }	

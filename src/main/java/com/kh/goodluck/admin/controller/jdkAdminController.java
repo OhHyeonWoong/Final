@@ -66,14 +66,61 @@ public class jdkAdminController {
 		//랜덤박스 time 리스트
 		List<RandomBox_time> randomTimeList = adminService.randomBoxTimeList();
 				
+		for(int i=0; i<packageList.size(); i++){
+			String[] itemCheck = packageList.get(i).getITEMLIST_NO().split(",");
+			for(int j=0; j<itemCheck.length; j++) {
+				int indiItem =Integer.parseInt(itemCheck[j]);
+				Boolean itemexist = adminService.checkItemExistence(indiItem);
+				if(itemexist == false) {
+				packageList.get(i).setITEMLIST_NO(packageList.get(i).getITEMLIST_NO().replace(itemCheck[j]+",",""));
+				adminService.extractPackageItem(packageList.get(i));//갱신 시켜 줌
+				}
+			}
+		}
+		//패키지는 무결성 확보한 상태에서 넘어감
+
+		//랜덤박스 1 무결성
+		double itemNumForAll = 0;
+		for(int i=0; i<randomAllList.size(); i++){
+			itemNumForAll += randomAllList.get(i).getChance();
+		}
+		if(itemNumForAll != 1) {
+			double addingNumbers = (1-itemNumForAll)/randomAllList.size();//남은 항목 값에 할당 되어야 하는 값.
+			for(int i=0; i<randomAllList.size(); i++){
+			randomAllList.get(i).setChance(randomAllList.get(i).getChance()+addingNumbers);
+			adminService.addExessNum(randomAllList.get(i));
+			}
+		}
+		//랜덤박스 2 무결성
+		double itemNumForEmo = 0;
+		for(int i=0; i<randomEmoList.size(); i++){
+			itemNumForAll += randomEmoList.get(i).getChance();
+		}
+		if(itemNumForEmo != 1) {
+			double addingNumbers = (1-itemNumForEmo)/randomEmoList.size();//남은 항목 값에 할당 되어야 하는 값.
+			for(int i=0; i<randomEmoList.size(); i++){
+			randomEmoList.get(i).setChance(randomEmoList.get(i).getChance()+addingNumbers);
+			adminService.addExessNumEmo(randomEmoList.get(i));
+			}
+		}
+		//랜검박스 3 무결성
+		double itemNumForTime = 0;
+		for(int i=0; i<randomTimeList.size(); i++){
+			itemNumForTime += randomTimeList.get(i).getChance();
+		}
+		if(itemNumForEmo != 1) {
+			double addingNumbers = (1-itemNumForTime)/randomTimeList.size();//남은 항목 값에 할당 되어야 하는 값.
+			for(int i=0; i<randomTimeList.size(); i++){
+			randomAllList.get(i).setChance(randomTimeList.get(i).getChance()+addingNumbers);
+			adminService.addExessNumTime(randomTimeList.get(i));
+			}
+		}
 		
-		//랜덤박스 2 리스트
-		//랜덤박스 3 리스트
-		
-		
-		
-		
-		
+		mv.addObject("alli",allitemlist);
+		mv.addObject("pack",packageList);
+		mv.addObject("randomall",randomAllList);
+		mv.addObject("randomemo",randomEmoList);
+		mv.addObject("randomtime",randomTimeList);
 		
 		return null;
 	}

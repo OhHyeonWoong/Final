@@ -37,19 +37,15 @@ public class AdminDao {
 	public int selectAdminQnaIngCount() {
 		return sqlSession.selectOne("selectAdminQnaIngCount");
 	}
-
 	public int selectAdminQnaEndCount() {
 		return sqlSession.selectOne("selectAdminQnaEndCount");
 	}
-
 	public QNA selectAdminQnaDetail(int question_no) {
 		return sqlSession.selectOne("selectAdminQnaDetail", question_no);
 	}
-
 	public int insertAdminQnaWrite(QnaAnswer qa) {
 		return sqlSession.insert("insertAdminQnaWrite", qa);
 	}
-
 	public int updateQuestion(int question_no) {
 		return sqlSession.update("updateQuestion", question_no);
 	}
@@ -72,5 +68,24 @@ public class AdminDao {
 	
 	public List<RandomBox_time> listOfRandomTime() {
 		return sqlSession.selectList("ad_selectRandomTimeList");
+	}
+
+	public Boolean checkItem(int indiItem) {
+		Boolean result = sqlSession.selectOne("ad_checkPackageItem",indiItem);
+		return result;
+	}
+	public int verifyPackage(ItemPackage itemPackage) {
+		return sqlSession.update("ad_updatePackage",itemPackage);
+	}
+	public int addAllReset(RandomBox_all randomBox_all) {
+		return sqlSession.update("ad_updateRandomAllChance",randomBox_all);
+	}
+
+	public int addEmoReset(RandomBox_emo randomBox_emo) {
+		return sqlSession.update("ad_updateRandomEmoChance",randomBox_emo);
+	}
+
+	public int addTimeReset(RandomBox_time randomBox_time) {
+		return sqlSession.update("ad_updateRandomTimeChance",randomBox_time);
 	}
 }

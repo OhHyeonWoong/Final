@@ -29,4 +29,9 @@ public interface AdminService {
 	public abstract List<RandomBox_all> randomBoxAllList();
 	public abstract List<RandomBox_emo> randomBoxEmoList();
 	public abstract List<RandomBox_time> randomBoxTimeList();
+	public abstract Boolean checkItemExistence(int indiItem);
+	public abstract int extractPackageItem(ItemPackage itemPackage);
+	public abstract int addExessNum(RandomBox_all randomBox_all);
+	public abstract int addExessNumEmo(RandomBox_emo randomBox_emo);
+	public abstract int addExessNumTime(RandomBox_time randomBox_time);
 }

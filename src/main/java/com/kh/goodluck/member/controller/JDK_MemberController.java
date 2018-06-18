@@ -228,7 +228,14 @@ public class JDK_MemberController {
 			member.setMember_regident_number(memberSocialNum);
 			//나머지 필요요소는 쿼리문에서 직접 작성함
 			//이제 서비스 타고 실제 회원 가입 진행
-			int enrollment=memberService.memberEnroll(member);
+			int enrollment = memberService.memberEnroll(member);
+			
+			//스코어 테이블에 대한 정보도 입력이 되어야하는데 멤버에서 외래키를 가지고 오기 때문에 이후에 작성
+			if(enrollment>0) {
+				memberService.scoreInput(member);
+			}else {
+				
+			}
 		try {
 			//회원 가입이 완료되었을 경우
 			if(enrollment==1) {

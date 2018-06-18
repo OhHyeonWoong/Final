@@ -40,6 +40,7 @@ public interface MemberService {
 	public abstract int insertLoginStatistics(String member_id);
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
 	public abstract int insertNewItem(ITEMLIST item);
+	public abstract int scoreInput(Member member);
 
 
 }

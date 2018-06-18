@@ -55,7 +55,7 @@
 	            <td>이미지</td>
 	            <td class="text-center">
 	            <a class='btn btn-danger btn-xs' data-toggle="modal" href="#item_modi">
-	                <span class="glyphicon glyphicon-edit"></span>상세보기</a>
+	                <span class="glyphicon glyphicon-edit" ></span>상세보기</a>
 	            </td>
 	            </tr>
 	</table>
@@ -99,8 +99,7 @@
 	            </tr>
 	</table>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
-    <div style="margin: 0 auto; text-align:center;">
-    	
+    <div style="margin: 0 auto; text-align:center;">    	
     <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_package_insert">
     <span class="glyphicon glyphicon-edit"></span>아이템 등록</a><br><br>
     	<label style="color: red">※ 변경시 최고 관리자한테 문의하시오.</label>
@@ -161,7 +160,6 @@
 	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_modi_insert.jsp" %>
 	<!--패키지 아이템 등록 모달창-->
 	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_package_insert.jsp" %>
-	
 <!--푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </div>

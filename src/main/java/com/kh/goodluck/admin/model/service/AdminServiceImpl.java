@@ -85,4 +85,27 @@ public class AdminServiceImpl implements AdminService{
 	public List<RandomBox_time> randomBoxTimeList() {
 		return adminDao.listOfRandomTime();
 	}
+	
+	@Override
+	public Boolean checkItemExistence(int indiItem) {
+		return adminDao.checkItem(indiItem);
+	}
+	@Override
+	public int extractPackageItem(ItemPackage itemPackage) {
+		return adminDao.verifyPackage(itemPackage);
+	}
+	@Override
+	public int addExessNum(RandomBox_all randomBox_all) {
+		return adminDao.addAllReset(randomBox_all);
+	}
+	
+	@Override
+	public int addExessNumEmo(RandomBox_emo randomBox_emo) {
+		return adminDao.addEmoReset(randomBox_emo);
+	}
+	
+	@Override
+	public int addExessNumTime(RandomBox_time randomBox_time) {
+		return adminDao.addTimeReset(randomBox_time);
+	}
 }

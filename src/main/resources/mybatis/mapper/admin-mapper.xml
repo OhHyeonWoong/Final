@@ -122,7 +122,43 @@
 	]]>
 	</select>
 	
+	<select id = "ad_checkPackageItem" parameterType="int" resultType="boolean">
+	<![CDATA[
+	select itemlist_no from itemlist
+	where itemlist_no = #{indiItem}
+	]]>
+	</select>
 	
+	<update id = "ad_updatePackage" parameterType ="ItemPackage" flushCache="true">
+	<![CDATA[
+	update ITEMPACKAGE 
+	SET ITEMLIST_NO = #{ITEMLIST_NO}
+	WHERE PACKAGEPK = #{PACKAGEPK}
+	]]>
+	</update>
+
+	<update id="ad_updateRandomAllChance" parameterType="randomBox_all">
+	<![CDATA[
+	update RANDOMBOX_ALL
+	SET CHANCE = #{chance}
+	WHERE RANDOMBOX_PK = #{randombox_pk}
+	]]>
+	</update>
 	
+	<update id="ad_updateRandomEmoChance" parameterType="randomBox_emo">
+	<![CDATA[
+	update RANDOMBOX_ALL
+	SET CHANCE = #{chance}
+	WHERE RANDOMBOX_PK = #{randombox_pk}
+	]]>
+	</update>
+	
+	<update id="ad_updateRandomTimeChance" parameterType="randomBox_time">
+	<![CDATA[
+	update RANDOMBOX_ALL
+	SET CHANCE = #{chance}
+	WHERE RANDOMBOX_PK = #{randombox_pk}
+	]]>
+	</update>
 	
 </mapper>

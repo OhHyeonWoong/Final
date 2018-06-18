@@ -88,39 +88,34 @@ public class MemberDao {
 		return sqlSession.selectOne("selectIDYNCheck", member_id);
 	}
 	public Memberandscore searchmemberInfobyBoardNo(int pk) {
-		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("searchmemberInfobyBoardNo", pk);
 	}
 	public Memberandscore searchmemberInfobyBoardNo1(int pk) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("searchmemberInfobyBoardNo1", pk);
 	}
 	public int insertItem(ITEMLIST item) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("insertNewItem", item);
 	}
 	public Memberandscore searchAPPLICANTInfobyBoardNo(int pk) {
 	  return sqlSession.selectOne("searchAPPLICANTInfobyBoardNo",pk);
 	}
 	public Memberandscore searchRESERVATIONInfobyBoardNo(int pk) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("searchRESERVATIONInfobyBoardNo",pk);
 	}
 	public Member getmemberinfobykakaopk(int parseInt) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getmemberinfobykakaopk",parseInt);
 	}
 	public int updatetoken(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("updatetoken",map);
 	}
 	public int updatekakaoinfo(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("updatekakaoinfo",map);
 	}
 	public void updateaccessToken(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
 		sqlSession.update("updateaccessToken",map);
+	}
+	public int insertScore(Member member) {
+		return sqlSession.insert("", member);
 	}
 	
 }
