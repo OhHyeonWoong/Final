@@ -931,8 +931,8 @@
 								
 								for(var i in json.headerCategorySmall){				
 									realTimeBarDrop += '<li class = "ohw-menu-realtimebar-drop">' + 
-														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
-													'</li>'												
+															'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+														'</li>'												
 								}
 								
 								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar">' + 
