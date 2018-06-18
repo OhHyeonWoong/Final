@@ -18,6 +18,7 @@ import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
@@ -321,4 +322,28 @@ public class BoardDao {
 		return sqlSession.selectList("selectMyApplyBoard", map4);
 	}
 
+	public int selectMyBoardHistoryListCount(String member_id) {
+		return sqlSession.selectOne("selectMyBoardHistoryListCount", member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		return sqlSession.selectList("selectMyBoardHistory", map5);
+	}
+
+
+
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		sqlSession.update("SCOREupdatetype11", map2);
+		return sqlSession.update("SCOREupdatetype1", map2);
+	}
+
+	//관리자용 메소드 2개/////////////
+	public int selectBoardListCount() {
+		return sqlSession.selectOne("selectBoardListCount");
+	}
+	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
+		return sqlSession.selectList("selectBoardList", map);
+	}
+	////////////////////////////
 }

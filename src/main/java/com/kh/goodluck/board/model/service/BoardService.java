@@ -18,6 +18,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
 @Service("boardService")
 public class BoardService {
@@ -266,5 +267,28 @@ public class BoardService {
 		return boardDao.selectMyApplyBoard(map4);
 	}
 
+	public int selectMyBoardHistoryListCount(String member_id) {
+		//내 이용 내역 갯수 가져오는 메소드
+		return boardDao.selectMyBoardHistoryListCount(member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyBoardHistory(HashMap<Object, Object> map5) {
+		//내 이용 내역 가져오는 메소드
+		return boardDao.selectMyBoardHistory(map5);
+	}
+
+	public int SCOREupdatetype1(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return boardDao.SCOREupdatetype1(map2);
+	}
+	
+	//LBJ 관리자 게시글 관리 용 메소드 2개
+	public int selectBoardListCount() {
+		return boardDao.selectBoardListCount();
+	}
+	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectBoardList(map);
+	}
+	/////////////////////////////
 
 }

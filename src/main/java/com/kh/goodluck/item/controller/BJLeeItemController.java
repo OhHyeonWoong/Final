@@ -54,6 +54,10 @@ public class BJLeeItemController {
 		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
 		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int itemEndRow = qnaStartRow + qnaLimit - 1;
+	    int itemEndFor = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 6;
+	    if(itemEndFor > itemMaxPage) {
+	    	itemEndFor = itemMaxPage;
+	    }
 	    
 	    System.out.println("qnaStartRow = " + qnaStartRow);
 	    System.out.println("itemEndRow = " + itemEndRow);
@@ -85,7 +89,8 @@ public class BJLeeItemController {
 				job2.put("qnaStartPage", qnaStartPage);
 				job2.put("itemEndRow", itemEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
-				job2.put("itemListCount", itemListCount);			
+				job2.put("itemListCount", itemListCount);
+				job2.put("itemEndFor", itemEndFor);
 			}
 			jarr.add(job2);
 			System.out.println("job를 찍어보자" + i + " = " + job2);

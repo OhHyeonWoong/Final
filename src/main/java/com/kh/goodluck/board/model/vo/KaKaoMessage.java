@@ -60,6 +60,11 @@ public KaKaoMessage(String boardtitle, String message) {
 	this.boardtitle = boardtitle;
 	this.message = message;
 }
+@Override
+public String toString() {
+	return "KaKaoMessage [boardtitle=" + boardtitle + ", message=" + message + ", token=" + token + ", retken=" + retken
+			+ ", boardno=" + boardno + ", MEMBER_PHONE=" + MEMBER_PHONE + "]";
+}
 
 
 }

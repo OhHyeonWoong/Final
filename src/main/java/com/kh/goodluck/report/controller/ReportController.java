@@ -137,6 +137,10 @@ public class ReportController {
 		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
 		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
 	    int reportEndRow = qnaStartRow + qnaLimit - 1;
+	    int reportEndFor = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 6;
+	    if(reportEndFor > reportMaxPage) {
+	    	reportEndFor = reportMaxPage;
+	    }
 	    
 	    System.out.println("Report qnaStartRow = " + qnaStartRow);
 	    System.out.println("reportEndRow = " + reportEndRow);
@@ -170,7 +174,8 @@ public class ReportController {
 				job2.put("qnaStartPage", qnaStartPage);
 				job2.put("reportEndRow", reportEndRow);
 				job2.put("qnaCurrentPage", qnaCurrentPage);
-				job2.put("reportListCount", reportListCount);			
+				job2.put("reportListCount", reportListCount);
+				job2.put("reportEndFor", reportEndFor);
 			}
 			jarr.add(job2);
 			System.out.println("job를 찍어보자" + i + " = " + job2);

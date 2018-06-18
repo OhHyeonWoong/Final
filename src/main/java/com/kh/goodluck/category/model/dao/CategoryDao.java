@@ -17,6 +17,10 @@ public class CategoryDao {
 	public List<Category> headerCategoryBig() {		
 		return sqlSession.selectList("headerCategoryBig");
 	}
+	
+	public List<Category> headerCategorySmall() {		
+		return sqlSession.selectList("headerCategorySmall");
+	}
 
 	public int bigCategoryCount(String bigCategoryCode) {
 		/*System.out.println("SendBigCode : " + bigCategoryCode + " / To.CategoryDao");*/

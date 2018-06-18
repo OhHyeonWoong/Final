@@ -168,4 +168,15 @@ public class MemberServiceImpl implements MemberService{
 	public int scoreInput(Member member) {
 		return memberDao.insertScore(member);
 	}
+	@Override
+	public int paycash(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.paycash(map2);
+	}
+
+	@Override
+	public int insertpaylog(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.insertpaylog(map2);
+	}
 }	

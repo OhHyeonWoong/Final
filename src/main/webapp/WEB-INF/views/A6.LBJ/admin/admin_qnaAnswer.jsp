@@ -56,7 +56,7 @@
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.ing[0].ingStartPage;i<=json.ing[0].ingEndRow;i++){
+						for(var i=json.ing[0].ingStartPage;i<=json.ing[0].ingEndFor;i++){
 							if(i == json.ing[0].page){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -127,7 +127,7 @@
 							htmlStr += '< &nbsp';
 						}
 						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.end[0].endStartPage;i<=json.end[0].endEndRow;i++){
+						for(var i=json.end[0].endStartPage;i<=json.end[0].endEndFor;i++){
 							if(i == json.end[0].page){
 								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
 							}else{
@@ -202,7 +202,7 @@
 									< &nbsp;
 								</c:if>
 								<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-								<c:forEach var="i" begin="${ingPage.ingStartPage}" end="${ingPage.ingEndRow}" step="1">
+								<c:forEach var="i" begin="${ingPage.ingStartPage}" end="${ingPage.ingEndFor}" step="1">
 									<c:if test="${i eq ingPage.page}">
 										<font color="red" size="4"><b>${i}</b></font>&nbsp;
 									</c:if>
@@ -273,7 +273,7 @@
 									< &nbsp;
 								</c:if>
 								<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-								<c:forEach var="i" begin="${endPage.endStartPage}" end="${endPage.endEndRow}" step="1">
+								<c:forEach var="i" begin="${endPage.endStartPage}" end="${endPage.endEndFor}" step="1">
 									<c:if test="${i eq endPage.page}">
 										<font color="red" size="4"><b>${i}</b></font>&nbsp;
 									</c:if>
