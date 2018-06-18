@@ -65,10 +65,7 @@ public class SearchController {
 		map.put("pageMasterCount", masterList.size());
 		map.put("pageSlaveCount", slaveList.size());
 		map.put("pagingMasterView", masterPager); /* 페이지 네비게이션을 위한 변수 */
-		map.put("pagingSlaveView", slavePager); /* 페이지 네비게이션을 위한 변수 */
-		for(int i = 0; i < masterList.size(); i++) {
-			map.put("scoreSellRate", (int)(masterList.get(i).getScore_sell_rate()));			
-		}
+		map.put("pagingSlaveView", slavePager); /* 페이지 네비게이션을 위한 변수 */		
 		mav.setViewName("A1.OHW/SearchResult"); /* 포워딩할 뷰의 이름 */
 		mav.addObject("searchResult", map); /* ModelAndView에 map을 저장 */
 		
