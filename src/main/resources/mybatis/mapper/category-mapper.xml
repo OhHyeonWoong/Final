@@ -9,12 +9,31 @@
 		<result property="category_big_name" column="category_big_name"/>
 		<result property="category_big_views" column="category_big_views"/>
 		<result property="category_big_count" column="category_big_count"/>			
+	</resultMap>
+		
+	<resultMap id="HeaderCategorySmallResult" type="Category">
+		<id property="category_small_code" column="category_small_code"/>
+		<result property="category_small_name" column="category_small_name"/>
+		<result property="category_small_views" column="category_small_views"/>
+		<result property="category_small_count" column="category_small_count"/>			
 	</resultMap>	
 	
 	<select id="headerCategoryBig" resultMap="HeaderCategoryBigResult">	
 		<![CDATA[
 			select category_big_code, category_big_name, category_big_views, category_big_count 
-			from (select * from BIGCATEGORY order by CATEGORY_BIG_VIEWS desc)
+			from (select * 
+					from BIGCATEGORY 
+					order by CATEGORY_BIG_VIEWS desc)
+			where rownum <= 6
+		]]>
+	</select>
+	
+	<select id="headerCategorySmall" resultMap="HeaderCategorySmallResult">	
+		<![CDATA[
+			select category_small_code, category_small_name, category_small_views, category_small_count 
+			from (select * 
+					from SMALLCATEGORY 
+					order by CATEGORY_SMALL_VIEWS desc)
 			where rownum <= 6
 		]]>
 	</select>
@@ -47,40 +66,7 @@
 										where CATEGORY_SMALL_NAME = #{category_small_name}) + 1 
 			where CATEGORY_SMALL_NAME = #{category_small_name}		
 		]]>
-	</update>
-	
-	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
-		insert into member 
-		values 
-		(#{userId}, 
-		#{userPwd}, 
-		#{userName}, 
-		#{gender}, 
-		#{age}, 
-		#{phone}, 
-		#{email}, 
-		#{hobby}, 
-		#{etc}, 
-		sysdate, 
-		sysdate)		
-	</insert>
-	
-	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
-		update member 
-		set userpwd = #{userPwd}, 
-		age = #{age}, 
-		phone = #{phone}, 
-		email = #{email}, 
-		hobby = #{hobby}, 
-		etc = #{etc}, 
-		lastmodified = sysdate 
-		where userid = #{userId}
-	</update>
-	
-	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
-		delete from member 
-		where userid = #{userId}
-	</delete> -->
+	</update>	
 
 <update id="IncreasesSMALLCATEGORYCOUNT" parameterType="int">
 update SMALLCATEGORY set CATEGORY_SMALL_COUNT = 
