@@ -123,5 +123,13 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		sqlSession.update("updateaccessToken",map);
 	}
+	public int paycash(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("paycash",map2);
+	}
+	public int insertpaylog(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertpaylog",map2);
+	}
 	
 }

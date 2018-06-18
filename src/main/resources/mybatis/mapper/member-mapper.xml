@@ -246,6 +246,13 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	MEMBER_ACCESSTOKEN = #{key}
 	where MEMBER_ID = #{memberid}
 	</update>
-	
+	<update id="paycash" parameterType="Hashmap" >
+	update member set
+     MEMBER_CASH = (select MEMBER_CASH from member where MEMBER_ID = #{APPLICANT})+#{payment}
+    where MEMBER_ID = #{APPLICANT}
+	</update>
+	<insert id="insertpaylog"  parameterType="Hashmap" >
+    insert into paylog values((select max(PAYLOG_NO)+1 from PAYLOG),#{order}, #{APPLICANT},#{payment},sysdate);
+	</insert>
 	
 	</mapper>

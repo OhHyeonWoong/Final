@@ -165,4 +165,16 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		memberDao.updateaccessToken(map);
 	}
+
+	@Override
+	public int paycash(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.paycash(map2);
+	}
+
+	@Override
+	public int insertpaylog(HashMap<Object, Object> map2) {
+		// TODO Auto-generated method stub
+		return  memberDao.insertpaylog(map2);
+	}
 }	

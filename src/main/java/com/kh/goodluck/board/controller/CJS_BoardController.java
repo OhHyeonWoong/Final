@@ -596,7 +596,6 @@ public void finishBoard(
 	//글의 타입에 따라서 오너의 입장이 바끤다.
 	//글타입1인 경우 글쓴이가 오너이다.
 	//글타입2인 경우 일반지원자가 오너이다.
-	
 	response.setContentType("text/html charset=utf-8");
 	Member member=null;
 	if(session.getValue("loginUser") != null) {
@@ -629,17 +628,23 @@ public void finishBoard(
 	int result4=boardservice.insertReview(re);
 	//5. 점수처리한다
 	HashMap<Object,Object> map2=new HashMap<Object,Object>();
-	map2.put("order",memberid);
+	map2.put("order",bo.getAgency_writer());
 	map2.put("APPLICANT",boardservice.getAPPLICANT(pk));
 	map2.put("rate",bo.getAgency_pay()*rating/10000);
 	map2.put("orderrate", bo.getAgency_pay());
+	map2.put("payment",bo.getAgency_pay());
 	int result5=boardservice.SCOREupdatetype1(map2);
 	//6.돈계산+paylog인설트.
+	int result6=memberService.paycash(map2);
+	int result7=memberService.insertpaylog(map2);
 	System.out.println("보드상태 4로 바꾸기="+result1);
 	System.out.println("보드로그 인설트="+result2);
 	System.out.println("트레이드 예비후보자 지우기="+result3);
 	System.out.println("리뷰 작성.="+result4);
 	System.out.println("점수 업데이트="+result5);
+	System.out.println("돈 전송="+result6);
+	System.out.println("페이 인설트="+result7);
+	
 	}else {
 	//이건 긅의 타입이 2인경우이다. 일반 지원자가 오너인 경우임.
 		//1.보드의 상태를 4로 바꾼다. 
@@ -658,20 +663,31 @@ public void finishBoard(
 		re.setREVIEW_RATE(rating);
 		re.setREVIEW_WRITER(boardservice.getAPPLICANT(pk));
 		re.setAGENCYLOG_NO(pk);
+		
 		int result4=boardservice.insertReview(re);
 		//5. 점수처리한다
 		HashMap<Object,Object> map2=new HashMap<Object,Object>();
 		map2.put("order",memberid);
-		map2.put("APPLICANT",boardservice.getAPPLICANT(pk));
+		map2.put("APPLICANT",bo.getAgency_writer());
 		map2.put("rate",bo.getAgency_pay()*rating/10000);
 		map2.put("orderrate", bo.getAgency_pay());
+		map2.put("payment",bo.getAgency_pay());
 		int result5=boardservice.SCOREupdatetype1(map2);
+		int result6=memberService.paycash(map2);
+		int result7=memberService.insertpaylog(map2);
 		System.out.println("보드상태 4로 바꾸기="+result1);
 		System.out.println("보드로그 인설트="+result2);
 		System.out.println("트레이드 예비후보자 지우기="+result3);
 		System.out.println("리뷰 작성.="+result4);
 		System.out.println("점수 업데이트="+result5);
+		System.out.println("돈 전송="+result6);
+		System.out.println("페이 인설트="+result7);	
 	}
+	
+	
+	
+	
+	
 	}else {
 	response.sendRedirect("Error500.go");		
 	}
