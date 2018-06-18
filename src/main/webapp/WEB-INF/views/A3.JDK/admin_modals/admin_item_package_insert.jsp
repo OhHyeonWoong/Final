@@ -47,12 +47,9 @@
 						<tr>
 							<th style="width:30%;">포함하는 아이템 목록</th>
 							<td style="width:70%; text-align:center;">
-							<input type="checkbox" val="">
-							<input type="checkbox" val="">
-							<input type="checkbox" val="">
-							<input type="checkbox" val="">
-							<input type="checkbox" val="">
-							<input type="checkbox" val="">
+							<%-- <c:forEach>
+							
+							</c:forEach> --%>
 							</td>
 						</tr>
 					</table>

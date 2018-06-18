@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE mapper PUBLIC
-"-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member-mapper">
 
@@ -227,30 +226,50 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	</update>
 	
 	<update id="updatekakaoinfo"  parameterType="Hashmap">
-		update member set
-		MEMBER_REFRESHTOKEN=#{refresh_token},
+	update member set
+	MEMBER_REFRESHTOKEN=#{refresh_token},
 	MEMBER_ACCESSTOKEN=#{access_token},
 	 MEMBER_KAKAOIDPK = #{kakaopk}
 	 where MEMBER_ID =#{memberid}
 	</update>
+	
 	<select id="searchAPPLICANTInfobyBoardNo" parameterType="int" resultType="Memberandscore">
 	select member.* from member , 
 	TRADE_DETAIL where TRADE_DETAIL.AGENCY_NO=#{pk} 
 	and TRADE_DETAIL.TRADE_APPLICANT=member.MEMBER_ID
 	</select>
+	
 	<select id="searchRESERVATIONInfobyBoardNo" parameterType="int" resultType="Memberandscore">
 	select member.* from member , TRADE_DETAIL where TRADE_DETAIL.AGENCY_NO=#{pk} and TRADE_DETAIL.TRADE_RESERVATION=member.MEMBER_ID
 	</select>
+	
 	<update id="updateaccessToken" parameterType="Hashmap" >
 	update member set
 	MEMBER_ACCESSTOKEN = #{key}
-	where MEMBER_ID = #{memberid}
+	where MEMBER_ID = #{member_id}
 	</update>
+	
+	<insert id="insertScore" parameterType="member">
+	<![CDATA[
+	insert into SCORE VALUES(
+	#{member_id},
+	default,
+	default,
+	default,
+	default,
+	0
+	)
+	]]>
+	</insert>
+	
+	
+	
 	<update id="paycash" parameterType="Hashmap" >
 	update member set
      MEMBER_CASH = (select MEMBER_CASH from member where MEMBER_ID = #{APPLICANT})+#{payment}
     where MEMBER_ID = #{APPLICANT}
 	</update>
+
 	<insert id="insertpaylog"  parameterType="Hashmap" >
     insert into paylog values((select max(PAYLOG_NO) from paylog)+1, #{order}, #{APPLICANT},#{payment},sysdate)
 	</insert>
