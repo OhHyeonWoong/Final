@@ -17,7 +17,10 @@
 	$(function () {
 	if("${loginUser}" == "")	
 		{
-		location.href="Error500.go";
+		$("#loginModalCancel").hide();
+		$("#text-login-msg").text("서비스 이용을 위해 로그인해주세요");
+		$('#login-modal').modal({backdrop: 'static', keyboard: false});
+		//location.href="Error500.go";
 		}
 		$("#ukapplybtn").on("click",function(){		
 			$('#myModal').modal('show');

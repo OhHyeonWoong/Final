@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
 @Controller
 public class LBJ_BoardController {
@@ -209,5 +210,82 @@ public class LBJ_BoardController {
 		out.print(jobj.toJSONString());
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping(value="lbjMyBoardHistory.go",method=RequestMethod.POST)
+	public void lbjMyBoardHistorySelectMethod(HttpServletRequest request,HttpServletResponse response) 
+														throws IOException{
+		String member_id = request.getParameter("member_id");
+		int myBoardHistoryCurrentPage = 1;
+		if(request.getParameter("page") != null) {
+			myBoardHistoryCurrentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		System.out.println("myBoardHistoryCurrentPage = " + myBoardHistoryCurrentPage);
+		/*
+		 * 2. 한 페이지 당 데이터 갯수 셋팅
+		 */
+		int myBoardHistoryLimit = 6;
+		/*
+		 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
+		 */
+		int myBoardHistoryStartRow = (myBoardHistoryCurrentPage-1)*myBoardHistoryLimit+1; 
+		int myBoardHistoryStartPage = (((int) ((double) myBoardHistoryCurrentPage / myBoardHistoryLimit + 0.9)) - 1) * myBoardHistoryLimit + 1;
+		int myBoardHistoryListCount = boardService.selectMyBoardHistoryListCount(member_id);
+		int myBoardHistoryMaxPage = (int)((double)myBoardHistoryListCount / myBoardHistoryLimit + 0.9);
+		int myBoardHistoryEndRow = myBoardHistoryStartRow + myBoardHistoryLimit - 1;	
+		int myBoardHistoryEndFor = (((int) ((double) myBoardHistoryCurrentPage / myBoardHistoryLimit + 0.9)) - 1) * myBoardHistoryLimit + 6;
+		if(myBoardHistoryEndFor > myBoardHistoryMaxPage) {
+			myBoardHistoryEndFor = myBoardHistoryMaxPage;
+		}
+		/*
+		 * 4. dao로 보낼 hashmap 생성
+		 */
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+	    map.put("startRow", myBoardHistoryStartRow);
+	    map.put("endRow", myBoardHistoryEndRow);
+	    map.put("member_id", member_id);
+	    ArrayList<MyPageBoardHistory> myBoardHistory = (ArrayList<MyPageBoardHistory>)boardService.selectMyBoardHistory(map);
+		
+		if (myBoardHistoryMaxPage < myBoardHistoryEndRow)
+			myBoardHistoryEndRow = myBoardHistoryMaxPage;
+		
+		System.out.println("lbjMyBoardHistorySelectMethod myBoardHistoryListcount = " + myBoardHistoryListCount);
+	    System.out.println("lbjMyBoardHistorySelectMethod myBoardHistoryStartRow = " + myBoardHistoryStartRow);
+	    System.out.println("lbjMyBoardHistorySelectMethod myBoardHistoryEndRow = " + myBoardHistoryEndRow);
+	    System.out.println("lbjMyBoardHistorySelectMethod myBoardHistoryMaxPage = " + myBoardHistoryMaxPage);
+
+		//출력용 JSON 오브젝트
+	    JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(int i=0;i<myBoardHistory.size();i++) {
+			//저 위의 페이징 처리 데이터들을 vo에 넣자
+			JSONObject job2 = new JSONObject();
+			job2.put("agencylog_finalstatus", myBoardHistory.get(i).getAgencylog_finalstatus());
+			job2.put("agency_type", myBoardHistory.get(i).getAgency_type());
+			job2.put("agency_title", myBoardHistory.get(i).getAgency_title());
+			job2.put("trade_applicant", myBoardHistory.get(i).getTrade_applicant());
+			job2.put("agencylog_date", myBoardHistory.get(i).getAgencylog_date());
+			job2.put("agency_pay", myBoardHistory.get(i).getAgency_pay());
+			job2.put("agency_paytype", myBoardHistory.get(i).getAgency_paytype());
+			if(i == 0) {
+				job2.put("myBoardHistoryMaxPage", myBoardHistoryMaxPage);
+				job2.put("myBoardHistoryStartPage", myBoardHistoryStartPage);
+				job2.put("myBoardHistoryEndRow", myBoardHistoryEndRow);
+				job2.put("myBoardHistoryCurrentPage", myBoardHistoryCurrentPage);
+				job2.put("myBoardHistoryListCount", myBoardHistoryListCount);
+				job2.put("myBoardHistoryEndFor", myBoardHistoryEndFor);
+			}
+			jarr.add(job2);
+		}
+		
+		jobj.put("myBoardHistory", jarr);
+		
+		PrintWriter out = response.getWriter();
+		out.print(jobj.toJSONString());
+		out.flush();
+		out.close();
+
 	}
 }

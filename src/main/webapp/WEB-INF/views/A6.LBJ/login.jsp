@@ -11,7 +11,7 @@
 						src="/goodluck/resources/A6.LBJ/images/Logo.png"><!-- http://bootsnipp.com/img/logo.jpg -->
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						<span id="loginModalCancel" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</div>
 
