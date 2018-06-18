@@ -760,34 +760,6 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 		      </div>
 		    </div>
 		  </div>
-		</div>	
-		
-		
-		
-		
-		
+		</div>		
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
