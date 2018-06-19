@@ -47,11 +47,7 @@ public class EcoHandler extends TextWebSocketHandler{
     	
         logger.info(session.getId());
         logger.info("연결 IP : " + session.getRemoteAddress().getHostName());
-        System.out.println(session.getId());
-        System.out.println("연결 IP : " + session.getRemoteAddress().getHostName());
-        for(SessionUser i: connectedUsers) {
-        	System.out.println(i);
-        }
+  
     }
  
     /**
@@ -74,6 +70,9 @@ public class EcoHandler extends TextWebSocketHandler{
     	if(messageVo.getType().equals("join")){
     		
     		mapUser.put(messageVo.getTo(), session);
+    		//essageVo.getTo()=>오너아이디.
+    		System.out.println("messageVo.getTo()="+messageVo.getTo());
+    		System.out.println("session="+session);
     		connectedUsers.add(new SessionUser(messageVo.getTo(),session)); //실제 조인이 들어오면 저장함.
     		
     	}
@@ -91,13 +90,14 @@ public class EcoHandler extends TextWebSocketHandler{
     		WebSocketSession sessioned = mapUser.get(messageVo.getTo());
     		if ( sessioned != null) {
 	    		logger.info("원ㅇㅇㅇㅇㅇㅇㅇㅇ:"+session.getId());
-	    		
+	    	
 	    		//보내는사람
 	    session.sendMessage(new TextMessage(messageVo.getMessage()));
 	    		//받는사람
 	    sessioned.sendMessage(new TextMessage(messageVo.getMessage()));
     		} else {
-    			session.sendMessage(new TextMessage("귓속말 상대가 존재하지않습니다"));
+    		
+    			session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
     			//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
     		}
     	}

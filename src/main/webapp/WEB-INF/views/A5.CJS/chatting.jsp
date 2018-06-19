@@ -10,12 +10,17 @@
 <script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
 <script type="text/javascript" >
  var chatSock = null;
- var message = {};
- $(document).ready(function(){
- chatSock = new SockJS("/goodluck/echo-ws");
- chatSock.onopen = function(evt) {
- };
- $("#connectSocket").on('click',function(){
+  var message = {};
+ 
+    $(document).ready(function(){
+         
+    	chatSock = new SockJS("/goodluck/echo-ws");
+    	
+    	chatSock.onopen = function(evt) {
+            
+        };
+    	
+        $("#connectSocket").on('click',function(){
         	
        		message={};
             message.message = "dd";
@@ -25,7 +30,6 @@
             chatSock.send(JSON.stringify(message));
         });
         chatSock.onmessage = function(evt) {
-        	//서버로부터 값이 왔다.
             $("#chatMessage").append(evt.data);
             $("#chatMessage").append("<br />");
             $("#chatMessage").scrollTop(99999999);
