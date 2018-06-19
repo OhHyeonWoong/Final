@@ -536,6 +536,10 @@ public class MemberController {
 		Member member = null;
 		///////////////////////
 		System.out.println("updateMemberCashMethod run...");
+		int beforeCash = m.getMember_cash();
+		int afterCash = (int)(beforeCash * 0.9);
+		int adminCash = beforeCash - afterCash;
+		m.setMember_cash(afterCash);
 		int result = memberService.updateMemberCashMethod(m);
 		if(result > 0) {
 			//세션 정보 갱신
@@ -546,7 +550,21 @@ public class MemberController {
 			    member.setMember_cash(m.getMember_cash());
 			}
 			//paylog테이블에 데이터 추가해 주어야 됨
-			//int paylogResult = memberService.insertPay
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("member_id", m.getMember_id());
+			map.put("adminCash", adminCash);
+			int paylogResult = memberService.insertLbjMilegePayLog(map);
+			if(paylogResult > 0) {
+				System.out.println("수수료 챙기기 성공, 관리자 id cash update 필요");
+				int updateResult = memberService.updateAdminCash(map);
+				if(updateResult > 0) {
+					System.out.println("admin 캐시 갱신 성공!");
+				}else {
+					System.out.println("admin 캐시 갱신 실패!");
+				}
+			}else {
+				System.out.println("수수료 챙기기 실패");
+			}
 			/////////////////////////////
 		}else {
 			//결제 실패

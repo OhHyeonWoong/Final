@@ -274,4 +274,18 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
     insert into paylog values((select max(PAYLOG_NO) from paylog)+1, #{order}, #{APPLICANT},#{payment},sysdate)
 	</insert>
 	
+	<insert id="insertLbjMilegePayLog" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},'gkffhqnd',#{adminCash},sysdate)
+		]]>
+	</insert>
+	
+	<update id="updateAdminCash" parameterType="java.util.HashMap" flushCache="true">
+		<![CDATA[
+			update member
+			set member_cash = member_cash + #{adminCash}
+			where member_id = #{member_id}
+		]]>
+	</update>
+	
 	</mapper>
