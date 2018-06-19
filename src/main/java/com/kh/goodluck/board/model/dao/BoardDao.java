@@ -399,7 +399,7 @@ public class BoardDao {
 		return sqlSession.selectOne("selectMyWriteCandidateListCount", member_id);
 	}
 
-	public List<MyPageBoardHistory> selectMyWriteCandidate(HashMap<Object, Object> map6) {
+	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
 	}
 

@@ -657,7 +657,24 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		}
 		
 		function fnMyWriteCandidateReload(page){
-			
+			console.log("fnMyWriteCandidateReload(page) = " + page);
+			$.ajax({
+				url:'lbjWriteCandidate.go',
+				type:'post',
+				data:{
+					page: page,
+					member_id: $('#InputId').val()
+				},
+				dataType:'json',
+				success:function(data){
+					var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
 		}
 		
 		//검사 결과가 모두 일치하면 true로 리턴

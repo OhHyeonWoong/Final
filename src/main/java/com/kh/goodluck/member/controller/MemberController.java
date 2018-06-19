@@ -260,7 +260,7 @@ public class MemberController {
 			mv.addObject("boardHistoryPage",boardHistoryPage);
 			//내가 이용한 History 세팅 끝------------------------------------------------
 			//신청자가 생긴 내 글 세팅 시작----------------------------------------------
-			int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);//이거 하다맘
+			int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);
 			int myWriteCandidateMaxPage = (int)((double)myWriteCandidateListCount / qnaLimit + 0.9);
 			int myWriteCandidateEndRow = qnaStartRow + qnaLimit - 1;		
 			
@@ -270,7 +270,7 @@ public class MemberController {
 		    map6.put("startRow", qnaStartRow);
 		    map6.put("endRow", myWriteCandidateEndRow);
 		    map6.put("member_id", member_id);
-		    List<MyPageBoardHistory> myWriteCandidate = boardService.selectMyWriteCandidate(map6);
+		    ArrayList<MyPageApplyBoard> myWriteCandidate = (ArrayList<MyPageApplyBoard>)boardService.selectMyWriteCandidate(map6);
 		    
 		    System.out.println("myWriteCandidate size = " + myWriteCandidate.size());
 			

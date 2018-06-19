@@ -338,7 +338,7 @@ public class BoardService {
 		return boardDao.selectMyWriteCandidateListCount(member_id);
 	}
 
-	public List<MyPageBoardHistory> selectMyWriteCandidate(HashMap<Object, Object> map6) {
+	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return boardDao.selectMyWriteCandidate(map6);
 	}
 
