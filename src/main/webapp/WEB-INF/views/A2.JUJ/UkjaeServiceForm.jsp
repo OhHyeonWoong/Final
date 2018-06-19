@@ -189,18 +189,18 @@ function sample4_execDaumPostcode() {
 									<select class="uk_smallSort" id="uk_smallSort" name="selectCate">
 										<option> &nbsp;&nbsp;-- </option>	
 									</select>
-								
+								  
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p align="center">
 									<label for="username">주소입력</label>
 									<br>
-									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 150px;"><br><br>
+									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 90px !important; padding-left: 10px;" ><br><br>
 									<span class="input-group-btn">					
 									<a class="btn btn-default" onclick="sample4_execDaumPostcode()"><i class = "fa fa-search"></i> 우편번호 검색</a>
 									</span>
 									<br>
-									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" style="width:250px; margin: 0;">
+									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" style="width:270px; margin: 0;">
 									<span id="guide" style="color:#999"></span>
 								</p>
 								<!-- 주소 입력 관련 코드 종료 -->
@@ -388,7 +388,11 @@ function sample4_execDaumPostcode() {
 													dataType : "json",
 													success : function(data){
 														var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
-														var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+														var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
+														var sortvalues2 = "<option> &nbsp;-- </option>";
+														$('#uk_smallSort').empty();
+														$('#uk_smallSort').append(sortvalues2);
+														
 														$('.uk_midSort').empty();
 														var sortvalues = "<option> &nbsp;-- </option>";
 														

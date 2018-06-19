@@ -154,7 +154,7 @@ public class JUJ_BoardController {
 		java.sql.Date toEnd = new java.sql.Date(transFormat.parse(endDateString).getTime());
 
 		//yyyy년-mm월-dd일
-		
+		    
 		System.out.println("서비스 시작날짜 : "+toStart);
 		System.out.println("서비스 종료날짜 : "+toEnd);
 
