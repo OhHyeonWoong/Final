@@ -769,7 +769,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		}
 		
 		function fnMyBoardUpdate(no){
-			location.href='wookServiceAlter.go?agency_no='+no;
+			location.href='wookServiceAlter.go?agency_no='+no+'&member_id=${loginUser.member_id}';
 		}
 		
 	</script>
@@ -961,6 +961,80 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							</td>
 						</tr>
 					</c:if>
+					<!-- 페이징 처리 끝내즈아 -->
+				</table>
+			</div>
+			<hr>
+			<h3 class="lbjh3" id="lbjYesCandidate">신청자가 생긴 글</h3>
+			<div class="lbjdiv" id="lbjYesCandidateDiv">		
+				<table class="table table-striped lbjtable" id="lbjYesCandidateTable">
+					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th></tr>
+					<%-- <c:forEach items="${lbjMyBoard}" var="board">
+						<tr>
+							<td>
+								<c:if test="${board.agency_type eq 1}">
+									구합니다<font style="color:red;">(오너)</font>
+								</c:if>
+								<c:if test="${board.agency_type eq 2}">
+									해드립니다(일반 지원자)
+								</c:if>
+							</td>
+							<td>${board.category_small_name}</td>
+							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
+							<td>${board.agency_enrolldate}</td>
+						</tr>
+					</c:forEach> --%>
+					<!-- 페이징 처리 가즈아 -->
+					<%-- <c:if test="${boardPage.myBoardListCount <= 6}">
+						<tr>
+							<td colspan="6">
+								<font color="red" size="4"><b>1</b></font>&nbsp;
+							</td>
+						</tr>
+					</c:if>
+					<c:if test="${boardPage.myBoardListCount > 6}">
+						<tr>
+							<td colspan="6">
+							<div style="text-align:center;">
+								<c:if test="${qnaPage.qnaCurrentPage <= 1}">
+									<< &nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage >= 2}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(1); return false;"> << </a>
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
+									< &nbsp;
+								</c:if>
+								<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+								<c:forEach var="i" begin="${qnaPage.qnaStartPage}" end="${qnaPage.endFor}" step="1">
+									<c:if test="${i eq qnaPage.qnaCurrentPage}">
+										<font color="red" size="4"><b>${i}</b></font>&nbsp;
+									</c:if>
+									<c:if test="${i != qnaPage.qnaCurrentPage}">
+										<a href="javascript:void(0);" onclick="fnMyBoardReload(${i}); return false;">${i}</a>&nbsp;
+									</c:if>
+								</c:forEach>
+								
+								<c:if test="${qnaPage.qnaCurrentPage != boardPage.myBoardEndRow}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage eq boardPage.myBoardEndRow}">
+									> &nbsp;
+								</c:if>
+								
+								<c:if test="${qnaPage.qnaCurrentPage >= boardPage.myBoardMaxPage}">
+									>> &nbsp;
+								</c:if>
+								<c:if test="${qnaPage.qnaCurrentPage < boardPage.myBoardMaxPage}">
+									<a href="javascript:void(0);" onclick="fnMyBoardReload(${boardPage.myBoardMaxPage}); return false;">>></a>
+								</c:if>
+							</div>
+							</td>
+						</tr>
+					</c:if> --%>
 					<!-- 페이징 처리 끝내즈아 -->
 				</table>
 			</div>

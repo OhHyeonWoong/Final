@@ -259,6 +259,32 @@ public class MemberController {
 			mv.addObject("lbjMyBoardHistory", myBoardHistory);
 			mv.addObject("boardHistoryPage",boardHistoryPage);
 			//내가 이용한 History 세팅 끝------------------------------------------------
+			//신청자가 생긴 내 글 세팅 시작----------------------------------------------
+			/*int myBoardHistoryListCount = boardService.selectMyBoardHistoryListCount(member_id);
+			int myBoardHistoryMaxPage = (int)((double)myBoardHistoryListCount / qnaLimit + 0.9);
+			int myBoardHistoryEndRow = qnaStartRow + qnaLimit - 1;		
+			
+			System.out.println("myBoardHistoryListCount = " + myBoardHistoryListCount);
+			
+			HashMap<Object,Object> map5 = new HashMap<Object,Object>();
+		    map5.put("startRow", qnaStartRow);
+		    map5.put("endRow", myBoardHistoryEndRow);
+		    map5.put("member_id", member_id);
+		    ArrayList<MyPageBoardHistory> myBoardHistory = (ArrayList<MyPageBoardHistory>)boardService.selectMyBoardHistory(map5);
+		    
+		    System.out.println("myBoardHistory size = " + myBoardHistory.size());
+			
+		    if (myBoardHistoryMaxPage < myBoardHistoryEndRow)
+		    	myBoardHistoryEndRow = myBoardHistoryMaxPage;
+			
+		    HashMap<String,Integer> boardHistoryPage = new HashMap<String,Integer>();
+		    boardHistoryPage.put("myBoardHistoryMaxPage",myBoardHistoryMaxPage);
+		    boardHistoryPage.put("myBoardHistoryEndRow",myBoardHistoryEndRow);
+		    boardHistoryPage.put("myBoardHistoryListCount",myBoardHistoryListCount);
+			
+			mv.addObject("lbjMyBoardHistory", myBoardHistory);
+			mv.addObject("boardHistoryPage",boardHistoryPage);*/
+			//신청자가 생긴 내 글 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
 		return mv;
