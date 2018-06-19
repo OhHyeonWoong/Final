@@ -149,8 +149,9 @@ function sample4_execDaumPostcode() {
 
 
 	<div class="container" align="center">
-		<form action="wookServiceAlter.go" method="post">
+		<form action="wookServiceAlterConfirm.go" method="post">
 		<h2> 서비스정보 수정 </h2>
+		<input type="hidden" value="${ServiceContents.agency_no}" name="servicewriting_no">
 	
 		<div class="row">
 			
@@ -189,7 +190,7 @@ function sample4_execDaumPostcode() {
 									<select class="uk_smallSort" id="uk_smallSort" name="selectCate">
 										<option> &nbsp;&nbsp;-- </option>	
 									</select>
-								
+								 
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p align="center">
@@ -218,11 +219,18 @@ function sample4_execDaumPostcode() {
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
 								<p> 
 									<b>희망급여 </b>&nbsp;&nbsp;
+									<c:if test="${ServiceContents.agency_paytype eq 1}">
 									<select class="uk_servicePay" name="servicePaytype">
-										<option>&nbsp;&nbsp;--</option>
 										<option value="1">일급</option>
 										<option value="2">시급</option>	
 									</select>
+									</c:if>
+									<c:if test="${ServiceContents.agency_paytype eq 2}">
+									<select class="uk_servicePay" name="servicePaytype">
+										<option value="2">시급</option>	
+										<option value="1">일급</option>
+									</select>
+									</c:if>
 									&nbsp; / &nbsp;<input type="text" style="width: 80px;" name="userinputPayamount" value="${ServiceContents.agency_pay}">&nbsp;원 
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
@@ -285,7 +293,7 @@ function sample4_execDaumPostcode() {
 									</c:forEach>
 									
 									<c:if test="${ userGiveItem eq null}">
-										보유중인 아이템이 없다면 적용된 아이템이없습니다.
+										${loginUser.member_id}님 보유중인 아이템이없습니다.
 									</c:if>	
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
@@ -338,11 +346,6 @@ function sample4_execDaumPostcode() {
 	            	console.log(detailCount);
 	            }	            
 				</script>
-	
-	
-	
-	            
-				
 				<div class="row">
 					<div class="receipt-header receipt-header-mid receipt-footer">
 						<div class="col-xs-8 col-sm-8 col-md-8 text-left">
@@ -353,8 +356,8 @@ function sample4_execDaumPostcode() {
 						</div>
 						<div class="col-xs-4 col-sm-4 col-md-4">
 							<div class="receipt-left">
-								<input type="submit" value="등록완료">&nbsp;
-								<input type="button" value="등록취소" onclick="alllistreturn();">
+								<input type="submit" value="수정완료">&nbsp;
+								<input type="button" value="돌아가기" onclick="alllistreturn();">
 								
 								<script type="text/javascript">
 										$(function(){

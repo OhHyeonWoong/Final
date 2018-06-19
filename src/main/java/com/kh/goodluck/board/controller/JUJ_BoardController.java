@@ -76,8 +76,13 @@ public class JUJ_BoardController {
 		Board alterready = boardService.ukjaegetServiceWriting(Parsing_agency_no);	
 		
 		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) itemService.getUsingItem(member_id); 
+		
+		
 		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
 		
+		
+		
+		mv.addObject("userGiveItem", userItem);	
 		mv.addObject("ServiceContents", alterready);	
 		mv.setViewName("A2.JUJ/UkjaeServiceAlterForm");
 		return mv;
@@ -88,6 +93,8 @@ public class JUJ_BoardController {
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
 			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+		
+		
 		
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
@@ -212,14 +219,17 @@ public class JUJ_BoardController {
 		
 	}
 	
-	@RequestMapping(value="wookServiceAlter.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
+	@RequestMapping(value="wookServiceAlterConfirm.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public void ukjaeServiceContentsAlter(@RequestParam("servicetitle")String serivcetitle,@RequestParam("loginUserId")String loginUser,@RequestParam("selectCate")String smallcategory
 			,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+
+		String writing_No = request.getParameter("servicewriting_no");
+		int writing_No_parsing = Integer.parseInt(writing_No);
 		
-		System.out.println("폼으로부터 입력 받은데이터 전부출력");
+		System.out.println("폼으로부터 입력받은 수정데이터 전부출력");
 		System.out.println("===================================================");
 		
-		System.out.println("글번호 : 쿼리문으로 등록");
+		System.out.println("글번호 : "+writing_No_parsing);
 		System.out.println("글작성자 : "+loginUser);
 		
 		System.out.println("입력한 제목? "+serivcetitle);
@@ -282,13 +292,11 @@ public class JUJ_BoardController {
 				sb.append(keywords[i]);
 			}
 			sb.toString();
-		}
+		}		
+		System.out.println("해당글 키워드 : "+sb.toString());
 		
 		/*아이템 순서 
-		 1.색상 
-		 2.크기 
-		 3.굵기 
-		 4.프리미엄 
+		 1.색상 2.크기 3.굵기  4.프리미엄 
 		 */
 		
 		//들어갈 수 있는 값.
@@ -310,8 +318,6 @@ public class JUJ_BoardController {
 			title_premium="";
 		}
 		
-		
-		
 		StringBuilder sbl = new StringBuilder();
 		sbl.append(title_color+", ");
 		sbl.append(title_size+", ");
@@ -319,62 +325,15 @@ public class JUJ_BoardController {
 		sbl.append(title_premium);
 		sbl.toString();
 		
+		//System.out.println("해당글 적용아이템 : "+sbl.toString());
 		
 		
-		Board inputBoard = new Board(loginUser, serivcetitle, link2_no, agency_type, ServiceArea, toStart, toEnd, parseingpaytype, parsepayamount, serviceContents, sb.toString(), sbl.toString());
+		Board alterBoard = new Board(writing_No_parsing,loginUser, serivcetitle, link2_no, agency_type, ServiceArea, toStart, toEnd, parseingpaytype, parsepayamount, serviceContents, sb.toString(), sbl.toString());
 		
-		//int ServiceRegist = boardService.serviceSupplyRegist(inputBoard);
-		
-		
-		//1.제공해요 새로운 글 등록하는 메소드 
-		int AgencyBoardNo = boardService.checkBoardNo(inputBoard);
-		
-		
-		System.out.println("새로등록된 게시판 번호 : "+AgencyBoardNo);
-		//2.등록된 글의 pk를 가져오는 메소드	
-		
-		inputBoard.setAgency_no(AgencyBoardNo);
-		
-		int tradeDetailinput = boardService.registTrade(inputBoard);
-		if(tradeDetailinput>0) 
-			System.out.println("대행 게시판 글 등록에 성공하였습니다.");
+		int ServiceAlter = boardService.writingPage_Update(alterBoard);
+		//System.out.println("수정이 완료되었습니다.");
 		
 	}
-	
-	/*@RequestMapping(value="datesetting.go",method=RequestMethod.POST)
-	public void Datesetting(@RequestParam("getToday") String getToday,@RequestParam("startdate") String startdate,  HttpServletRequest request,HttpServletResponse response) throws IOException {
-		
-		System.out.println("현재 날짜 받아오는값"+getToday);
-		System.out.println("시작 날짜 받아오는 값"+startdate);
-		
-		
-		String getToday_1[] = getToday.split("-");
-		String startdate_1[] = startdate.split("-");
-		
-		int t_day=Integer.parseInt((getToday_1[0]+getToday_1[1]+getToday_1[2]));
-		
-		int s_day=Integer.parseInt((startdate_1[0]+startdate_1[1]+startdate_1[2]));
-	
-		
-		//System.out.println(t_day+s_day);
-		boolean sum;
-		
-		if(t_day>s_day) {
-			PrintWriter out=response.getWriter();
-			sum=false;
-		}else {
-			
-			sum=true;
-		}
-		
-		System.out.println(sum);
-		response.setContentType("application/json; charset=utf-8");	      
-		PrintWriter out=response.getWriter();
-		out.print(sum);//보내기
-		out.flush();
-		out.close();	
-		
-	}*/
 	
 	@RequestMapping("midcategorylist.go")
 	public void MidcatePick(@RequestParam("bigcatename")String aa,HttpServletRequest request,HttpServletResponse response) throws IOException {

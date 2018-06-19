@@ -545,6 +545,9 @@ public class MemberController {
 			    member=(Member)session.getAttribute("loginUser");
 			    member.setMember_cash(m.getMember_cash());
 			}
+			//paylog테이블에 데이터 추가해 주어야 됨
+			//int paylogResult = memberService.insertPay
+			/////////////////////////////
 		}else {
 			//결제 실패
 			System.out.println("결제 실패...");

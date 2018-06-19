@@ -334,12 +334,18 @@ public class BoardService {
 		return boardDao.getreviewforboard(agency_writer);
 	}
 
+
+	public int writingPage_Update(Board alterBoard) {
+		// TODO Auto-generated method stub
+		return boardDao.writingPage_Update(alterBoard);
+	}
 	public int selectMyWriteCandidateListCount(String member_id) {
 		return boardDao.selectMyWriteCandidateListCount(member_id);
 	}
 
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return boardDao.selectMyWriteCandidate(map6);
+
 	}
 
 }

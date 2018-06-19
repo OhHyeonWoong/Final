@@ -55,6 +55,10 @@
 	<select id="youtubecheck" parameterType="String" resultMap="MainOne">
 		<![CDATA[select * from outside_m where osm_datatitle = #{youtubecheck}]]>
 	</select>
+	
+	<select id="ukjaemainreturn" resultMap="MainOne" parameterType="String">
+		<![CDATA[select * from outside_m where osm_datavalue=#{main}]]>
+	</select>
 
 </mapper>
 

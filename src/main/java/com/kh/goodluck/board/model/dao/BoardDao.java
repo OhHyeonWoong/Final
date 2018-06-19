@@ -323,7 +323,12 @@ public class BoardDao {
 
 	public int serviceSupplyRegist(Board board) {
 		//제공해요 새로운 글 등록하는 메소드 
-		return sqlSession.insert("newServiceRegist", board);
+		return sqlSession.insert("ukjae_newServiceRegist", board);
+	}
+	
+	public int writingPage_Update(Board alterBoard) {
+		//기존의 글을 수정하는 메소드(서비스 제공해요)
+		return sqlSession.update("ukjae_ServiceContentsupdate", alterBoard);
 	}
 
 	public int registTrade(Board inputBoard) {
@@ -389,11 +394,11 @@ public class BoardDao {
 	}
 
 
-////
 	public List<ReviewForBoard> getreviewforboard(String agency_writer) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getreviewforboard", agency_writer);
 	}
+
 
 	public int selectMyWriteCandidateListCount(String member_id) {
 		return sqlSession.selectOne("selectMyWriteCandidateListCount", member_id);
@@ -402,6 +407,7 @@ public class BoardDao {
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
 	}
+
 
 
 }

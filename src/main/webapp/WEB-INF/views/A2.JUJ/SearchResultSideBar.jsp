@@ -12,6 +12,7 @@
 							<li class="n2" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkTwo();" class="na_2" style="color: black;"><font style="font-size: 20px; color: white;">반려동물</font></A></li>
 							<li class="n3" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkThree();" class="na_3" style="color: black;"><font style="font-size: 20px; color: white;">게임</font></A></li>
 							<li class="n4" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkFour();" class="na_4" style="color: black;"><font style="font-size: 20px;  color: white;">여행</font></A></li>
+							<li class="n5" style="padding: 20px; border: 1px dotted black;"><A href="javascript:checkFive();" class="na_5" style="color: black;"><font style="font-size: 20px;  color: white;">전체보기</font></A></li>
 						</ol>          	
 					</div> 
 				</div>

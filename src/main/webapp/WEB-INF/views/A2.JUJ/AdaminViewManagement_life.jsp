@@ -34,6 +34,9 @@
 		<h2> Life(생활) 카로셀이미지 변경 </h2><br>
 		
 		<form action="ukjaemainviewcontrol_life.go" method="post">
+		<input type="hidden" name="main1" value="${maincarousel.osm_datatitle}">	 
+		<input type="hidden" name="main2" value="${mainYoutube.osm_datatitle}">	
+
 		<table id="ukjae_TableAreaFiveth">	
 
 		</table>

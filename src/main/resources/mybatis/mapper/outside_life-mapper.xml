@@ -49,6 +49,10 @@
 		<![CDATA[select * from outside_li where osli_data = #{representimagecheck}]]>
 	</select>
 
+	<select id="ukjaereturnLife" parameterType="String" resultMap="LifeOne">
+		<![CDATA[select * from outside_li where osli_datavalue=#{life}]]>
+	</select>
+
 </mapper>
 
 

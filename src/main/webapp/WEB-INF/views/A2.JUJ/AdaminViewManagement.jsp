@@ -47,13 +47,17 @@
 		<h2> Main 카로셀이미지 변경 </h2><br>
 		
 		<form action="ukjaemainviewcontrol.go" method="post">
+		<input type="hidden" name="life1" value="${current_life_carousel.osli_data}">	 
+		<input type="hidden" name="life2" value="${current_life_image.osli_data}">	
+		
+			
 		<table id="ukjae_TableAreaFiveth">	
 
 		</table>
 		
 		<script type="text/javascript">
 		$(function(){
-			 $.ajax({
+				 $.ajax({
 					url : "alllist.go",
 					type : "post",
 					datatype : "json",

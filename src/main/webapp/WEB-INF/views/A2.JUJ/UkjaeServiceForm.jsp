@@ -269,7 +269,7 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<!-- 0이면 굵기지정 적용X / 1이면 굵기지정적용O -->
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_size" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_bold" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
 										</table>
 										<br>
 									</c:if>
