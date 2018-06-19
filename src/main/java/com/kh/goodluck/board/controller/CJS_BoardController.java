@@ -27,6 +27,7 @@ import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.KaKaoMessage;
 import com.kh.goodluck.board.model.vo.Review;
+import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.kakaoAPI.renew;
@@ -79,7 +80,10 @@ public class CJS_BoardController {
 				for (int i = 0; i < mobNum.length; i++){
 				    keywords.add(mobNum[i]);		
 				}
-				
+				if(bo.getAgency_type()==2) {
+				List<ReviewForBoard> review=boardservice.getreviewforboard(bo.getAgency_writer());
+				mv.addObject("review",review);
+				}
 				/* GetCategoryForBoardDetail 
 				 * [CATEGORY_BIG_CODE=A, CATEGORY_MID_CODE=AA, 
 				 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 

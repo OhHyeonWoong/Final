@@ -184,8 +184,6 @@ public class ItemController {
 			System.out.println("아이템컨트롤러에서 member호출"+member);
 			member.setEmoticonfile(ItemService.getUsingemticon(member.getMember_id()));
 		
-		
-		
 		}
 		 ITEMLIST newitemthismonth =ItemService.newitemthismonth();
 			ITEMLIST popitemthismonth =ItemService.popitemthismonth();

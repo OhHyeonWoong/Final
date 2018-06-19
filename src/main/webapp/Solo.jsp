@@ -7,6 +7,6 @@
 <title>Solo!</title>
 </head>
 <body>
-	<jsp:forward page="home.go"></jsp:forward>
+	<jsp:forward page="home.go?"></jsp:forward>
 </body>
 </html>

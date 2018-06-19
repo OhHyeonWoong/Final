@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page autoFlush="true" buffer="1094kb"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -340,9 +341,25 @@ ${Cateinfo};
 
                     </div>
                 </div>
+               
                 <div class="panel-footer">
-                    <a href="#">작성자가 받은 리뷰 보기</a>
+               <c:choose>
+               <c:when test="${Board.agency_type eq 2}"> <a href="#" onclick="openreview();">작성자가 받은 리뷰 보기</a></c:when>
+          
+               </c:choose>
+               
+                
                 </div>
+                
+                <script type="text/javascript">
+               function openreview(){
+            	
+            	   $('#reviewModal').modal('show');		
+               }
+                </script>
+                
+                
+                
             </div>
        </th>
 </tr>
@@ -469,23 +486,20 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
     			<td>관련 작업:${Cateinfo.CATEGORY_SMALL_NAME}</td>
     			</tr>
     			<tr>
-    		
-    			<td></td>
+    		    <td></td>
     			</tr>
-    			
-    			
     			</table>
-    			
-             	<center>
-    				<th colspan="2">  <small>※제대로 확인하셨나요? ※</small></th>
+    			<center>
+    		    <th colspan="2">  <small>※제대로 확인하셨나요? ※</small></th>
     			</center>
     			<br>
 				<center>
-				<button onclick="test1();">확인</button>
+				<button id="susumit" onclick="test1();">확인</button>
 				<button onclick="test2();">취소</button>
 				</center>
 				<script type="text/javascript">
 					function test1(){
+						$("#susumit").hide();
 					      var bool = confirm('정말로 신청 하시겠습니까?');
 					      if(bool==true){
 					         alert("신청이 완료 되었습니다!");
@@ -493,6 +507,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 					      }else {
 					         alert("신청이 취소 되었습니다.");            
 					      }
+					      $("#susumit").show();
 					}			
 					  function test2(){
 							$('#myModal').modal('hide');											
@@ -506,27 +521,245 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 		    </div>
 		  </div>
 		</div>
+		
+		
+		<div class="modal fade"  id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+		  <div class="modal-dialog" style="width: 100%; margin:  0;">
+		    <div class="modal-content" style="width:100%; height: 100%; margin-top: 200px;">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="myModalLabel">
+		${Board.agency_writer}님이 받은 봉사 평가
+
+</h4>
+		      </div>
+		      <div class="modal-body">
+    		<style type="text/css">
+ 	.carousel-control{ 	      
+ 		background :rgba(255, 255, 255, 0) !important;
+ 	}
+	.glyphicon-chevron-right, .glyphicon-chevron-left {
+		color: red;
+	}
+</style>
+<div id="carousel-reviews" class="carousel slide" data-ride="carousel">
+<div class="carousel-inner">
+<div class="item active">
+<c:if test="${review ne null}">
+<c:forEach items="${review}" var="review" end="2">
+<div class="col-md-4 col-sm-6">
+<div class="block-text rel zmin">
+<a title="" href="#">${review.MEMBER_ID}</a>
+<div class="mark">점수:<span class="rating-input">
+<span data-value="0" class="glyphicon glyphicon-star">
+<c:if test="${review.REVIEW_RATE==1}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star-empty">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==2}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==3}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==4}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==5}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+</span></span>
+</c:if>
+
+
+
+
+
+
+
+</div>
+<p>${review.REVIEW_CONTENT}</p>
+<ins class="ab zmin sprite sprite-i-triangle block"></ins>
+</div>
+<div class="person-text rel">
+<c:if test="${review.MEMBER_RENAMEPHOTO eq null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/fghdgfdgsgfdsd.png" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<c:if test="${review.MEMBER_RENAMEPHOTO ne null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/${review.MEMBER_RENAMEPHOTO}" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<a title="" href="#">카테고리 분야:</a>
+<i>${review.CATEGORY_SMALL_NAME}</i>				
+</div>
+</div>
+</c:forEach>
+</c:if>
+</div>
+                    
+          
+     
+<c:if test="${fn:length(review)>3}">   
+<div class="item">
+<c:forEach items="${review}" var="review" begin="2" end="5">
+<div class="col-md-4 col-sm-6">
+<div class="block-text rel zmin">
+<a title="" href="#">${review.MEMBER_ID}</a>
+<div class="mark">점수:<span class="rating-input">
+<span data-value="0" class="glyphicon glyphicon-star">
+<c:if test="${review.REVIEW_RATE==1}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star-empty">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==2}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==3}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==4}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==5}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+</span></span>
+</c:if>
+
+
+
+
+
+
+
+</div>
+<p>${review.REVIEW_CONTENT}</p>
+<ins class="ab zmin sprite sprite-i-triangle block"></ins>
+</div>
+<div class="person-text rel">
+<c:if test="${review.MEMBER_RENAMEPHOTO eq null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/fghdgfdgsgfdsd.png" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<c:if test="${review.MEMBER_RENAMEPHOTO ne null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/${review.MEMBER_RENAMEPHOTO}" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<a title="" href="#">카테고리 분야:</a>
+<i>${review.CATEGORY_SMALL_NAME}</i>				
+</div>
+</div>
+</c:forEach>
+</c:if>     
+</div>
+
+<c:if test="${fn:length(review)>6}">  
+<div class="item">
+<c:forEach items="${review}" var="review" begin="6" end="8">
+<div class="col-md-4 col-sm-6">
+<div class="block-text rel zmin">
+<a title="" href="#">${review.MEMBER_ID}</a>
+<div class="mark">점수:<span class="rating-input">
+<span data-value="0" class="glyphicon glyphicon-star">
+<c:if test="${review.REVIEW_RATE==1}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star-empty">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==2}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star-empty">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==3}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star-empty">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==4}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+</span></span>
+</c:if>
+<c:if test="${review.REVIEW_RATE==5}"> 
+</span><span data-value="1" class="glyphicon glyphicon-star">
+</span><span data-value="2" class="glyphicon glyphicon-star">
+</span><span data-value="3" class="glyphicon glyphicon-star">
+</span><span data-value="4" class="glyphicon glyphicon-star">
+</span></span>
+</c:if>
+</div>
+<p>${review.REVIEW_CONTENT}</p>
+<ins class="ab zmin sprite sprite-i-triangle block"></ins>
+</div>
+<div class="person-text rel">
+<c:if test="${review.MEMBER_RENAMEPHOTO eq null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/fghdgfdgsgfdsd.png" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<c:if test="${review.MEMBER_RENAMEPHOTO ne null}">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/${review.MEMBER_RENAMEPHOTO}" style="width: 90px; height: 90px; border-radius: 50% 50% 50% 50% ">
+</c:if>
+<a title="" href="#">카테고리 분야:</a>
+<i>${review.CATEGORY_SMALL_NAME}</i>				
+</div>
+</div>
+</c:forEach>
+</c:if>
+</div>                 
+                </div>
+                <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+		      </div>
+		      <div class="modal-footer">
+		      </div>
+		    </div>
+		  </div>
+		</div>		
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

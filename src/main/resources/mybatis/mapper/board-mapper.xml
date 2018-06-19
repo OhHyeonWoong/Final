@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="BoardandDetail">
 	
 	<resultMap type="Board" id="BoardResult">
@@ -20,6 +21,25 @@
 		<result property="agency_status" column="agency_status"/>
 		<result property="agency_content" column="agency_content"/>
 		<result property="AGENCY_VEIWS" column="AGENCY_VEIWS"/>
+		<result property="agency_views" column="agency_views"/>
+		<result property="agency_keyword" column="agency_keyword"/>
+		<result property="agency_option" column="agency_option"/>
+	</resultMap>
+	
+	<resultMap type="Board" id="BoardResult2">
+		<id property="agency_no" column="agency_no"/>
+		<result property="agency_writer" column="agency_writer"/>
+		<result property="agency_title" column="agency_title"/>
+		<result property="link2_no" column="link2_no"/>
+		<result property="agency_type" column="agency_type"/>
+		<result property="agency_loc" column="agency_loc"/>
+		<result property="agency_startdate" column="agency_startdate"/>
+		<result property="agency_enddate" column="agency_enddate"/>
+		<result property="agency_enrolldate" column="agency_enrolldate"/>
+		<result property="agency_paytype" column="agency_paytype"/>
+		<result property="agency_pay" column="agency_pay"/>
+		<result property="agency_status" column="agency_status"/>
+		<result property="agency_content" column="agency_content"/>
 		<result property="agency_views" column="agency_views"/>
 		<result property="agency_keyword" column="agency_keyword"/>
 		<result property="agency_option" column="agency_option"/>
@@ -270,6 +290,38 @@
 			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
 			where rnum>=1 and rnum<=6]]> 
 	</select>
+
+	<select id="ukjae_pic_link2_no" parameterType="String" resultMap="CategoryLink2All">
+		<![CDATA[select * from categorylink2 where category_small_code=#{smallcategory}]]>
+	</select>
+	
+	<insert id="newServiceRegist" parameterType="Board" flushCache="true" statementType="PREPARED">
+		<![CDATA[insert into agency values(
+		(select max(agency_no)+1 from agency),
+		#{agency_writer},
+		#{agency_title},
+		TO_NUMBER(#{link2_no}),
+		#{agency_type},
+		#{agency_loc},
+		#{agency_startdate},
+		#{agency_enddate},
+		default,
+		#{agency_paytype},
+		#{agency_pay}, 
+		default,
+		#{agency_content},
+		default,
+		#{agency_keyword},
+		#{agency_option})]]>		
+	</insert>
+	
+	<select id="ukjaepickupBoard" parameterType="Board" resultType="int">
+		<![CDATA[select agency_no from agency where agency_writer=#{agency_writer} and agency_content=#{agency_content} and agency_title=#{agency_title} and agency_loc=#{agency_loc}]]>
+	</select>
+	
+	<select id="Alter_Before_Agecnycheck" parameterType="integer" resultMap="BoardResult2">
+		<![CDATA[select * from agency where agency_no=#{agency_no}]]>
+	</select>
 	
 	<select id="selectMyBoardListCount" parameterType="string" resultType="int">
 		<![CDATA[
@@ -388,6 +440,7 @@
 		      where rn between #{startRow} and #{endRow}
 		]]>
 	</select>
+
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
