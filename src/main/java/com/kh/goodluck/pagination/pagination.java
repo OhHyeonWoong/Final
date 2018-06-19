@@ -7,7 +7,7 @@ public class pagination {
 	private int previousPage;
 	private int nextPage;
 	private int totalPage;
-	
+
 	
 	
 }
