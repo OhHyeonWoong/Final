@@ -70,7 +70,7 @@
 				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th></th>'+
 				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';				
 				for(var i in json.oneone_list){
-					htmlStr += '<tr><td>'+json.oneone_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.oneone_list[i].notice_no+'">'+json.oneone_list[i].notice_title+'</td><td>'+json.oneone_list[i].notice_writer+'</td><td>'+json.oneone_list[i].notice_date+'</td></tr>';
+					htmlStr += '<tr style="border:1px solid #dfdfdf;"><td>'+json.oneone_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.oneone_list[i].notice_no+'">'+json.oneone_list[i].notice_title+'</td><td>'+json.oneone_list[i].notice_writer+'</td><td>'+json.oneone_list[i].notice_date+'</td></tr>';
 				}			
 				htmlStr += '</table>';
 				$('.Notice_div').html(htmlStr);						
@@ -92,7 +92,7 @@
 				var htmlStr = '<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span><table class="ukjae_table"><thead style="border: 1px solid #d6d6d6;"><tr><th></th>'+
 				'<th>제목</th><th>작성자</th><th>작성일자</th></tr></thead>';
 				for(var i in json.twotwo_list){
-					htmlStr += '<tr><td>'+json.twotwo_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.twotwo_list[i].notice_no+'">'+json.twotwo_list[i].notice_title+'</td><td>'+json.twotwo_list[i].notice_writer+'</td><td>'+json.twotwo_list[i].notice_date+'</td></tr>';
+					htmlStr += '<tr style="border:1px solid #dfdfdf;"><td>'+json.twotwo_list[i].notice_no+'</td><td><a href="ndetail.go?notice_checkno='+json.twotwo_list[i].notice_no+'">'+json.twotwo_list[i].notice_title+'</td><td>'+json.twotwo_list[i].notice_writer+'</td><td>'+json.twotwo_list[i].notice_date+'</td></tr>';
 				}			
 				htmlStr += '</table>';
 				$('.Notice_div').html(htmlStr);			
@@ -108,8 +108,8 @@
 </head>
 <body>
 	<div class="container">
-		<div class="sidebar"style="background:black; color:white; width: 20%; height: 100%; float: left;" align="center">
-		
+		<div class="sidebar"style="background:black; color:white; width: 20%; height: auto; float: left; margin-top: 22px;" align="center">
+		  
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; height: 520px; padding-top: 90px;">
 			    <!-- Indicators -->
 			    <ol class="carousel-indicators">
@@ -122,17 +122,17 @@
 			    <div class="carousel-inner">
 			      <div class="item active">
 			        <img src="/goodluck/resources/common/img/main/메인1.jpg" style="width:99%; height: 250px;">
-			        <h2> All for you </h2>
+			        <h2> All </h2>
 			      </div>
 			
 			      <div class="item">
 			        <img src="/goodluck/resources/common/img/main/반려동물.jpg" style="width:99%; height: 250px;">
-			      <h2> All for you </h2>
+			      <h2> For </h2>
 			      </div>
 			    
 			      <div class="item">
 			        <img src="/goodluck/resources/common/img/main/여행.jpg" style="width:99%; height: 250px;">
-			      <h2> All for you </h2>
+			      <h2> You </h2>
 			      </div>
 			    </div>
 			
@@ -188,8 +188,8 @@
 		</div>
 		
 		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 2%">
-			<div class="Notice_div" style="width: 100%; height: 435px; padding: 10px;">
-			<span class="glyphicon glyphicon-user icon" style="margin-left: 38%;">공지사항</span>	
+			<div class="Notice_div" style="width: 100%; height: auto; padding: 10px;">
+			<span class="glyphicon glyphicon-user icon" style="margin-left: 38%; margin-bottom: 20px;">공지사항</span>	
 			
 			
 		
@@ -214,7 +214,7 @@
 						</c:forEach>	
 				</table>
 			
-				<Br>
+				
 			</div>
 			<div align="right">
 				<c:if test="${loginUser.member_status eq 3}"><A href="javascript:movewritePage();" style="background: yellow;">글 작성(Admin)</A></c:if>	
@@ -224,10 +224,10 @@
 					<table class="pageingtable">
 						<tr>
 							<td colspan="4"> 
-								<a href="javascript:firstlist();">[first]</a> &nbsp; &nbsp; 
-								<a href="javascript:firstlist();">1</a>  &nbsp; &nbsp;
-								<a href="javascript:secondlist();">2</a> &nbsp; &nbsp;
-								<a href="javascript:secondlist();">[end]</a>
+								<a href="javascript:firstlist();" style="border: 1px solid white;">first</a> &nbsp; &nbsp; 
+								<a href="javascript:firstlist();" style="border: 1px solid white;">1</a>  &nbsp; &nbsp;
+								<a href="javascript:secondlist();" style="border: 1px solid white;">2</a> &nbsp; &nbsp;
+								<a href="javascript:secondlist();" style="border: 1px solid white;">end</a>
 							</td>
 						</tr>
 					</table>	
