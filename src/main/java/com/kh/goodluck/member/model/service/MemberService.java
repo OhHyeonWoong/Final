@@ -43,6 +43,8 @@ public interface MemberService {
 	public abstract LoginStatistics selectIdYNCheck(String member_id);
 	public abstract int insertNewItem(ITEMLIST item);
 	public abstract int scoreInput(Member member);
+	public abstract int insertLbjMilegePayLog(HashMap<String, Object> map);
+	public abstract int updateAdminCash(HashMap<String, Object> map);
 
 
 

@@ -152,4 +152,12 @@ public class MemberDao {
 		return sqlSession.insert("", member);
 	}
 
+	public int insertLbjMilegePayLog(HashMap<String, Object> map) {
+		return sqlSession.insert("insertLbjMilegePayLog", map);
+	}
+
+	public int updateAdminCash(HashMap<String, Object> map) {
+		return sqlSession.update("updateAdminCash", map);
+	}
+
 }
