@@ -72,7 +72,7 @@ public class CategoryController {
 		int result = categoryService.bigCategoryCount(bigCategoryCode);
 		System.out.println("Result : " + result + " / To.CategoryController");
 		
-		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(bigCategoryCode, "UTF-8"));
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(bigCategoryCode, "UTF-8") + "&page=1");
 	}
 	
 	@RequestMapping(value = "MidCategoryCount.go", method = RequestMethod.GET)
@@ -81,7 +81,7 @@ public class CategoryController {
 		int result = categoryService.midCategoryCount(midCategoryCode);
 		/*System.out.println("Result : " + result + " / To.CategoryController");*/
 		
-		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(midCategoryCode, "UTF-8"));
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(midCategoryCode, "UTF-8") + "&page=1");
 	}
 	
 	@RequestMapping(value = "SmallCategoryCount.go", method = RequestMethod.GET)
@@ -90,6 +90,10 @@ public class CategoryController {
 		int result = categoryService.smallCategoryCount(smallCategoryCode);
 		System.out.println("Result : " + result + " / To.CategoryController");
 		
-		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(smallCategoryCode, "UTF-8"));
+		response.sendRedirect("/goodluck/bshtest.go?link2_no=" + URLEncoder.encode(smallCategoryCode, "UTF-8") + "&page=1");
 	}
+	
+	
+	
+	
 }

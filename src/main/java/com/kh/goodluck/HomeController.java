@@ -21,6 +21,10 @@ import com.kh.goodluck.faq.model.service.FaqService;
 import com.kh.goodluck.faq.model.vo.Faq;
 import com.kh.goodluck.notice.model.service.NoticeService;
 import com.kh.goodluck.notice.model.vo.Notice;
+import com.kh.goodluck.outside_li.model.service.Outside_LifeService;
+import com.kh.goodluck.outside_li.model.vo.Outside_Life;
+import com.kh.goodluck.outside_m.model.service.Outside_MainService;
+import com.kh.goodluck.outside_m.model.vo.Outside_Main;
 import com.sun.mail.iap.Response;
 
 import javafx.scene.control.Pagination;
@@ -39,29 +43,90 @@ public class HomeController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Autowired
+	private Outside_MainService outside_MainService;
+	
+	@Autowired
+	private Outside_LifeService outside_LifeService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);	
-	@RequestMapping(value = "home.go", method = RequestMethod.GET)
-	public String home() { 	//메인화면 이동용 메소드
-		logger.info("HomeController Run");		
-		return "home";
+	@RequestMapping(value="home.go")
+	public ModelAndView home(ModelAndView mv) { 	//메인화면 이동용 메소드
+		logger.info("HomeController Run");
+		
+		Outside_Main uk_m1 = outside_MainService.ukjaeBasicMainPageCarouseldata();
+		Outside_Main uk_m2 = outside_MainService.ukjaeBasicMainPageYoutubedata();
+		Outside_Life uk_li1 = outside_LifeService.ukjaeBasicLifePageCarouseldata();
+		Outside_Life uk_li2 = outside_LifeService.ukjaeBasicLifePageRepresentdata();
+		
+		mv.addObject("ukjaemainCarousel", uk_m1);
+		mv.addObject("ukjaemainYoutube", uk_m2);
+		mv.addObject("ukjaelifeCarousel", uk_li1);
+		mv.addObject("ukjaerepresentlifeimage", uk_li2);
+		
+		mv.setViewName("home");
+		return mv;
 	}		
-	
-	@RequestMapping("ukjaeServiceForm.go")
-	public String ServiceForm() {
-		return "A2.JUJ/UkjaeServiceForm";
-	}
-	
+		
 	@RequestMapping("outsideInfo.go")
 	public String outsideInformationShow() {
 		
 		return "A2.JUJ/OutSideInFormation";
 	}
-	
-	@RequestMapping("adminViewManagement.go")
-	public String managementpage() {
+	//////////////////////////////////////////////////
+	@RequestMapping(value="adminViewManagement.go",method=RequestMethod.GET)
+	public String managementpage(HttpServletRequest request,HttpServletRequest response) {
+		
+		System.out.println("관리자 메인화면 변경페이지로 이동합니다. 그전에..");
+		System.out.println("다른페이지의 화면을 체크합니다.");
+		
+		String life1 = request.getParameter("lifeCarouselImage");
+		String life2 = request.getParameter("representlifeimage");
+		
+		System.out.println(life1);
+		System.out.println(life2);
 		
 		return "A2.JUJ/AdaminViewManagement";
+	}
+	
+	@RequestMapping("adminViewManagement_life.go")
+	public String managementpage2() {
+		
+		return "A2.JUJ/AdaminViewManagement_life";
+	}
+	//////////////////////////////////////////////////
+	
+	@RequestMapping(value="ukjaemainviewcontrol.go", method=RequestMethod.POST) 
+	public ModelAndView ukjaeMaincontrol(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_youtube")String youtubecheck,ModelAndView mv) {
+		//메인화면 카로셀/유투브영상 바꿔치기하기
+		Outside_Main uk_m1 = outside_MainService.ukjaeCheckingCarousel(carouselcheck);
+		Outside_Main uk_m2 = outside_MainService.ukjaeCheckingYoutube(youtubecheck);
+		
+		mv.addObject("ukjaemainCarousel", uk_m1);
+		mv.addObject("ukjaemainYoutube", uk_m2);
+		mv.setViewName("home");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="ukjaemainviewcontrol_life.go", method=RequestMethod.POST)
+	public ModelAndView ukjaeMaincontrol_life(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_representimage")String representimagecheck,ModelAndView mv) {
+		//생활화면 카로셀/유투브영상 바꿔치기하기
+		
+		/*System.out.println("선택한 카로셀이미지 : "+carouselcheck);
+		System.out.println("선택한 대표이미지 : "+representimagecheck);*/
+
+		Outside_Life uk_li1 = outside_LifeService.ukjaeCheckingLifeCarousel(carouselcheck);
+		Outside_Life uk_li2 = outside_LifeService.ukjaeCheckingLifePresentImage(representimagecheck);
+		Outside_Main uk_m1 = outside_MainService.ukjaeBasicMainPageCarouseldata();
+		Outside_Main uk_m2 = outside_MainService.ukjaeBasicMainPageYoutubedata();
+		
+		mv.addObject("ukjaemainCarousel", uk_m1);
+		mv.addObject("ukjaemainYoutube", uk_m2);
+		mv.addObject("ukjaelifeCarousel", uk_li1);
+		mv.addObject("ukjaerepresentlifeimage", uk_li2);
+		mv.setViewName("home");
+		return mv;
 	}
 
 	@RequestMapping(value="noticetop5.go", method=RequestMethod.GET)
@@ -465,7 +530,7 @@ public class HomeController {
 		out.print(json.toJSONString());
 		out.flush();
 		out.close();	
-	}
+	} 
 	
 	/////////////////////////여기까지 프리랜서영역화면//////////////////////////////
 	
@@ -474,7 +539,8 @@ public class HomeController {
 		
 		//구인영역 서비스 제공해요
 		ArrayList<Board> requireSupply = (ArrayList<Board>) boardService.mainShowRequireListPickUp();
-		/*System.out.println("메인에 보여질 구인영역 제공해요 목록 : "+ requireSupply.toString());*/
+		//System.out.println("메인에 보여질 구인영역 제공해요 목록 : "+ requireSupply.toString());
+
 
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();

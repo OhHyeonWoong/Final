@@ -915,6 +915,7 @@
 								var json = JSON.parse(jsonStr);
 								var bigCategory = "";
 								var realTimeBar = "";
+								var realTimeBarDrop = "";
 								
 								for(var i in json.headerCategoryBig){				
 									bigCategory += '<td class = "ohw-menu-col-td">' + 
@@ -922,10 +923,18 @@
 													'</td>'									
 								}
 								
-								for(var i in json.headerCategorySmall){				
+								for(var i in json.headerCategorySmall){
+									var num = (i * 1 + 1 * 1) * 1;
 									realTimeBar += '<li class = "ohw-menu-realtimebar-li">' + 
-														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
-													'</li>'								
+														'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + num * 1 + ". " + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+													'</li>'												
+								}
+								
+								for(var i in json.headerCategorySmall){
+									var num = (i * 1 + 1 * 1) * 1;
+									realTimeBarDrop += '<li class = "ohw-menu-realtimebar-drop">' + 
+															'<a id = "' + json.headerCategorySmall[i].headerCategorySmallName + '" onClick = "SmallCategoryCount(this.id)">' + num * 1 + ". " + json.headerCategorySmall[i].headerCategorySmallName + '</a>' + 
+														'</li>'												
 								}
 								
 								menuTd = '<td class = "ohw-menu-col-td ohw-menu-realtimebar">' + 
@@ -937,21 +946,26 @@
 												'</dl>' + 
 											'</div>' + 
 										'</td>' + 
-										'<td class = "ohw-menu-realtimebar-dropdown">' + 
-											'<a>' + 
-												'<i class = "fa fa-chevron-down"></i>' + 
+										'<td class = "ohw-menu-realtimebar-dropdown dropdown">' + 
+											'<a class="dropdown-toggle" data-toggle="dropdown" href="#">' + 										
+													'<i class = "fa fa-chevron-down"></i>' + 											
 											'</a>' + 
-										'</td>'
+											'<ul class="ohw-dropdown-menu dropdown-menu">' + 
+												/* 드랍다운 소카테고리 들어가는 자리 */
+											'</ul>' + 
+											'</a>' + 
+										'</td>'									
 								
 								$('.ohw-menu-tr-category').append(bigCategory);
 								$('.ohw-menu-tr-category').append(menuTd);
 								$('.ohw-menu-realtimebar-ol').append(realTimeBar);
+								$('.ohw-dropdown-menu').append(realTimeBarDrop);
 									
 							}, 
 						error : function(request, status, errorData) {
 									alert("Error Code : " + request.status + "\n"
-									+ "Message : " + request.responseText + "\n"
-									+ "Error : " + errorData);
+										+ "Message : " + request.responseText + "\n"
+										+ "Error : " + errorData);
 						}
 					});				
 					/* Menu Big Category End */					

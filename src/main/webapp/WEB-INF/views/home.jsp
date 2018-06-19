@@ -17,8 +17,7 @@
 			datatype : "json",
 			success : function(data){
 				/* alert("추가가 완료되었습니다."); */
-				/* console.log("success : " + data); */
-				
+				/* console.log("success : " + data); */		
 				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
 				/* console.log(jsonStr); */
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
@@ -737,7 +736,6 @@
 }
 
 #ukjae_TableAreaFiveth{
-	/* background-image: url('http://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg'); */
 	border: none;
 }
 
@@ -894,19 +892,21 @@
 <body id="main">
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 		
-<div class="container">  
-	<!-- <input type="hidden" class="mainpic1" value="/goodluck/resources/common/img/main/생활.jpg">
-	<input type="hidden" class="mainpic2" value="/goodluck/resources/common/img/main/반려동물2.jpg">
-	<input type="hidden" class="mainpic3" value="/goodluck/resources/common/img/main/게임.jpg">
-	<input type="hidden" class="mainpic4" value="/goodluck/resources/common/img/main/음악.jpg">
-	<input type="hidden" class="mainpic5" value="/goodluck/resources/common/img/main/렌탈.jpg">
-	<input type="hidden" class="mainpic6" value="/goodluck/resources/common/img/main/여행.jpg">
-	<input type="hidden" class="mainpic7" value="/goodluck/resources/common/img/main/프리랜서.jpg">
-	<input type="hidden" class="mainpic8" value="/goodluck/resources/common/img/main/구인.jpg">
-	<input type="hidden" class="mainpic9" value="/goodluck/resources/common/img/main/메인1.jpg"> -->
-		
+<div class="container">  			
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>			
+	<c:set var="ukjaelifeCarousel_basic" value="${ukjaelifeCarousel}"/>
+	
+	<%-- 
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> 	
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> 		
+	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> --%>		
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
-		<% String inside = null; %>
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target=".ohw-homeCarousel" data-slide-to="0" class="active"></li> 
@@ -921,11 +921,11 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active" id="0">
-				<a href="Notice.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/메인1.jpg" alt="메인이미지" style="width:100%;"></a>
+				<a href="Notice.go"><img class = "ohw-carousel-img" src="${ukjaemainCarousel_basic.osm_datavalue}" alt="메인이미지" style="width:100%;"></a>
 			</div>
 			
 			<div class="item" id="1">
-				<a href="Board.go"><img class = "ohw-carousel-img" src="/goodluck/resources/common/img/main/생활.jpg" alt="생활" style="width:100%;"></a>	
+				<a href="Board.go"><img class = "ohw-carousel-img" src="${ukjaelifeCarousel_basic.osli_datavalue}" alt="생활" style="width:100%;"></a>	
 			</div>    
 
 			<div class="item" id="2">
@@ -986,9 +986,10 @@
 		
 		<div class="carousel-inner" >
 			<div class="item active">	
-					
-				<div style="width: 100%; Sectiongin-bottom: 12px;">			
-				
+				<div style="width: 100%; Sectiongin-bottom: 12px;">	
+					<c:if test="${loginUser.member_status eq 3}">		
+					<a href="adminViewManagement.go?lifeCarouselImage=${ukjaelifeCarousel.osli_datavalue}&representlifeimage=${ukjaerepresentlifeimage.osli_datavalue}"> 관리자 View페이지 </a>
+					</c:if>
 					<div class = "juj-home-realtimebar-content">
 									<dl class = "juj-home-realtimebar-dl">										
 										<dd class ="juj-home-realtimebar-dd">
@@ -1231,12 +1232,13 @@
 					</td>
 					<td class = "ohw-home-table-td" align = "center"> 
 						<table class="ohw-home-table2">
+						<c:set var="ukjaemainYoutube_basic" value="${ukjaemainYoutube}"/> 
 							<tr>
 								<td style="padding-top: 11px; padding-bottom: 4px;">
-									<iframe width="520" height="320" src="https://www.youtube.com/embed/QI7cYnBlkFQ"></iframe>
+									<iframe width="520" height="320" src="${ukjaemainYoutube_basic.osm_datavalue}"></iframe>
 				
 									<br>
-									<font size="6" face="굴림" style="font-weight: bold;">독신들을 위한 레시피!!</font>
+									<font size="5" face="굴림" style="font-weight: bold;">${ukjaemainYoutube_basic.osm_datatitle}</font>
 
 								</td>
 							</tr>
@@ -1277,7 +1279,8 @@
 			<div class="item">	<!-- 생활영역 -->
 				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
 					<tr> 
-						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="/goodluck/resources/common/img/life/생활1.jpg"></td>
+						<c:set var="ukjaerepresentlife_basic" value="${ukjaerepresentlifeimage}"/> 
+						<td colspan="3"><img alt="대표이미지" id="typical_image" align="middle" src="${ukjaerepresentlife_basic.osli_datavalue}"></td>
 						<td align="center"> 
 							<h4 style="margin-top: 0;"> 제 공 합 니 다 </h4>
 							<div id="ukjaetypical_tablearea" align="center"> <!--  -->

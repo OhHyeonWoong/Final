@@ -15,6 +15,7 @@ import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.Review;
+import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
@@ -138,6 +139,16 @@ public class BoardService {
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출		
 		return boardDao.mainShowRequireListPickUp();			
 	}
+	
+	public CategoryLink2 pickupSmallCategory(String smallcategory) {
+		//CATEGORY_SMALL_CODE를 인자값으로 보내어, link2_no를 추출
+		return boardDao.pickupSmallCategory(smallcategory);
+	}
+	
+	public Board ukjaegetServiceWriting(int agency_no) {
+		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
+		return boardDao.ukjaegetServiceWriting(agency_no);
+	}
 
 	public Board getBoardInfoByNo(int pk) {
 		// TODO Auto-generated method stub
@@ -247,6 +258,24 @@ public class BoardService {
 		return boardDao.insertReview(re);
 	}
 
+
+	public int serviceSupplyRegist(Board board) {
+		//제공해요 새로운 글 등록하는 메소드 
+		return boardDao.serviceSupplyRegist(board);
+	}
+	
+	public int checkBoardNo(Board inputBoard) {
+		//등록된 게시글의 PK를 가져오는 메소드(->TradeDetail게시판에 insert)
+		return boardDao.checkBoardNo(inputBoard);
+	}
+
+
+	public int registTrade(Board inputBoard) {
+		//TradeDeatil에 현재상황을 등록하기 
+		return boardDao.registTrade(inputBoard);
+	}
+
+
 	public int selectMyBoardListCount(String member_id) {
 		//병준이 본인 게시물 갯수 세오는 메소드
 		return boardDao.selectMyBoardListCount(member_id);
@@ -282,13 +311,27 @@ public class BoardService {
 		return boardDao.SCOREupdatetype1(map2);
 	}
 	
-	//LBJ 관리자 게시글 관리 용 메소드 2개
+	//LBJ 관리자 게시글 관리 용 메소드 5개
 	public int selectBoardListCount() {
 		return boardDao.selectBoardListCount();
 	}
 	public List<MyPageBoard> selectBoardList(HashMap<Object, Object> map) {
 		return boardDao.selectBoardList(map);
 	}
-	/////////////////////////////
+	public int deleteBoard(HashMap<String, Object> map) {
+		return boardDao.deleteBoard(map);
+	}
+	public int selectKeywordBoardListCount(String keyword) {
+		return boardDao.selectKeywordBoardListCount(keyword);
+	}
+	public List<MyPageBoard> selectKeywordBoardList(HashMap<Object, Object> map) {
+		return boardDao.selectKeywordBoardList(map);
+	}
+
+
+	public List<ReviewForBoard> getreviewforboard(String agency_writer) {
+		// TODO Auto-generated method stub
+		return boardDao.getreviewforboard(agency_writer);
+	}
 
 }

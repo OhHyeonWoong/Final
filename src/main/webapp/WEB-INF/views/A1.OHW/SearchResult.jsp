@@ -108,13 +108,16 @@
 						<td>글쓴이</td>
 						<td>날짜</td>				
 					</tr>
-					<c:forEach var="searchMasterResult" items="${ searchResult.searchMasterList }">
+					<c:forEach var="searchMasterResult" items="${ searchResult.searchMasterList }">						
 						<tr>
 							<td>${ searchMasterResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "">${ searchMasterResult.agency_title }</a></td>
-							<td><img src = ""> ${ searchMasterResult.agency_writer }</td>
-							<td>${ searchMasterResult.agency_enrolldate }</td>
+							<td class = "ohw-agency-title"><a href = "">${ searchMasterResult.agency_title }</a></td>							
+							<td>
+								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif"> 
+								${ searchMasterResult.agency_writer }
+							</td>
+	         				<td>${ searchMasterResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
 					<tr>

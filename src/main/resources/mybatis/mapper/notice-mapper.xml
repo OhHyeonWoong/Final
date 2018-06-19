@@ -51,12 +51,12 @@
 	</select>
 	
 	<select id="noticeCatch1" resultMap="NoticeResult">
-		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice) where rnum <=6 and rnum >=1]]>	
+		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice order by notice_no desc) where rnum <=6 and rnum >=1]]>	
 	</select>
 	
 	
 	<select id="noticeCatch2" resultMap="NoticeResult">
-		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice) where rnum <=12 and rnum >=7]]>	
+		<![CDATA[select * from (select rownum rnum, notice_no, notice_title,notice_content, notice_writer, notice_date from notice order by notice_no desc) where rnum <=12 and rnum >=7]]>	
 	</select>
 
 </mapper>
