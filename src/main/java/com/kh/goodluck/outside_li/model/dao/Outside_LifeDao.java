@@ -57,6 +57,11 @@ public class Outside_LifeDao {
 		//생활화면에 변경될 대표 이미지객체를 리턴받는 메소드
 		return sqlSession.selectOne("representimagecheck", representimagecheck);
 	}
+
+	public Outside_Life ukjaeGetlifecontents(String life) {
+		//생활 객체 리턴받는 메소드
+		return sqlSession.selectOne("ukjaereturnLife", life);
+	}
 	
 	
 	

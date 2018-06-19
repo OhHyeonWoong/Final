@@ -334,4 +334,9 @@ public class BoardService {
 		return boardDao.getreviewforboard(agency_writer);
 	}
 
+	public int writingPage_Update(Board alterBoard) {
+		// TODO Auto-generated method stub
+		return boardDao.writingPage_Update(alterBoard);
+	}
+
 }

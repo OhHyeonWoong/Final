@@ -12,7 +12,7 @@
 		root-context.xml 에서 설정한다. -->
 	<!-- DataSource 등록 : db연결 정보 -->
 	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
-		하라는 뜻임 -->  
+		하라는 뜻임 -->    
     
     <bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
@@ -23,6 +23,7 @@
 		<property name="password" value="final" />  
 		<property name="defaultAutoCommit" value="false" />
 	</bean> 
+	
 
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"
