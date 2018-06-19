@@ -34,6 +34,7 @@ import com.kh.goodluck.category.model.service.CategoryService;
 import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
+import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.report.model.service.ReportService;
@@ -57,6 +58,9 @@ public class JUJ_BoardController {
 	@Autowired
 	ReportService reportService;
 	
+	@Autowired
+	MemberService memberService;
+	
 	public JUJ_BoardController() { //기본생성자 선언
 		// TODO Auto-generated constructor stub
 	}
@@ -73,14 +77,20 @@ public class JUJ_BoardController {
 	@RequestMapping("ukjaeServiceForm.go")
 	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
 		
-		//내 아이템 작업 
-		//System.out.println("로그인한 member : "+memberid);
+		String userWriteCount = request.getParameter("write_count");
+		int userWriteCount2 = Integer.parseInt(userWriteCount);
 		
+		System.out.println(memberid+"님의 게시글 등록 가능횟수는 "+userWriteCount2+"회 입니다.");
+		
+		if(userWriteCount2<=0) {		
+			mv.setViewName("home");
+		}else {
 		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
-		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
+		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
 		
 		mv.addObject("userGiveItem", userItem);
 		mv.setViewName("A2.JUJ/UkjaeServiceForm");
+		}
 		return mv;
 	}
 	
@@ -111,8 +121,10 @@ public class JUJ_BoardController {
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
 			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
+		System.out.println("WirteCount -1");
+		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
 		
-		
+		  
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
 		 

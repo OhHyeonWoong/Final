@@ -45,8 +45,11 @@ public interface MemberService {
 	public abstract int scoreInput(Member member);
 	public abstract int insertLbjMilegePayLog(HashMap<String, Object> map);
 	public abstract int updateAdminCash(HashMap<String, Object> map);
+	
+	//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
+	public abstract int ukjaeWriteCountOneMinus(String loginUser);
 
-
+  
 
 
 }
