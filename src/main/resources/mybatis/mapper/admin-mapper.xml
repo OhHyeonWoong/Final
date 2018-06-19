@@ -91,6 +91,7 @@
 	]]>
 	</select>
 	
+	<!-- 패키지 -->
 	<select id = "ad_selectPackageItemList" resultType="ItemPackage">
 	<![CDATA[
 	select * from itempackage 
@@ -98,6 +99,7 @@
 	]]>
 	</select>
 	
+	<!-- 랜덤박스 -->
 	<select id = "ad_selectRandomAllList" resultType="RandomBox_all">
 	<![CDATA[
 	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_ALL ra, ITEMLIST it
@@ -110,7 +112,7 @@
 	<![CDATA[
 	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_EMO ra, ITEMLIST it
 	where ra.itemlist_no=it.ITEMLIST_NO
-	order by RANDOMBOX_PK asc;
+	order by RANDOMBOX_PK asc
 	]]>
 	</select>
 		
@@ -118,7 +120,7 @@
 	<![CDATA[
 	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_TIME ra, ITEMLIST it
 	where ra.itemlist_no=it.ITEMLIST_NO
-	order by RANDOMBOX_PK asc;
+	order by RANDOMBOX_PK asc
 	]]>
 	</select>
 	
