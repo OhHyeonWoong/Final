@@ -330,6 +330,13 @@ public class BoardDao {
 		//기존의 글을 수정하는 메소드(서비스 제공해요)
 		return sqlSession.update("ukjae_ServiceContentsupdate", alterBoard);
 	}
+	
+
+	public int ukjaeDeleteService(int parsing_no) {
+		//delete(삭제 버튼을 눌러 agency_status를 숨김으로 설정)
+		return sqlSession.update("ukjaeDeleteService", parsing_no);
+	}
+  
 
 	public int registTrade(Board inputBoard) {
 		//TradeDeatil에 현재상황을 등록하기 
@@ -407,6 +414,8 @@ public class BoardDao {
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
 	}
+
+
 
 
 

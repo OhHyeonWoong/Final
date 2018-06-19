@@ -94,6 +94,22 @@ public class JUJ_BoardController {
 		return mv;
 	}
 	
+	@RequestMapping("ukjae_serviceStatus_alter.go")
+	public void ukjaeWritingDel(@RequestParam("data_no")String writing_no, HttpServletRequest request,HttpServletResponse response) throws IOException {
+		
+		int parsing_no = Integer.parseInt(writing_no);
+		
+		int result = boardService.ukjaeDeleteService(parsing_no);
+
+		System.out.println(result+"개의 서비스글이 변경되었습니다.");
+		
+		PrintWriter out = response.getWriter();
+		out.append("게시글의 상태를 숨김으로 변경하였습니다.");
+		out.flush();
+		out.close();
+	}  
+	
+	
 	
 	@RequestMapping("wookServiceAlter.go")
 	public ModelAndView ukjaeServicePageAlter(@RequestParam("member_id") String member_id,HttpServletRequest request,ModelAndView mv) {
