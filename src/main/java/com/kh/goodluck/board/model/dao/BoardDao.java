@@ -395,5 +395,13 @@ public class BoardDao {
 		return sqlSession.selectList("getreviewforboard", agency_writer);
 	}
 
+	public int selectMyWriteCandidateListCount(String member_id) {
+		return sqlSession.selectOne("selectMyWriteCandidateListCount", member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyWriteCandidate(HashMap<Object, Object> map6) {
+		return sqlSession.selectList("selectMyWriteCandidate", map6);
+	}
+
 
 }

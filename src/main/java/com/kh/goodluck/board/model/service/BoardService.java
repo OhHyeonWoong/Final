@@ -334,4 +334,12 @@ public class BoardService {
 		return boardDao.getreviewforboard(agency_writer);
 	}
 
+	public int selectMyWriteCandidateListCount(String member_id) {
+		return boardDao.selectMyWriteCandidateListCount(member_id);
+	}
+
+	public List<MyPageBoardHistory> selectMyWriteCandidate(HashMap<Object, Object> map6) {
+		return boardDao.selectMyWriteCandidate(map6);
+	}
+
 }
