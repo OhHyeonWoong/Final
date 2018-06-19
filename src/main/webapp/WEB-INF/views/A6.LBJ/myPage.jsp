@@ -670,6 +670,69 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					var jsonStr = JSON.stringify(data);
 					var json = JSON.parse(jsonStr);
 					
+					$('#lbjYesCandidateTable').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjYesCandidateTable">'+
+					'<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th>'+
+					'<th class="lbjth">작성일</th><th class="lbjth">신청자</th></tr>';
+					
+					console.log("myWriteCandidate 리로딩 처리 시작");
+					
+					for(var i in json.myWriteCandidate){
+						if(json.myWriteCandidate[i].agency_type == 1){
+							htmlStr += '<tr><td>구합니다<font style="color:red;">(오너)</font></td>';
+						}else if(json.myWriteCandidate[i].agency_type == 2){
+							htmlStr += '<tr><td>해드립니다(일반 지원자)</td>';
+						}
+						htmlStr += '<td>'+json.myWriteCandidate[i].category_small_name+'</td>';
+						htmlStr += '<td><a href="DealingState1.go?BoardNo='+json.myWriteCandidate[i].agency_no+'">'+json.myWriteCandidate[i].agency_title+'</a></td>';
+						htmlStr += '<td>'+json.myWriteCandidate[i].agency_enrolldate+'</td>';
+						
+						if(json.myWriteCandidate[i].trade_applicant != null && json.myWriteCandidate[i].trade_reservation == null){
+							htmlStr += '<td><font style="color:blue;">'+json.myWriteCandidate[i].trade_applicant+'</font></td>';
+						}else if(json.myWriteCandidate[i].trade_applicant == null && json.myWriteCandidate[i].trade_reservation != null){
+							htmlStr += '<td><font style="color:blue;">'+json.myWriteCandidate[i].trade_reservation+'</font></td>';
+						}
+					}
+					console.log("myWriteCandidate 리로딩 처리 끝");
+					//페이징 처리 시작//
+					console.log("myWriteCandidate 페이징 처리 시작");
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.myWriteCandidate[0].myWriteCandidateListCount > 6){
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(1);"> << </a>&nbsp;';
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage > json.myWriteCandidate[0].myWriteCandidateStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+(json.myWriteCandidate[0].myWriteCandidateCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.myWriteCandidate[0].myWriteCandidateStartPage;i<=json.myWriteCandidate[0].myWriteCandidateEndFor;i++){
+							if(i == json.myWriteCandidate[0].myWriteCandidateCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage != json.myWriteCandidate[0].myWriteCandidateEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+(json.myWriteCandidate[0].myWriteCandidateCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage >= json.myWriteCandidate[0].myWriteCandidateMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+json.myWriteCandidate[0].myWriteCandidateMaxPage+'); return false;">>></a>';
+						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 the end//
+					$('#lbjYesCandidateDiv').html(htmlStr); 
 				},
 				error:function(a,b,c){
 					alert("a = " + a + " , b = " + b + " , c = " + c);
@@ -791,6 +854,10 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		
 		function fnMyBoardUpdate(no){
 			location.href='wookServiceAlter.go?agency_no='+no+'&member_id=${loginUser.member_id}';
+		}
+		
+		function fnMyBoardDelete(no){
+			//내가 올린 글 삭제 했을 시 agency_status 숨김으로~
 		}
 		
 	</script>
@@ -928,7 +995,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_enrolldate}</td>
 							<td><button class="btn btn-default" onclick="fnMyBoardUpdate(${board.agency_no});">수정</button></td>
-							<td><button class="btn btn-danger" onclick="">삭제</button></td>
+							<td><button class="btn btn-danger" onclick="fnMyBoardDelete(${board.agency_no});">삭제</button></td>
 						</tr>
 					</c:forEach>
 					<!-- 페이징 처리 가즈아 -->
@@ -1016,14 +1083,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					<!-- 페이징 처리 가즈아 -->
 					<c:if test="${writeCandidatePage.myWriteCandidateListCount <= 6}">
 						<tr>
-							<td colspan="6">
+							<td colspan="5">
 								<font color="red" size="4"><b>1</b></font>&nbsp;
 							</td>
 						</tr>
 					</c:if>
 					<c:if test="${writeCandidatePage.myWriteCandidateListCount > 6}">
 						<tr>
-							<td colspan="6">
+							<td colspan="5">
 							<div style="text-align:center;">
 								<c:if test="${qnaPage.qnaCurrentPage <= 1}">
 									<< &nbsp;
