@@ -59,6 +59,9 @@
 	            </td>
 	            </tr>
 	</table>
+	<div>
+	
+	</div>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
     <div style="margin: 0 auto; text-align:center;">
     <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_modi_insert">
@@ -99,6 +102,9 @@
 	            </tr>
 	</table>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
+	<div>
+	
+	</div>
     <div style="margin: 0 auto; text-align:center;">    	
     <a class='btn btn-info btn-xs' data-toggle="modal" href="#item_package_insert">
     <span class="glyphicon glyphicon-edit"></span>아이템 등록</a><br><br>
@@ -139,6 +145,9 @@
 	            <%-- </c:forEach> --%>
 	</table>
 	<br>
+	<div>
+	
+	</div>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
     <div style="margin: 0 auto; text-align:center;">
     <label style="color: red">※ 랜덤박스 추가는 불가능합니다!!</label>

@@ -14,6 +14,17 @@
 		<result property="CATEGORY_MID_CODE" column="CATEGORY_MID_CODE"/>
 		<result property="CATEGORY_BIG_CODE" column="CATEGORY_BIG_CODE"/>
 	</resultMap>
+	
+	<resultMap type="ReviewForBoard" id="ReviewForBoard">
+		<id property="REVIEW_DATE" column="REVIEW_DATE"/>
+		<result property="REVIEW_CONTENT" column="REVIEW_CONTENT"/>
+		<result property="MEMBER_ID" column="MEMBER_ID"/>
+		<result property="CATEGORY_SMALL_NAME" column="CATEGORY_SMALL_NAME"/>
+		<result property="MEMBER_RENAMEPHOTO" column="MEMBER_RENAMEPHOTO"/>
+		<result property="REVIEW_RATE" column="REVIEW_RATE"/>
+	</resultMap>
+
+	
 	<select id="GetCategoryForBoardDetail" parameterType="int" resultType="GetCategoryForBoardDetail">
 select 
 BIGCATEGORY.CATEGORY_BIG_CODE ,
@@ -29,5 +40,15 @@ CATEGORYLINK1.CATEGORY_BIG_CODE= BIGCATEGORY.CATEGORY_BIG_CODE and CATEGORYLINK1
 CATEGORYLINK2.CATEGORY_MID_CODE=MIDCATEGORY.CATEGORY_MID_CODE and CATEGORYLINK2.CATEGORY_SMALL_CODE= SMALLCATEGORY.CATEGORY_SMALL_CODE
 	
 	</select>
+	<select id="getreviewforboard" parameterType="String" resultMap="ReviewForBoard">
+select review.REVIEW_RATE,REVIEW_DATE,REVIEW_CONTENT,MEMBER_ID,CATEGORY_SMALL_NAME,MEMBER_RENAMEPHOTO from review, member , AGENCYLOG, TRADE_DETAIL, AGENCY , CATEGORYLINK2 ,SMALLCATEGORY where MEMBER.MEMBER_ID=REVIEW.REVIEW_WRITER and
+review.AGENCYLOG_NO=AGENCYLOG.AGENCYLOG_NO and AGENCYLOG.AGENCYLOG_TRADE= TRADE_DETAIL.TRADE_NO 
+and TRADE_DETAIL.AGENCY_NO=AGENCY.AGENCY_NO and AGENCY.LINK2_No=CATEGORYLINK2.LINK2_NO and CATEGORYLINK2.CATEGORY_SMALL_CODE=SMALLCATEGORY.CATEGORY_SMALL_CODE
+and review.AGENCYLOG_NO in 
+(select AGENCYLOG_NO from AGENCYLOG where AGENCYLOG_TRADE in 
+(select TRADE_NO from TRADE_DETAIL where AGENCY_NO in 
+(select AGENCY_NO from AGENCY where AGENCY_WRITER=#{agency_writer} and AGENCY_TYPE=2))) 
+	</select>
+
 	
 </mapper>

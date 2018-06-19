@@ -14,8 +14,13 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading">lbjYesCandidate
             <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjnowreservationInfo"><span class="glyphicon glyphicon-book"> </span>내가 올린 글</a> </h4>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjYesCandidate"><span class="glyphicon glyphicon-book"> </span>신청자가 생긴 글</a> </h4>
           </div>
         </div>
         <div class="panel panel-default">
