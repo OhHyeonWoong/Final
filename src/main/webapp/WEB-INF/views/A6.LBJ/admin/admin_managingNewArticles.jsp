@@ -44,7 +44,7 @@
 				},
 				success:function(data){
 					alert(data);
-					if(data == '게시글 삭제 성공!'){
+					if(data == '게시글 숨김 성공!'){
 						window.history.go(0);
 					}
 				},
@@ -79,57 +79,64 @@
 					'<tr><td class="lbjth"><input type="checkbox" id="allCheckBox" value="">전체선택</td>'+
 					'<td class="lbjth" colspan="2" style="text-align:left;">'+
 					'<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteAgency(); return false;">'+
-					'<span class="glyphicon glyphicon-remove"></span>삭제</a></td>'+
+					'<span class="glyphicon glyphicon-remove"></span>숨김</a></td>'+
 					'<td colspan="2">키워드로 검색 : <input type="text" id="searchKeyword">&nbsp;&nbsp;'+
 					'<button class="btn btn-default" onclick="fnBoardSearch();">검색</button></td></tr>'+
 					'<tr><th class="lbjth">선택</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th>'+
 					'<th class="lbjth">글쓴이</th><th class="lbjth">작성일자</th></tr>';
 					
-					console.log("board 리로딩 처리 시작");
-					for(var i in json.board){
-						htmlStr += '<tr><td><input type="checkbox" name="chk1" id="chkBox'+i+'" value="'+json.board[i].agency_no+'"></td>';
-						htmlStr += '<td>'+json.board[i].category_small_name+'</td>';
-						htmlStr += '<td><a href="BoardDetail.go?BoardNo="'+json.board[i].agency_no+'">'+json.board[i].agency_title+'</td>';
-						htmlStr += '<td>'+json.board[i].agency_writer+'</td>';
-						htmlStr += '<td>'+json.board[i].agency_enrolldate+'</td</tr>';
-					}
-					console.log("board 리로딩 처리 끝");
-					//페이징 처리 시작//
-					console.log("board 페이징 처리 시작");
-					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
-					/*if(json.myBoard[0].myBoardListCount > 6){
-						if(json.myBoard[0].myBoardCurrentPage <= 1){
-							htmlStr += "<< &nbsp";
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload(1);"> << </a>&nbsp;';
+					if(json.board != '데이터 없음'){
+						console.log("board 리로딩 처리 시작");
+						for(var i in json.board){
+							htmlStr += '<tr><td><input type="checkbox" name="chk1" id="chkBox'+i+'" value="'+json.board[i].agency_no+'"></td>';
+							htmlStr += '<td>'+json.board[i].category_small_name+'</td>';
+							htmlStr += '<td><a href="BoardDetail.go?BoardNo='+json.board[i].agency_no+'">'+json.board[i].agency_title+'</td>';
+							htmlStr += '<td>'+json.board[i].agency_writer+'</td>';
+							htmlStr += '<td>'+json.board[i].agency_enrolldate+'</td</tr>';
 						}
-						if(json.myBoard[0].myBoardCurrentPage > json.myBoard[0].myBoardStartPage){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+(json.myBoard[0].myBoardCurrentPage-1)+'); return false;"> < </a>&nbsp;';
-						}else{
-							htmlStr += '< &nbsp';
-						}
-						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.myBoard[0].myBoardStartPage;i<=json.myBoard[0].myBoardEndFor;i++){
-							if(i == json.myBoard[0].myBoardCurrentPage){
-								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+						console.log("board 리로딩 처리 끝");
+						//페이징 처리 시작//
+						console.log("board 페이징 처리 시작");
+						htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'	
+						if(json.board[0].boardListCount > 15){
+							if(json.board[0].boardCurrentPage <= 1){
+								htmlStr += "<< &nbsp";
 							}else{
-								htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+i+'); return false;">'+i+'</a>&nbsp;';
+								htmlStr += '<a href="javascript:void(0);" onclick="fnBoardSearch(1);"> << </a>&nbsp;';
 							}
-						}
-						if(json.myBoard[0].myBoardCurrentPage != json.myBoard[0].myBoardEndRow){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+(json.myBoard[0].myBoardCurrentPage+1)+'); return false;">></a>&nbsp;';
+							if(json.board[0].boardCurrentPage > json.board[0].boardStartPage){
+								htmlStr += '<a href="javascript:void(0);" onclick="fnBoardSearch('+(json.board[0].boardCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+							}else{
+								htmlStr += '< &nbsp';
+							}
+							//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+							for(var i=json.board[0].boardStartPage;i<=json.board[0].boardEndFor;i++){
+								if(i == json.board[0].boardCurrentPage){
+									htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+								}else{
+									htmlStr += '<a href="javascript:void(0);" onclick="fnBoardSearch('+i+'); return false;">'+i+'</a>&nbsp;';
+								}
+							}
+							if(json.board[0].boardCurrentPage != json.board[0].boardEndRow){
+								htmlStr += '<a href="javascript:void(0);" onclick="fnBoardSearch('+(json.board[0].boardCurrentPage+1)+'); return false;">></a>&nbsp;';
+							}else{
+								htmlStr += '> &nbsp;';
+							}
+							if(json.board[0].boardCurrentPage >= json.board[0].boardMaxPage){
+								htmlStr += '>> &nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnBoardSearch('+json.board[0].boardMaxPage+'); return false;">>></a>';
+							}
 						}else{
-							htmlStr += '> &nbsp;';
+							htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
 						}
-						if(json.myBoard[0].myBoardCurrentPage >= json.myBoard[0].myBoardMaxPage){
-							htmlStr += '>> &nbsp;';
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnMyBoardReload('+json.myBoard[0].myBoardMaxPage+'); return false;">>></a>';
-						}
+						htmlStr += '</div></td></tr></table>';
 					}else{
-						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
-					}*/
-					htmlStr += '</div></td></tr></table>';
+						htmlStr += '<tr><td colspan="5"><div style="text-align:center;">';
+						htmlStr += json.board;
+						htmlStr += '</div></td></tr></table>';
+					}
+					
 					//페이징처리 the end//
 					$('#lbjBoardDiv').html(htmlStr); 
 				},
@@ -168,7 +175,7 @@
 							<input type="checkbox" id="allCheckBox" value="">전체선택
 						</td>
 						<td class="lbjth" colspan="2" style="text-align:left;">
-							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteAgency(); return false;"><span class="glyphicon glyphicon-remove"></span>삭제</a>
+							<a href="javascript:void(0);" class="btn btn-danger btn-xs" onclick="fnDeleteAgency(); return false;"><span class="glyphicon glyphicon-remove"></span>숨김</a>
 						</td>
 						<td colspan="2">
 						키워드로 검색 : <input type="text" id="searchKeyword">&nbsp;&nbsp;<button class="btn btn-default" onclick="fnBoardSearch();">검색</button>

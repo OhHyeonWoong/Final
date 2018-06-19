@@ -399,22 +399,24 @@
 					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
 					    sc.category_small_name
 					    from agency ac,categorylink2 cl,smallcategory sc
-					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code 
+					    and ac.agency_status != 4
 		          order by agency_enrolldate desc
 		        ) AG
 		      )
 		      where rn between #{startRow} and #{endRow}
 		]]>
 	</select>
-	<delete id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
+	<update id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
 		<![CDATA[
-			delete from agency 
+			update agency
+			set agency_status = 4
 			where
 		]]>
 		<foreach collection="agency_no" item="item" index="index" open="(" close=")" separator="or">
 			agency_no = #{item}
 		</foreach>
-	</delete>
+	</update>
 	<select id="selectKeywordBoardListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) from agency
@@ -435,6 +437,7 @@
 					    from agency ac,categorylink2 cl,smallcategory sc
 					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
 		       			and (ac.agency_title like '%'||#{keyword}||'%' or ac.agency_content like '%'||#{keyword}||'%')
+		       			and ac.agency_status != 4
 		        ) AG
 		      )
 		      where rn between #{startRow} and #{endRow}

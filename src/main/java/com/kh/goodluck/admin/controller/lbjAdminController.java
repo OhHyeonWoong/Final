@@ -398,9 +398,9 @@ public class lbjAdminController {
 		
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
-			out.print("게시글 삭제 성공!");
+			out.print("게시글 숨김 성공!");
 		}else {
-			out.print("게시글 삭제 실패!");
+			out.print("게시글 숨김 실패!");
 		}
 		out.flush();
 		out.close();
@@ -455,39 +455,43 @@ public class lbjAdminController {
 		    JSONObject jobj = new JSONObject();
 			JSONArray jarr = new JSONArray();		
 			
-			for(int i=0;i<board.size();i++) {
-				//저 위의 페이징 처리 데이터들을 vo에 넣자
-				JSONObject job2 = new JSONObject();
-				job2.put("agency_no", board.get(i).getAgency_no());
-				job2.put("agency_writer", board.get(i).getAgency_writer());
-				job2.put("agency_title", board.get(i).getAgency_title());
-				job2.put("link2_no", board.get(i).getLink2_no());
-				job2.put("agency_type", board.get(i).getAgency_type());
-				job2.put("agency_loc", board.get(i).getAgency_loc());
-				job2.put("agency_startdate", board.get(i).getAgency_startdate().toString());
-				job2.put("agency_enddate", board.get(i).getAgency_enddate().toString());
-				job2.put("agency_enrolldate", board.get(i).getAgency_enrolldate().toString());
-				job2.put("agency_paytype", board.get(i).getAgency_paytype());
-				job2.put("agency_pay", board.get(i).getAgency_pay());
-				job2.put("agency_status", board.get(i).getAgency_status());			
-				job2.put("agency_content", board.get(i).getAgency_content());
-				job2.put("agency_views", board.get(i).getAgency_views());
-				job2.put("agency_keyword", board.get(i).getAgency_keyword());
-				job2.put("agency_option", board.get(i).getAgency_option());
-				job2.put("category_small_name", board.get(i).getCategory_small_name());
-				if(i == 0) {
-					job2.put("boardMaxPage", boardMaxPage);
-					job2.put("boardStartPage", boardStartPage);
-					job2.put("boardEndRow", boardEndRow);
-					job2.put("boardCurrentPage", boardCurrentPage);
-					job2.put("boardListCount", boardListCount);
-					job2.put("boardEndFor", boardEndFor);
+			if(board.size() > 0) {
+				for(int i=0;i<board.size();i++) {
+					//저 위의 페이징 처리 데이터들을 vo에 넣자
+					JSONObject job2 = new JSONObject();
+					job2.put("agency_no", board.get(i).getAgency_no());
+					job2.put("agency_writer", board.get(i).getAgency_writer());
+					job2.put("agency_title", board.get(i).getAgency_title());
+					job2.put("link2_no", board.get(i).getLink2_no());
+					job2.put("agency_type", board.get(i).getAgency_type());
+					job2.put("agency_loc", board.get(i).getAgency_loc());
+					job2.put("agency_startdate", board.get(i).getAgency_startdate().toString());
+					job2.put("agency_enddate", board.get(i).getAgency_enddate().toString());
+					job2.put("agency_enrolldate", board.get(i).getAgency_enrolldate().toString());
+					job2.put("agency_paytype", board.get(i).getAgency_paytype());
+					job2.put("agency_pay", board.get(i).getAgency_pay());
+					job2.put("agency_status", board.get(i).getAgency_status());			
+					job2.put("agency_content", board.get(i).getAgency_content());
+					job2.put("agency_views", board.get(i).getAgency_views());
+					job2.put("agency_keyword", board.get(i).getAgency_keyword());
+					job2.put("agency_option", board.get(i).getAgency_option());
+					job2.put("category_small_name", board.get(i).getCategory_small_name());
+					if(i == 0) {
+						job2.put("boardMaxPage", boardMaxPage);
+						job2.put("boardStartPage", boardStartPage);
+						job2.put("boardEndRow", boardEndRow);
+						job2.put("boardCurrentPage", boardCurrentPage);
+						job2.put("boardListCount", boardListCount);
+						job2.put("boardEndFor", boardEndFor);
+					}
+					jarr.add(job2);
 				}
-				jarr.add(job2);
+				
+				jobj.put("board", jarr);
+			}else {
+				jobj.put("board", "데이터 없음");
 			}
-			
-			jobj.put("board", jarr);
-			
+	
 			PrintWriter out = response.getWriter();
 			out.print(jobj.toJSONString());
 			out.flush();
