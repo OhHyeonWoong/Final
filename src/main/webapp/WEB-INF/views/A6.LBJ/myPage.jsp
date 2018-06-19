@@ -656,6 +656,90 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			});
 		}
 		
+		function fnMyWriteCandidateReload(page){
+			console.log("fnMyWriteCandidateReload(page) = " + page);
+			$.ajax({
+				url:'lbjWriteCandidate.go',
+				type:'post',
+				data:{
+					page: page,
+					member_id: $('#InputId').val()
+				},
+				dataType:'json',
+				success:function(data){
+					var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					
+					$('#lbjYesCandidateTable').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjYesCandidateTable">'+
+					'<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th>'+
+					'<th class="lbjth">작성일</th><th class="lbjth">신청자</th></tr>';
+					
+					console.log("myWriteCandidate 리로딩 처리 시작");
+					
+					for(var i in json.myWriteCandidate){
+						if(json.myWriteCandidate[i].agency_type == 1){
+							htmlStr += '<tr><td>구합니다<font style="color:red;">(오너)</font></td>';
+						}else if(json.myWriteCandidate[i].agency_type == 2){
+							htmlStr += '<tr><td>해드립니다(일반 지원자)</td>';
+						}
+						htmlStr += '<td>'+json.myWriteCandidate[i].category_small_name+'</td>';
+						htmlStr += '<td><a href="DealingState1.go?BoardNo='+json.myWriteCandidate[i].agency_no+'">'+json.myWriteCandidate[i].agency_title+'</a></td>';
+						htmlStr += '<td>'+json.myWriteCandidate[i].agency_enrolldate+'</td>';
+						
+						if(json.myWriteCandidate[i].trade_applicant != null && json.myWriteCandidate[i].trade_reservation == null){
+							htmlStr += '<td><font style="color:blue;">'+json.myWriteCandidate[i].trade_applicant+'</font></td>';
+						}else if(json.myWriteCandidate[i].trade_applicant == null && json.myWriteCandidate[i].trade_reservation != null){
+							htmlStr += '<td><font style="color:blue;">'+json.myWriteCandidate[i].trade_reservation+'</font></td>';
+						}
+					}
+					console.log("myWriteCandidate 리로딩 처리 끝");
+					//페이징 처리 시작//
+					console.log("myWriteCandidate 페이징 처리 시작");
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.myWriteCandidate[0].myWriteCandidateListCount > 6){
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(1);"> << </a>&nbsp;';
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage > json.myWriteCandidate[0].myWriteCandidateStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+(json.myWriteCandidate[0].myWriteCandidateCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.myWriteCandidate[0].myWriteCandidateStartPage;i<=json.myWriteCandidate[0].myWriteCandidateEndFor;i++){
+							if(i == json.myWriteCandidate[0].myWriteCandidateCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage != json.myWriteCandidate[0].myWriteCandidateEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+(json.myWriteCandidate[0].myWriteCandidateCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.myWriteCandidate[0].myWriteCandidateCurrentPage >= json.myWriteCandidate[0].myWriteCandidateMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload('+json.myWriteCandidate[0].myWriteCandidateMaxPage+'); return false;">>></a>';
+						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 the end//
+					$('#lbjYesCandidateDiv').html(htmlStr); 
+				},
+				error:function(a,b,c){
+					alert("a = " + a + " , b = " + b + " , c = " + c);
+				}
+			});
+		}
+		
 		//검사 결과가 모두 일치하면 true로 리턴
 		var flag = false;
 		//이메일 인증번호 저장용 변수
@@ -770,6 +854,10 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		
 		function fnMyBoardUpdate(no){
 			location.href='wookServiceAlter.go?agency_no='+no+'&member_id=${loginUser.member_id}';
+		}
+		
+		function fnMyBoardDelete(no){
+			//내가 올린 글 삭제 했을 시 agency_status 숨김으로~
 		}
 		
 	</script>
@@ -907,7 +995,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
 							<td>${board.agency_enrolldate}</td>
 							<td><button class="btn btn-default" onclick="fnMyBoardUpdate(${board.agency_no});">수정</button></td>
-							<td><button class="btn btn-danger" onclick="">삭제</button></td>
+							<td><button class="btn btn-danger" onclick="fnMyBoardDelete(${board.agency_no});">삭제</button></td>
 						</tr>
 					</c:forEach>
 					<!-- 페이징 처리 가즈아 -->
@@ -965,45 +1053,53 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 				</table>
 			</div>
 			<hr>
-			<h3 class="lbjh3" id="lbjYesCandidate">신청자가 생긴 글</h3>
+			<h3 class="lbjh3" id="lbjYesCandidate">신청자가 생긴 내 글</h3>
 			<div class="lbjdiv" id="lbjYesCandidateDiv">		
 				<table class="table table-striped lbjtable" id="lbjYesCandidateTable">
-					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th></tr>
-					<%-- <c:forEach items="${lbjMyBoard}" var="board">
+					<tr><th class="lbjth">종류</th><th class="lbjth">카테고리</th><th class="lbjth">제목</th><th class="lbjth">작성일</th><th class="lbjth">신청자</th></tr>
+					<c:forEach items="${lbjMyWriteCandidate}" var="writeCandidate">
 						<tr>
 							<td>
-								<c:if test="${board.agency_type eq 1}">
+								<c:if test="${writeCandidate.agency_type eq 1}">
 									구합니다<font style="color:red;">(오너)</font>
 								</c:if>
-								<c:if test="${board.agency_type eq 2}">
+								<c:if test="${writeCandidate.agency_type eq 2}">
 									해드립니다(일반 지원자)
 								</c:if>
 							</td>
-							<td>${board.category_small_name}</td>
-							<td><a href="BoardDetail.go?BoardNo=${board.agency_no}">${board.agency_title}</a></td>
-							<td>${board.agency_enrolldate}</td>
+							<td>${writeCandidate.category_small_name}</td>
+							<td><a href="DealingState1.go?BoardNo=${writeCandidate.agency_no}">${writeCandidate.agency_title}</a></td>
+							<td>${writeCandidate.agency_enrolldate}</td>
+							<td>
+								<c:if test="${writeCandidate.trade_applicant != null && writeCandidate.trade_reservation eq null}">
+									<font style="color:blue;">${writeCandidate.trade_applicant}</font>
+								</c:if>
+								<c:if test="${writeCandidate.trade_reservation != null && writeCandidate.trade_applicant eq null}">
+									<font style="color:blue;">${writeCandidate.trade_reservation}</font>
+								</c:if>							
+							</td>
 						</tr>
-					</c:forEach> --%>
+					</c:forEach>
 					<!-- 페이징 처리 가즈아 -->
-					<%-- <c:if test="${boardPage.myBoardListCount <= 6}">
+					<c:if test="${writeCandidatePage.myWriteCandidateListCount <= 6}">
 						<tr>
-							<td colspan="6">
+							<td colspan="5">
 								<font color="red" size="4"><b>1</b></font>&nbsp;
 							</td>
 						</tr>
 					</c:if>
-					<c:if test="${boardPage.myBoardListCount > 6}">
+					<c:if test="${writeCandidatePage.myWriteCandidateListCount > 6}">
 						<tr>
-							<td colspan="6">
+							<td colspan="5">
 							<div style="text-align:center;">
 								<c:if test="${qnaPage.qnaCurrentPage <= 1}">
 									<< &nbsp;
 								</c:if>
 								<c:if test="${qnaPage.qnaCurrentPage >= 2}">
-									<a href="javascript:void(0);" onclick="fnMyBoardReload(1); return false;"> << </a>
+									<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(1); return false;"> << </a>
 								</c:if>
 								<c:if test="${qnaPage.qnaCurrentPage > qnaPage.qnaStartPage}">
-									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
+									<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(${qnaPage.qnaCurrentPage-1}); return false;"> < </a>&nbsp;
 								</c:if>
 								<c:if test="${qnaPage.qnaCurrentPage <= qnaPage.qnaStartPage}">
 									< &nbsp;
@@ -1014,27 +1110,27 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 										<font color="red" size="4"><b>${i}</b></font>&nbsp;
 									</c:if>
 									<c:if test="${i != qnaPage.qnaCurrentPage}">
-										<a href="javascript:void(0);" onclick="fnMyBoardReload(${i}); return false;">${i}</a>&nbsp;
+										<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(${i}); return false;">${i}</a>&nbsp;
 									</c:if>
 								</c:forEach>
 								
-								<c:if test="${qnaPage.qnaCurrentPage != boardPage.myBoardEndRow}">
-									<a href="javascript:void(0);" onclick="fnMyBoardReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
+								<c:if test="${qnaPage.qnaCurrentPage != writeCandidatePage.myWriteCandidateEndRow}">
+									<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(${qnaPage.qnaCurrentPage+1}); return false;">></a>&nbsp;
 								</c:if>
-								<c:if test="${qnaPage.qnaCurrentPage eq boardPage.myBoardEndRow}">
+								<c:if test="${qnaPage.qnaCurrentPage eq writeCandidatePage.myWriteCandidateEndRow}">
 									> &nbsp;
 								</c:if>
 								
-								<c:if test="${qnaPage.qnaCurrentPage >= boardPage.myBoardMaxPage}">
+								<c:if test="${qnaPage.qnaCurrentPage >= writeCandidatePage.myWriteCandidateMaxPage}">
 									>> &nbsp;
 								</c:if>
-								<c:if test="${qnaPage.qnaCurrentPage < boardPage.myBoardMaxPage}">
-									<a href="javascript:void(0);" onclick="fnMyBoardReload(${boardPage.myBoardMaxPage}); return false;">>></a>
+								<c:if test="${qnaPage.qnaCurrentPage < writeCandidatePage.myWriteCandidateMaxPage}">
+									<a href="javascript:void(0);" onclick="fnMyWriteCandidateReload(${writeCandidatePage.myWriteCandidateMaxPage}); return false;">>></a>
 								</c:if>
 							</div>
 							</td>
 						</tr>
-					</c:if> --%>
+					</c:if>
 					<!-- 페이징 처리 끝내즈아 -->
 				</table>
 			</div>

@@ -400,7 +400,13 @@ public class BoardDao {
 	}
 
 
+	public int selectMyWriteCandidateListCount(String member_id) {
+		return sqlSession.selectOne("selectMyWriteCandidateListCount", member_id);
+	}
 
+	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
+		return sqlSession.selectList("selectMyWriteCandidate", map6);
+	}
 
 
 

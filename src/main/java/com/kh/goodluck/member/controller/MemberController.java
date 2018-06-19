@@ -260,30 +260,30 @@ public class MemberController {
 			mv.addObject("boardHistoryPage",boardHistoryPage);
 			//내가 이용한 History 세팅 끝------------------------------------------------
 			//신청자가 생긴 내 글 세팅 시작----------------------------------------------
-			/*int myBoardHistoryListCount = boardService.selectMyBoardHistoryListCount(member_id);
-			int myBoardHistoryMaxPage = (int)((double)myBoardHistoryListCount / qnaLimit + 0.9);
-			int myBoardHistoryEndRow = qnaStartRow + qnaLimit - 1;		
+			int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);
+			int myWriteCandidateMaxPage = (int)((double)myWriteCandidateListCount / qnaLimit + 0.9);
+			int myWriteCandidateEndRow = qnaStartRow + qnaLimit - 1;		
 			
-			System.out.println("myBoardHistoryListCount = " + myBoardHistoryListCount);
+			System.out.println("myWriteCandidateListCount = " + myWriteCandidateListCount);
 			
-			HashMap<Object,Object> map5 = new HashMap<Object,Object>();
-		    map5.put("startRow", qnaStartRow);
-		    map5.put("endRow", myBoardHistoryEndRow);
-		    map5.put("member_id", member_id);
-		    ArrayList<MyPageBoardHistory> myBoardHistory = (ArrayList<MyPageBoardHistory>)boardService.selectMyBoardHistory(map5);
+			HashMap<Object,Object> map6 = new HashMap<Object,Object>();
+		    map6.put("startRow", qnaStartRow);
+		    map6.put("endRow", myWriteCandidateEndRow);
+		    map6.put("member_id", member_id);
+		    ArrayList<MyPageApplyBoard> myWriteCandidate = (ArrayList<MyPageApplyBoard>)boardService.selectMyWriteCandidate(map6);
 		    
-		    System.out.println("myBoardHistory size = " + myBoardHistory.size());
+		    System.out.println("myWriteCandidate size = " + myWriteCandidate.size());
 			
-		    if (myBoardHistoryMaxPage < myBoardHistoryEndRow)
-		    	myBoardHistoryEndRow = myBoardHistoryMaxPage;
+		    if (myWriteCandidateMaxPage < myWriteCandidateEndRow)
+		    	myWriteCandidateEndRow = myWriteCandidateMaxPage;
 			
-		    HashMap<String,Integer> boardHistoryPage = new HashMap<String,Integer>();
-		    boardHistoryPage.put("myBoardHistoryMaxPage",myBoardHistoryMaxPage);
-		    boardHistoryPage.put("myBoardHistoryEndRow",myBoardHistoryEndRow);
-		    boardHistoryPage.put("myBoardHistoryListCount",myBoardHistoryListCount);
+		    HashMap<String,Integer> writeCandidatePage = new HashMap<String,Integer>();
+		    writeCandidatePage.put("myWriteCandidateMaxPage",myWriteCandidateMaxPage);
+		    writeCandidatePage.put("myWriteCandidateEndRow",myWriteCandidateEndRow);
+		    writeCandidatePage.put("myWriteCandidateListCount",myWriteCandidateListCount);
 			
-			mv.addObject("lbjMyBoardHistory", myBoardHistory);
-			mv.addObject("boardHistoryPage",boardHistoryPage);*/
+			mv.addObject("lbjMyWriteCandidate", myWriteCandidate);
+			mv.addObject("writeCandidatePage",writeCandidatePage);
 			//신청자가 생긴 내 글 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
@@ -545,6 +545,9 @@ public class MemberController {
 			    member=(Member)session.getAttribute("loginUser");
 			    member.setMember_cash(m.getMember_cash());
 			}
+			//paylog테이블에 데이터 추가해 주어야 됨
+			//int paylogResult = memberService.insertPay
+			/////////////////////////////
 		}else {
 			//결제 실패
 			System.out.println("결제 실패...");
