@@ -138,7 +138,7 @@ public class BoardService {
 	public List<Board> mainShowRequireListPickUp(){
 		//메인페이지에 보여질 구인영역_제공해요 리스트추출		
 		return boardDao.mainShowRequireListPickUp();			
-	}
+	}  
 	
 	public CategoryLink2 pickupSmallCategory(String smallcategory) {
 		//CATEGORY_SMALL_CODE를 인자값으로 보내어, link2_no를 추출
@@ -148,6 +148,12 @@ public class BoardService {
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
 		return boardDao.ukjaegetServiceWriting(agency_no);
+	}
+	
+
+	public int ukjaeDeleteService(int parsing_no) {
+		//delete(삭제 버튼을 눌러 agency_status를 숨김으로 설정)
+		return boardDao.ukjaeDeleteService(parsing_no);
 	}
 
 	public Board getBoardInfoByNo(int pk) {
@@ -347,5 +353,6 @@ public class BoardService {
 		return boardDao.selectMyWriteCandidate(map6);
 
 	}
+
 
 }

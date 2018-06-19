@@ -86,17 +86,29 @@
 					<tr align="center"> 
 						<td class="uk_td1 sec1"> 글제목</td> 
 						<td class="uk_td1"> 
+							<c:if test="${loginUser.member_status eq 3}">
 							<input type="text" class="this_ntitle" value="${notice_info.notice_title}"> 
+							</c:if>
+							<c:if test="${loginUser.member_status!=3 or loginUser eq null}">
+							<input type="text" class="this_ntitle" value="${notice_info.notice_title}" readonly="readonly"> 							
+							</c:if>
 							<input type="hidden" class="this_no" value="${notice_info.notice_no}">
 						</td>	
 					</tr>
-					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1"> ${notice_info.notice_writer}(운영자) </td> </tr>
+					<tr align="center"> <td class="uk_td1 sec1"> 작성자 </td> <td class="uk_td1">Admin</td> </tr>
 					<tr> 
 						<td class="uk_td2" colspan="2">
+							<c:if test="${loginUser.member_status eq 3}">
 							<textarea class="this_ncontents" rows="25" cols="86" style="resize: none; overflow: scroll;">${notice_info.notice_content}</textarea>
+							<%-- <div class="this_ncontents" style="width: 570px; height: 520px; overflow: scroll; resize: none;"><section>${notice_info.notice_content}</section></div>	 --%>							
+							</c:if>
+							<c:if test="${loginUser.member_status!=3 or loginUser eq null}">
+							<textarea class="this_ncontents" rows="25" cols="86" style="resize: none; overflow: scroll;" readonly="readonly">${notice_info.notice_content}</textarea>	
+							<%-- <div class="this_ncontents" style="width: 570px; height: 520px; overflow: scroll; resize: none;">${notice_info.notice_content}</div>	 --%>					
+							</c:if>
 						</td>  
 					</tr>
-					<tr> 
+					<tr>   
 						<td colspan="2" align="center"> 	
 							<c:if test="${loginUser.member_status eq 3}">
 							<span class="glyphicon glyphicon-user"></span><a href="javascript:alterNoticeContents();" id="AdminAlter"> 수정하기</a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,13 +117,6 @@
 							<script type="text/javascript">
 			
 							 	function alterNoticeContents(){
-							 		/* var no = $(".this_no").val();
-							 		var title = $(".this_ntitle").val();
-							 		var content = $(".this_ncontents").val();
-
-							 		alert(no);
-							 		alert(title);
-							 		alert(content); */
 							 		alert("수정이 완료되었습니다.");
 							 		
 							 		$.ajax({

@@ -26,10 +26,19 @@ import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.MidCategory;
+import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoard;
+import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.category.model.service.CategoryService;
 import com.kh.goodluck.item.model.service.ItemService;
+import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
+import com.kh.goodluck.member.model.service.MemberService;
+import com.kh.goodluck.qna.model.service.QNAService;
+import com.kh.goodluck.qna.model.vo.QNA;
+import com.kh.goodluck.report.model.service.ReportService;
+import com.kh.goodluck.report.model.vo.Report;
 
 @Controller
 public class JUJ_BoardController {
@@ -41,11 +50,23 @@ public class JUJ_BoardController {
 	BoardService boardService;
 	
 	@Autowired
-	ItemService itemService;
+	ItemService ItemService;
+	
+	@Autowired
+	QNAService qnaService;
+	
+	@Autowired
+	ReportService reportService;
+	
+	@Autowired
+	MemberService memberService;
 	
 	public JUJ_BoardController() { //기본생성자 선언
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 
 	@RequestMapping("Notice2.go")  //욱재작업 - 나의 거래중 테이블View로 이동
 	public String notice2(HttpServletRequest request,HttpServletResponse response) {
@@ -56,16 +77,38 @@ public class JUJ_BoardController {
 	@RequestMapping("ukjaeServiceForm.go")
 	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
 		
-		//내 아이템 작업 
-		//System.out.println("로그인한 member : "+memberid);
+		String userWriteCount = request.getParameter("write_count");
+		int userWriteCount2 = Integer.parseInt(userWriteCount);
 		
-		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) itemService.getUsingItem(memberid); 
-		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
+		System.out.println(memberid+"님의 게시글 등록 가능횟수는 "+userWriteCount2+"회 입니다.");
+		
+		if(userWriteCount2<=0) {		
+			mv.setViewName("home");
+		}else {
+		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
+		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
 		
 		mv.addObject("userGiveItem", userItem);
 		mv.setViewName("A2.JUJ/UkjaeServiceForm");
+		}
 		return mv;
 	}
+	
+	@RequestMapping("ukjae_serviceStatus_alter.go")
+	public void ukjaeWritingDel(@RequestParam("data_no")String writing_no, HttpServletRequest request,HttpServletResponse response) throws IOException {
+		
+		int parsing_no = Integer.parseInt(writing_no);
+		
+		int result = boardService.ukjaeDeleteService(parsing_no);
+
+		System.out.println(result+"개의 서비스글이 변경되었습니다.");
+		
+		PrintWriter out = response.getWriter();
+		out.append("게시글의 상태를 숨김으로 변경하였습니다.");
+		out.flush();
+		out.close();
+	}  
+	
 	
 	
 	@RequestMapping("wookServiceAlter.go")
@@ -75,7 +118,7 @@ public class JUJ_BoardController {
 		int Parsing_agency_no = Integer.parseInt(agency_no);
 		Board alterready = boardService.ukjaegetServiceWriting(Parsing_agency_no);	
 		
-		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) itemService.getUsingItem(member_id); 
+		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(member_id); 
 		
 		
 		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
@@ -94,8 +137,10 @@ public class JUJ_BoardController {
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
 			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
+		System.out.println("WirteCount -1");
+		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
 		
-		
+		  
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
 		 
@@ -125,7 +170,7 @@ public class JUJ_BoardController {
 		java.sql.Date toEnd = new java.sql.Date(transFormat.parse(endDateString).getTime());
 
 		//yyyy년-mm월-dd일
-		
+		    
 		System.out.println("서비스 시작날짜 : "+toStart);
 		System.out.println("서비스 종료날짜 : "+toEnd);
 
@@ -220,8 +265,8 @@ public class JUJ_BoardController {
 	}
 	
 	@RequestMapping(value="wookServiceAlterConfirm.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
-	public void ukjaeServiceContentsAlter(@RequestParam("servicetitle")String serivcetitle,@RequestParam("loginUserId")String loginUser,@RequestParam("selectCate")String smallcategory
-			,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+	public ModelAndView ukjaeServiceContentsAlter(@RequestParam("servicetitle")String serivcetitle,@RequestParam("loginUserId")String member_id,@RequestParam("selectCate")String smallcategory
+			,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws ParseException {
 
 		String writing_No = request.getParameter("servicewriting_no");
 		int writing_No_parsing = Integer.parseInt(writing_No);
@@ -230,7 +275,7 @@ public class JUJ_BoardController {
 		System.out.println("===================================================");
 		
 		System.out.println("글번호 : "+writing_No_parsing);
-		System.out.println("글작성자 : "+loginUser);
+		System.out.println("글작성자 : "+member_id);
 		
 		System.out.println("입력한 제목? "+serivcetitle);
 		
@@ -328,10 +373,228 @@ public class JUJ_BoardController {
 		//System.out.println("해당글 적용아이템 : "+sbl.toString());
 		
 		
-		Board alterBoard = new Board(writing_No_parsing,loginUser, serivcetitle, link2_no, agency_type, ServiceArea, toStart, toEnd, parseingpaytype, parsepayamount, serviceContents, sb.toString(), sbl.toString());
+		Board alterBoard = new Board(writing_No_parsing,member_id, serivcetitle, link2_no, agency_type, ServiceArea, toStart, toEnd, parseingpaytype, parsepayamount, serviceContents, sb.toString(), sbl.toString());
 		
 		int ServiceAlter = boardService.writingPage_Update(alterBoard);
-		//System.out.println("수정이 완료되었습니다.");
+		System.out.println("수정이 완료되었습니다.");
+		
+		/*
+		 * 페이징 처리 Let's go!
+		 * 1. currentPage setting
+		 */
+		int qnaCurrentPage = 1;
+		if(request.getParameter("page") != null) {
+			qnaCurrentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		/*
+		 * 2. 한 페이지 당 데이터 갯수 셋팅
+		 */
+		int qnaLimit = 6;
+		//QnA------------------------------------------------------------
+		/*
+		 * 3. 가져올 정보의 전체 갯수를 구하고, 그걸 통해 maxPage 계산
+		 */
+		int qnaListCount = qnaService.selectMyQnaCount(member_id);
+		int qnaMaxPage = (int)((double)qnaListCount / qnaLimit + 0.9);
+		/*
+		 * 4. startRow 와 endRow 계산
+		 */
+		int qnaStartPage = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 1;
+		int qnaStartRow = (qnaCurrentPage-1)*qnaLimit+1; 
+	    int qnaEndRow = qnaStartRow + qnaLimit - 1;
+	    
+	    HashMap<Object,Object> map = new HashMap<Object,Object>();
+	    map.put("startRow", qnaStartRow);
+	    map.put("endRow", qnaEndRow);
+	    map.put("member_id", member_id);
+		ArrayList<QNA> myQna = (ArrayList<QNA>)qnaService.selectMyQna(map);
+		
+		System.out.println("myQna.size = " + myQna.size());
+		
+		if (qnaMaxPage < qnaEndRow)
+			qnaEndRow = qnaMaxPage;
+		
+		////qna 처리용 오브젝트
+		//6,12,18,24
+		int endFor = (((int) ((double) qnaCurrentPage / qnaLimit + 0.9)) - 1) * qnaLimit + 6;
+		/*if(qnaCurrentPage < 7) {
+			endFor = 6;
+		}else if(qnaCurrentPage >= 7 && qnaCurrentPage <= 12){
+			endFor = 12;
+		}*/
+		//보내기용 arraylist생성
+		HashMap<String,Integer> qnaPage = new HashMap<String,Integer>();
+		qnaPage.put("qnaMaxPage",qnaMaxPage);
+		qnaPage.put("qnaStartPage",qnaStartPage);
+		qnaPage.put("qnaEndRow",qnaEndRow);
+		qnaPage.put("qnaCurrentPage",qnaCurrentPage);
+		qnaPage.put("qnaListCount",qnaListCount);
+		qnaPage.put("endFor", endFor);
+		
+		mv.addObject("lbjMyQna", myQna);
+		mv.addObject("qnaPage",qnaPage);
+		//QnA 세팅 끝------------------------------------------------------------
+		
+		//item 세팅 ------------------------------------------------------------
+		int itemListCount = ItemService.selectMyPageItemListCount(member_id);
+		int itemMaxPage = (int)((double)itemListCount / qnaLimit + 0.9);
+		int itemEndRow = qnaStartRow + qnaLimit - 1;
+		
+		HashMap<Object,Object> map1 = new HashMap<Object,Object>();
+	    map1.put("startRow", qnaStartRow);
+	    map1.put("endRow", itemEndRow);
+	    map1.put("member_id", member_id);
+	    ArrayList<MyPageItem> myItem = (ArrayList<MyPageItem>)ItemService.selectMyPageItem(map1);
+	    
+	    System.out.println("myItem size = " + myItem.size());
+		
+		if (itemMaxPage < itemEndRow)
+			itemEndRow = itemMaxPage;
+		
+		HashMap<String,Integer> itemPage = new HashMap<String,Integer>();
+		itemPage.put("itemMaxPage",itemMaxPage);
+		itemPage.put("itemEndRow",itemEndRow);
+		itemPage.put("itemListCount",itemListCount);
+		
+		System.out.println("itemEndRow = " + itemEndRow);
+		System.out.println("itemListCount = " + itemListCount);
+		
+		mv.addObject("lbjMyItem", myItem);
+		mv.addObject("itemPage",itemPage);
+		//item 세팅 끝-----------------------------------------------------------
+		//Report 세팅 ----------------------------------------------------------
+		int reportListCount = reportService.selectMyPageReportListCount(member_id);
+		int reportMaxPage = (int)((double)reportListCount / qnaLimit + 0.9);
+		int reportEndRow = qnaStartRow + qnaLimit - 1;
+		
+		System.out.println("myReortListCount = " + reportListCount);
+		
+		HashMap<Object,Object> map2 = new HashMap<Object,Object>();
+	    map2.put("startRow", qnaStartRow);
+	    map2.put("endRow", reportEndRow);
+	    map2.put("member_id", member_id);
+	    ArrayList<Report> myReport = (ArrayList<Report>)reportService.selectMyPageReport(map2);
+	    
+	    System.out.println("myReport size = " + myReport.size());
+		
+	    if (reportMaxPage < reportEndRow)
+			reportEndRow = reportMaxPage;
+		
+	    HashMap<String,Integer> reportPage = new HashMap<String,Integer>();
+		reportPage.put("reportMaxPage",reportMaxPage);
+		reportPage.put("reportEndRow",reportEndRow);
+		reportPage.put("reportListCount",reportListCount);
+		
+		mv.addObject("lbjMyReport", myReport);
+		mv.addObject("reportPage",reportPage);
+		//Report 세팅 끝
+		//내가 올린 글 세팅 ----------------------------------------------------------
+		int myBoardListCount = boardService.selectMyBoardListCount(member_id);
+		int myBoardMaxPage = (int)((double)myBoardListCount / qnaLimit + 0.9);
+		int myBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myBoardListCount = " + myBoardListCount);
+		
+		HashMap<Object,Object> map3 = new HashMap<Object,Object>();
+	    map3.put("startRow", qnaStartRow);
+	    map3.put("endRow", myBoardEndRow);
+	    map3.put("member_id", member_id);
+	    ArrayList<MyPageBoard> myBoard = (ArrayList<MyPageBoard>)boardService.selectMyBoard(map3);
+	    
+	    System.out.println("myBoard size = " + myBoard.size());
+		
+	    if (myBoardMaxPage < myBoardEndRow)
+			myBoardEndRow = myBoardMaxPage;
+		
+	    HashMap<String,Integer> boardPage = new HashMap<String,Integer>();
+		boardPage.put("myBoardMaxPage",myBoardMaxPage);
+		boardPage.put("myBoardEndRow",myBoardEndRow);
+		boardPage.put("myBoardListCount",myBoardListCount);
+		
+		mv.addObject("lbjMyBoard", myBoard);
+		mv.addObject("boardPage",boardPage);
+		//내가 올린 글 세팅 끝--------------------------------------------------------
+		//내가 신청한 글 세팅 시작-----------------------------------------------------
+		int myApplyBoardListCount = boardService.selectMyApplyBoardListCount(member_id);
+		int myApplyBoardMaxPage = (int)((double)myApplyBoardListCount / qnaLimit + 0.9);
+		int myApplyBoardEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myApplyBoardListCount = " + myApplyBoardListCount);
+		
+		HashMap<Object,Object> map4 = new HashMap<Object,Object>();
+	    map4.put("startRow", qnaStartRow);
+	    map4.put("endRow", myApplyBoardEndRow);
+	    map4.put("member_id", member_id);
+	    ArrayList<MyPageApplyBoard> myApplyBoard = (ArrayList<MyPageApplyBoard>)boardService.selectMyApplyBoard(map4);
+	    
+	    System.out.println("myApplyBoard size = " + myApplyBoard.size());
+		
+	    if (myApplyBoardMaxPage < myApplyBoardEndRow)
+			myApplyBoardEndRow = myApplyBoardMaxPage;
+		
+	    HashMap<String,Integer> applyBoardPage = new HashMap<String,Integer>();
+		applyBoardPage.put("myApplyBoardMaxPage",myApplyBoardMaxPage);
+		applyBoardPage.put("myApplyBoardEndRow",myApplyBoardEndRow);
+		applyBoardPage.put("myApplyBoardListCount",myApplyBoardListCount);
+		
+		mv.addObject("lbjMyApplyBoard", myApplyBoard);
+		mv.addObject("applyBoardPage",applyBoardPage);
+		//내가 신청한 글 세팅 끝------------------------------------------------------
+		//내가 이용한 History 세팅 시작----------------------------------------------
+		int myBoardHistoryListCount = boardService.selectMyBoardHistoryListCount(member_id);
+		int myBoardHistoryMaxPage = (int)((double)myBoardHistoryListCount / qnaLimit + 0.9);
+		int myBoardHistoryEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myBoardHistoryListCount = " + myBoardHistoryListCount);
+		
+		HashMap<Object,Object> map5 = new HashMap<Object,Object>();
+	    map5.put("startRow", qnaStartRow);
+	    map5.put("endRow", myBoardHistoryEndRow);
+	    map5.put("member_id", member_id);
+	    ArrayList<MyPageBoardHistory> myBoardHistory = (ArrayList<MyPageBoardHistory>)boardService.selectMyBoardHistory(map5);
+	    
+	    System.out.println("myBoardHistory size = " + myBoardHistory.size());
+		
+	    if (myBoardHistoryMaxPage < myBoardHistoryEndRow)
+	    	myBoardHistoryEndRow = myBoardHistoryMaxPage;
+		
+	    HashMap<String,Integer> boardHistoryPage = new HashMap<String,Integer>();
+	    boardHistoryPage.put("myBoardHistoryMaxPage",myBoardHistoryMaxPage);
+	    boardHistoryPage.put("myBoardHistoryEndRow",myBoardHistoryEndRow);
+	    boardHistoryPage.put("myBoardHistoryListCount",myBoardHistoryListCount);
+		
+		mv.addObject("lbjMyBoardHistory", myBoardHistory);
+		mv.addObject("boardHistoryPage",boardHistoryPage);
+		//내가 이용한 History 세팅 끝------------------------------------------------
+		//신청자가 생긴 내 글 세팅 시작----------------------------------------------
+		int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);
+		int myWriteCandidateMaxPage = (int)((double)myWriteCandidateListCount / qnaLimit + 0.9);
+		int myWriteCandidateEndRow = qnaStartRow + qnaLimit - 1;		
+		
+		System.out.println("myWriteCandidateListCount = " + myWriteCandidateListCount);
+		
+		HashMap<Object,Object> map6 = new HashMap<Object,Object>();
+	    map6.put("startRow", qnaStartRow);
+	    map6.put("endRow", myWriteCandidateEndRow);
+	    map6.put("member_id", member_id);
+	    ArrayList<MyPageApplyBoard> myWriteCandidate = (ArrayList<MyPageApplyBoard>)boardService.selectMyWriteCandidate(map6);
+	    
+	    System.out.println("myWriteCandidate size = " + myWriteCandidate.size());
+		
+	    if (myWriteCandidateMaxPage < myWriteCandidateEndRow)
+	    	myWriteCandidateEndRow = myWriteCandidateMaxPage;
+		
+	    HashMap<String,Integer> writeCandidatePage = new HashMap<String,Integer>();
+	    writeCandidatePage.put("myWriteCandidateMaxPage",myWriteCandidateMaxPage);
+	    writeCandidatePage.put("myWriteCandidateEndRow",myWriteCandidateEndRow);
+	    writeCandidatePage.put("myWriteCandidateListCount",myWriteCandidateListCount);
+		
+		mv.addObject("lbjMyWriteCandidate", myWriteCandidate);
+		mv.addObject("writeCandidatePage",writeCandidatePage);
+		//신청자가 생긴 내 글 세팅 끝------------------------------------------------
+		mv.setViewName("A6.LBJ/myPage");
+		
+		return mv;
 		
 	}
 	

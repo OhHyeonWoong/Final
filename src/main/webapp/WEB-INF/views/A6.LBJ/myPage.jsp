@@ -858,6 +858,22 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		
 		function fnMyBoardDelete(no){
 			//내가 올린 글 삭제 했을 시 agency_status 숨김으로~
+			alert(no);
+			
+			$.ajax({
+				url : "ukjae_serviceStatus_alter.go",
+				type : "post",
+				data : { 
+					data_no : no	
+				},
+				success : function(data){				
+					alert(data);
+				},
+				error : function(a,b,c){
+					alert(a+","+b+","+c);
+				}		
+					
+			});
 		}
 		
 	</script>

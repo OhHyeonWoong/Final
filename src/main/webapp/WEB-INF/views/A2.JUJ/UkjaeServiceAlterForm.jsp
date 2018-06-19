@@ -196,12 +196,12 @@ function sample4_execDaumPostcode() {
 								<p align="center">
 									<label for="username">주소입력</label>
 									<br>
-									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 150px;"><br><br>
+									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 90px !important; padding-left: 10px;" ><br><br>
 									<span class="input-group-btn">					
 									<a class="btn btn-default" onclick="sample4_execDaumPostcode()"><i class = "fa fa-search"></i> 우편번호 검색</a>
 									</span>
 									<br>
-									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" value="${ServiceContents.agency_loc}" style="width:250px; margin: 0;">
+									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" value="${ServiceContents.agency_loc}" style="width:270px; margin: 0;">
 									<span id="guide" style="color:#999"></span>
 								</p>
 								<!-- 주소 입력 관련 코드 종료 -->
@@ -311,7 +311,7 @@ function sample4_execDaumPostcode() {
 	                    </thead>
 	                    <tbody>
 	                        <tr>
-	                            <td class="col-md-9"><textarea rows="15" cols="73" style="resize: none;" name="writeContents"${ServiceContents.agency_content}></textarea></td>
+	                            <td class="col-md-9"><textarea rows="15" cols="73" style="resize: none;" name="writeContents">${ServiceContents.agency_content}</textarea></td>
 	                        </tr>
 	                    </tbody>
 	                </table>
@@ -352,12 +352,12 @@ function sample4_execDaumPostcode() {
 							<div class="receipt-right">
 								<p><b>작성자 :</b> ${loginUser.member_id} </p>
 							</div>
-							
-						</div>
+							  
+						</div> 
 						<div class="col-xs-4 col-sm-4 col-md-4">
 							<div class="receipt-left">
 								<input type="submit" value="수정완료">&nbsp;
-								<input type="button" value="돌아가기" onclick="alllistreturn();">
+								<input type="button" value="돌아가기" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">
 								
 								<script type="text/javascript">
 										$(function(){
@@ -381,6 +381,7 @@ function sample4_execDaumPostcode() {
 													alert("반려동물역영역 선택");													
 												}
 
+
 												$.ajax({
 													url : "midcategorylist.go",
 													type : "post",
@@ -390,6 +391,11 @@ function sample4_execDaumPostcode() {
 													success : function(data){
 														var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
 														var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+														
+														var sortvalues2 = "<option> &nbsp;-- </option>";
+														$('#uk_smallSort').empty();
+														$('#uk_smallSort').append(sortvalues2);
+														
 														$('.uk_midSort').empty();
 														var sortvalues = "<option> &nbsp;-- </option>";
 														

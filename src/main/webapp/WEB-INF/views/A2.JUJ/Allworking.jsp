@@ -27,9 +27,9 @@
 		                    <a href="petnewslist.go" class="list-group-item"> 작업8 : 펫News 꺼내오기 </a>
 		                    <a href="adminViewManagement.go" class="list-group-item"> 작업9 : 뷰쪽을 담당하는 관리자구축 </a>
 		                    <a href="adminViewManagement_life.go" class="list-group-item"> 작업10 : 뷰쪽을 담당하는 관리자구축2 </a>
-		                    <a href="ukjaeServiceForm.go?memberid=${loginUser.member_id}" class="list-group-item"> 작업11 : 서비스 제공해요 글을 올리는 글쓰기페이지이동 </a>
+		                    <a href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}" class="list-group-item"> 작업11 : 서비스 제공해요 글을 올리는 글쓰기페이지이동 </a>
 		                </ul>
-		                
+		                  
 
 		            </div>
 		        </div>
