@@ -18,6 +18,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
@@ -366,7 +367,14 @@ public class BoardService {
 		return boardDao.getChatInfoByMap(map);
 	}
 
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return boardDao.insertintoChatDetail(cd);
+	}
 
-
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return boardDao.getChatLogByroomNo(chatroom_NO);
+	}
 
 }

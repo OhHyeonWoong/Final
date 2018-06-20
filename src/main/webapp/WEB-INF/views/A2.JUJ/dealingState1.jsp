@@ -556,7 +556,9 @@
 
 			
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
+
 <div class="chat_window">
+
 				<div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>

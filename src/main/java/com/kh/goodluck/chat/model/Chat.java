@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Chat implements Serializable{
 	
-	private static final long serialVersionUID = 87041L;
+	private static final long serialVersionUID = 3131L;
  public Chat() {
 	// TODO Auto-generated constructor stub
 }
