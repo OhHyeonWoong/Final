@@ -35,12 +35,15 @@
    		<result property="osp_news_date" column="osp_news_date"/>
    		<result property="osp_news_origin" column="osp_news_origin"/>
 	</resultMap> 
-	  
-	<!-- <select id="mainTop5" parameterType="Notice" resultMap="NoticeResult">
-		<![CDATA[select * from (select rownum rnum, notice_no, notice_title, notice_writer, 
-	     notice_content, notice_date from (select * from notice order 
-	     by notice_no desc)) where rnum>=1 and rnum<=4]]>		
-	</select> -->
+	
+	<!-- <resultMap type="PetNews_Comment" id="PetNewsList">
+   		<result property="osp_news_datano" column="osp_news_datano"/>
+   		<result property="osp_news_data" column="osp_news_data"/>
+   		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
+   		<result property="osp_news_content1" column="osp_news_content1"/>
+   		<result property="osp_news_content1" column="osp_news_content1"/>
+   		<result property="osp_news_content1" column="osp_news_content1"/>
+	</resultMap> -->	
 	
 	<select id="petNewsList" resultMap="PetNewsList">
 		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
@@ -63,15 +66,18 @@
 		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
 		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where (osp_news_content1 like '%'||#{osp_news_content1}||'%' 
 		or osp_news_content2 like '%'||#{osp_news_content2}||'%' or osp_news_content3 like '%'||#{osp_news_content3}||'%' or osp_news_content4 like '%'||#{osp_news_content4}||'%')]]>	
-	</select>																																
-	
+	</select>			  																													
+	  
 	<select id="userSearchOrign" parameterType="PetNews" resultMap="PetNewsList">
 		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
 		osp_news_content1,osp_news_content2,osp_news_content3,osp_news_content4,osp_news_pic1,osp_news_pic2
 		osp_news_pic3,osp_news_pic4,osp_news_date,osp_news_origin from outside_pet_news) where osp_news_origin like '%'||#{osp_news_origin}||'%']]>	
 	</select>																															
 	
-
+	<insert id="petnewsCommentAdd" parameterType="PetNews_Comment" flushCache="true">
+		<![CDATA[insert into outside_pet_newscomment values((select max(pet_comment_no)+1 from outside_pet_newscomment),default,#{pet_comment_contents},#{pet_comment_writer},#{pet_comment_newsno},default)]]>
+	</insert>
+	  
 
 </mapper>
 

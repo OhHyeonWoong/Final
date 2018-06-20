@@ -37,6 +37,7 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews" alias="PetNews"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews_Comment" alias="PetNews_Comment"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.LifeNews" alias="LifeNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.GameNews" alias="GameNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.TravelNews" alias="TravelNews"/>
