@@ -368,65 +368,134 @@
 	</head>
 	<body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+  
+<script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
+<script type="text/javascript" >
+ var chatSock = null;
+  var message = {};
+ 
+    $(document).ready(function(){
+         
+    	chatSock = new SockJS("/goodluck/echo-ws");
+    	
+    	chatSock.onopen = function(evt) {
+            
+    		message={};
+            message.message = "dd";
+            message.type = "join";
+            //본인의 아이디.
+            message.to = "${loginUser.member_id}";
+            chatSock.send(JSON.stringify(message));
+        };
+            
+        
+        chatSock.onmessage = function(evt) {
+            $("ul[class=messages]").append(evt.data);
+            $("ul[class=messages]").append("<br />");
+            $("ul[class=messages]").scrollTop(99999999);
+        
+        };
+         
+//         chatSock.onclose = function() {
+//         
+//             // sock.send("채팅 종료.");
+//         }
+         
+         $("#message").keydown(function (key) {
+             if (key.keyCode == 13) {
+                $("#sendMessage").click();
+             }
+          });
+         
+        $("#sendfn").click(function() {
+        	console.log("메세지 전송");
+            if( $("#messagecont").val() != "") {
+                 
+                message={};
+                message.message = $("#messagecont").val();
+                message.type = "all";
+                message.to = "all";
+                
+                
+                //받는사람.
+                if("${loginUser.member_id}"=="${Chat.CHATROOM_ORDER}")
+                var to ="${Chat.CHATROOM_APPLICANT}";
+                else
+                var to ="${Chat.CHATROOM_ORDER}";
+                
+                if ( to != "") {
+                    message.type = "one";
+                    message.to = to;
+                }
+                 
+                chatSock.send(JSON.stringify(message));
+               // $("#chatMessage").append("나 ->  " + $("#message").val() + "<br/>");
+                $("#chatMessage").scrollTop(99999999);
+                 
+                $("#message").val("");
+            }
+        });
+    });
+</script>
   <script type="text/javascript">
-			(function () {
-			    var Message;
-			    Message = function (arg) {
-			        this.text = arg.text, this.message_side = arg.message_side;
-			        this.draw = function (_this) {
-			            return function () {
-			                var $message;
-			                $message = $($('.message_template').clone().html());
-			                $message.addClass(_this.message_side).find('.text').html(_this.text);
-			                $('.messages').append($message);
-			                return setTimeout(function () {
-			                return $message.addClass('appeared');
-			                }, 0);
-			            };
-			        }(this);
-			        return this;
-			    };
-			    $(function () {
-			        var getMessageText, message_side, sendMessage;
-			        message_side = 'right';
-			        getMessageText = function () {
-			            var $message_input;
-			            $message_input = $('.message_input');
-			            return $message_input.val();
-			        };
-			        sendMessage = function (text) {
-			            var $messages, message;
-			            if (text.trim() === '') {
-			                return;
-			            }
-			            $('.message_input').val('');
-			            $messages = $('.messages');
-			            message_side = message_side === 'left' ? 'right' : 'left';
-			            message = new Message({
-			                text: text,
-			                message_side: message_side
-			            });
-			            message.draw();
-			            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-			        };
-			        $('.send_message').click(function (e) {
-			            return sendMessage("캉쾨ㅏㅋㅋㅋㅋㅋ");
-			        });
-			        $('.message_input').keyup(function (e) {
-			            if (e.which === 13) {
-			                return sendMessage(getMessageText());
-			            }
-			        });
-			        sendMessage('안녕하세요 신청합니다.');
-			        setTimeout(function () {
-			            return sendMessage('네 반갑습니다.');
-			        }, 1000);
+// 			(function () {
+// 			    var Message;
+// 			    Message = function (arg) {
+// 			        this.text = arg.text, this.message_side = arg.message_side;
+// 			        this.draw = function (_this) {
+// 			            return function () {
+// 			                var $message;
+// 			                $message = $($('.message_template').clone().html());
+// 			                $message.addClass(_this.message_side).find('.text').html(_this.text);
+// 			                $('.messages').append($message);
+// 			                return setTimeout(function () {
+// 			                return $message.addClass('appeared');
+// 			                }, 0);
+// 			            };
+// 			        }(this);
+// 			        return this;
+// 			    };
+// 			    $(function () {
+// 			        var getMessageText, message_side, sendMessage;
+// 			        message_side = 'right';
+// 			        getMessageText = function () {
+// 			            var $message_input;
+// 			            $message_input = $('.message_input');
+// 			            return $message_input.val();
+// 			        };
+// 			        sendMessage = function (text) {
+// 			            var $messages, message;
+// 			            if (text.trim() === '') {
+// 			                return;
+// 			            }
+// 			            $('.message_input').val('');
+// 			            $messages = $('.messages');
+// 			            message_side = message_side === 'left' ? 'right' : 'left';
+// 			            message = new Message({
+// 			                text: text,
+// 			                message_side: message_side
+// 			            });
+// 			            message.draw();
+// 			            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+// 			        };
+// 			        $('.send_message').click(function (e) {
+// 			            return sendMessage("캉쾨ㅏㅋㅋㅋㅋㅋ");
+// 			        });
+// 			        $('.message_input').keyup(function (e) {
+// 			            if (e.which === 13) {
+// 			                return sendMessage(getMessageText());
+// 			            }
+// 			        });
+// 			        sendMessage('안녕하세요 신청합니다.');
+// 			        setTimeout(function () {
+// 			            return sendMessage('네 반갑습니다.');
+// 			        }, 1000);
 			        		        
-			        return setTimeout(function () {
-			            return sendMessage('불고기 레시피에 대하여 자세하게 배우고싶습니다');
-			        }, 2000);
-			    });
-			}.call(this));	
+// 			        return setTimeout(function () {
+// 			            return sendMessage('불고기 레시피에 대하여 자세하게 배우고싶습니다');
+// 			        }, 2000);
+// 			    });
+// 			}.call(this));	
 			
 			
 		</script> <!-- 채팅화면 채팅실행 스크립트 -->	
@@ -589,7 +658,7 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항  </h2><Br>
+					<h2> 주 의 사 항  ${cattingimg}</h2><Br>
 						<div class="row">
 					  
 					        <ul>
@@ -630,10 +699,10 @@
 				<ul class="messages"></ul>
 				<div class="bottom_wrapper clearfix">
 					<div class="message_input_wrapper">
-						<input class="message_input" placeholder="메세지를 입력해주세요." />
+						<input class="message_input" id="messagecont" placeholder="메세지를 입력해주세요." />
 					</div>
 					
-					<div class="send_message">
+					<div class="send_message" id="sendfn">
 					<div class="icon"></div>
 					<div class="text">Send</div></div></div></div>
 					
