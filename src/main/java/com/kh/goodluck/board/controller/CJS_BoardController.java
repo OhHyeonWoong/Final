@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.board.model.service.BoardService;
 import com.kh.goodluck.board.model.vo.Board;
-import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.KaKaoMessage;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.Chat;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.kakaoAPI.renew;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -91,7 +91,6 @@ public class CJS_BoardController {
 				 * LINK1_NO=1, LINK2_NO=1]
 				 * */
 			    mv.addObject("keywords",keywords);
-				mv.addObject("Cateinfo",gcfbd);
 				mv.addObject("Board",bo);
 				mv.setViewName("A5.CJS/boarddetail");
 				return mv;	
@@ -201,7 +200,8 @@ public class CJS_BoardController {
 		   try {
 			   if(writer.getMember_accesstoken().equals("")) {
 					writer.setMember_accesstoken("22");
-					writer.setMember_refreshtoken("22");}
+					writer.setMember_refreshtoken("22");
+					}
 				} catch (NullPointerException e) {
 				writer.setMember_accesstoken("22");
 				writer.setMember_refreshtoken("22");
@@ -281,32 +281,28 @@ public class CJS_BoardController {
 			HttpServletResponse response
 	) throws IOException  
 	    {
-		if(boardservice.getAgencyStatus(pk)==4) {
-			mv.setViewName("A5.CJS/ErrorPage2");
-			return mv;
-		}else {
-	
-	
-		//받는정보. 딱1개 > 보드번호
 		Member member=null;
+		Board bo=boardservice.getBoardInfoByNo(pk);
+		if(bo.getAgency_status()==4) {
+		member=(Member)session.getAttribute("loginUser");
+		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
+		return null;
+		}else {
+	    //받는정보. 딱1개 > 보드번호
 		if(session.getValue("loginUser") != null) {
 		//맴버 아이디에 아이콘을 같이 가져가기.
 		member=(Member)session.getAttribute("loginUser");
 		}else {
 		mv.setViewName("A5.CJS/ErrorPage2");
 		return mv;
-		//추후수정
-		//정상적인 경로를 이용해주세요라고 경고띄움.
 		}
 		//현재 페이지를 보는 사람의 입장을 고려.
 		//본인이 글작성자인지, 서비스제공자인제 어떻게 확인할것인가? 
-		Board bo=boardservice.getBoardInfoByNo(pk);
 		HashMap<Object,Object> map=new HashMap<Object,Object>();
 		map.put("AGENCY_NO",pk);
 		map.put("memberid",member.getMember_id());
 		Memberandscore writer = new Memberandscore();
-		
-	    //상대방의 정보 가져가야함.
+		//상대방의 정보 가져가야함.
 	 	if(boardservice.getrelation(map)==1) {
 	    //로그인 유저는 일반지원자  >> 상대방 정보는 작성자의 정보를 가져가야함.
 	 	writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
@@ -336,15 +332,12 @@ public class CJS_BoardController {
 		}catch (Exception e) {
 		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}
+		
 		if((Chat)boardservice.getChatInfoByMap(map) != null)
 		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
-	
 		return mv;
 	}
-	}
-	
-	
-	
+}
 	@RequestMapping("cancelagency.go")
 	public String cancelagency(@RequestParam("BoardNo") int pk, 
 			HttpSession session,

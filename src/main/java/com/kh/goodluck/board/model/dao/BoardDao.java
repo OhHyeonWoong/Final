@@ -13,7 +13,6 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
-import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
@@ -23,6 +22,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.Chat;
 
 
   
@@ -167,10 +167,6 @@ public class BoardDao {
 
 
 
-	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getChatInfoByMap",map);
-	}
 
 
 
@@ -413,6 +409,13 @@ public class BoardDao {
 
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
+	}
+
+
+
+	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getChatInfoByMap", map);
 	}
 
 

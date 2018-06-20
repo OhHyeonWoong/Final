@@ -368,9 +368,7 @@
 	</head>
 	<body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
-
-		<script type="text/javascript">
+  <script type="text/javascript">
 			(function () {
 			    var Message;
 			    Message = function (arg) {
@@ -382,7 +380,7 @@
 			                $message.addClass(_this.message_side).find('.text').html(_this.text);
 			                $('.messages').append($message);
 			                return setTimeout(function () {
-			                    return $message.addClass('appeared');
+			                return $message.addClass('appeared');
 			                }, 0);
 			            };
 			        }(this);
@@ -412,7 +410,7 @@
 			            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
 			        };
 			        $('.send_message').click(function (e) {
-			            return sendMessage(getMessageText());
+			            return sendMessage("캉쾨ㅏㅋㅋㅋㅋㅋ");
 			        });
 			        $('.message_input').keyup(function (e) {
 			            if (e.which === 13) {
@@ -429,11 +427,14 @@
 			        }, 2000);
 			    });
 			}.call(this));	
+			
+			
 		</script> <!-- 채팅화면 채팅실행 스크립트 -->	
 		${Board}//
-		${Chat.CHATROOM_NO}//
 		${writer}//
-		${Cateinfo}
+	///////////////////
+		${Chat}
+	
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">

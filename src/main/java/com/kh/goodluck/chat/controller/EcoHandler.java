@@ -88,7 +88,7 @@ public class EcoHandler extends TextWebSocketHandler{
         if(messageVo.getType().equals("one")) {
     		
     		WebSocketSession sessioned = mapUser.get(messageVo.getTo());
-    		if ( sessioned != null) {
+    	if ( sessioned != null) {
 	    		logger.info("원ㅇㅇㅇㅇㅇㅇㅇㅇ:"+session.getId());
 	    	
 	    		//보내는사람
@@ -96,11 +96,11 @@ public class EcoHandler extends TextWebSocketHandler{
 	    		//받는사람
 	    sessioned.sendMessage(new TextMessage(messageVo.getMessage()));
     		} else {
-    		
-    			session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
-    			//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
+    		session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
+    		//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
     		}
-    	}
+    	
+       }
         
         logger.info(session.getId() + "님의 메시지 : " + message.getPayload());
         //System.out.println(session.getId() + "님의 메시지 : " + message.getPayload());

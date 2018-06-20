@@ -10,7 +10,7 @@ import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
-import com.kh.goodluck.board.model.vo.Chat;
+
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
@@ -198,10 +198,7 @@ public class BoardService {
 		return  boardDao.insertchatroom(map);		
 	}
 
-	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return boardDao.getChatInfoByMap(map);
-	}
+
 
 	public int getrelation(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
@@ -352,6 +349,12 @@ public class BoardService {
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return boardDao.selectMyWriteCandidate(map6);
 
+	}
+
+	public com.kh.goodluck.chat.model.Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		
+		return boardDao.getChatInfoByMap(map);
 	}
 
 
