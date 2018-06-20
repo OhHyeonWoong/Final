@@ -353,11 +353,9 @@
 	/* 로그아웃 Function */
 	
 	/* 키 이벤트 입력 막기 */
-	$(document).keydown(function(e)	{	
-		if(e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
-		return false; 
-		}
-	});
+	$(function() {
+		
+	})
 	/* 키 이벤트 입력 막기 끝 */
 	
 	//병준이 마일리지 관련 함수들
