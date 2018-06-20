@@ -390,7 +390,7 @@
 					<td>
 						<div class="dropdown  ohw-menu-a">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp;
-							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != null }">
+							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != 0 }">
 								<img src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:30px; height:30px;">							
 							</c:if>
 							<b class="caret"></b> &nbsp;</a>
@@ -399,8 +399,13 @@
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td align="center"> ${ loginUser.member_name } 님 </td>
-											<td align="right">									
-												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
+											<td align="right">
+												<c:if test="${ loginUser.member_status eq 3}">
+													<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'jdkadminmember.go'" style="width:90px;">AdPage</button>
+												</c:if><!-- location.href = 'jdkadminmember.go' -->
+												<c:if test="${ loginUser.member_status eq 1}">
+													<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
+												</c:if>							
 											</td>									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
@@ -485,6 +490,8 @@
 		        			<hr>
 		        			<span class="lbjspan lbjex">※ 최대 구매 가능한 마일리지는</span><br>
 		        			<span class="lbjspan lbjex">500,000 입니다.</span><br>
+		        			<!-- <span class="lbjspan lbjex">※ 수수료 10%가 제외된 금액이</span><br>
+		        			<span class="lbjspan lbjex">충전됩니다.</span><br> -->
 		        		</td>
 		        		<td style="position:absolute; width:63%; background:white; vertical-align: top;">
 		        			<span class="lbjspan">결제수단</span><br>
