@@ -70,5 +70,5 @@ public class SearchController {
 		mav.addObject("searchResult", map); /* ModelAndView에 map을 저장 */
 		
 		return mav; /* 지정한 뷰로 이동 */
-	}			
+	}
 }

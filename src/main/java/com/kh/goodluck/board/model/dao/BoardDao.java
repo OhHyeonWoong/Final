@@ -402,16 +402,14 @@ public class BoardDao {
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
 	}
-
-
+	
+	public int insertViewHistory(HashMap<String, Object> sendMap) {
+		return sqlSession.insert("insertViewHistory", sendMap);
+	}
 
 	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getChatInfoByMap", map);
 	}
-
-
-
-
 
 }
