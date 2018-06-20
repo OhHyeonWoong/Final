@@ -31,7 +31,7 @@ public interface MemberService {
 	public abstract void updateaccessToken(HashMap<Object, Object> map);
 	public abstract int paycash(HashMap<Object, Object> map2);
 	public abstract int insertpaylog(HashMap<Object, Object> map2);
-	//지석님 서비스 끝
+	//지석님 서비스 끝    
 	
 	public abstract int updateMemberInfo(Member m);
 	public abstract int updateLastLogin(String member_id);
@@ -48,6 +48,10 @@ public interface MemberService {
 	
 	//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 	public abstract int ukjaeWriteCountOneMinus(String loginUser);
+	//욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
+	public abstract int ukjaeuserCashMinusCheck(String loginUser);
+	//욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
+	public abstract int ukjaeuserCashMinus(Member updatemember);
 
   
 

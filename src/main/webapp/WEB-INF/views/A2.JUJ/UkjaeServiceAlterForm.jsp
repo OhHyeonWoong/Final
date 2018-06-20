@@ -164,10 +164,22 @@ function sample4_execDaumPostcode() {
 
 					</div>
 	            </div>
-				
+				  
 				<div class="row">
 							<div align="center">
 								<input type="hidden" value="${loginUser.member_id}" name="loginUserId">
+								<p style="border: 1px dotted gray; padding: 0; width: 330px !important;" align="center">
+								<b><font size="3">유형선택</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<c:if test="${ServiceContents.agency_type eq 1}">
+									<b>구해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="1" checked="checked">&nbsp;&nbsp; &nbsp;&nbsp;
+									<b>제공해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="2"> 								
+								</c:if>
+								<c:if test="${ServiceContents.agency_type eq 2}">
+									<b>구해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="1">&nbsp;&nbsp; &nbsp;&nbsp;
+									<b>제공해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="2" checked="checked"> 								
+								</c:if>
+								</p>							
+								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p><b>제목</b>&nbsp;&nbsp; <input type="text" style="width: 250px;" name="servicetitle" id="ServiceTitle" value="${ServiceContents.agency_title}"> </p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p><b>분류</b>&nbsp;&nbsp;

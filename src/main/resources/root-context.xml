@@ -23,7 +23,7 @@
 		<property name="password" value="final" />  
 		<property name="defaultAutoCommit" value="false" />
 	</bean> 
-
+  
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"
     	class="org.mybatis.spring.SqlSessionFactoryBean">
