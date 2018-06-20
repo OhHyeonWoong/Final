@@ -139,17 +139,16 @@ public class MemberDao {
 	}
 
 	public int paycash(HashMap<Object, Object> map2) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("paycash", map2);
 	}
 
 	public int insertpaylog(HashMap<Object, Object> map2) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("insertpaylog", map2);
 	}
 
 	public int insertScore(Member member) {
-		return sqlSession.insert("", member);
+		return sqlSession.insert("insertScore", member);
 	}
-
+	
+	
 }

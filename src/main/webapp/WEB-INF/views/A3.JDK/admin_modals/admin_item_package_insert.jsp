@@ -35,21 +35,18 @@
 						<tr>
 							<th style="width:30%;">패키지 명</th>
 							<td style="width:70%; text-align:center;">
-							<input type="text" id="item_modi_name" name="PACKAGE_NAME">
+							<input type="text" id="item_package_name" name="PACKAGE_NAME">
 							</td>
 						</tr>
 						<tr>
 							<th style="width:30%;">가격</th>
 							<td style="width:70%; text-align:center;">
-							<input type="number" id="item_modi_price" name="PACKAGE_PRICE">
+							<input type="number" id="item_package_price" name="PACKAGE_PRICE">
 							</td>
 						</tr>
 						<tr>
 							<th style="width:30%;">포함하는 아이템 목록</th>
 							<td style="width:70%; text-align:center;">
-							<%-- <c:forEach>
-							
-							</c:forEach> --%>
 							</td>
 						</tr>
 					</table>

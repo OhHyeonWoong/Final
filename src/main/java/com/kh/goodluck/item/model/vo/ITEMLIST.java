@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 @Component("item")
 public class ITEMLIST implements  Serializable{
 
-	private static final long serialVersionUID = 235231L;
+private static final long serialVersionUID = 235231L;
 	
-public ITEMLIST() {
-	// TODO Auto-generated constructor stub
-}
+public ITEMLIST() {}
+
 private int ITEMLIST_NO;
 private String ITEMNAME;
 private int ITEMPRICE;
@@ -94,6 +93,5 @@ public ITEMLIST(int iTEMLIST_NO, String iTEMNAME, int iTEMPRICE, int iTEMPERIOD,
 	ITEMFILENAME = iTEMFILENAME;
 	ITEMSELLCOUNT = iTEMSELLCOUNT;
 }
-
 
 }

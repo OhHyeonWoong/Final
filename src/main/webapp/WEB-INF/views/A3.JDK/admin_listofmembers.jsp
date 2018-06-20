@@ -77,6 +77,9 @@ $(function(){
 					<td>이름</td>
 					<td>생년월일</td>
 					<td>Email</td>
+					
+					
+					
 					<td class="text-center"><a class='btn btn-info btn-xs'
 						href="#"><span class="glyphicon glyphicon-edit"></span>수정</a> <a
 						href="#" class="btn btn-danger btn-xs"><span

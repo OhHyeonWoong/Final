@@ -254,6 +254,9 @@ public class JDK_MemberController {
 			}
 		return mv;
 		}
+		
+		
+		
 		/////////////////어드민 페이지 관련 메소드//////////////////////////////////////////////
 		//어드민 페이지 이동용 메소드
 		@RequestMapping(value="jdkadminpage.go")
@@ -275,8 +278,6 @@ public class JDK_MemberController {
 			// 개별, 패키지, 랜덤박스 의 리스트 처리된 객체가 다 와있는 상태에서  
 			
 			
-			
-			
 			//개별 아이템 리스트
 			int maxPage=0;
 			int minPage=0;
@@ -288,32 +289,52 @@ public class JDK_MemberController {
 			//랜덤박스 아이템 리스트
 		return "A3.JDK/admin_itemlist";
 		}
-
+		
+		
+		//아니 왜 안넘어오냐고!!!
+		@RequestMapping(value="jdk1.go", method=RequestMethod.POST)
+		public void admininteresting(@RequestParam("ITEMFILENAME") MultipartFile file) {
+			file.getOriginalFilename();
+			System.out.println(file.getOriginalFilename());
+		}
+		
+		
 		//어드민 페이지 개별 아이템 추가 메소드: 전동기
-		@RequestMapping(value="jdkinsertNewItem.go", method= {RequestMethod.POST, RequestMethod.GET})
-		public ModelAndView adminItemInsert(MultipartRequest mr, ITEMLIST item, HttpServletResponse response, HttpServletRequest request, MultipartFile file, ModelAndView mv ) throws Exception {
-			System.out.println("어드민 페이지 개별 아이템 추가 메소드: 전동기 실행중");
+		@RequestMapping(value="jdkinsertNewItem.go", method=RequestMethod.POST)
+		public void adminItemInsert
+		(ITEMLIST item, HttpServletResponse response, HttpServletRequest request, 
+				@RequestParam("ITEMFILENAME") MultipartFile file,
+				@RequestParam("ITEMNAME") String itemName,
+				@RequestParam("ITEMTYPE") String itemType,
+				@RequestParam("ITEMPRICE") String itemPrice,
+				@RequestParam("ITEMPERIOD") String itemPeriod,
+				ModelAndView mv ) throws Exception {
+			System.out.println("어드민 페이지 개별 아이템 추가 메소드 실행중");
+			String fileSavePath= "/goodluck/resources/A5.CJS/itemimg";
 			//아이템 객체 직접 생성
-			item.setITEMNAME(request.getParameter("ITEMNAME"));
-			item.setITEMPRICE(Integer.parseInt(request.getParameter("ITEMPRICE")));
-			item.setITEMTYPE(Integer.parseInt(request.getParameter("ITEMTYPE")));
-			item.setITEMPERIOD(Integer.parseInt(request.getParameter("ITEMTYPE")));
+			item.setITEMNAME(itemName);
+			item.setITEMPRICE(Integer.parseInt(itemPrice));
+			item.setITEMTYPE(Integer.parseInt(itemType));
+			item.setITEMPERIOD(Integer.parseInt(itemPeriod));
 			item.setITEMFILENAME("");//파일 저장 작업 후에 다시 지정
 			try {
-			file = mr.getFile(request.getParameter("ITEMFILENAME"));
+			/*MultipartFile file = mr.getFile("ITEMFILENAME");*/
+				System.out.println("받은파일 원본이름: "+file.getOriginalFilename());
+				
 			String whak = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'), file.getOriginalFilename().length()).toLowerCase();
 			System.out.println(whak);
 			Date currentMillsec= new Date();
 			String file_rename=Long.toString(currentMillsec.getTime());
 			String fileName = file_rename + whak;
-			String fileSavePath= "/goodluck/resources/A5.CJS/itemimg";
+			
 			int uploadSizeLimit = 10*1024*1024;//10메가 제한...????
 			String encType="UTF-8"; // 파일 인코딩 방식????
-			if(!ServletFileUpload.isMultipartContent(request)) {
+			/*if(!ServletFileUpload.isMultipartContent(request)) {
 				response.sendRedirect("A5.CJS/ErrorPage");
-			}
+			}*/
 			System.out.println("path = " + fileSavePath);
 			file.transferTo(new File(fileSavePath+"\\"+fileName));
+			
 			item.setITEMFILENAME(fileName);
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -322,17 +343,19 @@ public class JDK_MemberController {
 			int success = memberService.insertNewItem(item);
 			
 			if(success==1) {
+				try {
 				String insItemSuccess = "아이템 입력을 성공하였습니다.";
 				System.out.println(insItemSuccess);
-				mv.addObject("indItemInsSuc", insItemSuccess);
+				PrintWriter out = response.getWriter();
+				out.append("새로운 아이템이 입력되었습니다");
+				out.flush();
+				out.close();
+				}catch(Exception e) {
+					e.printStackTrace();
+				System.out.println("입출력 오류용!!");
+				}
 			}
-			mv.setViewName("admin_itemlist");
-			return mv;
+			
 		}
-		
 	
-				
-		
-		
-		
 }

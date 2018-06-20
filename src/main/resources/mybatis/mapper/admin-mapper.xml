@@ -163,4 +163,20 @@
 	]]>
 	</update>
 	
+	<insert id="insertNewItem" parameterType="ITEMLIST">
+	<![CDATA[
+	insert into ITEMLIST VALUES(
+	(SELECT MAX(ITEMLIST_NO) FROM ITEMLIST)+1,
+	#{ITEMNAME},
+	#{ITEMPRICE},
+	#{ITEMPERIOD},
+	#{ITEMTYPE},
+	#{ITEMFILENAME},
+	0
+	)
+	]]>
+	</insert>
+ 	
+	
+	
 </mapper>

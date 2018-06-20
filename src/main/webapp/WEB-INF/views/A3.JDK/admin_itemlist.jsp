@@ -31,6 +31,7 @@
 	<table class="table table-striped custab">
 	    <thead>
 	        <tr>
+	            <th>순서</th>
 	            <th>아이템 식별 번호</th>
 	            <th>이름</th>
 	            <th>종류</th>
@@ -46,6 +47,7 @@
 	    </thead>
 	    <!-- 실제 리스트 부분 -->
 	            <tr>
+	            <td>순서</td>
 	            <td>아이템 식별 번호</td>
 	            <td>이름</td>
 	            <td>종류</td>
@@ -59,7 +61,9 @@
 	            </td>
 	            </tr>
 	</table>
+	<!-- 페이징 처리 -->
 	<div>
+	
 	
 	</div>
 	<!-- 아이템 등록 하는 버튼 div 영역 -->
@@ -76,6 +80,7 @@
 	<table class="table table-striped custab">
 	    <thead>
 	        <tr>
+	            <th>순서</th>
 	            <th>아이템 식별 번호</th>
 	            <th>이름</th>
 	            <th>종류</th>
@@ -88,6 +93,7 @@
 	    </thead>
 	    <!-- 실제 리스트 부분 -->
 	            <tr>
+	            <td>순서</td>
 	            <td>아이템 식별 번호</td>
 	            <td>이름</td>
 	            <td>종류</td>
@@ -163,12 +169,12 @@
 	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_modi.jsp"  %>
 	<!-- 패키지 아이템 수정 모달창 인클루드 -->
 	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_package.jsp"  %>
+	<!-- 패키지 아이템 등록 모달창-->
+	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_package_insert.jsp" %>
 	<!-- 랜덤 아이템 수정 모달창 인클루드 -->
 	<%@ include file = "/WEB-INF/views/A3.JDK/admin_modals/admin_item_random.jsp"  %>
 	<!-- 개별 아이템 등록 모달창-->
 	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_modi_insert.jsp" %>
-	<!--패키지 아이템 등록 모달창-->
-	<%@ include file="/WEB-INF/views/A3.JDK/admin_modals/admin_item_package_insert.jsp" %>
 <!--푸터 -->
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 </div>
