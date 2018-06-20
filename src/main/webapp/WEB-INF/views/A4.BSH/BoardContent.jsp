@@ -250,10 +250,10 @@
 							${board.agency_pay }
 							</td>
 							<td>
-							${board.agency_startdate }
+							${board.agency_enrolldate }
 							</td>
 							<td>
-							${board.agency_enrolldate }
+							${board.agency_startdate }
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>

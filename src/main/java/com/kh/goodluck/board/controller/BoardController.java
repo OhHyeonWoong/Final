@@ -329,6 +329,8 @@ public class BoardController {
 		map.put("max", max);
 		map.put("searchtext", searchtext);
 		map.put("page", page);
+		map.put("startrow", (page*20)-19);
+		map.put("endrow", (page*20));
 		
 		//map.put("strquery", query);
 		
@@ -493,23 +495,17 @@ public class BoardController {
 		// 64 - 일급,구인 둘다 체크됨
 	
 		map.put("mode", mode);
-
-		
-		if(scate.equals("")) {
-			if(mcate.equals("")){
-				//searchlist = boardservice.search(map);
-				System.out.println("mode : "+mode);
-			}else {
-				System.out.println("mode : "+mode);
-			}
-		}else {
-			System.out.println("mode : "+mode);
-		}
 		
 		System.out.println("bcate:"+bcate);
+		System.out.println("mcate:"+mcate);
+		System.out.println("scate:"+scate);
+		System.out.println("mode : "+mode);
 		System.out.println("page:"+page);
-		//System.out.println("사이즈:"+searchlist.size());
 		
+		//System.out.println("사이즈:"+searchlist.size());
+		searchlist = boardservice.search(map);
+		
+		System.out.println("searchcount : "+searchlist.size());
 		
 		mv.setViewName("A4.BSH/Search");
 		

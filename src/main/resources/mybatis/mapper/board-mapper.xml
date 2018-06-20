@@ -43,7 +43,8 @@
       <result property="agency_views" column="agency_views"/>
       <result property="agency_keyword" column="agency_keyword"/>
       <result property="agency_option" column="agency_option"/>
-   </resultMap>   
+   </resultMap>
+   
    
    <resultMap type="BigCategory" id="BigCategoryAll">
       <id property="category_big_code" column="category_big_code"/>
@@ -73,7 +74,8 @@
       <id property="link2_no" column="link2_no"/>
       <result property="category_mid_code" column="category_mid_code"/>
       <result property="category_small_code" column="category_small_code"/>
-   </resultMap>      
+   </resultMap>
+      
       
    <resultMap type="Chat" id="Chat">
       <id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
@@ -84,7 +86,9 @@
       <result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
       <result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
       <result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
-   </resultMap>   
+
+   </resultMap>
+   
       
    <select id="selectCategory" parameterType="Board" resultMap="BoardResult">
       <![CDATA[
@@ -104,10 +108,71 @@
       ]]>
    </select>
    
-   <select id="search" parameterType="HashMap" resultMap="BoardResult">
-      <![CDATA[
-         <!-- select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
-       -->]]>
+   <select id="search"  parameterType="HashMap" resultMap="BoardResult">
+   select * from 
+   
+   	<if test="mode gte 50">
+		<if test="mode lt 70">
+			<![CDATA[
+             (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,s.CATEGORY_SMALL_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME like #{scate}    
+  		 	]]>
+		</if>
+	</if>
+	
+	<if test=" searchtext != null">
+		<![CDATA[
+		 and a.AGENCY_CONTENT like '%'||#{searchtext}||'%'
+		]]>
+	</if>
+	
+	<if test=" group1 != null">
+		<if test="group1 = 1">
+			<![CDATA[
+				 and agency_type = 1
+			]]>
+		</if>
+		
+		<if test="group1 = 2">
+			<![CDATA[
+				 and agency_type = 2
+			]]>
+		</if>
+	</if>
+	
+	<if test=" group2 != null">
+		<if test="group2 = 1">
+			<![CDATA[
+				 and agency_paytype = 1
+			]]>
+		</if>
+		
+		<if test="group2 = 2">
+			<![CDATA[
+				 and agency_paytype = 2
+			]]>
+		</if>
+	</if>
+	
+	
+   	<if test="mode gte 50">
+		<if test="mode lt 70">
+			 <![CDATA[ 
+   				 order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}  
+   			 ]]>
+		</if>
+	</if>
+	
+	<!-- <if test="mode gte 30">
+		<if test="mode lt 50">
+			agency
+		</if>
+	</if>
+	<if test="mode gte 10">
+		<if test="mode lt 30">
+			agency
+		</if>
+	</if> -->
+	
    </select>
    
    <select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
@@ -158,6 +223,9 @@
       ]]>
    </select>
 
+
+
+
    <!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 Start -->
    <select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
@@ -173,12 +241,14 @@
          where rnum>=1 and rnum<=6]]> 
    </select>
 
+
    <select id="mainPageShowGameListPic" resultMap="BoardResult"> <!-- 게임영역(Data 6EA) -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
          agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
          ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 53 and 88)) 
          where rnum>=1 and rnum<=6]]> 
-   </select>   
+   </select>
+   
       
    <select id="mainPageShowMusicListPic1" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
@@ -304,7 +374,7 @@
       default,
       #{agency_keyword},
       #{agency_option})]]>      
-   </insert>   
+   </insert>
    
    <update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
       <![CDATA[update agency set 
@@ -403,7 +473,7 @@
       <![CDATA[
            select *
             from (
-              select rownum rn, AG.* 
+              select rownum rn, AG.*
               from (
                 select ac.agency_no, ac.agency_writer,
                    ac.agency_title,ac.link2_no,ac.agency_type, 
@@ -573,13 +643,5 @@
    SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
    where MEMBER_ID=#{APPLICANT}
    </update>
-   
-   <insert id="insertViewHistory" parameterType="hashmap">
-   <![CDATA[
-      insert into VIEWHISTORY values(
-	     (select max(vh_no)+1 from VIEWHISTORY), #{ SessionId }, #{ AgencyNo } , sysdate
-	  )
-   ]]>
-   </insert>
-</mapper>
 
+</mapper>
