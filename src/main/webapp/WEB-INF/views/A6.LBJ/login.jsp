@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>	
 	<!-- BEGIN # MODAL LOGIN -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+	<div class="modal fade" class="login-modal" id="login-modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="display: none;">
 		<div class="modal-dialog">
@@ -75,7 +75,7 @@
 								<button id="login_lostid_btn" type="button" class="btn btn-link">아이디찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link" onclick="location.href='lbjmoveLostFwdView.go'">비밀번호재설정</button>
 								<button id="login_register_btn" type="button" class="btn btn-link" onclick="location.href='jdkregistration.go'">회원가입</button>
-								<hr style="border-color: red;">
+								<!-- <hr style="border-color: red;">
 								<H4 style="text-align:center;">또는</H4>
 								<a id="custom-login-btn" href="javascript:loginWithKakao()">
 								<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
@@ -129,7 +129,7 @@
 								      });
 								    };
 								  //]]>
-								</script>
+								</script> -->
 							</div>
 						</div>
 					</form>

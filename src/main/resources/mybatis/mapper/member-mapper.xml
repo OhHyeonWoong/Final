@@ -291,6 +291,16 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	<update id="ukjaeWriteCountOneMinus" parameterType="String" flushCache="true" >
 		<![CDATA[update member set member_write_count=member_write_count-1 where member_id=#{loginUser}]]>
 	</update>
+	
+	<update id="updateUserKakaoToken" parameterType="java.util.HashMap">
+		<![CDATA[
+			update member 
+			set MEMBER_REFRESHTOKEN = #{refresh_token},
+			    MEMBER_ACCESSTOKEN = #{access_token},
+			    MEMBER_KAKAOIDPK = #{kakaopk}
+			where member_id = #{member_id}
+		]]>
+	</update>
 	  
 	<select id="ukjaewritingUserCashCheck" parameterType="String" resultType="int">
 		<![CDATA[select member_cash from member where member_id=#{loginUser}]]>

@@ -210,4 +210,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.ukjaeuserCashMinus(updatemember);
 	}
 
+
+	@Override
+	public int updateUserKakaoToken(HashMap<Object, Object> map) {
+		//마이페이지에서 카카오인증을 위해 유저가 사용하는 메소드
+		return memberDao.updateUserKakaoToken(map);
+	}
+
 }	

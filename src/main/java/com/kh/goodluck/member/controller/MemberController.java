@@ -574,9 +574,53 @@ public class MemberController {
 		response.sendRedirect("home.go");
 	}
 	
-	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
-	public void signIn() {
+	@RequestMapping(value="lbjKakaoTokenUpdate.go",method= {RequestMethod.POST,RequestMethod.GET})
+	public void userKakaoTokenUpdate(Member member,
+			Model model,
+			HttpServletResponse response,
+			HttpSession session,
+			HttpServletRequest request) throws IOException{
+		System.out.println("member : " + member);
+		System.out.println("request.getParameter() kakaopk = " + request.getParameter("kakaopk"));
+		//로그인 작업을 합니다 세션에 넣어요
+		//1. 현재 로그인한 사람들중에 혹시 먼저 카카오 인증을 한사람이 있는지 확인한다.
+		if(memberService.getmemberinfobykakaopk(Integer.parseInt(request.getParameter("kakaopk"))) == null)
+		 
+	{
+			//토큰 갱신하기.
+			HashMap<Object,Object> map =new HashMap<Object,Object>();
+			map.put("refresh_token",request.getParameter("refresh_token"));
+			map.put("access_token",request.getParameter("access_token"));
+			map.put("kakaopk",Integer.parseInt(request.getParameter("kakaopk")));
+			map.put("member_id", request.getParameter("member_id"));
+			int updateResult = memberService.updateUserKakaoToken(map);
+			//
 		
-	}
+	    PrintWriter out = response.getWriter();
+	    if(updateResult > 0) {
+	    	 out.write("카톡 인증 성공!");
+	    	 System.out.println("카톡 인증 성공!");
+	    	 if(session.getValue("loginUser") != null) {
+	    		 Member sessionMember = null;
+	    		 sessionMember=(Member)session.getAttribute("loginUser");
+	    		 sessionMember.setMember_accesstoken(request.getParameter("access_token"));
+	    		 sessionMember.setMember_refreshtoken(request.getParameter("refresh_token"));
+	    		 sessionMember.setMEMBER_KAKAOIDPK(Integer.parseInt(request.getParameter("kakaopk")));
+	    	 }
+	    }else {
+	    	out.write("카톡 인증 실..패..!");
+	    	System.out.println("카톡 인증 실패!");
+	    }
+		 out.flush();
+		 out.close();
+	}else {
+		 PrintWriter out = response.getWriter();
+		 out.write("이미 카톡 인증된 유저입니다..");
+		 System.out.println("이미 카톡 인증된 유저입니다");
+		 //model.addAttribute("loginUser", member);
+		 out.flush();
+		 out.close();
+		}
+	} 
 
 }
