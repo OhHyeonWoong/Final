@@ -164,4 +164,8 @@ public class MemberDao {
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
 	}
 
+	public int updateUserKakaoToken(HashMap<Object, Object> map) {
+		return sqlSession.update("updateUserKakaoToken", map);
+	}
+
 }

@@ -197,4 +197,10 @@ public class MemberServiceImpl implements MemberService{
 		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 		return memberDao.ukjaeWriteCountOneMinus(loginUser);
 	}
+	
+	@Override
+	public int updateUserKakaoToken(HashMap<Object, Object> map) {
+		//마이페이지에서 카카오인증을 위해 유저가 사용하는 메소드
+		return memberDao.updateUserKakaoToken(map);
+	}
 }	

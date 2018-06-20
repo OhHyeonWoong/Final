@@ -48,6 +48,7 @@ public interface MemberService {
 	
 	//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 	public abstract int ukjaeWriteCountOneMinus(String loginUser);
+	public abstract int updateUserKakaoToken(HashMap<Object, Object> map);
 
   
 
