@@ -124,7 +124,7 @@
 		 and a.AGENCY_CONTENT like '%'||#{searchtext}||'%'
 		]]>
 	</if>
-	
+	<!-- 
 	<if test=" group1 != null">
 		<if test="group1 = 1">
 			<![CDATA[
@@ -151,7 +151,7 @@
 				 and agency_paytype = 2
 			]]>
 		</if>
-	</if>
+	</if> -->
 	
 	
    	<if test="mode gte 50">
