@@ -502,6 +502,7 @@ public class BoardController {
 			}else {
 				System.out.println("mode : "+mode);
 			}
+		}else {
 			System.out.println("mode : "+mode);
 		}
 		
