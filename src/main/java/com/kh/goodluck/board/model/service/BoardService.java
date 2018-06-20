@@ -353,6 +353,10 @@ public class BoardService {
 		return boardDao.selectMyWriteCandidate(map6);
 
 	}
+	
+	public int insertViewHistory(HashMap<String, Object> sendMap) {
+		return boardDao.insertViewHistory(sendMap);
+	}
 
 
 }
