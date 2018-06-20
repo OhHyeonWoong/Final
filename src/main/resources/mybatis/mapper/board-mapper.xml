@@ -313,7 +313,7 @@
       default,
       #{agency_keyword},
       #{agency_option})]]>      
-   </insert>  
+   </insert>   
    
    <update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
       <![CDATA[update agency set 

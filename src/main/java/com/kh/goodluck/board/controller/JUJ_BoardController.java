@@ -294,7 +294,7 @@ public class JUJ_BoardController {
 		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
-		
+		 
 		int agency_type = Integer.parseInt(userwriteingType); 
 		//agency_type 1.구해요 2.제공해요
 		System.out.println("선택한 서비스 제공지역 : "+ServiceArea);

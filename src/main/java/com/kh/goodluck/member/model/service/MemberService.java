@@ -8,7 +8,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
-
+ 
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
 	public abstract int findPwdMethod(Member member);

@@ -164,7 +164,7 @@ function sample4_execDaumPostcode() {
 
 					</div>
 	            </div>
-				  
+				   
 				<div class="row">
 							<div align="center">
 								<input type="hidden" value="${loginUser.member_id}" name="loginUserId">

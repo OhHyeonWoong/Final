@@ -164,7 +164,7 @@ public class MemberDao {
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
 	}
 
-
+ 
 	public int ukjaeuserCashMinusCheck(String loginUser) {
 		//욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
 		return sqlSession.selectOne("ukjaewritingUserCashCheck", loginUser);
