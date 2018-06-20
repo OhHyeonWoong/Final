@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>	
 	<!-- BEGIN # MODAL LOGIN -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+	<div class="modal fade" class="login-modal" id="login-modal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
 		style="display: none;">
 		<div class="modal-dialog">
