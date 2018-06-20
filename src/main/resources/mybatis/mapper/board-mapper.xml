@@ -664,5 +664,12 @@
    SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
    where MEMBER_ID=#{APPLICANT}
    </update>
-
+   
+   <insert id="insertViewHistory" parameterType="hashmap">
+   <![CDATA[
+      insert into VIEWHISTORY values(
+	     (select max(vh_no)+1 from VIEWHISTORY), #{ SessionId }, #{ AgencyNo } , sysdate
+	  )
+   ]]>
+   </insert>
 </mapper>
