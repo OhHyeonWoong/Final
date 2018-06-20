@@ -145,12 +145,18 @@
 							</td>
 							<td class="td_mid">
 								<select id="mcate" name="mcate">
-									<option value="" selected="selected">선택하세요</option>
+										<option class="midspace" id="midspace" value="" selected="selected">선택하세요</option>
+									<c:forEach var="midcategory" items="${midcategorylist }">
+										<option class="midspace" id="${midcategory.category_mid_name}" value="${midcategory.category_mid_name}" hidden="">${midcategory.category_mid_name}</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td class="td_end">
 								<select id="scate" name="scate">
-									<option value="" selected="selected">선택하세요</option>
+										<option value="" id="smallspace" selected="selected">선택하세요</option>
+									<c:forEach var="smallcategory" items="${smallcategorylist }">
+										<option class="smallspace" id="${smallcategory.category_small_name}" value="${smallcategory.category_small_name}" hidden="">${smallcategory.category_small_name}</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td class="td_start"><label>지역별 검색</label></td>

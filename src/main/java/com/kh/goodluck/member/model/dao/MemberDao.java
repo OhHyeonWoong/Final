@@ -139,18 +139,17 @@ public class MemberDao {
 	}
 
 	public int paycash(HashMap<Object, Object> map2) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("paycash", map2);
 	}
 
 	public int insertpaylog(HashMap<Object, Object> map2) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("insertpaylog", map2);
 	}
 
 	public int insertScore(Member member) {
-		return sqlSession.insert("", member);
+		return sqlSession.insert("insertScore", member);
 	}
+
 
 	public int insertLbjMilegePayLog(HashMap<String, Object> map) {
 		return sqlSession.insert("insertLbjMilegePayLog", map);
@@ -164,5 +163,5 @@ public class MemberDao {
 		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
 	}
-  
+
 }

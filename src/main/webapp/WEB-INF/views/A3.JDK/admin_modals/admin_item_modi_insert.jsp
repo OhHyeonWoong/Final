@@ -20,8 +20,43 @@
 <script type="text/javascript"
 	src="/goodluck/resources/common/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
-});
+function categoryCheck(){
+	if($("#item_modi_category").val()==2||$("#item_modi_category").val()==3
+			||$("#item_modi_category").val()==4){
+	alert($("#item_modi_category").val()+"는 기간이 없는 영구 아이템입니다.");
+	$("#item_modi_period").val("0").attr("readonly",true);
+	}else{
+		$("#item_modi_period").attr("readonly",false);
+	}
+}
+
+function insertIndiItem(){
+	
+	var formData = new FormData($("#fileForm").serialize());
+	alert(formData);
+	$.ajax({
+	type: "POST",
+	url: "jdkinsertNewItem.go",
+	data: {
+		ITEMNAME : formData
+	},
+	success: function(result){
+		alert(result);
+		$("#item_modi_insert").modal("hide"); 
+	}
+	
+	});
+}
+
+function sendForm1(){
+	var formData = new FormData($("#fileForm")[0]);
+	var formDataS = formData.serialize();
+	$("#fileForm").submit();
+	
+	
+}
+
+
 </script>
 </head>
 <body>
@@ -29,7 +64,7 @@ $(function(){
 	<div class="modal fade" id="item_modi_insert" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-		<form enctype="multipart/form-data" method="POST" action="jdkinsertNewItem.go">
+		<form id="fileForm" enctype="multipart/form-data" method="POST" action="jdkinsertNewItem.go" onsubmit="sendForm1()">
 			<div class="modal-content" class="modal-content" style="width:70%;">
 				<div class="modal-header" style="text-align: center;">
 					<h4 class="modal-title">아이템 등록</h4>
@@ -39,7 +74,7 @@ $(function(){
 						<tr>
 							<th style="width:30%;">이름</th>
 							<td style="width:70%; text-align:center;">
-							<input type="text" id="item_modi_name" name="ITEMNAME">
+							<input type="text" id="item_modi_name" name="ITEMNAME" >
 							</td>
 						</tr>
 						<tr>
@@ -51,14 +86,13 @@ $(function(){
 						<tr>
 							<th style="width:30%;">기간</th>
 							<td style="width:70%; text-align:center;">
-							<input type="number" id="item_modi_period" name="ITEMTYPE">
+							<input type="number" id="item_modi_period" name="ITEMPERIOD">
 							</td>
 						</tr>
 						<tr>
-							<th style="width:30%;">타입
+						<th style="width:30%;">타입
 							<td style="width:70%; text-align:center;">
-							<select type="number" id="item_modi_category" 
-							style="margin-bottom: 0;" name = "ITEMTYPE">
+						<select type="number" id="item_modi_category" style="margin-bottom: 0;" name = "ITEMTYPE" onchange="categoryCheck();">
 							<option value="1">1:제목색상변경</option>
 							<option value="2">2:이모티콘(기간없음)</option>
 							<option value="3">3:최대게시물+1(기간없음)</option>
@@ -66,11 +100,12 @@ $(function(){
 							<option value="5">5:제목크기강조</option>
 							<option value="6">6:제목굵기강조</option>
 							<option value="7">7:게시글프리미엄</option>
-							</select>
+						</select>
 							</td>
 						</tr>
 						<tr>
-							<th style="width:30%;">미리보기</th><!-- 자바스크립트 구현 -->
+							<th style="width:30%;">미리보기</th>
+							<!-- 자바스크립트 구현 -->
 							<td style="width:70%; text-align:center;">
 							<img id="item_modi_file_thumb" src="#"/>
 							</td>
@@ -85,11 +120,11 @@ $(function(){
 				</div>
 				<div class="modal-footer" style="text-align:center;">
 					<input type="submit" class="btn btn-default">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="닫기">
+					<!-- onclick="insertIndiItem();" -->
+					<input type="button" id="close_modal1" class="btn btn-default" data-dismiss="modal" value="닫기">
 				</div>
 			</div>
 		</form>
-		
 		</div>
 	</div>
 </body>

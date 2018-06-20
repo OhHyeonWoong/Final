@@ -178,5 +178,156 @@ $(document).ready(function() {
 			}
 			
 		})
+		
+		$("#bcate").change(function(){
+			switch($("#bcate").val()){
+			case "":
+				$(".midspace").hide();
+				$(".smallspace").hide();
+				$("#midspace").show();
+				
+				break;
+			
+			
+			case "생활":
+				$(".midspace").hide();
+				$("#midspace").show();
+				$("#홈").show();
+				$("#푸드").show();
+				$("#뷰티").show();
+				$("#스포츠").show();
+					
+				break;
+			case "여행":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#국내").show();
+				$("#해외").show();
+				
+				break;
+			case "음악":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#악기").show();
+				$("#보컬").show();
+				$("#댄스").show();
+				$("#작곡").show();
 	
+				break;
+			case "게임":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#PC").show();
+				$("#콘솔").show();
+				$("#모바일").show();
+				$("#게임기타").show();
+	
+				break;
+			case "렌탈":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#렌트").show();
+	
+				break;
+			case "대행":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#1인").show();
+				$("#다인").show();
+	
+				break;
+			case "프리랜서":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#프로그래머").show();
+				$("#디자이너").show();
+				$("#작가").show();
+				$("#번역").show();
+				
+				break;
+			case "반려동물":
+				$(".midspace").hide();
+				$("#midspace").show();
+
+				$("#강아지").show();
+				$("#고양이").show();
+				$("#반려동물기타").show();
+	
+				break;
+			
+			}
+		});	
+		
+		
+		$("#mcate").change(function(){
+			switch($("#mcate").val()){
+			case "":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				break;
+				
+			case "홈":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+
+				
+				break;
+			case "푸드":
+				break;
+			case "뷰티":
+				break;
+			case "스포츠":
+				break;
+			case "국내":
+				break;
+			case "해외":
+				break;
+			case "악기":
+				break;
+			case "보컬":
+				break;
+			case "댄스":
+				break;
+			case "작곡":
+				break;
+			case "PC":
+				break;
+			case "콘솔":
+				break;
+			case "모바일":
+				break;
+			case "게임기타":
+				break;
+			case "렌트":
+				break;
+			case "1인":
+				break;
+			case "다인":
+				break;
+			case "프로그래머":
+				break;
+			case "디자이너":
+				break;
+			case "작가":
+				break;
+			case "번역":
+				break;
+			case "강아지":
+				break;
+			case "고양이":
+				break;
+			case "반려동물기타":
+				break;
+			}
+		});
+		
+		
+		
 });

@@ -35,9 +35,9 @@ public class jdkAdminController {
 	public jdkAdminController() {
 		
 	}
-	//어드민 페이지 패키지 아이템 추가 메소드: 전동기
-	@RequestMapping(value="jdkinsertNewPackageItem.go")
-	public ModelAndView insertNewPackageItem(RandomBox_all ra, RandomBox_emo re, RandomBox_time rt,ItemPackage ip, ModelAndView mv,ITEMLIST items, HttpServletRequest request, HttpServletResponse response) {
+	//어드민 페이지 아이템 리스트 첫 화면 출력 용: 전동기
+	@RequestMapping(value="jdkadmin_ItemList")
+	public ModelAndView admin_ItemList(RandomBox_all ra, RandomBox_emo re, RandomBox_time rt,ItemPackage ip, ModelAndView mv,ITEMLIST items, HttpServletRequest request, HttpServletResponse response) {
 		// 일단 패키지에 들어갈 수 있는 값은 디비에 한번 다녀온 상태에서 출력을 해서 보여주는게 현재 가지고 있는 값을 활용하는 것이므로
 		// 개별 아이템 목록을 리스트로 한번 가지고 오는 것이 의미가 있다.
 		// 개별 아이템의 경우에는 패키지와 랜덤박스를 따로 출력하므로 그 부분은 제외하고 출력한다.
@@ -58,7 +58,8 @@ public class jdkAdminController {
 		List<RandomBox_emo> randomEmoList = adminService.randomBoxEmoList();
 		//랜덤박스 time 리스트
 		List<RandomBox_time> randomTimeList = adminService.randomBoxTimeList();
-				
+		
+		
 		for(int i=0; i<packageList.size(); i++){
 			String[] itemCheck = packageList.get(i).getITEMLIST_NO().split(",");
 			for(int j=0; j<itemCheck.length; j++) {
@@ -83,6 +84,7 @@ public class jdkAdminController {
 			for(int i=0; i<randomAllList.size(); i++){
 			randomAllList.get(i).setChance(randomAllList.get(i).getChance()+addingNumbers);
 			adminService.addExessNum(randomAllList.get(i));
+			System.out.println("전체 아이템 랜덤 박스 확률 배당");
 			}
 		}
 		//랜덤박스 2 무결성
@@ -95,6 +97,7 @@ public class jdkAdminController {
 			for(int i=0; i<randomEmoList.size(); i++){
 			randomEmoList.get(i).setChance(randomEmoList.get(i).getChance()+addingNumbers);
 			adminService.addExessNumEmo(randomEmoList.get(i));
+			System.out.println("이모티콘 아이템 랜덤 박스 확률 배당");
 			}
 		}
 		//랜덤박스 3 무결성
@@ -107,20 +110,42 @@ public class jdkAdminController {
 			for(int i=0; i<randomTimeList.size(); i++){
 			randomTimeList.get(i).setChance(randomTimeList.get(i).getChance()+addingNumbers);
 			adminService.addExessNumTime(randomTimeList.get(i));
+			System.out.println("시간제 아이템 랜덤박스 확률 배당");
 			}
 		}
-		//페이징 처리 하기
+		///////////////////////////////// 무결성 확인이 끝났기 떄문에 이제 페이징 처리가 된 상태로 받아온 값을 다시 넘겨야함
 		
-		// 한번에 보여 줄 페이지 수는 10개이다.
+		// 한번에 보여 줄 글 수는 10개
 		int pageSize = 10;
+		
 		// 전체 글을 갯수를 저장할 변수
 		int indi_count = 0;
 		int package_count = 0;
 		int random_count = 0;
-		// 페이지 넘버링 변수 
-		int indi_number = 0;
-		int package_number = 0;
-		int random_number = 0;
+		
+		// 현재 페이지 저장용 변수
+		int indi_currentPage = 0;
+		int package_currentPage= 0;
+		int random_currentPage = 0;
+		
+		
+		//현재 보여줄 페이지의 시작 번호들
+		// *현재 페이지에 보여줄 데이터의 시작 번호 = (현재 페이지 – 1) * 출력 개수 + 1
+		// *현재 페이지에 보여줄 데이터의 종료 번호 = 시작 번호 + 출력개수  - 1
+		
+		// 현재 보여줄 페이지의 시작번호용 변수
+		int indi_startNum = 0;
+		int package_startNum = 0;
+		int random_startNum = 0;
+		
+		// 현재 보여줄 페이지의 끝 번호용 변수 
+		int indi_endNum = 0;
+		int package_endNum = 0;
+		int random_endNum = 0;
+		
+		
+		
+		
 		
 		
 		

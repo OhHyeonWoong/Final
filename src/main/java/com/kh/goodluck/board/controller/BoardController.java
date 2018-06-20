@@ -62,7 +62,7 @@ public class BoardController {
 		ArrayList<String> strlist = new ArrayList<String>();
 		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
 		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
-		 
+		
 		
 		for(BigCategory b:bigcategorylist) {
 			if(b.getCategory_big_name().equals(link2name)) {
@@ -417,7 +417,7 @@ public class BoardController {
 				}else if(group2.equals("구인")){
 					mode = 62;
 				}else {
-					mode = 62;
+					mode = 52;
 				}
 			}else if(group1.equals("일급")){
 				if(group2.equals("제공")) {
@@ -492,17 +492,22 @@ public class BoardController {
 		// 63 - 일급,제공 둘다 체크됨
 		// 64 - 일급,구인 둘다 체크됨
 	
+		map.put("mode", mode);
+
+		
 		if(scate.equals("")) {
 			if(mcate.equals("")){
-				searchlist = boardservice.search(map);
+				//searchlist = boardservice.search(map);
+				System.out.println("mode : "+mode);
 			}else {
-				
+				System.out.println("mode : "+mode);
 			}
+			System.out.println("mode : "+mode);
 		}
 		
 		System.out.println("bcate:"+bcate);
 		System.out.println("page:"+page);
-		System.out.println("사이즈:"+searchlist.size());
+		//System.out.println("사이즈:"+searchlist.size());
 		
 		
 		mv.setViewName("A4.BSH/Search");
