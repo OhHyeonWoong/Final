@@ -202,7 +202,7 @@
 				</form>
 			</div>
 			<div class="board_div_maincontent">
-				<%-- <h2>${board.link2_no }</h2><br>
+				<h2>${link2name }<button class="btn btn-info" onclick="fnBoardWriteForm();" style="float:right;">글 쓰기</button></h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -219,7 +219,7 @@
 
 					</thead>
 					<tbody>						
-						<c:forEach var="board" items="${boardlist }">
+						<c:forEach var="board" items="${searchlist }">
 							<tr>
 							<td>
 							<c:set var="tf" value="${board.agency_type }"/>
@@ -250,10 +250,10 @@
 							${board.agency_pay }
 							</td>
 							<td>
-							${board.agency_startdate }
+							${board.agency_enrolldate }
 							</td>
 							<td>
-							${board.agency_enrolldate }
+							${board.agency_startdate }
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>
@@ -269,36 +269,34 @@
 							<c:if test="${tf eq '4' }">
 								숨김
 							</c:if>
-							${board.agency_status }
 							</td>
 							</tr>
-						</c:forEach>
-						
+						</c:forEach> 
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
-					<c:set var="currentpage" value="${pageNum }"/>
+					<button onclick="location.href='bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=1'">&lt;&lt;</button>
+					<c:set var="currentpage" value="${map.page }"/>
 					<c:if test="${currentpage eq '1'}">
 						<button>&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != '1'}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
+						<button onclick="location.href='bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${currentpage-1 }'">&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage <=5}">
 						<c:forEach var="count" begin="1" end="9" step="1">	
 						
 							<c:if test="${count eq currentpage}">
-								<c:if test="${count <= agencycount}">
-									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								<c:if test="${count <= searchsize}">								   
+									&nbsp;<a style="color: red;" href="bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>	
 									
 							<c:if test="${count != currentpage}">
-								<c:if test="${count <= agencycount}">
-									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								<c:if test="${count <= searchsize}">
+									&nbsp;<a href="bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>	
 											
@@ -309,30 +307,29 @@
 						<c:forEach var="count" begin="${currentpage-4}" end="${currentpage+4}" step="1">		
 							
 							<c:if test="${count eq currentpage}">
-								<c:if test="${count <= agencycount}">
-									&nbsp;<a style="color: red;" href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								<c:if test="${count <= searchsize}">
+									&nbsp;<a style="color: red;" href="bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>
 							
 							<c:if test="${count != currentpage}">
-								<c:if test="${count <= agencycount}">
-									&nbsp;<a href="bshtest.go?link2_no=${board.link2_no }&page=${count }">${count }</a>&nbsp;	
+								<c:if test="${count <= searchsize}">
+									&nbsp;<a href="bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${count }">${count }</a>&nbsp;	
 								</c:if>	
 							</c:if>
 													
 						</c:forEach>
 					</c:if>
 						
-					<c:if test="${currentpage eq agencycount}">
+					<c:if test="${currentpage eq searchsize}">
 						<button>&gt;</button>
 					</c:if>
 					
-					<c:if test="${currentpage != agencycount}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
+					<c:if test="${currentpage != searchsize}">
+						<button onclick="location.href='bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${currentpage+1 }'">&gt;</button>	
 					</c:if>
-					
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
-				</span> --%>
+					<button onclick="location.href='bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${searchsize }'">&gt;&gt;</button>
+				</span>
 			</div>
 	
 		</div>

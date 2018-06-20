@@ -162,7 +162,7 @@
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
 								<select id="loc" name="loc">
-									<option value="%" selected="selected">전체</option>
+									<option value="" selected="selected">전체</option>
 								</select>
 							</td>
 							<td class="td_start"><label>글상태</label></td>
@@ -250,10 +250,10 @@
 							${board.agency_pay }
 							</td>
 							<td>
-							${board.agency_startdate }
+							${board.agency_enrolldate }
 							</td>
 							<td>
-							${board.agency_enrolldate }
+							${board.agency_startdate }
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>
