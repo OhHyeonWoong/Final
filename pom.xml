@@ -92,6 +92,14 @@
 			<version>2.2</version>
 		</dependency>
 		
+		
+		<!-- Query Debug -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

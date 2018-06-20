@@ -29,6 +29,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.chat.model.Chat;
+import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.kakaoAPI.renew;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -50,6 +51,7 @@ public class CJS_BoardController {
 	
 	@Autowired
 	private BoardService boardservice;
+	
 	public CJS_BoardController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -333,8 +335,9 @@ public class CJS_BoardController {
 		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}
 		
-		if((Chat)boardservice.getChatInfoByMap(map) != null)
-		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
+		Chat ca=(Chat)boardservice.getChatInfoByMap(map);
+		mv.addObject("Chat",ca);
+		mv.addObject("ChatLog",(List<ChatDetail>)boardservice.getChatLogByroomNo(ca.getCHATROOM_NO()));
 		return mv;
 	}
 }

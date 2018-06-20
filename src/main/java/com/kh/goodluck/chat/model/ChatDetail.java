@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class ChatDetail implements Serializable{
 	
-	private static final long serialVersionUID = 86712L;
+	private static final long serialVersionUID = 27841L;
 	private int CHATDEATIL_NO;
 	private int CHATROOM_NO;
 	private String CHATDEATIL_CONTENT;

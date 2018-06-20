@@ -23,9 +23,12 @@ import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.chat.model.Chat;
-
-
+import com.kh.goodluck.chat.model.ChatDetail;
   
+/**
+ * @author jiseok
+ *
+ */
 @Repository("boardDao")
 public class BoardDao {
 	
@@ -417,6 +420,21 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getChatInfoByMap", map);
 	}
+
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return sqlSession.insert("insertintoChatDetail", cd);
+	}
+
+
+
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getChatLogByroomNo", chatroom_NO);
+	}
+
+
+
 
 
 
