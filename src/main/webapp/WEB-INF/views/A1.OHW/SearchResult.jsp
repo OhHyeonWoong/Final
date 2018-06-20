@@ -36,6 +36,11 @@
 		text-decoration:none;
 		color:purple;
 	}
+	
+	.ohw-search-sidebar-table {
+		width:100%;
+		text-align:center;
+	}
 		
 </style>	
  
@@ -112,9 +117,11 @@
 						<tr>
 							<td>${ searchMasterResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "BoardDetail.go?BoardNo=${ searchMasterResult.agency_no }">${ searchMasterResult.agency_title }</a></td>							
+							<td class = "ohw-agency-title">
+								<a href = "BoardDetail.go?BoardNo=${ searchMasterResult.agency_no }">${ searchMasterResult.agency_title }</a>
+							</td>							
 							<td>
-								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif"> 
+								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif">
 								${ searchMasterResult.agency_writer }
 							</td>
 	         				<td>${ searchMasterResult.agency_enrolldate }</td>
@@ -176,25 +183,17 @@
 			</td>
 			<td valign = "top" rowspan = "5">				
 				<div class="ohw-search-sidebar">
-					<table>
+					<table class = "ohw-search-sidebar-table">
 						<tr>
-							<td></td>
+							<td align = "center">최근에 본 글</td>
 						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
+						<c:forEach var = "viewHistory" items = "">
+							<tr>
+								<td>
+									
+								</td>
+							</tr>
+						</c:forEach>						
 					</table>
 				</div>				
 			</td>			
