@@ -43,8 +43,7 @@
       <result property="agency_views" column="agency_views"/>
       <result property="agency_keyword" column="agency_keyword"/>
       <result property="agency_option" column="agency_option"/>
-   </resultMap>
-   
+   </resultMap>   
    
    <resultMap type="BigCategory" id="BigCategoryAll">
       <id property="category_big_code" column="category_big_code"/>
@@ -74,8 +73,7 @@
       <id property="link2_no" column="link2_no"/>
       <result property="category_mid_code" column="category_mid_code"/>
       <result property="category_small_code" column="category_small_code"/>
-   </resultMap>
-      
+   </resultMap>      
       
    <resultMap type="Chat" id="Chat">
       <id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
@@ -86,9 +84,7 @@
       <result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
       <result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
       <result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
-
-   </resultMap>
-   
+   </resultMap>   
       
    <select id="selectCategory" parameterType="Board" resultMap="BoardResult">
       <![CDATA[
@@ -162,9 +158,6 @@
       ]]>
    </select>
 
-
-
-
    <!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 Start -->
    <select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
@@ -180,14 +173,12 @@
          where rnum>=1 and rnum<=6]]> 
    </select>
 
-
    <select id="mainPageShowGameListPic" resultMap="BoardResult"> <!-- 게임영역(Data 6EA) -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
          agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
          ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 53 and 88)) 
          where rnum>=1 and rnum<=6]]> 
-   </select>
-   
+   </select>   
       
    <select id="mainPageShowMusicListPic1" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
       <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
