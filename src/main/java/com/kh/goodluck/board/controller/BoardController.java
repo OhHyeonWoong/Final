@@ -281,9 +281,11 @@ public class BoardController {
 		String strmin = request.getParameter("min");
 		String strmax = request.getParameter("max");
 		String searchtext = request.getParameter("searchtext");
+		String link2name = null;
 		int page = Integer.parseInt(request.getParameter("page"));
 		int min = -1;
 		int max = -1;
+		int searchsize = 0;
 		
 		if(!strmin.equals("")) {
 			try {
@@ -325,6 +327,8 @@ public class BoardController {
 		map.put("group1", group1);
 		map.put("group2", group2);
 		map.put("group3", group3);
+		map.put("strmin", strmin);
+		map.put("strmax", strmax);
 		map.put("min", min);
 		map.put("max", max);
 		map.put("searchtext", searchtext);
@@ -502,10 +506,22 @@ public class BoardController {
 		System.out.println("mode : "+mode);
 		System.out.println("page:"+page);
 		
+		if(scate.equals("")) {
+			if(mcate.equals("")){
+				link2name = bcate;
+			}else {
+				link2name = mcate;
+			}
+		}else {
+			link2name = scate;
+		}
+		
 		//System.out.println("사이즈:"+searchlist.size());
 		searchlist = boardservice.search(map);
 		
 		System.out.println("searchcount : "+searchlist.size());
+		searchsize = (int)((double)(searchlist.size()/20)+1.9);
+		System.out.println("searchsize : "+searchsize);
 		
 		mv.setViewName("A4.BSH/Search");
 		
@@ -513,7 +529,10 @@ public class BoardController {
 		mv.addObject("midcategorylist",midcategorylist);
 		mv.addObject("smallcategorylist",smallcategorylist);
 		mv.addObject("strlist",strlist);
+		mv.addObject("link2name", link2name);
+		mv.addObject("map", map);
 		mv.addObject("searchlist",searchlist);
+		mv.addObject("searchsize",searchsize);
 		return mv;
 	}
 	
