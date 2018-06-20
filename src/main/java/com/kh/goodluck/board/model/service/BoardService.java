@@ -150,6 +150,11 @@ public class BoardService {
 		return boardDao.ukjaegetServiceWriting(agency_no);
 	}
 	
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return boardDao.ukjaeCheckUserWritingCount(memberid);
+	}
+	
 
 	public int ukjaeDeleteService(int parsing_no) {
 		//delete(삭제 버튼을 눌러 agency_status를 숨김으로 설정)
@@ -360,6 +365,8 @@ public class BoardService {
 		
 		return boardDao.getChatInfoByMap(map);
 	}
+
+
 
 
 }

@@ -110,7 +110,7 @@ function sample4_execDaumPostcode() {
             // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
             if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                 extraRoadAddr += data.bname;
-            }
+            }    
             // 건물명이 있고, 공동주택일 경우 추가한다.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
@@ -168,7 +168,7 @@ function sample4_execDaumPostcode() {
 							<div align="center">
 								<input type="hidden" value="${loginUser.member_id}" name="loginUserId">
 								<p style="border: 1px dotted gray; padding: 0; width: 330px !important;" align="center">
-								<b><font size="3">유형선택</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<b><font size="3">서비스 유형선택</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<b>구해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="1">&nbsp;&nbsp; &nbsp;&nbsp;
 								<b>제공해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="2"> 
 								</p>
@@ -199,9 +199,9 @@ function sample4_execDaumPostcode() {
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p align="center">
-									<label for="username">주소입력</label>
+									<label for="username" style="margin-top: 5px;">주소입력</label>
 									<br>
-									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 90px !important; padding-left: 10px;" ><br><br>
+									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 85px !important; padding-left: 12px;" ><br><br>
 									<span class="input-group-btn">					
 									<a class="btn btn-default" onclick="sample4_execDaumPostcode()"><i class = "fa fa-search"></i> 우편번호 검색</a>
 									</span>

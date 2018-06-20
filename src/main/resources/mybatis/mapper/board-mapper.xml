@@ -325,7 +325,10 @@
    <update id="ukjaeDeleteService" parameterType="integer" flushCache="true" statementType="PREPARED">
       <![CDATA[update agency set agency_status=4 where agency_no=#{parsing_no}]]>
    </update>  
-   
+       
+   <select id="ukjaeCheckUserWritingCount" parameterType="String" resultType="int">
+  	  <![CDATA[select count(*) from agency where agency_writer=#{memberid} and agency_status!=4]]> 
+   </select>
    
    <select id="ukjaepickupBoard" parameterType="Board" resultType="int">
       <![CDATA[select agency_no from agency where agency_writer=#{agency_writer} and agency_content=#{agency_content} and agency_title=#{agency_title} and agency_loc=#{agency_loc}]]>

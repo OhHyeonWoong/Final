@@ -330,16 +330,38 @@
 					<c:if test="${currentpage != agencycount}">
 						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
-					
+					  
 					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
 				</span>
 			</div>
-
+			<input type="hidden" id="ukjae_userid" value="${loginUser.member_id}">
+			<input type="hidden" id="ukjae_userwritecount" value="${loginUser.member_write_count}"> 
 		</div>
 	</div>
 	<script type="text/javascript">
 		function fnBoardWriteForm(){
-			location.href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}";
+			var v1 = $("#ukjae_userid").val();
+			var v2 = $("#ukjae_userwritecount").val();
+			
+			$.ajax({
+				url : "ukjaeServiceForm.go",
+				type : "post",
+				data : {
+					memberid : v1,
+					write_count : v2 
+				}, 
+				success : function(data){
+					
+					if(data=="0"){
+						alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
+					}else if(data=="1"){
+						location.href="ukjaeServiceForm2.go?memberid="+v1;
+					}
+				},
+				error:function(a,b,c){
+					alert(a + ", " + b + ", " + c);
+				}	
+			});
 		}
 	</script>
 

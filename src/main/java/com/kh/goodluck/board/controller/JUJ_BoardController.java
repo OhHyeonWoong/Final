@@ -75,23 +75,39 @@ public class JUJ_BoardController {
 	}
 	
 	
-	@RequestMapping("ukjaeServiceForm.go")
-	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
+	@RequestMapping("ukjaeServiceForm.go") //서비스 글 작성 페이지로 이동하는메소드
+	public void ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
 		String userWriteCount = request.getParameter("write_count");
-		int userWriteCount2 = Integer.parseInt(userWriteCount);
+			
+		int parsingCount = Integer.parseInt(userWriteCount);
+		System.out.println("파싱된 유저의 글쓰기 유효카운트 : "+parsingCount);
 		
-		System.out.println(memberid+"님의 게시글 등록 가능횟수는 "+userWriteCount2+"회 입니다.");
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		int boardWritingCount = boardService.ukjaeCheckUserWritingCount(memberid);
 		
-		if(userWriteCount2<=0) {		
-			mv.setViewName("home");
-		}else {
+		PrintWriter out = response.getWriter();
+		
+		if(boardWritingCount>=parsingCount) {
+			out.append("0");		
+		}else if(boardWritingCount<parsingCount) {
+			out.append("1");
+		/*ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
+		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());	
+		mv.addObject("userGiveItem", userItem);
+		mv.setViewName("A2.JUJ/UkjaeServiceForm");*/
+		}
+			out.flush();
+			out.close();
+	}  
+	
+	@RequestMapping("ukjaeServiceForm2.go") //서비스 글 작성 페이지로 이동하는메소드
+	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
+		
 		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
-		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
-		
+		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());	
 		mv.addObject("userGiveItem", userItem);
 		mv.setViewName("A2.JUJ/UkjaeServiceForm");
-		}
 		return mv;
 	}
 	
@@ -139,8 +155,8 @@ public class JUJ_BoardController {
 			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
 		
-		System.out.println("WirteCount -1");
-		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
+		/*System.out.println("WirteCount -1");
+		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);*/
 		
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");

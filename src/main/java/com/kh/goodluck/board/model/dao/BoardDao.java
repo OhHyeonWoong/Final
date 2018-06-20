@@ -307,6 +307,12 @@ public class BoardDao {
 		return sqlSession.selectOne("ukjaepickupBoard", inputBoard);
 	}
 	
+
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return sqlSession.selectOne("ukjaeCheckUserWritingCount", memberid);
+	}
+	
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
 		return sqlSession.selectOne("Alter_Before_Agecnycheck", agency_no);
@@ -411,5 +417,8 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getChatInfoByMap", map);
 	}
+
+
+
 
 }
