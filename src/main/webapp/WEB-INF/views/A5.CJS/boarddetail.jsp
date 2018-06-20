@@ -13,14 +13,16 @@
 <body>
 
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-
 <script type="text/javascript">
+	
 	$(function () {
+        
 	if("${loginUser}" == "")	
 		{
 		$("#loginModalCancel").hide();
 		$("#text-login-msg").text("서비스 이용을 위해 로그인해주세요");
-		$('#login-modal').modal({backdrop: 'static', keyboard: false});
+		$('#login-modal').modal({backdrop: 'static', keyboard: false}); 
+		$('.modal-backdrop.in').css('opacity','0.95');
 		//location.href="Error500.go";
 		}
 		$("#ukapplybtn").on("click",function(){		
@@ -760,6 +762,7 @@ geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, statu
 		      </div>
 		    </div>
 		  </div>
-		</div>		
+		</div>	
+			
 </body>
 </html>

@@ -202,7 +202,7 @@
 				</form>
 			</div>
 			<div class="board_div_maincontent">
-				<h2>${board.link2_no }</h2><br>
+				<h2>${board.link2_no }<button class="btn btn-info" onclick="fnBoardWriteForm();" style="float:right;">글 쓰기</button></h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -337,7 +337,11 @@
 
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		function fnBoardWriteForm(){
+			location.href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}";
+		}
+	</script>
 
 </body>
 </html>

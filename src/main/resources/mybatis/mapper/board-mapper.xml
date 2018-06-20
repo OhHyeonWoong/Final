@@ -313,7 +313,7 @@
       default,
       #{agency_keyword},
       #{agency_option})]]>      
-   </insert>
+   </insert>   
    
    <update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
       <![CDATA[update agency set 
@@ -591,4 +591,99 @@
    ]]>
    </insert>
 
+
+	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
+	
+	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		
+		insert into member 
+		values 
+		(#{userId}, 
+		#{userPwd}, 
+		#{userName}, 
+		#{gender}, 
+		#{age}, 
+		#{phone}, 
+		#{email}, 
+		#{hobby}, 
+		#{etc}, 
+		sysdate, 
+		sysdate)		
+	</insert>
+	
+	<update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
+		update member 
+		set userpwd = #{userPwd}, 
+		age = #{age}, 
+		phone = #{phone}, 
+		email = #{email}, 
+		hobby = #{hobby}, 
+		etc = #{etc}, 
+		lastmodified = sysdate 
+		where userid = #{userId}
+	</update>
+	
+	<delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
+		delete from member 
+		where userid = #{userId}
+	</delete> -->
+	<select id="getBoardInfoByNo" parameterType="int" resultType="Board">
+	select * from AGENCY where AGENCY_NO = #{pk}
+	</select>
+	<update id="IncreaseViewCount">
+	update AGENCY set AGENCY_VEIWS = 
+	(select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
+	 where AGENCY_NO = #{pk}
+	</update>
+	<select id="updateAgencyStatus" parameterType="hashmap">
+	update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
+	</select>
+	<insert id="insertchatroom" parameterType="hashmap">
+	insert into CHATROOM values 
+	((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2},#{AGENCY_NO})
+	</insert>
+
+	<select id="getrelation" parameterType="hashmap" resultType="int">
+	select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_APPLICANT = #{memberid}
+	</select>
+	<select id="getrelation1" parameterType="hashmap" resultType="int">
+	select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_RESERVATION = #{memberid}
+	</select>
+	<select id="getrelation2" parameterType="hashmap" resultType="int">
+	select count(*) from AGENCY where AGENCY_NO=#{AGENCY_NO} and AGENCY_WRITER = #{memberid}
+	</select>
+	<select id="getAgencyStatus" parameterType="int" resultType="int" >
+	select AGENCY_STATUS from AGENCY where AGENCY_NO = #{pk}
+	</select>
+	<select id="getapplicant" parameterType="int" resultType="String" >
+	select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
+	</select>
+	<select id="getAgencyDate" parameterType="int" resultType="Double" >
+	select AGENCY_STARTDATE-sysdate from AGENCY where AGENCY_NO=#{pk}
+	</select>
+	<insert id="insertBoardlog" parameterType="int">
+	insert into AGENCYLOG values((select max(AGENCYLOG_NO)+1 from AGENCYLOG),#{pk},1,sysdate)
+	</insert>
+	<update id="changeRESERVATION">
+	update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
+	</update>
+	<insert id="insertReview" parameterType="REVIEW">
+	insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),
+	#{REVIEW_RATE},#{REVIEW_WRITER},
+	(select AGENCYLOG_NO from AGENCYLOG where AGENCYLOG_TRADE = (select TRADE_NO from TRADE_DETAIL where AGENCY_NO=#{AGENCYLOG_NO})),sysdate,
+	#{REVIEW_CONTENT}) 
+	</insert>
+	<update id="SCOREupdatetype1" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_BUY = (select SCORE_BUY from SCORE where MEMBER_ID=#{order} )+#{orderrate},
+	SCORE_BUY_COUNT=(select SCORE_BUY_COUNT from SCORE where MEMBER_ID=#{order})+1
+	where MEMBER_ID=#{order}
+	</update>
+	<update id="SCOREupdatetype11" parameterType="hashmap">
+	update SCORE  set 
+	SCORE_SELL_COUNT=(select SCORE_SELL_COUNT from SCORE where MEMBER_ID=#{APPLICANT})+1,
+	SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
+	where MEMBER_ID=#{APPLICANT}
+	</update>
+
 </mapper>
+

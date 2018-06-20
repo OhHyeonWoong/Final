@@ -892,6 +892,70 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
 			<h2 style="text-align:left;">마이페이지</h2>
 			<hr>
+			<span style="font-size:18pt;">
+			<table style="width:100%;">
+				<tr>
+					<td style="width:40%;">카톡 메시지 이용하기</td>
+					<td style="width:57%; text-align:center;"><a id="custom-login-btn" href="javascript:loginWithKakao()">
+								<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+								</a></td>
+				</tr>
+			</table>
+			</span>
+								<script type='text/javascript'>
+								  //<![CDATA[
+								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+								    Kakao.init('bf5af5f0ced1be9895cf0308cdc121a4');
+								   
+								    
+								    function loginWithKakao() {
+								      // 로그인 창을 띄웁니다.
+								
+								      Kakao.Auth.loginForm({
+								        success: function(authObj) {
+								          console.log(authObj); 
+								        var access_token=authObj.access_token;
+								        var refresh_token=authObj.refresh_token;
+								          Kakao.API.request({
+								              url: '/v1/user/me',
+								              success: function(res) {
+								           	var json = JSON.parse(JSON.stringify(res));
+								              var nickname=json.properties.nickname;
+								              var email=json.kaccount_email;
+								              var pk=json.id;
+								           
+								              $.ajax({
+								            	  url:"lbjKakaoTokenUpdate.go",
+								            	  data:
+								            	  {name:nickname,
+								            	   email:email,
+								            	   access_token:access_token,
+								              refresh_token:refresh_token,
+								              kakaopk:pk,
+								              member_id: '${loginUser.member_id}'
+								            	   },success:function(data){
+								            		   alert(data);
+								            		   if(data == '카톡 인증 성공!'){
+								            			   window.history.go(0);   
+								            		   }
+								            		   
+								            	   }
+								              })
+								              
+								              },
+								              fail: function(error) {
+								                alert(JSON.stringify(error));
+								              }
+								            });
+								        },
+								        fail: function(err) {
+								          alert(JSON.stringify(err));
+								        }
+								      });
+								    };
+								  //]]>
+								</script>
+			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
 		 	<div>
 		 	    <!-- 병준이 추가, 이상하시면 지우세요 동기형 -->
