@@ -56,6 +56,26 @@ public class Board implements Serializable{
 		this.agency_option = agency_option;
 	}
 
+	//수정을 시도할 때 사용되는 생성자
+	public Board(int agency_no, String agency_writer, String agency_title, String link2_no, int agency_type,
+			String agency_loc, Date agency_startdate, Date agency_enddate, int agency_paytype, int agency_pay,
+			String agency_content, String agency_keyword, String agency_option) {
+		super();
+		this.agency_no = agency_no;
+		this.agency_writer = agency_writer;
+		this.agency_title = agency_title;
+		this.link2_no = link2_no;
+		this.agency_type = agency_type;
+		this.agency_loc = agency_loc;
+		this.agency_startdate = agency_startdate;
+		this.agency_enddate = agency_enddate;
+		this.agency_paytype = agency_paytype;
+		this.agency_pay = agency_pay;
+		this.agency_content = agency_content;
+		this.agency_keyword = agency_keyword;
+		this.agency_option = agency_option;
+	}
+
 
 
 	public int getAgency_no() {

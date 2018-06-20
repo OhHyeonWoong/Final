@@ -50,6 +50,10 @@ public class Outside_MainDao {
 		//메인화면에 변경될 youtube영상객체를 리턴받는 메소드
 		return sqlSession.selectOne("youtubecheck", youtubecheck);
 	}
+	public Outside_Main ukjaeCheckDataValue(String main) {
+		//data_value를 보내어 객체를 리턴받는 메소드
+		return sqlSession.selectOne("ukjaemainreturn", main);
+	}
 
 
 }

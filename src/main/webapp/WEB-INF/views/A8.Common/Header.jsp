@@ -352,6 +352,12 @@
 	}
 	/* 로그아웃 Function */
 	
+	/* 키 이벤트 입력 막기 */
+	$(function() {
+		
+	})
+	/* 키 이벤트 입력 막기 끝 */
+	
 	//병준이 마일리지 관련 함수들
 	$(function(){
 		$('#chargeMoney').on('change',function(){
@@ -389,14 +395,23 @@
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp;
+							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != 0 }">
+								<img src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:30px; height:30px;">							
+							</c:if>
+							<b class="caret"></b> &nbsp;</a>
 							<div class="dropdown-menu lbj-div">
 								<div style="margin-left:10px; margin-right:10px;">
 									<table style="width:100%; height:100%;">
 										<tr>
 											<td align="center"> ${ loginUser.member_name } 님 </td>
-											<td align="right">									
-												<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
+											<td align="right">
+												<c:if test="${ loginUser.member_status eq 3}">
+													<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'jdkadminmember.go'" style="width:90px;">AdPage</button>
+												</c:if><!-- location.href = 'jdkadminmember.go' -->
+												<c:if test="${ loginUser.member_status eq 1}">
+													<button id="lbjmypagebtn1" class="btn btn-default" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'" style="width:90px;">MyPage</button>
+												</c:if>							
 											</td>									
 										</tr><!-- style="margin-left:140px;"  -->
 										<tr>
@@ -481,6 +496,8 @@
 		        			<hr>
 		        			<span class="lbjspan lbjex">※ 최대 구매 가능한 마일리지는</span><br>
 		        			<span class="lbjspan lbjex">500,000 입니다.</span><br>
+		        			<!-- <span class="lbjspan lbjex">※ 수수료 10%가 제외된 금액이</span><br>
+		        			<span class="lbjspan lbjex">충전됩니다.</span><br> -->
 		        		</td>
 		        		<td style="position:absolute; width:63%; background:white; vertical-align: top;">
 		        			<span class="lbjspan">결제수단</span><br>
@@ -972,15 +989,15 @@
 					
 					/* Category Click Count */					
 					function BigCategoryCount(id){
-						location.href='/goodluck/BigCategoryCount.go?bigCode=' + id + "&page=1";
+						location.href='/goodluck/BigCategoryCount.go?bigCode=' + id;
 					};
 					
 					function MidCategoryCount(id){
-						location.href='/goodluck/MidCategoryCount.go?midCode=' + id + "&page=1";
+						location.href='/goodluck/MidCategoryCount.go?midCode=' + id;
 					};
 					
 					function SmallCategoryCount(id){
-						location.href='/goodluck/SmallCategoryCount.go?smallCode=' + id + "&page=1";						
+						location.href='/goodluck/SmallCategoryCount.go?smallCode=' + id;						
 					};					
 					/* Category Click Count End */
 					

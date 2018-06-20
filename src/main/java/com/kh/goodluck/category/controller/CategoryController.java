@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.category.model.service.CategoryService;
 import com.kh.goodluck.category.model.vo.Category;

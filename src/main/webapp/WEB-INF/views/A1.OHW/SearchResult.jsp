@@ -112,7 +112,7 @@
 						<tr>
 							<td>${ searchMasterResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "">${ searchMasterResult.agency_title }</a></td>							
+							<td class = "ohw-agency-title"><a href = "BoardDetail.go?BoardNo=${ searchMasterResult.agency_no }">${ searchMasterResult.agency_title }</a></td>							
 							<td>
 								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif"> 
 								${ searchMasterResult.agency_writer }
@@ -218,7 +218,7 @@
 						<tr>
 							<td>${ searchSlaveResult.agency_no }</td>
 							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "">${ searchSlaveResult.agency_title }</a></td>
+							<td class = "ohw-agency-title"><a href = "BoardDetail.go?BoardNo=${ searchSlaveResult.agency_no }">${ searchSlaveResult.agency_title }</a></td>
 							<td><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
 							<td>${ searchSlaveResult.agency_enrolldate }</td>
 						</tr>

@@ -259,6 +259,32 @@ public class MemberController {
 			mv.addObject("lbjMyBoardHistory", myBoardHistory);
 			mv.addObject("boardHistoryPage",boardHistoryPage);
 			//내가 이용한 History 세팅 끝------------------------------------------------
+			//신청자가 생긴 내 글 세팅 시작----------------------------------------------
+			int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);
+			int myWriteCandidateMaxPage = (int)((double)myWriteCandidateListCount / qnaLimit + 0.9);
+			int myWriteCandidateEndRow = qnaStartRow + qnaLimit - 1;		
+			
+			System.out.println("myWriteCandidateListCount = " + myWriteCandidateListCount);
+			
+			HashMap<Object,Object> map6 = new HashMap<Object,Object>();
+		    map6.put("startRow", qnaStartRow);
+		    map6.put("endRow", myWriteCandidateEndRow);
+		    map6.put("member_id", member_id);
+		    ArrayList<MyPageApplyBoard> myWriteCandidate = (ArrayList<MyPageApplyBoard>)boardService.selectMyWriteCandidate(map6);
+		    
+		    System.out.println("myWriteCandidate size = " + myWriteCandidate.size());
+			
+		    if (myWriteCandidateMaxPage < myWriteCandidateEndRow)
+		    	myWriteCandidateEndRow = myWriteCandidateMaxPage;
+			
+		    HashMap<String,Integer> writeCandidatePage = new HashMap<String,Integer>();
+		    writeCandidatePage.put("myWriteCandidateMaxPage",myWriteCandidateMaxPage);
+		    writeCandidatePage.put("myWriteCandidateEndRow",myWriteCandidateEndRow);
+		    writeCandidatePage.put("myWriteCandidateListCount",myWriteCandidateListCount);
+			
+			mv.addObject("lbjMyWriteCandidate", myWriteCandidate);
+			mv.addObject("writeCandidatePage",writeCandidatePage);
+			//신청자가 생긴 내 글 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
 		return mv;
@@ -510,6 +536,10 @@ public class MemberController {
 		Member member = null;
 		///////////////////////
 		System.out.println("updateMemberCashMethod run...");
+		/*int beforeCash = m.getMember_cash();
+		int afterCash = (int)(beforeCash * 0.9);
+		int adminCash = beforeCash - afterCash;
+		m.setMember_cash(afterCash);*/
 		int result = memberService.updateMemberCashMethod(m);
 		if(result > 0) {
 			//세션 정보 갱신
@@ -519,6 +549,23 @@ public class MemberController {
 			    member=(Member)session.getAttribute("loginUser");
 			    member.setMember_cash(m.getMember_cash());
 			}
+			//paylog테이블에 데이터 추가해 주어야 됨
+			/*HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("member_id", m.getMember_id());
+			map.put("adminCash", adminCash);
+			int paylogResult = memberService.insertLbjMilegePayLog(map);
+			if(paylogResult > 0) {
+				System.out.println("수수료 챙기기 성공, 관리자 id cash update 필요");
+				int updateResult = memberService.updateAdminCash(map);
+				if(updateResult > 0) {
+					System.out.println("admin 캐시 갱신 성공!");
+				}else {
+					System.out.println("admin 캐시 갱신 실패!");
+				}
+			}else {
+				System.out.println("수수료 챙기기 실패");
+			}*/
+			/////////////////////////////
 		}else {
 			//결제 실패
 			System.out.println("결제 실패...");
