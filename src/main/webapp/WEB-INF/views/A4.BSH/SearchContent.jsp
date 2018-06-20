@@ -202,7 +202,7 @@
 				</form>
 			</div>
 			<div class="board_div_maincontent">
-				<%-- <h2>${board.link2_no }</h2><br>
+				<h2>${board.link2_no }</h2><br>
 				
 				<table style="border: 1px solid black; width: 100%;">
 					<thead style="border: 1px solid black;">
@@ -219,7 +219,7 @@
 
 					</thead>
 					<tbody>						
-						<c:forEach var="board" items="${boardlist }">
+						<%-- <c:forEach var="board" items="${boardlist }">
 							<tr>
 							<td>
 							<c:set var="tf" value="${board.agency_type }"/>
@@ -272,12 +272,12 @@
 							${board.agency_status }
 							</td>
 							</tr>
-						</c:forEach>
+						</c:forEach> --%>
 						
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
+					<%-- <button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
 					<c:set var="currentpage" value="${pageNum }"/>
 					<c:if test="${currentpage eq '1'}">
 						<button>&lt;</button>
@@ -331,8 +331,8 @@
 						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
 					
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
-				</span> --%>
+					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button> --%>
+				</span>
 			</div>
 	
 		</div>

@@ -339,14 +339,6 @@ public class BoardDao {
 		return sqlSession.insert("RegistTradeInfo", inputBoard);
 	}
 
-
-
-
-
-
-
-
-
 	//made by lbj
 	public int selectMyBoardListCount(String member_id) {
 		return sqlSession.selectOne("selectMyBoardListCount", member_id);
