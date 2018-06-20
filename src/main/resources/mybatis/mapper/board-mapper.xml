@@ -4,463 +4,585 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="BoardandDetail">
-	
-	<resultMap type="Board" id="BoardResult">
-		<id property="agency_no" column="agency_no"/>
-		<result property="rnum" column="rnum"/>
-		<result property="agency_writer" column="agency_writer"/>
-		<result property="agency_title" column="agency_title"/>
-		<result property="link2_no" column="link2_no"/>
-		<result property="agency_type" column="agency_type"/>
-		<result property="agency_loc" column="agency_loc"/>
-		<result property="agency_startdate" column="agency_startdate"/>
-		<result property="agency_enddate" column="agency_enddate"/>
-		<result property="agency_enrolldate" column="agency_enrolldate"/>
-		<result property="agency_paytype" column="agency_paytype"/>
-		<result property="agency_pay" column="agency_pay"/>
-		<result property="agency_status" column="agency_status"/>
-		<result property="agency_content" column="agency_content"/>
-		<result property="AGENCY_VEIWS" column="AGENCY_VEIWS"/>
-		<result property="agency_views" column="agency_views"/>
-		<result property="agency_keyword" column="agency_keyword"/>
-		<result property="agency_option" column="agency_option"/>
-	</resultMap>
-	
-	<resultMap type="Board" id="BoardResult2">
-		<id property="agency_no" column="agency_no"/>
-		<result property="agency_writer" column="agency_writer"/>
-		<result property="agency_title" column="agency_title"/>
-		<result property="link2_no" column="link2_no"/>
-		<result property="agency_type" column="agency_type"/>
-		<result property="agency_loc" column="agency_loc"/>
-		<result property="agency_startdate" column="agency_startdate"/>
-		<result property="agency_enddate" column="agency_enddate"/>
-		<result property="agency_enrolldate" column="agency_enrolldate"/>
-		<result property="agency_paytype" column="agency_paytype"/>
-		<result property="agency_pay" column="agency_pay"/>
-		<result property="agency_status" column="agency_status"/>
-		<result property="agency_content" column="agency_content"/>
-		<result property="agency_views" column="agency_views"/>
-		<result property="agency_keyword" column="agency_keyword"/>
-		<result property="agency_option" column="agency_option"/>
-	</resultMap>
-	
-	
-	<resultMap type="BigCategory" id="BigCategoryAll">
-		<id property="category_big_code" column="category_big_code"/>
-		<result property="category_big_name" column="category_big_name"/>
-		<result property="category_big_views" column="category_big_views"/>
-	</resultMap>
-	
-	<resultMap type="MidCategory" id="MidCategoryAll">
-		<id property="category_mid_code" column="category_mid_code"/>
-		<result property="category_mid_name" column="category_mid_name"/>
-		<result property="category_mid_views" column="category_mid_views"/>
-	</resultMap>
-	
-	<resultMap type="SmallCategory" id="SmallCategoryAll">
-		<id property="category_small_code" column="category_small_code"/>
-		<result property="category_small_name" column="category_small_name"/>
-		<result property="category_small_views" column="category_small_views"/>
-	</resultMap>
-	
-	<resultMap type="CategoryLink1" id="CategoryLink1All">
-		<id property="link1_no" column="link1_no"/>
-		<result property="category_big_code" column="category_big_code"/>
-		<result property="category_mid_code" column="category_mid_code"/>
-	</resultMap>
-	
-	<resultMap type="CategoryLink2" id="CategoryLink2All">
-		<id property="link2_no" column="link2_no"/>
-		<result property="category_mid_code" column="category_mid_code"/>
-		<result property="category_small_code" column="category_small_code"/>
-	</resultMap>
-		
-		
-	<resultMap type="Chat" id="Chat">
-		<id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
-		<result property="CHATROOM_NO" column="CHATROOM_NO"/>
-		<result property="CHATDEATIL_CONTENT" column="CHATDEATIL_CONTENT"/>
-		<result property="AGENCY_NO" column="AGENCY_NO"/>
-		<result property="CHATDEATIL_MEMBER" column="CHATDEATIL_MEMBER"/>
-		<result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
-		<result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
-		<result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
+   
+   <resultMap type="Board" id="BoardResult">
+      <id property="agency_no" column="agency_no"/>
+      <result property="rnum" column="rnum"/>
+      <result property="agency_writer" column="agency_writer"/>
+      <result property="agency_title" column="agency_title"/>
+      <result property="link2_no" column="link2_no"/>
+      <result property="agency_type" column="agency_type"/>
+      <result property="agency_loc" column="agency_loc"/>
+      <result property="agency_startdate" column="agency_startdate"/>
+      <result property="agency_enddate" column="agency_enddate"/>
+      <result property="agency_enrolldate" column="agency_enrolldate"/>
+      <result property="agency_paytype" column="agency_paytype"/>
+      <result property="agency_pay" column="agency_pay"/>
+      <result property="agency_status" column="agency_status"/>
+      <result property="agency_content" column="agency_content"/>
+      <result property="AGENCY_VEIWS" column="AGENCY_VEIWS"/>
+      <result property="agency_views" column="agency_views"/>
+      <result property="agency_keyword" column="agency_keyword"/>
+      <result property="agency_option" column="agency_option"/>
+   </resultMap>
+   
+   <resultMap type="Board" id="BoardResult2">
+      <id property="agency_no" column="agency_no"/>
+      <result property="agency_writer" column="agency_writer"/>
+      <result property="agency_title" column="agency_title"/>
+      <result property="link2_no" column="link2_no"/>
+      <result property="agency_type" column="agency_type"/>
+      <result property="agency_loc" column="agency_loc"/>
+      <result property="agency_startdate" column="agency_startdate"/>
+      <result property="agency_enddate" column="agency_enddate"/>
+      <result property="agency_enrolldate" column="agency_enrolldate"/>
+      <result property="agency_paytype" column="agency_paytype"/>
+      <result property="agency_pay" column="agency_pay"/>
+      <result property="agency_status" column="agency_status"/>
+      <result property="agency_content" column="agency_content"/>
+      <result property="agency_views" column="agency_views"/>
+      <result property="agency_keyword" column="agency_keyword"/>
+      <result property="agency_option" column="agency_option"/>
+   </resultMap>
+   
+   
+   <resultMap type="BigCategory" id="BigCategoryAll">
+      <id property="category_big_code" column="category_big_code"/>
+      <result property="category_big_name" column="category_big_name"/>
+      <result property="category_big_views" column="category_big_views"/>
+   </resultMap>
+   
+   <resultMap type="MidCategory" id="MidCategoryAll">
+      <id property="category_mid_code" column="category_mid_code"/>
+      <result property="category_mid_name" column="category_mid_name"/>
+      <result property="category_mid_views" column="category_mid_views"/>
+   </resultMap>
+   
+   <resultMap type="SmallCategory" id="SmallCategoryAll">
+      <id property="category_small_code" column="category_small_code"/>
+      <result property="category_small_name" column="category_small_name"/>
+      <result property="category_small_views" column="category_small_views"/>
+   </resultMap>
+   
+   <resultMap type="CategoryLink1" id="CategoryLink1All">
+      <id property="link1_no" column="link1_no"/>
+      <result property="category_big_code" column="category_big_code"/>
+      <result property="category_mid_code" column="category_mid_code"/>
+   </resultMap>
+   
+   <resultMap type="CategoryLink2" id="CategoryLink2All">
+      <id property="link2_no" column="link2_no"/>
+      <result property="category_mid_code" column="category_mid_code"/>
+      <result property="category_small_code" column="category_small_code"/>
+   </resultMap>
+      
+      
+   <resultMap type="Chat" id="Chat">
+      <id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
+      <result property="CHATROOM_NO" column="CHATROOM_NO"/>
+      <result property="CHATDEATIL_CONTENT" column="CHATDEATIL_CONTENT"/>
+      <result property="AGENCY_NO" column="AGENCY_NO"/>
+      <result property="CHATDEATIL_MEMBER" column="CHATDEATIL_MEMBER"/>
+      <result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
+      <result property="CHATROOM_MEMBER1" column="CHATROOM_MEMBER1"/>
+      <result property="CHATROOM_MEMBER2" column="CHATROOM_MEMBER2"/>
 
-	</resultMap>
-	
-		
-	<select id="selectCategory" parameterType="Board" resultMap="BoardResult">
-		<![CDATA[
-			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,s.CATEGORY_SMALL_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}		
-		]]>
-	</select>
-	
-	<select id="selectCategoryMid" parameterType="Board" resultMap="BoardResult">
-		<![CDATA[
-			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,m.CATEGORY_MID_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
-		]]>
-	</select>
-	
-	<select id="selectCategoryBig" parameterType="Board" resultMap="BoardResult">
-		<![CDATA[
-			select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
-		]]>
-	</select>
-	
-	<select id="search" parameterType="HashMap" resultMap="BoardResult">
-		<![CDATA[
-			<!-- select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
-		 -->]]>
-	</select>
-	
-	<select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
-		<![CDATA[
-			select * from bigcategory
-		]]>
-	</select>
-	
-	<select id="selectMidCategoryAll" parameterType="MidCategory" resultMap="MidCategoryAll">
-		<![CDATA[
-			select * from midcategory
-		]]>
-	</select>
-	
-	<select id="selectSmallCategoryAll" parameterType="SmallCategory" resultMap="SmallCategoryAll">
-		<![CDATA[
-			select * from smallcategory
-		]]>
-	</select>
-	
-	<select id="selectCategoryLink1" parameterType="CategoryLink1" resultMap="CategoryLink1All">
-		<![CDATA[
-			select l.LINK1_NO, b.CATEGORY_BIG_NAME as CATEGORY_BIG_CODE, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE from categorylink1 l,BIGCATEGORY b, MIDCATEGORY m where l.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE
-		]]>
-	</select>
-	
-	<select id="selectCategoryLink2" parameterType="CategoryLink2" resultMap="CategoryLink2All">
-		<![CDATA[
-			select l.LINK2_NO, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE, s.CATEGORY_SMALL_NAME as CATEGORY_SMALL_CODE from CATEGORYLINK2 l,MIDCATEGORY m, SMALLCATEGORY s where l.CATEGORY_MID_CODE = m.CATEGORY_MID_CODE and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE
-		]]>
-	</select>
-	
-	<select id="getAgencyCount" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(s.CATEGORY_SMALL_NAME) from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{link2_no}
-		]]>
-	</select>
-	
-	<select id="getAgencyCountMid" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(m.CATEGORY_MID_NAME) from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{link2_no} order by a.AGENCY_NO
-		]]>
-	</select>
-	
-	<select id="getAgencyCountBig" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(b.CATEGORY_BIG_NAME) from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{link2_no} order by a.AGENCY_NO
-		]]>
-	</select>
-
-
+   </resultMap>
+   
+      
+   <select id="selectCategory" parameterType="Board" resultMap="BoardResult">
+      <![CDATA[
+         select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,s.CATEGORY_SMALL_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}      
+      ]]>
+   </select>
+   
+   <select id="selectCategoryMid" parameterType="Board" resultMap="BoardResult">
+      <![CDATA[
+         select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,m.CATEGORY_MID_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
+      ]]>
+   </select>
+   
+   <select id="selectCategoryBig" parameterType="Board" resultMap="BoardResult">
+      <![CDATA[
+         select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
+      ]]>
+   </select>
+   
+   <select id="search" parameterType="HashMap" resultMap="BoardResult">
+      <![CDATA[
+         <!-- select * from (select rownum as rnum, AGENCY_NO,AGENCY_WRITER,AGENCY_TITLE, LINK2_NO,AGENCY_TYPE,AGENCY_LOC,AGENCY_STARTDATE,AGENCY_ENDDATE,AGENCY_ENROLLDATE,AGENCY_PAYTYPE,AGENCY_PAY,AGENCY_STATUS,AGENCY_CONTENT,AGENCY_VEIWS,AGENCY_KEYWORD,AGENCY_OPTION from (select a.AGENCY_NO,a.AGENCY_WRITER,a.AGENCY_TITLE,b.CATEGORY_BIG_NAME as LINK2_NO,a.AGENCY_TYPE,a.AGENCY_LOC,a.AGENCY_STARTDATE,a.AGENCY_ENDDATE,a.AGENCY_ENROLLDATE,a.AGENCY_PAYTYPE,a.AGENCY_PAY,a.AGENCY_STATUS,a.AGENCY_CONTENT,a.AGENCY_VEIWS,a.AGENCY_KEYWORD,a.AGENCY_OPTION from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{categoryname} order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}
+       -->]]>
+   </select>
+   
+   <select id="selectBigCategoryAll" parameterType="BigCategory" resultMap="BigCategoryAll">
+      <![CDATA[
+         select * from bigcategory
+      ]]>
+   </select>
+   
+   <select id="selectMidCategoryAll" parameterType="MidCategory" resultMap="MidCategoryAll">
+      <![CDATA[
+         select * from midcategory
+      ]]>
+   </select>
+   
+   <select id="selectSmallCategoryAll" parameterType="SmallCategory" resultMap="SmallCategoryAll">
+      <![CDATA[
+         select * from smallcategory
+      ]]>
+   </select>
+   
+   <select id="selectCategoryLink1" parameterType="CategoryLink1" resultMap="CategoryLink1All">
+      <![CDATA[
+         select l.LINK1_NO, b.CATEGORY_BIG_NAME as CATEGORY_BIG_CODE, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE from categorylink1 l,BIGCATEGORY b, MIDCATEGORY m where l.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE
+      ]]>
+   </select>
+   
+   <select id="selectCategoryLink2" parameterType="CategoryLink2" resultMap="CategoryLink2All">
+      <![CDATA[
+         select l.LINK2_NO, m.CATEGORY_MID_NAME as CATEGORY_MID_CODE, s.CATEGORY_SMALL_NAME as CATEGORY_SMALL_CODE from CATEGORYLINK2 l,MIDCATEGORY m, SMALLCATEGORY s where l.CATEGORY_MID_CODE = m.CATEGORY_MID_CODE and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE
+      ]]>
+   </select>
+   
+   <select id="getAgencyCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(s.CATEGORY_SMALL_NAME) from agency a,CATEGORYLINK2 l ,SMALLCATEGORY s where l.LINK2_NO = a.LINK2_NO and s.CATEGORY_SMALL_CODE = l.CATEGORY_SMALL_CODE and s.CATEGORY_SMALL_NAME = #{link2_no}
+      ]]>
+   </select>
+   
+   <select id="getAgencyCountMid" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(m.CATEGORY_MID_NAME) from agency a,CATEGORYLINK2 l,MIDCATEGORY m where l.LINK2_NO = a.LINK2_NO and m.CATEGORY_MID_CODE = l.CATEGORY_MID_CODE and m.CATEGORY_MID_NAME= #{link2_no} order by a.AGENCY_NO
+      ]]>
+   </select>
+   
+   <select id="getAgencyCountBig" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(b.CATEGORY_BIG_NAME) from AGENCY a, CATEGORYLINK2 link2, CATEGORYLINK1 link1,BIGCATEGORY b where link2.LINK2_NO = a.LINK2_NO and link2.CATEGORY_MID_CODE = link1.CATEGORY_MID_CODE and link1.CATEGORY_BIG_CODE = b.CATEGORY_BIG_CODE and b.CATEGORY_BIG_NAME = #{link2_no} order by a.AGENCY_NO
+      ]]>
+   </select>
 
 
-	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 Start -->
-	<select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 1 and 20)) 
-			where rnum>=1 and rnum<=6]]> 
-	</select>
-
-	<select id="mainPageShowPetListPic" resultMap="BoardResult"> <!-- 반려동물영역(Data 6EA)  -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 119 and 130)) 
-			where rnum>=1 and rnum<=6]]> 
-	</select>
 
 
-	<select id="mainPageShowGameListPic" resultMap="BoardResult"> <!-- 게임영역(Data 6EA) -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 53 and 88)) 
-			where rnum>=1 and rnum<=6]]> 
-	</select>
-	
-		
-	<select id="mainPageShowMusicListPic1" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
-			where rnum>=1 and rnum<=5]]> 
-	</select>
-	<select id="mainPageShowMusicListPic2" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
-			where rnum>=1 and rnum<=4]]> 
-	</select>
-	<select id="mainPageShowMusicListPic3" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
-			where rnum>=10 and rnum<=14]]> 
-	</select>
-	<select id="mainPageShowMusicListPic4" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
-			where rnum>=15 and rnum<=18]]> 
-	</select>
+   <!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문 Start -->
+   <select id="mainPageShowLifeListPic" resultMap="BoardResult"> <!-- 생활영역(Data 6EA) -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 1 and 20)) 
+         where rnum>=1 and rnum<=6]]> 
+   </select>
 
-	<!-- 여기서부터 손봐야될 것 -->
-	<select id="mainPageShowRentListPic" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
-			where rnum>=1 and rnum<=6]]> 
-	</select>
-	<select id="mainPageShowRentListPic2" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
-			where rnum>=7 and rnum<=12]]> 
-	</select>
-	<select id="mainPageShowRentListPic3" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
-			where rnum>=13 and rnum<=18]]> 
-	</select>
-	<select id="mainPageShowRentListPic4" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
-			where rnum>=19 and rnum<=24]]> 
-	</select>
-	
-	<select id="mainPageShowTravelListPic" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
-			where rnum>=1 and rnum<=5]]> 
-	</select>
-	<select id="mainPageShowTravelListPic2" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
-			where rnum>=6 and rnum<=10]]> 
-	</select>
-	
-	<select id="mainPageShowFreeListPic" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
-			where rnum>=1 and rnum<=5]]> 
-	</select>
-	<select id="mainPageShowFreeListPic2" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
-			where rnum>=7 and rnum<=11]]> 
-	</select>
-	<select id="mainPageShowFreeListPic3" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
-			where rnum>=12 and rnum<=16]]> 
-	</select>
-	<select id="mainPageShowFreeListPic4" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
-			where rnum>=17 and rnum<=21]]> 
-	</select>
-	<select id="mainPageShowFreeListPic5" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
-			where rnum>=22 and rnum<=26]]> 
-	</select>
-	
-	<select id="mainPageShowRequireListPic" resultMap="BoardResult"> <!-- 구인영역(Data 18EA) 6/6/6 Tablex3개가 필요함 -->
-		<![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
-			agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
-			,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
-			where rnum>=1 and rnum<=6]]> 
-	</select>
+   <select id="mainPageShowPetListPic" resultMap="BoardResult"> <!-- 반려동물영역(Data 6EA)  -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 119 and 130)) 
+         where rnum>=1 and rnum<=6]]> 
+   </select>
 
-	<select id="ukjae_pic_link2_no" parameterType="String" resultMap="CategoryLink2All">
-		<![CDATA[select * from categorylink2 where category_small_code=#{smallcategory}]]>
-	</select>
-	
-	<insert id="newServiceRegist" parameterType="Board" flushCache="true" statementType="PREPARED">
-		<![CDATA[insert into agency values(
-		(select max(agency_no)+1 from agency),
-		#{agency_writer},
-		#{agency_title},
-		TO_NUMBER(#{link2_no}),
-		#{agency_type},
-		#{agency_loc},
-		#{agency_startdate},
-		#{agency_enddate},
-		default,
-		#{agency_paytype},
-		#{agency_pay}, 
-		default,
-		#{agency_content},
-		default,
-		#{agency_keyword},
-		#{agency_option})]]>		
-	</insert>
-	
-	<update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
-		<![CDATA[update agency set 
-		 agency_title=#{agency_title},
-		 link2_no=TO_NUMBER(#{link2_no}),
-		 agency_type=#{agency_type},
-		 agency_loc=#{agency_loc},
-		 agency_startdate=#{agency_startdate},
-		 agency_enddate=#{agency_enddate},
-		 agency_paytype=#{agency_paytype},
-		 agency_pay=#{agency_pay}, 
-		 agency_content=#{agency_content},
-		 agency_keyword=#{agency_keyword},
-		 agency_option=#{agency_option}		  
-		 where agency_no=#{agency_no}]]>
-	</update>
-	
-	<update id="ukjaeDeleteService" parameterType="integer" flushCache="true" statementType="PREPARED">
-		<![CDATA[update agency set agency_status=4 where agency_no=#{parsing_no}]]>
-	</update>  
-	
-	
-	<select id="ukjaepickupBoard" parameterType="Board" resultType="int">
-		<![CDATA[select agency_no from agency where agency_writer=#{agency_writer} and agency_content=#{agency_content} and agency_title=#{agency_title} and agency_loc=#{agency_loc}]]>
-	</select>
-	
-	<select id="Alter_Before_Agecnycheck" parameterType="integer" resultMap="BoardResult2">
-		<![CDATA[select * from agency where agency_no=#{agency_no}]]>
-	</select>
-	
-	<select id="selectMyBoardListCount" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(*) from agency where agency_writer = #{member_id}
-		]]>
-	</select>
-	
-	<select id="selectMyBoard" parameterType="java.util.HashMap" resultType="MyPageBoard">
-		<![CDATA[
-			select * 
-			from (
-			  select rownum rnum,ac.agency_no, ac.agency_writer,
-			  ac.agency_title,ac.link2_no,ac.agency_type, 
-			  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
-			  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
-			  sc.category_small_name
-			  from agency ac,categorylink2 cl,smallcategory sc
-			  where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
-			  and ac.agency_writer = #{member_id}) 
-			where rnum>=#{startRow} and rnum<=#{endRow}
-		]]>
-	</select>
-	
-	<select id="selectMyApplyBoardListCount" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(*) from trade_detail where (TRADE_APPLICANT = #{member_id} or TRADE_RESERVATION = #{member_id})
-		]]>
-	</select>
-	
-	<select id="selectMyApplyBoard" parameterType="java.util.HashMap" resultType="MyPageApplyBoard">
-		<![CDATA[
-			select * 
-			from (
-			  select rownum rnum,ac.agency_no, ac.agency_writer,
-			  ac.agency_title,ac.link2_no,ac.agency_type, 
-			  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
-			  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
-			  sc.category_small_name,td.trade_applicant,td.trade_date,td.trade_reservation,td.trade_reservation_date
-			  from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
-			  where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
-			  and (td.trade_reservation = #{member_id} or td.trade_applicant = #{member_id})) 
-			where rnum>=#{startRow} and rnum<=#{endRow}
-		]]>
-	</select>
-	<select id="selectMyBoardHistoryListCount" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(*)
-			from agency ac,agencylog al,trade_detail td
-			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
-			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
-		]]>
-	</select>
-	<select id="selectMyBoardHistory" parameterType="java.util.HashMap" resultType="MyPageBoardHistory">
-		<![CDATA[
-			select al.agencylog_finalstatus,ac.agency_type,ac.agency_title,td.TRADE_APPLICANT,al.agencylog_date,ac.agency_pay,ac.agency_paytype
-			from agency ac,agencylog al,trade_detail td
-			where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
-			and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
-		]]>
-	</select>
-	<select id="selectBoardListCount" resultType="int">
-		<![CDATA[
-			select count(*) from agency
-		]]>
-	</select>
-	<select id="selectBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
-		<![CDATA[
-			  select *
-		      from (
-		        select rownum rn, AG.*
-		        from (
-		          select ac.agency_no, ac.agency_writer,
-					    ac.agency_title,ac.link2_no,ac.agency_type, 
-					    ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
-					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
-					    sc.category_small_name
-					    from agency ac,categorylink2 cl,smallcategory sc
-					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
-		          order by agency_enrolldate desc
-		        ) AG
-		      )
-		      where rn between #{startRow} and #{endRow}
-		]]>
-	</select>
-	<delete id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
-		<![CDATA[
-			delete from agency 
-			where
-		]]>
-		<foreach collection="agency_no" item="item" index="index" open="(" close=")" separator="or">
-			agency_no = #{item}
-		</foreach>
-	</delete>
-	<select id="selectKeywordBoardListCount" parameterType="string" resultType="int">
-		<![CDATA[
-			select count(*) from agency
-      		where (agency_title like '%'||#{keyword}||'%' or agency_content like '%'||#{keyword}||'%')
-		]]>
-	</select>
-	<select id="selectKeywordBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
-		<![CDATA[
-			select *
-		      from (
-		        select rownum rn, AG.*
-		        from (
-		          select ac.agency_no, ac.agency_writer,
-					    ac.agency_title,ac.link2_no,ac.agency_type, 
-					    ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
-					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
-					    sc.category_small_name
-					    from agency ac,categorylink2 cl,smallcategory sc
-					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
-		       			and (ac.agency_title like '%'||#{keyword}||'%' or ac.agency_content like '%'||#{keyword}||'%')
-		        ) AG
-		      )
-		      where rn between #{startRow} and #{endRow}
-		]]>
-	</select>
+
+   <select id="mainPageShowGameListPic" resultMap="BoardResult"> <!-- 게임영역(Data 6EA) -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 53 and 88)) 
+         where rnum>=1 and rnum<=6]]> 
+   </select>
+   
+      
+   <select id="mainPageShowMusicListPic1" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+         where rnum>=1 and rnum<=5]]> 
+   </select>
+   <select id="mainPageShowMusicListPic2" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+         where rnum>=1 and rnum<=4]]> 
+   </select>
+   <select id="mainPageShowMusicListPic3" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+         where rnum>=10 and rnum<=14]]> 
+   </select>
+   <select id="mainPageShowMusicListPic4" resultMap="BoardResult"> <!-- 음악영역(Data 18EA) 5/4/5/4 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 28 and 52)) 
+         where rnum>=15 and rnum<=18]]> 
+   </select>
+
+   <!-- 여기서부터 손봐야될 것 -->
+   <select id="mainPageShowRentListPic" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+         where rnum>=1 and rnum<=6]]> 
+   </select>
+   <select id="mainPageShowRentListPic2" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+         where rnum>=7 and rnum<=12]]> 
+   </select>
+   <select id="mainPageShowRentListPic3" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+         where rnum>=13 and rnum<=18]]> 
+   </select>
+   <select id="mainPageShowRentListPic4" resultMap="BoardResult"> <!-- 렌탈영역(Data 24EA) 6/6/6/6 Tablex4개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 89 and 91)) 
+         where rnum>=19 and rnum<=24]]> 
+   </select>
+   
+   <select id="mainPageShowTravelListPic" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
+         where rnum>=1 and rnum<=5]]> 
+   </select>
+   <select id="mainPageShowTravelListPic2" resultMap="BoardResult"> <!-- 여행영역(Data 10EA) 5/5 Tablex2개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 21 and 27)) 
+         where rnum>=6 and rnum<=10]]> 
+   </select>
+   
+   <select id="mainPageShowFreeListPic" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+         where rnum>=1 and rnum<=5]]> 
+   </select>
+   <select id="mainPageShowFreeListPic2" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+         where rnum>=7 and rnum<=11]]> 
+   </select>
+   <select id="mainPageShowFreeListPic3" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+         where rnum>=12 and rnum<=16]]> 
+   </select>
+   <select id="mainPageShowFreeListPic4" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+         where rnum>=17 and rnum<=21]]> 
+   </select>
+   <select id="mainPageShowFreeListPic5" resultMap="BoardResult"> <!-- 프리랜서영역(Data 25EA) 6/5/5/5/5 Tablex5개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 97 and 118)) 
+         where rnum>=22 and rnum<=26]]> 
+   </select>
+   
+   <select id="mainPageShowRequireListPic" resultMap="BoardResult"> <!-- 구인영역(Data 18EA) 6/6/6 Tablex3개가 필요함 -->
+      <![CDATA[select * from (select rownum rnum,agency_no, agency_writer,agency_title,link2_no,agency_type, 
+         agency_loc,agency_startdate,agency_enddate,agency_enrolldate,agency_paytype,agency_pay,agency_status
+         ,agency_content,agency_veiws,agency_keyword,agency_option from (select * from agency where agency_type=2 and link2_no between 92 and 96)) 
+         where rnum>=1 and rnum<=6]]> 
+   </select>
+
+   <select id="ukjae_pic_link2_no" parameterType="String" resultMap="CategoryLink2All">
+      <![CDATA[select * from categorylink2 where category_small_code=#{smallcategory}]]>
+   </select>
+   
+   <insert id="ukjae_newServiceRegist" parameterType="Board" flushCache="true" statementType="PREPARED">
+      <![CDATA[insert into agency values(
+      (select max(agency_no)+1 from agency),
+      #{agency_writer},
+      #{agency_title},
+      TO_NUMBER(#{link2_no}),
+      #{agency_type},
+      #{agency_loc},
+      #{agency_startdate},
+      #{agency_enddate},
+      default,
+      #{agency_paytype},
+      #{agency_pay}, 
+      default,
+      #{agency_content},
+      default,
+      #{agency_keyword},
+      #{agency_option})]]>      
+   </insert>   
+   
+   <update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
+      <![CDATA[update agency set 
+       agency_title=#{agency_title},
+       link2_no=TO_NUMBER(#{link2_no}),
+       agency_type=#{agency_type},
+       agency_loc=#{agency_loc},
+       agency_startdate=#{agency_startdate},
+       agency_enddate=#{agency_enddate},
+       agency_paytype=#{agency_paytype},
+       agency_pay=#{agency_pay}, 
+       agency_content=#{agency_content},
+       agency_keyword=#{agency_keyword},
+       agency_option=#{agency_option}        
+       where agency_no=#{agency_no}]]>
+   </update>
+   
+   <update id="ukjaeDeleteService" parameterType="integer" flushCache="true" statementType="PREPARED">
+      <![CDATA[update agency set agency_status=4 where agency_no=#{parsing_no}]]>
+   </update>  
+   
+   
+   <select id="ukjaepickupBoard" parameterType="Board" resultType="int">
+      <![CDATA[select agency_no from agency where agency_writer=#{agency_writer} and agency_content=#{agency_content} and agency_title=#{agency_title} and agency_loc=#{agency_loc}]]>
+   </select>
+   
+   <select id="Alter_Before_Agecnycheck" parameterType="integer" resultMap="BoardResult2">
+      <![CDATA[select * from agency where agency_no=#{agency_no}]]>
+   </select>
+   
+   <select id="selectMyBoardListCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(*) from agency where agency_writer = #{member_id}
+      ]]>
+   </select>
+   
+   <select id="selectMyBoard" parameterType="java.util.HashMap" resultType="MyPageBoard">
+      <![CDATA[
+         select * 
+         from (
+           select rownum rnum,ac.agency_no, ac.agency_writer,
+           ac.agency_title,ac.link2_no,ac.agency_type, 
+           ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+           ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+           sc.category_small_name
+           from agency ac,categorylink2 cl,smallcategory sc
+           where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+           and ac.agency_writer = #{member_id}) 
+         where rnum>=#{startRow} and rnum<=#{endRow}
+      ]]>
+   </select>
+   
+   <select id="selectMyApplyBoardListCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(*) from trade_detail where (TRADE_APPLICANT = #{member_id} or TRADE_RESERVATION = #{member_id})
+      ]]>
+   </select>
+   
+   <select id="selectMyApplyBoard" parameterType="java.util.HashMap" resultType="MyPageApplyBoard">
+      <![CDATA[
+         select * 
+         from (
+           select rownum rnum,ac.agency_no, ac.agency_writer,
+           ac.agency_title,ac.link2_no,ac.agency_type, 
+           ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+           ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+           sc.category_small_name,td.trade_applicant,td.trade_date,td.trade_reservation,td.trade_reservation_date
+           from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+           where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+           and (td.trade_reservation = #{member_id} or td.trade_applicant = #{member_id})) 
+         where rnum>=#{startRow} and rnum<=#{endRow}
+      ]]>
+   </select>
+   <select id="selectMyBoardHistoryListCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(*)
+         from agency ac,agencylog al,trade_detail td
+         where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+         and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+      ]]>
+   </select>
+   <select id="selectMyBoardHistory" parameterType="java.util.HashMap" resultType="MyPageBoardHistory">
+      <![CDATA[
+         select al.agencylog_finalstatus,ac.agency_type,ac.agency_title,td.TRADE_APPLICANT,al.agencylog_date,ac.agency_pay,ac.agency_paytype
+         from agency ac,agencylog al,trade_detail td
+         where ac.agency_no = td.agency_no and td.trade_no = al.agencylog_trade
+         and (ac.agency_writer = #{member_id} or td.TRADE_APPLICANT = #{member_id})
+      ]]>
+   </select>
+   <select id="selectBoardListCount" resultType="int">
+      <![CDATA[
+         select count(*) from agency
+      ]]>
+   </select>
+   <select id="selectBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
+      <![CDATA[
+           select *
+            from (
+              select rownum rn, AG.*
+              from (
+                select ac.agency_no, ac.agency_writer,
+                   ac.agency_title,ac.link2_no,ac.agency_type, 
+                   ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+                   ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+                   sc.category_small_name
+                   from agency ac,categorylink2 cl,smallcategory sc
+                   where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code 
+                   and ac.agency_status != 4
+                order by agency_enrolldate desc
+              ) AG
+            )
+            where rn between #{startRow} and #{endRow}
+      ]]>
+   </select>
+   <update id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
+      <![CDATA[
+         update agency
+         set agency_status = 4
+         where
+      ]]>
+      <foreach collection="agency_no" item="item" index="index" open="(" close=")" separator="or">
+         agency_no = #{item}
+      </foreach>
+   </update>
+   <select id="selectKeywordBoardListCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(*) from agency
+            where (agency_title like '%'||#{keyword}||'%' or agency_content like '%'||#{keyword}||'%')
+      ]]>
+   </select>
+   <select id="selectKeywordBoardList" parameterType="java.util.HashMap" resultType="MyPageBoard">
+      <![CDATA[
+         select *
+            from (
+              select rownum rn, AG.*
+              from (
+                select ac.agency_no, ac.agency_writer,
+                   ac.agency_title,ac.link2_no,ac.agency_type, 
+                   ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+                   ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+                   sc.category_small_name
+                   from agency ac,categorylink2 cl,smallcategory sc
+                   where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+                      and (ac.agency_title like '%'||#{keyword}||'%' or ac.agency_content like '%'||#{keyword}||'%')
+                      and ac.agency_status != 4
+              ) AG
+            )
+            where rn between #{startRow} and #{endRow}
+      ]]>
+   </select>
+   <select id="selectMyWriteCandidateListCount" parameterType="string" resultType="int">
+      <![CDATA[
+         select count(*)
+         from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+         where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+         and agency_writer = #{member_id}
+         and (td.trade_applicant != 'null'  or td.trade_reservation != 'null')
+      ]]>
+   </select>
+   <select id="selectMyWriteCandidate" parameterType="java.util.HashMap" resultType="MyPageApplyBoard">
+      <![CDATA[
+         select * 
+         from (
+                 select rownum rnum,ac.agency_no, ac.agency_writer,
+                    ac.agency_title,ac.link2_no,ac.agency_type, 
+                    ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+                    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+                    sc.category_small_name,td.trade_applicant,td.trade_date,td.trade_reservation,td.trade_reservation_date
+                 from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+                 where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+                 and agency_writer = #{member_id} and (td.trade_applicant != 'null'  or td.trade_reservation != 'null')
+               ) 
+         where rnum>=#{startRow} and rnum<=#{endRow}
+      ]]>
+   </select>
+   <!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
+   
+   <!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">      
+      insert into member 
+      values 
+      (#{userId}, 
+      #{userPwd}, 
+      #{userName}, 
+      #{gender}, 
+      #{age}, 
+      #{phone}, 
+      #{email}, 
+      #{hobby}, 
+      #{etc}, 
+      sysdate, 
+      sysdate)      
+   </insert>
+   
+   <update id="MemberUpdate" parameterType="Member" flushCache="true" statementType="PREPARED">
+      update member 
+      set userpwd = #{userPwd}, 
+      age = #{age}, 
+      phone = #{phone}, 
+      email = #{email}, 
+      hobby = #{hobby}, 
+      etc = #{etc}, 
+      lastmodified = sysdate 
+      where userid = #{userId}
+   </update>
+   
+   <delete id="MemberDelete" parameterType="Member" flushCache="true" statementType="PREPARED">
+      delete from member 
+      where userid = #{userId}
+   </delete> -->
+   <select id="getBoardInfoByNo" parameterType="int" resultType="Board">
+   select * from AGENCY where AGENCY_NO = #{pk}
+   </select>
+   <update id="IncreaseViewCount">
+   update AGENCY set AGENCY_VEIWS = 
+   (select AGENCY_VEIWS+1 from AGENCY where AGENCY_NO=#{pk})
+    where AGENCY_NO = #{pk}
+   </update>
+   <select id="updateAgencyStatus" parameterType="hashmap">
+   update AGENCY set AGENCY_STATUS=#{Status} where AGENCY_NO=#{pk}
+   </select>
+   <insert id="insertchatroom" parameterType="hashmap">
+   insert into CHATROOM values ((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2},#{AGENCY_NO})
+   </insert>
+   <select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
+   select * from CHATROOM where CHATROOM_MEMBER2= #{memberid} and AGENCY_NO=#{AGENCY_NO} and rownum=1 order by CHATROOM_NO   
+   </select>
+   <select id="getrelation" parameterType="hashmap" resultType="int">
+   select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_APPLICANT = #{memberid}
+   </select>
+   <select id="getrelation1" parameterType="hashmap" resultType="int">
+   select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_RESERVATION = #{memberid}
+   </select>
+   <select id="getrelation2" parameterType="hashmap" resultType="int">
+   select count(*) from AGENCY where AGENCY_NO=#{AGENCY_NO} and AGENCY_WRITER = #{memberid}
+   </select>
+   <select id="getAgencyStatus" parameterType="int" resultType="int" >
+   select AGENCY_STATUS from AGENCY where AGENCY_NO = #{pk}
+   </select>
+   <select id="getapplicant" parameterType="int" resultType="String" >
+   select TRADE_APPLICANT from TRADE_DETAIL where AGENCY_NO = #{pk}
+   </select>
+   <select id="getAgencyDate" parameterType="int" resultType="Double" >
+   select AGENCY_STARTDATE-sysdate from AGENCY where AGENCY_NO=#{pk}
+   </select>
+   <insert id="insertBoardlog" parameterType="int">
+   insert into AGENCYLOG values((select max(AGENCYLOG_NO)+1 from AGENCYLOG),#{pk},1,sysdate)
+   </insert>
+   <update id="changeRESERVATION">
+   update TRADE_DETAIL set TRADE_RESERVATION= null , TRADE_RESERVATION_DATE=null where AGENCY_NO=#{pk}
+   </update>
+   <insert id="insertReview" parameterType="REVIEW">
+   insert into REVIEW values((select max(REVIEW_NO)+1 from REVIEW),
+   #{REVIEW_RATE},#{REVIEW_WRITER},
+   (select AGENCYLOG_NO from AGENCYLOG where AGENCYLOG_TRADE = (select TRADE_NO from TRADE_DETAIL where AGENCY_NO=#{AGENCYLOG_NO})),sysdate,
+   #{REVIEW_CONTENT}) 
+   </insert>
+   <update id="SCOREupdatetype1" parameterType="hashmap">
+   update SCORE  set 
+   SCORE_BUY = (select SCORE_BUY from SCORE where MEMBER_ID=#{order} )+#{orderrate},
+   SCORE_BUY_COUNT=(select SCORE_BUY_COUNT from SCORE where MEMBER_ID=#{order})+1
+   where MEMBER_ID=#{order}
+   </update>
+   <update id="SCOREupdatetype11" parameterType="hashmap">
+   update SCORE  set 
+   SCORE_SELL_COUNT=(select SCORE_SELL_COUNT from SCORE where MEMBER_ID=#{APPLICANT})+1,
+   SCORE_SELL=(select SCORE_SELL from SCORE where MEMBER_ID=#{APPLICANT})+#{rate}
+   where MEMBER_ID=#{APPLICANT}
+   </update>
+
 
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	
@@ -556,3 +678,4 @@
 	</update>
 
 </mapper>
+

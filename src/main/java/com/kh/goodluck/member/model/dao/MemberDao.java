@@ -153,7 +153,7 @@ public class MemberDao {
 
 	public int insertLbjMilegePayLog(HashMap<String, Object> map) {
 		return sqlSession.insert("insertLbjMilegePayLog", map);
-	}
+	}  
 
 	public int updateAdminCash(HashMap<String, Object> map) {
 		return sqlSession.update("updateAdminCash", map);
@@ -162,6 +162,22 @@ public class MemberDao {
 	public int ukjaeWriteCountOneMinus(String loginUser) {
 		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
+	}
+
+ 
+	public int ukjaeuserCashMinusCheck(String loginUser) {
+		//욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
+		return sqlSession.selectOne("ukjaewritingUserCashCheck", loginUser);
+	}
+
+	public int ukjaeuserCashMinus(Member updatemember) {
+		//욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
+		return sqlSession.update("ukjaewritingUserCashUpdate", updatemember);
+	}
+	
+	public int updateUserKakaoToken(HashMap<Object, Object> map) {
+		return sqlSession.update("updateUserKakaoToken", map);
+
 	}
 
 }

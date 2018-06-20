@@ -35,6 +35,7 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
+import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.report.model.service.ReportService;
@@ -135,12 +136,12 @@ public class JUJ_BoardController {
 
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
-			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+		
 		
 		System.out.println("WirteCount -1");
 		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
 		
-		  
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
 		 
@@ -150,12 +151,13 @@ public class JUJ_BoardController {
 		System.out.println("입력한 제목? "+serivcetitle);
 		
 		System.out.println("유저가 선택한 소 카테고리? "+smallcategory);
-		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); //AAB 97
+		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); 
 		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
 		
-		int agency_type = 2; //agency_type(1구해요/2제공해요)
+		int agency_type = Integer.parseInt(userwriteingType); 
+		//agency_type 1.구해요 2.제공해요
 		System.out.println("Agency_type : "+agency_type);
 		System.out.println("선택한 서비스 제공지역 : "+ServiceArea);
 		
@@ -179,10 +181,18 @@ public class JUJ_BoardController {
 		
 		int parseingpaytype = Integer.parseInt(paytype);
 		System.out.println("선택한 급여제공 타입 : "+parseingpaytype);
-		//급여제공타입 1구해요 2제공해요
+		
 		
 		int parsepayamount = Integer.parseInt(payAmount);	
 		System.out.println("입력한 희망급여 : "+parsepayamount);
+		int uk_userCash = memberService.ukjaeuserCashMinusCheck(loginUser);
+		int uk_userCashUpdate = uk_userCash-parsepayamount;
+		
+		Member updatemember = new Member(loginUser, uk_userCashUpdate);
+		
+		int updateCash = memberService.ukjaeuserCashMinus(updatemember);
+		//유저의 캐쉬를 차감시키는 메소드 (인자값 member_id / 입력한 금액)
+
 		
 		int agency_status = 1;
 		System.out.println("거래상태 : "+agency_status);
@@ -266,7 +276,7 @@ public class JUJ_BoardController {
 	
 	@RequestMapping(value="wookServiceAlterConfirm.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public ModelAndView ukjaeServiceContentsAlter(@RequestParam("servicetitle")String serivcetitle,@RequestParam("loginUserId")String member_id,@RequestParam("selectCate")String smallcategory
-			,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws ParseException {
+			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws ParseException {
 
 		String writing_No = request.getParameter("servicewriting_no");
 		int writing_No_parsing = Integer.parseInt(writing_No);
@@ -284,12 +294,12 @@ public class JUJ_BoardController {
 		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
-		
-		int agency_type = 2; //agency_type(1구해요/2제공해요)
-		System.out.println("Agency_type : "+agency_type);
+		 
+		int agency_type = Integer.parseInt(userwriteingType); 
+		//agency_type 1.구해요 2.제공해요
 		System.out.println("선택한 서비스 제공지역 : "+ServiceArea);
 		
-		/*
+		/*  
 		미비된 것
 		AGENCY_STARTDATE String->Date형으로 형변환
 		AGENCY_ENDDATE	 String->Date형으로 형변환

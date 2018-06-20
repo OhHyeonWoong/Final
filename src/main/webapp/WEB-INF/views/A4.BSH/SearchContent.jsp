@@ -145,18 +145,24 @@
 							</td>
 							<td class="td_mid">
 								<select id="mcate" name="mcate">
-									<option value="" selected="selected">선택하세요</option>
+										<option class="midspace" id="midspace" value="" selected="selected">선택하세요</option>
+									<c:forEach var="midcategory" items="${midcategorylist }">
+										<option class="midspace" id="${midcategory.category_mid_name}" value="${midcategory.category_mid_name}" hidden="">${midcategory.category_mid_name}</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td class="td_end">
 								<select id="scate" name="scate">
-									<option value="" selected="selected">선택하세요</option>
+										<option value="" id="smallspace" selected="selected">선택하세요</option>
+									<c:forEach var="smallcategory" items="${smallcategorylist }">
+										<option class="smallspace" id="${smallcategory.category_small_name}" value="${smallcategory.category_small_name}" hidden="">${smallcategory.category_small_name}</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
 								<select id="loc" name="loc">
-									<option value="" selected="selected">지역</option>
+									<option value="%" selected="selected">전체</option>
 								</select>
 							</td>
 							<td class="td_start"><label>글상태</label></td>
@@ -171,8 +177,8 @@
 						<tr>
 							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group1-1" name="group1" value="시급">시급</label></td>
 							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group1-2" name="group1" value="일급">일급</label></td>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group2-1" name="group2" value="금액낮은순">금액낮은순</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group2-2" name="group2" value="금액높은순">금액높은순</label></td>
+							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group2-1" name="group2" value="제공">제공</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group2-2" name="group2" value="구인">구인</label></td>
 							<td class="td_start"><label>최소금액</label></td>
 							<td class="td_end"><input id="min" type="text" class="textbox_comm" value="" placeholder="최소금액"></td>
 							<td class="td_start"><label>최대금액</label></td>
@@ -181,9 +187,10 @@
 						<tr>
 							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group3-1" name="group3" value="등록날짜순" checked="checked">등록날짜순</label>
 							</td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group3-2" name="group3" value="시작날짜순">시작날짜순</label></td>
-							<td class="td_start"><label class="checkbox_comm"><input type="checkbox" id="group4-1" name="group4" value="제공">제공</label></td>
-							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group4-2" name="group4" value="구인">구인</label></td>
+							<td class="td_mid"><label class="checkbox_comm"><input type="checkbox" id="group3-2" name="group3" value="시작날짜순">시작날짜순</label></td>
+							
+							<td class="td_mid"><label class="checkbox_comm"><input type="checkbox" id="group3-3" name="group3" value="금액낮은순">금액낮은순</label></td>
+							<td class="td_end"><label class="checkbox_comm"><input type="checkbox" id="group3-4" name="group3" value="금액높은순">금액높은순</label></td>
 							<td class="td_start"><label>검색단어</label></td>
 							<td class="td_mid" colspan="2"><input type="text" id="searchtext" class="textbox_comm" placeholder="검색단어"></td>
 							<td class="td_end">
