@@ -179,4 +179,22 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return  memberDao.insertpaylog(map2);
 	}
+	
+	@Override
+	public int insertLbjMilegePayLog(HashMap<String, Object> map) {
+		// 회원들이 결제 시 수수료 10%를 관리자 통장으로 넣어줌
+		return memberDao.insertLbjMilegePayLog(map);
+	}
+	
+	@Override
+	public int updateAdminCash(HashMap<String, Object> map) {
+		//관리자 id 캐시 갱신
+		return memberDao.updateAdminCash(map);
+	}
+	
+	@Override
+	public int ukjaeWriteCountOneMinus(String loginUser) {
+		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
+		return memberDao.ukjaeWriteCountOneMinus(loginUser);
+	}
 }	

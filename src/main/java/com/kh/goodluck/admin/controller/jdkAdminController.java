@@ -47,15 +47,8 @@ public class jdkAdminController {
 		// 특히 랜덤박스의 경우에는 개별 아이템이 삭제될 경우에는 확률에 문제가 생긴다.>
 		// 우선 개별, 패키지, 랜덤박스 3개의 리스트를 뿌릴 수 있도록 처리를 하고 가지고 와보자.
 		
-		// 1. 개별 아이템 리스트 
-		// 한번에 보여 줄 페이지 수는 10개이다.
-		int indi_pageSize = 10;
-		// 전체 글을 갯수를 저장할 변수
-		int indi_count = 0;
-		// 페이지 넘버링 변수 
-		int indi_number = 0;
 		
-		//1~7 아이템 리스트
+		//개별 아이템 리스트
 		List<ITEMLIST> allitemlist = adminService.allItemList();
 		//패키지 아이템 리스트
 		List<ItemPackage> packageList = adminService.packageItemList();
@@ -77,8 +70,9 @@ public class jdkAdminController {
 				}
 			}
 		}
+		
 		//패키지는 무결성 확보한 상태에서 넘어감
-
+		
 		//랜덤박스 1 무결성
 		double itemNumForAll = 0;
 		for(int i=0; i<randomAllList.size(); i++){
@@ -103,18 +97,32 @@ public class jdkAdminController {
 			adminService.addExessNumEmo(randomEmoList.get(i));
 			}
 		}
-		//랜검박스 3 무결성
+		//랜덤박스 3 무결성
 		double itemNumForTime = 0;
 		for(int i=0; i<randomTimeList.size(); i++){
 			itemNumForTime += randomTimeList.get(i).getChance();
 		}
-		if(itemNumForEmo != 1) {
+		if(itemNumForTime != 1) {
 			double addingNumbers = (1-itemNumForTime)/randomTimeList.size();//남은 항목 값에 할당 되어야 하는 값.
 			for(int i=0; i<randomTimeList.size(); i++){
-			randomAllList.get(i).setChance(randomTimeList.get(i).getChance()+addingNumbers);
+			randomTimeList.get(i).setChance(randomTimeList.get(i).getChance()+addingNumbers);
 			adminService.addExessNumTime(randomTimeList.get(i));
 			}
 		}
+		//페이징 처리 하기
+		
+		// 한번에 보여 줄 페이지 수는 10개이다.
+		int pageSize = 10;
+		// 전체 글을 갯수를 저장할 변수
+		int indi_count = 0;
+		int package_count = 0;
+		int random_count = 0;
+		// 페이지 넘버링 변수 
+		int indi_number = 0;
+		int package_number = 0;
+		int random_number = 0;
+		
+		
 		
 		mv.addObject("alli",allitemlist);
 		mv.addObject("pack",packageList);

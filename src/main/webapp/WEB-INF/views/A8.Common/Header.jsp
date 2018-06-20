@@ -397,7 +397,11 @@
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp; <b class="caret"></b> &nbsp;</a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp;
+							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != null }">
+								<img src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:30px; height:30px;">							
+							</c:if>
+							<b class="caret"></b> &nbsp;</a>
 							<div class="dropdown-menu lbj-div">
 								<div style="margin-left:10px; margin-right:10px;">
 									<table style="width:100%; height:100%;">

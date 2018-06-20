@@ -92,7 +92,6 @@
 			}); 
 
 		}); 
-	
 	</script>
 	<style type="text/css">
 		#ukjaeTitle_effect {
@@ -302,7 +301,7 @@
 		</div>
 		<script type="text/javascript"> /* 영역별 리스트 가져오기 */
 			function checkOne(){
-				alert("LifeArea List Loading..");	
+				alert("생활영역 뉴스를 로딩합니다.");	
 				$.ajax({
 					url : "lifeNews.go",
 					type : "get",
@@ -327,7 +326,7 @@
 				}); 	
 			}
 			function checkTwo(){
-				alert("PetArea List Loading..");	
+				alert("반려동물영역 뉴스를 로딩합니다.");	
 				$.ajax({
 					url : "petnewslist.go", 
 					type : "get",
@@ -351,7 +350,7 @@
 				}); 
 			}
 			function checkThree(){
-				alert("GameArea List Loading..");
+				alert("게임영역 뉴스를 로딩합니다.");
 				$.ajax({
 					url : "gameNews.go",
 					type : "get",
@@ -376,7 +375,7 @@
 				}); 				
 			}
 			function checkFour(){
-				alert("TravelArea List Loading..");	
+				alert("여행영역 뉴스를 로딩합니다.");	
 				$.ajax({
 					url : "travelnewslist.go",
 					type : "get",
@@ -400,9 +399,93 @@
 					}			
 				}); 				
 			}
+			function checkFive(){
+					alert("전체뉴스를 로딩합니다.");	
+					$.ajax({
+						url : "animalNews.go",
+						type : "get",
+						datatype : "json",
+						success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   $('#ukjae_newsContents').empty();
+						   var htmlStr ="<table id='ukjae_TableAreaFiveth'><tr align='center'>";
+						   
+						   for(var i in json.petNewsList){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='petnewsdetail.go?newspk="+json.petNewsList[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.petNewsList[i].osp_news_pic1+"'></a><div>"+json.petNewsList[i].osp_news_datatitle+"<br>출처 : "+json.petNewsList[i].osp_news_origin+"</div></td>";
+						   }	
+						   	  htmlStr +="<td style='width:5px; border:none;'></tr></table><br>";
+						   	  $('#ukjae_newsContents').append(htmlStr);
+						},
+						error : function(a,b,c){
+							alert(a+","+b+","+c);
+						}			
+					}); 
+					$.ajax({
+						url : "lifeNews.go",
+						type : "get",
+						datatype : "json",
+						success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   var htmlStr ="<table id='ukjae_TableAreaSixeth'><tr align='center'>";
+						   
+						   for(var i in json.lifeNewsList){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='lifenewsdetail.go?newspk="+json.lifeNewsList[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.lifeNewsList[i].osp_news_pic1+"'></a><div>"+json.lifeNewsList[i].osp_news_datatitle+"<br>출처 : "+json.lifeNewsList[i].osp_news_origin+"</div></td>";
+						   }	
+						   	  htmlStr +="<td style='width:5px; border:none;'></tr></table><br><br>";
+						   	  $('#ukjae_newsContents').append(htmlStr);
+						},
+						error : function(a,b,c){
+							alert(a+","+b+","+c);
+						}			
+					}); 
+					$.ajax({
+						url : "gameNews.go",
+						type : "get",
+						datatype : "json",
+						success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   var htmlStr ="<table id='ukjae_TableAreaSeventh'><tr align='center'>";
+						   
+						   for(var i in json.gameNewsBasic){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='gamenewsdetail.go?newspk="+json.gameNewsBasic[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.gameNewsBasic[i].osp_news_pic1+"'></a><div>"+json.gameNewsBasic[i].osp_news_datatitle+"<br>출처 : "+json.gameNewsBasic[i].osp_news_origin+"</div></td>";
+						   }	
+						   	  htmlStr +="<td style='width:5px; border:none;'></tr></table><br><br>";
+						   	  $('#ukjae_newsContents').append(htmlStr);
+						},
+						error : function(a,b,c){
+							alert(a+","+b+","+c);
+						}			
+					}); 
+					$.ajax({
+						url : "travelnewslist.go",
+						type : "get",
+						datatype : "json",
+						success : function(data){
+						   var jsonStr = JSON.stringify(data);
+						   var json = JSON.parse(jsonStr);
+						   var htmlStr ="<table id='ukjae_TableAreaNineth'><tr align='center'>";
+						   
+						   for(var i in json.travelNewsAll){
+							  htmlStr += "<td style='width:5px; border:none;'></td><td style='height:270px; padding:0;'><a href='travelnewsdetail.go?newspk="+json.travelNewsAll[i].osp_news_datano+"'>"+
+									  "<img id='low_image3' src='"+json.travelNewsAll[i].osp_news_pic1+"'></a><div>"+json.travelNewsAll[i].osp_news_datatitle+"<br>출처 : "+json.travelNewsAll[i].osp_news_origin+"</div></td>";
+						   }	
+						   	  htmlStr +="<td style='width:5px; border:none;'></tr></table><br>";
+						   	  $('#ukjae_newsContents').append(htmlStr);
+						},
+						error : function(a,b,c){
+							alert(a+","+b+","+c);
+						}			
+					}); 
+			}
 		</script>
 		
-		<div class="center"style="width: 78%; height: 100%; float: left; margin-left: 15px;" align="left">
+		<div class="center" id="ukjae_newsContents" style="width: 78%; height: 100%; float: left; margin-left: 15px;" align="left">
 			<table id="SerchResultList">
 			
 			</table>	

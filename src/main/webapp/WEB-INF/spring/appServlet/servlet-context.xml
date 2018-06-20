@@ -42,6 +42,9 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10000000"></beans:property>
 	</beans:bean>
+	<beans:bean id="socketController"
+		class="com.kh.goodluck.chat.controller.SocketController" />
 
-	
+
+
 </beans:beans>

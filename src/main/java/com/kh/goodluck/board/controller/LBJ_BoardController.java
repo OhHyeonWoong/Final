@@ -7,6 +7,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -287,5 +288,92 @@ public class LBJ_BoardController {
 		out.flush();
 		out.close();
 
+	}
+	
+	@RequestMapping(value="lbjWriteCandidate.go")
+	public void lbjWriteCandidateMethod(HttpServletRequest request,HttpServletResponse response,
+							HttpSession session) throws IOException{
+		String member_id = request.getParameter("member_id");
+		
+		int myWriteCandidateCurrentPage = 1;
+		if(request.getParameter("page") != null) {
+			myWriteCandidateCurrentPage = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		System.out.println("myWriteCandidateCurrentPage = " + myWriteCandidateCurrentPage);
+
+		int myWriteCandidateLimit = 6;
+
+		int myWriteCandidateStartPage = (((int) ((double) myWriteCandidateCurrentPage / myWriteCandidateLimit + 0.9)) - 1) * myWriteCandidateLimit + 1;
+		int myWriteCandidateStartRow = (myWriteCandidateCurrentPage-1)*myWriteCandidateLimit+1; 
+		int myWriteCandidateListCount = boardService.selectMyWriteCandidateListCount(member_id);
+		int myWriteCandidateMaxPage = (int)((double)myWriteCandidateListCount / myWriteCandidateLimit + 0.9);
+		int myWriteCandidateEndRow = myWriteCandidateStartRow + myWriteCandidateLimit - 1;
+		int myWriteCandidateEndFor = (((int) ((double) myWriteCandidateCurrentPage / myWriteCandidateLimit + 0.9)) - 1) * myWriteCandidateLimit + 6;
+		if(myWriteCandidateEndFor > myWriteCandidateMaxPage) {
+			myWriteCandidateEndFor = myWriteCandidateMaxPage;
+		}
+		 
+		HashMap<Object,Object> map6 = new HashMap<Object,Object>();
+	    map6.put("startRow", myWriteCandidateStartRow);
+	    map6.put("endRow", myWriteCandidateEndRow);
+	    map6.put("member_id", member_id);
+	    ArrayList<MyPageApplyBoard> myWriteCandidate = (ArrayList<MyPageApplyBoard>)boardService.selectMyWriteCandidate(map6);
+		
+		if (myWriteCandidateMaxPage < myWriteCandidateEndRow)
+		  myWriteCandidateEndRow = myWriteCandidateMaxPage;
+		
+		System.out.println("lbjWriteCandidateMethod myWriteCandidateListcount = " + myWriteCandidateListCount);
+	    System.out.println("lbjWriteCandidateMethod myWriteCandidateStartRow = " + myWriteCandidateStartRow);
+	    System.out.println("lbjWriteCandidateMethod myWriteCandidateEndRow = " + myWriteCandidateEndRow);
+	    System.out.println("lbjWriteCandidateMethod myWriteCandidateMaxPage = " + myWriteCandidateMaxPage);
+	    ////myBoard 처리용 오브젝트
+		//보내기용 arraylist생성
+		//출력용 JSON 오브젝트
+	    JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();		
+		
+		for(int i=0;i<myWriteCandidate.size();i++) {
+			//저 위의 페이징 처리 데이터들을 vo에 넣자
+			JSONObject job2 = new JSONObject();
+			job2.put("agency_no", myWriteCandidate.get(i).getAgency_no());
+			job2.put("agency_writer", myWriteCandidate.get(i).getAgency_writer());
+			job2.put("agency_title", myWriteCandidate.get(i).getAgency_title());
+			job2.put("link2_no", myWriteCandidate.get(i).getLink2_no());
+			job2.put("agency_type", myWriteCandidate.get(i).getAgency_type());
+			job2.put("agency_loc", myWriteCandidate.get(i).getAgency_loc());
+			job2.put("agency_startdate", myWriteCandidate.get(i).getAgency_startdate().toString());
+			job2.put("agency_enddate", myWriteCandidate.get(i).getAgency_enddate().toString());
+			job2.put("agency_enrolldate", myWriteCandidate.get(i).getAgency_enrolldate().toString());
+			job2.put("agency_paytype", myWriteCandidate.get(i).getAgency_paytype());
+			job2.put("agency_pay", myWriteCandidate.get(i).getAgency_pay());
+			job2.put("agency_status", myWriteCandidate.get(i).getAgency_status());			
+			job2.put("agency_content", myWriteCandidate.get(i).getAgency_content());
+			job2.put("agency_views", myWriteCandidate.get(i).getAgency_views());
+			job2.put("agency_keyword", myWriteCandidate.get(i).getAgency_keyword());
+			job2.put("agency_option", myWriteCandidate.get(i).getAgency_option());
+			job2.put("category_small_name", myWriteCandidate.get(i).getCategory_small_name());
+			job2.put("trade_applicant", myWriteCandidate.get(i).getTrade_applicant());
+			job2.put("trade_date", myWriteCandidate.get(i).getTrade_date().toString());
+			job2.put("trade_reservation", myWriteCandidate.get(i).getTrade_reservation());
+			job2.put("trade_reservation_date", myWriteCandidate.get(i).getTrade_reservation_date());
+			
+			if(i == 0) {
+				job2.put("myWriteCandidateMaxPage", myWriteCandidateMaxPage);
+				job2.put("myWriteCandidateStartPage", myWriteCandidateStartPage);
+				job2.put("myWriteCandidateEndRow", myWriteCandidateEndRow);
+				job2.put("myWriteCandidateCurrentPage", myWriteCandidateCurrentPage);
+				job2.put("myWriteCandidateListCount", myWriteCandidateListCount);
+				job2.put("myWriteCandidateEndFor", myWriteCandidateEndFor);
+			}
+			jarr.add(job2);
+		}
+		
+		jobj.put("myWriteCandidate", jarr);
+		
+		PrintWriter out = response.getWriter();
+		out.print(jobj.toJSONString());
+		out.flush();
+		out.close();
 	}
 }

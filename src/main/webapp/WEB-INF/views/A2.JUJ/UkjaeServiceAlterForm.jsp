@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>서비스 등록 페이지</title>
+	<title>서비스 수정페이지</title>
 	
 	<style type="text/css">
 	.text-danger strong {
@@ -149,8 +149,9 @@ function sample4_execDaumPostcode() {
 
 
 	<div class="container" align="center">
-		<form action="wookServiceAdd.go" method="post">
-		<h2> 서비스 등록 </h2>
+		<form action="wookServiceAlterConfirm.go" method="post">
+		<h2> 서비스정보 수정 </h2>
+		<input type="hidden" value="${ServiceContents.agency_no}" name="servicewriting_no">
 	
 		<div class="row">
 			
@@ -167,7 +168,7 @@ function sample4_execDaumPostcode() {
 				<div class="row">
 							<div align="center">
 								<input type="hidden" value="${loginUser.member_id}" name="loginUserId">
-								<p><b>제목</b>&nbsp;&nbsp; <input type="text" style="width: 250px;" name="servicetitle" id="ServiceTitle"> </p>
+								<p><b>제목</b>&nbsp;&nbsp; <input type="text" style="width: 250px;" name="servicetitle" id="ServiceTitle" value="${ServiceContents.agency_title}"> </p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p><b>분류</b>&nbsp;&nbsp;
 									<select class="uk_bigSort" id="uk_bigSort">						
@@ -189,7 +190,7 @@ function sample4_execDaumPostcode() {
 									<select class="uk_smallSort" id="uk_smallSort" name="selectCate">
 										<option> &nbsp;&nbsp;-- </option>	
 									</select>
-								  
+								 
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p align="center">
@@ -200,7 +201,7 @@ function sample4_execDaumPostcode() {
 									<a class="btn btn-default" onclick="sample4_execDaumPostcode()"><i class = "fa fa-search"></i> 우편번호 검색</a>
 									</span>
 									<br>
-									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" style="width:270px; margin: 0;">
+									<input type="text" name="selectserviceArea" class="form-control" id="sample4_roadAddress" name="member_address1" placeholder="도로명주소입니다" readonly="readonly" value="${ServiceContents.agency_loc}" style="width:270px; margin: 0;">
 									<span id="guide" style="color:#999"></span>
 								</p>
 								<!-- 주소 입력 관련 코드 종료 -->
@@ -208,24 +209,29 @@ function sample4_execDaumPostcode() {
 							    <hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p>
 								<b>시작일</b>&nbsp;&nbsp;
-								<!-- <input type="text" name="carstartdate" id="datepicker1" readonly style="width: 50px;" placeholder="start"/>  -->
-								<input type="date" name="startDate" value="시작일" style="height: 23px;"> 
+								<input type="date" name="startDate" value="${ServiceContents.agency_startdate}" style="height: 23px;"> 
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
 								<p>
 								<b>종료일</b>&nbsp;&nbsp;
-								<!-- <input type="text" name="carenddate" id="datepicker2" readonly style="width: 50px;" placeholder="end"/> -->								 
-								<input type="date" name="endDate" value="시작일" style="height: 23px;">
+								<input type="date" name="endDate" value="${ServiceContents.agency_enddate}" style="height: 23px;">
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
 								<p> 
 									<b>희망급여 </b>&nbsp;&nbsp;
+									<c:if test="${ServiceContents.agency_paytype eq 1}">
 									<select class="uk_servicePay" name="servicePaytype">
-										<option>&nbsp;&nbsp;--</option>
 										<option value="1">일급</option>
 										<option value="2">시급</option>	
 									</select>
-									&nbsp; / &nbsp;<input type="text" style="width: 80px;" name="userinputPayamount">&nbsp;원 
+									</c:if>
+									<c:if test="${ServiceContents.agency_paytype eq 2}">
+									<select class="uk_servicePay" name="servicePaytype">
+										<option value="2">시급</option>	
+										<option value="1">일급</option>
+									</select>
+									</c:if>
+									&nbsp; / &nbsp;<input type="text" style="width: 80px;" name="userinputPayamount" value="${ServiceContents.agency_pay}">&nbsp;원 
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
 								
@@ -269,7 +275,7 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<!-- 0이면 굵기지정 적용X / 1이면 굵기지정적용O -->
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_bold" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_size" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
 										</table>
 										<br>
 									</c:if>
@@ -287,7 +293,7 @@ function sample4_execDaumPostcode() {
 									</c:forEach>
 									
 									<c:if test="${ userGiveItem eq null}">
-										보유중인 아이템이 없다면 적용된 아이템이없습니다.
+										${loginUser.member_id}님 보유중인 아이템이없습니다.
 									</c:if>	
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
@@ -305,7 +311,7 @@ function sample4_execDaumPostcode() {
 	                    </thead>
 	                    <tbody>
 	                        <tr>
-	                            <td class="col-md-9"><textarea rows="15" cols="73" style="resize: none;" name="writeContents"></textarea></td>
+	                            <td class="col-md-9"><textarea rows="15" cols="73" style="resize: none;" name="writeContents">${ServiceContents.agency_content}</textarea></td>
 	                        </tr>
 	                    </tbody>
 	                </table>
@@ -340,23 +346,18 @@ function sample4_execDaumPostcode() {
 	            	console.log(detailCount);
 	            }	            
 				</script>
-	
-	
-	
-	            
-				
 				<div class="row">
 					<div class="receipt-header receipt-header-mid receipt-footer">
 						<div class="col-xs-8 col-sm-8 col-md-8 text-left">
 							<div class="receipt-right">
 								<p><b>작성자 :</b> ${loginUser.member_id} </p>
 							</div>
-							
-						</div>
+							  
+						</div> 
 						<div class="col-xs-4 col-sm-4 col-md-4">
 							<div class="receipt-left">
-								<input type="submit" value="등록완료">&nbsp;
-								<input type="button" value="등록취소" onclick="alllistreturn();">
+								<input type="submit" value="수정완료">&nbsp;
+								<input type="button" value="돌아가기" onclick="location.href = 'lbjmypage.go?member_id=${loginUser.member_id}'">
 								
 								<script type="text/javascript">
 										$(function(){
@@ -380,6 +381,7 @@ function sample4_execDaumPostcode() {
 													alert("반려동물역영역 선택");													
 												}
 
+
 												$.ajax({
 													url : "midcategorylist.go",
 													type : "post",
@@ -388,7 +390,8 @@ function sample4_execDaumPostcode() {
 													dataType : "json",
 													success : function(data){
 														var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
-														var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
+														var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+														
 														var sortvalues2 = "<option> &nbsp;-- </option>";
 														$('#uk_smallSort').empty();
 														$('#uk_smallSort').append(sortvalues2);

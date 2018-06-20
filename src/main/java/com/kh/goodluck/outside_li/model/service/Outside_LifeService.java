@@ -59,4 +59,8 @@ public class Outside_LifeService {
 		return outside_LifeDao.ukjaeCheckingLifePresentImage(representimagecheck);
 	}
 
+	public Outside_Life ukjaeGetlifecontents(String life) {	
+		return outside_LifeDao.ukjaeGetlifecontents(life);
+	}
+
 }

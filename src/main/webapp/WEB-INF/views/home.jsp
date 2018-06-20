@@ -988,7 +988,7 @@
 			<div class="item active">	
 				<div style="width: 100%; Sectiongin-bottom: 12px;">	
 					<c:if test="${loginUser.member_status eq 3}">		
-					<a href="adminViewManagement.go?lifeCarouselImage=${ukjaelifeCarousel.osli_datavalue}&representlifeimage=${ukjaerepresentlifeimage.osli_datavalue}"> 관리자 View페이지 </a>
+					<a href="adminViewManagement.go?lifeCarouselImage=${ukjaelifeCarousel.osli_datavalue}&representlifeimage=${ukjaerepresentlifeimage.osli_datavalue}"> 관리자 View페이지 이동 </a>
 					</c:if>
 					<div class = "juj-home-realtimebar-content">
 									<dl class = "juj-home-realtimebar-dl">										
@@ -1277,6 +1277,9 @@
 			
 			
 			<div class="item">	<!-- 생활영역 -->
+				<c:if test="${loginUser.member_status eq 3}">		
+				<a href="adminViewManagement_life.go?mainCarouselImage=${ukjaemainCarousel.osm_datavalue}&mainyoutube=${ukjaemainYoutube.osm_datavalue}"> 관리자 View페이지 이동 </a>
+				</c:if>				
 				<table border="1" id="ukjae_TableAreaFirst" class="ukjae_firstArea">
 					<tr> 
 						<c:set var="ukjaerepresentlife_basic" value="${ukjaerepresentlifeimage}"/> 

@@ -56,6 +56,11 @@ public class Outside_MainService {
 		return outside_MainDao.ukjaeCheckingYoutube(youtubecheck);
 	}
 
+	public Outside_Main ukjaeCheckDataValue(String main) {
+		// TODO Auto-generated method stub
+		return outside_MainDao.ukjaeCheckDataValue(main);
+	}
+
 
 
 

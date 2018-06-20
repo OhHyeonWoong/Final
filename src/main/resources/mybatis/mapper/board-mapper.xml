@@ -295,7 +295,7 @@
 		<![CDATA[select * from categorylink2 where category_small_code=#{smallcategory}]]>
 	</select>
 	
-	<insert id="newServiceRegist" parameterType="Board" flushCache="true" statementType="PREPARED">
+	<insert id="ukjae_newServiceRegist" parameterType="Board" flushCache="true" statementType="PREPARED">
 		<![CDATA[insert into agency values(
 		(select max(agency_no)+1 from agency),
 		#{agency_writer},
@@ -314,6 +314,27 @@
 		#{agency_keyword},
 		#{agency_option})]]>		
 	</insert>
+	
+	<update id="ukjae_ServiceContentsupdate" parameterType="Board" flushCache="true">
+		<![CDATA[update agency set 
+		 agency_title=#{agency_title},
+		 link2_no=TO_NUMBER(#{link2_no}),
+		 agency_type=#{agency_type},
+		 agency_loc=#{agency_loc},
+		 agency_startdate=#{agency_startdate},
+		 agency_enddate=#{agency_enddate},
+		 agency_paytype=#{agency_paytype},
+		 agency_pay=#{agency_pay}, 
+		 agency_content=#{agency_content},
+		 agency_keyword=#{agency_keyword},
+		 agency_option=#{agency_option}		  
+		 where agency_no=#{agency_no}]]>
+	</update>
+	
+	<update id="ukjaeDeleteService" parameterType="integer" flushCache="true" statementType="PREPARED">
+		<![CDATA[update agency set agency_status=4 where agency_no=#{parsing_no}]]>
+	</update>  
+	
 	
 	<select id="ukjaepickupBoard" parameterType="Board" resultType="int">
 		<![CDATA[select agency_no from agency where agency_writer=#{agency_writer} and agency_content=#{agency_content} and agency_title=#{agency_title} and agency_loc=#{agency_loc}]]>
@@ -399,22 +420,24 @@
 					    ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
 					    sc.category_small_name
 					    from agency ac,categorylink2 cl,smallcategory sc
-					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code 
+					    and ac.agency_status != 4
 		          order by agency_enrolldate desc
 		        ) AG
 		      )
 		      where rn between #{startRow} and #{endRow}
 		]]>
 	</select>
-	<delete id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
+	<update id="deleteBoard" parameterType="java.util.HashMap" flushCache="true">
 		<![CDATA[
-			delete from agency 
+			update agency
+			set agency_status = 4
 			where
 		]]>
 		<foreach collection="agency_no" item="item" index="index" open="(" close=")" separator="or">
 			agency_no = #{item}
 		</foreach>
-	</delete>
+	</update>
 	<select id="selectKeywordBoardListCount" parameterType="string" resultType="int">
 		<![CDATA[
 			select count(*) from agency
@@ -435,12 +458,37 @@
 					    from agency ac,categorylink2 cl,smallcategory sc
 					    where ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
 		       			and (ac.agency_title like '%'||#{keyword}||'%' or ac.agency_content like '%'||#{keyword}||'%')
+		       			and ac.agency_status != 4
 		        ) AG
 		      )
 		      where rn between #{startRow} and #{endRow}
 		]]>
 	</select>
-
+	<select id="selectMyWriteCandidateListCount" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+			where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+			and agency_writer = #{member_id}
+			and (td.trade_applicant != 'null'  or td.trade_reservation != 'null')
+		]]>
+	</select>
+	<select id="selectMyWriteCandidate" parameterType="java.util.HashMap" resultType="MyPageApplyBoard">
+		<![CDATA[
+			select * 
+			from (
+			        select rownum rnum,ac.agency_no, ac.agency_writer,
+						  ac.agency_title,ac.link2_no,ac.agency_type, 
+						  ac.agency_loc,ac.agency_startdate,ac.agency_enddate,ac.agency_enrolldate,ac.agency_paytype,ac.agency_pay,ac.agency_status
+						  ,ac.agency_content,ac.agency_veiws,ac.agency_keyword,ac.agency_option,
+						  sc.category_small_name,td.trade_applicant,td.trade_date,td.trade_reservation,td.trade_reservation_date
+			        from agency ac,categorylink2 cl,smallcategory sc,trade_detail td
+			        where ac.agency_no = td.agency_no and ac.link2_no = cl.link2_no and cl.category_small_code = sc.category_small_code
+			        and agency_writer = #{member_id} and (td.trade_applicant != 'null'  or td.trade_reservation != 'null')
+			      ) 
+			where rnum>=#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
 	<!-- 메인화면 로딩시 제공해요 부분에 데이터를 바로 끌어오는 select쿼리문END-->  
 	
 	<!-- <insert id="MemberInsert" parameterType="Member" flushCache="true" statementType="PREPARED">		

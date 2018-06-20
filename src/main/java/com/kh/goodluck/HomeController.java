@@ -75,7 +75,7 @@ public class HomeController {
 	}
 	//////////////////////////////////////////////////
 	@RequestMapping(value="adminViewManagement.go",method=RequestMethod.GET)
-	public String managementpage(HttpServletRequest request,HttpServletRequest response) {
+	public ModelAndView managementpage(HttpServletRequest request,HttpServletRequest response,ModelAndView mv) {
 		
 		System.out.println("관리자 메인화면 변경페이지로 이동합니다. 그전에..");
 		System.out.println("다른페이지의 화면을 체크합니다.");
@@ -83,43 +83,66 @@ public class HomeController {
 		String life1 = request.getParameter("lifeCarouselImage");
 		String life2 = request.getParameter("representlifeimage");
 		
-		System.out.println(life1);
-		System.out.println(life2);
+		Outside_Life life_object1 = outside_LifeService.ukjaeGetlifecontents(life1);
+		Outside_Life life_object2 = outside_LifeService.ukjaeGetlifecontents(life2);
 		
-		return "A2.JUJ/AdaminViewManagement";
+		mv.addObject("current_life_carousel", life_object1);
+		mv.addObject("current_life_image", life_object2);
+		mv.setViewName("A2.JUJ/AdaminViewManagement");
+		
+		return mv;
 	}
 	
-	@RequestMapping("adminViewManagement_life.go")
-	public String managementpage2() {
+	@RequestMapping("adminViewManagement_life.go") //생활View 관리영역으로 이동하는 메소드
+	public ModelAndView managementpage2(HttpServletRequest request,HttpServletResponse response,ModelAndView mv) {
 		
-		return "A2.JUJ/AdaminViewManagement_life";
+		String main1 = request.getParameter("mainCarouselImage");
+		String main2 = request.getParameter("mainyoutube");
+		
+		Outside_Main m1 = outside_MainService.ukjaeCheckDataValue(main1);
+		Outside_Main m2 = outside_MainService.ukjaeCheckDataValue(main2);
+		
+		mv.addObject("maincarousel", m1);
+		mv.addObject("mainYoutube", m2);
+		mv.setViewName("A2.JUJ/AdaminViewManagement_life");
+		return mv;
 	}
 	//////////////////////////////////////////////////
 	
 	@RequestMapping(value="ukjaemainviewcontrol.go", method=RequestMethod.POST) 
-	public ModelAndView ukjaeMaincontrol(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_youtube")String youtubecheck,ModelAndView mv) {
+	public ModelAndView ukjaeMaincontrol(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_youtube")String youtubecheck,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) {
+		String life1 = request.getParameter("life1");
+		String life2 = request.getParameter("life2");
+			
 		//메인화면 카로셀/유투브영상 바꿔치기하기
 		Outside_Main uk_m1 = outside_MainService.ukjaeCheckingCarousel(carouselcheck);
 		Outside_Main uk_m2 = outside_MainService.ukjaeCheckingYoutube(youtubecheck);
+		Outside_Life uk_li1 = outside_LifeService.ukjaeCheckingLifeCarousel(life1);
+		Outside_Life uk_li2 = outside_LifeService.ukjaeCheckingLifePresentImage(life2);
+
 		
 		mv.addObject("ukjaemainCarousel", uk_m1);
 		mv.addObject("ukjaemainYoutube", uk_m2);
+		mv.addObject("ukjaelifeCarousel", uk_li1);
+		mv.addObject("ukjaerepresentlifeimage", uk_li2);
 		mv.setViewName("home");
 		
 		return mv;
 	}
 	
 	@RequestMapping(value="ukjaemainviewcontrol_life.go", method=RequestMethod.POST)
-	public ModelAndView ukjaeMaincontrol_life(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_representimage")String representimagecheck,ModelAndView mv) {
+	public ModelAndView ukjaeMaincontrol_life(@RequestParam("radio_carousel")String carouselcheck,@RequestParam("radio_representimage")String representimagecheck,HttpServletRequest request,HttpServletResponse response, ModelAndView mv) {
 		//생활화면 카로셀/유투브영상 바꿔치기하기
 		
 		/*System.out.println("선택한 카로셀이미지 : "+carouselcheck);
 		System.out.println("선택한 대표이미지 : "+representimagecheck);*/
-
+		String carouselcheck_m = request.getParameter("main1");
+		String youtubecheck = request.getParameter("main2");
+		
 		Outside_Life uk_li1 = outside_LifeService.ukjaeCheckingLifeCarousel(carouselcheck);
 		Outside_Life uk_li2 = outside_LifeService.ukjaeCheckingLifePresentImage(representimagecheck);
-		Outside_Main uk_m1 = outside_MainService.ukjaeBasicMainPageCarouseldata();
-		Outside_Main uk_m2 = outside_MainService.ukjaeBasicMainPageYoutubedata();
+		Outside_Main uk_m1 = outside_MainService.ukjaeCheckingCarousel(carouselcheck_m);
+		Outside_Main uk_m2 = outside_MainService.ukjaeCheckingYoutube(youtubecheck);
 		
 		mv.addObject("ukjaemainCarousel", uk_m1);
 		mv.addObject("ukjaemainYoutube", uk_m2);

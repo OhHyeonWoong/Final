@@ -40,8 +40,8 @@
             <i class="fa fa-inbox"></i> 서비스 통계 <i class="fa fa fa-chevron-left pull-right" id="arow6"></i> </a>
           </li>
           <li class="panel">
-            <a id="panel7" href="javascript:;" data-toggle="collapse" data-target="#cogs"> 
-            <i class="fa fa-cogs"></i> 채팅 기록 조회 <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+            <a id="panel7" href="lbjMoveManagingNewArticles.go" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 게시글 관리<i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
           </li>
         </ul>
       </div>
