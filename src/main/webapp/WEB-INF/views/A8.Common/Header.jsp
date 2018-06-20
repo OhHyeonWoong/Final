@@ -352,6 +352,12 @@
 	}
 	/* 로그아웃 Function */
 	
+	/* 키 이벤트 입력 막기 */
+	$(function() {
+		
+	})
+	/* 키 이벤트 입력 막기 끝 */
+	
 	//병준이 마일리지 관련 함수들
 	$(function(){
 		$('#chargeMoney').on('change',function(){
@@ -983,15 +989,15 @@
 					
 					/* Category Click Count */					
 					function BigCategoryCount(id){
-						location.href='/goodluck/BigCategoryCount.go?bigCode=' + id + "&page=1";
+						location.href='/goodluck/BigCategoryCount.go?bigCode=' + id;
 					};
 					
 					function MidCategoryCount(id){
-						location.href='/goodluck/MidCategoryCount.go?midCode=' + id + "&page=1";
+						location.href='/goodluck/MidCategoryCount.go?midCode=' + id;
 					};
 					
 					function SmallCategoryCount(id){
-						location.href='/goodluck/SmallCategoryCount.go?smallCode=' + id + "&page=1";						
+						location.href='/goodluck/SmallCategoryCount.go?smallCode=' + id;						
 					};					
 					/* Category Click Count End */
 					
