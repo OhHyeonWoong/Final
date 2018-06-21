@@ -424,10 +424,6 @@
 	</head>
 	<body>
 		<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-		${Board}//
-		${Chat.CHATROOM_NO}//
-		${writer}//
-		${Cateinfo}
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">

@@ -306,4 +306,10 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getmixicon",map);
 	}
+
+
+	public String getUsingemticonfilename(String memberid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getUsingemticonfilename",memberid);
+	}
 }

@@ -148,9 +148,14 @@
 <div class="container">
 
 ${Board};
-<br>
+++++++++++++++++++++++
 ${Cateinfo};
-
+++++++++++++++++++++++
+<c:forEach var="a" items="${allance}">
+${a.ALLIANCE_NAME},
+${a.ALLIANCE_URL},
+${a.ALLIANCE_LOC}
+</c:forEach>
 <style>
 #boardDetailTable tr {
  height: 40px;
@@ -413,51 +418,95 @@ var map = new daum.maps.Map(mapContainer, mapOption);
 
 // 주소로 좌표를 검색합니다
 
+var  positions = [];
 
-geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
-    // 정상적으로 검색이 완료됐으면 
-     if (status === daum.maps.services.Status.OK) {
+<c:forEach var="a" items="${allance}">
+geocoder.addressSearch('${a.ALLIANCE_LOC}', function(result, status) {
+	 if (status === daum.maps.services.Status.OK) {
+			coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+			
+	        var zero = new Object();
+	        zero.content = '<div text-align:"center">"${a.ALLIANCE_NAME}"</div>';
+	        zero.latlng = coords1;
+	        positions.push(zero);
+	        
+		} 
+})
+</c:forEach>
 
-        coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
-        console.log("coords1="+coords1);
-        var positions = [
-            {
-                content: '<div text-align:"center">카카오</div>', 
-                latlng: coords1
-            }
-        ];
+console.log(positions);
+console.log([0]);
+		        for (var i = 0; i < positions.length; i ++) {
+		            // 마커를 생성합니다
+		          
+		            var marker = new daum.maps.Marker({
+		                map: map, // 마커를 표시할 지도
+		                position: positions[i].latlng // 마커의 위치
+		            });
 
-        for (var i = 0; i < positions.length; i ++) {
-            // 마커를 생성합니다
-            console.log(positions);
-            var marker = new daum.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng // 마커의 위치
-            });
+		            // 마커에 표시할 인포윈도우를 생성합니다 
+		            var infowindow = new daum.maps.InfoWindow({
+		                content: positions[i].content // 인포윈도우에 표시할 내용
+		            });
 
-            // 마커에 표시할 인포윈도우를 생성합니다 
-            var infowindow = new daum.maps.InfoWindow({
-                content: positions[i].content // 인포윈도우에 표시할 내용
-            });
+		            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+		            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		            (function(marker, infowindow) {
+		                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+		                daum.maps.event.addListener(marker, 'mouseover', function() {
+		                    infowindow.open(map, marker);
+		                });
 
-            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-            (function(marker, infowindow) {
-                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-                daum.maps.event.addListener(marker, 'mouseover', function() {
-                    infowindow.open(map, marker);
-                });
+		                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+		                daum.maps.event.addListener(marker, 'mouseout', function() {
+		                    infowindow.close();
+		                });
+		            })(marker, infowindow);
+		        }    
+		  
+// geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
+//     // 정상적으로 검색이 완료됐으면 
+//      if (status === daum.maps.services.Status.OK) {
 
-                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-                daum.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
-                });
-            })(marker, infowindow);
-        }    
-        
-        
-    } 
-});
+//         coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+//         console.log("coords1="+coords1);
+//         positions = [
+//             {
+//                 content: '<div text-align:"center">카카오</div>', 
+//                 latlng: coords1
+//             }
+//         ];
+
+//         for (var i = 0; i < positions.length; i ++) {
+//             // 마커를 생성합니다
+//             console.log(positions);
+//             var marker = new daum.maps.Marker({
+//                 map: map, // 마커를 표시할 지도
+//                 position: positions[i].latlng // 마커의 위치
+//             });
+
+//             // 마커에 표시할 인포윈도우를 생성합니다 
+//             var infowindow = new daum.maps.InfoWindow({
+//                 content: positions[i].content // 인포윈도우에 표시할 내용
+//             });
+
+//             // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+//             // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+//             (function(marker, infowindow) {
+//                 // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+//                 daum.maps.event.addListener(marker, 'mouseover', function() {
+//                     infowindow.open(map, marker);
+//                 });
+
+//                 // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+//                 daum.maps.event.addListener(marker, 'mouseout', function() {
+//                     infowindow.close();
+//                 });
+//             })(marker, infowindow);
+//         }    
+  
+//     } 
+// });
 </script>
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 

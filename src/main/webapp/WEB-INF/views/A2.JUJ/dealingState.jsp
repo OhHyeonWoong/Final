@@ -373,9 +373,9 @@
 
 
 		${Board}//
+		+++++++++++++++++++++++++++
 		${writer}//
-	///////////////////
-		${Chat}
+	
 	
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
@@ -504,8 +504,17 @@ z=evt.data;
 			                    
 			                     <c:choose>
 			                     <c:when test="${Board.agency_type eq 1}">  
-			                     <td>오너</td>
-			                                        <td>${writer.member_id}</td>
+			                     
+			                  <td>오너</td>
+			                  
+			                  <td>
+			                  <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>
+
+			                  ${writer.member_id}
+			                  
+			                  </td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>오너의 활동 점수</td>
@@ -516,7 +525,9 @@ z=evt.data;
 			                     
 			                     <c:when test="${Board.agency_type eq 2}"> 
 			                     <td>서비스 제공자</td>
-			                                        <td>${writer.member_id}</td>
+			                                        <td>   <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>노예의  봉사단계</td>

@@ -370,11 +370,10 @@
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
 
-		${Board}//
-		${Chat.CHATROOM_NO}//
+		${Board}
+		+++++++++++++++++++++++++++
 		${writer}//
-		${Cateinfo}/////////////
-		${ChatLog}
+		
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
@@ -503,7 +502,9 @@ z=evt.data;
 			                     <c:choose>
 			                     <c:when test="${Board.agency_type eq 2}">  
 			                     <td>오너</td>
-			                                        <td>${writer.member_id}</td>
+			                                        <td>   <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>오너의 구매점수</td>
@@ -515,7 +516,9 @@ z=evt.data;
 			                     
 			                     <c:when test="${Board.agency_type eq 1}"> 
 			                     <td>서비스 제공자</td>
-			                                        <td>${writer.member_id}</td>
+			                                        <td>   <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>제공자의

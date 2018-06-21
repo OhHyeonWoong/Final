@@ -1,6 +1,8 @@
 package com.kh.goodluck.member.controller;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
@@ -621,6 +624,137 @@ public class MemberController {
 		 out.flush();
 		 out.close();
 		}
-	} 
+	}
+	
+	@Autowired
+	private Board board;
+	
+	@RequestMapping(value="lbjInsertDBDummyData.go")
+	public void insertDBDummyData(Member m) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		//member 생성
+		/*for(int i=17;i<700;i++) {
+			m.setMember_id("user"+i);
+			m.setMember_name("카를로프"+i+"세");
+			m.setMember_email("fuck"+i+"@naver.com");
+			m.setMember_address("서울시 서대문구 충정로");
+			m.setMember_phone("010-1234-1234");
+			m.setMember_regident_number(9010101);
+			m.setMember_status(1);
+			int memberResult = memberService.insertMemberDummy(m);
+			System.out.println("memberResult = " + memberResult);
+		}*/
+		//agency_no 용 변수
+		int no = 2;
+		//user용 변수
+		int userNo = 4;
+		//게임 구합니다 53 88
+		for(int i=1;i<=130;i++) {
+			for(int z=1;z<=3;z++) {
+				if(userNo < 10) {
+					board.setAgency_writer("user0"+userNo);
+				}else {
+					board.setAgency_writer("user"+userNo);
+				}
+				board.setAgency_title("글"+i);
+				board.setLink2_no(i+"");
+				board.setAgency_type(1);
+				board.setAgency_loc("서울");
+				SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
+		        Date parsed;
+		        java.sql.Date sql = null;
+		        Date parsed1;
+		        java.sql.Date sql1 = null;
+				try {
+					parsed = format.parse("18/06/22");
+					sql = new java.sql.Date(parsed.getTime());
+					parsed1 = format.parse("18/06/23");
+					sql1 = new java.sql.Date(parsed.getTime());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				board.setAgency_startdate(sql);
+				board.setAgency_enddate(sql1);
+				if(z % 2 == 0) {
+					board.setAgency_paytype(1);
+				}else {
+					board.setAgency_paytype(2);
+				}
+				if(z % 2 == 0) {
+					board.setAgency_pay(50000);
+				}else {
+					board.setAgency_pay(7000);
+				}
+				board.setAgency_status(1);
+				board.setAgency_content("글"+i);
+				board.setAgency_keyword("키워드"+i+",키워드"+i);
+				
+				int agencyResult = memberService.insertDBDummyData(board);
+				int tradeResult = 0;
+				if(agencyResult > 0) {
+					tradeResult = memberService.insertDBTrade(no);
+					no++;
+				}
+				System.out.println("agencyResult = " + agencyResult);
+				System.out.println("tradeResult = " + tradeResult);
+			}
+			userNo++;
+		}
+		
+		//게임 해드립니다
+		for(int i=1;i<=130;i++) {
+			for(int z=1;z<=3;z++) {
+				if(userNo < 10) {
+					board.setAgency_writer("user0"+userNo);
+				}else {
+					board.setAgency_writer("user"+userNo);
+				}
+				board.setAgency_title("글"+i);
+				board.setLink2_no(i+"");
+				board.setAgency_type(2);
+				board.setAgency_loc("서울");
+				SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
+				Date parsed;
+		        java.sql.Date sql = null;
+		        Date parsed1;
+		        java.sql.Date sql1 = null;
+				try {
+					parsed = format.parse("18/06/26");
+					sql = new java.sql.Date(parsed.getTime());
+					parsed1 = format.parse("18/06/28");
+					sql1 = new java.sql.Date(parsed.getTime());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				board.setAgency_startdate(sql);
+				board.setAgency_enddate(sql1);
+				if(z % 2 == 0) {
+					board.setAgency_paytype(1);
+				}else {
+					board.setAgency_paytype(2);
+				}
+				if(z % 2 == 0) {
+					board.setAgency_pay(80000);
+				}else {
+					board.setAgency_pay(7500);
+				}
+				board.setAgency_status(1);
+				board.setAgency_content("글"+i);
+				board.setAgency_keyword("키워드"+i+",키워드"+i+",키워드"+i);
+				
+				int agencyResult = memberService.insertDBDummyData(board);
+				int tradeResult = 0;
+				if(agencyResult > 0) {
+					tradeResult = memberService.insertDBTrade(no);
+					no++;
+				}
+				System.out.println("agencyResult = " + agencyResult);
+				System.out.println("tradeResult = " + tradeResult);
+			}
+			userNo++;
+		}
+	}
 
 }

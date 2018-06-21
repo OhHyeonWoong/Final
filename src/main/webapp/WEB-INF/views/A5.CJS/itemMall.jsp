@@ -88,12 +88,7 @@ $(document).ready( function() {
                                         
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">청약철회보기</a>
-                                        
-                                    </td>
-                                </tr>
+                               
                             </table>
                         </div>
                     </div>

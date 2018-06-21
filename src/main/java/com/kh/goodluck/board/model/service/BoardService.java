@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.goodluck.board.model.dao.BoardDao;
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
@@ -375,6 +376,11 @@ public class BoardService {
 	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
 		// TODO Auto-generated method stub
 		return boardDao.getChatLogByroomNo(chatroom_NO);
+	}
+
+	public List<Allance> getallancelist() {
+		// TODO Auto-generated method stub
+		return boardDao.getallancelist();
 	}
 
 }

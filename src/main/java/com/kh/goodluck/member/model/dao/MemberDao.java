@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
@@ -178,6 +179,21 @@ public class MemberDao {
 	public int updateUserKakaoToken(HashMap<Object, Object> map) {
 		return sqlSession.update("updateUserKakaoToken", map);
 
+	}
+
+	public int insertDBDummyData(Board board) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertDBDummyData", board);
+	}
+
+	public int insertDBTrade(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertDBTrade", no);
+	}
+
+	public int insertMemberDummy(Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertMemberDummy", m);
 	}
 
 }
