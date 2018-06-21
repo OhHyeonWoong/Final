@@ -343,10 +343,9 @@ function sample4_execDaumPostcode() {
 					 detailCount++;
 					 console.log(detailCount+"번째 키워드 추가완료");
 					}else{
-							alert("기본 키워드 개수는 3개입니다");
+					 alert("기본 키워드 개수는 3개입니다");
 					}
 				} 	
-	       
 	            function removeDetail(a){
 	            	$("#"+a.id).remove();
 	            	detailCount--;
@@ -370,11 +369,11 @@ function sample4_execDaumPostcode() {
 							<div class="receipt-left">
 								<input type="submit" value="등록완료">&nbsp;
 								<input type="button" value="등록취소" onclick="alllistreturn();">
-								
+								  
 								<script type="text/javascript">
 										$(function(){
 											$('#uk_bigSort').change(function(){				
-												var select = $('#uk_bigSort').val();
+												/* var select = $('#uk_bigSort').val();
 												if(select==1){
 													alert("생활역영역 선택");
 												}else if(select==2){
@@ -391,7 +390,7 @@ function sample4_execDaumPostcode() {
 													alert("프리랜서역영역 선택");													
 												}else if(select==8){
 													alert("반려동물역영역 선택");													
-												}
+												} */
 
 												$.ajax({
 													url : "midcategorylist.go",

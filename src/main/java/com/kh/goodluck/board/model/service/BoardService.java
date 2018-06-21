@@ -167,6 +167,11 @@ public class BoardService {
 		return boardDao.ukjaegetServiceWriting(agency_no);
 	}
 	
+	public String ukjaepickUpCategoryRealName(SmallCategory s1) {
+		//욱재작업
+		return boardDao.ukjaepickUpCategoryRealName(s1);
+	}
+	
 	public int ukjaeCheckUserWritingCount(String memberid) {
 		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
 		return boardDao.ukjaeCheckUserWritingCount(memberid);
@@ -397,6 +402,10 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.getallancelist();
 	}
+
+
+
+
 
 
 }

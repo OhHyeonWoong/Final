@@ -451,6 +451,10 @@
        agency_option=#{agency_option}        
        where agency_no=#{agency_no}]]>
    </update>
+     
+   <select id="ukjaepickCateName" parameterType="SmallCategory" resultType="String">
+   	<![CDATA[select category_small_name from smallcategory where category_small_code=#{category_small_code}]]>
+   </select>
    
    <update id="ukjaeDeleteService" parameterType="integer" flushCache="true" statementType="PREPARED">
       <![CDATA[update agency set agency_status=4 where agency_no=#{parsing_no}]]>

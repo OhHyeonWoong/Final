@@ -402,7 +402,7 @@ public class OutsidedataController {
 			js.put("osp_news_origin", life1.get(i).getOsp_news_origin());
 			jarr.add(js);			
 		}
-		
+		  
 		json.put("LifeNewsOne", jarr);
 		//json2.put("LifeNewsTwo", jarr2);
 		PrintWriter out = response.getWriter();
@@ -546,7 +546,7 @@ public class OutsidedataController {
 	}  
 	
 	@RequestMapping("ukjaepet_Origincomment_add") //펫 뉴스 상세보기 
-	public void ukjaePetnews_Origincomment_add(HttpServletRequest request,HttpServletResponse response){
+	public void ukjaePetnews_Origincomment_add(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String new_no = request.getParameter("comment_add_newsno");
 		String comment_contents = request.getParameter("commnet_contents");
 		String member_id = request.getParameter("user_id");
@@ -564,17 +564,29 @@ public class OutsidedataController {
 		int insertComment = outsidedataService.petCommentInput(pec);
 	
 		
+		PrintWriter out = response.getWriter();
+		if(insertComment>0) {
+			out.append("1");
+		}else if(insertComment<=0) {
+			out.append("0");				
+		}
 		
-		/*private int pet_comment_no; 댓글 고유번호PK
-		private int pet_comment_status; 1원글댓글 / 2댓글의댓글
-		private String pet_comment_contents; 댓글내용
-		private String pet_comment_writer; 댓글작성자 - member_id FK
-		private int pet_pet_comment_newsno; 댓글뉴스의번호
-		private Date pet_comment_writedate; 댓글 작성날짜
-		*/
+		out.flush();
+		out.close();
 	}
 	
+	@RequestMapping("comment_comment.go")
+	public void ukjaePetnews_CommentAndCommnet_add(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		
+		String news_datacomment_no = request.getParameter("news_datacommentno"); //뉴스댓글번호PK
+		String news_datano = request.getParameter("news_datano"); //뉴스글번호
+		String news_area = request.getParameter("news_area"); //뉴스영역(반려동물,여행,게임,생활)
+		
+		System.out.println("뉴스댓글번호 : "+news_datacomment_no);
+		System.out.println("뉴스글 번호 : "+news_datano);
+		System.out.println("뉴스영역 : "+news_area);
 	
+	}
 	
 	@RequestMapping("animalNews.go")
 	public void initialDatashow(HttpServletRequest request,HttpServletResponse response)throws IOException {
@@ -620,6 +632,7 @@ public class OutsidedataController {
 		//System.out.println("news_datano : "+data_no);
 		
 		ArrayList<PetNews_Comment> pet = ((ArrayList<PetNews_Comment>) outsidedataService.commentAlllistGet(parsing_datano));
+		//System.out.println("pet.toString() : "+pet.toString());
 		
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
@@ -631,7 +644,7 @@ public class OutsidedataController {
 			js.put("pet_comment_contents", pet.get(i).getPet_comment_contents());
 			js.put("pet_comment_writer", pet.get(i).getPet_comment_writer());
 			js.put("pet_comment_newsno", pet.get(i).getpet_comment_newsno());
-			js.put("pet_comment_writedate", pet.get(i).getPet_comment_writedate());
+			js.put("pet_comment_writedate", pet.get(i).getPet_comment_writedate().toString());
 			jarr.add(js);
 		}
 		json.put("petNewsCommentlist", jarr);
@@ -648,8 +661,8 @@ public class OutsidedataController {
 
 		default:
 			break;
-		}*/
-		
+		}
+		*/
 		
 	}
 	/* ************* End********************/		

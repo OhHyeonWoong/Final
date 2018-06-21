@@ -206,7 +206,7 @@ public class BoardController {
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;
-	}
+	}  
 	
 	@RequestMapping(value="bshsearch.go")
 	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
