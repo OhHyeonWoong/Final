@@ -88,6 +88,9 @@
 						htmlstr += '<button onclick="'+boardprime(page-1)+'">&lt;</button>';
 					}
 					
+					htmlstr += 
+					
+					
 					
 					$("#bsh_span_button").html(htmlstr);
 					
