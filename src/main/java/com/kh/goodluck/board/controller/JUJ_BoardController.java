@@ -237,10 +237,10 @@ public class JUJ_BoardController {
 		*/
 		
 		//들어갈 수 있는 값.
-		String title_color  = request.getParameter("title_color"); //DATA값 red, blue, green, yellow, pink, orange
+		String title_premium  = request.getParameter("title_premium"); //DATA값 (적용안함0 적용함1)
 		String title_size  = request.getParameter("title_size"); //DATA값 size='4', size='5', size='6'
 		String title_bold  = request.getParameter("title_bold"); //DATA값 (적용안함0, 적용함1)
-		String title_premium  = request.getParameter("title_premium"); //DATA값 (적용안함0 적용함1)
+		String title_color  = request.getParameter("title_color"); //DATA값 red, blue, green, yellow, pink, orange
 
 		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
 			title_color="";
@@ -258,10 +258,11 @@ public class JUJ_BoardController {
 		
 		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_color+", ");
+		sbl.append(title_premium+", ");		
 		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
-		sbl.append(title_premium);
+		sbl.append(title_color);
+
 		sbl.toString();
 		
 		
@@ -368,11 +369,11 @@ public class JUJ_BoardController {
 		 */
 		
 		//들어갈 수 있는 값.
-		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
 		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
 		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
-		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
-		
+		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		  
 		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
 			title_color="";
 		}
@@ -387,10 +388,10 @@ public class JUJ_BoardController {
 		}
 		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_color+", ");
+		sbl.append(title_premium+", ");		
 		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
-		sbl.append(title_premium);
+		sbl.append(title_color);
 		sbl.toString();
 		
 		//System.out.println("해당글 적용아이템 : "+sbl.toString());
