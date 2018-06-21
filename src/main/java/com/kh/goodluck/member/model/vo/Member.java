@@ -30,6 +30,38 @@ public class Member implements Serializable{
 	private int member_keyword_count;
 	private int MEMBER_KAKAOIDPK;
 	private String emoticonfile;
+	private int startRnum;
+	private int endRnum;
+	
+	public Member(String member_id, String member_pw, String member_name, String member_email, String member_address,
+			String member_phone, int member_regident_number, int member_write_count, Date member_enroll_date,
+			Date member_lastlogin, Date member_lastpassword, int member_yellowcard, int member_status,
+			String member_renamephoto, int member_cash, String member_accesstoken, String member_refreshtoken,
+			int member_keyword_count, int mEMBER_KAKAOIDPK, String emoticonfile, int startRnum, int endRnum) {
+		super();
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.member_address = member_address;
+		this.member_phone = member_phone;
+		this.member_regident_number = member_regident_number;
+		this.member_write_count = member_write_count;
+		this.member_enroll_date = member_enroll_date;
+		this.member_lastlogin = member_lastlogin;
+		this.member_lastpassword = member_lastpassword;
+		this.member_yellowcard = member_yellowcard;
+		this.member_status = member_status;
+		this.member_renamephoto = member_renamephoto;
+		this.member_cash = member_cash;
+		this.member_accesstoken = member_accesstoken;
+		this.member_refreshtoken = member_refreshtoken;
+		this.member_keyword_count = member_keyword_count;
+		MEMBER_KAKAOIDPK = mEMBER_KAKAOIDPK;
+		this.emoticonfile = emoticonfile;
+		this.startRnum = startRnum;
+		this.endRnum = endRnum;
+	}
 	public Member() {
 	}
 	@Override
@@ -164,6 +196,20 @@ public class Member implements Serializable{
 	public void setEmoticonfile(String emoticonfile) {
 		this.emoticonfile = emoticonfile;
 	}
+	
+	public int getStartRnum() {
+		return startRnum;
+	}
+	public void setStartRnum(int startRnum) {
+		this.startRnum = startRnum;
+	}
+	public int getEndRnum() {
+		return endRnum;
+	}
+	public void setEndRnum(int endRnum) {
+		this.endRnum = endRnum;
+	}
+	
 	public Member(String member_id, String member_pw, String member_name, String member_email, String member_address,
 			String member_phone, int member_regident_number, int member_write_count, Date member_enroll_date,
 			Date member_lastlogin, Date member_lastpassword, int member_yellowcard, int member_status,

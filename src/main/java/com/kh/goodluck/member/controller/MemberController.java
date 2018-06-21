@@ -1,8 +1,6 @@
 package com.kh.goodluck.member.controller;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
 import com.kh.goodluck.board.model.service.BoardService;
-import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
@@ -577,184 +574,9 @@ public class MemberController {
 		response.sendRedirect("home.go");
 	}
 	
-	@RequestMapping(value="lbjKakaoTokenUpdate.go",method= {RequestMethod.POST,RequestMethod.GET})
-	public void userKakaoTokenUpdate(Member member,
-			Model model,
-			HttpServletResponse response,
-			HttpSession session,
-			HttpServletRequest request) throws IOException{
-		System.out.println("member : " + member);
-		System.out.println("request.getParameter() kakaopk = " + request.getParameter("kakaopk"));
-		//로그인 작업을 합니다 세션에 넣어요
-		//1. 현재 로그인한 사람들중에 혹시 먼저 카카오 인증을 한사람이 있는지 확인한다.
-		if(memberService.getmemberinfobykakaopk(Integer.parseInt(request.getParameter("kakaopk"))) == null)
-		 
-	{
-			//토큰 갱신하기.
-			HashMap<Object,Object> map =new HashMap<Object,Object>();
-			map.put("refresh_token",request.getParameter("refresh_token"));
-			map.put("access_token",request.getParameter("access_token"));
-			map.put("kakaopk",Integer.parseInt(request.getParameter("kakaopk")));
-			map.put("member_id", request.getParameter("member_id"));
-			int updateResult = memberService.updateUserKakaoToken(map);
-			//
+	@RequestMapping(value = "signIn.go", method = RequestMethod.POST)
+	public void signIn() {
 		
-	    PrintWriter out = response.getWriter();
-	    if(updateResult > 0) {
-	    	 out.write("카톡 인증 성공!");
-	    	 System.out.println("카톡 인증 성공!");
-	    	 if(session.getValue("loginUser") != null) {
-	    		 Member sessionMember = null;
-	    		 sessionMember=(Member)session.getAttribute("loginUser");
-	    		 sessionMember.setMember_accesstoken(request.getParameter("access_token"));
-	    		 sessionMember.setMember_refreshtoken(request.getParameter("refresh_token"));
-	    		 sessionMember.setMEMBER_KAKAOIDPK(Integer.parseInt(request.getParameter("kakaopk")));
-	    	 }
-	    }else {
-	    	out.write("카톡 인증 실..패..!");
-	    	System.out.println("카톡 인증 실패!");
-	    }
-		 out.flush();
-		 out.close();
-	}else {
-		 PrintWriter out = response.getWriter();
-		 out.write("이미 카톡 인증된 유저입니다..");
-		 System.out.println("이미 카톡 인증된 유저입니다");
-		 //model.addAttribute("loginUser", member);
-		 out.flush();
-		 out.close();
-		}
-	}
-	
-	@Autowired
-	private Board board;
-	
-	@RequestMapping(value="lbjInsertDBDummyData.go")
-	public void insertDBDummyData(Member m) {
-		HashMap<String,Object> map = new HashMap<String,Object>();
-		//member 생성
-		/*for(int i=17;i<700;i++) {
-			m.setMember_id("user"+i);
-			m.setMember_name("카를로프"+i+"세");
-			m.setMember_email("fuck"+i+"@naver.com");
-			m.setMember_address("서울시 서대문구 충정로");
-			m.setMember_phone("010-1234-1234");
-			m.setMember_regident_number(9010101);
-			m.setMember_status(1);
-			int memberResult = memberService.insertMemberDummy(m);
-			System.out.println("memberResult = " + memberResult);
-		}*/
-		//agency_no 용 변수
-		int no = 486;
-		//user용 변수
-		int userNo = 416;
-		//게임 구합니다 53 88
-		for(int i=1;i<=115;i++) {
-			for(int z=1;z<=2;z++) {
-				if(userNo < 10) {
-					board.setAgency_writer("user0"+userNo);
-				}else {
-					board.setAgency_writer("user"+userNo);
-				}
-				board.setAgency_title("글"+i);
-				board.setLink2_no(i+"");
-				board.setAgency_type(1);
-				board.setAgency_loc("서울");
-				SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
-		        Date parsed;
-		        java.sql.Date sql = null;
-		        Date parsed1;
-		        java.sql.Date sql1 = null;
-				try {
-					parsed = format.parse("18/06/22");
-					sql = new java.sql.Date(parsed.getTime());
-					parsed1 = format.parse("18/06/23");
-					sql1 = new java.sql.Date(parsed.getTime());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				board.setAgency_startdate(sql);
-				board.setAgency_enddate(sql1);
-				if(z % 2 == 0) {
-					board.setAgency_paytype(1);
-				}else {
-					board.setAgency_paytype(2);
-				}
-				if(z % 2 == 0) {
-					board.setAgency_pay(50000);
-				}else {
-					board.setAgency_pay(7000);
-				}
-				board.setAgency_status(1);
-				board.setAgency_content("글"+i);
-				board.setAgency_keyword("키워드"+i+",키워드"+i);
-				
-				int agencyResult = memberService.insertDBDummyData(board);
-				int tradeResult = 0;
-				if(agencyResult > 0) {
-					tradeResult = memberService.insertDBTrade(no);
-					no++;
-				}
-				System.out.println("agencyResult = " + agencyResult);
-				System.out.println("tradeResult = " + tradeResult);
-				userNo++;
-			}
-		}
-		
-		//게임 해드립니다
-		for(int i=1;i<=115;i++) {
-			for(int z=1;z<=2;z++) {
-				if(userNo < 10) {
-					board.setAgency_writer("user0"+userNo);
-				}else {
-					board.setAgency_writer("user"+userNo);
-				}
-				board.setAgency_title("글"+i);
-				board.setLink2_no(i+"");
-				board.setAgency_type(2);
-				board.setAgency_loc("서울");
-				SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
-				Date parsed;
-		        java.sql.Date sql = null;
-		        Date parsed1;
-		        java.sql.Date sql1 = null;
-				try {
-					parsed = format.parse("18/06/26");
-					sql = new java.sql.Date(parsed.getTime());
-					parsed1 = format.parse("18/06/28");
-					sql1 = new java.sql.Date(parsed.getTime());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				board.setAgency_startdate(sql);
-				board.setAgency_enddate(sql1);
-				if(z % 2 == 0) {
-					board.setAgency_paytype(1);
-				}else {
-					board.setAgency_paytype(2);
-				}
-				if(z % 2 == 0) {
-					board.setAgency_pay(80000);
-				}else {
-					board.setAgency_pay(7500);
-				}
-				board.setAgency_status(1);
-				board.setAgency_content("글"+i);
-				board.setAgency_keyword("키워드"+i+",키워드"+i+",키워드"+i);
-				
-				int agencyResult = memberService.insertDBDummyData(board);
-				int tradeResult = 0;
-				if(agencyResult > 0) {
-					tradeResult = memberService.insertDBTrade(no);
-					no++;
-				}
-				System.out.println("agencyResult = " + agencyResult);
-				System.out.println("tradeResult = " + tradeResult);
-				userNo++;
-			}
-		}
 	}
 
 }

@@ -1332,11 +1332,11 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td>${myBoardHistory.agency_title}</td>
 							<td>${myBoardHistory.trade_applicant}</td>
 							<td>
-								<c:if test="${myBoardHistory.agency_paytype eq 1}">
-									일급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								<c:if test="${myBoardHistory.agency_type eq 1}">
+									<font style="color:red;">- ${myBoardHistory.agency_pay}</font>
 								</c:if>
-								<c:if test="${myBoardHistory.agency_paytype eq 2}">
-									시급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								<c:if test="${myBoardHistory.agency_type eq 2}">
+									<font style="color:blue;">+ ${myBoardHistory.agency_pay}</font>
 								</c:if>
 							</td>
 							<td>${myBoardHistory.agencylog_date}</td>
@@ -1401,41 +1401,32 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<div class="lbjdiv" id="lbjMyReviewDiv">
 				<table class="table table-striped lbjtable" id="lbjMyReviewTable">
 					<tr><th class="lbjth">글 제목</th><th class="lbjth" colspan="4">후기 내용</th><th class="lbjth">후기 쓴 날짜</th></tr>
-					<%-- <c:forEach items="${lbjMyBoardHistory}" var="myBoardHistory">
+					<c:forEach items="${lbjMyReview}" var="myReview">
 						<tr>
-							<td>
-								<c:if test="${myBoardHistory.agencylog_finalstatus eq 1}">
-									정상완료
-								</c:if>
-								<c:if test="${myBoardHistory.agencylog_finalstatus eq 2}">
-									거래불발
-								</c:if>
-								<c:if test="${myBoardHistory.agencylog_finalstatus eq 3}">
-									대기상태로 종료
-								</c:if>
+							<td class="lbjth">
+								${myReview.agency_title}
 							</td>
-							<td>
-								<c:if test="${myBoardHistory.agency_type eq 1}">
-									구합니다<font style="color:red;">(오너)</font>
-								</c:if>
-								<c:if test="${myBoardHistory.agency_type eq 2}">
-									해드립니다<font style="color:black;">(일반 지원자)</font>
-								</c:if>
-							</td>
-							<td>${myBoardHistory.agency_title}</td>
-							<td>${myBoardHistory.trade_applicant}</td>
-							<td>
-								<c:if test="${myBoardHistory.agency_paytype eq 1}">
-									일급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
-								</c:if>
-								<c:if test="${myBoardHistory.agency_paytype eq 2}">
-									시급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
-								</c:if>
-							</td>
-							<td>${myBoardHistory.agencylog_date}</td>
+							<td class="lbjth" colspan="4">${myReview.review_content}</td>
+							<td class="lbjth">${myReview.review_date}</td>
 						</tr>
-					</c:forEach> --%>
-					
+					</c:forEach>
+					<tr><td colspan="6"><font color="red" size="4"><b>1</b></font>&nbsp;</td></tr>
+				</table>
+			</div>
+			<!-- 새로 추가  끝 -->
+			<hr>
+			<h3 class="lbjh3" id="lbjMyMoneyCharge">내 충전 내역</h3>
+			<div class="lbjdiv" id="lbjMyReviewDiv">
+				<table class="table table-striped lbjtable" id="lbjMyReviewTable">
+					<tr><th class="lbjth">일자</th><th class="lbjth">액수</th><th class="lbjth">잔액</th></tr>
+					<c:forEach items="${lbjMyChargeMoney}" var="chargeMoney">
+						<tr>
+							<td>${chargeMoney.paylog_when}</td>
+							<td>${chargeMoney.paylog_money}</td>
+							<td>${loginUser.member_cash}</td>
+						</tr>
+					</c:forEach>
+					<tr><td colspan="6"><font color="red" size="4"><b>1</b></font>&nbsp;</td></tr>
 				</table>
 			</div>
 			<!-- 새로 추가  끝 -->

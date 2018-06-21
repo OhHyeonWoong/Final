@@ -27,17 +27,13 @@ import net.sf.json.JSONObject;
 
 @Controller
 public class BoardController {
-
 	List<BigCategory> bigcategorylist = null;
 	List<MidCategory> midcategorylist = null;
 	List<SmallCategory> smallcategorylist = null;
 	List<CategoryLink1> categorylink1list = null;
 	List<CategoryLink2> categorylink2list = null;
 	
-	
-	public BoardController() {
-		
-	}
+	public BoardController() {}
 	@Autowired
 	private BoardService boardservice;
 	
@@ -106,34 +102,22 @@ public class BoardController {
 			System.out.println(link2name);
 			boardlist = boardservice.selectCategory(map);
 		}
-			
-		
-		
-		
-		
-		
 		//System.out.println(boardlist);
-		
 		/*for(Board b:boardlist) {
 			System.out.println("글번호:"+b.getAgency_no());
 		}*/
-		
 		//int catelink1length = catelink1.length;
-		
-		
 		//bigmid.put(key, value)
 		int i=0;
 		for (CategoryLink1 categoryLink1 : categorylink1list) {
 			catelink1[i]=categoryLink1;
 			i++;
 		}
-		
 		i=0;
 		for (CategoryLink2 categoryLink2 : categorylink2list) {
 			catelink2[i]=categoryLink2;
 			i++;
 		}
-		
 		for(i=0;i<catelink1.length;i++) {
 			
 			if(i>0) {
@@ -173,29 +157,23 @@ public class BoardController {
 				}
 			}		
 		}
-		
 		int strlistlegnth = strlist.size();
 		
-		/*System.out.println("-----------------");
-		for (String str : strlist) {
-			System.out.println(str);
-		}*/
+		/* System.out.println("-----------------");
+		   for (String str : strlist) {
+           System.out.println(str);}*/
 		mv.setViewName("A4.BSH/Board");
 		mv.addObject("bigcategorylist",bigcategorylist);
 		mv.addObject("midcategorylist",midcategorylist);
 		mv.addObject("smallcategorylist",smallcategorylist);
-		
-		
 		mv.addObject("boardlist", boardlist);
 		//mv.addObject("categorylink1list",categorylink1list);
 		//mv.addObject("categorylink2list",categorylink2list);
-		
 		//System.out.println(categorylink1list);
 		//System.out.println(categorylink2list);
 		//mv.addObject("catelink1",catelink1);
 		//mv.addObject("catelink2",catelink2);
 		//mv.addObject("catelink1length",catelink1length);
-		
 		
 		agencycount = (int)((double)(agencycount/20)+1.9);
 		System.out.println("re-agencycount:"+agencycount);
@@ -208,10 +186,10 @@ public class BoardController {
 		//A4.BSH/Board
 		return mv;
 	}  
-	
+
 	@RequestMapping(value="bshsearch.go")
 	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
-				
+		
 		bigcategorylist = boardservice.selectBigCategoryAll();
 		midcategorylist = boardservice.selectMidCategoryAll();
 		smallcategorylist = boardservice.selectSmallCategoryAll();
@@ -220,21 +198,18 @@ public class BoardController {
 		ArrayList<String> strlist = new ArrayList<String>();
 		CategoryLink1 catelink1[] = new CategoryLink1[categorylink1list.size()];
 		CategoryLink2 catelink2[] = new CategoryLink2[categorylink2list.size()];
-		
+
 		int i=0;
 		for (CategoryLink1 categoryLink1 : categorylink1list) {
 			catelink1[i]=categoryLink1;
 			i++;
 		}
-		
 		i=0;
 		for (CategoryLink2 categoryLink2 : categorylink2list) {
 			catelink2[i]=categoryLink2;
 			i++;
 		}
-		
 		for(i=0;i<catelink1.length;i++) {
-			
 			if(i>0) {
 				if(!catelink1[i].getCategory_big_code().equals(catelink1[i-1].getCategory_big_code())) {
 					//System.out.println(catelink1[i].getCategory_big_code());
@@ -272,7 +247,6 @@ public class BoardController {
 				}
 			}		
 		}
-		
 		String bcate = request.getParameter("bcate");
 		String mcate = request.getParameter("mcate");
 		String scate = request.getParameter("scate");

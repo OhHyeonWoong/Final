@@ -14,8 +14,8 @@
 	<!-- destroy-method 속성은 DB 연결에 대한 세션을 자동으로 close
 		하라는 뜻임 -->  
       
-    <bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
 		<property name="driverClassName"  
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
@@ -24,6 +24,7 @@
 		<property name="defaultAutoCommit" value="false" />
 	</bean>        
     	    
+
     <bean id="LogDataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
     	<constructor-arg ref="dataSource" />
       	<property name="logFormatter">
@@ -37,8 +38,8 @@
 	<!-- Spring과 MyBatis 연동 설정 -->
     <bean id="sqlSession"
     	class="org.mybatis.spring.SqlSessionFactoryBean">
-    	<property name="dataSource" ref="dataSource" /> <!-- 로그아닌거 -->
-    <!-- 	<property name="dataSource" ref="LogDataSource" /> 로그전용-->
+    	 <!-- <property name="dataSource" ref="dataSource" /> 로그아닌거 -->
+   <property name="dataSource" ref="LogDataSource" /> <!-- 로그전용 -->
     	
     	<property name="configLocation" value="classpath:mybatis-config.xml" />
     	<!-- 이미 만들어져있는 놈은 ref로 만들어진 id를 참조함, name은 내 맘대로 지은 이름 -->

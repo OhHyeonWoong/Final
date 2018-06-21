@@ -300,9 +300,7 @@
 		color:#f8251b !important;
 		transition-property:color;
 		transition-duration:1.0s;
-	}
-	
-	
+	}	
 	
 </style>
 
@@ -419,7 +417,13 @@
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp;
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+		
+		<c:if test="${loginUser.emoticonfile ne null}">
+		<img class="afterauserajaximg" style="width:20px; height: 30px;" 
+		src="/goodluck/resources/A5.CJS/itemimg/${loginUser.emoticonfile}">
+		</c:if> 
+		${ loginUser.member_name } 님 &nbsp;
 							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != 0 }">
 								<img src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:30px; height:30px;">							
 							</c:if>
@@ -471,8 +475,7 @@
 			},
 				error:function(a,b,c){
 					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
-				}
-				
+				}				
 			})			
 		}
 		</script>
@@ -1068,7 +1071,7 @@
 								<ul class="dropdown-menu">
 									<li><a href = "ohw-movePaymentPage.go">현웅</a></li>
 									<li><a href="ukWookTest.go">욱재</a></li>
-									<li><a href="">동기</a></li>
+									<li><a href="jdkadmin_ItemList.go">동기</a></li>
 									<li><a href="bshtest.go?link2_no=인테리어">승호</a></li>
 									<li><a href="#">지석</a></li>
 									<li><a href="lbjMoveManagingNewArticles.go">뱅준</a></li>

@@ -41,7 +41,7 @@
 	    	var chargeMoney = $('#chargeMoney').val() * 1;
 	    	var sum = member_cash + chargeMoney;
 	    	
-	    	location.href="lbjUpdateMemberCash.go?member_id="+$('#member_id').val()+"&member_cash="+sum;
+	    	location.href="lbjUpdateMemberCash.go?member_id="+$('#member_id').val()+"&member_cash="+sum+"&chargeMoney="+chargeMoney;
 	    }else{
 	    	location.href="home.go";
 	    }

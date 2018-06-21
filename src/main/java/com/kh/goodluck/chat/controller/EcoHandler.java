@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +34,9 @@ public class EcoHandler extends TextWebSocketHandler{
      
     private Map<String,WebSocketSession> mapUser;
     
-    private 	SessionUser se;
+    private SocketController sock=new SocketController();
+    
+    private SessionUser se;
     
     public EcoHandler() {
         connectedUsers = new ArrayList<SessionUser>();
@@ -71,12 +74,14 @@ public class EcoHandler extends TextWebSocketHandler{
 
     	MessageVO messageVo = MessageVO.converMessage(message.getPayload());
     	
+    	
+    	
     	SessionUser CurrentSessionUser =null;
     	
     	if(messageVo.getType().equals("join")){
     		
     		mapUser.put(messageVo.getTo(), session);
-    		//messageVo.getTo()=>오너아이디.
+    		//messageVo.getTo()=>채팅쓴사람.
     		System.out.println("messageVo.getTo()="+messageVo.getTo());
     		se=new SessionUser(messageVo.getTo(),session);
     		connectedUsers.add(se); //실제 조인이 들어오면 저장함.
@@ -100,22 +105,12 @@ session.sendMessage(new TextMessage("<li class='message right  appeared'><div cl
 	    		//받는사람
 sessioned.sendMessage(new TextMessage(messageVo.getMessage()+"</div></div></li>"));
 
-//messageVo.getTo()  ->채팅방번호+받는이.     messageVo.getMessage()->내용.
-
-
-
-    		} else {
-    		session.sendMessage(new TextMessage("<li class='message right  appeared'><div class='text_wrapper'> <div class='text'>상대가 존재하지않습니다.</div></div></li>"));
+//messageVo.getTo()  ->채팅방번호+글쓴이.     messageVo.getMessage()->내용.
+} else {
+session.sendMessage(new TextMessage("<li class='message right appeared'><div class='text_wrapper'> <div class='text' id='nonextfzfzssq26v'>상대가 존재하지않습니다.</div></div></li>"));
     		//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
-    		
-    		
     		}
-    	
-    	
-    	
-    	
-    	
-       }
+}
         
         logger.info(session.getId() + "님의 메시지 : " + message.getPayload());
         //System.out.println(session.getId() + "님의 메시지 : " + message.getPayload());
@@ -130,13 +125,12 @@ sessioned.sendMessage(new TextMessage(messageVo.getMessage()+"</div></div></li>"
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	
-
-        connectedUsers.remove(se);
-
+    	 connectedUsers.remove(se);
 //    	for(SessionUser sessionUser : connectedUsers) {
 //    		
 //    		sessionUser.getSession().sendMessage(new TextMessage(sessionUser.getTo() + "님이 퇴장했습니다."));	
 //    		if(sessionUser.equals(session)) {
+//           
 //    			logger.info(sessionUser.getTo() + "님이 퇴장했습니다.");
 //    	        System.out.println(sessionUser.getTo() + "님이 퇴장했습니다.");
 //    		}

@@ -21,6 +21,9 @@
 <select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
 select * from CHATROOM where AGENCY_NO= #{AGENCY_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
 </select>
+<select id="getChatInfoByMap1" parameterType="hashmap" resultType="Chat">
+select * from CHATROOM where CHATROOM_NO= #{CHATROOM_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
+</select>
 
 <insert id="insertintoChatDetail" parameterType="ChatDetail" >
 insert into CHATDEATIL values(

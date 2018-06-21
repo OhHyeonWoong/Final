@@ -419,17 +419,29 @@ var message = {};
           message.to = "${Chat.CHATROOM_NO}//${loginUser.member_id}";
           chatSock.send(JSON.stringify(message));
       };
-          
+
 chatSock.onmessage = function(evt) {
 var z="";
 var testValue = evt.data;
 var iValue = testValue.indexOf("<li class='message right  appeared'>");
+if(testValue.indexOf('nonextfzfzssq26v') != -1 ){
+z=evt.data;
+$.ajax({
+	url:"sendmonja.go",
+	data:{memberid:"${writer.member_id}",pk:"${Board.agency_no}"},
+	success:function(data){
+		alert("보냄");
+	}
+})
+}else{
+	alert("상대방이있다.");	
 if(iValue == -1){
 //없을경우에는
 z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
 }else{
 //있을경우에	
 z=evt.data;
+}
 }
   console.log(z);
     	  $("ul[class=messages]").append(z);
@@ -908,10 +920,8 @@ z=evt.data;
 						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
 						$('#cjsModalLabel').modal('hide');		
 					}else if(data==1){
-						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
-						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
+					    location.href="lbjmypage.go?member_id=${loginUser.member_id}";
 					}else if(data==2){
-						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
 						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
 					}
 				}
