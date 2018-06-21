@@ -206,7 +206,6 @@ public class CJS_BoardController {
     	
     	System.out.println("예비인력으로써 업데이트 >result1="+result1);
 		}
-		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
 		   try {
