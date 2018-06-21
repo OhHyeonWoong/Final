@@ -244,6 +244,16 @@
 		line-height: 20px;
 	}
 	
+	.ohw-allcategory {
+		position:relative;
+		height:100% !important;
+		border-right:1px solid #b3b3b3;
+	}
+	
+	.ohw-allcategory-ul {
+		height:100% !important;
+	}
+	
 
 	/* 병준이추가 */
 	.lbj-div{
@@ -281,8 +291,7 @@
 	
 	a {
 		cursor:pointer !important;
-		text-decoration:none !important;
-		color:black !important;
+		text-decoration:none !important;		
 	}
 	
 	a:hover {
@@ -700,8 +709,8 @@
 							<span class="glyphicon glyphicon-chevron-down pull-right"></span> 카테고리 전체 보기 
 						</a>
 						<ul class="dropdown-menu mega-dropdown-menu row">
-				            <li class="col-sm-3">
-								<ul>
+				            <li class="ohw-allcategory col-sm-3">
+								<ul class = "ohw-allcategory-ul">
 									<li class = "dropdown-header ohw-allmenu-big"><a class = "dropdown-header" id = "midcategory-live">생활</a></li>
 									<li class = "dropdown-header ohw-allmenu-big"><a class = "dropdown-header" id = "midcategory-travel">여행</a></li>
 									<li class = "dropdown-header ohw-allmenu-big"><a class = "dropdown-header" id = "midcategory-music">음악</a></li>
@@ -712,8 +721,8 @@
 									<li class = "dropdown-header ohw-allmenu-big"><a class = "dropdown-header" id = "midcategory-animal">반려동물</a></li>																		
 								</ul>
 							</li>
-							<li class="col-sm-3 ohw-midcategory-live ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-live ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "홈" onClick = "MidCategoryCount(this.id)">홈</a></li>
 									<li><a id = "파티" onClick = "SmallCategoryCount(this.id)">파티</a></li>
 									<li><a id = "인테리어" onClick = "SmallCategoryCount(this.id)">인테리어</a></li>
@@ -729,8 +738,8 @@
 									<li><a id = "푸드-기타" onClick = "SmallCategoryCount(this.id)">기타 푸드</a></li>
 								</ul>
 							</li>
-							<li class="col-sm-3 ohw-midcategory-live ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-live ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "뷰티" onClick = "MidCategoryCount(this.id)">뷰티</a></li>
 									<li><a id = "헤어디자인" onClick = "SmallCategoryCount(this.id)">헤어 디자인</a></li>
 									<li><a id = "메이크업" onClick = "SmallCategoryCount(this.id)">메이크 업</a></li>
@@ -746,8 +755,8 @@
 									<li><a id = "스포츠-기타" onClick = "SmallCategoryCount(this.id)">기타 스포츠</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-travel ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-travel ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "국내" onClick = "MidCategoryCount(this.id)">국내</a></li>
 									<li><a id = "국내-가이드" onClick = "SmallCategoryCount(this.id)">가이드</a></li>
 									<li><a id = "국내-운전기사" onClick = "SmallCategoryCount(this.id)">운전기사</a></li>
@@ -760,8 +769,8 @@
 									<li><a id = "해외-플래너" onClick = "SmallCategoryCount(this.id)">플래너</a></li>									
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-music ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-music ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "악기" onClick = "MidCategoryCount(this.id)">악기</a></li>
 									<li><a id = "현악기" onClick = "SmallCategoryCount(this.id)">현악기</a></li>
 									<li><a id = "관악기" onClick = "SmallCategoryCount(this.id)">관악기</a></li>
@@ -779,8 +788,8 @@
 									<li><a id = "보컬-기타" onClick = "SmallCategoryCount(this.id)">기타 보컬 </a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-music ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-music ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "댄스" onClick = "MidCategoryCount(this.id)">댄스</a></li>
 									<li><a id = "현대무용" onClick = "SmallCategoryCount(this.id)">현대무용</a></li>
 									<li><a id = "고전무용" onClick = "SmallCategoryCount(this.id)">고전무용</a></li>
@@ -799,8 +808,8 @@
 									<li><a id = "작곡-기타" onClick = "SmallCategoryCount(this.id)">기타작곡</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-game ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-game ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "PC" onClick = "MidCategoryCount(this.id)">PC</a></li>
 									<li><a id = "PC-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
 									<li><a id = "PC-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
@@ -824,8 +833,8 @@
 									<li><a id = "콘솔-기타" onClick = "SmallCategoryCount(this.id)">기타 콘솔 게임</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-game ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-game ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "모바일" onClick = "MidCategoryCount(this.id)">모바일</a></li>									
 									<li><a id = "모바일-액션" onClick = "SmallCategoryCount(this.id)">액션</a></li>
 									<li><a id = "모바일-RPG" onClick = "SmallCategoryCount(this.id)">RPG</a></li>
@@ -849,8 +858,8 @@
 									<li><a id = "기타장르" onClick = "SmallCategoryCount(this.id)">기타 그 외 게임</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-rental ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-rental ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "렌트" onClick = "MidCategoryCount(this.id)">렌탈</a></li>
 									<li><a id = "주거용품" onClick = "SmallCategoryCount(this.id)">주거용품</a></li>
 									<li><a id = "생활용품" onClick = "SmallCategoryCount(this.id)">생활 용품</a></li>
@@ -858,8 +867,8 @@
 									<li class="divider"></li>									
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-agency ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-agency ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "1인" onClick = "MidCategoryCount(this.id)">1인</a></li>
 									<li><a id = "애인대행" onClick = "SmallCategoryCount(this.id)">애인 대행</a></li>
 									<li><a id = "친구대행" onClick = "SmallCategoryCount(this.id)">친구 대행</a></li>									
@@ -870,8 +879,8 @@
 									<li><a id = "덱스트라대행" onClick = "SmallCategoryCount(this.id)">엑스트라 대행</a></li>									
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "프로그래머" onClick = "MidCategoryCount(this.id)">프로그래머</a></li>
 									<li><a id = "C" onClick = "SmallCategoryCount(this.id)">C</a></li>
 									<li><a id = "C++" onClick = "SmallCategoryCount(this.id)">C++</a></li>
@@ -888,8 +897,8 @@
 									<li><a id = "디자이너-기타" onClick = "SmallCategoryCount(this.id)">기타 디자이너</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-freelancer ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "작가" onClick = "MidCategoryCount(this.id)">작가</a></li>
 									<li><a id = "소설가" onClick = "SmallCategoryCount(this.id)">소설가</a></li>
 									<li><a id = "만화가" onClick = "SmallCategoryCount(this.id)">만화가</a></li>
@@ -908,8 +917,8 @@
 									<li><a id = "외국어-기타" onClick = "SmallCategoryCount(this.id)">기타 외국어</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "강아지" onClick = "MidCategoryCount(this.id)">강아지</a></li>
 									<li><a id = "강아지-미용" onClick = "SmallCategoryCount(this.id)">미용</a></li>
 									<li><a id = "강아지-펫시터" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
@@ -923,8 +932,8 @@
 									<li><a id = "고양이-진료" onClick = "SmallCategoryCount(this.id)">진료</a></li>
 								</ul>
 							</li>			
-							<li class="col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
-								<ul>
+							<li class="ohw-allcategory col-sm-3 ohw-midcategory-animal ohw-midcategory-all">
+								<ul class = "ohw-allcategory-ul">
 									<li class="dropdown-header"><a id = "반려동물기타" onClick = "MidCategoryCount(this.id)">기타 동물</a></li>
 									<li><a id = "기타동물-미용" onClick = "SmallCategoryCount(this.id)">미용</a></li>
 									<li><a id = "기타동물-펫시터" onClick = "SmallCategoryCount(this.id)">펫 시터</a></li>
