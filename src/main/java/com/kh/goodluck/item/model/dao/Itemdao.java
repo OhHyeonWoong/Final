@@ -312,4 +312,10 @@ public class Itemdao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getUsingemticonfilename",memberid);
 	}
+
+
+	public ItemNotice getitemnoticeDetail(int pk) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getitemnoticeDetail",pk);
+	}
 }

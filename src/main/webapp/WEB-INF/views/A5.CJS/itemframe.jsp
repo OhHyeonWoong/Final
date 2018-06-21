@@ -919,7 +919,7 @@ height: 78px;
 		
 			
 		 	
-		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
+		<button  class="btn btn-labeled btn-success" onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
 
 		<br>
 		  <%@ include file = "/WEB-INF/views/A5.CJS/test.jsp" %>
