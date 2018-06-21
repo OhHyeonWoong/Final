@@ -28,7 +28,7 @@ public class SearchController {
 	
 	@RequestMapping("headerSearch.go") /* 세부적인 URL Pattern */
 	public ModelAndView list(HttpServletResponse response, HttpServletRequest request, ModelAndView mav, 
-			@RequestParam("searchKeyword") String searchKeyword,
+			@RequestParam(defaultValue = " ", name = "searchKeyword") String searchKeyword,
 			@RequestParam(defaultValue = "1", name = "curMasterPage") int curMasterPage,
 			@RequestParam(defaultValue = "1", name = "curSlavePage") int curSlavePage) throws Exception {		
 		
