@@ -287,6 +287,10 @@ public class BoardController {
 		int max = -1;
 		int searchsize = 0;
 		
+		if(group3.equals("")) {
+			group3 = "등록날짜순";
+		}
+		
 		if(!strmin.equals("")) {
 			try {
 				min = Integer.parseInt(strmin);
@@ -514,6 +518,13 @@ public class BoardController {
 			}
 		}else {
 			link2name = scate;
+		}
+		
+		if(min>0) {
+			System.out.println("min : "+min);
+		}
+		if(max>0) {
+			System.out.println("max : "+max);
 		}
 		
 		//System.out.println("사이즈:"+searchlist.size());

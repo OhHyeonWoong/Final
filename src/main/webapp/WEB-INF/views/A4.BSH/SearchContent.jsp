@@ -256,7 +256,7 @@
 							${board.agency_startdate }
 							</td>
 							<td>
-							<c:set var="tf" value="${board.agency_paytype }"/>
+							<c:set var="tf" value="${board.agency_status }"/>
 							<c:if test="${tf eq '1' }">
 								정상
 							</c:if>
