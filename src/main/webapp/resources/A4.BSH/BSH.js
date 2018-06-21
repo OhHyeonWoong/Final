@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	//alert("aaa");
 	/* 체크박스 라디오버튼화 */
 	$('input[type="checkbox"][name="group1"]').click(function() {

@@ -38,5 +38,9 @@ public class SearchServiceImpl implements SearchService {
 	
 	public List<SearchSideBar> searchSideBarList(String sessionId) {
 		return searchDao.searchSideBarList(sessionId);
-	}	
+	}
+	
+	public String itemIcon(String agencyWriter) {
+		return searchDao.itemIcon(agencyWriter);
+	}
 }

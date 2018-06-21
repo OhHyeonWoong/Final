@@ -246,7 +246,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	<update id="updateaccessToken" parameterType="Hashmap" >
 	update member set
 	MEMBER_ACCESSTOKEN = #{key}
-	where MEMBER_ID = #{member_id}
+	where MEMBER_ID = #{memberid}
 	</update>
 	
 	<insert id="insertScore" parameterType="member">

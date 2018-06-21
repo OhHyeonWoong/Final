@@ -162,15 +162,11 @@
 </style>
 <div class="container">
 
-${Board};
-++++++++++++++++++++++
-${Cateinfo};
-++++++++++++++++++++++
-<c:forEach var="a" items="${allance}">
+<%-- <c:forEach var="a" items="${allance}">
 ${a.ALLIANCE_NAME},
 ${a.ALLIANCE_URL},
 ${a.ALLIANCE_LOC}
-</c:forEach>
+</c:forEach> --%>
 <style>
 #boardDetailTable tr {
  height: 40px;
@@ -333,7 +329,7 @@ ${a.ALLIANCE_LOC}
      </c:when>
 
      </c:choose>
-     <button>뒤로가기</button>
+     <button onclick="window.history.go(-1);">뒤로가기</button>
      </center> 
 </th>
 

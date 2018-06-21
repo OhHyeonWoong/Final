@@ -17,15 +17,18 @@
 	
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
-	
+	var category = null;
 	$(document).ready(function() {
-		var category = '<c:out value="${link2name}"/>';	
+		category = '<c:out value="${link2name}"/>';	
 		var page = 1;
-		boardprime(category,page);
+		boardprime(page);
 	
 	});
 	
-	function boardprime(category,page){
+	function boardprime(page){
+			/* alert('ajax동작');
+			alert(category);
+			alert(page); */
 			$.ajax({
 				url:"prime.go",
 				type:"post",
@@ -37,21 +40,91 @@
 				},
 				success:function(primelist){
 					var jstr = JSON.stringify(primelist);
-					var json = JSON.parse(jstr);
+					var json = JSON.parse(jstr);					
 					
-					alert("성공이다 오예");
+					$("#primetbody").empty();
+					
+					var htmlstr = '';
+					
+					/* alert('primecount : '+primecount); */
+					/* alert(json.primelist[0].Agency_title); */
+					
+					for(var i in json.primelist){
+						if(json.primelist[i].Agency_type == 1){
+							htmlstr +='<tr><td>제공</td>';
+						}else if(json.primelist[i].Agency_type == 2){
+							htmlstr +='<tr><td>구인</td>';
+						}
+						
+						htmlstr +=
+						'<td><a href="BoardDetail.go?BoardNo='+json.primelist[i].Agency_no+'">'+json.primelist[i].Agency_title+'</a></td>'+
+						'<td>'+json.primelist[i].Agency_loc+'</td>';
+						
+						if(json.primelist[i].Agency_paytype == 1){
+							htmlstr +='<td>일급</td>';
+						}else if(json.primelist[i].Agency_paytype == 2){
+							htmlstr +='<td>시급</td>';
+						}
+						
+						htmlstr +=
+						'<td>'+json.primelist[i].Agency_pay+'</td>'+
+						'<td>'+json.primelist[i].Agency_enrolldate+'</td>'+
+						'<td>'+json.primelist[i].Agency_startdate+'</td>';
+						
+						if(json.primelist[i].Agency_status == 1){
+							htmlstr +='<td>정상</td></tr>';
+						}else if(json.primelist[i].Agency_status == 2){
+							htmlstr +='<td>예약가능</td></tr>';
+						}else if(json.primelist[i].Agency_status == 3){
+							htmlstr +='<td>예약불가</td></tr>';
+						}
+					}
+					
+					$("#primetbody").html(htmlstr);
+					$("#bsh_span_button").empty();
+					htmlstr = '';
+					
+					htmlstr += '<button onclick="boardprime(1);">&lt;&lt;</button>';
+					
+					if(page == 1){
+						htmlstr += '<button>&lt;</button>';
+					}else{
+						htmlstr += '<button onclick="'+boardprime(page-1)+'">&lt;</button>';
+					}
+					
+					
+					$("#bsh_span_button").html(htmlstr);
+					
+					/* for(var i in json.primelist){
+						htmlstr += 
+							'<td>'+
+							json.item[i].Agency_type+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'	;
+					}
+					$("#primetbody").html(htmlstr); */
+					
 					/*
-					
-					
-					
-					
 					
 					$('#primeboard').empty();
 					
 					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
 					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
 					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
-					
+										
 					console.log("qna 페이징 처리");
 					for(var i in json.item){
 						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
@@ -192,27 +265,13 @@
 						</tr>
 
 					</thead>
-					<tbody id="">
-						<%
-							for (int i = 0; i < 10; i++) {
-						%>
-						<tr>
-							<%
-								for (int j = 0; j < 8; j++) {
-							%>
-							<td><%=i%>,<%=j%></td>
-							<%
-								}
-							%>
-						</tr>
-						<%
-							}
-						%>
+					<tbody id="primetbody">
+						
 					</tbody>
 				</table>
 
-				<span class="bsh_span_button">
-					<button>&lt;&lt;</button>
+				<span class="bsh_span_button" id="bsh_span_button">
+					<button onclick="boardprime(1);">&lt;&lt;</button>
 					<button>&lt;</button> 
 						1 2 3 4 5 6 7 8 9 0
 					<button>&gt;</button>

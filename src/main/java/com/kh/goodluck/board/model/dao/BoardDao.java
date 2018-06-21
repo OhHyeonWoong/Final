@@ -146,7 +146,20 @@ public class BoardDao {
 		return sqlSession.selectList("primesma", map);
 	}
 	
+	public int primesmacount(HashMap<Object, Object> map) {
+			
+		return sqlSession.selectOne("primesmacount",map);
+	}
+
+	public int primemidcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primemidcount",map);
+	}
 	
+	public int primebigcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primebigcount",map);
+	}
 	
 	
 	
@@ -461,7 +474,6 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getallancelist");
 	}
-
 
 
 

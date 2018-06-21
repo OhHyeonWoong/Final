@@ -172,7 +172,12 @@
 								
 							</td>
 							<td class = "ohw-search-list ohw-agency-title">
-								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchMasterResult.itemfilename }"> &nbsp;
+								<c:if test="${ searchMasterResult.itemfilename ne null }">									
+									<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchMasterResult.itemfilename }"> &nbsp;								
+								</c:if>
+								<c:if test="${ searchMasterResult.itemfilename eq null }">
+									&nbsp; &nbsp; &nbsp;					
+								</c:if>
 								<a href = "InsertViewHistory.go?AgencyNo=${ searchMasterResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchMasterResult.agency_title }</a>
 							</td>							
 							<td class = "ohw-search-list">
@@ -271,7 +276,12 @@
 								
 							</td>
 							<td class = "ohw-search-list ohw-agency-title">
-								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchSlaveResult.itemfilename }"> &nbsp;
+								<c:if test="${ searchSlaveResult.itemfilename ne null }">									
+									<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchSlaveResult.itemfilename }"> &nbsp;								
+								</c:if>
+								<c:if test="${ searchSlaveResult.itemfilename eq null }">
+									&nbsp; &nbsp; &nbsp;					
+								</c:if>
 								<a href = "InsertViewHistory.go?AgencyNo=${ searchSlaveResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchSlaveResult.agency_title }</a>
 							</td>
 							<td class = "ohw-search-list"><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
