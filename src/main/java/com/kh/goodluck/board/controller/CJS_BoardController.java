@@ -103,6 +103,7 @@ public class CJS_BoardController {
 				mv.addObject("allance",allance);
 			    mv.addObject("keywords",keywords);
 				mv.addObject("Board",bo);
+				mv.addObject("filename",ItemService.getUsingemticonfilename(bo.getAgency_writer()));
 				mv.setViewName("A5.CJS/boarddetail");
 				return mv;	
 			//}
@@ -292,6 +293,7 @@ public class CJS_BoardController {
 			HttpServletResponse response
 	) throws IOException  
 	    {
+		List<Allance> allance=boardservice.getallancelist();
 		Member member=null;
 		Board bo=boardservice.getBoardInfoByNo(pk);
 		if(bo.getAgency_status()==4) {
@@ -348,6 +350,8 @@ public class CJS_BoardController {
 		Chat ca=(Chat)boardservice.getChatInfoByMap(map);
 		mv.addObject("Chat",ca);
 		mv.addObject("ChatLog",(List<ChatDetail>)boardservice.getChatLogByroomNo(ca.getCHATROOM_NO()));
+	
+		mv.addObject("allance",allance);
 		return mv;
 	}
 }
