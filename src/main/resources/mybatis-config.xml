@@ -33,6 +33,7 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.MyPageItem" alias="MyPageItem"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemPackage" alias="ItemPackage"/>
 		<typeAlias type="com.kh.goodluck.search.model.vo.Search" alias="Search"/>
+		<typeAlias type="com.kh.goodluck.search.model.vo.SearchSideBar" alias="SearchSideBar"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.RanDomBoxChance" alias="RanDomBoxChance"/>
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>

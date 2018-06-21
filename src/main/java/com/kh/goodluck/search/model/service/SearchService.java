@@ -1,8 +1,8 @@
 package com.kh.goodluck.search.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 
+import com.kh.goodluck.search.model.vo.SearchSideBar;
 import com.kh.goodluck.search.model.vo.Search;
 
 public interface SearchService {
@@ -12,5 +12,6 @@ public interface SearchService {
 
 	public int searchMasterListCount(String searchKeyword);
 	public int searchSlaveListCount(String searchKeyword);
+	public List<SearchSideBar> searchSideBarList(String sessionId);
 
 }
