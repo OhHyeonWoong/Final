@@ -18,6 +18,91 @@
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
 	
+	$(document).ready(function() {
+		var category = '<c:out value="${link2name}"/>';	
+		var page = 1;
+		boardprime(category,page);
+	
+	});
+	
+	function boardprime(category,page){
+			$.ajax({
+				url:"prime.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					page : page,
+					category : category
+					
+				},
+				success:function(primelist){
+					var jstr = JSON.stringify(primelist);
+					var json = JSON.parse(jstr);					
+					
+					$("#primetbody").empty();
+					
+					var htmlstr = '';
+					
+					/* alert(json.primelist[0].Agency_title); */
+					
+					for(var i in json.primelist){
+						if(json.primelist[i].Agency_type == 1){
+							htmlstr +='<tr><td>제공</td>';
+						}else if(json.primelist[i].Agency_type == 2){
+							htmlstr +='<tr><td>구인</td>';
+						}
+						
+						htmlstr +=
+						'<td><a href="BoardDetail.go?BoardNo='+json.primelist[i].Agency_no+'">'+json.primelist[i].Agency_title+'</a></td>'+
+						'<td>'+json.primelist[i].Agency_loc+'</td>';
+						
+						if(json.primelist[i].Agency_paytype == 1){
+							htmlstr +='<td>일급</td>';
+						}else if(json.primelist[i].Agency_paytype == 2){
+							htmlstr +='<td>시급</td>';
+						}
+						
+						htmlstr +=
+						'<td>'+json.primelist[i].Agency_pay+'</td>'+
+						'<td>'+json.primelist[i].Agency_enrolldate+'</td>'+
+						'<td>'+json.primelist[i].Agency_startdate+'</td>';
+						
+						if(json.primelist[i].Agency_status == 1){
+							htmlstr +='<td>정상</td></tr>';
+						}else if(json.primelist[i].Agency_status == 2){
+							htmlstr +='<td>예약가능</td></tr>';
+						}else if(json.primelist[i].Agency_status == 3){
+							htmlstr +='<td>예약불가</td></tr>';
+						}
+					}
+					
+					$("#primetbody").html(htmlstr);
+					$("#bsh_span_button").empty();
+					htmlstr = '';
+					
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="boardprime(1);">&lt;&lt;</button>';
+					
+					if(page == 1){
+						htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&lt;</button>';
+					}else{
+						htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="'+boardprime(page-1)+'">&lt;</button>';
+					}
+					
+					htmlstr += '&nbsp; <a style="color:red;">1</a> &nbsp;';
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="">></button>';
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="">>></button>';
+					
+									
+					$("#bsh_span_button").html(htmlstr);
+
+					},
+				error:function(){
+					alert("프라임 로드 실패");
+				}
+			});
+		};
+
+	
 
 </script>
 
@@ -86,40 +171,26 @@
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
-				<table style="border: 1px solid black; width: 100%;">
-					<thead style="border: 1px solid black;">
+				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 50%;">제목</th>
-							<th style="border: 1px solid black; width: 5%;">지역</th>
-							<th style="border: 1px solid black; width: 5%;">구분</th>
-							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
-							<th style="border: 1px solid black; width: 5%;">상태</th>
+							<th style="width: 5%;">종류</th>
+							<th style="width: 50%;">제목</th>
+							<th style="width: 5%;">지역</th>
+							<th style="width: 5%;">구분</th>
+							<th style="width: 10%;">금액</th>
+							<th style="width: 10%;">등록날짜</th>
+							<th style="width: 10%;">시작날짜</th>
+							<th style="width: 5%;">상태</th>
 						</tr>
 
 					</thead>
-					<tbody>
-						<%
-							for (int i = 0; i < 10; i++) {
-						%>
-						<tr>
-							<%
-								for (int j = 0; j < 8; j++) {
-							%>
-							<td><%=i%>,<%=j%></td>
-							<%
-								}
-							%>
-						</tr>
-						<%
-							}
-						%>
+					<tbody id="primetbody">
+						
 					</tbody>
 				</table>
 
-				<span class="bsh_span_button">
+				<span class="bsh_span_button" id="bsh_span_button">
 					<button>&lt;&lt;</button>
 					<button>&lt;</button> 
 						1 2 3 4 5 6 7 8 9 0
@@ -162,15 +233,16 @@
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
 								<select id="loc" name="loc">
-									<option value="%" selected="selected">전체</option>
+									<option value="" selected="selected">전체</option>
 								</select>
 							</td>
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
 								<select id="state" name="state">
-									<option value="정상" selected="selected">정상</option>
-									<option value="예약가능">예약가능</option>
-									<option value="예약불가">예약불가</option>
+									<option value="" selected="selected">전체</option>
+                           			<option value="1">정상</option>
+									<option value="2">예약가능</option>
+									<option value="3">예약불가</option>
 								</select>
 							</td>
 						</tr>
@@ -195,31 +267,32 @@
 							<td class="td_mid" colspan="2"><input type="text" id="searchtext" class="textbox_comm" placeholder="검색단어"></td>
 							<td class="td_end">
 								<input type="hidden" id="page" name="page" value="1">
-								<input id="bshsearch" type="button" value="Search">
+								<input class="btn-info" id="bshsearch" type="button" value="Search">
 							</td>
 						</tr>
 					</table>
 				</form>
 			</div>
 			<div class="board_div_maincontent">
-				<h2>${board.link2_no }</h2><br>
+				<h2>${board.link2_no }<button class="btn btn-info" onclick="fnBoardWriteForm();" style="float:right;">글 쓰기</button></h2><br>
 				
-				<table style="border: 1px solid black; width: 100%;">
-					<thead style="border: 1px solid black;">
+				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 45%;">제목</th>
-							<th style="border: 1px solid black; width: 5%;">지역</th>
-							<th style="border: 1px solid black; width: 5%;">구분</th>
-							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
-							<th style="border: 1px solid black; width: 10%;">상태</th>
+							<th style="width: 5%;">종류</th>
+							<th style="width: 45%;">제목</th>
+							<th style="width: 5%;">지역</th>
+							<th style="width: 5%;">구분</th>
+							<th style="width: 10%;">금액</th>
+							<th style="width: 10%;">등록날짜</th>
+							<th style="width: 10%;">시작날짜</th>
+							<th style="width: 10%;">상태</th>
 						</tr>
 
 					</thead>
 					<tbody>						
 						<c:forEach var="board" items="${boardlist }">
+							<c:if test="${board.agency_status != 4}">
 							<tr>
 							<td>
 							<c:set var="tf" value="${board.agency_type }"/>
@@ -234,7 +307,10 @@
 							<a href="BoardDetail.go?BoardNo=${board.agency_no }">${board.agency_title }</a>
 							</td>
 							<td>
-							${board.agency_loc }
+							<%-- ${board.agency_loc } --%>
+							
+							<c:set var="substrloc" value="${board.agency_loc }"/>
+							<c:out value="${fn:substring(substrloc,0,2) }"/>
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>
@@ -250,13 +326,13 @@
 							${board.agency_pay }
 							</td>
 							<td>
-							${board.agency_startdate }
-							</td>
-							<td>
 							${board.agency_enrolldate }
 							</td>
 							<td>
-							<c:set var="tf" value="${board.agency_paytype }"/>
+							${board.agency_startdate }
+							</td>
+							<td>
+							<c:set var="tf" value="${board.agency_status }"/>
 							<c:if test="${tf eq '1' }">
 								정상
 							</c:if>
@@ -272,19 +348,20 @@
 							<%-- ${board.agency_status } --%>
 							</td>
 							</tr>
+							</c:if>
 						</c:forEach>
 						
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
+					<button style="border-style:none; border:1px solid #e7e7e7; background: white;" onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
 					<c:set var="currentpage" value="${pageNum }"/>
 					<c:if test="${currentpage eq '1'}">
-						<button>&lt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != '1'}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage <=5}">
@@ -324,20 +401,51 @@
 					</c:if>
 						
 					<c:if test="${currentpage eq agencycount}">
-						<button>&gt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&gt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != agencycount}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
+						<button  style="border-style:none; border:1px solid #e7e7e7; background: white;" onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
-					
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
+					  
+					<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
 				</span>
 			</div>
-
+			<input type="hidden" id="ukjae_userid" value="${loginUser.member_id}">
+			<input type="hidden" id="ukjae_userwritecount" value="${loginUser.member_write_count}"> 
 		</div>
 	</div>
-
+	<script type="text/javascript">
+	function fnBoardWriteForm(){
+        if('${loginUser eq null}' == 'true'){
+           alert(" 로그인 후 이용해주세요.");         
+        }else{
+           var v1 = $("#ukjae_userid").val();
+           var v2 = $("#ukjae_userwritecount").val();
+           
+           $.ajax({
+              url : "ukjaeServiceForm.go",
+              type : "post",
+              data : {
+                 memberid : v1,
+                 write_count : v2 
+              }, 
+              success : function(data){
+                 
+                 if(data=="0"){
+                    alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
+                 }else if(data=="1"){
+                    location.href="ukjaeServiceForm2.go?memberid="+v1;
+                 }
+              },
+              error:function(a,b,c){
+                 alert(a + ", " + b + ", " + c);
+              }   
+           });
+        }
+     }
+	
+	</script>
 
 </body>
 </html>

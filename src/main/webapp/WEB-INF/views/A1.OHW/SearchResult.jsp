@@ -24,7 +24,7 @@
 		height:300px;
 		margin:0px;
 		padding:0px;
-		background:gray;
+		background:white;
 	}
 	
 	.ohw-agency-title > a {
@@ -35,6 +35,26 @@
 	.ohw-agency-title > a:hover {
 		text-decoration:none;
 		color:purple;
+	}
+	
+	.ohw-search-sidebar-table {
+		width:100%;
+		text-align:center;
+		overflow:hidden;
+	}
+	
+	a {
+		text-decoration:none !important;
+		color:black !important;
+	}
+	
+	.ohw-search-itemicon {
+		width:41px;
+		height:36px;
+	}
+	
+	.ohw-search-list {
+		vertical-align:middle !important;
 	}
 		
 </style>	
@@ -86,6 +106,43 @@
 		location.href="headerSearch.go?searchKeyword="+searchKeyword+"&curMasterPage="+masterPage+"&curSlavePage="+slavePage;
 		return true;
 	}
+	
+	/* SearchSideBarAjax */
+	$(function(){
+		var SessionId = $(".ohw-sidebar-hidden").val();
+		$.ajax({
+		   	url:"searchSidebar.go",
+		   	type:"POST",
+		   	data:{SessionId : SessionId}, 
+		   	dataType:"json",
+		   	success:
+		   		function(data) {
+		   			var jsonStr = JSON.stringify(data);
+					var json = JSON.parse(jsonStr);
+					var sideBarList = "";											
+					
+					for(var i in json.sideBarList){				
+						sideBarList += 
+									'<tr>' + 										 
+										'<td>' + 
+											'<a href = "InsertViewHistory.go?AgencyNo=' + json.sideBarList[i].agency_no + '&SessionId=' + json.sideBarList[i].SessionId + '">' + 
+												'<h5><i class = "fa fa-clock-o"></i> ' + (i * 1 + 1 * 1) + '. ' + json.sideBarList[i].agency_title + '</h5>' + 
+											'</a>' + 
+										'</td>' + 									 
+									'</tr>'
+					}
+					
+					$('.ohw-search-sidebar-table').append(sideBarList);							
+				}, 
+			error : function(request, status, errorData) {
+						console.log("Error Code : " + request.status + "\n"
+						+ "Message : " + request.responseText + "\n"
+						+ "Error : " + errorData);
+			}
+		});
+	});
+	/* SearchSideBarAjax End */	
+	
 </script>
 
 <div class="container">	            
@@ -102,7 +159,7 @@
 					<tr>
 						<td><label></label></td>						
 						<td>
-							<input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly>						
+							<input type = "hidden" class = "ohw-hidden-get" value = "${ searchResult.searchKeyword }" name = "searchKeyword" readonly>
 						</td>
 						<td>제목</td>
 						<td>글쓴이</td>
@@ -110,14 +167,24 @@
 					</tr>
 					<c:forEach var="searchMasterResult" items="${ searchResult.searchMasterList }">						
 						<tr>
-							<td>${ searchMasterResult.agency_no }</td>
-							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "BoardDetail.go?BoardNo=${ searchMasterResult.agency_no }">${ searchMasterResult.agency_title }</a></td>							
-							<td>
-								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif"> 
+							<td class = "ohw-search-list">${ searchMasterResult.agency_no }</td>
+							<td class = "ohw-search-list ohw-search-itemicon">
+								
+							</td>
+							<td class = "ohw-search-list ohw-agency-title">
+								<c:if test="${ searchMasterResult.itemfilename ne null }">									
+									<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchMasterResult.itemfilename }"> &nbsp;								
+								</c:if>
+								<c:if test="${ searchMasterResult.itemfilename eq null }">
+									&nbsp; &nbsp; &nbsp;					
+								</c:if>
+								<a href = "InsertViewHistory.go?AgencyNo=${ searchMasterResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchMasterResult.agency_title }</a>
+							</td>							
+							<td class = "ohw-search-list">
+								<img src = "/goodluck/resources/common/img/level/lv${ searchMasterResult.score_buy_rate }.gif">
 								${ searchMasterResult.agency_writer }
 							</td>
-	         				<td>${ searchMasterResult.agency_enrolldate }</td>
+	         				<td class = "ohw-search-list">${ searchMasterResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -176,25 +243,13 @@
 			</td>
 			<td valign = "top" rowspan = "5">				
 				<div class="ohw-search-sidebar">
-					<table>
+					<table class = "ohw-search-sidebar-table">
 						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-						</tr>
+							<td align = "center" colspan = "2">
+								<h3>최근에 본 글</h3>
+								<input type = "hidden" class = "ohw-sidebar-hidden"  value = "${ loginUser.member_id }" name = "SessionId">							
+							</td>
+						</tr>												
 					</table>
 				</div>				
 			</td>			
@@ -216,11 +271,21 @@
 					</tr>
 					<c:forEach var="searchSlaveResult" items="${ searchResult.searchSlaveList }">
 						<tr>
-							<td>${ searchSlaveResult.agency_no }</td>
-							<td><img src = ""></td>
-							<td class = "ohw-agency-title"><a href = "BoardDetail.go?BoardNo=${ searchSlaveResult.agency_no }">${ searchSlaveResult.agency_title }</a></td>
-							<td><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
-							<td>${ searchSlaveResult.agency_enrolldate }</td>
+							<td class = "ohw-search-list">${ searchSlaveResult.agency_no }</td>
+							<td class = "ohw-search-list ohw-search-itemicon">
+								
+							</td>
+							<td class = "ohw-search-list ohw-agency-title">
+								<c:if test="${ searchSlaveResult.itemfilename ne null }">									
+									<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchSlaveResult.itemfilename }"> &nbsp;								
+								</c:if>
+								<c:if test="${ searchSlaveResult.itemfilename eq null }">
+									&nbsp; &nbsp; &nbsp;					
+								</c:if>
+								<a href = "InsertViewHistory.go?AgencyNo=${ searchSlaveResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchSlaveResult.agency_title }</a>
+							</td>
+							<td class = "ohw-search-list"><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
+							<td class = "ohw-search-list">${ searchSlaveResult.agency_enrolldate }</td>
 						</tr>
 					</c:forEach>
 					<tr>

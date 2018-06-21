@@ -424,10 +424,6 @@
 	</head>
 	<body>
 		<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-		${Board}//
-		${Chat.CHATROOM_NO}//
-		${writer}//
-		${Cateinfo}
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
@@ -478,7 +474,8 @@
 			                                        <td>오너의 구매점수</td>
 			                                        <td class="uk_level">
 			                                        
-			                                        ${writer.SCORE_BUY} 포인트 
+			                                       <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
+			                                        
 			                                        
 			                                        </td>
 			                                    </tr>
@@ -556,7 +553,9 @@
 
 			
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
+
 <div class="chat_window">
+
 				<div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>
@@ -597,7 +596,7 @@
 							<div class="col-md-6" style="width: 100%; padding: 0;">
 					    	<div class="well well-sm" style="padding: 26px; margin: 0;">
 					            <div class="text-right" align="center">
-<button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
+<button id="ukapplybtn" class="btn btn-danger" data-target="#cjsModalLabel">
 		수행 포기
 		</button>
 					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">

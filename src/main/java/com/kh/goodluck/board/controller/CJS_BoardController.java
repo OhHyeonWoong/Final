@@ -22,13 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.Board;
-import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.KaKaoMessage;
 import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.Chat;
+import com.kh.goodluck.chat.model.ChatDetail;
+import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.kakaoAPI.renew;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -46,10 +49,14 @@ public class CJS_BoardController {
 	private renew Retoken = new renew();
 	
 	@Autowired
+	private ItemService ItemService;
+	
+	@Autowired
 	private MemberService memberService;
 	
 	@Autowired
 	private BoardService boardservice;
+	
 	public CJS_BoardController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,6 +76,7 @@ public class CJS_BoardController {
 				int result=boardservice.IncreaseViewCount(pk);
 				//2: 해당 보드 객체를 가지고 가기.
 				Board bo=boardservice.getBoardInfoByNo(pk);
+				
 				System.out.println(bo.toString());
 				//2.1 lonk2의pk로 보드의 최하위 스몰카테고리 조회수+1 
 				boardservice.IncreasesSMALLCATEGORYCOUNT(Integer.parseInt(bo.getLink2_no()));
@@ -89,10 +97,13 @@ public class CJS_BoardController {
 				 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 
 				 * CATEGORY_MID_NAME=홈, CATEGORY_SMALL_NAME=파티, 
 				 * LINK1_NO=1, LINK2_NO=1]
-				 * */
-			    mv.addObject("keywords",keywords);
+				 * */	
 				mv.addObject("Cateinfo",gcfbd);
+				List<Allance> allance=boardservice.getallancelist();
+				mv.addObject("allance",allance);
+			    mv.addObject("keywords",keywords);
 				mv.addObject("Board",bo);
+				mv.addObject("filename",ItemService.getUsingemticonfilename(bo.getAgency_writer()));
 				mv.setViewName("A5.CJS/boarddetail");
 				return mv;	
 			//}
@@ -195,13 +206,13 @@ public class CJS_BoardController {
     	
     	System.out.println("예비인력으로써 업데이트 >result1="+result1);
 		}
-		response.sendRedirect("lbjmypage.go?member_id="+memberid);
 		writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
 			KaKaoMessage.setBoardtitle("예비 지원자가 나타났습니다.");
 		   try {
 			   if(writer.getMember_accesstoken().equals("")) {
 					writer.setMember_accesstoken("22");
-					writer.setMember_refreshtoken("22");}
+					writer.setMember_refreshtoken("22");
+					}
 				} catch (NullPointerException e) {
 				writer.setMember_accesstoken("22");
 				writer.setMember_refreshtoken("22");
@@ -281,32 +292,29 @@ public class CJS_BoardController {
 			HttpServletResponse response
 	) throws IOException  
 	    {
-		if(boardservice.getAgencyStatus(pk)==4) {
-			mv.setViewName("A5.CJS/ErrorPage2");
-			return mv;
-		}else {
-	
-	
-		//받는정보. 딱1개 > 보드번호
+		List<Allance> allance=boardservice.getallancelist();
 		Member member=null;
+		Board bo=boardservice.getBoardInfoByNo(pk);
+		if(bo.getAgency_status()==4) {
+		member=(Member)session.getAttribute("loginUser");
+		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
+		return null;
+		}else {
+	    //받는정보. 딱1개 > 보드번호
 		if(session.getValue("loginUser") != null) {
 		//맴버 아이디에 아이콘을 같이 가져가기.
 		member=(Member)session.getAttribute("loginUser");
 		}else {
 		mv.setViewName("A5.CJS/ErrorPage2");
 		return mv;
-		//추후수정
-		//정상적인 경로를 이용해주세요라고 경고띄움.
 		}
 		//현재 페이지를 보는 사람의 입장을 고려.
 		//본인이 글작성자인지, 서비스제공자인제 어떻게 확인할것인가? 
-		Board bo=boardservice.getBoardInfoByNo(pk);
 		HashMap<Object,Object> map=new HashMap<Object,Object>();
 		map.put("AGENCY_NO",pk);
 		map.put("memberid",member.getMember_id());
 		Memberandscore writer = new Memberandscore();
-		
-	    //상대방의 정보 가져가야함.
+		//상대방의 정보 가져가야함.
 	 	if(boardservice.getrelation(map)==1) {
 	    //로그인 유저는 일반지원자  >> 상대방 정보는 작성자의 정보를 가져가야함.
 	 	writer=memberService.searchmemberInfobyBoardNo(pk);	//<<-게시글의 작성자 정보추출 	
@@ -329,6 +337,7 @@ public class CJS_BoardController {
 		}
 		GetCategoryForBoardDetail gcfbd=boardservice.gcfbd(Integer.parseInt(bo.getLink2_no()));
 		mv.addObject("Cateinfo",gcfbd);
+		writer.setEmoticonfile(ItemService.getUsingemticonfilename(writer.getMember_id()));
 		mv.addObject("Board",bo);
 		mv.addObject("writer",writer);
 		try {
@@ -336,15 +345,15 @@ public class CJS_BoardController {
 		}catch (Exception e) {
 		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}
-		if((Chat)boardservice.getChatInfoByMap(map) != null)
-		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
+		
+		Chat ca=(Chat)boardservice.getChatInfoByMap(map);
+		mv.addObject("Chat",ca);
+		mv.addObject("ChatLog",(List<ChatDetail>)boardservice.getChatLogByroomNo(ca.getCHATROOM_NO()));
 	
+		mv.addObject("allance",allance);
 		return mv;
 	}
-	}
-	
-	
-	
+}
 	@RequestMapping("cancelagency.go")
 	public String cancelagency(@RequestParam("BoardNo") int pk, 
 			HttpSession session,

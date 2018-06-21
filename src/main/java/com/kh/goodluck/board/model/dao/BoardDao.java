@@ -9,11 +9,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
-import com.kh.goodluck.board.model.vo.Chat;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
@@ -23,9 +23,13 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
-
-
+import com.kh.goodluck.chat.model.Chat;
+import com.kh.goodluck.chat.model.ChatDetail;
   
+/**
+ * @author jiseok
+ *
+ */
 @Repository("boardDao")
 public class BoardDao {
 	
@@ -127,26 +131,53 @@ public class BoardDao {
 		return sqlSession.selectList("search", map);
 	}
 	
+	public List<Board> primebig(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primebig", map);
+	}
+
+	public List<Board> primemid(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primemid", map);
+	}
+
+	public List<Board> primesma(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primesma", map);
+	}
+	
+	public int primesmacount(HashMap<Object, Object> map) {
+			
+		return sqlSession.selectOne("primesmacount",map);
+	}
+
+	public int primemidcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primemidcount",map);
+	}
+	
+	public int primebigcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primebigcount",map);
+	}
+	
+	
+	
+	
 	public Board getBoardInfoByNo(int pk) {
 		// 보드pk로 보드 정보구하기.
 		return sqlSession.selectOne("getBoardInfoByNo",pk);
 	}
-
-
 
 	public int IncreaseViewCount(int pk) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("IncreaseViewCount",  pk);
 	}
 
-
-
 	public GetCategoryForBoardDetail GetCategoryForBoardDetail(int pk) {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("GetCategoryForBoardDetail",pk);
 	}
-
-
 
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
 	return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
@@ -167,10 +198,6 @@ public class BoardDao {
 
 
 
-	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getChatInfoByMap",map);
-	}
 
 
 
@@ -311,6 +338,19 @@ public class BoardDao {
 		return sqlSession.selectOne("ukjaepickupBoard", inputBoard);
 	}
 	
+
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return sqlSession.selectOne("ukjaeCheckUserWritingCount", memberid);
+	}
+	  
+
+	public String ukjaepickUpCategoryRealName(SmallCategory s1) {
+		//욱재작업
+		return sqlSession.selectOne("ukjaepickCateName", s1);
+	}
+
+	
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
 		return sqlSession.selectOne("Alter_Before_Agecnycheck", agency_no);
@@ -342,14 +382,6 @@ public class BoardDao {
 		//TradeDeatil에 현재상황을 등록하기 
 		return sqlSession.insert("RegistTradeInfo", inputBoard);
 	}
-
-
-
-
-
-
-
-
 
 	//made by lbj
 	public int selectMyBoardListCount(String member_id) {
@@ -414,6 +446,41 @@ public class BoardDao {
 	public List<MyPageApplyBoard> selectMyWriteCandidate(HashMap<Object, Object> map6) {
 		return sqlSession.selectList("selectMyWriteCandidate", map6);
 	}
+	
+	public int insertViewHistory(HashMap<String, Object> sendMap) {
+		return sqlSession.insert("insertViewHistory", sendMap);
+	}
+
+	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getChatInfoByMap", map);
+	}
+
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return sqlSession.insert("insertintoChatDetail", cd);
+	}
+
+
+
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getChatLogByroomNo", chatroom_NO);
+	}
+
+
+
+	public List<Allance> getallancelist() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getallancelist");
+	}
+
+
+
+
+
+
+
 
 
 

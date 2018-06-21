@@ -251,7 +251,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	<update id="updateaccessToken" parameterType="Hashmap" >
 	update member set
 	MEMBER_ACCESSTOKEN = #{key}
-	where MEMBER_ID = #{member_id}
+	where MEMBER_ID = #{memberid}
 	</update>
 	
 	<insert id="insertScore" parameterType="member">
@@ -281,7 +281,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	
 	<insert id="insertLbjMilegePayLog" parameterType="java.util.HashMap">
 		<![CDATA[
-			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},'gkffhqnd',#{adminCash},sysdate)
+			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},#{member_id},#{member_cash},sysdate)
 		]]>
 	</insert>
 	
@@ -290,11 +290,59 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 			update member
 			set member_cash = member_cash + #{adminCash}
 			where member_id = #{member_id}
-		]]>
+		]]>   
 	</update>
 	
 	<update id="ukjaeWriteCountOneMinus" parameterType="String" flushCache="true" >
 		<![CDATA[update member set member_write_count=member_write_count-1 where member_id=#{loginUser}]]>
 	</update>
+	
+	<update id="updateUserKakaoToken" parameterType="java.util.HashMap">
+		<![CDATA[
+			update member 
+			set MEMBER_REFRESHTOKEN = #{refresh_token},
+			    MEMBER_ACCESSTOKEN = #{access_token},
+			    MEMBER_KAKAOIDPK = #{kakaopk}
+			where member_id = #{member_id}
+		]]>
+	</update>
 	  
+	<select id="ukjaewritingUserCashCheck" parameterType="String" resultType="int">
+		<![CDATA[select member_cash from member where member_id=#{loginUser}]]>
+	</select>  
+	
+	<update id="ukjaewritingUserCashUpdate" parameterType="Member" flushCache="true">
+		<![CDATA[update member set member_cash=#{member_cash} where member_id=#{member_id}]]>
+	</update>
+	
+	<insert id="insertDBDummyData" parameterType="Board">
+		<![CDATA[
+			insert into agency values ((select max(agency_no)+1 from agency),#{agency_writer},#{agency_title},#{link2_no},
+			#{agency_type},#{agency_loc},#{agency_startdate},#{agency_enddate},sysdate,#{agency_paytype},#{agency_pay},
+			#{agency_status},#{agency_content},default,#{agency_keyword},null)
+		]]>
+	</insert>
+	
+	<insert id="insertDBTrade" parameterType="int">
+		<![CDATA[
+			insert into trade_detail values ((select max(trade_no)+1 from trade_detail),#{no},null,null,null,null)
+		]]>
+	</insert>
+	
+	<insert id="insertMemberDummy" parameterType="Member">
+		<![CDATA[
+			insert into member values (#{member_id},'1234',#{member_name},#{member_email},#{member_address},#{member_phone},
+			#{member_regident_number},default,sysdate,sysdate,sysdate,default,#{member_status},null,
+			default,null,null,null,default)
+		]]>
+	</insert>
+	 <select id="selectMyReview" parameterType="string" resultType="MyReview">
+	 	<![CDATA[
+	 		select ac.agency_title,rv.review_content,rv.REVIEW_DATE
+			from agency ac,agencylog al,review rv
+			where rv.agencylog_no = al.agencylog_no and al.agencylog_trade = ac.agency_no
+			and ac.agency_writer = #{member_id}
+	 	]]>
+	 
+	 </select>
 	</mapper>

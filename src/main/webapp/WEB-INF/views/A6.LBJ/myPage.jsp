@@ -890,7 +890,72 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
+			<!-- <h1><a href="lbjInsertDBDummyData.go">DB에 더미 데이터 만들기</a></h1> -->
 			<h2 style="text-align:left;">마이페이지</h2>
+			<hr>
+			<span style="font-size:18pt;">
+			<table style="width:100%;">
+				<tr>
+					<td style="width:40%;">카톡 메시지 이용하기</td>
+					<td style="width:57%; text-align:center;"><a id="custom-login-btn" href="javascript:loginWithKakao()">
+								<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+								</a></td>
+				</tr>
+			</table>
+			</span>
+								<script type='text/javascript'>
+								  //<![CDATA[
+								    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+								    Kakao.init('bf5af5f0ced1be9895cf0308cdc121a4');
+								   
+								    
+								    function loginWithKakao() {
+								      // 로그인 창을 띄웁니다.
+								
+								      Kakao.Auth.loginForm({
+								        success: function(authObj) {
+								          console.log(authObj); 
+								        var access_token=authObj.access_token;
+								        var refresh_token=authObj.refresh_token;
+								          Kakao.API.request({
+								              url: '/v1/user/me',
+								              success: function(res) {
+								           	var json = JSON.parse(JSON.stringify(res));
+								              var nickname=json.properties.nickname;
+								              var email=json.kaccount_email;
+								              var pk=json.id;
+								           
+								              $.ajax({
+								            	  url:"lbjKakaoTokenUpdate.go",
+								            	  data:
+								            	  {name:nickname,
+								            	   email:email,
+								            	   access_token:access_token,
+								              refresh_token:refresh_token,
+								              kakaopk:pk,
+								              member_id: '${loginUser.member_id}'
+								            	   },success:function(data){
+								            		   alert(data);
+								            		   if(data == '카톡 인증 성공!'){
+								            			   window.history.go(0);   
+								            		   }
+								            		   
+								            	   }
+								              })
+								              
+								              },
+								              fail: function(error) {
+								                alert(JSON.stringify(error));
+								              }
+								            });
+								        },
+								        fail: function(err) {
+								          alert(JSON.stringify(err));
+								        }
+								      });
+								    };
+								  //]]>
+								</script>
 			<hr>
 			<!---------------- 전동기 수정 부분 : 나의 정보 -------------------------------------->
 		 	<div>
@@ -1267,11 +1332,11 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 							<td>${myBoardHistory.agency_title}</td>
 							<td>${myBoardHistory.trade_applicant}</td>
 							<td>
-								<c:if test="${myBoardHistory.agency_paytype eq 1}">
-									일급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								<c:if test="${myBoardHistory.agency_type eq 1}">
+									<font style="color:red;">- ${myBoardHistory.agency_pay}</font>
 								</c:if>
-								<c:if test="${myBoardHistory.agency_paytype eq 2}">
-									시급: <font style="color:red;">${myBoardHistory.agency_pay}</font>
+								<c:if test="${myBoardHistory.agency_type eq 2}">
+									<font style="color:blue;">+ ${myBoardHistory.agency_pay}</font>
 								</c:if>
 							</td>
 							<td>${myBoardHistory.agencylog_date}</td>
@@ -1328,6 +1393,33 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					<!-- 컬럼6개 -->
 					<!-- <tr><td>매칭완료</td><td>강아지 출장미용 합니다 연락주세요</td><td>2018/04/12</td></tr>
 					<tr><td>거절</td><td>인테리어 합니다</td><td>2018/05/15</td></tr> -->
+				</table>
+			</div>
+			<!-- 새로 추가  끝 -->
+			<hr>
+			<h3 class="lbjh3" id="lbjMyReviewView">내가 쓴 후기</h3>
+			<div class="lbjdiv" id="lbjMyReviewDiv">
+				<table class="table table-striped lbjtable" id="lbjMyReviewTable">
+					<tr><th class="lbjth">글 제목</th><th class="lbjth" colspan="4">후기 내용</th><th class="lbjth">후기 쓴 날짜</th></tr>
+					<c:forEach items="${lbjMyReview}" var="myReview">
+						<tr>
+							<td class="lbjth">
+								${myReview.agency_title}
+							</td>
+							<td class="lbjth" colspan="4">${myReview.review_content}</td>
+							<td class="lbjth">${myReview.review_date}</td>
+						</tr>
+					</c:forEach>
+					<tr><td colspan="6"><font color="red" size="4"><b>1</b></font>&nbsp;</td></tr>
+				</table>
+			</div>
+			<!-- 새로 추가  끝 -->
+			<hr>
+			<h3 class="lbjh3" id="lbjMyMoneyCharge">내 충전 내역</h3>
+			<div class="lbjdiv" id="lbjMyReviewDiv">
+				<table class="table table-striped lbjtable" id="lbjMyReviewTable">
+					<tr><th class="lbjth">일자</th><th class="lbjth">액수</th><th class="lbjth">잔액</th></tr>
+					
 				</table>
 			</div>
 			<!-- 새로 추가  끝 -->

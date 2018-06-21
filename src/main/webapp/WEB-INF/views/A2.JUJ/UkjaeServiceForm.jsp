@@ -110,7 +110,7 @@ function sample4_execDaumPostcode() {
             // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
             if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                 extraRoadAddr += data.bname;
-            }
+            }    
             // 건물명이 있고, 공동주택일 경우 추가한다.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
@@ -163,10 +163,16 @@ function sample4_execDaumPostcode() {
 
 					</div>
 	            </div>
-				
+				   
 				<div class="row">
 							<div align="center">
 								<input type="hidden" value="${loginUser.member_id}" name="loginUserId">
+								<p style="border: 1px dotted gray; padding: 0; width: 330px !important;" align="center">
+								<b><font size="3">서비스 유형선택</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<b>구해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="1">&nbsp;&nbsp; &nbsp;&nbsp;
+								<b>제공해요</b>&nbsp;&nbsp;<input type="radio" name="ukwritetype" value="2"> 
+								</p>
+								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">								
 								<p><b>제목</b>&nbsp;&nbsp; <input type="text" style="width: 250px;" name="servicetitle" id="ServiceTitle"> </p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p><b>분류</b>&nbsp;&nbsp;
@@ -193,9 +199,9 @@ function sample4_execDaumPostcode() {
 								</p>
 								<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 90%;">
 								<p align="center">
-									<label for="username">주소입력</label>
+									<label for="username" style="margin-top: 5px;">주소입력</label>
 									<br>
-									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 90px !important; padding-left: 10px;" ><br><br>
+									<input type="text" id="sample4_postcode" placeholder="우편번호" style="width: 85px !important; padding-left: 12px;" ><br><br>
 									<span class="input-group-btn">					
 									<a class="btn btn-default" onclick="sample4_execDaumPostcode()"><i class = "fa fa-search"></i> 우편번호 검색</a>
 									</span>
@@ -237,14 +243,18 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 40%;">	
 										<table>
 											<tr align="center">
-								 				<Td><p style="width: 30px; height: 20px; background-color: red;" /><Br>빨</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="red"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: blue;" /><Br>파</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="blue"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: green;" /><Br>초</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="green"></Td>
+								 				<Td><p style="width: 30px; height: 20px; background-color: red;" /><Br>빨</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#FF0000"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: blue;" /><Br>파</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#0100FF"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: green;" /><Br>초</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#009300"></Td>
 											</tr>
 											<tr  align="center">
-												<Td><p style="width: 30px; height: 20px; background-color: yellow;" /><Br>노</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="yellow"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: pink;" /><Br>핑</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="pink"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: orange;" /><Br>오</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="orange"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: yellow;" /><Br>노</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#EDD200"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: pink;" /><Br>핑</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#DBB4B4"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: orange;" /><Br>오</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#FFBB00"></Td>
+											</tr>
+											<tr><td colspan="6"></td></tr>
+											<tr align="center">
+												<Td style="padding: 0;" colspan="6"><b>적용안함</b><input type="radio" name="title_color" value="2" style="margin-left: 10px;"></Td>
 											</tr>
 										</table>
 										<br>
@@ -256,10 +266,13 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<tr align="center">
-								 				<Td style="padding: 2px;"><font size="4">가</font></td><Td><input type="radio" name="title_size" value="size='4'"></Td>
-												<Td style="padding: 2px;"><font size="5">가</font></td><Td><input type="radio" name="title_size" value="size='5'"></Td>
-												<Td style="padding: 2px;"><font size="6">가</font></td><Td><input type="radio" name="title_size" value="size='6'"></Td>
+								 				<Td style="padding: 2px;"><font size="4">가</font></td><Td><input type="radio" name="title_size" value="4"></Td>
+												<Td style="padding: 2px;"><font size="5">가</font></td><Td><input type="radio" name="title_size" value="5"></Td>
+												<Td style="padding: 2px;"><font size="6">가</font></td><Td><input type="radio" name="title_size" value="6"></Td>
 											</tr>
+											<tr align="center">  
+												<Td style="padding: 0;" colspan="6"><b>적용안함</b><input type="radio" name="title_size" value="2" style="margin-left: 10px;"></Td>
+											</tr>													
 										</table>
 										<br>										
 									</c:if>
@@ -269,7 +282,7 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<!-- 0이면 굵기지정 적용X / 1이면 굵기지정적용O -->
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_bold" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_bold" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="2"></td></tr>
 										</table>
 										<br>
 									</c:if>
@@ -278,7 +291,7 @@ function sample4_execDaumPostcode() {
 										<b>[보유 아이템]</b><b>게시글 프리미엄 등록을 하시겠습니까?</b>
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_premium" value="1"></td><td>No&nbsp;<input type="radio" name="title_premium" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_premium" value="1"></td><td>No&nbsp;<input type="radio" name="title_premium" value="2"></td></tr>
 										</table>	
 										<br>
 									</c:if>
@@ -330,10 +343,9 @@ function sample4_execDaumPostcode() {
 					 detailCount++;
 					 console.log(detailCount+"번째 키워드 추가완료");
 					}else{
-							alert("기본 키워드 개수는 3개입니다");
+					 alert("기본 키워드 개수는 3개입니다");
 					}
 				} 	
-	       
 	            function removeDetail(a){
 	            	$("#"+a.id).remove();
 	            	detailCount--;
@@ -357,11 +369,11 @@ function sample4_execDaumPostcode() {
 							<div class="receipt-left">
 								<input type="submit" value="등록완료">&nbsp;
 								<input type="button" value="등록취소" onclick="alllistreturn();">
-								
+								  
 								<script type="text/javascript">
 										$(function(){
 											$('#uk_bigSort').change(function(){				
-												var select = $('#uk_bigSort').val();
+												/* var select = $('#uk_bigSort').val();
 												if(select==1){
 													alert("생활역영역 선택");
 												}else if(select==2){
@@ -378,7 +390,7 @@ function sample4_execDaumPostcode() {
 													alert("프리랜서역영역 선택");													
 												}else if(select==8){
 													alert("반려동물역영역 선택");													
-												}
+												} */
 
 												$.ajax({
 													url : "midcategorylist.go",

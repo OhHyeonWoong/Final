@@ -368,72 +368,9 @@
 	</head>
 	<body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
+  
+<script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
 
-
-		<script type="text/javascript">
-			(function () {
-			    var Message;
-			    Message = function (arg) {
-			        this.text = arg.text, this.message_side = arg.message_side;
-			        this.draw = function (_this) {
-			            return function () {
-			                var $message;
-			                $message = $($('.message_template').clone().html());
-			                $message.addClass(_this.message_side).find('.text').html(_this.text);
-			                $('.messages').append($message);
-			                return setTimeout(function () {
-			                    return $message.addClass('appeared');
-			                }, 0);
-			            };
-			        }(this);
-			        return this;
-			    };
-			    $(function () {
-			        var getMessageText, message_side, sendMessage;
-			        message_side = 'right';
-			        getMessageText = function () {
-			            var $message_input;
-			            $message_input = $('.message_input');
-			            return $message_input.val();
-			        };
-			        sendMessage = function (text) {
-			            var $messages, message;
-			            if (text.trim() === '') {
-			                return;
-			            }
-			            $('.message_input').val('');
-			            $messages = $('.messages');
-			            message_side = message_side === 'left' ? 'right' : 'left';
-			            message = new Message({
-			                text: text,
-			                message_side: message_side
-			            });
-			            message.draw();
-			            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-			        };
-			        $('.send_message').click(function (e) {
-			            return sendMessage(getMessageText());
-			        });
-			        $('.message_input').keyup(function (e) {
-			            if (e.which === 13) {
-			                return sendMessage(getMessageText());
-			            }
-			        });
-			        sendMessage('안녕하세요 신청합니다.');
-			        setTimeout(function () {
-			            return sendMessage('네 반갑습니다.');
-			        }, 1000);
-			        		        
-			        return setTimeout(function () {
-			            return sendMessage('불고기 레시피에 대하여 자세하게 배우고싶습니다');
-			        }, 2000);
-			    });
-			}.call(this));	
-		</script> <!-- 채팅화면 채팅실행 스크립트 -->	
-		${Board}//
-		${Chat.CHATROOM_NO}//
-		${writer}//
-		${Cateinfo}
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
@@ -451,17 +388,107 @@
 			                                    <tbody>
 			                    <tr>
 			                    <td rowspan="8" width="200">
-			                     <c:choose>
+			                  <c:choose>
 			                    <c:when test="${writer.member_renamephoto ne null }">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/${writer.member_renamephoto}" alt="이미지준비중" width="150" height="200">
+			                   	<c:set var="cattingimg" value="${writer.member_renamephoto}" />
 			                	</c:when>
 			                    <c:when test="${writer.member_renamephoto eq null && gender eq 1}">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/3425dffawdsf.png" alt="이미지준비중" width="150" height="200">
+			                	<c:set var="cattingimg" value="3425dffawdsf.png" />
 			                	</c:when>
 			                    <c:when test="${writer.member_renamephoto eq null && gender eq 0}">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/36452465356743f.png" alt="이미지준비중" width="150" height="200">
+			                	<c:set var="cattingimg" value="36452465356743f.png" />
 			                	</c:when>
 			                   </c:choose>
+<script type="text/javascript" >
+var chatSock = null;
+var message = {};
+
+  $(document).ready(function(){
+       
+  	chatSock = new SockJS("/goodluck/echo-ws");
+  	
+  	chatSock.onopen = function(evt) {
+          
+  		message={};
+          message.message = "dd";
+          message.type = "join";
+          //본인의 아이디.
+          message.to = "${Chat.CHATROOM_NO}//${loginUser.member_id}";
+          chatSock.send(JSON.stringify(message));
+      };
+          
+chatSock.onmessage = function(evt) {
+var z="";
+var testValue = evt.data;
+var iValue = testValue.indexOf("<li class='message right  appeared'>");
+if(iValue == -1){
+//없을경우에는
+z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
+}else{
+//있을경우에	
+z=evt.data;
+}
+  console.log(z);
+    	  $("ul[class=messages]").append(z);
+          $("ul[class=messages]").append("<br />");
+          $("ul[class=messages]").scrollTop(99999999);
+      
+      };
+       
+//       chatSock.onclose = function() {
+//       
+//           // sock.send("채팅 종료.");
+//       }
+       
+       $("#message").keydown(function (key) {
+           if (key.keyCode == 13) {
+              $("#sendMessage").click();
+           }
+        });
+       
+       $("#sendfn").click(function() {
+     	  $.ajax({
+     			url:"insertchattinglog.go",
+     			data:{
+     				ORDER:'${loginUser.member_id}',
+     				NO:'${Chat.CHATROOM_NO}',
+     				CONTENT:$("#messagecont").val()
+     			},
+     			  success:function(data){
+     				  if( $("#messagecont").val() != "") {
+     			             message={};
+     			              message.message = $("#messagecont").val();
+     			              message.type = "all";
+     			              message.to = "all";
+     			              
+     			              
+     			              //받는사람.
+     			              if("${loginUser.member_id}"=="${Chat.CHATROOM_ORDER}")
+     			              var to ="${Chat.CHATROOM_NO}//${Chat.CHATROOM_APPLICANT}";
+     			              else
+     			              var to ="${Chat.CHATROOM_NO}//${Chat.CHATROOM_ORDER}";
+     			              
+     			              if ( to != "") {
+     			                  message.type = "one";
+     			                  message.to = to;
+     			              }
+     			               
+     			              chatSock.send(JSON.stringify(message));
+     			             // $("#chatMessage").append("나 ->  " + $("#message").val() + "<br/>");
+     			              $("#chatMessage").scrollTop(99999999);
+     			               
+     			              $("#message").val("");
+     			          }
+     		  },error:function(a,b,c){
+ 					alert("a : " + a + ", b : " + b + ", c : " + c);
+ 				}
+     	  })
+     	});
+  });
+</script>			                 
 			                   </td>
 			                   <td style="width: 60%;">
 			                  <table class="table table-condensed table-responsive table-user-information">
@@ -471,25 +498,37 @@
 			                    
 			                     <c:choose>
 			                     <c:when test="${Board.agency_type eq 1}">  
-			                     <td>오너</td>
-			                                        <td>${writer.member_id}</td>
+			                     
+			                  <td>오너</td>
+			                  
+			                  <td>
+			                  <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>
+
+			                  ${writer.member_id}
+			                  
+			                  </td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>오너의 활동 점수</td>
 			                                        <td class="uk_level">
-			                                        ${writer.SCORE_BUY} 포인트 
+			                                        <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
+			                                        
 			                                       </td>
 			                     </c:when>
 			                     
 			                     <c:when test="${Board.agency_type eq 2}"> 
 			                     <td>서비스 제공자</td>
-			                                        <td>${writer.member_id}</td>
+			                                        <td>   <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>노예의  봉사단계</td>
 			                                        <td class="uk_level">
+			            <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
 			                                        
-			                                        ${writer.SCORE_SELL_RATE} 단계
 			                                       </td>
 			                     </c:when>
 			                     </c:choose>    
@@ -588,7 +627,7 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항  </h2><Br>
+					<h2> 주 의 사 항 </h2><Br>
 						<div class="row">
 					  
 					        <ul>
@@ -617,24 +656,53 @@
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
 
 			<div class="chat_window">
-				<div class="top_menu">
+<table style="width: 100%">
+<tr style="height:10%;"><td><div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>
 						<div class="button minimize"></div>
 						<div class="button maximize"></div>
 					</div>					
 				<div class="title">채팅서비스</div>
-				</div>
-				
-				<ul class="messages"></ul>
-				<div class="bottom_wrapper clearfix">
+				</div></td></tr>
+<tr style="height: 78%;"><td>
+<ul class="messages">
+<c:forEach items="${ChatLog}" var="i">
+<c:if test="${i.CHATDEATIL_MEMBER == loginUser.member_id}">
+<li class="message right  appeared">
+<div class="text_wrapper">
+<div class="text">${i.CHATDEATIL_CONTENT }</div>
+</div>
+</li>
+</c:if>
+<c:if test="${i.CHATDEATIL_MEMBER != loginUser.member_id}">
+<li class="message left appeared">
+<div class="avatar">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}" style="width: 50px; height: 50px;"> 
+</div><div class="text_wrapper"> 
+<div class="text">${i.CHATDEATIL_CONTENT }</div></div></li>
+</c:if>
+
+</c:forEach>
+<hr>
+</ul></td></tr>
+<tr style="height: 10%;"><td>	<div class="bottom_wrapper clearfix">
 					<div class="message_input_wrapper">
-						<input class="message_input" placeholder="메세지를 입력해주세요." />
+						<input class="message_input" id="messagecont" placeholder="메세지를 입력해주세요." />
 					</div>
 					
-					<div class="send_message">
+					<div class="send_message" id="sendfn">
 					<div class="icon"></div>
-					<div class="text">Send</div></div></div></div>
+					<div class="text">Send</div></div></div></td>
+	</tr>
+</table>
+				
+				
+				
+			
+					
+					
+					</div>
 					
 				<div class="message_template">
 				
@@ -672,7 +740,7 @@
 					     
 					</c:when>
  <c:when test="${Board.agency_type eq 2}">  
- <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white;">
+ <button id="ukapplybtn" class="btn btn-danger" data-target="#cjsModalLabel">
  지원자 교체
 </button>
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
@@ -692,8 +760,8 @@
 					                <div class="col-md-12">
 					                    <form accept-charset="UTF-8" action="finishBoard.go" method="post">
 					                        <input id="ratings-hidden" name="rating" type="hidden" value="1"> 
-					                        <input id="sdfxx" name="BoardNo" type="hidden" value="${Board.agency_no}">
-					                        <input id="sdfxx" name="memberid" type="hidden" value="${Board.agency_writer}">
+					                        <input  name="BoardNo" type="hidden" value="${Board.agency_no}">
+					                        <input  name="memberid" type="hidden" value="${Board.agency_writer}">
 					                        
 					                        <textarea class="form-control animated"  cols="500" id="new-review" name="review" placeholder="지원자를 평가해주세요~^^" rows="100"></textarea>
 											<br>
@@ -884,17 +952,32 @@
 		
 <script type="text/javascript" 
 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services,clusterer,drawing"></script>
+<style type="text/css">
+  .wrap {display:none;    position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5; }
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+    </style>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
     center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level:5// 지도의 확대 레벨
+    level: 4 // 지도의 확대 레벨
 };  
 var geocoder = new daum.maps.services.Geocoder();
 var coords="";
 var coords1="";
 geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
-
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
 
@@ -906,7 +989,7 @@ geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
      var circle = new daum.maps.Circle({
     	    center : coords,  // 원의 중심좌표 입니다 
     	    radius: 50, // 미터 단위의 원의 반지름입니다 
-    	    strokeWeight: 2, // 선의 두께입니다 
+    	    strokeWeight: 5, // 선의 두께입니다 
     	    strokeColor: '#75B8FA', // 선의 색깔입니다
     	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
     	    strokeStyle: 'dashed', // 선의 스타일 입니다
@@ -918,68 +1001,73 @@ geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
     	circle.setMap(map); 
 });
 
-
-// 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
 
-// 주소-좌표 변환 객체를 생성합니다
+var  positions =  [];
+var  zero= {};
+var i=0;
+<c:forEach var="a" items="${allance}" varStatus="status">
+geocoder.addressSearch('${a.ALLIANCE_LOC}', function(result, status) {
+if (status === daum.maps.services.Status.OK) {
+	coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+	zero={content : 
+		    '<div class="wrap" id='+i+' onclick="closeOverlay(this.id)">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            <center>${a.ALLIANCE_NAME} <center>' + 
+            '            <div class="close"  title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' +
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">${a.ALLIANCE_LOC}</div>' + 
+            '                <div><a href="${a.ALLIANCE_URL}" target="_blank" class="link">홈페이지</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>', latlng:coords1};
+    positions.push(zero);
+    i++;
+    console.log(${fn:length(allance)});
+    console.log(i);
+    if(${fn:length(allance)}==i){
+    	console.log(positions.length);
+    	mapst();
+    }  
+   }
+})
+</c:forEach>
+    function mapst(){
+      for (var i = 0; i < positions.length; i ++) {
+    	  var content = positions[i].content;
+    	
+    
 
-
-
-// 제휴사들 가져와서 넣기@@@@@@@
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
-    // 정상적으로 검색이 완료됐으면 
-     if (status === daum.maps.services.Status.OK) {
-
-        coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
-        console.log("coords1="+coords1);
-        var positions = [
-            {
-                content: '<div text-align:"center">카카오</div>', 
-                latlng: coords1
-            }
-        ];
-
-        for (var i = 0; i < positions.length; i ++) {
-            // 마커를 생성합니다
-            console.log(positions);
-            var marker = new daum.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng // 마커의 위치
-            });
-
-            // 마커에 표시할 인포윈도우를 생성합니다 
-            var infowindow = new daum.maps.InfoWindow({
-                content: positions[i].content // 인포윈도우에 표시할 내용
-            });
-
-            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-            (function(marker, infowindow) {
-                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-                daum.maps.event.addListener(marker, 'mouseover', function() {
-                    infowindow.open(map, marker);
-                });
-
-                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-                daum.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
-                });
-            })(marker, infowindow);
-        }    
-        
-        
-    } 
-});
-
-
-
-
-
-
-
-
+		            // 마커를 생성합니다
+		          
+		            var marker = new daum.maps.Marker({
+		                map: map, // 마커를 표시할 지도
+		                position:positions[i].latlng // 마커의 위치
+		               
+		            });
+		            var overlay = new daum.maps.CustomOverlay({
+		                content: content,
+		                map: map,
+		                position: marker.getPosition()
+		            });
+		         
+    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+    daum.maps.event.addListener(marker, 'click', function() {
+    	 $('.wrap').show();   
+        overlay.setMap(map);
+    });
+      }    
+            
+    };
+    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+    function closeOverlay(i) {
+    	
+    	 $('#'+i).hide();     
+    }
 </script>
 		
 	</body>

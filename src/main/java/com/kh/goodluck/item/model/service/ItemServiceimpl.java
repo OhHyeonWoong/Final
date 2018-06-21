@@ -315,5 +315,17 @@ public List<ITEMLIST> allitemlist2(HashMap<Object, Object> map) {
 		return itemlistDao.getmixicon(map);
 	}
 
+	@Override
+	public String getUsingemticonfilename(String member_id) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getUsingemticonfilename(member_id);
+	}
+
+	@Override
+	public ItemNotice getitemnoticeDetail(int pk) {
+		// TODO Auto-generated method stub
+		return itemlistDao.getitemnoticeDetail(pk);
+	}
+
 	
 }

@@ -19,7 +19,6 @@
 	.coupon #head {
 	    border-top-left-radius: 10px;
 	    border-top-right-radius: 10px;
-	    min-height: 56px;
 	}
 	
 	.coupon #footer {
@@ -172,25 +171,25 @@
 				//alert("${checkpart2}");
 				
 			"<c:if test='${checkpart2 eq "반려"}'>";
-			/* $("body").css("background-size","cover");
-			$("body").css("background-image","url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed"); */
+			$(".panel-title").css("background-size","cover");
+			$(".panel-title").css("background-image","url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed"); 
 			
 			"</c:if>";
 			 
 			"<c:if test='${checkpart2 eq "여행"}'>";
-				$("body").css("background-image","url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg)");
+				$(".panel-title").css("background-image","url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg)");
 			"</c:if>";
 			
 			"<c:if test='${checkpart2 eq "게임"}'>";
-				$("body").css("background-position","50% 50%");
-				$("body").css("background-size","cover");
-				$("body").css("background-image","url(https://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg)");
+				$(".panel-title").css("background-position","50% 50%");
+				$(".panel-title").css("background-size","cover");
+				$(".panel-title").css("background-image","url(https://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg)");
 			"</c:if>";
 			
 			"<c:if test='${checkpart2 eq "생활"}'>";
 					
-			$("body").css("background-size","100%");
-			$("body").css("background-image","url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG)");
+			$(".panel-title").css("background-size","100%");
+			$(".panel-title").css("background-image","url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG)");
 			"</c:if>";
  		});
  	</script>
@@ -200,8 +199,8 @@
 		<div class="container" align="center">
 		        <div class="col-md-6 col-md-offset-3">
 		            <div class="panel panel-primary coupon">
-		              <div class="panel-heading" id="head">
-		                <div class="panel-title" id="title" align="center">
+		              <div class="panel-heading" id="head" style="padding: 0;">
+		                <div class="panel-title" id="title" align="center" style="padding: 0; height: 100%;">
 		                   <i class="fa fa-github fa-2x" style="font-size: 48px;"></i>&nbsp;<font size="5"> ${selectNews.osp_news_datatitle}	</font> <!-- 글제목 -->	
 		                </div>
 		              </div>
@@ -235,44 +234,119 @@
 		                <div class="exp">출처 : ${selectNews.osp_news_origin} <!-- 출처 --> </div>
 		              </div>
 		            </div>
+		            
+		        <input type="hidden" id="" value="">
+		        <input type="hidden" id="" value="">
+     			<script type="text/javascript">
+     			$(function(){
+     					$.ajax({
+     						url : "startDatalistGet.go", 
+     						type : "post", 
+     						data : {
+     							news_datano : "${selectNews.osp_news_datano}",
+     							news_area : "${selectNews.osp_news_data}"
+     						}, 
+     						success : function(data){
+     							var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+     							var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+     							var firstrow = "";
+     							
+     							for(var i in json.petNewsCommentlist){
+     								firstrow += "<tr style='border:1px solid blue;'><td style='padding: 30px;' colspan='6'>작성자 : "+json.petNewsCommentlist[i].pet_comment_writer+"&nbsp;&nbsp;&nbsp;"+
+     								"<input type='text' style='width: 520px; margin-right: 14px;' value='"+json.petNewsCommentlist[i].pet_comment_contents+"'>작성일 : "+json.petNewsCommentlist[i].pet_comment_writedate+"<Br>"+
+     								"<a href='javascript:SecondComment("+json.petNewsCommentlist[i].pet_comment_no+");' style='padding-left: 25px;'>댓글</a></td>"+
+     								"<td style='padding: 20px;'><input type='button' value='수정' style='margin-right: 15px;'><input type='button' value='삭제'><br></td>"+
+     								"</tr><tr><td style='height: 8px;'></td></tr> "
+     								}
+     							$('.DatGulOriginTabel').append(firstrow);
+     						},
+     						error : function(a,b,c){
+     							alert(a+","+b+","+c);
+     						}  
+     					});	
+     			});  
+     			</script>
+     			  
+				<script type="text/javascript">
+					function SecondComment(jung){
+	 					alert(jung);
+	 					
+	 					
+						$.ajax({
+							url : "comment_comment.go",
+	 						type : "post",
+							data : {
+								
+								news_datacommentno : jung,
+	 							news_datano : "${selectNews.osp_news_datano}",
+	 							news_area : "${selectNews.osp_news_data}"
+	 							
+	 						}
+						});
+						/* , 
+ 						success : function(data){
+ 							var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+ 							var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+ 							var firstrow = "";
+ 							
+ 							for(var i in json.petNewsCommentlist){
+ 								}
+ 						},
+ 						error : function(a,b,c){
+ 							alert(a+","+b+","+c);
+ 						}  */
+					}
+				</script>
+			     
+     
      
 		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
 		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>
 		        	<br>
+		        	<input type="hidden" id="WritingUserId" value="${loginUser.member_id}">
 		    		<table id="DatGulwrite" style="padding: 0;">
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><TextArea cols="80" rows="2"></TextArea></td>
-		    			<td style="padding: 10px;"><input type="button" value="등록"></td></tr>
-		    		</table>
+		    			<tr><td style="padding: 10px;">작 성 자 : ${loginUser.member_id}</td><td colspan="5" style="padding: 20px;"><TextArea id="ukjaeCommentContent" cols="80" rows="2" style="resize: none;"></TextArea></td>
+		    			<td style="padding: 10px;"><input type="button" value="등록" onclick="OriginCommentAdd(${selectNews.osp_news_datano});"></td></tr>
+		    		</table>  
+		    		<script type="text/javascript">
+		    			function OriginCommentAdd(data){
+		    				var comment = $("#ukjaeCommentContent").val();
+		    				var user = $("#WritingUserId").val();
+		    				
+		    				$.ajax({
+		    					url : "ukjaepet_Origincomment_add",
+		    					type : "post",
+		    					data : {
+		    						user_id : user,
+		    						comment_add_newsno : data,
+		    						commnet_contents : comment
+		    					},
+	     						success : function(data){
+									if(data=="1"){
+										alert("댓글등록에 성공하였습니다.");
+										location.href="petnewsdetail.go?newspk=${selectNews.osp_news_datano}";
+									}else if(data=="0"){
+										alert("댓글 등록에 실패하였습니다.");
+									}     			
+	     						},
+	     						error : function(a,b,c){
+	     							alert(a+","+b+","+c);
+	     						}  
+		    				}); 
+		    			}
+		    		
+		    		</script>
+		    		
 		    		
 		    		<hr style="clear: both;">
 		    		<table class="DatGulOriginTabel">
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
 
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
-
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
-
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
 		    		</table>
 		        </div>    
 		            
 		    	</div>
 
-		    	<script type="text/javascript">
-		    		$(function(){
-		    			$("#showDatGul").on("click",function(){
-		    				$("#DatGulwrite").show();	
-		    			});
-		    		});
-		    	</script>
+
 		    	
 		    	
 		    </div>

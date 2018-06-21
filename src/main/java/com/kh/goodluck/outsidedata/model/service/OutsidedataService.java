@@ -6,6 +6,7 @@ import java.util.List;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
 public interface OutsidedataService {
@@ -48,9 +49,7 @@ public interface OutsidedataService {
 	List<LifeNews> userSearchOrign2(LifeNews p02);
 	List<GameNews> userSearchOrign3(GameNews p03);
 	List<TravelNews> userSearchOrign4(TravelNews p04);
-
-
-	
+	  
 	//뉴스 상세보기(동물)
 	PetNews petNewsDetail(int petpk);
 	
@@ -62,6 +61,16 @@ public interface OutsidedataService {
 
 	//뉴스 상세보기(여행)
 	TravelNews travelNewsDetail(int travelpk);
+
+	//펫 뉴스영영 기사글에 댓글달기
+	int petCommentInput(PetNews_Comment pec);
+
+	//펫 뉴스영역 댓글데이터 끌어오기
+	List<PetNews_Comment> commentAlllistGet(int parsing_datano);
+
+
+
+
 
 
 

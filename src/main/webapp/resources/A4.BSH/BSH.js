@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	//alert("aaa");
 	/* 체크박스 라디오버튼화 */
 	$('input[type="checkbox"][name="group1"]').click(function() {
@@ -134,6 +135,10 @@ $(document).ready(function() {
 				searchstr+=$('#group3-1').val();
 			}else if($('#group3-2').prop('checked')){
 				searchstr+=$('#group3-2').val();
+			}else if($('#group3-3').prop('checked')){
+				searchstr+=$('#group3-3').val();
+			}else if($('#group3-4').prop('checked')){
+				searchstr+=$('#group3-4').val();
 			}
 			
 			/*searchstr+='&group4=';
@@ -148,35 +153,35 @@ $(document).ready(function() {
 			searchstr+='&searchtext='+$('#searchtext').val();
 			searchstr+='&page='+$('#page').val();
 			
-			if($('#bcate').val() == ""){
-				if($('#mcate').val() == ""){
-					if($('#scate').val() == ""){
-						alert("카테고리를 선택해주세요");
+			if($('#bcate').val() != ""){
+				if($('#mcate').val() != ""){
+					if($('#scate').val() != ""){
 						if($('#min').val()>$('#max').val()){
-							alert('최대,최소 금액을 확인해주세요');
+							alert('최대,최소 금액을 확인해주세요'+$('#min').val()+"aaaaaa"+$('#max').val());
+						}else{
+							location.href=searchstr;
 						}
 					}else{
 						if($('#min').val()>$('#max').val()){
-							alert('최대,최소 금액을 확인해주세요');
+							alert('최대,최소 금액을 확인해주세요2');
 						}else{
 							location.href=searchstr;
 						}
 					}
 				}else{
 					if($('#min').val()>$('#max').val()){
-						alert('최대,최소 금액을 확인해주세요');
+						alert('최대,최소 금액을 확인해주세요3');
 					}else{
 						location.href=searchstr;
 					}
 				}
 			}else{
+				alert("카테고리를 선택해주세요");
 				if($('#min').val()>$('#max').val()){
-					alert('최대,최소 금액을 확인해주세요');
-				}else{
-					location.href=searchstr;
+					alert('최대,최소 금액을 확인해주세요4');
 				}
 			}
-			
+						
 		})
 		
 		$("#bcate").change(function(){
@@ -276,54 +281,264 @@ $(document).ready(function() {
 			case "홈":
 				$(".smallspace").hide();
 				$("#smallspace").show();
+				
+				$("#파티").show();
+				$("#인테리어").show();
+				$("#청소").show();
+				$("#수리").show();
+				$("#증/개축").show();
 
 				
 				break;
 			case "푸드":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#한식").show();
+				$("#중식").show();
+				$("#양식").show();
+				$("#디저트").show();
+				$("#푸드-기타").show();
+
+				
 				break;
 			case "뷰티":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#헤어디자인").show();
+				$("#메이크업").show();
+				$("#패션").show();
+				$("#뷰티-기타").show();
+
 				break;
 			case "스포츠":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#실내스포츠").show();
+				$("#실외스포츠").show();
+				$("#항공레저").show();
+				$("#수상레저").show();
+				$("#지상레저").show();
+				$("#스포츠-기타").show();
+
 				break;
 			case "국내":
+				
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#국내-가이드").show();
+				$("#국내-운전기사").show();
+				$("#국내-플래너").show();
+
+				
 				break;
 			case "해외":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#해외-가이드").show();
+				$("#해외-운전기사").show();
+				$("#해외-통역").show();
+				$("#해외-플래너").show();
+
 				break;
 			case "악기":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#현악기").show();
+				$("#관악기").show();
+				$("#타악기").show();
+				$("#디제잉").show();
+				$("#악기-기타").show();
+
 				break;
 			case "보컬":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#보컬-오페라").show();
+				$("#보컬-뮤지컬").show();
+				$("#보컬-판소리").show();
+				$("#보컬-ROCK").show();
+				$("#보컬-RnB").show();
+				$("#보컬-힙합").show();
+				$("#보컬-기타").show();
+
 				break;
 			case "댄스":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#현대무용").show();
+				$("#고전무용").show();
+				$("#한국무용").show();
+				$("#발레").show();
+				$("#방송댄스").show();
+				$("#댄스-기타").show();
 				break;
 			case "작곡":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#작곡-발라드").show();
+				$("#작곡-RnB").show();
+				$("#작곡-댄스가요").show();
+				$("#작곡-트로트").show();
+				$("#작곡-록").show();
+				$("#작곡-힙합").show();
+				$("#작곡-기타").show();
 				break;
 			case "PC":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#PC-액션").show();
+				$("#PC-RPG").show();
+				$("#PC-FPS").show();
+				$("#PC-AOS").show();
+				$("#PC-아케이드").show();
+				$("#PC-레이싱").show();
+				$("#PC-스포츠").show();
+				$("#PC-시뮬레이션").show();
+				$("#PC-기타").show();
 				break;
 			case "콘솔":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#콘솔-액션").show();
+				$("#콘솔-RPG").show();
+				$("#콘솔-FPS").show();
+				$("#콘솔-AOS").show();
+				$("#콘솔-아케이드").show();
+				$("#콘솔-레이싱").show();
+				$("#콘솔-스포츠").show();
+				$("#콘솔-시뮬레이션").show();
+				$("#콘솔-기타").show();
 				break;
 			case "모바일":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#모바일-액션").show();
+				$("#모바일-RPG").show();
+				$("#모바일-FPS").show();
+				$("#모바일-AOS").show();
+				$("#모바일-아케이드").show();
+				$("#모바일-레이싱").show();
+				$("#모바일-스포츠").show();
+				$("#모바일-시뮬레이션").show();
+				$("#모바일-기타").show();
 				break;
 			case "게임기타":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#기타-액션").show();
+				$("#기타-RPG").show();
+				$("#기타-FPS").show();
+				$("#기타-AOS").show();
+				$("#기타-아케이드").show();
+				$("#기타-레이싱").show();
+				$("#기타-스포츠").show();
+				$("#기타-시뮬레이션").show();
+				$("#기타장르").show();
 				break;
 			case "렌트":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#주거용품").show();
+				$("#생활용품").show();
+				$("#스포츠용품").show();
 				break;
 			case "1인":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#애인대행").show();
+				$("#친구대행").show();
 				break;
 			case "다인":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#하객대행").show();
+				$("#방청객대행").show();
+				$("#엑스트라대행").show();
 				break;
 			case "프로그래머":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#C").show();
+				$("#C++").show();
+				$("#C#").show();
+				$("#Java").show();
+				$("#PHP").show();
+				$("#Node").show();
+				$("#프로그램-기타").show();
 				break;
 			case "디자이너":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#포토샾").show();
+				$("#일러스트레이트").show();
+				$("#디자인").show();
+				$("#디자이너-기타").show();
 				break;
 			case "작가":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#소설가").show();
+				$("#만화가").show();
+				$("#스토리작가").show();
+				$("#방송작가").show();
 				break;
 			case "번역":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#영어").show();
+				$("#중국어").show();
+				$("#일본어").show();
+				$("#러시아어").show();
+				$("#프랑스어").show();
+				$("#독일어").show();
+				$("#외국어-기타").show();
 				break;
 			case "강아지":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#강아지-미용").show();
+				$("#강아지-펫시터").show();
+				$("#강아지-행동교정").show();
+				$("#강아지-진료").show();
 				break;
 			case "고양이":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#고양이-미용").show();
+				$("#고양이-펫시터").show();
+				$("#고양이-행동교정").show();
+				$("#고양이-진료").show();
 				break;
 			case "반려동물기타":
+				$(".smallspace").hide();
+				$("#smallspace").show();
+				
+				$("#기타동물-미용").show();
+				$("#기타동물-펫시터").show();
+				$("#기타동물-행동교정").show();
+				$("#기타동물-진료").show();
 				break;
 			}
 		});

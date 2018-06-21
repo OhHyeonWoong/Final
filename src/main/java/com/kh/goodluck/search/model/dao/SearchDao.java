@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import com.kh.goodluck.search.model.vo.Search;
+import com.kh.goodluck.search.model.vo.SearchSideBar;
 
 @Repository("searchDao")
 public class SearchDao {
@@ -39,4 +40,11 @@ public class SearchDao {
 		return sqlSession.selectOne("headerSearchSlaveListCount", searchKeyword);
 	}
 
+	public List<SearchSideBar> searchSideBarList(String sessionId) {		
+		return sqlSession.selectList("searchSideBarList", sessionId);
+	}
+
+	public String itemIcon(String agencyWriter) {		
+		return sqlSession.selectOne("getSearchListItemIcon", agencyWriter);
+	}
 }

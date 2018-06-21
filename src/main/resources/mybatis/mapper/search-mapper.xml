@@ -16,7 +16,7 @@
 							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
 							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION, 
 							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, SCORE_BUY_RATE, 
-							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE 
+							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE
 					from AGENCY, SCORE
 					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
 					and agency_type = 1 
@@ -40,7 +40,7 @@
 							AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
 							AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION, 
 							MEMBER_ID, SCORE_BUY, SCORE_BUY_COUNT, SCORE_BUY_RATE, 
-							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE 
+							SCORE_SELL, SCORE_SELL_COUNT, SCORE_SELL_RATE
 					from AGENCY, SCORE
 					where AGENCY_TITLE like '%'||#{agency_title}||'%' 
 					and agency_type = 2 
@@ -68,6 +68,59 @@
 			where agency_title like '%'||#{ agency_title }||'%' 
 			and agency_type = 2 
 		]]>
-	</select>	
-
+	</select>
+	
+	<select id="searchSideBarList" parameterType="string" resultType="SearchSideBar">		
+		<![CDATA[
+			select * 
+			from ( select rownum as rn, VH.*
+			       from ( select VH_NO, viewhistory.MEMBER_ID, VH_DATE, 
+			                     agency.AGENCY_NO, agency.AGENCY_WRITER, AGENCY_TITLE, LINK2_NO, AGENCY_TYPE, 
+			                     AGENCY_LOC, AGENCY_STARTDATE, AGENCY_ENDDATE, AGENCY_ENROLLDATE, 
+			                     AGENCY_PAYTYPE, AGENCY_PAY, AGENCY_STATUS, AGENCY_CONTENT, 
+			                     AGENCY_VEIWS, AGENCY_KEYWORD, AGENCY_OPTION 
+			              from viewhistory, agency 
+			              where MEMBER_ID like #{ sessionId }
+			              and viewhistory.AGENCY_NO = agency.AGENCY_NO
+			              order by vh_no desc
+			            ) VH
+			      )
+			where rn <= 6
+		]]>		
+	</select>
+	
+	<select id="getSearchListItemIcon" parameterType="String" resultType="String">
+		<![CDATA[
+			select ITEMFILENAME 
+			from ITEMLIST
+			where ITEMLIST_NO = (
+				select ITEMLIST_NO
+				from MY_ITEM
+				where MYITEM_NO = (
+					select MYITEM_NO 
+					from (
+						select MYITEM_NO 
+						from (
+							select MYITEM_NO 
+							from USING_ITEM 
+							where MYITEM_NO 
+							in (
+								select MYITEM_NO 
+								from MY_ITEM 
+								where MEMBER_ID = #{ agencyWriter } 
+								and ITEMLIST_NO 
+								in (
+									select ITEMLIST_NO 
+									from itemlist 
+									where ITEMTYPE = 2 
+									and MYITEM_STATUS ! = 2
+								)
+							)
+						) order by rownum desc
+					) where rownum= 1
+				)
+			)
+		]]>
+	</select>
+	
 </mapper>

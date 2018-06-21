@@ -1,5 +1,7 @@
 package com.kh.goodluck.chat.controller;
  
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,11 +16,15 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.chat.model.MessageVO;
 import com.kh.goodluck.chat.model.SessionUser;
- 
+import com.kh.goodluck.chat.controller.SocketController;
+
 public class EcoHandler extends TextWebSocketHandler{
  
+
+	
     private Logger logger = LoggerFactory.getLogger(EcoHandler.class);
     /**
      * 서버에 연결한 사용자들을 저장하는 리스트
@@ -27,7 +33,7 @@ public class EcoHandler extends TextWebSocketHandler{
      
     private Map<String,WebSocketSession> mapUser;
     
-    
+    private 	SessionUser se;
     
     public EcoHandler() {
         connectedUsers = new ArrayList<SessionUser>();
@@ -62,7 +68,7 @@ public class EcoHandler extends TextWebSocketHandler{
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
          
-    	
+
     	MessageVO messageVo = MessageVO.converMessage(message.getPayload());
     	
     	SessionUser CurrentSessionUser =null;
@@ -70,37 +76,46 @@ public class EcoHandler extends TextWebSocketHandler{
     	if(messageVo.getType().equals("join")){
     		
     		mapUser.put(messageVo.getTo(), session);
-    		//essageVo.getTo()=>오너아이디.
+    		//messageVo.getTo()=>오너아이디.
     		System.out.println("messageVo.getTo()="+messageVo.getTo());
-    		System.out.println("session="+session);
-    		connectedUsers.add(new SessionUser(messageVo.getTo(),session)); //실제 조인이 들어오면 저장함.
+    		se=new SessionUser(messageVo.getTo(),session);
+    		connectedUsers.add(se); //실제 조인이 들어오면 저장함.
     		
     	}
     	
         for (SessionUser sessionUser : connectedUsers) {
         	
         	if(messageVo.getType().equals("join")){
-        		
-        		sessionUser.getSession().sendMessage(new TextMessage(messageVo.getTo() + "님이 접속하였습니다."));
+        	System.out.println("조인이 들어옴");
+        		//sessionUser.getSession().sendMessage(new TextMessage(messageVo.getTo() + "님이 접속하였습니다."));
         	}
         }
         
         if(messageVo.getType().equals("one")) {
     		
     		WebSocketSession sessioned = mapUser.get(messageVo.getTo());
-    		if ( sessioned != null) {
-	    		logger.info("원ㅇㅇㅇㅇㅇㅇㅇㅇ:"+session.getId());
-	    	
+    	if ( sessioned != null) {
 	    		//보내는사람
-	    session.sendMessage(new TextMessage(messageVo.getMessage()));
+session.sendMessage(new TextMessage("<li class='message right  appeared'><div class='text_wrapper'> <div class='text'>"+messageVo.getMessage()+"</div></div></li>"));
 	    		//받는사람
-	    sessioned.sendMessage(new TextMessage(messageVo.getMessage()));
+sessioned.sendMessage(new TextMessage(messageVo.getMessage()+"</div></div></li>"));
+
+//messageVo.getTo()  ->채팅방번호+받는이.     messageVo.getMessage()->내용.
+
+
+
     		} else {
+    		session.sendMessage(new TextMessage("<li class='message right  appeared'><div class='text_wrapper'> <div class='text'>상대가 존재하지않습니다.</div></div></li>"));
+    		//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
     		
-    			session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
-    			//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
+    		
     		}
-    	}
+    	
+    	
+    	
+    	
+    	
+       }
         
         logger.info(session.getId() + "님의 메시지 : " + message.getPayload());
         //System.out.println(session.getId() + "님의 메시지 : " + message.getPayload());
@@ -115,17 +130,17 @@ public class EcoHandler extends TextWebSocketHandler{
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	
-    	
-    	//connectedUsers.remove(new SessionUser("dd",session)); 이건나중에 ㄱㄱ
-       
-    	/*for(SessionUser sessionUser : connectedUsers) {
-    		
-    		sessionUser.getSession().sendMessage(new TextMessage(sessionUser.getTo() + "님이 퇴장했습니다."));	
-    		if(sessionUser.equals(session)) {
-    			logger.info(sessionUser.getTo() + "님이 퇴장했습니다.");
-    	        System.out.println(sessionUser.getTo() + "님이 퇴장했습니다.");
-    		}
-    	}*/
+
+        connectedUsers.remove(se);
+
+//    	for(SessionUser sessionUser : connectedUsers) {
+//    		
+//    		sessionUser.getSession().sendMessage(new TextMessage(sessionUser.getTo() + "님이 퇴장했습니다."));	
+//    		if(sessionUser.equals(session)) {
+//    			logger.info(sessionUser.getTo() + "님이 퇴장했습니다.");
+//    	        System.out.println(sessionUser.getTo() + "님이 퇴장했습니다.");
+//    		}
+//    	}
         logger.info(session.getId() + "님이 퇴장했습니다.");
         System.out.println(session.getId() + "님이 퇴장했습니다.");
     }

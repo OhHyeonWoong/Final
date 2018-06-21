@@ -485,7 +485,7 @@ for(var i=0; i<4; i++){//소모성 아이템부터
 			for(var j=0; j<4; j++){
 			if(Array4[i][j].selected==1){
 			value2+="<th class='itemth' style='border: 1px solid red;'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";		
-			$("#afterauserajaximg").attr("src","/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME);
+			$(".afterauserajaximg").attr("src","/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME);
 			}else if(Array4[i][j].ITEMFILENAME!=null)
 			value2+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";
 			else
@@ -761,7 +761,7 @@ $.ajax({
 					for(var j=0; j<4; j++){
 					if(Array4[i][j].selected==1){
 					value2+="<th class='itemth' style='border: 1px solid red;'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";		
-					$("#afterauserajaximg").attr("src","/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME);
+					$(".afterauserajaximg").attr("src","/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME);
 					}else if(Array4[i][j].ITEMFILENAME!=null)
 					value2+="<th class='itemth'><div class='product-div2' style='width:100%; height:100%;'><a id='"+Array4[i][j].MYITEM_NO+"' style='width:100%; height:100%;' class='imgbox' href='javascript:void(0);' onclick='useimticon(this); return false;'><img class='img-responsive cjstransition' style='width:100%; height:100%; background:white; border-radius: 10px 10px 10px 10px; border-color: black;' src='/goodluck/resources/A5.CJS/itemimg/"+Array4[i][j].ITEMFILENAME+"'><div class='text-view csjtransition' style='width:100%;height:100%;text-align:center;padding-top: 30%'>"+Array4[i][j].ITEMNAME+"</div></a></th></div>";
 					else
@@ -911,7 +911,7 @@ height: 78px;
 		</c:if>
 		</center>
 		<br>
-		아이디:<img id="afterauserajaximg" style="width:20px; height: 30px;">${loginUser.member_id}<br>
+		아이디:<img class="afterauserajaximg" style="width:20px; height: 30px;">${loginUser.member_id}<br>
 		회원님 이름 :${loginUser.member_name}<br>
 		보유  포인트 :${loginUser.member_cash} <br>
 		최대 게시글 수:<p id="keywordcount"></p>
@@ -919,8 +919,8 @@ height: 78px;
 		
 			
 		 	
-		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
-		<button>충전</button>
+		<button  class="btn btn-labeled btn-success" onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
+
 		<br>
 		  <%@ include file = "/WEB-INF/views/A5.CJS/test.jsp" %>
 	</div>

@@ -894,18 +894,8 @@
 		
 <div class="container">  			
 	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>			
-	<c:set var="ukjaelifeCarousel_basic" value="${ukjaelifeCarousel}"/>
-	
-	<%-- 
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/>		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> 	
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> 		
-	<c:set var="ukjaemainCarousel_basic" value="${ukjaemainCarousel}"/> --%>		
+	<c:set var="ukjaelifeCarousel_basic" value="${ukjaelifeCarousel}"/>	
+			
 	<div id="homeCarousel" class="ohw-homeCarousel carousel slide" data-ride="carousel" data-interval="false">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">

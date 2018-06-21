@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.goodluck.board.model.dao.BoardDao;
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
-import com.kh.goodluck.board.model.vo.Chat;
+
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.MyPageApplyBoard;
@@ -18,6 +19,8 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.ChatDetail;
+import com.kh.goodluck.member.model.vo.MyReview;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
@@ -92,6 +95,40 @@ public class BoardService {
 		return boardDao.search(map);
 	}
 
+	public List<Board> primebig(HashMap<Object, Object> map) {
+		
+		return boardDao.primebig(map);
+	}
+
+	public List<Board> primemid(HashMap<Object, Object> map) {
+		
+		return boardDao.primemid(map);
+	}
+
+	public List<Board> primesma(HashMap<Object, Object> map) {
+		
+		return boardDao.primesma(map);
+	}
+	
+
+	public int primebigcount(HashMap<Object, Object> map) {
+
+		return boardDao.primebigcount(map);
+	}
+
+	public int primemidcount(HashMap<Object, Object> map) {
+
+		return boardDao.primemidcount(map);
+	}
+
+	public int primesmacount(HashMap<Object, Object> map) {
+
+		return boardDao.primesmacount(map);
+	}
+	
+	
+	
+
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
@@ -150,6 +187,16 @@ public class BoardService {
 		return boardDao.ukjaegetServiceWriting(agency_no);
 	}
 	
+	public String ukjaepickUpCategoryRealName(SmallCategory s1) {
+		//욱재작업
+		return boardDao.ukjaepickUpCategoryRealName(s1);
+	}
+	
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return boardDao.ukjaeCheckUserWritingCount(memberid);
+	}
+	
 
 	public int ukjaeDeleteService(int parsing_no) {
 		//delete(삭제 버튼을 눌러 agency_status를 숨김으로 설정)
@@ -198,10 +245,7 @@ public class BoardService {
 		return  boardDao.insertchatroom(map);		
 	}
 
-	public Chat getChatInfoByMap(HashMap<Object, Object> map) {
-		// TODO Auto-generated method stub
-		return boardDao.getChatInfoByMap(map);
-	}
+
 
 	public int getrelation(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
@@ -353,6 +397,32 @@ public class BoardService {
 		return boardDao.selectMyWriteCandidate(map6);
 
 	}
+	
+	public int insertViewHistory(HashMap<String, Object> sendMap) {
+		return boardDao.insertViewHistory(sendMap);
+	}
+
+	public com.kh.goodluck.chat.model.Chat getChatInfoByMap(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		
+		return boardDao.getChatInfoByMap(map);
+	}
+
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return boardDao.insertintoChatDetail(cd);
+	}
+
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return boardDao.getChatLogByroomNo(chatroom_NO);
+	}
+
+	public List<Allance> getallancelist() {
+		// TODO Auto-generated method stub
+		return boardDao.getallancelist();
+	}
+
 
 
 }

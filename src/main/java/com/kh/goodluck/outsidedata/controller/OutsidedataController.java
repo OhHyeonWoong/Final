@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import com.kh.goodluck.outsidedata.model.service.OutsidedataService;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
 @Controller
@@ -401,7 +402,7 @@ public class OutsidedataController {
 			js.put("osp_news_origin", life1.get(i).getOsp_news_origin());
 			jarr.add(js);			
 		}
-		
+		  
 		json.put("LifeNewsOne", jarr);
 		//json2.put("LifeNewsTwo", jarr2);
 		PrintWriter out = response.getWriter();
@@ -532,7 +533,7 @@ public class OutsidedataController {
 	}
 	
 	@RequestMapping("petnewsdetail.go") //펫 뉴스 상세보기 
-	public ModelAndView LifeNewsDetail(@RequestParam("newspk") String pet_pk,ModelAndView mv) {
+	public ModelAndView LifeNewsDetail33(@RequestParam("newspk") String pet_pk,ModelAndView mv) {
 		int petpk = Integer.parseInt(pet_pk); //넘어온 파라미터를 파싱작업
 		//System.out.println("조회시도하는 글 번호 : "+petpk);
 		
@@ -542,6 +543,49 @@ public class OutsidedataController {
 		mv.setViewName("A2.JUJ/OutSideInFormation");
 		
 		return mv;		
+	}  
+	
+	@RequestMapping("ukjaepet_Origincomment_add") //펫 뉴스 상세보기 
+	public void ukjaePetnews_Origincomment_add(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String new_no = request.getParameter("comment_add_newsno");
+		String comment_contents = request.getParameter("commnet_contents");
+		String member_id = request.getParameter("user_id");
+		
+		System.out.println("글 작성자 : "+member_id);
+		System.out.println("댓글작성을 시도하는 뉴스의번호 : "+new_no);
+		int parsing_news_no = Integer.parseInt(new_no);
+		
+		System.out.println("댓글내용?? "+comment_contents);
+		
+		int pet_comment_status = 1;
+		
+		PetNews_Comment pec = new PetNews_Comment(pet_comment_status, comment_contents, member_id, parsing_news_no);
+		
+		int insertComment = outsidedataService.petCommentInput(pec);
+	
+		
+		PrintWriter out = response.getWriter();
+		if(insertComment>0) {
+			out.append("1");
+		}else if(insertComment<=0) {
+			out.append("0");				
+		}
+		
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("comment_comment.go")
+	public void ukjaePetnews_CommentAndCommnet_add(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		
+		String news_datacomment_no = request.getParameter("news_datacommentno"); //뉴스댓글번호PK
+		String news_datano = request.getParameter("news_datano"); //뉴스글번호
+		String news_area = request.getParameter("news_area"); //뉴스영역(반려동물,여행,게임,생활)
+		
+		System.out.println("뉴스댓글번호 : "+news_datacomment_no);
+		System.out.println("뉴스글 번호 : "+news_datano);
+		System.out.println("뉴스영역 : "+news_area);
+	
 	}
 	
 	@RequestMapping("animalNews.go")
@@ -576,6 +620,51 @@ public class OutsidedataController {
 			out.flush();
 			out.close();	
 		}	
+	
+	@RequestMapping("startDatalistGet.go")
+	public void startCommentDatago (HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String data_area = request.getParameter("news_area");
+		String data_no = request.getParameter("news_datano");
+		int parsing_datano = Integer.parseInt(data_no);
+		  
+		//System.out.println("news_area : "+data_area);
+		//System.out.println("news_datano : "+data_no);
+		
+		ArrayList<PetNews_Comment> pet = ((ArrayList<PetNews_Comment>) outsidedataService.commentAlllistGet(parsing_datano));
+		//System.out.println("pet.toString() : "+pet.toString());
+		
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(int i=0; i<pet.size(); i++) {
+			JSONObject js = new JSONObject();		
+			js.put("pet_comment_no", pet.get(i).getPet_comment_no());
+			js.put("pet_comment_status", pet.get(i).getPet_comment_status());
+			js.put("pet_comment_contents", pet.get(i).getPet_comment_contents());
+			js.put("pet_comment_writer", pet.get(i).getPet_comment_writer());
+			js.put("pet_comment_newsno", pet.get(i).getpet_comment_newsno());
+			js.put("pet_comment_writedate", pet.get(i).getPet_comment_writedate().toString());
+			jarr.add(js);
+		}
+		json.put("petNewsCommentlist", jarr);
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.print(json.toJSONString());
+		out.flush();
+		out.close();
+		
+		/*switch (key) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}
+		*/
+		
+	}
 	/* ************* End********************/		
 	
 

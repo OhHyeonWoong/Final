@@ -76,6 +76,12 @@ public class Member implements Serializable{
 				+ ", member_refreshtoken=" + member_refreshtoken + ", member_keyword_count=" + member_keyword_count
 				+ ", emoticonfile=" + emoticonfile + "]";
 	}
+	
+	public Member(String member_id, int member_cash) {
+		super();
+		this.member_id = member_id;
+		this.member_cash = member_cash;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

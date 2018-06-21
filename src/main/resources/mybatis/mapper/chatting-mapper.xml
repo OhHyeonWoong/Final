@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatting-mapper">
+
+		<resultMap type="Chat" id="Chat">
+		<id property="CHATROOM_NO" column="CHATROOM_NO"/>
+		<result property="CHATROOM_ORDER" column="CHATROOM_ORDER"/>
+		<result property="CHATROOM_APPLICANT" column="CHATROOM_APPLICANT"/>
+		<result property="AGENCY_NO" column="AGENCY_NO"/>
+	</resultMap>
+	
+	<resultMap type="ChatDetail" id="ChatDetail">
+		<id property="CHATDEATIL_NO" column="CHATDEATIL_NO"/>
+		<result property="CHATROOM_NO" column="CHATROOM_NO"/>
+		<result property="CHATDEATIL_CONTENT" column="CHATDEATIL_CONTENT"/>
+		<result property="CHATDEATIL_MEMBER" column="CHATDEATIL_MEMBER"/>
+		<result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
+	</resultMap>
+<select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
+select * from CHATROOM where AGENCY_NO= #{AGENCY_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
+</select>
+
+<insert id="insertintoChatDetail" parameterType="ChatDetail" >
+insert into CHATDEATIL values(
+(select max(CHATDEATIL_NO) from CHATDEATIL )+1,
+#{CHATROOM_NO},
+#{CHATDEATIL_CONTENT},
+#{CHATDEATIL_MEMBER},
+sysdate)
+</insert>
+<select id="getChatLogByroomNo" parameterType="int" resultMap="ChatDetail">
+select * from CHATDEATIL where CHATROOM_NO=#{chatroom_NO} order by CHATDEATIL_DATE
+</select>
+
+
+</mapper>
