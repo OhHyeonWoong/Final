@@ -339,7 +339,11 @@
 	</div>
 	<script type="text/javascript">
 		function fnBoardWriteForm(){
-			location.href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}";
+			if('${loginUser}' == null){
+				alert("로그인 하고 이용하세요.");
+			}else{
+				location.href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}";
+			}
 		}
 	</script>
 

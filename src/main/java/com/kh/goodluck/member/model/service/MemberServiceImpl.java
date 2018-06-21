@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
@@ -215,6 +216,23 @@ public class MemberServiceImpl implements MemberService{
 	public int updateUserKakaoToken(HashMap<Object, Object> map) {
 		//마이페이지에서 카카오인증을 위해 유저가 사용하는 메소드
 		return memberDao.updateUserKakaoToken(map);
+	}
+	
+	@Override
+	public int insertDBDummyData(Board board) {
+		// TODO Auto-generated method stub
+		return memberDao.insertDBDummyData(board);
+	}
+	
+	@Override
+	public int insertDBTrade(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.insertDBTrade(no);
+	}
+	
+	@Override
+	public int insertMemberDummy(Member m) {
+		return memberDao.insertMemberDummy(m);
 	}
 
 }	
