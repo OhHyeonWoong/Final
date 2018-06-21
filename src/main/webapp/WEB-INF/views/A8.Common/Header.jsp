@@ -279,6 +279,22 @@
 		display:none;
 	}
 	
+	a {
+		cursor:pointer !important;
+		text-decoration:none !important;
+		color:black !important;
+	}
+	
+	a:hover {
+		cursor:pointer !important;
+		text-decoration:none !important;
+		color:#f8251b !important;
+		transition-property:color;
+		transition-duration:1.0s;
+	}
+	
+	
+	
 </style>
 
 <script type="text/javascript">
