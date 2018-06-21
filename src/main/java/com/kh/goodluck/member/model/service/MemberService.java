@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
@@ -55,6 +56,10 @@ public interface MemberService {
 	public abstract int ukjaeuserCashMinus(Member updatemember);
 
 	public abstract int updateUserKakaoToken(HashMap<Object, Object> map);
+	
+	public abstract int insertDBDummyData(Board board);
+	public abstract int insertDBTrade(int no);
+	public abstract int insertMemberDummy(Member m);
 
 
   

@@ -339,7 +339,6 @@
 				url:"lbjlogout1.go",
 				success:function(data){
 					alert(data);
-					Kakao.Auth.logout();
 					window.history.go(0);
 				},
 				error:function(a,b,c){
