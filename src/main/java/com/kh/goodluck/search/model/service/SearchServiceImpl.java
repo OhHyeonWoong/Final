@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.goodluck.search.model.dao.SearchDao;
 import com.kh.goodluck.search.model.vo.Search;
+import com.kh.goodluck.search.model.vo.SearchSideBar;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService {
@@ -33,6 +34,9 @@ public class SearchServiceImpl implements SearchService {
 	
 	public int searchSlaveListCount(String searchKeyword) {
 		return searchDao.searchSlaveListCount(searchKeyword);
-	}	
+	}
 	
+	public List<SearchSideBar> searchSideBarList(String sessionId) {
+		return searchDao.searchSideBarList(sessionId);
+	}	
 }
