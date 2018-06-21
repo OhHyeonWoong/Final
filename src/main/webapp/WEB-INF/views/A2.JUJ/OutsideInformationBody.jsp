@@ -234,6 +234,29 @@
 		                <div class="exp">출처 : ${selectNews.osp_news_origin} <!-- 출처 --> </div>
 		              </div>
 		            </div>
+		            
+		        
+     			<script type="text/javascript">
+     				$(function(){
+     					$.ajax({
+     						url : "startDatalistGet.go", 
+     						type : "post", 
+     						data : {
+     							news_datano : "${selectNews.osp_news_datano}",
+     							news_area : "${selectNews.osp_news_data}"
+     						}
+     						/*, 
+     						success : function(data){
+     							
+     						},
+     						error : function(a,b,c){
+     							alert(a+","+b+","+c);
+     						} */
+     					});	
+     				});
+     			</script>
+     
+     
      
 		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
 		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>

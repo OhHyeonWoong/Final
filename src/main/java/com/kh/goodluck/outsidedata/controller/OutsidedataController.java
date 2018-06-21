@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -608,6 +608,50 @@ public class OutsidedataController {
 			out.flush();
 			out.close();	
 		}	
+	
+	@RequestMapping("startDatalistGet.go")
+	public void startCommentDatago (HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String data_area = request.getParameter("news_area");
+		String data_no = request.getParameter("news_datano");
+		int parsing_datano = Integer.parseInt(data_no);
+		  
+		//System.out.println("news_area : "+data_area);
+		//System.out.println("news_datano : "+data_no);
+		
+		ArrayList<PetNews_Comment> pet = ((ArrayList<PetNews_Comment>) outsidedataService.commentAlllistGet(parsing_datano));
+		
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(int i=0; i<pet.size(); i++) {
+			JSONObject js = new JSONObject();		
+			js.put("pet_comment_no", pet.get(i).getPet_comment_no());
+			js.put("pet_comment_status", pet.get(i).getPet_comment_status());
+			js.put("pet_comment_contents", pet.get(i).getPet_comment_contents());
+			js.put("pet_comment_writer", pet.get(i).getPet_comment_writer());
+			js.put("pet_comment_newsno", pet.get(i).getpet_comment_newsno());
+			js.put("pet_comment_writedate", pet.get(i).getPet_comment_writedate());
+			jarr.add(js);
+		}
+		json.put("petNewsCommentlist", jarr);
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.print(json.toJSONString());
+		out.flush();
+		out.close();
+		
+		/*switch (key) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}*/
+		
+		
+	}
 	/* ************* End********************/		
 	
 

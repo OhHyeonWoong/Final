@@ -138,6 +138,11 @@ public class OutsidedataDao {
 	public int petCommentInput(PetNews_Comment pec) {
 		//펫 뉴스영영 기사글에 댓글달기
 		return sqlSession.insert("petnewsCommentAdd", pec);
+	}
+
+	public List<PetNews_Comment> commentAlllistGet(int parsing_datano) {
+		//펫 뉴스영역 댓글데이터 끌어오기
+		return sqlSession.selectList("petCommentDatalist", parsing_datano);
 	}	
 }
 

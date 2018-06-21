@@ -36,14 +36,23 @@
    		<result property="osp_news_origin" column="osp_news_origin"/>
 	</resultMap> 
 	
-	<!-- <resultMap type="PetNews_Comment" id="PetNewsList">
-   		<result property="osp_news_datano" column="osp_news_datano"/>
-   		<result property="osp_news_data" column="osp_news_data"/>
-   		<result property="osp_news_datatitle" column="osp_news_datatitle"/>
-   		<result property="osp_news_content1" column="osp_news_content1"/>
-   		<result property="osp_news_content1" column="osp_news_content1"/>
-   		<result property="osp_news_content1" column="osp_news_content1"/>
-	</resultMap> -->	
+	<resultMap type="PetNews_Comment" id="PetNewsCommentList">
+   		<result property="pet_comment_no" column="pet_comment_no"/>
+   		<result property="pet_comment_status" column="pet_comment_status"/>
+   		<result property="pet_comment_writer" column="pet_comment_writer"/>
+   		<result property="pet_comment_newsno" column="pet_pet_comment_newsno"/>
+   		<result property="pet_comment_writedate" column="pet_comment_writedate"/>
+	</resultMap> 
+	
+	<resultMap type="PetNews_Comment" id="PetNewsCommentOne">
+   		<id property="pet_comment_no" column="pet_comment_no"/>
+   		<result property="pet_comment_status" column="pet_comment_status"/>
+   		<result property="pet_comment_writer" column="pet_comment_writer"/>
+   		<result property="pet_comment_newsno" column="pet_pet_comment_newsno"/>
+   		<result property="pet_comment_writedate" column="pet_comment_writedate"/>
+	</resultMap> 
+	
+
 	
 	<select id="petNewsList" resultMap="PetNewsList">
 		<![CDATA[select * from (select rownum rnum,osp_news_datano,osp_news_data,osp_news_datatitle,
@@ -78,6 +87,12 @@
 		<![CDATA[insert into outside_pet_newscomment values((select max(pet_comment_no)+1 from outside_pet_newscomment),default,#{pet_comment_contents},#{pet_comment_writer},#{pet_comment_newsno},default)]]>
 	</insert>
 	  
+	<select id="petCommentDatalist" parameterType="integer" resultMap="PetNewsCommentList">
+		<![CDATA[select * from outside_pet_newscomment where pet_comment_newsno=#{pet_comment_newsno} and pet_comment_status=1 order by pet_comment_no desc]]>
+	</select> 
+	  
+
+
 
 </mapper>
 

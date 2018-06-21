@@ -233,27 +233,29 @@ public class JUJ_BoardController {
 		}
 
 		/*아이템 순서 
-		 색상 , 크기 , 굵기 , 프리미엄 
+		 프리미엄, 굵기, 크기 , 색상 
 		*/
 		
 		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); //DATA값 (적용안함0 적용함1)
-		String title_size  = request.getParameter("title_size"); //DATA값 size='4', size='5', size='6'
-		String title_bold  = request.getParameter("title_bold"); //DATA값 (적용안함0, 적용함1)
-		String title_color  = request.getParameter("title_color"); //DATA값 red, blue, green, yellow, pink, orange
-
-		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
-			title_color="";
-		}
-		if(title_size==null) {
-			title_size="";
+		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
+		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
+		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
+		String title_color  = request.getParameter("title_color"); 
+		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
+		  
+		if(title_premium==null) {
+			title_premium="0";
 		}
 		if(title_bold==null) {
-			title_bold="";
+			title_bold="0";
 		}
-		if(title_premium==null) {
-			title_premium="";
+		if(title_size==null) {
+			title_size="0";
 		}
+		if(title_color==null) { 
+			title_color="0";
+		}
+
 		
 		
 		
@@ -365,32 +367,34 @@ public class JUJ_BoardController {
 		System.out.println("해당글 키워드 : "+sb.toString());
 		
 		/*아이템 순서 
-		 1.색상 2.크기 3.굵기  4.프리미엄 
+		프리미엄, 굵기, 크기 , 색상
 		 */
-		
-		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
-		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
-		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
-		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
 		  
-		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
-			title_color="";
-		}
-		if(title_size==null) {
-			title_size="";
+		//들어갈 수 있는 값.
+		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
+		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
+		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
+		String title_color  = request.getParameter("title_color"); 
+		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
+		  
+		if(title_premium==null) {
+			title_premium="0";
 		}
 		if(title_bold==null) {
-			title_bold="";
+			title_bold="0";
 		}
-		if(title_premium==null) {
-			title_premium="";
+		if(title_size==null) {
+			title_size="0";
 		}
+		if(title_color==null) { 
+			title_color="0";
+		}
+
 		
 		StringBuilder sbl = new StringBuilder();
 		sbl.append(title_premium+", ");		
-		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
+		sbl.append(title_size+", ");
 		sbl.append(title_color);
 		sbl.toString();
 		

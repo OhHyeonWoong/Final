@@ -255,14 +255,18 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 40%;">	
 										<table>
 											<tr align="center">
-								 				<Td><p style="width: 30px; height: 20px; background-color: red;" /><Br>빨</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="red"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: blue;" /><Br>파</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="blue"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: green;" /><Br>초</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="green"></Td>
+								 				<Td><p style="width: 30px; height: 20px; background-color: red;" /><Br>빨</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#FF0000"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: blue;" /><Br>파</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#0100FF"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: green;" /><Br>초</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#009300"></Td>
 											</tr>
 											<tr  align="center">
-												<Td><p style="width: 30px; height: 20px; background-color: yellow;" /><Br>노</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="yellow"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: pink;" /><Br>핑</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="pink"></Td>
-												<Td><p style="width: 30px; height: 20px; background-color: orange;" /><Br>오</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="orange"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: yellow;" /><Br>노</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#EDD200"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: pink;" /><Br>핑</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#DBB4B4"></Td>
+												<Td><p style="width: 30px; height: 20px; background-color: orange;" /><Br>오</td><Td style="padding: 0; width: 20px !important;"><input type="radio" name="title_color" value="#FFBB00"></Td>
+											</tr>
+											<tr><td colspan="6"></td></tr>
+											<tr align="center">
+												<Td style="padding: 0;" colspan="6"><b>적용안함</b><input type="radio" name="title_color" value="2" style="margin-left: 10px;"></Td>
 											</tr>
 										</table>
 										<br>
@@ -274,20 +278,23 @@ function sample4_execDaumPostcode() {
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<tr align="center">
-								 				<Td style="padding: 2px;"><font size="4">가</font></td><Td><input type="radio" name="title_size" value="size='4'"></Td>
-												<Td style="padding: 2px;"><font size="5">가</font></td><Td><input type="radio" name="title_size" value="size='5'"></Td>
-												<Td style="padding: 2px;"><font size="6">가</font></td><Td><input type="radio" name="title_size" value="size='6'"></Td>
+								 				<Td style="padding: 2px;"><font size="4">가</font></td><Td><input type="radio" name="title_size" value="4"></Td>
+												<Td style="padding: 2px;"><font size="5">가</font></td><Td><input type="radio" name="title_size" value="5"></Td>
+												<Td style="padding: 2px;"><font size="6">가</font></td><Td><input type="radio" name="title_size" value="6"></Td>
 											</tr>
+											<tr align="center">
+												<Td style="padding: 0;" colspan="6"><b>적용안함</b><input type="radio" name="title_size" value="2" style="margin-left: 10px;"></Td>
+											</tr>											
 										</table>
 										<br>										
 									</c:if>
-									
+									    
 									<c:if test="${ useing.ITEMNAME eq '제목 굵기강조권'}">
 										<b>[보유 아이템]</b><b>Title에 굵기강조 아이템을 사용하시겠습니까?</b>
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
 											<!-- 0이면 굵기지정 적용X / 1이면 굵기지정적용O -->
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_size" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_size" value="1"></td><td>No&nbsp;<input type="radio" name="title_bold" value="2"></td></tr>
 										</table>
 										<br>
 									</c:if>
@@ -296,7 +303,7 @@ function sample4_execDaumPostcode() {
 										<b>[보유 아이템]</b><b>게시글 프리미엄 등록을 하시겠습니까?</b>
 										<hr style="clear: both; margin-top: 6px; margin-bottom: 6px; width: 65%;">	
 										<table>
-											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_premium" value="1"></td><td>No&nbsp;<input type="radio" name="title_premium" value="0"></td></tr>
+											<tr align="center"><td>Yes&nbsp;<input type="radio" name="title_premium" value="1"></td><td>No&nbsp;<input type="radio" name="title_premium" value="2"></td></tr>
 										</table>	
 										<br>
 									</c:if>
