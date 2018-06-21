@@ -43,4 +43,8 @@ public class SearchDao {
 	public List<SearchSideBar> searchSideBarList(String sessionId) {		
 		return sqlSession.selectList("searchSideBarList", sessionId);
 	}
+
+	public String itemIcon(String agencyWriter) {		
+		return sqlSession.selectOne("getSearchListItemIcon", agencyWriter);
+	}
 }

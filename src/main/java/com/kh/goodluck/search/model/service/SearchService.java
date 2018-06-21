@@ -13,5 +13,6 @@ public interface SearchService {
 	public int searchMasterListCount(String searchKeyword);
 	public int searchSlaveListCount(String searchKeyword);
 	public List<SearchSideBar> searchSideBarList(String sessionId);
+	public String itemIcon(String agencyWriter);
 
 }
