@@ -88,7 +88,7 @@
 						htmlstr += '<button onclick="'+boardprime(page-1)+'">&lt;</button>';
 					}
 					
-					htmlstr += 
+					/* htmlstr +=  */
 					
 					
 					
