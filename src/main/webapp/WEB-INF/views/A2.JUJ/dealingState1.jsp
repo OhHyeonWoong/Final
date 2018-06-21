@@ -424,10 +424,6 @@
 	</head>
 	<body>
 		<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
-		${Board}//
-		${Chat.CHATROOM_NO}//
-		${writer}//
-		${Cateinfo}
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
@@ -556,7 +552,9 @@
 
 			
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
+
 <div class="chat_window">
+
 				<div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>

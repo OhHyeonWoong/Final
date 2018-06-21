@@ -239,28 +239,45 @@
 		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
 		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>
 		        	<br>
+		        	<input type="hidden" id="WritingUserId" value="${loginUser.member_id}">
 		    		<table id="DatGulwrite" style="padding: 0;">
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><TextArea cols="80" rows="2"></TextArea></td>
-		    			<td style="padding: 10px;"><input type="button" value="등록"></td></tr>
-		    		</table>
+		    			<tr><td style="padding: 10px;">작 성 자 : ${loginUser.member_id}</td><td colspan="5" style="padding: 20px;"><TextArea id="ukjaeCommentContent" cols="80" rows="2" style="resize: none;"></TextArea></td>
+		    			<td style="padding: 10px;"><input type="button" value="등록" onclick="OriginCommentAdd(${selectNews.osp_news_datano});"></td></tr>
+		    		</table>  
+		    		<script type="text/javascript">
+		    			function OriginCommentAdd(data){
+		    				var comment = $("#ukjaeCommentContent").val();
+		    				var user = $("#WritingUserId").val();
+		    				
+		    				$.ajax({
+		    					url : "ukjaepet_Origincomment_add",
+		    					type : "post",
+		    					data : {
+		    						user_id : user,
+		    						comment_add_newsno : data,
+		    						commnet_contents : comment
+		    					}
+		    					
+		    				}); 
+		    			}
+		    		
+		    		</script>
+		    		
 		    		
 		    		<hr style="clear: both;">
 		    		<table class="DatGulOriginTabel">
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
+		    			<tr style="border:1px solid blue; border-radius: 35px;"><td style="padding: 30px;" colspan="6">작성자 : Captain 
+		    			&nbsp;&nbsp;&nbsp;
+		    			<input type="text" style="width: 520px; margin-right: 14px;">작성일 : 2018-06-20 <Br>
+		    			<a href="#" style="padding-left: 25px;">댓글</a>
+		    			
+		    			</td>
+		    			
+		    			<td style="padding: 20px;"><input type="button" value="수정" style="margin-right: 15px;"><input type="button" value="삭제"><br></td>
+		    			</tr>
 						<tr><td style="height: 8px;"></td></tr>
 
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
 
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
-
-		    			<tr><td style="padding: 10px;">Member Id : Captain</td><td colspan="5"><input type="text" style="width: 420px;"></td>
-		    			<td style="padding: 10px;"><input type="button" value="수정">&nbsp;<input type="button" value="삭제"></td></tr>
-						<tr><td style="height: 8px;"></td></tr>
 		    		</table>
 		        </div>    
 		            

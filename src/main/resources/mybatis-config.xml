@@ -37,12 +37,13 @@
 		<typeAlias type="com.kh.goodluck.item.model.vo.ItemDetail" alias="ItemDetail"/>
 		<typeAlias type="com.kh.goodluck.report.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews" alias="PetNews"/>
+		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.PetNews_Comment" alias="PetNews_Comment"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.LifeNews" alias="LifeNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.GameNews" alias="GameNews"/>
 		<typeAlias type="com.kh.goodluck.outsidedata.model.vo.TravelNews" alias="TravelNews"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail" alias="GetCategoryForBoardDetail"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Trade_detail" alias="Trade_detail"/>
-	
+		<typeAlias type="com.kh.goodluck.board.model.vo.Allance" alias="Allance"/>
 		<typeAlias type="com.kh.goodluck.admin.model.vo.LoginStatistics" alias="LoginStatistics"/>
 		<typeAlias type="com.kh.goodluck.outside_m.model.vo.Outside_Main" alias="Outside_Main"/>
 		<typeAlias type="com.kh.goodluck.outside_li.model.vo.Outside_Life" alias="Outside_Life"/>
@@ -75,6 +76,7 @@
 		<mapper resource="mybatis/mapper/BoardAndCate.xml" />
 		<mapper resource="mybatis/mapper/TradeDeatil.xml" />
 		<mapper resource="mybatis/mapper/chatting-mapper.xml" />
+		<mapper resource="mybatis/mapper/allance-mapper.xml" />
 		<mapper resource="mybatis/mapper/admin-mapper.xml" />
 		<mapper resource="mybatis/mapper/outside_main-mapper.xml" /> <!-- 관리자페이지에서 이미지, 유투브동영상을 관리하는 매퍼 -->
 		<mapper resource="mybatis/mapper/outside_life-mapper.xml" /> <!-- 관리자페이지에서 이미지, 유투브동영상을 관리하는 매퍼 -->

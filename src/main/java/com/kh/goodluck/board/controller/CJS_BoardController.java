@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import com.kh.goodluck.board.model.service.BoardService;
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.GetCategoryForBoardDetail;
 import com.kh.goodluck.board.model.vo.KaKaoMessage;
@@ -29,6 +30,8 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.chat.model.Chat;
+import com.kh.goodluck.chat.model.ChatDetail;
+import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.kakaoAPI.KakaoMessageAPI;
 import com.kh.goodluck.kakaoAPI.renew;
 import com.kh.goodluck.member.model.service.MemberService;
@@ -46,10 +49,14 @@ public class CJS_BoardController {
 	private renew Retoken = new renew();
 	
 	@Autowired
+	private ItemService ItemService;
+	
+	@Autowired
 	private MemberService memberService;
 	
 	@Autowired
 	private BoardService boardservice;
+	
 	public CJS_BoardController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,6 +76,7 @@ public class CJS_BoardController {
 				int result=boardservice.IncreaseViewCount(pk);
 				//2: 해당 보드 객체를 가지고 가기.
 				Board bo=boardservice.getBoardInfoByNo(pk);
+				
 				System.out.println(bo.toString());
 				//2.1 lonk2의pk로 보드의 최하위 스몰카테고리 조회수+1 
 				boardservice.IncreasesSMALLCATEGORYCOUNT(Integer.parseInt(bo.getLink2_no()));
@@ -89,7 +97,10 @@ public class CJS_BoardController {
 				 * CATEGORY_SMALL_CODE=AAA, CATEGORY_BIG_NAME=생활, 
 				 * CATEGORY_MID_NAME=홈, CATEGORY_SMALL_NAME=파티, 
 				 * LINK1_NO=1, LINK2_NO=1]
-				 * */
+				 * */	
+				mv.addObject("Cateinfo",gcfbd);
+				List<Allance> allance=boardservice.getallancelist();
+				mv.addObject("allance",allance);
 			    mv.addObject("keywords",keywords);
 				mv.addObject("Board",bo);
 				mv.setViewName("A5.CJS/boarddetail");
@@ -325,6 +336,7 @@ public class CJS_BoardController {
 		}
 		GetCategoryForBoardDetail gcfbd=boardservice.gcfbd(Integer.parseInt(bo.getLink2_no()));
 		mv.addObject("Cateinfo",gcfbd);
+		writer.setEmoticonfile(ItemService.getUsingemticonfilename(writer.getMember_id()));
 		mv.addObject("Board",bo);
 		mv.addObject("writer",writer);
 		try {
@@ -333,8 +345,9 @@ public class CJS_BoardController {
 		response.sendRedirect("lbjmypage.go?member_id="+member.getMember_id());
 		}
 		
-		if((Chat)boardservice.getChatInfoByMap(map) != null)
-		mv.addObject("Chat",(Chat)boardservice.getChatInfoByMap(map));
+		Chat ca=(Chat)boardservice.getChatInfoByMap(map);
+		mv.addObject("Chat",ca);
+		mv.addObject("ChatLog",(List<ChatDetail>)boardservice.getChatLogByroomNo(ca.getCHATROOM_NO()));
 		return mv;
 	}
 }

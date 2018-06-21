@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
 @Repository("outsidedataDao")
@@ -122,7 +123,7 @@ public class OutsidedataDao {
 	public LifeNews lifeNewsDetail(int lifepk) {
 		// LifeNews에 대하여 상세조회를 하는 메소드
 		return sqlSession.selectOne("lifenewsOne", lifepk);
-	}
+	}  
 
 	public GameNews gameNewsDetail(int gamepk) {
 		// GameNews에 대하여 상세조회를 하는 메소드
@@ -132,6 +133,11 @@ public class OutsidedataDao {
 	public TravelNews travelNewsDetail(int travelpk) {
 		// TravelNews에 대하여 상세조회를 하는 메소드
 		return sqlSession.selectOne("travelnewsOne", travelpk);
+	}
+
+	public int petCommentInput(PetNews_Comment pec) {
+		//펫 뉴스영영 기사글에 댓글달기
+		return sqlSession.insert("petnewsCommentAdd", pec);
 	}	
 }
 

@@ -22,6 +22,7 @@ import com.kh.goodluck.outsidedata.model.service.OutsidedataService;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
 @Controller
@@ -532,7 +533,7 @@ public class OutsidedataController {
 	}
 	
 	@RequestMapping("petnewsdetail.go") //펫 뉴스 상세보기 
-	public ModelAndView LifeNewsDetail(@RequestParam("newspk") String pet_pk,ModelAndView mv) {
+	public ModelAndView LifeNewsDetail33(@RequestParam("newspk") String pet_pk,ModelAndView mv) {
 		int petpk = Integer.parseInt(pet_pk); //넘어온 파라미터를 파싱작업
 		//System.out.println("조회시도하는 글 번호 : "+petpk);
 		
@@ -542,7 +543,38 @@ public class OutsidedataController {
 		mv.setViewName("A2.JUJ/OutSideInFormation");
 		
 		return mv;		
+	}  
+	
+	@RequestMapping("ukjaepet_Origincomment_add") //펫 뉴스 상세보기 
+	public void ukjaePetnews_Origincomment_add(HttpServletRequest request,HttpServletResponse response){
+		String new_no = request.getParameter("comment_add_newsno");
+		String comment_contents = request.getParameter("commnet_contents");
+		String member_id = request.getParameter("user_id");
+		
+		System.out.println("글 작성자 : "+member_id);
+		System.out.println("댓글작성을 시도하는 뉴스의번호 : "+new_no);
+		int parsing_news_no = Integer.parseInt(new_no);
+		
+		System.out.println("댓글내용?? "+comment_contents);
+		
+		int pet_comment_status = 1;
+		
+		PetNews_Comment pec = new PetNews_Comment(pet_comment_status, comment_contents, member_id, parsing_news_no);
+		
+		int insertComment = outsidedataService.petCommentInput(pec);
+	
+		
+		
+		/*private int pet_comment_no; 댓글 고유번호PK
+		private int pet_comment_status; 1원글댓글 / 2댓글의댓글
+		private String pet_comment_contents; 댓글내용
+		private String pet_comment_writer; 댓글작성자 - member_id FK
+		private int pet_pet_comment_newsno; 댓글뉴스의번호
+		private Date pet_comment_writedate; 댓글 작성날짜
+		*/
 	}
+	
+	
 	
 	@RequestMapping("animalNews.go")
 	public void initialDatashow(HttpServletRequest request,HttpServletResponse response)throws IOException {

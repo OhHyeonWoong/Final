@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
@@ -23,9 +24,12 @@ import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.chat.model.Chat;
-
-
+import com.kh.goodluck.chat.model.ChatDetail;
   
+/**
+ * @author jiseok
+ *
+ */
 @Repository("boardDao")
 public class BoardDao {
 	
@@ -307,6 +311,12 @@ public class BoardDao {
 		return sqlSession.selectOne("ukjaepickupBoard", inputBoard);
 	}
 	
+
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return sqlSession.selectOne("ukjaeCheckUserWritingCount", memberid);
+	}
+	
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
 		return sqlSession.selectOne("Alter_Before_Agecnycheck", agency_no);
@@ -338,14 +348,6 @@ public class BoardDao {
 		//TradeDeatil에 현재상황을 등록하기 
 		return sqlSession.insert("RegistTradeInfo", inputBoard);
 	}
-
-
-
-
-
-
-
-
 
 	//made by lbj
 	public int selectMyBoardListCount(String member_id) {
@@ -419,5 +421,30 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getChatInfoByMap", map);
 	}
+
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return sqlSession.insert("insertintoChatDetail", cd);
+	}
+
+
+
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getChatLogByroomNo", chatroom_NO);
+	}
+
+
+
+	public List<Allance> getallancelist() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getallancelist");
+	}
+
+
+
+
+
+
 
 }

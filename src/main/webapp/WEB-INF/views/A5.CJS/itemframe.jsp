@@ -920,7 +920,7 @@ height: 78px;
 			
 		 	
 		<button onclick="location.href='<%=request.getContextPath()%>/cjsitemmellhome.go'">아이템몰 바로가기</button><br>
-		<button>충전</button>
+
 		<br>
 		  <%@ include file = "/WEB-INF/views/A5.CJS/test.jsp" %>
 	</div>

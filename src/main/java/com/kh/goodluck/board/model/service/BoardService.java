@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.goodluck.board.model.dao.BoardDao;
+import com.kh.goodluck.board.model.vo.Allance;
 import com.kh.goodluck.board.model.vo.BigCategory;
 import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.board.model.vo.CategoryLink1;
@@ -18,6 +19,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 
@@ -148,6 +150,11 @@ public class BoardService {
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
 		return boardDao.ukjaegetServiceWriting(agency_no);
+	}
+	
+	public int ukjaeCheckUserWritingCount(String memberid) {
+		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+		return boardDao.ukjaeCheckUserWritingCount(memberid);
 	}
 	
 
@@ -361,5 +368,19 @@ public class BoardService {
 		return boardDao.getChatInfoByMap(map);
 	}
 
+	public int insertintoChatDetail(ChatDetail cd) {
+		
+		return boardDao.insertintoChatDetail(cd);
+	}
+
+	public List<ChatDetail> getChatLogByroomNo(int chatroom_NO) {
+		// TODO Auto-generated method stub
+		return boardDao.getChatLogByroomNo(chatroom_NO);
+	}
+
+	public List<Allance> getallancelist() {
+		// TODO Auto-generated method stub
+		return boardDao.getallancelist();
+	}
 
 }

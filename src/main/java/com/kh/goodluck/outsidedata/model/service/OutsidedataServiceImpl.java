@@ -10,6 +10,7 @@ import com.kh.goodluck.outsidedata.model.dao.OutsidedataDao;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
 
@@ -129,7 +130,7 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 	@Override
 	public List<PetNews> userSearchOrign(PetNews p01) {		
 		return outsidedataDao.userSearchOrign(p01);
-	}
+	}  
 	
 	@Override
 	public List<LifeNews> userSearchOrign2(LifeNews p02) {		
@@ -144,6 +145,12 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 	@Override
 	public List<TravelNews> userSearchOrign4(TravelNews p04) {		
 		return outsidedataDao.userSearchOrign4(p04);
+	}
+	
+	@Override
+	public int petCommentInput(PetNews_Comment pec) {
+		//펫 뉴스영영 기사글에 댓글달기
+		return outsidedataDao.petCommentInput(pec);
 	}
 	
 

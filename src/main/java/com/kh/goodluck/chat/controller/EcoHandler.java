@@ -1,5 +1,7 @@
 package com.kh.goodluck.chat.controller;
  
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,11 +16,15 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.chat.model.MessageVO;
 import com.kh.goodluck.chat.model.SessionUser;
- 
+import com.kh.goodluck.chat.controller.SocketController;
+
 public class EcoHandler extends TextWebSocketHandler{
  
+
+	
     private Logger logger = LoggerFactory.getLogger(EcoHandler.class);
     /**
      * 서버에 연결한 사용자들을 저장하는 리스트
@@ -89,15 +95,20 @@ public class EcoHandler extends TextWebSocketHandler{
     		
     		WebSocketSession sessioned = mapUser.get(messageVo.getTo());
     	if ( sessioned != null) {
-	    		logger.info("원ㅇㅇㅇㅇㅇㅇㅇㅇ:"+session.getId());
-	    	
 	    		//보내는사람
 session.sendMessage(new TextMessage("<li class='message right  appeared'><div class='text_wrapper'> <div class='text'>"+messageVo.getMessage()+"</div></div></li>"));
 	    		//받는사람
-sessioned.sendMessage(new TextMessage("<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/$%7Bcattingimg%7D' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+messageVo.getMessage()+"</div></div></li>"));
+sessioned.sendMessage(new TextMessage(messageVo.getMessage()+"</div></div></li>"));
+
+//messageVo.getTo()  ->채팅방번호+받는이.     messageVo.getMessage()->내용.
+
+
+
     		} else {
-    		session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
+session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
     		//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
+    		
+    		
     		}
     	
     	

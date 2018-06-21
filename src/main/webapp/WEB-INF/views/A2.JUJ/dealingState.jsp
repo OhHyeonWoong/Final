@@ -370,139 +370,12 @@
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
   
 <script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
-<script type="text/javascript" >
- var chatSock = null;
-  var message = {};
- 
-    $(document).ready(function(){
-         
-    	chatSock = new SockJS("/goodluck/echo-ws");
-    	
-    	chatSock.onopen = function(evt) {
-            
-    		message={};
-            message.message = "dd";
-            message.type = "join";
-            //본인의 아이디.
-            message.to = "${loginUser.member_id}";
-            chatSock.send(JSON.stringify(message));
-        };
-            
-        
-        chatSock.onmessage = function(evt) {
-            $("ul[class=messages]").append(evt.data);
-            $("ul[class=messages]").append("<br />");
-            $("ul[class=messages]").scrollTop(99999999);
-        
-        };
-         
-//         chatSock.onclose = function() {
-//         
-//             // sock.send("채팅 종료.");
-//         }
-         
-         $("#message").keydown(function (key) {
-             if (key.keyCode == 13) {
-                $("#sendMessage").click();
-             }
-          });
-         
-        $("#sendfn").click(function() {
-        	console.log("메세지 전송");
-            if( $("#messagecont").val() != "") {
-                 
-                message={};
-                message.message = $("#messagecont").val();
-                message.type = "all";
-                message.to = "all";
-                
-                
-                //받는사람.
-                if("${loginUser.member_id}"=="${Chat.CHATROOM_ORDER}")
-                var to ="${Chat.CHATROOM_APPLICANT}";
-                else
-                var to ="${Chat.CHATROOM_ORDER}";
-                
-                if ( to != "") {
-                    message.type = "one";
-                    message.to = to;
-                }
-                 
-                chatSock.send(JSON.stringify(message));
-               // $("#chatMessage").append("나 ->  " + $("#message").val() + "<br/>");
-                $("#chatMessage").scrollTop(99999999);
-                 
-                $("#message").val("");
-            }
-        });
-    });
-</script>
-  <script type="text/javascript">
-// 			(function () {
-// 			    var Message;
-// 			    Message = function (arg) {
-// 			        this.text = arg.text, this.message_side = arg.message_side;
-// 			        this.draw = function (_this) {
-// 			            return function () {
-// 			                var $message;
-// 			                $message = $($('.message_template').clone().html());
-// 			                $message.addClass(_this.message_side).find('.text').html(_this.text);
-// 			                $('.messages').append($message);
-// 			                return setTimeout(function () {
-// 			                return $message.addClass('appeared');
-// 			                }, 0);
-// 			            };
-// 			        }(this);
-// 			        return this;
-// 			    };
-// 			    $(function () {
-// 			        var getMessageText, message_side, sendMessage;
-// 			        message_side = 'right';
-// 			        getMessageText = function () {
-// 			            var $message_input;
-// 			            $message_input = $('.message_input');
-// 			            return $message_input.val();
-// 			        };
-// 			        sendMessage = function (text) {
-// 			            var $messages, message;
-// 			            if (text.trim() === '') {
-// 			                return;
-// 			            }
-// 			            $('.message_input').val('');
-// 			            $messages = $('.messages');
-// 			            message_side = message_side === 'left' ? 'right' : 'left';
-// 			            message = new Message({
-// 			                text: text,
-// 			                message_side: message_side
-// 			            });
-// 			            message.draw();
-// 			            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
-// 			        };
-// 			        $('.send_message').click(function (e) {
-// 			            return sendMessage("캉쾨ㅏㅋㅋㅋㅋㅋ");
-// 			        });
-// 			        $('.message_input').keyup(function (e) {
-// 			            if (e.which === 13) {
-// 			                return sendMessage(getMessageText());
-// 			            }
-// 			        });
-// 			        sendMessage('안녕하세요 신청합니다.');
-// 			        setTimeout(function () {
-// 			            return sendMessage('네 반갑습니다.');
-// 			        }, 1000);
-			        		        
-// 			        return setTimeout(function () {
-// 			            return sendMessage('불고기 레시피에 대하여 자세하게 배우고싶습니다');
-// 			        }, 2000);
-// 			    });
-// 			}.call(this));	
-			
-			
-		</script> <!-- 채팅화면 채팅실행 스크립트 -->	
+
+
 		${Board}//
+		+++++++++++++++++++++++++++
 		${writer}//
-	///////////////////
-		${Chat}
+	
 	
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
@@ -521,17 +394,107 @@
 			                                    <tbody>
 			                    <tr>
 			                    <td rowspan="8" width="200">
-			                     <c:choose>
+			                  <c:choose>
 			                    <c:when test="${writer.member_renamephoto ne null }">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/${writer.member_renamephoto}" alt="이미지준비중" width="150" height="200">
+			                   	<c:set var="cattingimg" value="${writer.member_renamephoto}" />
 			                	</c:when>
 			                    <c:when test="${writer.member_renamephoto eq null && gender eq 1}">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/3425dffawdsf.png" alt="이미지준비중" width="150" height="200">
+			                	<c:set var="cattingimg" value="3425dffawdsf.png" />
 			                	</c:when>
 			                    <c:when test="${writer.member_renamephoto eq null && gender eq 0}">
 			                   	<img src="/goodluck/resources/A5.CJS/usertitleimg/36452465356743f.png" alt="이미지준비중" width="150" height="200">
+			                	<c:set var="cattingimg" value="36452465356743f.png" />
 			                	</c:when>
 			                   </c:choose>
+<script type="text/javascript" >
+var chatSock = null;
+var message = {};
+
+  $(document).ready(function(){
+       
+  	chatSock = new SockJS("/goodluck/echo-ws");
+  	
+  	chatSock.onopen = function(evt) {
+          
+  		message={};
+          message.message = "dd";
+          message.type = "join";
+          //본인의 아이디.
+          message.to = "${Chat.CHATROOM_NO}//${loginUser.member_id}";
+          chatSock.send(JSON.stringify(message));
+      };
+          
+chatSock.onmessage = function(evt) {
+var z="";
+var testValue = evt.data;
+var iValue = testValue.indexOf("<li class='message right  appeared'>");
+if(iValue == -1){
+//없을경우에는
+z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
+}else{
+//있을경우에	
+z=evt.data;
+}
+  console.log(z);
+    	  $("ul[class=messages]").append(z);
+          $("ul[class=messages]").append("<br />");
+          $("ul[class=messages]").scrollTop(99999999);
+      
+      };
+       
+//       chatSock.onclose = function() {
+//       
+//           // sock.send("채팅 종료.");
+//       }
+       
+       $("#message").keydown(function (key) {
+           if (key.keyCode == 13) {
+              $("#sendMessage").click();
+           }
+        });
+       
+       $("#sendfn").click(function() {
+     	  $.ajax({
+     			url:"insertchattinglog.go",
+     			data:{
+     				ORDER:'${loginUser.member_id}',
+     				NO:'${Chat.CHATROOM_NO}',
+     				CONTENT:$("#messagecont").val()
+     			},
+     			  success:function(data){
+     				  if( $("#messagecont").val() != "") {
+     			             message={};
+     			              message.message = $("#messagecont").val();
+     			              message.type = "all";
+     			              message.to = "all";
+     			              
+     			              
+     			              //받는사람.
+     			              if("${loginUser.member_id}"=="${Chat.CHATROOM_ORDER}")
+     			              var to ="${Chat.CHATROOM_NO}//${Chat.CHATROOM_APPLICANT}";
+     			              else
+     			              var to ="${Chat.CHATROOM_NO}//${Chat.CHATROOM_ORDER}";
+     			              
+     			              if ( to != "") {
+     			                  message.type = "one";
+     			                  message.to = to;
+     			              }
+     			               
+     			              chatSock.send(JSON.stringify(message));
+     			             // $("#chatMessage").append("나 ->  " + $("#message").val() + "<br/>");
+     			              $("#chatMessage").scrollTop(99999999);
+     			               
+     			              $("#message").val("");
+     			          }
+     		  },error:function(a,b,c){
+ 					alert("a : " + a + ", b : " + b + ", c : " + c);
+ 				}
+     	  })
+     	});
+  });
+</script>			                 
 			                   </td>
 			                   <td style="width: 60%;">
 			                  <table class="table table-condensed table-responsive table-user-information">
@@ -541,8 +504,17 @@
 			                    
 			                     <c:choose>
 			                     <c:when test="${Board.agency_type eq 1}">  
-			                     <td>오너</td>
-			                                        <td>${writer.member_id}</td>
+			                     
+			                  <td>오너</td>
+			                  
+			                  <td>
+			                  <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>
+
+			                  ${writer.member_id}
+			                  
+			                  </td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>오너의 활동 점수</td>
@@ -553,7 +525,9 @@
 			                     
 			                     <c:when test="${Board.agency_type eq 2}"> 
 			                     <td>서비스 제공자</td>
-			                                        <td>${writer.member_id}</td>
+			                                        <td>   <c:if test="${writer.emoticonfile ne null}">
+			                  <img src="/goodluck/resources/A5.CJS/itemimg/${writer.emoticonfile}"  Style="width: 20px; height: 30px;"/>
+			                  </c:if>${writer.member_id}</td>
 			                                    </tr>
 			                                   <tr>
 			                                        <td>노예의  봉사단계</td>
@@ -658,7 +632,7 @@
 					<div class ="main-container">
 					
 					<div class=" highlight" style="margin-left:0;">
-					<h2> 주 의 사 항  ${cattingimg}</h2><Br>
+					<h2> 주 의 사 항 </h2><Br>
 						<div class="row">
 					  
 					        <ul>
@@ -687,24 +661,53 @@
 			<div style="width: 49%; height:auto; float: right; border: 1px solid gray;"> <!-- 채팅Area  -->
 
 			<div class="chat_window">
-				<div class="top_menu">
+<table style="width: 100%">
+<tr style="height:10%;"><td><div class="top_menu">
 					<div class="buttons">
 						<div class="button close"></div>
 						<div class="button minimize"></div>
 						<div class="button maximize"></div>
 					</div>					
 				<div class="title">채팅서비스</div>
-				</div>
-				
-				<ul class="messages"></ul>
-				<div class="bottom_wrapper clearfix">
+				</div></td></tr>
+<tr style="height: 78%;"><td>
+<ul class="messages">
+<c:forEach items="${ChatLog}" var="i">
+<c:if test="${i.CHATDEATIL_MEMBER == loginUser.member_id}">
+<li class="message right  appeared">
+<div class="text_wrapper">
+<div class="text">${i.CHATDEATIL_CONTENT }</div>
+</div>
+</li>
+</c:if>
+<c:if test="${i.CHATDEATIL_MEMBER != loginUser.member_id}">
+<li class="message left appeared">
+<div class="avatar">
+<img src="/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}" style="width: 50px; height: 50px;"> 
+</div><div class="text_wrapper"> 
+<div class="text">${i.CHATDEATIL_CONTENT }</div></div></li>
+</c:if>
+
+</c:forEach>
+<hr>
+</ul></td></tr>
+<tr style="height: 10%;"><td>	<div class="bottom_wrapper clearfix">
 					<div class="message_input_wrapper">
 						<input class="message_input" id="messagecont" placeholder="메세지를 입력해주세요." />
 					</div>
 					
 					<div class="send_message" id="sendfn">
 					<div class="icon"></div>
-					<div class="text">Send</div></div></div></div>
+					<div class="text">Send</div></div></div></td>
+	</tr>
+</table>
+				
+				
+				
+			
+					
+					
+					</div>
 					
 				<div class="message_template">
 				
@@ -762,8 +765,8 @@
 					                <div class="col-md-12">
 					                    <form accept-charset="UTF-8" action="finishBoard.go" method="post">
 					                        <input id="ratings-hidden" name="rating" type="hidden" value="1"> 
-					                        <input id="sdfxx" name="BoardNo" type="hidden" value="${Board.agency_no}">
-					                        <input id="sdfxx" name="memberid" type="hidden" value="${Board.agency_writer}">
+					                        <input  name="BoardNo" type="hidden" value="${Board.agency_no}">
+					                        <input  name="memberid" type="hidden" value="${Board.agency_writer}">
 					                        
 					                        <textarea class="form-control animated"  cols="500" id="new-review" name="review" placeholder="지원자를 평가해주세요~^^" rows="100"></textarea>
 											<br>

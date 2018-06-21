@@ -162,15 +162,16 @@
 							<td class="td_start"><label>지역별 검색</label></td>
 							<td class="td_end">
 								<select id="loc" name="loc">
-									<option value="%" selected="selected">전체</option>
+									<option value="" selected="selected">전체</option>
 								</select>
 							</td>
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
 								<select id="state" name="state">
-									<option value="정상" selected="selected">정상</option>
-									<option value="예약가능">예약가능</option>
-									<option value="예약불가">예약불가</option>
+									<option value="" selected="selected">전체</option>
+                           			<option value="1">정상</option>
+									<option value="2">예약가능</option>
+									<option value="3">예약불가</option>
 								</select>
 							</td>
 						</tr>
@@ -250,10 +251,10 @@
 							${board.agency_pay }
 							</td>
 							<td>
-							${board.agency_startdate }
+							${board.agency_enrolldate }
 							</td>
 							<td>
-							${board.agency_enrolldate }
+							${board.agency_startdate }
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>
@@ -330,19 +331,41 @@
 					<c:if test="${currentpage != agencycount}">
 						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
-					
+					  
 					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
 				</span>
 			</div>
-
+			<input type="hidden" id="ukjae_userid" value="${loginUser.member_id}">
+			<input type="hidden" id="ukjae_userwritecount" value="${loginUser.member_write_count}"> 
 		</div>
 	</div>
 	<script type="text/javascript">
 		function fnBoardWriteForm(){
 			if('${loginUser}' == null){
-				alert("로그인 하고 이용하세요.");
+				alert("로그인 후 이용해주세요.");
 			}else{
-				location.href="ukjaeServiceForm.go?memberid=${loginUser.member_id}&write_count=${loginUser.member_write_count}";
+				var v1 = $("#ukjae_userid").val();
+				var v2 = $("#ukjae_userwritecount").val();
+				
+				$.ajax({
+					url : "ukjaeServiceForm.go",
+					type : "post",
+					data : {
+						memberid : v1,
+						write_count : v2 
+					}, 
+					success : function(data){
+						
+						if(data=="0"){
+							alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
+						}else if(data=="1"){
+							location.href="ukjaeServiceForm2.go?memberid="+v1;
+						}
+					},
+					error:function(a,b,c){
+						alert(a + ", " + b + ", " + c);
+					}	
+				});
 			}
 		}
 	</script>
