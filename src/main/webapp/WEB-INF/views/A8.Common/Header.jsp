@@ -300,9 +300,7 @@
 		color:#f8251b !important;
 		transition-property:color;
 		transition-duration:1.0s;
-	}
-	
-	
+	}	
 	
 </style>
 
@@ -471,8 +469,7 @@
 			},
 				error:function(a,b,c){
 					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
-				}
-				
+				}				
 			})			
 		}
 		</script>
