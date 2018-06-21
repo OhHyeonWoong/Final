@@ -13,11 +13,12 @@
 	</resultMap>
 
 <select id="homeitemnotice" resultMap="itemNotice">
-
 <![CDATA[
 select * from (select * from ItemNotice order by ITEMNOTICE_NO desc) where rownum <= 4
 ]]>
 </select>
-
+<select id="getitemnoticeDetail" parameterType="int" resultType="itemNotice">
+select * from ITEMNOTICE where ITEMNOTICE_NO=#{pk}
+</select>
 
 </mapper>
