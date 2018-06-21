@@ -18,6 +18,165 @@
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
 	
+	$(document).ready(function() {
+		var category = '<c:out value="${link2name}"/>';	
+		var page = 1;
+		boardprime(category,page);
+	
+	});
+	
+	function boardprime(category,page){
+			$.ajax({
+				url:"prime.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					page : page,
+					category : category
+					
+				},
+				success:function(primelist){
+					var jstr = JSON.stringify(primelist);
+					var json = JSON.parse(jstr);					
+					
+					$("#primetbody").empty();
+					
+					var htmlstr = '';
+					
+					/* alert(json.primelist[0].Agency_title); */
+					
+					for(var i in json.primelist){
+						if(json.primelist[i].Agency_type == 1){
+							htmlstr +='<tr><td>제공</td>';
+						}else if(json.primelist[i].Agency_type == 2){
+							htmlstr +='<tr><td>구인</td>';
+						}
+						
+						htmlstr +=
+						'<td><a href="BoardDetail.go?BoardNo='+json.primelist[i].Agency_no+'">'+json.primelist[i].Agency_title+'</a></td>'+
+						'<td>'+json.primelist[i].Agency_loc+'</td>';
+						
+						if(json.primelist[i].Agency_paytype == 1){
+							htmlstr +='<td>일급</td>';
+						}else if(json.primelist[i].Agency_paytype == 2){
+							htmlstr +='<td>시급</td>';
+						}
+						
+						htmlstr +=
+						'<td>'+json.primelist[i].Agency_pay+'</td>'+
+						'<td>'+json.primelist[i].Agency_enrolldate+'</td>'+
+						'<td>'+json.primelist[i].Agency_startdate+'</td>';
+						
+						if(json.primelist[i].Agency_status == 1){
+							htmlstr +='<td>정상</td></tr>';
+						}else if(json.primelist[i].Agency_status == 2){
+							htmlstr +='<td>예약가능</td></tr>';
+						}else if(json.primelist[i].Agency_status == 3){
+							htmlstr +='<td>예약불가</td></tr>';
+						}
+					}
+					
+					$("#primetbody").html(htmlstr);
+					$("#bsh_span_button").empty();
+					htmlstr = '';
+					
+					htmlstr += '<button onclick="boardprime(1);">&lt;&lt;</button>';
+					
+					if(page == 1){
+						htmlstr += '<button>&lt;</button>';
+					}else{
+						htmlstr += '<button onclick="'+boardprime(page-1)+'">&lt;</button>';
+					}
+					
+					
+					$("#bsh_span_button").html(htmlstr);
+					
+					/* for(var i in json.primelist){
+						htmlstr += 
+							'<td>'+
+							json.item[i].Agency_type+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'+
+							'<td>'+
+							'</td>'	;
+					}
+					$("#primetbody").html(htmlstr); */
+					
+					/*
+					
+					$('#primeboard').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
+					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
+					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
+										
+					console.log("qna 페이징 처리");
+					for(var i in json.item){
+						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
+						'<td>'+json.item[i].buy_date+'</td>'+
+						'<td>'+json.item[i].start_date+'</td>'+
+						'<td>'+json.item[i].end_date+'</td>'+
+						'<td>'+json.item[i].final_status+'</td></tr>';
+					}
+					console.log("qna 페이징 처리");
+					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
+					//페이징 처리//
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.item[0].itemListCount > 6){
+						if(json.item[0].qnaCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndFor;i++){
+							if(i == json.item[0].qnaCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						//기모리 ///////////////
+						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
+						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 끝//
+					$('#lbjitemDiv').html(htmlStr);
+					 */},
+				error:function(){
+					alert("프라임 로드 실패");
+				}
+			});
+		};
+
+	
 
 </script>
 
@@ -100,26 +259,12 @@
 						</tr>
 
 					</thead>
-					<tbody>
-						<%
-							for (int i = 0; i < 10; i++) {
-						%>
-						<tr>
-							<%
-								for (int j = 0; j < 8; j++) {
-							%>
-							<td><%=i%>,<%=j%></td>
-							<%
-								}
-							%>
-						</tr>
-						<%
-							}
-						%>
+					<tbody id="primetbody">
+						
 					</tbody>
 				</table>
 
-				<span class="bsh_span_button">
+				<span class="bsh_span_button" id="bsh_span_button">
 					<button>&lt;&lt;</button>
 					<button>&lt;</button> 
 						1 2 3 4 5 6 7 8 9 0
