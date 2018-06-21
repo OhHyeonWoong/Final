@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
+import com.kh.goodluck.member.model.vo.MyReview;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -194,6 +196,11 @@ public class MemberDao {
 	public int insertMemberDummy(Member m) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("insertMemberDummy", m);
+	}
+
+	public List<MyReview> selectMyReview(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectMyReview", member_id);
 	}
 
 }

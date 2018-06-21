@@ -20,6 +20,7 @@ import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
 import com.kh.goodluck.chat.model.ChatDetail;
+import com.kh.goodluck.member.model.vo.MyReview;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
 import com.kh.goodluck.board.model.vo.MyPageBoardHistory;
 

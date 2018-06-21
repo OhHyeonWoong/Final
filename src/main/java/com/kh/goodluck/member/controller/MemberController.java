@@ -30,6 +30,7 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
+import com.kh.goodluck.member.model.vo.MyReview;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
@@ -288,6 +289,13 @@ public class MemberController {
 			mv.addObject("lbjMyWriteCandidate", myWriteCandidate);
 			mv.addObject("writeCandidatePage",writeCandidatePage);
 			//신청자가 생긴 내 글 세팅 끝------------------------------------------------
+			//내가 쓴 후기 세팅 시작----------------------------------------------			
+		    List<MyReview> myReview = memberService.selectMyReview(member_id);
+		    
+		    System.out.println("myReview size = " + myReview.size());
+			
+			mv.addObject("lbjMyReview", myReview);
+			//내가 쓴 후기 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
 		return mv;
@@ -539,6 +547,10 @@ public class MemberController {
 		Member member = null;
 		///////////////////////
 		System.out.println("updateMemberCashMethod run...");
+		///충전 액수를 넘겨줘서 그 녀석으로 paylog 처리를 해줘야됨
+		
+		
+		///////////////
 		/*int beforeCash = m.getMember_cash();
 		int afterCash = (int)(beforeCash * 0.9);
 		int adminCash = beforeCash - afterCash;

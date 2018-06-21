@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.kh.goodluck.member.model.dao.MemberDao;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
+import com.kh.goodluck.member.model.vo.MyReview;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -234,5 +236,9 @@ public class MemberServiceImpl implements MemberService{
 	public int insertMemberDummy(Member m) {
 		return memberDao.insertMemberDummy(m);
 	}
-
+	
+	@Override
+	public List<MyReview> selectMyReview(String member_id) {
+		return memberDao.selectMyReview(member_id);
+	}
 }	

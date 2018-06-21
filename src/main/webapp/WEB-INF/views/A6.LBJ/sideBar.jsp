@@ -40,6 +40,11 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
+            <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjMyMoneyCharge"><span class="glyphicon glyphicon-book"></span>내 충전내역</a> </h4>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h4 class="panel-title"> <a class="lbjsidebar_a" href="#lbjQnA"><span class="glyphicon glyphicon-question-sign"> </span>나의QnA</a> </h4>
           </div>
         </div>

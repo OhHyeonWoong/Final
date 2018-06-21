@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
+import com.kh.goodluck.member.model.vo.MyReview;
  
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
@@ -60,6 +62,7 @@ public interface MemberService {
 	public abstract int insertDBDummyData(Board board);
 	public abstract int insertDBTrade(int no);
 	public abstract int insertMemberDummy(Member m);
+	public abstract List<MyReview> selectMyReview(String member_id);
 
 
   

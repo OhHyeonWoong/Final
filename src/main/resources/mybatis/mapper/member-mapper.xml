@@ -276,7 +276,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	
 	<insert id="insertLbjMilegePayLog" parameterType="java.util.HashMap">
 		<![CDATA[
-			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},'gkffhqnd',#{adminCash},sysdate)
+			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},#{member_id},#{member_cash},sysdate)
 		]]>
 	</insert>
 	
@@ -331,5 +331,13 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 			default,null,null,null,default)
 		]]>
 	</insert>
-	  
+	 <select id="selectMyReview" parameterType="string" resultType="MyReview">
+	 	<![CDATA[
+	 		select ac.agency_title,rv.review_content,rv.REVIEW_DATE
+			from agency ac,agencylog al,review rv
+			where rv.agencylog_no = al.agencylog_no and al.agencylog_trade = ac.agency_no
+			and ac.agency_writer = #{member_id}
+	 	]]>
+	 
+	 </select>
 	</mapper>
