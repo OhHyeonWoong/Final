@@ -33,9 +33,9 @@ public class SearchController {
 			@RequestParam(defaultValue = "1", name = "curSlavePage") int curSlavePage) throws Exception {		
 		
 		System.out.println("Search Controller Run!");
-		/*System.out.println("SearchKeyword : " + request.getParameter("searchKeyword") + " / To.SearchController");
+		System.out.println("SearchKeyword : " + request.getParameter("searchKeyword") + " / To.SearchController");
 		System.out.println("CurMasterPage : " + request.getParameter("curMasterPage") + " / To.SearchController");
-		System.out.println("CurSlavePage : " + request.getParameter("curSlavePage") + " / To.SearchController");*/
+		System.out.println("CurSlavePage : " + request.getParameter("curSlavePage") + " / To.SearchController");
 		
 		/* 레코드 갯수 계산 */
 		int masterCount = searchService.searchMasterListCount(searchKeyword);		
@@ -50,9 +50,13 @@ public class SearchController {
 		int slavePageEnd = slavePager.getPageEnd();
 		
 		List<Search> masterList = searchService.searchMasterKeyword(searchKeyword, masterPageBegin, masterPageEnd); /* 주인님 게시물 목록 */		
-		List<Search> slaveList = searchService.searchSlaveKeyword(searchKeyword, slavePageBegin, slavePageEnd); /* 노예 게시물 목록 */	
+		List<Search> slaveList = searchService.searchSlaveKeyword(searchKeyword, slavePageBegin, slavePageEnd); /* 노예 게시물 목록 */
 		
-		/*System.out.println("SearchMasterList : " + masterList + " / To.SearchController");
+		for(Search i :  masterList ) {
+			i.setItemfilename(searchService.itemIcon(i.getAgency_writer()));
+		}
+		
+		System.out.println("SearchMasterList : " + masterList + " / To.SearchController");
 		System.out.println("MasterPageBegin : " + masterPageBegin + " / To.SearchController");
 		System.out.println("MasterPageEnd : " + masterPageEnd + " / To.SearchController");
 		System.out.println("MasterBlockStart : " + masterPager.getBlockBegin() + " / To.SearchController");
@@ -61,7 +65,7 @@ public class SearchController {
 		System.out.println("SlavePageBegin : " + slavePageBegin + " / To.SearchController");
 		System.out.println("SlavePageEnd : " + slavePageEnd + " / To.SearchController");
 		System.out.println("SlaveBlockStart : " + slavePager.getBlockBegin() + " / To.SearchController");
-		System.out.println("SlaveBlockEnd : " + slavePager.getBlockEnd() + " / To.SearchController");*/
+		System.out.println("SlaveBlockEnd : " + slavePager.getBlockEnd() + " / To.SearchController");
 		
 		HashMap<Object,Object> map = new HashMap<Object,Object>(); 
 		map.put("searchKeyword", searchKeyword); /* 페이지 이동시 검색어 유지할 검색 키워드 */

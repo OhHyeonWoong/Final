@@ -890,7 +890,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<%@ include file = "/WEB-INF/views/A6.LBJ/sideBar.jsp" %>
 		</div>
 		<div style="width: 76%; margin-left: 4%; float: left; height: 100%;">
-			<h1><a href="lbjInsertDBDummyData.go">DB에 더미 데이터 만들기</a></h1>
+			<!-- <h1><a href="lbjInsertDBDummyData.go">DB에 더미 데이터 만들기</a></h1> -->
 			<h2 style="text-align:left;">마이페이지</h2>
 			<hr>
 			<span style="font-size:18pt;">

@@ -1,5 +1,6 @@
 package com.kh.goodluck.board.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,8 @@ import com.kh.goodluck.board.model.vo.CategoryLink1;
 import com.kh.goodluck.board.model.vo.CategoryLink2;
 import com.kh.goodluck.board.model.vo.MidCategory;
 import com.kh.goodluck.board.model.vo.SmallCategory;
+
+import net.sf.json.JSONObject;
 
 @Controller
 public class BoardController {
@@ -547,9 +550,68 @@ public class BoardController {
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="prime.go")
+	public void primesearch(HttpServletRequest request,HttpServletResponse response) {
 		
-	
-	
+		System.out.println("Ajax run------------------");
+		
+		bigcategorylist = boardservice.selectBigCategoryAll();
+		midcategorylist = boardservice.selectMidCategoryAll();
+		String category = request.getParameter("category");
+		int page = Integer.parseInt(request.getParameter("page"));
+		
+		System.out.println("Ajax get param category: "+category);
+		System.out.println("Ajax get param page: "+page);
+
+		String link2type = null;
+		List<Board> primelist = null;
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		
+		map.put("category", category);
+		map.put("startrow", ((page*10)-9));
+		map.put("endrow", (page*10));
+		
+		
+		for(BigCategory b:bigcategorylist) {
+			if(b.getCategory_big_name().equals(category)) {
+				link2type ="bigcategory";
+				primelist = boardservice.primebig(map);
+				System.out.println("대카 프라임 ㄱ");
+			}
+		}
+		if(link2type == null) {
+			for(MidCategory m:midcategorylist) {
+				if(m.getCategory_mid_name().equals(category)) {
+					link2type ="midcategory";
+					primelist = boardservice.primemid(map);
+					System.out.println("중카 프라임 ㄱ");
+				}
+			}
+		}
+		if(link2type == null) {
+			link2type = "smallcategory";
+			primelist = boardservice.primesma(map);
+			System.out.println("소카 프라임 ㄱ");			
+		}
+		
+		System.out.println("link2type : "+link2type);
+		System.out.println("primelist.size : "+primelist.size());
+		
+		JSONObject jobj = new JSONObject();
+		
+		jobj.put("primelist", primelist);
+		
+		PrintWriter out = null;
+		
+		try {
+			out = response.getWriter();
+			out.print(jobj);
+			out.flush();
+			out.close();
+		}catch (Exception e) {
+			System.out.println("아웃실패");
+		}
+		
+	}
 	
 }

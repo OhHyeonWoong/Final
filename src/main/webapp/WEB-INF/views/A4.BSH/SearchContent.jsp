@@ -18,6 +18,98 @@
 <script type="text/javascript">
 /* 여기에 스크립트 입력 */
 	
+	$(document).ready(function() {
+		var category = '<c:out value="${link2name}"/>';	
+		var page = 1;
+		boardprime(category,page);
+	
+	});
+	
+	function boardprime(category,page){
+			$.ajax({
+				url:"prime.go",
+				type:"post",
+				dataType:"json",
+				data:{
+					page : page,
+					category : category
+					
+				},
+				success:function(primelist){
+					var jstr = JSON.stringify(primelist);
+					var json = JSON.parse(jstr);
+					
+					alert("성공이다 오예");
+					/*
+					
+					
+					
+					
+					
+					$('#primeboard').empty();
+					
+					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
+					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
+					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
+					
+					console.log("qna 페이징 처리");
+					for(var i in json.item){
+						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
+						'<td>'+json.item[i].buy_date+'</td>'+
+						'<td>'+json.item[i].start_date+'</td>'+
+						'<td>'+json.item[i].end_date+'</td>'+
+						'<td>'+json.item[i].final_status+'</td></tr>';
+					}
+					console.log("qna 페이징 처리");
+					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
+					//페이징 처리//
+					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
+					if(json.item[0].itemListCount > 6){
+						if(json.item[0].qnaCurrentPage <= 1){
+							htmlStr += "<< &nbsp";
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
+						}else{
+							htmlStr += '< &nbsp';
+						}
+						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
+						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndFor;i++){
+							if(i == json.item[0].qnaCurrentPage){
+								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
+							}else{
+								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
+							}
+						}
+						//기모리 ///////////////
+						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
+						}else{
+							htmlStr += '> &nbsp;';
+						}
+						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
+							htmlStr += '>> &nbsp;';
+						}else{
+							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
+						}
+					}else{
+						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
+					}
+					htmlStr += '</div></td></tr></table>';
+					//페이징처리 끝//
+					$('#lbjitemDiv').html(htmlStr);
+					 */},
+				error:function(){
+					alert("프라임 로드 실패");
+				}
+			});
+		};
+
+
+
+	
 
 </script>
 
@@ -100,7 +192,7 @@
 						</tr>
 
 					</thead>
-					<tbody>
+					<tbody id="">
 						<%
 							for (int i = 0; i < 10; i++) {
 						%>
@@ -238,7 +330,10 @@
 							<a href="BoardDetail.go?BoardNo=${board.agency_no }">${board.agency_title }</a>
 							</td>
 							<td>
-							${board.agency_loc }
+							<%-- ${board.agency_loc } --%>
+							
+							<c:set var="substrloc" value="${board.agency_loc }"/>
+							<c:out value="${fn:substring(substrloc,0,2) }"/>
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>
