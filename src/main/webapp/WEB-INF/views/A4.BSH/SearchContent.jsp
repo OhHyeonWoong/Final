@@ -168,9 +168,10 @@
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
 								<select id="state" name="state">
-									<option value="정상" selected="selected">정상</option>
-									<option value="예약가능">예약가능</option>
-									<option value="예약불가">예약불가</option>
+									<option value="" selected="selected">전체</option>
+                           			<option value="1">정상</option>
+									<option value="2">예약가능</option>
+									<option value="3">예약불가</option>
 								</select>
 							</td>
 						</tr>
@@ -195,7 +196,7 @@
 							<td class="td_mid" colspan="2"><input type="text" id="searchtext" class="textbox_comm" placeholder="검색단어"></td>
 							<td class="td_end">
 								<input type="hidden" id="page" name="page" value="1">
-								<input id="bshsearch" type="button" value="Search">
+								<input class="btn-info" id="bshsearch" type="button" value="Search">
 							</td>
 						</tr>
 					</table>
@@ -247,7 +248,7 @@
 							<c:if test="${tf eq '2' }">
 								시급
 							</c:if>
-							${board.agency_paytype }
+							<%-- ${board.agency_paytype } --%>
 							</td>
 							<td>
 							${board.agency_pay }
@@ -335,9 +336,40 @@
 					<button onclick="location.href='bshsearch.go?bcate=${map.bcate}&mcate=${map.mcate}&scate=${map.scate}&loc=${map.loc}&state=${map.state}&group1=${map.group1}&group2=${map.group2}&group3=${map.group3}&min=${map.strmin}&max=${map.strmax}&searchtext=${map.searchtext}&page=${searchsize }'">&gt;&gt;</button>
 				</span>
 			</div>
-	
+			<input type="hidden" id="ukjae_userid" value="${loginUser.member_id}">
+			<input type="hidden" id="ukjae_userwritecount" value="${loginUser.member_write_count}"> 
 		</div>
 	</div>
-
+<script type="text/javascript">
+	function fnBoardWriteForm(){
+        if('${loginUser eq null}' == 'true'){
+           alert(" 로그인 후 이용해주세요.");         
+        }else{
+           var v1 = $("#ukjae_userid").val();
+           var v2 = $("#ukjae_userwritecount").val();
+           
+           $.ajax({
+              url : "ukjaeServiceForm.go",
+              type : "post",
+              data : {
+                 memberid : v1,
+                 write_count : v2 
+              }, 
+              success : function(data){
+                 
+                 if(data=="0"){
+                    alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
+                 }else if(data=="1"){
+                    location.href="ukjaeServiceForm2.go?memberid="+v1;
+                 }
+              },
+              error:function(a,b,c){
+                 alert(a + ", " + b + ", " + c);
+              }   
+           });
+        }
+     }
+	
+	</script>
 </body>
 </html>

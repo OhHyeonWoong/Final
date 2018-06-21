@@ -19,7 +19,6 @@
 	.coupon #head {
 	    border-top-left-radius: 10px;
 	    border-top-right-radius: 10px;
-	    min-height: 56px;
 	}
 	
 	.coupon #footer {
@@ -172,25 +171,25 @@
 				//alert("${checkpart2}");
 				
 			"<c:if test='${checkpart2 eq "반려"}'>";
-			/* $("body").css("background-size","cover");
-			$("body").css("background-image","url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed"); */
+			$(".panel-title").css("background-size","cover");
+			$(".panel-title").css("background-image","url(http://lorempixel.com/1920/1920/city/9/) no-repeat center center fixed"); 
 			
 			"</c:if>";
 			 
 			"<c:if test='${checkpart2 eq "여행"}'>";
-				$("body").css("background-image","url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg)");
+				$(".panel-title").css("background-image","url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg)");
 			"</c:if>";
 			
 			"<c:if test='${checkpart2 eq "게임"}'>";
-				$("body").css("background-position","50% 50%");
-				$("body").css("background-size","cover");
-				$("body").css("background-image","url(https://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg)");
+				$(".panel-title").css("background-position","50% 50%");
+				$(".panel-title").css("background-size","cover");
+				$(".panel-title").css("background-image","url(https://cleancanvas.herokuapp.com/img/backgrounds/color-splash.jpg)");
 			"</c:if>";
 			
 			"<c:if test='${checkpart2 eq "생활"}'>";
 					
-			$("body").css("background-size","100%");
-			$("body").css("background-image","url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG)");
+			$(".panel-title").css("background-size","100%");
+			$(".panel-title").css("background-image","url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52c470899a2e1_1.JPG)");
 			"</c:if>";
  		});
  	</script>
@@ -200,8 +199,8 @@
 		<div class="container" align="center">
 		        <div class="col-md-6 col-md-offset-3">
 		            <div class="panel panel-primary coupon">
-		              <div class="panel-heading" id="head">
-		                <div class="panel-title" id="title" align="center">
+		              <div class="panel-heading" id="head" style="padding: 0;">
+		                <div class="panel-title" id="title" align="center" style="padding: 0; height: 100%;">
 		                   <i class="fa fa-github fa-2x" style="font-size: 48px;"></i>&nbsp;<font size="5"> ${selectNews.osp_news_datatitle}	</font> <!-- 글제목 -->	
 		                </div>
 		              </div>

@@ -196,7 +196,7 @@
 							<td class="td_mid" colspan="2"><input type="text" id="searchtext" class="textbox_comm" placeholder="검색단어"></td>
 							<td class="td_end">
 								<input type="hidden" id="page" name="page" value="1">
-								<input id="bshsearch" type="button" value="Search">
+								<input class="btn-info" id="bshsearch" type="button" value="Search">
 							</td>
 						</tr>
 					</table>
@@ -342,34 +342,35 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		function fnBoardWriteForm(){
-			if('${loginUser eq null}' == 'true'){
-				alert('${loginUser eq null}'+" 로그인 후 이용해주세요.");			
-			}else{
-				var v1 = $("#ukjae_userid").val();
-				var v2 = $("#ukjae_userwritecount").val();
-				
-				$.ajax({
-					url : "ukjaeServiceForm.go",
-					type : "post",
-					data : {
-						memberid : v1,
-						write_count : v2 
-					}, 
-					success : function(data){
-						
-						if(data=="0"){
-							alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
-						}else if(data=="1"){
-							location.href="ukjaeServiceForm2.go?memberid="+v1;
-						}
-					},
-					error:function(a,b,c){
-						alert(a + ", " + b + ", " + c);
-					}	
-				});
-			}
-		}
+	function fnBoardWriteForm(){
+        if('${loginUser eq null}' == 'true'){
+           alert(" 로그인 후 이용해주세요.");         
+        }else{
+           var v1 = $("#ukjae_userid").val();
+           var v2 = $("#ukjae_userwritecount").val();
+           
+           $.ajax({
+              url : "ukjaeServiceForm.go",
+              type : "post",
+              data : {
+                 memberid : v1,
+                 write_count : v2 
+              }, 
+              success : function(data){
+                 
+                 if(data=="0"){
+                    alert(v1+"님은 글쓰기 횟수를 전부 사용하셨습니다.");
+                 }else if(data=="1"){
+                    location.href="ukjaeServiceForm2.go?memberid="+v1;
+                 }
+              },
+              error:function(a,b,c){
+                 alert(a + ", " + b + ", " + c);
+              }   
+           });
+        }
+     }
+	
 	</script>
 
 </body>
