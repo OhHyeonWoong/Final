@@ -236,7 +236,10 @@
 							<a href="BoardDetail.go?BoardNo=${board.agency_no }">${board.agency_title }</a>
 							</td>
 							<td>
-							${board.agency_loc }
+							<%-- ${board.agency_loc } --%>
+							
+							<c:set var="substrloc" value="${board.agency_loc }"/>
+							<c:out value="${fn:substring(substrloc,0,2) }"/>
 							</td>
 							<td>
 							<c:set var="tf" value="${board.agency_paytype }"/>

@@ -26,6 +26,7 @@ public class Search {
 	private int score_sell;
 	private int score_sell_count;
 	private long score_sell_rate;
+	private String itemfilename;
 	
 	public static final int pageScale = 10; /* 페이지당 게시물 수 */
 	public static final int blockScale = 10; /* 화면당 페이지 수 */
@@ -46,12 +47,12 @@ public class Search {
 	public Search() {
 		
 	}
-	
+
 	public Search(int agency_no, String agency_writer, String agency_title, int link2_no, int agency_type,
 			String agency_loc, Date agency_startdate, Date agency_enddate, Date agency_enrolldate, int agency_paytype,
 			int agency_pay, int agency_status, String agency_content, int agency_views, String agency_keyword,
 			String agency_option, int score_buy, int score_buy_count, int score_buy_rate, int score_sell,
-			int score_sell_count, long score_sell_rate) {
+			int score_sell_count, long score_sell_rate, String itemfilename) {
 		super();
 		this.agency_no = agency_no;
 		this.agency_writer = agency_writer;
@@ -75,6 +76,7 @@ public class Search {
 		this.score_sell = score_sell;
 		this.score_sell_count = score_sell_count;
 		this.score_sell_rate = score_sell_rate;
+		this.itemfilename = itemfilename;
 	}
 
 	public int getAgency_no() {
@@ -253,6 +255,14 @@ public class Search {
 		this.score_sell_rate = score_sell_rate;
 	}	
 	
+	public String getItemfilename() {
+		return itemfilename;
+	}
+
+	public void setItemfilename(String itemfilename) {
+		this.itemfilename = itemfilename;
+	}	
+
 	@Override
 	public String toString() {
 		return "Search [agency_no=" + agency_no + ", agency_writer=" + agency_writer + ", agency_title=" + agency_title
@@ -263,7 +273,7 @@ public class Search {
 				+ ", agency_views=" + agency_views + ", agency_keyword=" + agency_keyword + ", agency_option="
 				+ agency_option + ", score_buy=" + score_buy + ", score_buy_count=" + score_buy_count
 				+ ", score_buy_rate=" + score_buy_rate + ", score_sell=" + score_sell + ", score_sell_count="
-				+ score_sell_count + ", score_sell_rate=" + score_sell_rate + "]";
+				+ score_sell_count + ", score_sell_rate=" + score_sell_rate + ", itemfilename=" + itemfilename + "]";
 	}
 
 	/* Pager(레코드 갯수, 출력할 페이지 번호) */

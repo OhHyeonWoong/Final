@@ -645,12 +645,12 @@ public class MemberController {
 			System.out.println("memberResult = " + memberResult);
 		}*/
 		//agency_no 용 변수
-		int no = 2;
+		int no = 486;
 		//user용 변수
-		int userNo = 4;
+		int userNo = 416;
 		//게임 구합니다 53 88
-		for(int i=1;i<=130;i++) {
-			for(int z=1;z<=3;z++) {
+		for(int i=1;i<=115;i++) {
+			for(int z=1;z<=2;z++) {
 				if(userNo < 10) {
 					board.setAgency_writer("user0"+userNo);
 				}else {
@@ -698,13 +698,13 @@ public class MemberController {
 				}
 				System.out.println("agencyResult = " + agencyResult);
 				System.out.println("tradeResult = " + tradeResult);
+				userNo++;
 			}
-			userNo++;
 		}
 		
 		//게임 해드립니다
-		for(int i=1;i<=130;i++) {
-			for(int z=1;z<=3;z++) {
+		for(int i=1;i<=115;i++) {
+			for(int z=1;z<=2;z++) {
 				if(userNo < 10) {
 					board.setAgency_writer("user0"+userNo);
 				}else {
@@ -752,8 +752,8 @@ public class MemberController {
 				}
 				System.out.println("agencyResult = " + agencyResult);
 				System.out.println("tradeResult = " + tradeResult);
+				userNo++;
 			}
-			userNo++;
 		}
 	}
 

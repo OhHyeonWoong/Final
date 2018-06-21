@@ -97,7 +97,7 @@
 			<div class="modal-content">
 				<div class="modal-header input-group ohw-envelope-modal-header">
 					<span class = "input-group-addon"><i class = "fa fa-upload"></i></span>
-					<input class = "input-group ohw-envelope-modal-text form-control" type = "text" readonly>
+					<input class = "input-group ohw-envelope-modal-text form-control" type = "text" value = "${ loginUser.member_id }" readonly>
 				</div>
 				<div class="modal-body input-group ohw-envelope-modal-body">
 					<span class = "input-group-addon"><i class = "fa fa-download"></i></span>
