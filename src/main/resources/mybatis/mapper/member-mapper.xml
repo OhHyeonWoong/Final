@@ -309,5 +309,27 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	<update id="ukjaewritingUserCashUpdate" parameterType="Member" flushCache="true">
 		<![CDATA[update member set member_cash=#{member_cash} where member_id=#{member_id}]]>
 	</update>
+	
+	<insert id="insertDBDummyData" parameterType="Board">
+		<![CDATA[
+			insert into agency values ((select max(agency_no)+1 from agency),#{agency_writer},#{agency_title},#{link2_no},
+			#{agency_type},#{agency_loc},#{agency_startdate},#{agency_enddate},sysdate,#{agency_paytype},#{agency_pay},
+			#{agency_status},#{agency_content},default,#{agency_keyword},null)
+		]]>
+	</insert>
+	
+	<insert id="insertDBTrade" parameterType="int">
+		<![CDATA[
+			insert into trade_detail values ((select max(trade_no)+1 from trade_detail),#{no},null,null,null,null)
+		]]>
+	</insert>
+	
+	<insert id="insertMemberDummy" parameterType="Member">
+		<![CDATA[
+			insert into member values (#{member_id},'1234',#{member_name},#{member_email},#{member_address},#{member_phone},
+			#{member_regident_number},default,sysdate,sysdate,sysdate,default,#{member_status},null,
+			default,null,null,null,default)
+		]]>
+	</insert>
 	  
 	</mapper>

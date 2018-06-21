@@ -139,9 +139,6 @@ public class JUJ_BoardController {
 		
 		
 		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
-		
-		
-		
 		mv.addObject("userGiveItem", userItem);	
 		mv.addObject("ServiceContents", alterready);	
 		mv.setViewName("A2.JUJ/UkjaeServiceAlterForm");
@@ -151,7 +148,7 @@ public class JUJ_BoardController {
 	
 
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
-	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
+	public String ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
 			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
 		
@@ -236,17 +233,14 @@ public class JUJ_BoardController {
 		}
 
 		/*아이템 순서 
-		 1.색상 
-		 2.크기 
-		 3.굵기 
-		 4.프리미엄 
+		 색상 , 크기 , 굵기 , 프리미엄 
 		*/
 		
 		//들어갈 수 있는 값.
-		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
-		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
-		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
-		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
+		String title_premium  = request.getParameter("title_premium"); //DATA값 (적용안함0 적용함1)
+		String title_size  = request.getParameter("title_size"); //DATA값 size='4', size='5', size='6'
+		String title_bold  = request.getParameter("title_bold"); //DATA값 (적용안함0, 적용함1)
+		String title_color  = request.getParameter("title_color"); //DATA값 red, blue, green, yellow, pink, orange
 
 		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
 			title_color="";
@@ -264,10 +258,11 @@ public class JUJ_BoardController {
 		
 		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_color+", ");
+		sbl.append(title_premium+", ");		
 		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
-		sbl.append(title_premium);
+		sbl.append(title_color);
+
 		sbl.toString();
 		
 		
@@ -287,6 +282,9 @@ public class JUJ_BoardController {
 		int tradeDetailinput = boardService.registTrade(inputBoard);
 		if(tradeDetailinput>0) 
 			System.out.println("대행 게시판 글 등록에 성공하였습니다.");
+		
+		
+		return "A4.BSH/Board";
 		
 	}
 	
@@ -371,11 +369,11 @@ public class JUJ_BoardController {
 		 */
 		
 		//들어갈 수 있는 값.
-		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
 		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
 		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
-		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
-		
+		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		  
 		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
 			title_color="";
 		}
@@ -390,10 +388,10 @@ public class JUJ_BoardController {
 		}
 		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_color+", ");
+		sbl.append(title_premium+", ");		
 		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
-		sbl.append(title_premium);
+		sbl.append(title_color);
 		sbl.toString();
 		
 		//System.out.println("해당글 적용아이템 : "+sbl.toString());

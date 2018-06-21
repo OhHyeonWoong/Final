@@ -152,35 +152,35 @@ $(document).ready(function() {
 			searchstr+='&searchtext='+$('#searchtext').val();
 			searchstr+='&page='+$('#page').val();
 			
-			if($('#bcate').val() == ""){
-				if($('#mcate').val() == ""){
-					if($('#scate').val() == ""){
-						alert("카테고리를 선택해주세요");
+			if($('#bcate').val() != ""){
+				if($('#mcate').val() != ""){
+					if($('#scate').val() != ""){
 						if($('#min').val()>$('#max').val()){
-							alert('최대,최소 금액을 확인해주세요');
+							alert('최대,최소 금액을 확인해주세요'+$('#min').val()+"aaaaaa"+$('#max').val());
+						}else{
+							location.href=searchstr;
 						}
 					}else{
 						if($('#min').val()>$('#max').val()){
-							alert('최대,최소 금액을 확인해주세요');
+							alert('최대,최소 금액을 확인해주세요2');
 						}else{
 							location.href=searchstr;
 						}
 					}
 				}else{
 					if($('#min').val()>$('#max').val()){
-						alert('최대,최소 금액을 확인해주세요');
+						alert('최대,최소 금액을 확인해주세요3');
 					}else{
 						location.href=searchstr;
 					}
 				}
 			}else{
+				alert("카테고리를 선택해주세요");
 				if($('#min').val()>$('#max').val()){
-					alert('최대,최소 금액을 확인해주세요');
-				}else{
-					location.href=searchstr;
+					alert('최대,최소 금액을 확인해주세요4');
 				}
 			}
-			
+						
 		})
 		
 		$("#bcate").change(function(){
