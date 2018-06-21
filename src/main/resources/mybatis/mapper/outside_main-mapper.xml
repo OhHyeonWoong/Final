@@ -60,6 +60,9 @@
 		<![CDATA[select * from outside_m where osm_datavalue=#{main}]]>
 	</select>
 
+	<select id="ukjaeCheckbyNo" parameterType="integer" resultMap="MainOne">
+		<![CDATA[select * from outside_m where osm_datano=#{parse_no}]]>
+	</select>
 </mapper>
 
 

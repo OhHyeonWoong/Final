@@ -54,6 +54,9 @@ public class Outside_MainDao {
 		//data_value를 보내어 객체를 리턴받는 메소드
 		return sqlSession.selectOne("ukjaemainreturn", main);
 	}
+	public Outside_Main ukjaeCheckbyNo(int parse_no) {
+		return sqlSession.selectOne("ukjaeCheckbyNo", parse_no);
+	}
 
 
 }

@@ -22,6 +22,7 @@ import com.kh.goodluck.outsidedata.model.service.OutsidedataService;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Cocoment;
 import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
@@ -578,14 +579,40 @@ public class OutsidedataController {
 	@RequestMapping("comment_comment.go")
 	public void ukjaePetnews_CommentAndCommnet_add(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
-		String news_datacomment_no = request.getParameter("news_datacommentno"); //뉴스댓글번호PK
-		String news_datano = request.getParameter("news_datano"); //뉴스글번호
+		String news_datacomment_no = request.getParameter("news_datacommentno"); //뉴스댓글번호PK 파싱필요
+		String news_datano = request.getParameter("news_datano"); //뉴스글번호 파싱필요
 		String news_area = request.getParameter("news_area"); //뉴스영역(반려동물,여행,게임,생활)
+		  
+		int parse_news_datacomment_no = Integer.parseInt(news_datacomment_no);
+		int parse_news_datano = Integer.parseInt(news_datano);
 		
-		System.out.println("뉴스댓글번호 : "+news_datacomment_no);
-		System.out.println("뉴스글 번호 : "+news_datano);
-		System.out.println("뉴스영역 : "+news_area);
-	
+		PetNews_Cocoment petcc = new PetNews_Cocoment(parse_news_datano, parse_news_datacomment_no);
+		
+		
+		ArrayList<PetNews_Cocoment> list = (ArrayList<PetNews_Cocoment>) outsidedataService.commentAlllistGet(petcc);
+		System.out.println("댓글의 댓글 리스트 출력 : "+list.toString());
+		
+		JSONObject json = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(int i=0; i<list.size(); i++) {
+			JSONObject js = new JSONObject();		
+			js.put("pet_cocomment_no",list.get(i).getPet_cocomment_no());
+			js.put("pet_cocomment_contents", list.get(i).getPet_cocomment_contents());
+			js.put("pet_cocomment_writer", list.get(i).getPet_cocomment_writer());
+			js.put("pet_cocomment_newsno", list.get(i).getPet_cocomment_newsno());
+			js.put("pet_cocommnet_comno", list.get(i).getPet_cocommnet_comno());
+			js.put("pet_cocomment_writedate", list.get(i).getPet_cocomment_writedate().toString());
+			jarr.add(js);
+		}
+		json.put("petCocoment", jarr);
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.print(json.toJSONString());
+		out.flush();
+		out.close();	
+		
+		
 	}
 	
 	@RequestMapping("animalNews.go")

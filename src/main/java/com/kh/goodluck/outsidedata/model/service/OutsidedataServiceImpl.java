@@ -10,6 +10,7 @@ import com.kh.goodluck.outsidedata.model.dao.OutsidedataDao;
 import com.kh.goodluck.outsidedata.model.vo.GameNews;
 import com.kh.goodluck.outsidedata.model.vo.LifeNews;
 import com.kh.goodluck.outsidedata.model.vo.PetNews;
+import com.kh.goodluck.outsidedata.model.vo.PetNews_Cocoment;
 import com.kh.goodluck.outsidedata.model.vo.PetNews_Comment;
 import com.kh.goodluck.outsidedata.model.vo.TravelNews;
 
@@ -157,6 +158,12 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 	public List<PetNews_Comment> commentAlllistGet(int parsing_datano) {
 		//펫 뉴스영역 댓글데이터 끌어오기
 		return outsidedataDao.commentAlllistGet(parsing_datano);
+	}
+	
+	@Override
+	public List<PetNews_Cocoment> commentAlllistGet(PetNews_Cocoment petcc) {
+		//펫 뉴스영역 댓글의댓글 데이터 끌어오기
+		return outsidedataDao.commentAlllistGet(petcc);
 	}
 	
 
