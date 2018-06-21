@@ -2,6 +2,7 @@ package com.kh.goodluck.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -40,6 +41,7 @@ import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.report.model.service.ReportService;
 import com.kh.goodluck.report.model.vo.Report;
+import com.sun.xml.internal.bind.v2.runtime.Location;
 
 @Controller
 public class JUJ_BoardController {
@@ -148,12 +150,8 @@ public class JUJ_BoardController {
 	
 
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
-	public String ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
-			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
-		
-		
-		/*System.out.println("WirteCount -1");
-		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);*/
+	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
+			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException {
 		
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
@@ -164,9 +162,21 @@ public class JUJ_BoardController {
 		System.out.println("입력한 제목? "+serivcetitle);
 		
 		System.out.println("유저가 선택한 소 카테고리? "+smallcategory);
+		
+		
+		SmallCategory s1 = new SmallCategory();
+		s1.setCategory_small_code(smallcategory);
+		
+		String categoryName = boardService.ukjaepickUpCategoryRealName(s1);
+		System.out.println("조회한 카테고리이름 : "+categoryName);
+
+		
+		
 		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); 
-		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
+		
+		
+		
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
 		
 		int agency_type = Integer.parseInt(userwriteingType); 
@@ -233,29 +243,28 @@ public class JUJ_BoardController {
 		}
 
 		/*아이템 순서 
-		 색상 , 크기 , 굵기 , 프리미엄 
+		 프리미엄, 굵기, 크기 , 색상 
 		*/
 		
 		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); //DATA값 (적용안함0 적용함1)
-		String title_size  = request.getParameter("title_size"); //DATA값 size='4', size='5', size='6'
-		String title_bold  = request.getParameter("title_bold"); //DATA값 (적용안함0, 적용함1)
-		String title_color  = request.getParameter("title_color"); //DATA값 red, blue, green, yellow, pink, orange
-
-		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
-			title_color="";
-		}
-		if(title_size==null) {
-			title_size="";
+		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
+		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
+		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
+		String title_color  = request.getParameter("title_color"); 
+		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
+		  
+		if(title_premium==null) {
+			title_premium="0";
 		}
 		if(title_bold==null) {
-			title_bold="";
+			title_bold="0";
 		}
-		if(title_premium==null) {
-			title_premium="";
+		if(title_size==null) {
+			title_size="0";
 		}
-		
-		
+		if(title_color==null) { 
+			title_color="0";
+		}
 		
 		StringBuilder sbl = new StringBuilder();
 		sbl.append(title_premium+", ");		
@@ -278,13 +287,13 @@ public class JUJ_BoardController {
 		//2.등록된 글의 pk를 가져오는 메소드	
 		
 		inputBoard.setAgency_no(AgencyBoardNo);
-	
+	  
 		int tradeDetailinput = boardService.registTrade(inputBoard);
 		if(tradeDetailinput>0) 
 			System.out.println("대행 게시판 글 등록에 성공하였습니다.");
 		
 		
-		return "A4.BSH/Board";
+		response.sendRedirect("bshtest.go?link2_no="+URLEncoder.encode(categoryName, "UTF-8")+"&page=1");
 		
 	}
 	
@@ -365,32 +374,34 @@ public class JUJ_BoardController {
 		System.out.println("해당글 키워드 : "+sb.toString());
 		
 		/*아이템 순서 
-		 1.색상 2.크기 3.굵기  4.프리미엄 
+		프리미엄, 굵기, 크기 , 색상
 		 */
-		
-		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
-		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
-		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
-		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
 		  
-		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
-			title_color="";
-		}
-		if(title_size==null) {
-			title_size="";
+		//들어갈 수 있는 값.
+		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
+		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
+		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
+		String title_color  = request.getParameter("title_color"); 
+		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
+		  
+		if(title_premium==null) {
+			title_premium="0";
 		}
 		if(title_bold==null) {
-			title_bold="";
+			title_bold="0";
 		}
-		if(title_premium==null) {
-			title_premium="";
+		if(title_size==null) {
+			title_size="0";
 		}
+		if(title_color==null) { 
+			title_color="0";
+		}
+
 		
 		StringBuilder sbl = new StringBuilder();
 		sbl.append(title_premium+", ");		
-		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
+		sbl.append(title_size+", ");
 		sbl.append(title_color);
 		sbl.toString();
 		

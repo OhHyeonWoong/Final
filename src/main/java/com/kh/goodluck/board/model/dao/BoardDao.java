@@ -146,7 +146,20 @@ public class BoardDao {
 		return sqlSession.selectList("primesma", map);
 	}
 	
+	public int primesmacount(HashMap<Object, Object> map) {
+			
+		return sqlSession.selectOne("primesmacount",map);
+	}
+
+	public int primemidcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primemidcount",map);
+	}
 	
+	public int primebigcount(HashMap<Object, Object> map) {
+
+		return sqlSession.selectOne("primebigcount",map);
+	}
 	
 	
 	
@@ -330,6 +343,13 @@ public class BoardDao {
 		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
 		return sqlSession.selectOne("ukjaeCheckUserWritingCount", memberid);
 	}
+	  
+
+	public String ukjaepickUpCategoryRealName(SmallCategory s1) {
+		//욱재작업
+		return sqlSession.selectOne("ukjaepickCateName", s1);
+	}
+
 	
 	public Board ukjaegetServiceWriting(int agency_no) {
 		//my페이지에서 pk값을 보내어 Agency객체를 꺼내옴
@@ -454,6 +474,7 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getallancelist");
 	}
+
 
 
 

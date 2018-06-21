@@ -65,6 +65,13 @@ public interface OutsidedataService {
 	//펫 뉴스영영 기사글에 댓글달기
 	int petCommentInput(PetNews_Comment pec);
 
+	//펫 뉴스영역 댓글데이터 끌어오기
+	List<PetNews_Comment> commentAlllistGet(int parsing_datano);
+
+
+
+
+
 
 
 	

@@ -234,6 +234,71 @@
 		                <div class="exp">출처 : ${selectNews.osp_news_origin} <!-- 출처 --> </div>
 		              </div>
 		            </div>
+		            
+		        <input type="hidden" id="" value="">
+		        <input type="hidden" id="" value="">
+     			<script type="text/javascript">
+     			$(function(){
+     					$.ajax({
+     						url : "startDatalistGet.go", 
+     						type : "post", 
+     						data : {
+     							news_datano : "${selectNews.osp_news_datano}",
+     							news_area : "${selectNews.osp_news_data}"
+     						}, 
+     						success : function(data){
+     							var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+     							var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+     							var firstrow = "";
+     							
+     							for(var i in json.petNewsCommentlist){
+     								firstrow += "<tr style='border:1px solid blue;'><td style='padding: 30px;' colspan='6'>작성자 : "+json.petNewsCommentlist[i].pet_comment_writer+"&nbsp;&nbsp;&nbsp;"+
+     								"<input type='text' style='width: 520px; margin-right: 14px;' value='"+json.petNewsCommentlist[i].pet_comment_contents+"'>작성일 : "+json.petNewsCommentlist[i].pet_comment_writedate+"<Br>"+
+     								"<a href='javascript:SecondComment("+json.petNewsCommentlist[i].pet_comment_no+");' style='padding-left: 25px;'>댓글</a></td>"+
+     								"<td style='padding: 20px;'><input type='button' value='수정' style='margin-right: 15px;'><input type='button' value='삭제'><br></td>"+
+     								"</tr><tr><td style='height: 8px;'></td></tr> "
+     								}
+     							$('.DatGulOriginTabel').append(firstrow);
+     						},
+     						error : function(a,b,c){
+     							alert(a+","+b+","+c);
+     						}  
+     					});	
+     			});  
+     			</script>
+     			  
+				<script type="text/javascript">
+					function SecondComment(jung){
+	 					alert(jung);
+	 					
+	 					
+						$.ajax({
+							url : "comment_comment.go",
+	 						type : "post",
+							data : {
+								
+								news_datacommentno : jung,
+	 							news_datano : "${selectNews.osp_news_datano}",
+	 							news_area : "${selectNews.osp_news_data}"
+	 							
+	 						}
+						});
+						/* , 
+ 						success : function(data){
+ 							var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+ 							var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈	
+ 							var firstrow = "";
+ 							
+ 							for(var i in json.petNewsCommentlist){
+ 								}
+ 						},
+ 						error : function(a,b,c){
+ 							alert(a+","+b+","+c);
+ 						}  */
+					}
+				</script>
+			     
+     
      
 		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
 		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>
@@ -255,8 +320,18 @@
 		    						user_id : user,
 		    						comment_add_newsno : data,
 		    						commnet_contents : comment
-		    					}
-		    					
+		    					},
+	     						success : function(data){
+									if(data=="1"){
+										alert("댓글등록에 성공하였습니다.");
+										location.href="petnewsdetail.go?newspk=${selectNews.osp_news_datano}";
+									}else if(data=="0"){
+										alert("댓글 등록에 실패하였습니다.");
+									}     			
+	     						},
+	     						error : function(a,b,c){
+	     							alert(a+","+b+","+c);
+	     						}  
 		    				}); 
 		    			}
 		    		
@@ -265,30 +340,13 @@
 		    		
 		    		<hr style="clear: both;">
 		    		<table class="DatGulOriginTabel">
-		    			<tr style="border:1px solid blue; border-radius: 35px;"><td style="padding: 30px;" colspan="6">작성자 : Captain 
-		    			&nbsp;&nbsp;&nbsp;
-		    			<input type="text" style="width: 520px; margin-right: 14px;">작성일 : 2018-06-20 <Br>
-		    			<a href="#" style="padding-left: 25px;">댓글</a>
-		    			
-		    			</td>
-		    			
-		    			<td style="padding: 20px;"><input type="button" value="수정" style="margin-right: 15px;"><input type="button" value="삭제"><br></td>
-		    			</tr>
-						<tr><td style="height: 8px;"></td></tr>
-
 
 		    		</table>
 		        </div>    
 		            
 		    	</div>
 
-		    	<script type="text/javascript">
-		    		$(function(){
-		    			$("#showDatGul").on("click",function(){
-		    				$("#DatGulwrite").show();	
-		    			});
-		    		});
-		    	</script>
+
 		    	
 		    	
 		    </div>

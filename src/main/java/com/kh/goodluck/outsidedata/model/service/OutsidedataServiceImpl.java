@@ -153,5 +153,11 @@ public class OutsidedataServiceImpl implements OutsidedataService {
 		return outsidedataDao.petCommentInput(pec);
 	}
 	
+	@Override
+	public List<PetNews_Comment> commentAlllistGet(int parsing_datano) {
+		//펫 뉴스영역 댓글데이터 끌어오기
+		return outsidedataDao.commentAlllistGet(parsing_datano);
+	}
+	
 
 }

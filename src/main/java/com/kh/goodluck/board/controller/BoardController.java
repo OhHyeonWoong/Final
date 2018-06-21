@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -206,7 +207,7 @@ public class BoardController {
 		mv.addObject("strlist",strlist);
 		//A4.BSH/Board
 		return mv;
-	}
+	}  
 	
 	@RequestMapping(value="bshsearch.go")
 	public ModelAndView search(HttpServletRequest request,ModelAndView mv) {
@@ -559,6 +560,7 @@ public class BoardController {
 		midcategorylist = boardservice.selectMidCategoryAll();
 		String category = request.getParameter("category");
 		int page = Integer.parseInt(request.getParameter("page"));
+		int primecount = 0;
 		
 		System.out.println("Ajax get param category: "+category);
 		System.out.println("Ajax get param page: "+page);
@@ -576,6 +578,7 @@ public class BoardController {
 			if(b.getCategory_big_name().equals(category)) {
 				link2type ="bigcategory";
 				primelist = boardservice.primebig(map);
+				primecount = boardservice.primebigcount(map);
 				System.out.println("대카 프라임 ㄱ");
 			}
 		}
@@ -584,6 +587,7 @@ public class BoardController {
 				if(m.getCategory_mid_name().equals(category)) {
 					link2type ="midcategory";
 					primelist = boardservice.primemid(map);
+					primecount = boardservice.primemidcount(map);
 					System.out.println("중카 프라임 ㄱ");
 				}
 			}
@@ -591,15 +595,41 @@ public class BoardController {
 		if(link2type == null) {
 			link2type = "smallcategory";
 			primelist = boardservice.primesma(map);
+			primecount = boardservice.primesmacount(map);
 			System.out.println("소카 프라임 ㄱ");			
 		}
 		
 		System.out.println("link2type : "+link2type);
 		System.out.println("primelist.size : "+primelist.size());
+		System.out.println("primecount : "+primecount);
 		
 		JSONObject jobj = new JSONObject();
+		JSONArray jarr = new JSONArray();	
 		
-		jobj.put("primelist", primelist);
+		for(Board b : primelist) {
+			
+			JSONObject jsonboard = new JSONObject();
+			jsonboard.put("Agency_no", b.getAgency_no());
+			jsonboard.put("Agency_writer", b.getAgency_writer());
+			jsonboard.put("Agency_title", b.getAgency_title());
+			jsonboard.put("link2_no", b.getLink2_no());
+			jsonboard.put("Agency_type", b.getAgency_type());
+			jsonboard.put("Agency_loc", (b.getAgency_loc()).substring(0, 2));
+			jsonboard.put("Agency_startdate", b.getAgency_startdate().toString());
+			jsonboard.put("Agency_enddate", b.getAgency_enddate().toString());
+			jsonboard.put("Agency_enrolldate", b.getAgency_enrolldate().toString());
+			jsonboard.put("Agency_paytype", b.getAgency_paytype());
+			jsonboard.put("Agency_pay", b.getAgency_pay());
+			jsonboard.put("Agency_status", b.getAgency_status());
+			jsonboard.put("Agency_content", b.getAgency_content());
+			jsonboard.put("Agency_views", b.getAgency_views());
+			jsonboard.put("Agency_keyword", b.getAgency_keyword());
+			jsonboard.put("Agency_option", b.getAgency_option());
+			
+			jarr.add(jsonboard);
+		}
+		jobj.put("primelist", jarr);
+		//jobj.put("primecount", primecount);
 		
 		PrintWriter out = null;
 		
