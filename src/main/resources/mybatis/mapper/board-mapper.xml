@@ -159,6 +159,18 @@
 				 and agency_paytype = 2
 			]]>
 		</if>
+		
+		<!-- <if test='min lt 0'>
+			<![CDATA[
+			and a.AGENCY_PAY >= #{min }
+			]]>
+		</if>
+		
+		<if test='max lt 0'>
+			<![CDATA[
+			and a.AGENCY_PAY <= #{max }
+			]]>
+		</if> -->
 	
 	<!-- <if test="group2 != null">
 		<if test="group2 = 1">
@@ -622,6 +634,9 @@
    <insert id="insertchatroom" parameterType="hashmap">
    insert into CHATROOM values ((select max(CHATROOM_NO)+1 from CHATROOM),#{CHATROOM_MEMBER1},#{CHATROOM_MEMBER2},#{AGENCY_NO})
    </insert>
+   <select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
+   select * from CHATROOM where CHATROOM_MEMBER2= #{memberid} and AGENCY_NO=#{AGENCY_NO} and rownum=1 order by CHATROOM_NO   
+   </select>
    <select id="getrelation" parameterType="hashmap" resultType="int">
    select count(*) from TRADE_DETAIL where AGENCY_NO=#{AGENCY_NO} and TRADE_APPLICANT = #{memberid}
    </select>
