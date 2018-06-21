@@ -221,6 +221,7 @@
 					</thead>
 					<tbody>						
 						<c:forEach var="board" items="${boardlist }">
+							<c:if test="${board.agency_status != 4}">
 							<tr>
 							<td>
 							<c:set var="tf" value="${board.agency_type }"/>
@@ -257,7 +258,7 @@
 							${board.agency_startdate }
 							</td>
 							<td>
-							<c:set var="tf" value="${board.agency_paytype }"/>
+							<c:set var="tf" value="${board.agency_status }"/>
 							<c:if test="${tf eq '1' }">
 								정상
 							</c:if>
@@ -273,6 +274,7 @@
 							<%-- ${board.agency_status } --%>
 							</td>
 							</tr>
+							</c:if>
 						</c:forEach>
 						
 					</tbody>

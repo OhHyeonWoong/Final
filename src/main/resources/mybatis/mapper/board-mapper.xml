@@ -150,27 +150,35 @@
 		
 		<if test='group2 == "제공"'>
 			<![CDATA[
-				 and agency_paytype = 1
+				 and agency_paytype = 1 
 			]]>
 		</if>
 		
 		<if test='group2 == "구인"'>
 			<![CDATA[
-				 and agency_paytype = 2
+				 and agency_paytype = 2 
 			]]>
 		</if>
 		
-		<!-- <if test='min lt 0'>
+		<if test='min > 0'>
 			<![CDATA[
-			and a.AGENCY_PAY >= #{min }
+				 and AGENCY_PAY >= #{min } 
 			]]>
 		</if>
 		
-		<if test='max lt 0'>
+		<if test='max > 0'>
 			<![CDATA[
-			and a.AGENCY_PAY <= #{max }
+			 	 and AGENCY_PAY <= #{max } 
 			]]>
-		</if> -->
+		</if>
+		
+		<if test='state != ""'>
+			<![CDATA[
+			 	 and AGENCY_STATUS = #{state } 
+			]]>
+		</if>
+		
+		
 	
 	<!-- <if test="group2 != null">
 		<if test="group2 = 1">
@@ -187,10 +195,34 @@
 	</if>  -->
 	
 	
+	<if test='group3 == "등록날짜순"'>
+			 <![CDATA[ 
+   				 order by a.AGENCY_NO desc)) 
+   			 ]]>
+	</if>
+	
+	<if test='group3 == "시작날짜순"'>
+			 <![CDATA[ 
+   				 order by a.AGENCY_STARRDATE desc)) 
+   			 ]]>
+	</if>
+	
+	<if test='group3 == "금액낮은순"'>
+			 <![CDATA[ 
+   				 order by a.AGENCY_PAY asc))  
+   			 ]]>
+	</if>
+	
+	<if test='group3 == "금액높은순"'>
+			 <![CDATA[ 
+   				 order by a.AGENCY_PAY desc)) 
+   			 ]]>
+	</if>
+	
    	<if test="mode gte 50">
 		<if test="mode lt 70">
 			 <![CDATA[ 
-   				 order by a.AGENCY_NO desc)) where rnum >= #{startrow} and rnum <= #{endrow}  
+   				   where rnum >= #{startrow} and rnum <= #{endrow}  
    			 ]]>
 		</if>
 	</if>
