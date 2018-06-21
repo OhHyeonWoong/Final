@@ -241,4 +241,10 @@ public class MemberServiceImpl implements MemberService{
 	public List<MyReview> selectMyReview(String member_id) {
 		return memberDao.selectMyReview(member_id);
 	}
+
+	@Override
+	public Memberandscore getmemberinfobymemberid(String str) {
+		// TODO Auto-generated method stub
+		return memberDao.getmemberinfobymemberid(str);
+	}
 }	

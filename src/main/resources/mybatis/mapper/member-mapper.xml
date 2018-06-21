@@ -338,6 +338,10 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 			where rv.agencylog_no = al.agencylog_no and al.agencylog_trade = ac.agency_no
 			and ac.agency_writer = #{member_id}
 	 	]]>
-	 
 	 </select>
+	 
+	 <select id="getmemberinfobymemberid" parameterType="String" resultType="Memberandscore">
+	 select * from member where MEMBER_ID=#{str}
+	 </select>
+	 
 	</mapper>

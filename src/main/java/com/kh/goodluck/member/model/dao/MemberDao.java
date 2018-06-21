@@ -203,4 +203,9 @@ public class MemberDao {
 		return sqlSession.selectList("selectMyReview", member_id);
 	}
 
+	public Memberandscore getmemberinfobymemberid(String str) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getmemberinfobymemberid", str);
+	}
+
 }

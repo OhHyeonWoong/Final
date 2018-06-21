@@ -418,23 +418,35 @@ var message = {};
           chatSock.send(JSON.stringify(message));
       };
           
-chatSock.onmessage = function(evt) {
-var z="";
-var testValue = evt.data;
-var iValue = testValue.indexOf("<li class='message right  appeared'>");
-if(iValue == -1){
-//없을경우에는
-z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
-}else{
-//있을경우에	
-z=evt.data;
-}
-
-    	  $("ul[class=messages]").append(z);
-          $("ul[class=messages]").append("<br />");
-          $("ul[class=messages]").scrollTop(99999999);
-      
-      };
+      chatSock.onmessage = function(evt) {
+    	  var z="";
+    	  var testValue = evt.data;
+    	  var iValue = testValue.indexOf("<li class='message right  appeared'>");
+    	  if(testValue.indexOf('nonextfzfzssq26v') != -1 ){
+    	  z=evt.data;
+    	  $.ajax({
+    	  	url:"sendmonja.go",
+    	  	data:{memberid:"${writer.member_id}",pk:"${Board.agency_no}"},
+    	  	success:function(data){
+    	  		alert("보냄");
+    	  	}
+    	  })
+    	  }else{
+    	  	alert("상대방이있다.");	
+    	  if(iValue == -1){
+    	  //없을경우에는
+    	  z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
+    	  }else{
+    	  //있을경우에	
+    	  z=evt.data;
+    	  }
+    	  }
+    	    console.log(z);
+    	      	  $("ul[class=messages]").append(z);
+    	            $("ul[class=messages]").append("<br />");
+    	            $("ul[class=messages]").scrollTop(99999999);
+    	        
+    	        };
        
 //       chatSock.onclose = function() {
 //       

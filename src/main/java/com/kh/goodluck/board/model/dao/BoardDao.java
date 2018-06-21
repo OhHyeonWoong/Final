@@ -477,6 +477,13 @@ public class BoardDao {
 
 
 
+	public Chat getChatInfoByMap1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getChatInfoByMap1",map);
+	}
+
+
+
 
 
 

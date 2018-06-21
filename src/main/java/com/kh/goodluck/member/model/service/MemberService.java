@@ -34,6 +34,7 @@ public interface MemberService {
 	public abstract void updateaccessToken(HashMap<Object, Object> map);
 	public abstract int paycash(HashMap<Object, Object> map2);
 	public abstract int insertpaylog(HashMap<Object, Object> map2);
+	public abstract Memberandscore getmemberinfobymemberid(String str);
 	//지석님 서비스 끝    
 	
 	public abstract int updateMemberInfo(Member m);
@@ -63,6 +64,7 @@ public interface MemberService {
 	public abstract int insertDBTrade(int no);
 	public abstract int insertMemberDummy(Member m);
 	public abstract List<MyReview> selectMyReview(String member_id);
+
 
 
   

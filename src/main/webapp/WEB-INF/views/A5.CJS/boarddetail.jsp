@@ -313,23 +313,23 @@ ${a.ALLIANCE_LOC}
 	 </c:when>
     
      <c:when test="${loginUser ne null && Board.agency_status == 1}"> 
-      <button id="ukapplybtn" data-target="#myModal2">신청하기</button> 
+      <button class="btn btn-primary" id="ukapplybtn" data-target="#myModal2">신청하기</button> 
      </c:when>
      
      <c:when test="${loginUser ne null && Board.agency_status == 2}">  
-        <button id="ukapplybtn" data-target="#myModal2">예비인력으로 신청하기!</button>
+        <button class="btn btn-primary" id="ukapplybtn" data-target="#myModal2">예비인력으로 신청하기!</button>
      </c:when>
      
      <c:when test="${loginUser ne null && Board.agency_status == 3}">  
-        <button>예비인력이 가득찼습니다!</button>
+        <button class="btn btn-primary">예비인력이 가득찼습니다!</button>
      </c:when>
      
      <c:when test="${loginUser ne null && Board.agency_status == 4}">  
-        <button>이미 종료된 작업입니다.</button>
+        <button class="btn btn-primary">이미 종료된 작업입니다.</button>
      </c:when>
 
      </c:choose>
-     <button onclick="window.history.go(-1);">뒤로가기</button>
+     <button class="btn btn-primary" onclick="window.history.go(-1);">뒤로가기</button>
      </center> 
 </th>
 
@@ -483,7 +483,7 @@ if (status === daum.maps.services.Status.OK) {
     	
     	 $('#'+i).hide();     
     }
-</script>
+</script><br><br>
 <%@ include file = "/WEB-INF/views/A8.Common/Footer.jsp" %>
 
 		<div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

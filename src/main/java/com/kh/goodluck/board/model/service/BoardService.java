@@ -19,6 +19,7 @@ import com.kh.goodluck.board.model.vo.Review;
 import com.kh.goodluck.board.model.vo.ReviewForBoard;
 import com.kh.goodluck.board.model.vo.SmallCategory;
 import com.kh.goodluck.board.model.vo.Trade_detail;
+import com.kh.goodluck.chat.model.Chat;
 import com.kh.goodluck.chat.model.ChatDetail;
 import com.kh.goodluck.member.model.vo.MyReview;
 import com.kh.goodluck.board.model.vo.MyPageBoard;
@@ -421,6 +422,11 @@ public class BoardService {
 	public List<Allance> getallancelist() {
 		// TODO Auto-generated method stub
 		return boardDao.getallancelist();
+	}
+
+	public Chat getChatInfoByMap1(HashMap<Object, Object> map) {
+		// TODO Auto-generated method stub
+		return boardDao.getChatInfoByMap1(map);
 	}
 
 
