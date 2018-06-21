@@ -24,7 +24,7 @@
 		height:300px;
 		margin:0px;
 		padding:0px;
-		background:gray;
+		background:white;
 	}
 	
 	.ohw-agency-title > a {
@@ -126,7 +126,7 @@
 									'<tr>' + 										 
 										'<td>' + 
 											'<a href = "InsertViewHistory.go?AgencyNo=' + json.sideBarList[i].agency_no + '&SessionId=' + json.sideBarList[i].SessionId + '">' + 
-												'<h5><i class = "fa fa-clock-o"></i> ' + json.sideBarList[i].agency_title + '</h5>' + 
+												'<h5><i class = "fa fa-clock-o"></i> ' + (i * 1 + 1 * 1) + '. ' + json.sideBarList[i].agency_title + '</h5>' + 
 											'</a>' + 
 										'</td>' + 									 
 									'</tr>'
@@ -169,9 +169,10 @@
 						<tr>
 							<td class = "ohw-search-list">${ searchMasterResult.agency_no }</td>
 							<td class = "ohw-search-list ohw-search-itemicon">
-								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchMasterResult.itemfilename }">
+								
 							</td>
 							<td class = "ohw-search-list ohw-agency-title">
+								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchMasterResult.itemfilename }"> &nbsp;
 								<a href = "InsertViewHistory.go?AgencyNo=${ searchMasterResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchMasterResult.agency_title }</a>
 							</td>							
 							<td class = "ohw-search-list">
@@ -267,9 +268,12 @@
 						<tr>
 							<td class = "ohw-search-list">${ searchSlaveResult.agency_no }</td>
 							<td class = "ohw-search-list ohw-search-itemicon">
-								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchSlaveResult.itemfilename }">
+								
 							</td>
-							<td class = "ohw-search-list ohw-agency-title"><a href = "InsertViewHistory.go?AgencyNo=${ searchSlaveResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchSlaveResult.agency_title }</a></td>
+							<td class = "ohw-search-list ohw-agency-title">
+								<img class = "ohw-search-itemicon" src = "/goodluck/resources/A5.CJS/itemimg/${ searchSlaveResult.itemfilename }"> &nbsp;
+								<a href = "InsertViewHistory.go?AgencyNo=${ searchSlaveResult.agency_no }&SessionId=${ loginUser.member_id }">${ searchSlaveResult.agency_title }</a>
+							</td>
 							<td class = "ohw-search-list"><img src = "/goodluck/resources/common/img/level/lv${ searchSlaveResult.score_sell_rate }.gif"> ${ searchSlaveResult.agency_writer }</td>
 							<td class = "ohw-search-list">${ searchSlaveResult.agency_enrolldate }</td>
 						</tr>
