@@ -369,10 +369,6 @@
 	<body>
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
-
-		${Board}
-		+++++++++++++++++++++++++++
-		${writer}//
 		
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
@@ -510,7 +506,8 @@ z=evt.data;
 			                                        <td>오너의 구매점수</td>
 			                                        <td class="uk_level">
 			                                        
-			                                        ${writer.SCORE_BUY} 포인트 
+			                                      <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
+			                                        
 			                                       </td>
 			                     </c:when>
 			                     
@@ -525,7 +522,8 @@ z=evt.data;
 			                                         봉사단계</td>
 			                                        <td class="uk_level">
 			                                        
-			                                        ${writer.SCORE_SELL_RATE} 단계
+			                                       <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
+			                                        
 			                                       </td>
 			                     </c:when>
 			                     </c:choose>    
@@ -737,7 +735,7 @@ z=evt.data;
 </button>
 </c:when>
  <c:when test="${Board.agency_type eq 1}">  
- <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white;">
+ <button id="ukapplybtn" class="btn btn-danger" data-target="#cjsModalLabel">
  지원자 교체
 </button>
 		<a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">

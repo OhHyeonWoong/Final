@@ -474,7 +474,8 @@
 			                                        <td>오너의 구매점수</td>
 			                                        <td class="uk_level">
 			                                        
-			                                        ${writer.SCORE_BUY} 포인트 
+			                                       <img src = "/goodluck/resources/common/img/level/lv${writer.SCORE_SELL_RATE}.gif">                            
+			                                        
 			                                        
 			                                        </td>
 			                                    </tr>
@@ -595,7 +596,7 @@
 							<div class="col-md-6" style="width: 100%; padding: 0;">
 					    	<div class="well well-sm" style="padding: 26px; margin: 0;">
 					            <div class="text-right" align="center">
-<button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
+<button id="ukapplybtn" class="btn btn-danger" data-target="#cjsModalLabel">
 		수행 포기
 		</button>
 					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
