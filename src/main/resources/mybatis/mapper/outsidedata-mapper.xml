@@ -52,6 +52,15 @@
    		<result property="pet_comment_writedate" column="pet_comment_writedate"/>
 	</resultMap> 
 	
+	<resultMap type="PetNews_Cocoment" id="PetNewsCocoommentList">
+   		<result property="pet_cocomment_no" column="pet_cocomment_no"/>
+   		<result property="pet_cocomment_contents" column="pet_cocomment_contents"/>
+   		<result property="pet_cocomment_writer" column="pet_cocomment_writer"/>
+   		<result property="pet_cocomment_newsno" column="pet_cocomment_newsno"/>
+   		<result property="pet_cocommnet_comno" column="pet_cocommnet_comno"/>
+   		<result property="pet_cocomment_writedate" column="pet_cocomment_writedate"/>
+	</resultMap> 
+	
 
 	
 	<select id="petNewsList" resultMap="PetNewsList">
@@ -91,8 +100,11 @@
 		<![CDATA[select * from outside_pet_newscomment where pet_comment_newsno=#{pet_comment_newsno} and pet_comment_status=1 order by pet_comment_no desc]]>
 	</select> 
 	  
+	<select id="petCommentCommentDatalist" parameterType="PetNews_Cocoment" resultMap="PetNewsCocoommentList">
+		<![CDATA[select * from outside_pet_newscocoment where  pet_cocomment_newsno=#{pet_cocomment_newsno} and  pet_cocommnet_comno=#{ pet_cocommnet_comno}]]>	
+	</select>
 
-
+  
 
 </mapper>
 

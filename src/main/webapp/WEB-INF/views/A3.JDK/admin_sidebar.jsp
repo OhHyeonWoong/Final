@@ -43,6 +43,30 @@
             <a id="panel7" href="lbjMoveManagingNewArticles.go" data-toggle="collapse" data-target="#cogs"> 
             <i class="fa fa-cogs"></i> 게시글 관리<i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
           </li>
+          <li class="panel">
+            <a id="panel7" href="adminViewManagement.go?lifeCarouselImage=${ukjaelifeCarousel.osli_datavalue}&representlifeimage=${ukjaerepresentlifeimage.osli_datavalue}" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리(Main) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel7" href="adminViewManagement_life.go?mainCarouselImage=${ukjaemainCarousel.osm_datavalue}&mainyoutube=${ukjaemainYoutube.osm_datavalue}" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리2(Life) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel7" href="#" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리(Pet) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel7" href="#" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리(Game) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel7" href="#" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리(Music) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel7" href="#" data-toggle="collapse" data-target="#cogs"> 
+            <i class="fa fa-cogs"></i> 화면관리(Travel) <i class="fa fa fa-chevron-left pull-right" id="arow7"></i> </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -61,6 +61,11 @@ public class Outside_MainService {
 		return outside_MainDao.ukjaeCheckDataValue(main);
 	}
 
+	public Outside_Main ukjaeCheckbyNo(int parse_no) {
+		// TODO Auto-generated method stub
+		return outside_MainDao.ukjaeCheckbyNo(parse_no);
+	}
+
 
 
 

@@ -19,6 +19,15 @@ public class PetNews_Comment implements java.io.Serializable {
 
 	
 	
+	public PetNews_Comment(int pet_comment_no, int pet_comment_status, int pet_comment_newsno) {
+		super();
+		this.pet_comment_no = pet_comment_no;
+		this.pet_comment_status = pet_comment_status;
+		this.pet_comment_newsno = pet_comment_newsno;
+	}
+
+
+
 	public PetNews_Comment(int pet_comment_status, String pet_comment_contents, String pet_comment_writer,
 			int pet_comment_newsno) {
 		super();
