@@ -80,99 +80,22 @@
 					$("#bsh_span_button").empty();
 					htmlstr = '';
 					
-					htmlstr += '<button onclick="boardprime(1);">&lt;&lt;</button>';
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="boardprime(1);">&lt;&lt;</button>';
 					
 					if(page == 1){
-						htmlstr += '<button>&lt;</button>';
+						htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&lt;</button>';
 					}else{
-						htmlstr += '<button onclick="'+boardprime(page-1)+'">&lt;</button>';
+						htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="'+boardprime(page-1)+'">&lt;</button>';
 					}
 					
-					/* htmlstr +=  */
+					htmlstr += '&nbsp; <a style="color:red;">1</a> &nbsp;';
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="">></button>';
+					htmlstr += '<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="">>></button>';
 					
-					
-					
+									
 					$("#bsh_span_button").html(htmlstr);
-					
-					/* for(var i in json.primelist){
-						htmlstr += 
-							'<td>'+
-							json.item[i].Agency_type+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'+
-							'<td>'+
-							'</td>'	;
-					}
-					$("#primetbody").html(htmlstr); */
-					
-					/*
-					
-					$('#primeboard').empty();
-					
-					var htmlStr = '<table class="table table-striped lbjtable" id="lbjItemTable"><tr>'+
-					'<th class="lbjth">아이템명</th><th class="lbjth">구매일</th><th class="lbjth">시작일</th>'+
-					'<th class="lbjth">종료일</th><th class="lbjth">이용횟수</th></tr>';
-										
-					console.log("qna 페이징 처리");
-					for(var i in json.item){
-						htmlStr += '<tr><td>'+json.item[i].itemname+'</td>'+
-						'<td>'+json.item[i].buy_date+'</td>'+
-						'<td>'+json.item[i].start_date+'</td>'+
-						'<td>'+json.item[i].end_date+'</td>'+
-						'<td>'+json.item[i].final_status+'</td></tr>';
-					}
-					console.log("qna 페이징 처리");
-					//console.log("json.item[0].itemListCount" + json.item[0].itemListCount);
-					//페이징 처리//
-					htmlStr += '<tr><td colspan="5"><div style="text-align:center;">'
-					if(json.item[0].itemListCount > 6){
-						if(json.item[0].qnaCurrentPage <= 1){
-							htmlStr += "<< &nbsp";
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload(1);"> << </a>&nbsp;';
-						}
-						if(json.item[0].qnaCurrentPage > json.item[0].qnaStartPage){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage-1)+'); return false;"> < </a>&nbsp;';
-						}else{
-							htmlStr += '< &nbsp';
-						}
-						//현재 페이지가 포함된 그룹의 페이지 숫자 출력
-						for(var i=json.item[0].qnaStartPage;i<=json.item[0].itemEndFor;i++){
-							if(i == json.item[0].qnaCurrentPage){
-								htmlStr += '<font color="red" size="4"><b>'+i+'</b></font>&nbsp;';
-							}else{
-								htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+i+'); return false;">'+i+'</a>&nbsp;';
-							}
-						}
-						//기모리 ///////////////
-						if(json.item[0].qnaCurrentPage != json.item[0].itemEndRow){
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+(json.item[0].qnaCurrentPage+1)+'); return false;">></a>&nbsp;';
-						}else{
-							htmlStr += '> &nbsp;';
-						}
-						if(json.item[0].qnaCurrentPage >= json.item[0].itemMaxPage){
-							htmlStr += '>> &nbsp;';
-						}else{
-							htmlStr += '<a href="javascript:void(0);" onclick="fnItemReload('+json.item[0].itemMaxPage+'); return false;">>></a>';
-						}
-					}else{
-						htmlStr += '<font color="red" size="4"><b>1</b></font>&nbsp';
-					}
-					htmlStr += '</div></td></tr></table>';
-					//페이징처리 끝//
-					$('#lbjitemDiv').html(htmlStr);
-					 */},
+
+					},
 				error:function(){
 					alert("프라임 로드 실패");
 				}
@@ -248,17 +171,17 @@
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
-				<table style="border: 1px solid black; width: 100%;">
-					<thead style="border: 1px solid black;">
+				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 50%;">제목</th>
-							<th style="border: 1px solid black; width: 5%;">지역</th>
-							<th style="border: 1px solid black; width: 5%;">구분</th>
-							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
-							<th style="border: 1px solid black; width: 5%;">상태</th>
+							<th style="width: 5%;">종류</th>
+							<th style="width: 50%;">제목</th>
+							<th style="width: 5%;">지역</th>
+							<th style="width: 5%;">구분</th>
+							<th style="width: 10%;">금액</th>
+							<th style="width: 10%;">등록날짜</th>
+							<th style="width: 10%;">시작날짜</th>
+							<th style="width: 5%;">상태</th>
 						</tr>
 
 					</thead>
@@ -353,17 +276,17 @@
 			<div class="board_div_maincontent">
 				<h2>${board.link2_no }<button class="btn btn-info" onclick="fnBoardWriteForm();" style="float:right;">글 쓰기</button></h2><br>
 				
-				<table style="border: 1px solid black; width: 100%;">
-					<thead style="border: 1px solid black;">
+				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="border: 1px solid black; width: 5%;">종류</th>
-							<th style="border: 1px solid black; width: 45%;">제목</th>
-							<th style="border: 1px solid black; width: 5%;">지역</th>
-							<th style="border: 1px solid black; width: 5%;">구분</th>
-							<th style="border: 1px solid black; width: 10%;">금액</th>
-							<th style="border: 1px solid black; width: 10%;">등록날짜</th>
-							<th style="border: 1px solid black; width: 10%;">시작날짜</th>
-							<th style="border: 1px solid black; width: 10%;">상태</th>
+							<th style="width: 5%;">종류</th>
+							<th style="width: 45%;">제목</th>
+							<th style="width: 5%;">지역</th>
+							<th style="width: 5%;">구분</th>
+							<th style="width: 10%;">금액</th>
+							<th style="width: 10%;">등록날짜</th>
+							<th style="width: 10%;">시작날짜</th>
+							<th style="width: 10%;">상태</th>
 						</tr>
 
 					</thead>
@@ -431,14 +354,14 @@
 					</tbody>
 				</table>
 				<span class="bsh_span_button">
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
+					<button style="border-style:none; border:1px solid #e7e7e7; background: white;" onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=1'">&lt;&lt;</button>
 					<c:set var="currentpage" value="${pageNum }"/>
 					<c:if test="${currentpage eq '1'}">
-						<button>&lt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != '1'}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage-1 }'">&lt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage <=5}">
@@ -478,14 +401,14 @@
 					</c:if>
 						
 					<c:if test="${currentpage eq agencycount}">
-						<button>&gt;</button>
+						<button style="border-style:none; border:1px solid #e7e7e7; background: white;" >&gt;</button>
 					</c:if>
 					
 					<c:if test="${currentpage != agencycount}">
-						<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
+						<button  style="border-style:none; border:1px solid #e7e7e7; background: white;" onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${currentpage+1 }'">&gt;</button>
 					</c:if>
 					  
-					<button onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
+					<button style="border-style:none; border:1px solid #e7e7e7; background: white;"  onclick="location.href='bshtest.go?link2_no=${board.link2_no }&page=${agencycount }'">&gt;&gt;</button>
 				</span>
 			</div>
 			<input type="hidden" id="ukjae_userid" value="${loginUser.member_id}">
