@@ -105,7 +105,7 @@ sessioned.sendMessage(new TextMessage(messageVo.getMessage()+"</div></div></li>"
 
 
     		} else {
-session.sendMessage(new TextMessage("상대가 존재하지않습니다"));
+    		session.sendMessage(new TextMessage("<li class='message right  appeared'><div class='text_wrapper'> <div class='text'>상대가 존재하지않습니다.</div></div></li>"));
     		//이럴경우 상대방의 정보의 폰번호로 문자를 날린다.
     		
     		

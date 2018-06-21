@@ -370,13 +370,9 @@
 <%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
   
 <script type="text/javascript" src="/goodluck/resources/common/js/sockjs-1.0.3.min.js" ></script>
-
-
-		${Board}//
+${Board}//
 		+++++++++++++++++++++++++++
-		${writer}//
-	
-	
+${writer}//
 	<div class="container">   
 		<div class="row-fluid user-infos cyruxx">
 			            <div class="span10 offset1">
@@ -957,17 +953,32 @@ z=evt.data;
 		
 <script type="text/javascript" 
 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=120b01867e29e09658100681cf1d0604&libraries=services,clusterer,drawing"></script>
+<style type="text/css">
+  .wrap {display:none;    position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5; }
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+    </style>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = {
     center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level:5// 지도의 확대 레벨
+    level: 4 // 지도의 확대 레벨
 };  
 var geocoder = new daum.maps.services.Geocoder();
 var coords="";
 var coords1="";
 geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
-
     // 정상적으로 검색이 완료됐으면 
      if (status === daum.maps.services.Status.OK) {
 
@@ -979,7 +990,7 @@ geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
      var circle = new daum.maps.Circle({
     	    center : coords,  // 원의 중심좌표 입니다 
     	    radius: 50, // 미터 단위의 원의 반지름입니다 
-    	    strokeWeight: 2, // 선의 두께입니다 
+    	    strokeWeight: 5, // 선의 두께입니다 
     	    strokeColor: '#75B8FA', // 선의 색깔입니다
     	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
     	    strokeStyle: 'dashed', // 선의 스타일 입니다
@@ -991,68 +1002,73 @@ geocoder.addressSearch('${Board.agency_loc}', function(result, status) {
     	circle.setMap(map); 
 });
 
-
-// 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
 
-// 주소-좌표 변환 객체를 생성합니다
+var  positions =  [];
+var  zero= {};
+var i=0;
+<c:forEach var="a" items="${allance}" varStatus="status">
+geocoder.addressSearch('${a.ALLIANCE_LOC}', function(result, status) {
+if (status === daum.maps.services.Status.OK) {
+	coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
+	zero={content : 
+		    '<div class="wrap" id='+i+' onclick="closeOverlay(this.id)">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            <center>${a.ALLIANCE_NAME} <center>' + 
+            '            <div class="close"  title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' +
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">${a.ALLIANCE_LOC}</div>' + 
+            '                <div><a href="${a.ALLIANCE_URL}" target="_blank" class="link">홈페이지</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>', latlng:coords1};
+    positions.push(zero);
+    i++;
+    console.log(${fn:length(allance)});
+    console.log(i);
+    if(${fn:length(allance)}==i){
+    	console.log(positions.length);
+    	mapst();
+    }  
+   }
+})
+</c:forEach>
+    function mapst(){
+      for (var i = 0; i < positions.length; i ++) {
+    	  var content = positions[i].content;
+    	
+    
 
-
-
-// 제휴사들 가져와서 넣기@@@@@@@
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('경기도 도덕공원로 75-28', function(result, status) {
-    // 정상적으로 검색이 완료됐으면 
-     if (status === daum.maps.services.Status.OK) {
-
-        coords1 = new daum.maps.LatLng(result[0].y, result[0].x);
-        console.log("coords1="+coords1);
-        var positions = [
-            {
-                content: '<div text-align:"center">카카오</div>', 
-                latlng: coords1
-            }
-        ];
-
-        for (var i = 0; i < positions.length; i ++) {
-            // 마커를 생성합니다
-            console.log(positions);
-            var marker = new daum.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng // 마커의 위치
-            });
-
-            // 마커에 표시할 인포윈도우를 생성합니다 
-            var infowindow = new daum.maps.InfoWindow({
-                content: positions[i].content // 인포윈도우에 표시할 내용
-            });
-
-            // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-            // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-            (function(marker, infowindow) {
-                // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-                daum.maps.event.addListener(marker, 'mouseover', function() {
-                    infowindow.open(map, marker);
-                });
-
-                // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-                daum.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
-                });
-            })(marker, infowindow);
-        }    
-        
-        
-    } 
-});
-
-
-
-
-
-
-
-
+		            // 마커를 생성합니다
+		          
+		            var marker = new daum.maps.Marker({
+		                map: map, // 마커를 표시할 지도
+		                position:positions[i].latlng // 마커의 위치
+		               
+		            });
+		            var overlay = new daum.maps.CustomOverlay({
+		                content: content,
+		                map: map,
+		                position: marker.getPosition()
+		            });
+		         
+    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+    daum.maps.event.addListener(marker, 'click', function() {
+    	 $('.wrap').show();   
+        overlay.setMap(map);
+    });
+      }    
+            
+    };
+    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+    function closeOverlay(i) {
+    	
+    	 $('#'+i).hide();     
+    }
 </script>
 		
 	</body>
