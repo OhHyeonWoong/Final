@@ -125,17 +125,6 @@
 		]]>
 	</if>
 	
-	<!-- <if test="mode == 52">
-			<![CDATA[
-				 and agency_type = 1
-			]]>
-	</if>
-	<if test="mode == 53">
-			<![CDATA[
-				 and agency_type = 2
-			]]>
-	</if> -->
-	
 		<if test='group1 == "시급"'>
 			<![CDATA[
 				 and agency_type = 1
@@ -177,22 +166,6 @@
 			 	 and AGENCY_STATUS = #{state } 
 			]]>
 		</if>
-		
-		
-	
-	<!-- <if test="group2 != null">
-		<if test="group2 = 1">
-			<![CDATA[
-				 and agency_paytype = 1
-			]]>
-		</if>
-		
-		<if test="group2 = 2">
-			<![CDATA[
-				 and agency_paytype = 2
-			]]>
-		</if>
-	</if>  -->
 	
 	
 	<if test='group3 == "등록날짜순"'>
@@ -203,7 +176,7 @@
 	
 	<if test='group3 == "시작날짜순"'>
 			 <![CDATA[ 
-   				 order by a.AGENCY_STARRDATE desc)) 
+   				 order by a.AGENCY_STARTDATE desc)) 
    			 ]]>
 	</if>
 	

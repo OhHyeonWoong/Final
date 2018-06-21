@@ -168,9 +168,10 @@
 							<td class="td_start"><label>글상태</label></td>
 							<td class="td_end">
 								<select id="state" name="state">
-									<option value="정상" selected="selected">정상</option>
-									<option value="예약가능">예약가능</option>
-									<option value="예약불가">예약불가</option>
+									<option value="" selected="selected">전체</option>
+                           			<option value="1">정상</option>
+									<option value="2">예약가능</option>
+									<option value="3">예약불가</option>
 								</select>
 							</td>
 						</tr>
@@ -247,7 +248,7 @@
 							<c:if test="${tf eq '2' }">
 								시급
 							</c:if>
-							${board.agency_paytype }
+							<%-- ${board.agency_paytype } --%>
 							</td>
 							<td>
 							${board.agency_pay }
