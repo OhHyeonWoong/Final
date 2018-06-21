@@ -1419,7 +1419,14 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 			<div class="lbjdiv" id="lbjMyReviewDiv">
 				<table class="table table-striped lbjtable" id="lbjMyReviewTable">
 					<tr><th class="lbjth">일자</th><th class="lbjth">액수</th><th class="lbjth">잔액</th></tr>
-					
+					<c:forEach items="${lbjMyChargeMoney}" val="chargeMoney">
+						<tr>
+							<td>${chargeMoney.paylog_when}</td>
+							<td>${chargeMoney.paylog_money}</td>
+							<td>${loginUser.member_cash}</td>
+						</tr>
+					</c:forEach>
+					<tr><td colspan="6"><font color="red" size="4"><b>1</b></font>&nbsp;</td></tr>
 				</table>
 			</div>
 			<!-- 새로 추가  끝 -->

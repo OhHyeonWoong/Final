@@ -1,5 +1,6 @@
 package com.kh.goodluck.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,10 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
+import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -86,8 +90,8 @@ public class MemberDao {
 		return sqlSession.delete("deleteMemberOut", member_id);
 	}
 
-	public List<Member> adMemberList(Member member) {
-		return sqlSession.selectList("adminMemberList",member);
+	public List<MemberList> adMemberList() {
+		return sqlSession.selectList("adminMemberList");
 	}
 
 	public int updateMemberCashMethod(Member m) {
@@ -153,10 +157,12 @@ public class MemberDao {
 
 	public int insertLbjMilegePayLog(HashMap<String, Object> map) {
 		return sqlSession.insert("insertLbjMilegePayLog", map);
-	}
+	}  
+
 	public int updateAdminCash(HashMap<String, Object> map) {
 		return sqlSession.update("updateAdminCash", map);
 	}
+
 	public int ukjaeWriteCountOneMinus(String loginUser) {
 		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
@@ -166,9 +172,41 @@ public class MemberDao {
 		return sqlSession.selectOne("countAllItemNumber");
 	}
 
-	public int getCountforRandomItems() {
-		return sqlSession.selectOne("countRandomItemNumber");
+	public int ukjaeuserCashMinus(Member updatemember) {
+		//욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
+		return sqlSession.update("ukjaewritingUserCashUpdate", updatemember);
 	}
 	
 	
+	
+	public int updateUserKakaoToken(HashMap<Object, Object> map) {
+		return sqlSession.update("updateUserKakaoToken", map);
+
+	}
+
+	public int insertDBDummyData(Board board) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertDBDummyData", board);
+	}
+
+	public int insertDBTrade(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertDBTrade", no);
+	}
+
+	public int insertMemberDummy(Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertMemberDummy", m);
+	}
+
+	public List<MyReview> selectMyReview(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectMyReview", member_id);
+	}
+
+	public List<Paylog> selectMyChargeMoney(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectMyChargeMoney", member_id);
+	}
+
 }

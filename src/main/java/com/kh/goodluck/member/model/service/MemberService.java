@@ -1,14 +1,18 @@
 package com.kh.goodluck.member.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.kh.goodluck.admin.model.vo.LoginStatistics;
+import com.kh.goodluck.board.model.vo.Board;
 import com.kh.goodluck.item.model.vo.ITEMLIST;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
-
+import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
+ 
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
 	public abstract int findPwdMethod(Member member);
@@ -31,7 +35,7 @@ public interface MemberService {
 	public abstract void updateaccessToken(HashMap<Object, Object> map);
 	public abstract int paycash(HashMap<Object, Object> map2);
 	public abstract int insertpaylog(HashMap<Object, Object> map2);
-	//지석님 서비스 끝
+	//지석님 서비스 끝    
 	
 	public abstract int updateMemberInfo(Member m);
 	public abstract int updateLastLogin(String member_id);
@@ -48,10 +52,22 @@ public interface MemberService {
 	
 	//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 	public abstract int ukjaeWriteCountOneMinus(String loginUser);
-	//동기 - 개별 아이템 숫자
-	public abstract int countAllItemNum(); 
-	//동기 - 패키지 아이템 숫자
-	public abstract int countRandomItemNum(); 
+
+	//욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
+	public abstract int ukjaeuserCashMinusCheck(String loginUser);
+	//욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
+	public abstract int ukjaeuserCashMinus(Member updatemember);
+
+	public abstract int updateUserKakaoToken(HashMap<Object, Object> map);
+	
+	public abstract int insertDBDummyData(Board board);
+	public abstract int insertDBTrade(int no);
+	public abstract int insertMemberDummy(Member m);
+	public abstract List<MyReview> selectMyReview(String member_id);
+	public abstract List<Paylog> selectMyChargeMoney(String member_id);
+	int countRandomItemNum();
+	int countAllItemNum();
+
 
   
 
