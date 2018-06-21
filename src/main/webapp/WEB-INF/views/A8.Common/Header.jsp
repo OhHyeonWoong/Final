@@ -417,7 +417,13 @@
 				<tr>					
 					<td>
 						<div class="dropdown  ohw-menu-a">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> ${ loginUser.member_name } 님 &nbsp;
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+		
+		<c:if test="${loginUser.emoticonfile ne null}">
+		<img class="afterauserajaximg" style="width:20px; height: 30px;" 
+		src="/goodluck/resources/A5.CJS/itemimg/${loginUser.emoticonfile}">
+		</c:if> 
+		${ loginUser.member_name } 님 &nbsp;
 							<c:if test="${ loginUser.MEMBER_KAKAOIDPK != 0 }">
 								<img src="/goodluck/resources/A6.LBJ/images/kakao.png" style="width:30px; height:30px;">							
 							</c:if>
