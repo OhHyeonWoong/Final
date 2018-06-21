@@ -131,26 +131,40 @@ public class BoardDao {
 		return sqlSession.selectList("search", map);
 	}
 	
+	public List<Board> primebig(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primebig", map);
+	}
+
+	public List<Board> primemid(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primemid", map);
+	}
+
+	public List<Board> primesma(HashMap<Object, Object> map) {
+
+		return sqlSession.selectList("primesma", map);
+	}
+	
+	
+	
+	
+	
+	
 	public Board getBoardInfoByNo(int pk) {
 		// 보드pk로 보드 정보구하기.
 		return sqlSession.selectOne("getBoardInfoByNo",pk);
 	}
-
-
 
 	public int IncreaseViewCount(int pk) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("IncreaseViewCount",  pk);
 	}
 
-
-
 	public GetCategoryForBoardDetail GetCategoryForBoardDetail(int pk) {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("GetCategoryForBoardDetail",pk);
 	}
-
-
 
 	public int IncreasesSMALLCATEGORYCOUNT(int parseInt) {
 	return sqlSession.update("IncreasesSMALLCATEGORYCOUNT",parseInt);
@@ -440,6 +454,10 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getallancelist");
 	}
+
+
+
+
 
 
 

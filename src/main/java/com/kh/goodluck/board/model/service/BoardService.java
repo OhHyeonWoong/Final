@@ -94,6 +94,21 @@ public class BoardService {
 		return boardDao.search(map);
 	}
 
+	public List<Board> primebig(HashMap<Object, Object> map) {
+		
+		return boardDao.primebig(map);
+	}
+
+	public List<Board> primemid(HashMap<Object, Object> map) {
+		
+		return boardDao.primemid(map);
+	}
+
+	public List<Board> primesma(HashMap<Object, Object> map) {
+		
+		return boardDao.primesma(map);
+	}
+
 
 	////////////메인영역 뿌려지는 데이터////////////////////
 	
@@ -382,5 +397,6 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDao.getallancelist();
 	}
+
 
 }
