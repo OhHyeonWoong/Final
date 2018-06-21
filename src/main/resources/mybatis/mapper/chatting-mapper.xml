@@ -19,7 +19,11 @@
 		<result property="CHATDEATIL_DATE" column="CHATDEATIL_DATE"/>
 	</resultMap>
 <select id="getChatInfoByMap" parameterType="hashmap" resultType="Chat">
-select * from CHATROOM where AGENCY_NO= #{AGENCY_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
+select * from(
+select * from 
+CHATROOM where 
+AGENCY_NO= #{AGENCY_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
+order by CHATROOM_NO desc) where rownum=1
 </select>
 <select id="getChatInfoByMap1" parameterType="hashmap" resultType="Chat">
 select * from CHATROOM where CHATROOM_NO= #{CHATROOM_NO} and (CHATROOM_ORDER=#{memberid} or CHATROOM_APPLICANT=#{memberid})
