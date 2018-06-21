@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +15,6 @@
 $(function(){
 	
 });	
-
-	
 </script>
 <!-- 부트스트랩 링크 -->
 <style type="text/css"
@@ -31,7 +31,6 @@ $(function(){
 		<!-- 내용 출력하기 -->
 		<div class="w3-container" style="width: 80%; float: right;">
 			<!-- 여기서 부터 작성하시면 됩니다.  -->
-
 			<!-- 관리자 회원 관리 리스트 시작 -->
 			<!-- 헤더 영역 -->
 			<h3 style="text-align: center;">회원 관리</h3>
@@ -39,57 +38,65 @@ $(function(){
 			<!-- 회원 검색 -->
 			<div>
 				<form>
-					<div style="float:left;">
+					<div style="float:left; align:center;">
 						<select class="form-control" name="searchOption">
-							<option value="">이름</option>
-							<option value="">아이디</option>
-							<option value="">이메일</option>
-							<option value="">생년월일</option>
-							<option value="">회원번호</option>
+							<option value="1">이름</option>
+							<option value="2">아이디</option>
+							<option value="3">이메일</option>
+							<option value="4">생년월일</option>
+							<option value="5">회원번호</option>
 						</select>
 					</div>
 					<div>
-						<input type="text" class="form-control" placeholder="Search" name="searchMember" style="float: left; width: 30%;">
+						<input type="text" class="form-control" placeholder="Search" 
+						name="searchMember" style="float: left; width: 30%;">
 						<div class="input-group-btn" style="right;">
 							<button class="btn btn-default" type="submit">
-							<i class="glyphicon glyphicon-search"></i> Search
-							</button>
+							<i class="glyphicon glyphicon-search"></i> Search</button>
 						</div>
 					</div>
 				</form>
 			</div>
 			<hr>
-			<br>
 			<!-- 리스트 출력 테이블 -->
 			<table class="table">
 				<thead>
 					<tr>
 						<th>아이디</th>
 						<th>이름</th>
-						<th>생년월일</th>
 						<th>Email</th>
+						<th style="text-align:center;">회원 탈퇴</th>
 						<th class="text-center"></th>
 					</tr>
 				</thead>
-				<%-- <c:foreach> --%>
+			<c:forEach var="l" items="${firstMemberList}">
 				<tr>
-					<td>아이디</td>
-					<td>이름</td>
-					<td>생년월일</td>
-					<td>Email</td>
-					
-					
-					
-					<td class="text-center"><a class='btn btn-info btn-xs'
-						href="#"><span class="glyphicon glyphicon-edit"></span>수정</a> <a
-						href="#" class="btn btn-danger btn-xs"><span
+					<td>${l.member_id}</td>
+					<td>${l.member_name}</td>
+					<td>${l.member_email}</td>
+				<td class="text-center">
+				<a href="#" class="btn btn-danger btn-xs"><span
 							class="glyphicon glyphicon-remove"></span>회원 탈퇴 </a></td>
 				</tr>
-				<%-- </c:foreach> --%>
+			</c:forEach>
 			</table>
 		</div>
+		<!-- 버튼 생성 영역 -->
+				<div style="width: 100%; float: left;" align="center" id="paging">
+					<!-- 페이징 처리 -->
+					<table class="pageingtable">
+						<tr>
+							<td colspan="4"> 
+								<a href="" id="" style="border: 1px solid white;">first</a> &nbsp; &nbsp; 
+								<a href="" id="" style="border: 1px solid white;">1</a>  &nbsp; &nbsp;
+								<a href="" id="" style="border: 1px solid white;">end</a>
+							</td>
+						</tr>
+					</table>	
+				</div>
+				
 		<!-- 작성 영역 끝-->
-	</div>
+	</div><br><br><br><br>
 
 	<%@ include file="/WEB-INF/views/A8.Common/Footer.jsp"%>
 </body>

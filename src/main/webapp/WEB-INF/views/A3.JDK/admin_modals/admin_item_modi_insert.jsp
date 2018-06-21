@@ -31,12 +31,16 @@ function categoryCheck(){
 }
 
 function insertIndiItem(){
-	
-	var formData = new FormData($("#fileForm").serialize());
+	var formData = new FormData($("#fileForm")[0]);
+	formData.append("itemImage",$("#item_modi_file").files[0]);
 	alert(formData);
 	$.ajax({
-	type: "POST",
 	url: "jdkinsertNewItem.go",
+	type: "POST",
+	enctype: "multipart/form-data", 
+	processData: false,
+	contentType : false,
+	cache : false,
 	data: {
 		ITEMNAME : formData
 	},
@@ -44,7 +48,6 @@ function insertIndiItem(){
 		alert(result);
 		$("#item_modi_insert").modal("hide"); 
 	}
-	
 	});
 }
 
@@ -64,7 +67,7 @@ function sendForm1(){
 	<div class="modal fade" id="item_modi_insert" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-		<form id="fileForm" enctype="multipart/form-data" method="POST" action="jdkinsertNewItem.go" onsubmit="sendForm1()">
+		<form id="fileForm" enctype="multipart/form-data" method="POST" action="jdkinsertNewItem.go" onsubmit="insertIndiItem()">
 			<div class="modal-content" class="modal-content" style="width:70%;">
 				<div class="modal-header" style="text-align: center;">
 					<h4 class="modal-title">아이템 등록</h4>

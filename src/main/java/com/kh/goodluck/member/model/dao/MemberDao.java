@@ -15,6 +15,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -167,16 +168,16 @@ public class MemberDao {
 		return sqlSession.update("ukjaeWriteCountOneMinus", loginUser);
 	}
 
- 
-	public int ukjaeuserCashMinusCheck(String loginUser) {
-		//욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
-		return sqlSession.selectOne("ukjaewritingUserCashCheck", loginUser);
+	public int getCountforAllItems() {
+		return sqlSession.selectOne("countAllItemNumber");
 	}
 
 	public int ukjaeuserCashMinus(Member updatemember) {
 		//욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
 		return sqlSession.update("ukjaewritingUserCashUpdate", updatemember);
 	}
+	
+	
 	
 	public int updateUserKakaoToken(HashMap<Object, Object> map) {
 		return sqlSession.update("updateUserKakaoToken", map);
@@ -203,9 +204,14 @@ public class MemberDao {
 		return sqlSession.selectList("selectMyReview", member_id);
 	}
 
+
 	public Memberandscore getmemberinfobymemberid(String str) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getmemberinfobymemberid", str);
+}
+	public List<Paylog> selectMyChargeMoney(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectMyChargeMoney", member_id);
 	}
 
 }

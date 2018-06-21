@@ -191,6 +191,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	default,
 	default,
 	default,
+	default,
 	default
 	)
 	]]>
@@ -206,15 +207,19 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	MEMBER_CASH = ((select MEMBER_CASH from member where MEMBER_ID =#{memberid})-#{price})
 	where MEMBER_ID =#{memberid}
 	</update>
-	<select id="adminMemberList"  resultType="MemberList">
+
+
+	<select id="adminMemberList" parameterType="member"  resultType="member">
 	<![CDATA[
-	select MEMBER_ID,
-	MEMBER_NAME,
-	MEMBER_EMAIL,
-	MEMBER_REGIDENT_NUMBER from (select rownum as a, list.* from (select * from MEMBER order by MEMBER_NAME) list)
-	where  a>=1 and a<= 10 
+			select * from
+			(select list.* from 
+			(select * from MEMBER) list 
+			where rownum between #{startRnum} and  #{endRnum}
+			)
 	]]>
 	</select>
+
+
 	<select id="getmemberinfobykakaopk" parameterType="int" resultType="Member">
 	select * from member where MEMBER_KAKAOIDPK=#{parseInt}
 	</select>
@@ -276,7 +281,7 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 	
 	<insert id="insertLbjMilegePayLog" parameterType="java.util.HashMap">
 		<![CDATA[
-			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},#{member_id},#{member_cash},sysdate)
+			insert into paylog values ((select max(PAYLOG_NO)+1 from paylog),#{member_id},#{member_id},#{chargeMoney},sysdate)
 		]]>
 	</insert>
 	
@@ -339,7 +344,14 @@ update MEMBER set MEMBER_KEYWORD_COUNT = (MEMBER_KEYWORD_COUNT+1) where MEMBER_I
 			and ac.agency_writer = #{member_id}
 	 	]]>
 	 </select>
-	 
+
+	 <select id="selectMyChargeMoney" parameterType="string" resultType="Paylog">
+	 	<![CDATA[
+	 		select *
+			from paylog
+			where paylog_from = #{member_id} and paylog_to = #{member_id}
+	 	]]>
+	 </select>
 	 <select id="getmemberinfobymemberid" parameterType="String" resultType="Memberandscore">
 	 select * from member where MEMBER_ID=#{str}
 	 </select>

@@ -271,13 +271,6 @@ function pageing(page){
 		$("#itempagingcjs").html(value1);
 			
 			
-			
-			
-			
-			
-			
-			
-			
 		},
 			error:function(a,b,c){
 					alert("a : " + a + ", b : " + b + ", c : " + c);

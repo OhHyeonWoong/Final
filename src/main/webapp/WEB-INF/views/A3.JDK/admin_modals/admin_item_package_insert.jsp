@@ -46,8 +46,8 @@
 						</tr>
 						<tr>
 							<th style="width:30%;">포함하는 아이템 목록</th>
-							<td style="width:70%; text-align:center;">
-							</td>
+						<!-- 	<td style="width:70%; text-align:center;"> -->
+							<!-- </td> -->
 						</tr>
 					</table>
 				</div>

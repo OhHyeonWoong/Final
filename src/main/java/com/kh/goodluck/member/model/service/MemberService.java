@@ -11,6 +11,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
  
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
@@ -40,7 +41,7 @@ public interface MemberService {
 	public abstract int updateMemberInfo(Member m);
 	public abstract int updateLastLogin(String member_id);
 	public abstract int deleteMemberOut(String member_id);
-	public abstract List<MemberList> adminMemberList();
+	public abstract List<Member> adminMemberList(Member member);
 	public abstract int updateMemberCashMethod(Member m);
 
 	public abstract int insertLoginStatistics(String member_id);
@@ -65,7 +66,9 @@ public interface MemberService {
 	public abstract int insertMemberDummy(Member m);
 	public abstract List<MyReview> selectMyReview(String member_id);
 
-
+	public abstract List<Paylog> selectMyChargeMoney(String member_id);
+	int countRandomItemNum();
+	int countAllItemNum();
 
   
 

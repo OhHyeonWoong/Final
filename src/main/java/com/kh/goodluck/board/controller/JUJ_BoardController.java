@@ -2,7 +2,6 @@ package com.kh.goodluck.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -36,12 +35,10 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
-import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.report.model.service.ReportService;
 import com.kh.goodluck.report.model.vo.Report;
-import com.sun.xml.internal.bind.v2.runtime.Location;
 
 @Controller
 public class JUJ_BoardController {
@@ -77,39 +74,23 @@ public class JUJ_BoardController {
 	}
 	
 	
-	@RequestMapping("ukjaeServiceForm.go") //서비스 글 작성 페이지로 이동하는메소드
-	public void ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response) throws IOException {
-		
-		String userWriteCount = request.getParameter("write_count");
-			
-		int parsingCount = Integer.parseInt(userWriteCount);
-		System.out.println("파싱된 유저의 글쓰기 유효카운트 : "+parsingCount);
-		
-		//욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
-		int boardWritingCount = boardService.ukjaeCheckUserWritingCount(memberid);
-		
-		PrintWriter out = response.getWriter();
-		
-		if(boardWritingCount>=parsingCount) {
-			out.append("0");		
-		}else if(boardWritingCount<parsingCount) {
-			out.append("1");
-		/*ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
-		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());	
-		mv.addObject("userGiveItem", userItem);
-		mv.setViewName("A2.JUJ/UkjaeServiceForm");*/
-		}
-			out.flush();
-			out.close();
-	}  
-	
-	@RequestMapping("ukjaeServiceForm2.go") //서비스 글 작성 페이지로 이동하는메소드
+	@RequestMapping("ukjaeServiceForm.go")
 	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
 		
+		String userWriteCount = request.getParameter("write_count");
+		int userWriteCount2 = Integer.parseInt(userWriteCount);
+		
+		System.out.println(memberid+"님의 게시글 등록 가능횟수는 "+userWriteCount2+"회 입니다.");
+		
+		if(userWriteCount2<=0) {		
+			mv.setViewName("home");
+		}else {
 		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
-		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());	
+		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
+		
 		mv.addObject("userGiveItem", userItem);
 		mv.setViewName("A2.JUJ/UkjaeServiceForm");
+		}
 		return mv;
 	}
 	
@@ -141,6 +122,9 @@ public class JUJ_BoardController {
 		
 		
 		System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
+		
+		
+		
 		mv.addObject("userGiveItem", userItem);	
 		mv.addObject("ServiceContents", alterready);	
 		mv.setViewName("A2.JUJ/UkjaeServiceAlterForm");
@@ -151,8 +135,12 @@ public class JUJ_BoardController {
 
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
-			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws IOException, ParseException {
+			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
+		System.out.println("WirteCount -1");
+		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
+		
+		  
 		System.out.println("폼으로부터 입력 받은데이터 전부출력");
 		System.out.println("===================================================");
 		 
@@ -162,25 +150,12 @@ public class JUJ_BoardController {
 		System.out.println("입력한 제목? "+serivcetitle);
 		
 		System.out.println("유저가 선택한 소 카테고리? "+smallcategory);
-		
-		
-		SmallCategory s1 = new SmallCategory();
-		s1.setCategory_small_code(smallcategory);
-		
-		String categoryName = boardService.ukjaepickUpCategoryRealName(s1);
-		System.out.println("조회한 카테고리이름 : "+categoryName);
-
-		
-		
-		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); 
+		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); //AAB 97
+		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
-		
-		
-		
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
 		
-		int agency_type = Integer.parseInt(userwriteingType); 
-		//agency_type 1.구해요 2.제공해요
+		int agency_type = 2; //agency_type(1구해요/2제공해요)
 		System.out.println("Agency_type : "+agency_type);
 		System.out.println("선택한 서비스 제공지역 : "+ServiceArea);
 		
@@ -204,18 +179,10 @@ public class JUJ_BoardController {
 		
 		int parseingpaytype = Integer.parseInt(paytype);
 		System.out.println("선택한 급여제공 타입 : "+parseingpaytype);
-		
+		//급여제공타입 1구해요 2제공해요
 		
 		int parsepayamount = Integer.parseInt(payAmount);	
 		System.out.println("입력한 희망급여 : "+parsepayamount);
-		int uk_userCash = memberService.ukjaeuserCashMinusCheck(loginUser);
-		int uk_userCashUpdate = uk_userCash-parsepayamount;
-		
-		Member updatemember = new Member(loginUser, uk_userCashUpdate);
-		
-		int updateCash = memberService.ukjaeuserCashMinus(updatemember);
-		//유저의 캐쉬를 차감시키는 메소드 (인자값 member_id / 입력한 금액)
-
 		
 		int agency_status = 1;
 		System.out.println("거래상태 : "+agency_status);
@@ -243,35 +210,38 @@ public class JUJ_BoardController {
 		}
 
 		/*아이템 순서 
-		 프리미엄, 굵기, 크기 , 색상 
+		 1.색상 
+		 2.크기 
+		 3.굵기 
+		 4.프리미엄 
 		*/
 		
 		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
-		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
-		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
-		String title_color  = request.getParameter("title_color"); 
-		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
-		  
-		if(title_premium==null) {
-			title_premium="0";
-		}
-		if(title_bold==null) {
-			title_bold="0";
+		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
+		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
+		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
+
+		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
+			title_color="";
 		}
 		if(title_size==null) {
-			title_size="0";
+			title_size="";
 		}
-		if(title_color==null) { 
-			title_color="0";
+		if(title_bold==null) {
+			title_bold="";
+		}
+		if(title_premium==null) {
+			title_premium="";
 		}
 		
+		
+		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_premium+", ");		
+		sbl.append(title_color+", ");
 		sbl.append(title_size+", ");
 		sbl.append(title_bold+", ");
-		sbl.append(title_color);
-
+		sbl.append(title_premium);
 		sbl.toString();
 		
 		
@@ -287,19 +257,16 @@ public class JUJ_BoardController {
 		//2.등록된 글의 pk를 가져오는 메소드	
 		
 		inputBoard.setAgency_no(AgencyBoardNo);
-	  
+	
 		int tradeDetailinput = boardService.registTrade(inputBoard);
 		if(tradeDetailinput>0) 
 			System.out.println("대행 게시판 글 등록에 성공하였습니다.");
-		
-		
-		response.sendRedirect("bshtest.go?link2_no="+URLEncoder.encode(categoryName, "UTF-8")+"&page=1");
 		
 	}
 	
 	@RequestMapping(value="wookServiceAlterConfirm.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public ModelAndView ukjaeServiceContentsAlter(@RequestParam("servicetitle")String serivcetitle,@RequestParam("loginUserId")String member_id,@RequestParam("selectCate")String smallcategory
-			,@RequestParam("ukwritetype")String userwriteingType,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws ParseException {
+			,@RequestParam("selectserviceArea")String ServiceArea,@RequestParam("startDate")String startDateString,@RequestParam("endDate")String endDateString,@RequestParam("servicePaytype")String paytype,@RequestParam("userinputPayamount")String payAmount,@RequestParam("writeContents")String serviceContents,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws ParseException {
 
 		String writing_No = request.getParameter("servicewriting_no");
 		int writing_No_parsing = Integer.parseInt(writing_No);
@@ -317,12 +284,12 @@ public class JUJ_BoardController {
 		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
-		 
-		int agency_type = Integer.parseInt(userwriteingType); 
-		//agency_type 1.구해요 2.제공해요
+		
+		int agency_type = 2; //agency_type(1구해요/2제공해요)
+		System.out.println("Agency_type : "+agency_type);
 		System.out.println("선택한 서비스 제공지역 : "+ServiceArea);
 		
-		/*  
+		/*
 		미비된 것
 		AGENCY_STARTDATE String->Date형으로 형변환
 		AGENCY_ENDDATE	 String->Date형으로 형변환
@@ -374,35 +341,33 @@ public class JUJ_BoardController {
 		System.out.println("해당글 키워드 : "+sb.toString());
 		
 		/*아이템 순서 
-		프리미엄, 굵기, 크기 , 색상
+		 1.색상 2.크기 3.굵기  4.프리미엄 
 		 */
-		  
+		
 		//들어갈 수 있는 값.
-		String title_premium  = request.getParameter("title_premium"); // (적용함1 적용안함2 아이템 없음0) 
-		String title_bold  = request.getParameter("title_bold"); // (적용함1 적용안함2 아이템없음0) 
-		String title_size  = request.getParameter("title_size"); // 적용할때(4,5,6) 적용암함2 아이템없음0
-		String title_color  = request.getParameter("title_color"); 
-		//적용할때("#FF0000"(빨강),"#0100FF"(파랑),"#009300"(초록),"#EDD200"(노랑),"#DBB4B4"(핑크),"#FFBB00"(오렌지) ) 적용안함2 아이템없음0
-		  
-		if(title_premium==null) {
-			title_premium="0";
-		}
-		if(title_bold==null) {
-			title_bold="0";
+		String title_color  = request.getParameter("title_color"); //red, blue, green, yellow, pink, orange
+		String title_size  = request.getParameter("title_size"); // size='4', size='5', size='6'
+		String title_bold  = request.getParameter("title_bold"); // (적용안함0, 적용함1)
+		String title_premium  = request.getParameter("title_premium"); // (적용안함0 적용함1)
+		
+		if(title_color==null) { //값이 Null일때는 공백으로 Null값이 아닌 공백으로 셋팅하여 들어간다.
+			title_color="";
 		}
 		if(title_size==null) {
-			title_size="0";
+			title_size="";
 		}
-		if(title_color==null) { 
-			title_color="0";
+		if(title_bold==null) {
+			title_bold="";
 		}
-
+		if(title_premium==null) {
+			title_premium="";
+		}
 		
 		StringBuilder sbl = new StringBuilder();
-		sbl.append(title_premium+", ");		
-		sbl.append(title_bold+", ");
+		sbl.append(title_color+", ");
 		sbl.append(title_size+", ");
-		sbl.append(title_color);
+		sbl.append(title_bold+", ");
+		sbl.append(title_premium);
 		sbl.toString();
 		
 		//System.out.println("해당글 적용아이템 : "+sbl.toString());
