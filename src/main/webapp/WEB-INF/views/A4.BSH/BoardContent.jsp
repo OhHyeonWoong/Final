@@ -341,7 +341,7 @@
 	</div>
 	<script type="text/javascript">
 		function fnBoardWriteForm(){
-			if('${loginUser}' == null){
+			if('${loginUser eq null}'){
 				alert("로그인 후 이용해주세요.");
 			}else{
 				var v1 = $("#ukjae_userid").val();
