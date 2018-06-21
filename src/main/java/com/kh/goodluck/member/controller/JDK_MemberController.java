@@ -68,7 +68,7 @@ public class JDK_MemberController {
 		      PrintWriter out = response.getWriter();
 		      if(memberService.idConfirm(request.getParameter("id"))==true) {
 		         out.append("true");
-		         out.flush();       
+		         out.flush();      
 		      }else {
 		         out.append("false");
 		         out.flush();
@@ -128,7 +128,7 @@ public class JDK_MemberController {
 		//회원가입 메소드
 		@Autowired(required = false)
 		@RequestMapping(value="jdkmemberregist.go", method = RequestMethod.POST)
-		public ModelAndView signIn(HttpServletResponse response, HttpServletRequest request, Member member,MultipartRequest mr, @RequestParam("member_profile") MultipartFile mf) throws Exception {
+		public void signIn(HttpServletResponse response, HttpServletRequest request, Member member,MultipartRequest mr, @RequestParam("member_profile") MultipartFile mf) throws Exception {
 			ModelAndView mv = null;
 			//회원을 입력하기 위해서 결론적으로 Member 객체를 완성한 이후에 쿼리문에서 전송하여 올릴 것이므로...
 			//최종적으로 Member 객체를 완성시키는 형식으로 진행
@@ -138,6 +138,9 @@ public class JDK_MemberController {
 			String memberName=request.getParameter("member_name");
 			//비밀 번호 받아오기
 			// 나중에 암호화 작업을 여기에 추가할 것
+			
+			
+			//
 			String memberPwd=request.getParameter("member_pw");
 			//주소 가지고 오기
 			String memberAdd=request.getParameter("member_address1")+" "+request.getParameter("member_address2");
@@ -150,7 +153,6 @@ public class JDK_MemberController {
 			int memberSocialNum=Integer.parseInt(request.getParameter("member_social_front")+request.getParameter("member_social_end"));
 			//////////프로필 사진 가지고 오는 메소드(추후 이름 값을 현재 시간단위로 바꾸고 변수로 올리는 방식으로 수정 : 파일 업로드 처리)////////////
 				/*
-				 * 
 				 우선 필요한 값을 정리해보자
 				a. 내가 파일을 저장할 장소에 대한 path
 				b. 파일명을 가지고 와야하고 그 과정에서
@@ -237,60 +239,66 @@ public class JDK_MemberController {
 				
 			}
 		try {
-			//회원 가입이 완료되었을 경우
+			//회원 가입이 완료되었을 경우//이 부분만 해결합니다.
 			if(enrollment==1) {
 				String mess="회원가입이 완료 되었습니다.";
 				mv= new ModelAndView("home");
 				mv.addObject("signInConfirmed", mess);
-				mv.setViewName("home");
+				response.sendRedirect("home.go?signInConfirmed="+mess);
+				
 			//회원가입이 안됬을 경우	
 				}else{
 				String mess="회원 가입이 실패하였습니다.";
 				mv= new ModelAndView("home");
-				mv.addObject("signInNotConfirmed", mess);
+				mv.addObject("signInConfirmed", mess);
 				mv.setViewName("home");
+				response.sendRedirect("home.go?signInConfirmed="+mess);
 				}
 		}catch(Exception e) {
 			}
-		return mv;
 		}
-		
-		
-		
 		/////////////////어드민 페이지 관련 메소드//////////////////////////////////////////////
-		//어드민 페이지 이동용 메소드
+		//어드민 페이지 이동용 메소드 : 회원 관리 페이지
 		@RequestMapping(value="jdkadminpage.go")
 		public String adminpage() {
 			return "A3.JDK/admin_listofmembers";
 		}
 		//어드민 페이지 회원관리 창 이동용 메소드
 		@RequestMapping(value="jdkadminmember.go")
-		public String adminMemberManagement(Model model) {
-			List<MemberList>list= memberService.adminMemberList();
-			return "A3.JDK/admin_listofmembers";
+		public ModelAndView adminMemberManagement(ModelAndView mv, Model model, Member member, HttpServletRequest request) {
+			int start = 1; //시작 값
+				member.setStartRnum(start);
+			int end = 10;//끝 값
+				member.setEndRnum(end);
+			
+			/*int allPage = memberService.adminMovePage(request.getParameter(""));*/	
+			List<Member> list= memberService.adminMemberList(member);
+			
+			mv.addObject("startPage", start);
+			mv.addObject("endPage", end);
+			mv.addObject("firstMemberList", list);
+			mv.setViewName("A3.JDK/admin_listofmembers");
+			return mv;
 		}
+		
+		@RequestMapping(value="jdkItemPageMove.go")
+		public void adminItemPageMove(ModelAndView mv, Model model, Member member, HttpServletRequest request) {
+			
+		}
+		
+		
+		
 		//어드민 페이지 아이템 창 이동용 메소드
 		@RequestMapping(value="jdkadminitemlist.go")
 		public String adminItemManagement() {
 			// 메소드 설계 :
 			// 최초로 다른 페이지에서 해당 페이지를 로딩할 때,
 			// 3개의 테이블에 DB 에 있는 정보가 페이징 처리가 된 상태에서 로드가 되어야 하므로 해당 메소드 내부에서는 
-			// 개별, 패키지, 랜덤박스 의 리스트 처리된 객체가 다 와있는 상태에서  
-			
-			
-			//개별 아이템 리스트
-			int maxPage=0;
-			int minPage=0;
-			
-			
-			
-			
+			// 개별, 패키지, 랜덤박스 의 리스트 처리된 객체가 다 와있는 상태에서  	
 			//패키지 아이템 리스트
 			//랜덤박스 아이템 리스트
 		return "A3.JDK/admin_itemlist";
 		}
-		
-		
 		//아니 왜 안넘어오냐고!!!
 		@RequestMapping(value="jdk1.go", method=RequestMethod.POST)
 		public void admininteresting(@RequestParam("ITEMFILENAME") MultipartFile file) {
@@ -298,11 +306,11 @@ public class JDK_MemberController {
 			System.out.println(file.getOriginalFilename());
 		}
 		
-		
 		//어드민 페이지 개별 아이템 추가 메소드: 전동기
 		@RequestMapping(value="jdkinsertNewItem.go", method=RequestMethod.POST)
 		public void adminItemInsert
-		(ITEMLIST item, HttpServletResponse response, HttpServletRequest request, 
+		(ITEMLIST item, 
+				HttpServletResponse response, HttpServletRequest request, 
 				@RequestParam("ITEMFILENAME") MultipartFile file,
 				@RequestParam("ITEMNAME") String itemName,
 				@RequestParam("ITEMTYPE") String itemType,
@@ -312,17 +320,21 @@ public class JDK_MemberController {
 			System.out.println("어드민 페이지 개별 아이템 추가 메소드 실행중");
 			String fileSavePath= "/goodluck/resources/A5.CJS/itemimg";
 			//아이템 객체 직접 생성
+		
 			item.setITEMNAME(itemName);
 			item.setITEMPRICE(Integer.parseInt(itemPrice));
 			item.setITEMTYPE(Integer.parseInt(itemType));
 			item.setITEMPERIOD(Integer.parseInt(itemPeriod));
 			item.setITEMFILENAME("");//파일 저장 작업 후에 다시 지정
+			
 			try {
 			/*MultipartFile file = mr.getFile("ITEMFILENAME");*/
 				System.out.println("받은파일 원본이름: "+file.getOriginalFilename());
 				
 			String whak = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'), file.getOriginalFilename().length()).toLowerCase();
+			
 			System.out.println(whak);
+			
 			Date currentMillsec= new Date();
 			String file_rename=Long.toString(currentMillsec.getTime());
 			String fileName = file_rename + whak;
@@ -355,6 +367,9 @@ public class JDK_MemberController {
 				System.out.println("입출력 오류용!!");
 				}
 			}
+			
+			
+			
 			
 		}
 	

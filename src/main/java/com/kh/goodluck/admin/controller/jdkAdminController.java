@@ -23,6 +23,7 @@ import com.kh.goodluck.item.model.vo.ItemPackage;
 import com.kh.goodluck.item.model.vo.RandomBox_all;
 import com.kh.goodluck.item.model.vo.RandomBox_emo;
 import com.kh.goodluck.item.model.vo.RandomBox_time;
+import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
 
@@ -32,22 +33,23 @@ public class jdkAdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	
+	@Autowired
+	private MemberService memberService;
+
+	
 	public jdkAdminController() {
 		
 	}
 	//어드민 페이지 아이템 리스트 첫 화면 출력 용: 전동기
-	@RequestMapping(value="jdkadmin_ItemList")
+	@RequestMapping(value="jdkadmin_ItemList.go")
 	public ModelAndView admin_ItemList(RandomBox_all ra, RandomBox_emo re, RandomBox_time rt,ItemPackage ip, ModelAndView mv,ITEMLIST items, HttpServletRequest request, HttpServletResponse response) {
-		// 일단 패키지에 들어갈 수 있는 값은 디비에 한번 다녀온 상태에서 출력을 해서 보여주는게 현재 가지고 있는 값을 활용하는 것이므로
-		// 개별 아이템 목록을 리스트로 한번 가지고 오는 것이 의미가 있다.
-		// 개별 아이템의 경우에는 패키지와 랜덤박스를 따로 출력하므로 그 부분은 제외하고 출력한다.
-		// 패키지에서 넣을 수 있는 아이템은 한정되어 있으므로 이를 감안하여 호출하여 뿌려준다.
-		// <문제는 패키지와 랜덤박스의 경우 패키지와 랜덤박스를 만들고 난 이후에
-		// 포함되어 있는 개별 아이템이 삭제된다면 포함되지 않은 상태에서 출력이 되어야 하고 이를 관리자가 알아야한다.
-		// 특히 랜덤박스의 경우에는 개별 아이템이 삭제될 경우에는 확률에 문제가 생긴다.>
-		// 우선 개별, 패키지, 랜덤박스 3개의 리스트를 뿌릴 수 있도록 처리를 하고 가지고 와보자.
+/* 일단 패키지에 들어갈 수 있는 값은 디비에 한번 다녀온 상태에서 출력을 해서 보여주는게 현재 가지고 있는 값을 활용하는 것이므로  개별 아이템 목록을 리스트로 한번 가지고 오는 것이 의미가 있다.
+       개별 아이템의 경우에는 패키지와 랜덤박스를 따로 출력하므로 그 부분은 제외하고 출력한다. 패키지에서 넣을 수 있는 아이템은 한정되어 있으므로 이를 감안하여 호출하여 뿌려준다.
+   <문제는 패키지와 랜덤박스의 경우 패키지와 랜덤박스를 만들고 난 이후에  포함되어 있는 개별 아이템이 삭제된다면 포함되지 않은 상태에서 출력이 되어야 하고 이를 관리자가 알아야한다.
+        특히 랜덤박스의 경우에는 개별 아이템이 삭제될 경우에는 확률에 문제가 생긴다.> 우선 개별, 패키지, 랜덤박스 3개의 리스트를 뿌릴 수 있도록 처리를 하고 가지고 와보자.*/
 		
-		
+		//이 부분 일단 주석 처리 할 수 도 있습니다
 		//개별 아이템 리스트
 		List<ITEMLIST> allitemlist = adminService.allItemList();
 		//패키지 아이템 리스트
@@ -58,7 +60,6 @@ public class jdkAdminController {
 		List<RandomBox_emo> randomEmoList = adminService.randomBoxEmoList();
 		//랜덤박스 time 리스트
 		List<RandomBox_time> randomTimeList = adminService.randomBoxTimeList();
-		
 		
 		for(int i=0; i<packageList.size(); i++){
 			String[] itemCheck = packageList.get(i).getITEMLIST_NO().split(",");
@@ -71,10 +72,8 @@ public class jdkAdminController {
 				}
 			}
 		}
-		
 		//패키지는 무결성 확보한 상태에서 넘어감
-		
-		//랜덤박스 1 무결성
+		/*//랜덤박스 1 무결성
 		double itemNumForAll = 0;
 		for(int i=0; i<randomAllList.size(); i++){
 			itemNumForAll += randomAllList.get(i).getChance();
@@ -114,48 +113,44 @@ public class jdkAdminController {
 			}
 		}
 		///////////////////////////////// 무결성 확인이 끝났기 떄문에 이제 페이징 처리가 된 상태로 받아온 값을 다시 넘겨야함
-		
+		//이 부분 일단 주석 처리 할 수 도 있습니다
+*/
 		// 한번에 보여 줄 글 수는 10개
 		int pageSize = 10;
 		
-		// 전체 글을 갯수를 저장할 변수
-		int indi_count = 0;
-		int package_count = 0;
-		int random_count = 0;
-		
+		// 랜덤 패키지의 경우에는 아이템 리스트에서 종류만 지정이되고 실제 아이템 행이 테이블 취급을 하기 때문에 페이징 처리가 다름
 		// 현재 페이지 저장용 변수
-		int indi_currentPage = 0;
-		int package_currentPage= 0;
-		int random_currentPage = 0;
-		
+		int indi_currentPage = 1;//jsp request 안에 적혀있는 페이지 번호 태그의 value 값
+		int package_currentPage= 1;//jsp request 안에 적혀있는 페이지 번호 태그의 value 값
+		int random_currentPage = 1;//jsp request 안에 적혀있는 페이지 번호 태그의 value 값
 		
 		//현재 보여줄 페이지의 시작 번호들
 		// *현재 페이지에 보여줄 데이터의 시작 번호 = (현재 페이지 – 1) * 출력 개수 + 1
 		// *현재 페이지에 보여줄 데이터의 종료 번호 = 시작 번호 + 출력개수  - 1
 		
 		// 현재 보여줄 페이지의 시작번호용 변수
-		int indi_startNum = 0;
-		int package_startNum = 0;
-		int random_startNum = 0;
+		int indi_startNum = (indi_currentPage-1)*pageSize+1;
+		int package_startNum = (package_currentPage-1)*pageSize+1;
+		int random_startNum = (random_currentPage-1)*pageSize+1;
 		
 		// 현재 보여줄 페이지의 끝 번호용 변수 
-		int indi_endNum = 0;
-		int package_endNum = 0;
-		int random_endNum = 0;
+		int indi_endNum = indi_startNum*pageSize-1;
+		int package_endNum = package_startNum*pageSize-1;
+		int random_endNum = random_startNum*pageSize-1;
 		
+		// 전체 글을 갯수를 저장할 변수
+		int indi_count = memberService.countAllItemNum();
+		int package_count = memberService.countRandomItemNum();
+		int random_count = 3;//우선 테이블의 갯수는 3이므로...
+
+		mv.addObject("ps", pageSize);
+		mv.addObject("indi_count", indi_count);	
+		mv.addObject("package_count", package_count);	
+		mv.addObject("random_count", random_count);	
 		
+		mv.setViewName("A3.JDK/admin_itemlist");
 		
-		
-		
-		
-		
-		mv.addObject("alli",allitemlist);
-		mv.addObject("pack",packageList);
-		mv.addObject("randomall",randomAllList);
-		mv.addObject("randomemo",randomEmoList);
-		mv.addObject("randomtime",randomTimeList);
-		
-		return null;
+		return mv;
 	}
 	
 	

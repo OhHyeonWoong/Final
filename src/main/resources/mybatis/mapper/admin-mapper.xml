@@ -102,24 +102,21 @@
 	<!-- 랜덤박스 -->
 	<select id = "ad_selectRandomAllList" resultType="RandomBox_all">
 	<![CDATA[
-	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_ALL ra, ITEMLIST it
-	where ra.itemlist_no=it.ITEMLIST_NO
-	order by RANDOMBOX_PK asc;
+	select * from RANDOMBOX_ALL
+	order by RANDOMBOX_PK asc
 	]]>
 	</select>
 	
 	<select id = "ad_selectRandomEmoList" resultType="RandomBox_emo">
 	<![CDATA[
-	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_EMO ra, ITEMLIST it
-	where ra.itemlist_no=it.ITEMLIST_NO
+	select *  from RANDOMBOX_EMO
 	order by RANDOMBOX_PK asc
 	]]>
 	</select>
 		
 	<select id = "ad_selectRandomTimeList" resultType="RandomBox_time">
 	<![CDATA[
-	select ra.RANDOMBOX_PK, ra.itemlist_no, ra.chance  from RANDOMBOX_TIME ra, ITEMLIST it
-	where ra.itemlist_no=it.ITEMLIST_NO
+	select * from RANDOMBOX_TIME
 	order by RANDOMBOX_PK asc
 	]]>
 	</select>
@@ -177,6 +174,18 @@
 	]]>
 	</insert>
  	
-	
-	
+ 	<select id="countAllItemNumber" parameterType="int" resultType="int">
+	<![CDATA[
+	select count(*) from itemlist
+	where itemlist_no between 1 and 7
+	]]>
+	</select>
+ 	
+	<select id="countRandomItemNumber" parameterType="int" resultType="int">
+	<![CDATA[
+	select count(*) from itemlist
+	where itemlist_no = 8
+	]]>
+	</select>
+ 	
 </mapper>

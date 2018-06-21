@@ -36,7 +36,7 @@ public interface MemberService {
 	public abstract int updateMemberInfo(Member m);
 	public abstract int updateLastLogin(String member_id);
 	public abstract int deleteMemberOut(String member_id);
-	public abstract List<MemberList> adminMemberList();
+	public abstract List<Member> adminMemberList(Member member);
 	public abstract int updateMemberCashMethod(Member m);
 
 	public abstract int insertLoginStatistics(String member_id);
@@ -48,6 +48,10 @@ public interface MemberService {
 	
 	//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 	public abstract int ukjaeWriteCountOneMinus(String loginUser);
+	//동기 - 개별 아이템 숫자
+	public abstract int countAllItemNum(); 
+	//동기 - 패키지 아이템 숫자
+	public abstract int countRandomItemNum(); 
 
   
 

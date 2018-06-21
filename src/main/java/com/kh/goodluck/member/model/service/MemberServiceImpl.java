@@ -86,9 +86,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override//어드민 페이지 회원 리스트 출력하는 메소드
-	public List<MemberList> adminMemberList() {
+	public List<Member> adminMemberList(Member member) {
 		
-		return memberDao.adMemberList();
+		return memberDao.adMemberList(member);
 	}
 	
 	@Override
@@ -196,5 +196,15 @@ public class MemberServiceImpl implements MemberService{
 	public int ukjaeWriteCountOneMinus(String loginUser) {
 		//욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
 		return memberDao.ukjaeWriteCountOneMinus(loginUser);
+	}
+	
+	@Override
+	public int countAllItemNum() {
+		return memberDao.getCountforAllItems();
+	}
+	
+	@Override
+	public int countRandomItemNum() {
+		return memberDao.getCountforRandomItems();
 	}
 }	

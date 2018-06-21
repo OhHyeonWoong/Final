@@ -17,10 +17,12 @@
 </style>
 </head>
 <body>
-<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <div class="container">
+
 <!--사이드바 시작-->
+<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 <%@ include file = "/WEB-INF/views/A3.JDK/admin_sidebar.jsp" %>
+
 <!-- 사이드바 종료 -->
 <!-- 내용 출력하기 -->
 	<div class="w3-container" style="width:75%; float: right;">
