@@ -16,6 +16,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -240,5 +241,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<MyReview> selectMyReview(String member_id) {
 		return memberDao.selectMyReview(member_id);
+	}
+	
+	@Override
+	public List<Paylog> selectMyChargeMoney(String member_id) {
+		return memberDao.selectMyChargeMoney(member_id);
 	}
 }	

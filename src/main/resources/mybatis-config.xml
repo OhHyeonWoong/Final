@@ -8,6 +8,7 @@
 		<typeAlias type="com.kh.goodluck.member.model.vo.MemberList" alias="MemberList"/>
 		<typeAlias type="com.kh.goodluck.member.model.vo.Memberandscore" alias="Memberandscore"/>
 		<typeAlias type="com.kh.goodluck.member.model.vo.MyReview" alias="MyReview"/>
+		<typeAlias type="com.kh.goodluck.member.model.vo.Paylog" alias="Paylog"/>
 		<typeAlias type="com.kh.goodluck.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.goodluck.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.goodluck.chat.model.Chat" alias="Chat"/>

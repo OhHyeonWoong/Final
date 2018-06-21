@@ -15,6 +15,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -201,6 +202,11 @@ public class MemberDao {
 	public List<MyReview> selectMyReview(String member_id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("selectMyReview", member_id);
+	}
+
+	public List<Paylog> selectMyChargeMoney(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectMyChargeMoney", member_id);
 	}
 
 }

@@ -11,6 +11,7 @@ import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MemberList;
 import com.kh.goodluck.member.model.vo.Memberandscore;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
  
 public interface MemberService {
 	public abstract Member loginCheck(Member member);
@@ -63,6 +64,7 @@ public interface MemberService {
 	public abstract int insertDBTrade(int no);
 	public abstract int insertMemberDummy(Member m);
 	public abstract List<MyReview> selectMyReview(String member_id);
+	public abstract List<Paylog> selectMyChargeMoney(String member_id);
 
 
   

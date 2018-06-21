@@ -31,6 +31,7 @@ import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.member.model.service.MemberService;
 import com.kh.goodluck.member.model.vo.Member;
 import com.kh.goodluck.member.model.vo.MyReview;
+import com.kh.goodluck.member.model.vo.Paylog;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.qna.model.vo.QnaAnswer;
@@ -290,12 +291,19 @@ public class MemberController {
 			mv.addObject("writeCandidatePage",writeCandidatePage);
 			//신청자가 생긴 내 글 세팅 끝------------------------------------------------
 			//내가 쓴 후기 세팅 시작----------------------------------------------			
-		    List<MyReview> myReview = memberService.selectMyReview(member_id);
+		    ArrayList<MyReview> myReview = (ArrayList<MyReview>)memberService.selectMyReview(member_id);
 		    
 		    System.out.println("myReview size = " + myReview.size());
 			
 			mv.addObject("lbjMyReview", myReview);
 			//내가 쓴 후기 세팅 끝------------------------------------------------
+			//내 충전 내역 세팅 시작----------------------------------------------			
+		    List<Paylog> myChargeMoney = memberService.selectMyChargeMoney(member_id);
+		    
+		    System.out.println("myChargeMoney size = " + myChargeMoney.size());
+			
+			mv.addObject("lbjMyChargeMoney", myChargeMoney);
+			//내 충전 내역 세팅 끝------------------------------------------------
 			mv.setViewName("A6.LBJ/myPage");
 		}
 		return mv;
@@ -540,7 +548,7 @@ public class MemberController {
 	
 
 	@RequestMapping(value="lbjUpdateMemberCash.go")
-	public void updateMemberCashMethod(Member m,HttpServletResponse response,
+	public void updateMemberCashMethod(Member m,HttpServletResponse response,HttpServletRequest request,
 			  					HttpSession session) throws IOException{
 		//멤버 캐시 정보 업데이트
 		//세션정보 업데이트용 객체
@@ -548,7 +556,7 @@ public class MemberController {
 		///////////////////////
 		System.out.println("updateMemberCashMethod run...");
 		///충전 액수를 넘겨줘서 그 녀석으로 paylog 처리를 해줘야됨
-		
+		int chargeMoney = Integer.parseInt(request.getParameter("chargeMoney"));
 		
 		///////////////
 		/*int beforeCash = m.getMember_cash();
@@ -565,21 +573,16 @@ public class MemberController {
 			    member.setMember_cash(m.getMember_cash());
 			}
 			//paylog테이블에 데이터 추가해 주어야 됨
-			/*HashMap<String,Object> map = new HashMap<String,Object>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("member_id", m.getMember_id());
-			map.put("adminCash", adminCash);
+			map.put("chargeMoney", chargeMoney);
 			int paylogResult = memberService.insertLbjMilegePayLog(map);
 			if(paylogResult > 0) {
-				System.out.println("수수료 챙기기 성공, 관리자 id cash update 필요");
-				int updateResult = memberService.updateAdminCash(map);
-				if(updateResult > 0) {
-					System.out.println("admin 캐시 갱신 성공!");
-				}else {
-					System.out.println("admin 캐시 갱신 실패!");
-				}
+				System.out.println("paylog 업데이트 성공!");
+				
 			}else {
-				System.out.println("수수료 챙기기 실패");
-			}*/
+				System.out.println("paylog 업데이트 실패..");
+			}
 			/////////////////////////////
 		}else {
 			//결제 실패
