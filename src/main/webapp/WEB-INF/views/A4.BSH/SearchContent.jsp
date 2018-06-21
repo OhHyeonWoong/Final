@@ -220,8 +220,11 @@
 					</thead>
 					<tbody>						
 						<c:forEach var="board" items="${searchlist }">
+							<c:if test="${board.agency_status != 4}">
+							
 							<tr>
 							<td>
+							
 							<c:set var="tf" value="${board.agency_type }"/>
 							<c:if test="${tf eq '1' }">
 								구인
@@ -271,6 +274,7 @@
 							</c:if>
 							</td>
 							</tr>
+							</c:if>
 						</c:forEach> 
 					</tbody>
 				</table>
