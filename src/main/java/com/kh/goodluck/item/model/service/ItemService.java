@@ -60,11 +60,14 @@ public interface ItemService {
 	public abstract int updatesellcount(int pk);
 	public abstract int getitemtype(int itemlistno);
 	public abstract ITEMLIST getmixicon(HashMap<Object, Object> map);
+	public abstract ItemNotice getitemnoticeDetail(int pk);
 	public abstract List<com.kh.goodluck.item.model.vo.GetMyItem> GetMyItem2(com.kh.goodluck.item.model.vo.GetMyItem gmi);
 	public abstract String getUsingemticonfilename(String member_id);
 	//made by byung jun
 	public abstract int selectMyPageItemListCount(String member_id);
 	public abstract List<MyPageItem> selectMyPageItem(HashMap<Object, Object> map);
+
+
 	
 	
 	

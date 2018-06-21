@@ -86,6 +86,15 @@ public class ItemController {
 	public ItemController() {
 		// TODO Auto-generated constructor stub
 	}
+	@RequestMapping("itemNotice.go")
+	public ModelAndView itemNotice(ModelAndView mv,@RequestParam("no") int pk){
+		
+		
+		mv.addObject("notice",(ItemNotice)ItemService.getitemnoticeDetail(pk));
+		mv.setViewName("A5.CJS/itemNotice");
+		return mv;
+	}
+	
 	
 	@RequestMapping("myitem.go")
 	public String myitem() {
