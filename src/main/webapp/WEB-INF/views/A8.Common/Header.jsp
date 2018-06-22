@@ -365,7 +365,7 @@
 					window.history.go(0);
 				},
 				error:function(a,b,c){
-					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+					/* alert("로그아웃 에러 : " + a + ", " + b + ", " + c); */
 				}
 			});	
 		}else{
@@ -474,7 +474,7 @@
 				}
 			},
 				error:function(a,b,c){
-					alert("로그아웃 에러 : " + a + ", " + b + ", " + c);
+					/* alert("로그아웃 에러 : " + a + ", " + b + ", " + c); */
 				}				
 			})			
 		}

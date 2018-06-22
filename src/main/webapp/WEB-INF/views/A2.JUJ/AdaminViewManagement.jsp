@@ -82,7 +82,7 @@
 						$("#ukjae_TableAreaFiveth").append(tablevalue2);	
 					},
 					error:function(a,b,c){
-						alert(a + ", " + b + ", " + c);
+						/* alert(a + ", " + b + ", " + c); */
 					}	
 				});
 			});
@@ -124,7 +124,7 @@
 					
 					},
 					error:function(a,b,c){
-						alert(a + ", " + b + ", " + c);
+						/* alert(a + ", " + b + ", " + c); */
 					}	
 				});
 			});

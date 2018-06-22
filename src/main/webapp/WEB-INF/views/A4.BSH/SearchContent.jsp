@@ -101,7 +101,7 @@
 					
 				},
 				error:function(){
-					alert("프라임 로드 실패");
+					/* alert("프라임 로드 실패"); */
 				}
 			});
 		};
@@ -444,7 +444,7 @@
                  }
               },
               error:function(a,b,c){
-                 alert(a + ", " + b + ", " + c);
+                 /* alert(a + ", " + b + ", " + c); */
               }   
            });
         }

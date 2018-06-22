@@ -35,7 +35,7 @@
 	        /* msg += '에러내용 : ' + rsp.error_msg; */
 	    }
 	    
-	    alert(msg);
+	    alert(msg); 
 	    if(msg == '결제가 완료되었습니다.'){
 	    	var member_cash = $('#member_cash').val() * 1;
 	    	var chargeMoney = $('#chargeMoney').val() * 1;

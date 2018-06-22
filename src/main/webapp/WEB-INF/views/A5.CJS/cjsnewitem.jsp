@@ -196,7 +196,7 @@ function cjsitemsearch(){
 		
 		},
 		error:function(a,b,c){
-			alert("a : " + a + ", b : " + b + ", c : " + c);
+			/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		}
 	})
 }
@@ -273,7 +273,7 @@ function pageing(page){
 			
 		},
 			error:function(a,b,c){
-					alert("a : " + a + ", b : " + b + ", c : " + c);
+					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 				}
 	})
 }

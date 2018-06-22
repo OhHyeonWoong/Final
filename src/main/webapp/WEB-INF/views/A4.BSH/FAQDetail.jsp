@@ -71,7 +71,7 @@
 			    <script type="text/javascript">
 			    	$(function(){
 			    		$(".select1").on("click",function(){
-			    			alert("이용관련 FAQ");
+			    			/* alert("이용관련 FAQ"); */
 			    			$(".section1").hide();
 			    			$(".section3").hide();
 			    			$(".section4").hide();
@@ -82,7 +82,7 @@
 			    		});
 			    		
 			    		$(".select2").on("click",function(){
-			    			alert("결제관련 FAQ^^");
+			    			/* alert("결제관련 FAQ^^"); */
 			    			$(".section1").hide();
 			    			$(".section2").hide();
 			    			$(".section4").hide();
@@ -93,7 +93,7 @@
 			    		});
 			    		
 			    		$(".select3").on("click",function(){
-			    			alert("신고관련 FAQ");
+			    			/* alert("신고관련 FAQ"); */
 			    			$(".section1").hide();
 			    			$(".section2").hide();
 			    			$(".section3").hide();
@@ -104,7 +104,7 @@
 			    		});
 			    		
 			    		$(".select4").on("click",function(){
-			    			alert("로그인관련 FAQ");
+			    			/* alert("로그인관련 FAQ"); */
 			    			$(".section1").hide();
 			    			$(".section2").hide();
 			    			$(".section3").hide();
@@ -115,7 +115,7 @@
 			    		});
 			    		
 			    		$(".select6").on("click",function(){
-			    			alert("전체 FAQ");
+			    			/* alert("전체 FAQ"); */
 			    			$(".section1").hide();
 			    			$(".section2").hide();
 			    			$(".section3").hide();
