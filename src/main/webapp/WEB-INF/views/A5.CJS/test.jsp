@@ -490,7 +490,7 @@ $("#havingimticonpaging").html("");
 		
 		},
 		error:function(a,b,c){
-			alert("a : " + a + ", b : " + b + ", c : " + c);
+			/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		}
 	})
 	
@@ -682,7 +682,7 @@ $("#havingimticonpaging").html("");
 		
 		},
 		error:function(a,b,c){
-			alert("a : " + a + ", b : " + b + ", c : " + c);
+			/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		}
 	})
 	

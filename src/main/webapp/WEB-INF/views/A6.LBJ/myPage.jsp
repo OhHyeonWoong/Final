@@ -157,7 +157,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					}
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});
 			/* var checkBox2 = $('input[name="chk1"]:checked').val();
@@ -241,7 +241,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjqnaDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+					/* alert("a = " + a + " ,b = " + b + " ,c = " + c); */
 				}
 			});
 		}
@@ -316,7 +316,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjitemDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+					/* alert("a = " + a + " ,b = " + b + " ,c = " + c); */
 				}
 			});
 		}
@@ -395,7 +395,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjReportDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " ,b = " + b + " ,c = " + c);
+					/* alert("a = " + a + " ,b = " + b + " ,c = " + c); */
 				}
 			});
 		}
@@ -475,7 +475,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjMyBoardDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});		
 		}
@@ -562,7 +562,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjMyApplyBoardDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});
 		}
@@ -651,7 +651,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjMyBoardHistoryDiv').html(htmlStr);
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});
 		}
@@ -735,7 +735,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					$('#lbjYesCandidateDiv').html(htmlStr); 
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});
 		}
@@ -769,7 +769,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					
 				},
 				error:function(a,b,c){
-					alert("a = " + a + " , b = " + b + " , c = " + c);
+					/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 				}
 			});
 		}
@@ -843,7 +843,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 						}
 					},
 					error:function(a,b,c){
-						alert("a = " + a + " , b = " + b + " , c = " + c);
+						/* alert("a = " + a + " , b = " + b + " , c = " + c); */
 					}
 				});
 			}else{
@@ -870,7 +870,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					alert(data);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}		
 					
 			});
@@ -1422,7 +1422,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					<c:forEach items="${lbjMyChargeMoney}" var="chargeMoney">
 						<tr>
 							<td>${chargeMoney.paylog_when}</td>
-							<td>${chargeMoney.paylog_money}</td>
+							<td>+ ${chargeMoney.paylog_money}</td>
 							<td>${loginUser.member_cash}</td>
 						</tr>
 					</c:forEach>

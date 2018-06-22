@@ -168,7 +168,7 @@ function paging1(page){
 				$("#haveimticon").html(value2);
 				},
 				error:function(a,b,c){
-					alert("a : " + a + ", b : " + b + ", c : " + c);
+					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 				}
 	})}}
 function paging(page){
@@ -337,7 +337,7 @@ function paging(page){
 				$("#haveimticon").html(value2);
 				},
 				error:function(a,b,c){
-					alert("a : " + a + ", b : " + b + ", c : " + c);
+					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 				}
 	})}}
 				
@@ -521,7 +521,7 @@ $("#havingimticonpaging").html("");
 		
 		},
 		error:function(a,b,c){
-			alert("a : " + a + ", b : " + b + ", c : " + c);
+			/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		}
 	});
 	}
@@ -699,7 +699,7 @@ function useitem(itempk){
 		 	
 		 				},
 		 				error:function(a,b,c){
-		 					alert("a : " + a + ", b : " + b + ", c : " + c);
+		 					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		 				}
 			})
 		
@@ -786,7 +786,7 @@ $.ajax({
 				
 				},
  				error:function(a,b,c){
- 					alert("a : " + a + ", b : " + b + ", c : " + c);
+ 					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
  				}
 })
 }
@@ -911,7 +911,14 @@ height: 78px;
 		</c:if>
 		</center>
 		<br>
-		아이디:<img class="afterauserajaximg" style="width:20px; height: 30px;">${loginUser.member_id}<br>
+		아이디:
+
+		<img class="afterauserajaximg" style="width:20px; height: 30px;">
+		
+	${loginUser.member_id}<br>
+		
+		
+		
 		회원님 이름 :${loginUser.member_name}<br>
 		보유  포인트 :${loginUser.member_cash} <br>
 		최대 게시글 수:<p id="keywordcount"></p>

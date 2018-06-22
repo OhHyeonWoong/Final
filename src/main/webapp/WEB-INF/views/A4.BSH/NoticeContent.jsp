@@ -52,7 +52,7 @@
 </style>
 <script type="text/javascript">
 	function movewritePage(){
-		alert("글쓰기 페이지로 이동합니다.");
+		/* alert("글쓰기 페이지로 이동합니다."); */
 		window.open("noticewritepage.go","관리자글쓰기","left=650, top=120, width=350,height=550","width=350,height=480");
 	}
 </script>
@@ -75,7 +75,7 @@
 				htmlStr += '</table>';
 				$('.Notice_div').html(htmlStr);						
 				},error:function(a,b,c){
-				   alert("a = " + a + " ,b = " + b + " ,c = " + c);
+				   /* alert("a = " + a + " ,b = " + b + " ,c = " + c); */
 			} 
 		});				
 	}
@@ -98,7 +98,7 @@
 				$('.Notice_div').html(htmlStr);			
 				
 			},error:function(a,b,c){
-				   alert("a = " + a + " ,b = " + b + " ,c = " + c);
+				   /* alert("a = " + a + " ,b = " + b + " ,c = " + c); */
 			}
 		});				
 	}

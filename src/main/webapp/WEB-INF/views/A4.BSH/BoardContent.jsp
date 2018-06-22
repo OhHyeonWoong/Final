@@ -97,7 +97,7 @@
 
 					},
 				error:function(){
-					alert("프라임 로드 실패");
+					/* alert("프라임 로드 실패"); */
 				}
 			});
 		};
@@ -171,13 +171,13 @@
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
-				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+				<table class = "table table-hover" style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
 					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="width: 5%;">종류</th>
-							<th style="width: 50%;">제목</th>
+							<th style="width: 10%;">종류</th>
+							<th style="width: 35%;">제목</th>
 							<th style="width: 5%;">지역</th>
-							<th style="width: 5%;">구분</th>
+							<th style="width: 8%;">구분</th>
 							<th style="width: 10%;">금액</th>
 							<th style="width: 10%;">등록날짜</th>
 							<th style="width: 10%;">시작날짜</th>
@@ -276,13 +276,13 @@
 			<div class="board_div_maincontent">
 				<h2>${board.link2_no }<button class="btn btn-info" onclick="fnBoardWriteForm();" style="float:right;">글 쓰기</button></h2><br>
 				
-				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+				<table class = "table table-hover" style="border-top: 1px solid black; border-bottom: 1px solid black; width: 100%;">
 					<thead style="border-top: 1px solid black;border-bottom: 1px solid black; ">
 						<tr>
-							<th style="width: 5%;">종류</th>
-							<th style="width: 45%;">제목</th>
+							<th style="width: 10%;">종류</th>
+							<th style="width: 35%;">제목</th>
 							<th style="width: 5%;">지역</th>
-							<th style="width: 5%;">구분</th>
+							<th style="width: 8%;">구분</th>
 							<th style="width: 10%;">금액</th>
 							<th style="width: 10%;">등록날짜</th>
 							<th style="width: 10%;">시작날짜</th>
@@ -417,12 +417,14 @@
 	</div>
 	<script type="text/javascript">
 	function fnBoardWriteForm(){
+		/* alert("fnBoardWriteForm() run..."); */
         if('${loginUser eq null}' == 'true'){
            alert(" 로그인 후 이용해주세요.");         
         }else{
            var v1 = $("#ukjae_userid").val();
            var v2 = $("#ukjae_userwritecount").val();
            
+           console.log(v1);
            $.ajax({
               url : "ukjaeServiceForm.go",
               type : "post",
@@ -439,8 +441,13 @@
                  }
               },
               error:function(a,b,c){
+<<<<<<< HEAD
                  alert(a + ", " + b + ", " + c);
               }  
+=======
+                /*  alert(a + ", " + b + ", " + c); */
+              }   
+>>>>>>> branch 'master' of https://github.com/OhHyeonWoong/Final.git
            });
         }
      }

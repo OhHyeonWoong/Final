@@ -343,7 +343,7 @@ function sample4_execDaumPostcode() {
 					 detailCount++;
 					 console.log(detailCount+"번째 키워드 추가완료");
 					}else{
-					 alert("기본 키워드 개수는 3개입니다");
+					 /* alert("기본 키워드 개수는 3개입니다"); */
 					}
 				} 	
 	            function removeDetail(a){

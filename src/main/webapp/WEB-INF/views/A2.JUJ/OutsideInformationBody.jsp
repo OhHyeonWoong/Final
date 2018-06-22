@@ -235,7 +235,7 @@
 		              </div>
 		            </div>
 		            
-     			<script type="text/javascript">
+     			<!-- <script type="text/javascript">
      			$(function(){
      					$.ajax({
      						url : "startDatalistGet.go", 
@@ -264,9 +264,9 @@
      						}  
      					});	
      			});  
-     			</script>
+     			</script> -->
      			  
-				<script type="text/javascript">
+				<!-- <script type="text/javascript">
 					function SecondComment(jung){
 	 					
 						$.ajax({
@@ -301,11 +301,11 @@
 						});
 
 					}
-				</script>
+				</script> -->
 			       
      
      
-		        <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
+		        <%-- <div align="center" style="border: 1px dotted #d5d5d5; border-radius: 25px;">    
 		        	<div style="padding: 10px;"><font size="4">댓글영역</font><div>
 		        	<br>
 		        	<input type="hidden" id="WritingUserId" value="${loginUser.member_id}">
@@ -357,7 +357,7 @@
 
 		    	
 		    	
-		    </div>
+		    </div> --%>
 		    
 		    <br>
 		    <p class="text-center" style="margin-bottom: 0;"><a href="#" class="btn btn-default"> TOP <i class="fa fa-chevron-up"></i></a> &nbsp;&nbsp;  <a href="news_total.go" class="btn btn-default"> 뉴스전체 <i class="fa fa-chevron-up"></i></a></p>

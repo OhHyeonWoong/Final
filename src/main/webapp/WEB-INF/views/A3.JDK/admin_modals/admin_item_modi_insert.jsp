@@ -33,7 +33,7 @@ function categoryCheck(){
 function insertIndiItem(){
 	var formData = new FormData($("#fileForm")[0]);
 	formData.append("itemImage",$("#item_modi_file").files[0]);
-	alert(formData);
+	/* alert(formData); */
 	$.ajax({
 	url: "jdkinsertNewItem.go",
 	type: "POST",
@@ -45,7 +45,7 @@ function insertIndiItem(){
 		ITEMNAME : formData
 	},
 	success: function(result){
-		alert(result);
+		/* alert(result); */
 		$("#item_modi_insert").modal("hide"); 
 	}
 	});
