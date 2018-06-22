@@ -53,8 +53,8 @@ public class KakaoMessageAPI extends Thread{
 		System.out.println(token);
 		System.out.println(boardno);
 	    JSONObject linkObject =new JSONObject();
-	    linkObject.put("web_url","https://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
-	    linkObject.put("mobile_web_url","https://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
+	    linkObject.put("web_url","http://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
+	    linkObject.put("mobile_web_url","http://127.0.0.1:9999/goodluck/DealingState1.go?BoardNo="+boardno);
 	    linkObject.put("android_execution_params","contentId=100");
 	    linkObject.put("ios_execution_params","contentId=100");
 	    JSONObject contentObject =new JSONObject();

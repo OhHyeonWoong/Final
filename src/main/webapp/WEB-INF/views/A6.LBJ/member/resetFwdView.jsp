@@ -28,8 +28,6 @@
 <body>
 	<%@ include file = "/WEB-INF/views/A8.Common/Header.jsp" %>
 	<br>
-	<c:out value="${member_id}" />
-	<br>
 	<h2 style="text-align:center;">Reset Password!</h2><br>
 	<div class="container" style="width:40%;">
 		<!-- 이건 서브밋으로 처리할 수 있을 듯 -->
