@@ -35,6 +35,10 @@ import com.kh.goodluck.item.model.service.ItemService;
 import com.kh.goodluck.item.model.vo.MyPageItem;
 import com.kh.goodluck.item.model.vo.UsingItem;
 import com.kh.goodluck.member.model.service.MemberService;
+import com.kh.goodluck.outside_li.model.service.Outside_LifeService;
+import com.kh.goodluck.outside_li.model.vo.Outside_Life;
+import com.kh.goodluck.outside_m.model.service.Outside_MainService;
+import com.kh.goodluck.outside_m.model.vo.Outside_Main;
 import com.kh.goodluck.qna.model.service.QNAService;
 import com.kh.goodluck.qna.model.vo.QNA;
 import com.kh.goodluck.report.model.service.ReportService;
@@ -61,6 +65,13 @@ public class JUJ_BoardController {
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	private Outside_LifeService outside_LifeService;
+	
+	@Autowired
+	private Outside_MainService outside_MainService;
+
+	
 	public JUJ_BoardController() { //기본생성자 선언
 		// TODO Auto-generated constructor stub
 	}
@@ -83,16 +94,31 @@ public class JUJ_BoardController {
 		System.out.println(memberid+"님의 게시글 등록 가능횟수는 "+userWriteCount2+"회 입니다.");
 		
 		if(userWriteCount2<=0) {		
-			mv.setViewName("home");
-		}else {
-		ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
-		//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
-		
-		mv.addObject("userGiveItem", userItem);
-		mv.setViewName("A2.JUJ/UkjaeServiceForm");
+			
+			
+/*	   <select id="ukjaeCheckUserWritingCount" parameterType="String" resultType="int">
+	  	  <![CDATA[select count(*) from agency where agency_writer=#{memberid} and agency_status!=4]]> 
+	   </select>*/
+				
+			
+		}else if(userWriteCount2>0) {
+			
+			ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
+			//System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());
+			
+			mv.addObject("userGiveItem", userItem);
+			mv.setViewName("A2.JUJ/UkjaeServiceForm");
 		}
 		return mv;
 	}
+	
+	@RequestMapping("ukjaeServiceForm2.go")
+	public void ServiceForm(@RequestParam("memberid")String memberid) {
+		
+		
+	}
+	
+	
 	
 	@RequestMapping("ukjae_serviceStatus_alter.go")
 	public void ukjaeWritingDel(@RequestParam("data_no")String writing_no, HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -137,7 +163,7 @@ public class JUJ_BoardController {
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
 			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		
-		System.out.println("WirteCount -1");
+		//System.out.println("WirteCount -1");
 		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
 		
 		  

@@ -23,7 +23,7 @@
 		<property name="password" value="final" />  
 		<property name="defaultAutoCommit" value="false" />
 	</bean>        
-    	    
+
 
     <bean id="LogDataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
     	<constructor-arg ref="dataSource" />
