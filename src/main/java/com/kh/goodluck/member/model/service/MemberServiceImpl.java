@@ -90,7 +90,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override//어드민 페이지 회원 리스트 출력하는 메소드
 	public List<Member> adminMemberList(Member member) {
-    return memberDao.adMemberList();
+    return memberDao.adMemberList(member);
 	}
 	
 	@Override

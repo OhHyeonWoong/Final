@@ -210,10 +210,11 @@ public class MemberDao {
 		return sqlSession.selectList("selectMyChargeMoney", member_id);
 	}
 
-	   public List<Member> adMemberList() {
-	      return sqlSession.selectList("adminMemberList");
+	   public List<Member> adMemberList(Member member) {
+	      return sqlSession.selectList("adminMemberList",member);
 	   }
-	 public int getCountforRandomItems() {
+	   
+	public int getCountforRandomItems() {
 	return sqlSession.selectOne("countRandomItemNumber");
 	}
 }
