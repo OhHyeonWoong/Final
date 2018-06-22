@@ -430,7 +430,6 @@ $.ajax({
 	url:"sendmonja.go",
 	data:{memberid:"${writer.member_id}",pk:"${Board.agency_no}"},
 	success:function(data){
-	
 	}
 })
 }else{
@@ -467,12 +466,12 @@ z=evt.data;
      			data:{
      				ORDER:'${loginUser.member_id}',
      				NO:'${Chat.CHATROOM_NO}',
-     				CONTENT:$("#messagecont").val()
+     				CONTENT:$("#messagecont").val().replace(/(<([^>]+)>)/ig,"")
      			},
      			  success:function(data){
      				  if( $("#messagecont").val() != "") {
      			             message={};
-     			              message.message = $("#messagecont").val();
+     			              message.message = $("#messagecont").val().replace(/(<([^>]+)>)/ig,"");
      			              message.type = "all";
      			              message.to = "all";
      			              
@@ -641,6 +640,9 @@ z=evt.data;
 					<div class=" highlight" style="margin-left:0;">
 					<h2> 주 의 사 항 </h2><Br>
 						<div class="row">
+					  
+					  
+					  
 					  
 					        <ul>
 					            <li> 

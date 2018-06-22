@@ -466,12 +466,12 @@ var message = {};
     			data:{
     				ORDER:'${loginUser.member_id}',
     				NO:'${Chat.CHATROOM_NO}',
-    				CONTENT:$("#messagecont").val()
+    				CONTENT:$("#messagecont").val().replace(/(<([^>]+)>)/ig,"")
     			},
     			  success:function(data){
     				  if( $("#messagecont").val() != "") {
     			             message={};
-    			              message.message = $("#messagecont").val();
+    			              message.message = $("#messagecont").val().replace(/(<([^>]+)>)/ig,"");;
     			              message.type = "all";
     			              message.to = "all";
     			              
