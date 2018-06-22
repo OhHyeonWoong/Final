@@ -2,6 +2,8 @@ package com.kh.goodluck.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -75,8 +77,32 @@ public class JUJ_BoardController {
 	
 	
 	@RequestMapping("ukjaeServiceForm.go")
-	public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
-		
+	public void ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response) throws IOException {
+	      
+	      String userWriteCount = request.getParameter("write_count");
+	         
+	      int parsingCount = Integer.parseInt(userWriteCount);
+	      System.out.println("파싱된 유저의 글쓰기 유효카운트 : "+parsingCount);
+	      
+	      //욱재작업 = 현재 유저의 등록된 글의 갯수를 빼오는 메소드(member테이블의 member_write_count)와 비교함.
+	      int boardWritingCount = boardService.ukjaeCheckUserWritingCount(memberid);
+	      
+	      PrintWriter out = response.getWriter();
+	      
+	      if(boardWritingCount>=parsingCount) {
+	         out.append("0");      
+	      }else if(boardWritingCount<parsingCount) {
+	         out.append("1");
+	      /*ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
+	      //System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());   
+	      mv.addObject("userGiveItem", userItem);
+	      mv.setViewName("A2.JUJ/UkjaeServiceForm");*/
+	      }
+	         out.flush();
+	         out.close();
+	   }  
+	/*public void ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
+		System.out.println("ukjaeServiceForm.go 동작");
 		String userWriteCount = request.getParameter("write_count");
 		int userWriteCount2 = Integer.parseInt(userWriteCount);
 		
@@ -91,8 +117,19 @@ public class JUJ_BoardController {
 		mv.addObject("userGiveItem", userItem);
 		mv.setViewName("A2.JUJ/UkjaeServiceForm");
 		}
-		return mv;
-	}
+		PrintWriter out = response.getWriter();
+		out.
+		//return mv;
+	}*/
+	@RequestMapping("ukjaeServiceForm2.go") //서비스 글 작성 페이지로 이동하는메소드
+	   public ModelAndView ServiceForm(@RequestParam("memberid")String memberid,HttpServletRequest request,HttpServletResponse response,ModelAndView mv) throws IOException {
+	      
+	      ArrayList<UsingItem> userItem = (ArrayList<UsingItem>) ItemService.getUsingItem(memberid); 
+	      System.out.println("member가 보유한 유효 기간제 아이템 : "+userItem.toString());   
+	      mv.addObject("userGiveItem", userItem);
+	      mv.setViewName("A2.JUJ/UkjaeServiceForm");
+	      return mv;
+	   }
 	
 	@RequestMapping("ukjae_serviceStatus_alter.go")
 	public void ukjaeWritingDel(@RequestParam("data_no")String writing_no, HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -135,7 +172,7 @@ public class JUJ_BoardController {
 
 	@RequestMapping(value="wookServiceAdd.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
 	public void ukjaeServiceappend(@RequestParam("servicetitle") String serivcetitle,@RequestParam("loginUserId") String loginUser,@RequestParam("selectCate") String smallcategory
-			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException {
+			,@RequestParam("selectserviceArea") String ServiceArea,@RequestParam("startDate") String startDateString,@RequestParam("endDate") String endDateString,@RequestParam("servicePaytype") String paytype,@RequestParam("userinputPayamount") String payAmount,@RequestParam("writeContents") String serviceContents,HttpServletRequest request,HttpServletResponse response) throws ParseException, UnsupportedEncodingException, IOException {
 		
 		System.out.println("WirteCount -1");
 		int minususerwriteCount = memberService.ukjaeWriteCountOneMinus(loginUser);
@@ -151,6 +188,15 @@ public class JUJ_BoardController {
 		
 		System.out.println("유저가 선택한 소 카테고리? "+smallcategory);
 		CategoryLink2 link2 = boardService.pickupSmallCategory(smallcategory); //AAB 97
+		
+	    SmallCategory s1 = new SmallCategory();
+	    s1.setCategory_small_code(smallcategory);
+		
+		
+	    String categoryName = boardService.ukjaepickUpCategoryRealName(s1);
+	    System.out.println("조회한 카테고리이름 : "+categoryName);
+		
+	    
 		/*int link2_no=Integer.parseInt(link2.getLink2_no());	*/	
 		String link2_no = link2.getLink2_no();
 		System.out.println("선택된 소 카테고리 번호 "+link2_no);
@@ -259,9 +305,10 @@ public class JUJ_BoardController {
 		inputBoard.setAgency_no(AgencyBoardNo);
 	
 		int tradeDetailinput = boardService.registTrade(inputBoard);
-		if(tradeDetailinput>0) 
+		if(tradeDetailinput>0) {
 			System.out.println("대행 게시판 글 등록에 성공하였습니다.");
-		
+		}
+		response.sendRedirect("bshtest.go?link2_no="+URLEncoder.encode(categoryName, "UTF-8")+"&page=1");
 	}
 	
 	@RequestMapping(value="wookServiceAlterConfirm.go",method=RequestMethod.POST) //글등록(서비스 제공해요)
