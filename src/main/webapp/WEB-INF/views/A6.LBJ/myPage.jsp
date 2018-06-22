@@ -1422,7 +1422,7 @@ var pwpattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}/;
 					<c:forEach items="${lbjMyChargeMoney}" var="chargeMoney">
 						<tr>
 							<td>${chargeMoney.paylog_when}</td>
-							<td>${chargeMoney.paylog_money}</td>
+							<td>+ ${chargeMoney.paylog_money}</td>
 							<td>${loginUser.member_cash}</td>
 						</tr>
 					</c:forEach>

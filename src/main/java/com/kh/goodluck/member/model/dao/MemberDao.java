@@ -195,16 +195,17 @@ public class MemberDao {
       return sqlSession.insert("insertMemberDummy", m);
    }
 
+
    public List<MyReview> selectMyReview(String member_id) {
       // TODO Auto-generated method stub
       return sqlSession.selectList("selectMyReview", member_id);
    }
 
-
    public Memberandscore getmemberinfobymemberid(String str) {
       // TODO Auto-generated method stub
       return sqlSession.selectOne("getmemberinfobymemberid", str);
-}
+   }
+
    public List<Paylog> selectMyChargeMoney(String member_id) {
       // TODO Auto-generated method stub
       return sqlSession.selectList("selectMyChargeMoney", member_id);

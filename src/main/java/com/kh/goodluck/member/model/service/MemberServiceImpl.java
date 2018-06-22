@@ -82,22 +82,22 @@ public class MemberServiceImpl implements MemberService{
       return memberDao.checkusercash(memberid);
    }
 
-   @Override//아이템구매후, 캐시삭감.
-   public int decreaseCash(HashMap<Object,Object> map) {
-      // TODO Auto-generated method stub
-      return memberDao.decreaseCash(map);
-   }
-   
-   @Override//어드민 페이지 회원 리스트 출력하는 메소드
-   public List<Member> adminMemberList(Member member) {
+	@Override//아이템구매후, 캐시삭감.
+	public int decreaseCash(HashMap<Object,Object> map) {
+		// TODO Auto-generated method stub
+		return memberDao.decreaseCash(map);
+	}
+	
+	@Override//어드민 페이지 회원 리스트 출력하는 메소드
+	public List<Member> adminMemberList(Member member) {
     return memberDao.adMemberList(member);
-   }
-   
-   @Override
-   public int updateMemberCashMethod(Member m) {
-      //멤버 캐시 결제
-      return memberDao.updateMemberCashMethod(m);
-   }
+	}
+	
+	@Override
+	public int updateMemberCashMethod(Member m) {
+		//멤버 캐시 결제
+		return memberDao.updateMemberCashMethod(m);
+	}
 
    @Override
    public Memberandscore searchmemberInfobyBoardNo(int pk) {
