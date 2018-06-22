@@ -195,7 +195,6 @@ public class MemberDao {
       return sqlSession.insert("insertMemberDummy", m);
    }
 
-
    public List<MyReview> selectMyReview(String member_id) {
       // TODO Auto-generated method stub
       return sqlSession.selectList("selectMyReview", member_id);

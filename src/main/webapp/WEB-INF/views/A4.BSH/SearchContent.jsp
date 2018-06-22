@@ -177,13 +177,13 @@
 			<!-- 컨테이너 -->
 			<div class="board_div_prime">
 				<h2>프리미엄 글 입니다</h2><br>
-				<table style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
+				<table  class = "table table-hover" style="border-top: 1px solid black;border-bottom: 1px solid black; width: 100%;">
 					<thead style="border-top: 1px solid black;border-bottom: 1px solid black;">
 						<tr>
-							<th style="width: 5%;">종류</th>
-							<th style="width: 50%;">제목</th>
+							<th style="width: 10%;">종류</th>
+							<th style="width: 35%;">제목</th>
 							<th style="width: 5%;">지역</th>
-							<th style="width: 5%;">구분</th>
+							<th style="width: 8%;">구분</th>
 							<th style="width: 10%;">금액</th>
 							<th style="width: 10%;">등록날짜</th>
 							<th style="width: 10%;">시작날짜</th>
