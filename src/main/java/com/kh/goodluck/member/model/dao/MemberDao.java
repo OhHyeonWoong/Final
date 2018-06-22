@@ -90,10 +90,6 @@ public class MemberDao {
 		return sqlSession.delete("deleteMemberOut", member_id);
 	}
 
-	public List<MemberList> adMemberList() {
-		return sqlSession.selectList("adminMemberList");
-	}
-
 	public int updateMemberCashMethod(Member m) {
 		return sqlSession.update("updateMemberCash", m);
 	}
@@ -214,4 +210,10 @@ public class MemberDao {
 		return sqlSession.selectList("selectMyChargeMoney", member_id);
 	}
 
+	   public List<Member> adMemberList() {
+	      return sqlSession.selectList("adminMemberList");
+	   }
+	 public int getCountforRandomItems() {
+	return sqlSession.selectOne("countRandomItemNumber");
+	}
 }

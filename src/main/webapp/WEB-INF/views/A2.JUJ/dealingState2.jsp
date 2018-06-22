@@ -428,11 +428,12 @@ var message = {};
     	  	url:"sendmonja.go",
     	  	data:{memberid:"${writer.member_id}",pk:"${Board.agency_no}"},
     	  	success:function(data){
-    	  		alert("보냄");
+
+
     	  	}
     	  })
     	  }else{
-    	  	alert("상대방이있다.");	
+    	  
     	  if(iValue == -1){
     	  //없을경우에는
     	  z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
@@ -911,10 +912,10 @@ var message = {};
 						alert("이미 수행일이 지났으므로 취소가 불가능합니다.");
 						$('#cjsModalLabel').modal('hide');		
 					}else if(data==1){
-						alert("현 지원자의 신청을 취소했습니다. 예비인력은 없습니다.");
+						
 						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
 					}else if(data==2){
-						alert("현 지원자의 신청을 취소했습니다. 예비인력으로 교체되었습니다.");
+						
 						location.href="lbjmypage.go?member_id=${loginUser.member_id}";
 					}
 				}
@@ -940,7 +941,7 @@ var message = {};
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
 		        </span></button>
-		        <h4 class="modal-title" id="myModalLabel">해당 유저 신고</h4>
+		       
 		      </div>
 		      <div class="modal-body">
 		   신고사유: ㅇㅇㅇㅇ

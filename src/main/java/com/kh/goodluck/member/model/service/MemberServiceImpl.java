@@ -90,8 +90,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override//어드민 페이지 회원 리스트 출력하는 메소드
 	public List<Member> adminMemberList(Member member) {
-		
-		return memberDao.adMemberList(member);
+    return memberDao.adMemberList();
 	}
 	
 	@Override
@@ -248,19 +247,19 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int updateUserKakaoToken(HashMap<Object, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		  return memberDao.updateUserKakaoToken(map);
 	}
 
-	@Override
-	public int insertDBDummyData(Board board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	   
+	   @Override
+	   public int insertDBDummyData(Board board) {
+	      // TODO Auto-generated method stub
+	      return memberDao.insertDBDummyData(board);
+	   }
+	   
 
-	@Override
-	public List<Paylog> selectMyChargeMoney(String member_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-}	
-
+	   @Override
+	   public List<Paylog> selectMyChargeMoney(String member_id) {
+	      return memberDao.selectMyChargeMoney(member_id);
+	   }
+}

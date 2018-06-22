@@ -599,9 +599,7 @@
 <button id="ukapplybtn" class="btn btn-danger" data-target="#cjsModalLabel">
 		수행 포기
 		</button>
-					                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">
-					        해당 유저 신고
-					                </a>
+					   
 					            </div>
 					        
 					            <div class="row" id="post-review-box" style="display:none;">

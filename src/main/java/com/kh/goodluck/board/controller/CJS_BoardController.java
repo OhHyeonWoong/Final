@@ -646,7 +646,7 @@ public void finishBoard(
 	map2.put("APPLICANT",boardservice.getAPPLICANT(pk));
 	map2.put("rate",bo.getAgency_pay()*rating/10000);
 	map2.put("orderrate", bo.getAgency_pay());
-	map2.put("payment",bo.getAgency_pay());
+	map2.put("payment",bo.getAgency_pay()*0.9);
 	int result5=boardservice.SCOREupdatetype1(map2);
 	//6.돈계산+paylog인설트.
 	int result6=memberService.paycash(map2);
@@ -685,7 +685,7 @@ public void finishBoard(
 		map2.put("APPLICANT",bo.getAgency_writer());
 		map2.put("rate",bo.getAgency_pay()*rating/10000);
 		map2.put("orderrate", bo.getAgency_pay());
-		map2.put("payment",bo.getAgency_pay());
+		map2.put("payment",bo.getAgency_pay()*0.9);
 		int result5=boardservice.SCOREupdatetype1(map2);
 		int result6=memberService.paycash(map2);
 		int result7=memberService.insertpaylog(map2);
