@@ -168,7 +168,7 @@ function paging1(page){
 				$("#haveimticon").html(value2);
 				},
 				error:function(a,b,c){
-					alert("a : " + a + ", b : " + b + ", c : " + c);
+					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 				}
 	})}}
 function paging(page){
@@ -337,7 +337,7 @@ function paging(page){
 				$("#haveimticon").html(value2);
 				},
 				error:function(a,b,c){
-					alert("a : " + a + ", b : " + b + ", c : " + c);
+					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 				}
 	})}}
 				
@@ -521,7 +521,7 @@ $("#havingimticonpaging").html("");
 		
 		},
 		error:function(a,b,c){
-			alert("a : " + a + ", b : " + b + ", c : " + c);
+			/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		}
 	});
 	}
@@ -699,7 +699,7 @@ function useitem(itempk){
 		 	
 		 				},
 		 				error:function(a,b,c){
-		 					alert("a : " + a + ", b : " + b + ", c : " + c);
+		 					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
 		 				}
 			})
 		
@@ -786,7 +786,7 @@ $.ajax({
 				
 				},
  				error:function(a,b,c){
- 					alert("a : " + a + ", b : " + b + ", c : " + c);
+ 					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
  				}
 })
 }

@@ -34,7 +34,7 @@
 			 	$("#j1").append(tablevalue); 
 			},
 			error:function(a,b,c){
-				alert(a + ", " + b + ", " + c);
+				/* alert(a + ", " + b + ", " + c); */
 			}	
 			/* error: function(jqXHR, textStatus, errorThrown){
 				console.log("error : " + jqXHR + ", " 
@@ -62,7 +62,7 @@
 				$("#j2").append(values);
 			},
 			error:function(a,b,c){
-				alert(a + ", " + b + ", " + c);
+				/* alert(a + ", " + b + ", " + c); */
 			}		
 		}); /* FAQ top5 Ajax끝 */
 		
@@ -83,7 +83,7 @@
 				$('.supply_lifetable').append(tablevalue);  
 			},
 			error:function(a,b,c){
-				alert(a + ", " + b + ", " + c);
+				/* alert(a + ", " + b + ", " + c); */
 			} 
 		}); /* 생활영역 제공해요! */   
 		
@@ -104,7 +104,7 @@
 				   	  $('.ukjae_LifeTable1').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}	
 			});  /* 생활영역 뉴스(1~3) */
 
@@ -126,7 +126,7 @@
 		   
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}	
 			}); /* 생활영역 뉴스(4~6) */
 		
@@ -151,7 +151,7 @@
 			   	  $(".ukjae_PetTable").append(htmlStr);
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}			
 		}); /* 반려동물영역 뉴스(1~6) */
 		
@@ -172,7 +172,7 @@
 				$(".petarea_table").append(tablevalue);
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		}); /* 반려동물영역 제공해요! */  
 		
@@ -192,7 +192,7 @@
 				$(".gamearea_table").append(tablevalue);
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		}); /* 게임영역 제공해요! */  
 			
@@ -213,7 +213,7 @@
 				   	  $('.ukjae_GameTable').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}	
 			}); /* 게임영역 뉴스 제공해요(1~3) */			
 		
@@ -240,7 +240,7 @@
 					$('.musicarea_style1').append(tablevalue); 
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}
 			}); /* 음악영역 제공해요! 1 */
 			
@@ -267,7 +267,7 @@
 					$('.musicarea_style2').append(tablevalue);  
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}
 			}); /* 음악영역 제공해요! 2 */
 			
@@ -293,7 +293,7 @@
 					$('.musicarea_style3').append(tablevalue); 
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}
 			}); /* 음악영역 제공해요! 3 */
 			
@@ -320,7 +320,7 @@
 					$('.musicarea_style4').append(tablevalue);  
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}
 			}); /* 음악영역 제공해요! 4 */
 			
@@ -344,7 +344,7 @@
 					
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}
 			});  
 			/* 렌탈영역 제공해요 */		
@@ -371,7 +371,7 @@
 				$('.travel_area1').append(tablevalue); 
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		});  /* 여행영역 제공해요! (추천 가이더 부분) */ 
 		
@@ -390,7 +390,7 @@
 				$('#travel_area2').append(tablevalue);
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		});  /* 여행영역 제공해요! (제공해요부분) */ 
 			
@@ -411,7 +411,7 @@
 			   $('#mainTravelTable').html(htmlStr);
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}			
 		});  /* 여행영역 뉴스 제공해요(1~6) */
 		
@@ -437,7 +437,7 @@
 				$('.recommend_free').append(tablevalue); 
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		});  /* 프리랜서영역 (추천프리랜서 부분) */  
 		
@@ -460,7 +460,7 @@
 
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		});  /* 프리랜서 제공해요! */  
 
@@ -483,7 +483,7 @@
 				$('.requirearea3').append(tablevalue);  
 			},
 			error : function(a,b,c){
-				alert(a+","+b+","+c);
+				/* alert(a+","+b+","+c); */
 			}
 		}); /* 구인영역 제공해요! */
 		

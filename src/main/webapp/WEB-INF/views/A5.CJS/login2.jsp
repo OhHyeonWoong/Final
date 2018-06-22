@@ -47,7 +47,7 @@
 												member_pw : pwd
 											},
 											success:function(data){
-												alert(data);
+												/* alert(data); */
 												if(data == '로그인 성공'){
 													//$("#login-modal").modal("hide");
 													var selectBox = $('#idSave');
@@ -61,7 +61,7 @@
 												}
 											},
 											error:function(a,b,c){
-												alert(a + ", " + b + ", " + c);
+												/* alert(a + ", " + b + ", " + c); */
 											}
 										});
 									}
@@ -115,12 +115,12 @@
 								              
 								              },
 								              fail: function(error) {
-								                alert(JSON.stringify(error));
+								                /* alert(JSON.stringify(error)); */
 								              }
 								            });
 								        },
 								        fail: function(err) {
-								          alert(JSON.stringify(err));
+								          /* alert(JSON.stringify(err)); */
 								        }
 								      });
 								    };
@@ -207,13 +207,13 @@
                                 				member_name: member_name
                                 			},
                                 			success:function(data){
-                                				alert(data);
+                                				/* alert(data); */
                                 				if(data != '실패 기모띠 실패'){
-                                					alert("입력하신 정보가 잘못되었습니다.");
+                                					/* alert("입력하신 정보가 잘못되었습니다."); */
                                 				}
                                 			},
                                 			error:function(a,b,c){
-                                				alert("a = " + a + ", b = " + b + ", c = " + c);
+                                				/* alert("a = " + a + ", b = " + b + ", c = " + c); */
                                 			}
                                 		});
                                 	}

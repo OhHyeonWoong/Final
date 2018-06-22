@@ -168,7 +168,7 @@ $('#member_id').focus();
 			}
 		},
 		error: function(){
-			alert("이메일 ajax 에러");
+			/* alert("이메일 ajax 에러"); */
 		}	
 	});
 	}

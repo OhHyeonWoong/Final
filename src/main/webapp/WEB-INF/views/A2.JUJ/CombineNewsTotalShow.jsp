@@ -27,7 +27,7 @@
 				   	  $('#ukjae_TableAreaFiveth').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}			
 			}); 
 			$.ajax({
@@ -47,7 +47,7 @@
 				   	  $('#ukjae_TableAreaSixeth').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}			
 			}); 
 			$.ajax({
@@ -67,7 +67,7 @@
 				   	  $('#ukjae_TableAreaSeventh').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}			
 			}); 
 			$.ajax({
@@ -87,7 +87,7 @@
 				   	  $('#ukjae_TableAreaNineth').append(htmlStr);
 				},
 				error : function(a,b,c){
-					alert(a+","+b+","+c);
+					/* alert(a+","+b+","+c); */
 				}			
 			}); 
 
@@ -241,7 +241,7 @@
 		<br>
 		<script type="text/javascript">
 			function abc(){ /* 검색에대한 결과물을 뿌려주는 Ajax */
-				alert("유저께서 통합검색을 시도하셨습니다.");
+				/* alert("유저께서 통합검색을 시도하셨습니다."); */
 				$.ajax({
 					url : "fowordingkeyword.go",
 					type : "get",
@@ -302,7 +302,7 @@
 		</div>
 		<script type="text/javascript"> /* 영역별 리스트 가져오기 */
 			function checkOne(){
-				alert("생활영역 뉴스를 로딩합니다.");	
+				/* alert("생활영역 뉴스를 로딩합니다.");	 */
 				$.ajax({
 					url : "lifeNews.go",
 					type : "get",
@@ -322,12 +322,12 @@
 						   	  $('.center').html(htmlStr);
 					},						
 					error : function(a,b,c){  
-						alert(a+","+b+","+c);
+						/* alert(a+","+b+","+c); */
 					}			
 				}); 	
 			}
 			function checkTwo(){
-				alert("반려동물영역 뉴스를 로딩합니다.");	
+				/* alert("반려동물영역 뉴스를 로딩합니다.");	 */
 				$.ajax({
 					url : "petnewslist.go", 
 					type : "get",
@@ -346,12 +346,12 @@
 					   	   htmlStr +="</table>";
 					   	   $('.center').html(htmlStr);
 					},error : function(a,b,c){
-						alert(a+","+b+","+c);
+						/* alert(a+","+b+","+c); */
 					}
 				}); 
 			}
 			function checkThree(){
-				alert("게임영역 뉴스를 로딩합니다.");
+				/* alert("게임영역 뉴스를 로딩합니다."); */
 				$.ajax({
 					url : "gameNews.go",
 					type : "get",
@@ -371,12 +371,12 @@
 						   	  $('.center').html(htmlStr);
 					},	
 					error : function(a,b,c){
-						alert(a+","+b+","+c);
+						/* alert(a+","+b+","+c); */
 					}			
 				}); 				
 			}
 			function checkFour(){
-				alert("여행영역 뉴스를 로딩합니다.");	
+				/* alert("여행영역 뉴스를 로딩합니다.");	 */
 				$.ajax({
 					url : "travelnewslist.go",
 					type : "get",
@@ -396,12 +396,12 @@
 						   	  $('.center').html(htmlStr);
 					},	
 					error : function(a,b,c){
-						alert(a+","+b+","+c);
+						/* alert(a+","+b+","+c); */
 					}			
 				}); 				
 			}
 			function checkFive(){
-					alert("전체뉴스를 로딩합니다.");	
+					/* alert("전체뉴스를 로딩합니다.");	 */
 					$.ajax({
 						url : "animalNews.go",
 						type : "get",
@@ -420,7 +420,7 @@
 						   	  $('#ukjae_newsContents').append(htmlStr);
 						},
 						error : function(a,b,c){
-							alert(a+","+b+","+c);
+							/* alert(a+","+b+","+c); */
 						}			
 					}); 
 					$.ajax({
@@ -440,7 +440,7 @@
 						   	  $('#ukjae_newsContents').append(htmlStr);
 						},
 						error : function(a,b,c){
-							alert(a+","+b+","+c);
+							/* alert(a+","+b+","+c); */
 						}			
 					}); 
 					$.ajax({
@@ -460,7 +460,7 @@
 						   	  $('#ukjae_newsContents').append(htmlStr);
 						},
 						error : function(a,b,c){
-							alert(a+","+b+","+c);
+							/* alert(a+","+b+","+c); */
 						}			
 					}); 
 					$.ajax({
@@ -480,7 +480,7 @@
 						   	  $('#ukjae_newsContents').append(htmlStr);
 						},
 						error : function(a,b,c){
-							alert(a+","+b+","+c);
+							/* alert(a+","+b+","+c); */
 						}			
 					}); 
 			}

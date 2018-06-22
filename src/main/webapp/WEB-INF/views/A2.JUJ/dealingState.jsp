@@ -495,7 +495,7 @@ z=evt.data;
      			              $("#message").val("");
      			          }
      		  },error:function(a,b,c){
- 					alert("a : " + a + ", b : " + b + ", c : " + c);
+ 					/* alert("a : " + a + ", b : " + b + ", c : " + c); */
  				}
      	  })
      	});

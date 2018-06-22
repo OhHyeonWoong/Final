@@ -117,7 +117,7 @@
 					</form>
 					<script type="text/javascript">
 						/* function click(){
-							alert("클릭");
+							/* alert("클릭"); */
 							var v1 = $("#input_1").val();
 							var v2 = $("#input_2").val();
 							console.log(v1);
