@@ -126,6 +126,8 @@ session.sendMessage(new TextMessage("<li class='message right appeared'><div cla
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	
     	 connectedUsers.remove(se);
+    	 
+    	 
 //    	for(SessionUser sessionUser : connectedUsers) {
 //    		
 //    		sessionUser.getSession().sendMessage(new TextMessage(sessionUser.getTo() + "님이 퇴장했습니다."));	

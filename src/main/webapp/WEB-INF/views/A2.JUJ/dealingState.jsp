@@ -430,11 +430,11 @@ $.ajax({
 	url:"sendmonja.go",
 	data:{memberid:"${writer.member_id}",pk:"${Board.agency_no}"},
 	success:function(data){
-		alert("보냄");
+	
 	}
 })
 }else{
-	alert("상대방이있다.");	
+
 if(iValue == -1){
 //없을경우에는
 z="<li class='message left appeared'><div class='avatar'> <img src='/goodluck/resources/A5.CJS/usertitleimg/${cattingimg}' style='width: 50px; height: 50px;'> </div><div class='text_wrapper'> <div class='text'>"+evt.data;
@@ -745,9 +745,7 @@ z=evt.data;
 <button id="ukapplybtn" data-target="#cjsModalLabel" style="background: red; color: white; width: 90px; height: 33px;">
 수행 포기
 </button>
-<button  class="btn btn-success btn-green" id="report" data-target="#reportmodal">
-  해당 유저 신고
-</button>
+
 					     
 					     
 					</c:when>

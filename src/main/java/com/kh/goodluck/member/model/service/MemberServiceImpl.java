@@ -1,6 +1,5 @@
 package com.kh.goodluck.member.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,9 +89,8 @@ public class MemberServiceImpl implements MemberService{
    }
    
    @Override//어드민 페이지 회원 리스트 출력하는 메소드
-   public List<MemberList> adminMemberList() {
-      
-      return memberDao.adMemberList();
+   public List<Member> adminMemberList(Member member) {
+    return memberDao.adMemberList(member);
    }
    
    @Override
@@ -189,7 +187,7 @@ public class MemberServiceImpl implements MemberService{
       // 회원들이 결제 시 수수료 10%를 관리자 통장으로 넣어줌
       return memberDao.insertLbjMilegePayLog(map);
    }
-     
+   
    @Override
    public int updateAdminCash(HashMap<String, Object> map) {
       //관리자 id 캐시 갱신
@@ -201,32 +199,17 @@ public class MemberServiceImpl implements MemberService{
       //욱재 - 서비스 등록을 한 유저의 WriteCount를 1회 감소시키는 메소드(파라미터-member_id)
       return memberDao.ukjaeWriteCountOneMinus(loginUser);
    }
-
+   
    @Override
-   public int ukjaeuserCashMinusCheck(String loginUser) {
-      //욱재 - 서비스 등록을 한 유저의 Cash를 리턴받는 메소드
-      return memberDao.ukjaeuserCashMinusCheck(loginUser);
-   }
-    
-   @Override
-   public int ukjaeuserCashMinus(Member updatemember) {
-      //욱재 - 서비스 등록을 한 유저의 Cash에서 등록금액을 차감시킨후 업데이트시키는 메소드
-      return memberDao.ukjaeuserCashMinus(updatemember);
-   }
-
-
-   @Override
-   public int updateUserKakaoToken(HashMap<Object, Object> map) {
-      //마이페이지에서 카카오인증을 위해 유저가 사용하는 메소드
-      return memberDao.updateUserKakaoToken(map);
+   public int countAllItemNum() {
+      return memberDao.getCountforAllItems();
    }
    
    @Override
-   public int insertDBDummyData(Board board) {
-      // TODO Auto-generated method stub
-      return memberDao.insertDBDummyData(board);
+   public int countRandomItemNum() {
+      return memberDao.getCountforRandomItems();
    }
-   
+
    @Override
    public int insertDBTrade(int no) {
       // TODO Auto-generated method stub
@@ -242,9 +225,41 @@ public class MemberServiceImpl implements MemberService{
    public List<MyReview> selectMyReview(String member_id) {
       return memberDao.selectMyReview(member_id);
    }
-   
+
    @Override
-   public List<Paylog> selectMyChargeMoney(String member_id) {
-      return memberDao.selectMyChargeMoney(member_id);
+   public Memberandscore getmemberinfobymemberid(String str) {
+      // TODO Auto-generated method stub
+      return memberDao.getmemberinfobymemberid(str);
    }
-}   
+
+   @Override
+   public int ukjaeuserCashMinusCheck(String loginUser) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   @Override
+   public int ukjaeuserCashMinus(Member updatemember) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   @Override
+   public int updateUserKakaoToken(HashMap<Object, Object> map) {
+      // TODO Auto-generated method stub
+        return memberDao.updateUserKakaoToken(map);
+   }
+
+      
+      @Override
+      public int insertDBDummyData(Board board) {
+         // TODO Auto-generated method stub
+         return memberDao.insertDBDummyData(board);
+      }
+      
+
+      @Override
+      public List<Paylog> selectMyChargeMoney(String member_id) {
+         return memberDao.selectMyChargeMoney(member_id);
+      }
+}
